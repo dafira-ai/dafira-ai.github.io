@@ -1,0 +1,43 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CaseStudy from '../../../components/case-studies/CaseStudy.astro';
+---
+
+<Layout
+  title="Regionaal publiek investeringsfonds: bestuursgovernance met Dafira"
+  description="Hoe een regionaal publiek investeringsfonds van SharePoint overstapte naar Dafira voor zijn bestuursorganen en een bestuur uit de publieke en private sector. Lees de case study."
+>
+  <CaseStudy
+    company="Regionaal publiek investeringsfonds"
+    facts={[{ label: "Sector", value: "Regionaal publiek investeringsfonds" }]}
+    title="Regionaal publiek investeringsfonds: één governanceplatform voor publieke en private bestuurders"
+    lead="Hoe het fonds de documentatie van zijn bestuursorganen en dochterondernemingen van SharePoint naar Dafira bracht."
+    quote={{ quote: "Dafira heeft ons documentbeheer aanzienlijk vereenvoudigd, waardoor onze vergadervoorbereidingen efficiënter verlopen en ons bestuur zich kan concentreren op besluitvorming in plaats van documentbeheer.", author: "CEO" }}
+    context={{
+      title: "Ondernemingen in de regio financieren",
+      paragraphs: [
+        "Het fonds financiert ondernemingen in zijn regio. Het ondersteunt startups, scale-ups en kmo’s met diverse financiële instrumenten.",
+        "Zijn aanpak omvat risicokapitaal via participaties, achtergestelde leningen en converteerbare leningen, naast een fonds-in-fondsbeleid.",
+      ],
+      quote: "Onze hybride aandeelhoudersstructuur met private en publieke partners stelt ons in staat om efficiënt te investeren. We hebben verschillende bestuursorganen en dochterondernemingen die veel documenten genereren voor onze vergaderingen, waaronder analyserapportages over de bedrijven waarin we investeren.",
+    }}
+    challenges={[
+      { title: "Documentvolume", text: "Verschillende bestuursorganen en dochterondernemingen met veel documentatie die georganiseerd en toegankelijk moet blijven." },
+      { title: "Samenwerking tussen organisaties", text: "Bestuurders uit de publieke en private sector met verschillende mailsystemen, wat delen en toegangsbeheer bemoeilijkte." },
+      { title: "Compliancevereisten", text: "Europese bestuursnormen naleven zonder de werking te vertragen." },
+    ]}
+    solutions={[
+      { title: "Eén platform", text: "Alle bestuursdocumenten op één plek, met beveiligde toegang voor elke bestuurder." },
+      { title: "Samenwerkingstools", text: "Communicatie, annotatie van documenten en besluitvorming in hetzelfde platform." },
+      { title: "Audittrail", text: "Een volledig overzicht van documenten en beslissingen, ter ondersteuning van Europese governancevereisten." },
+    ]}
+    outcome={{
+      title: "Van SharePoint naar Dafira",
+      paragraphs: [
+        "De overstap van SharePoint naar Dafira veranderde hoe het fonds bestuursdocumentatie en samenwerking beheert, wat belangrijk is voor een bestuur uit de publieke en private sector.",
+        "Met Dafira werkt het bestuur van het fonds transparanter en efficiënter, ter ondersteuning van zijn missie om de economische groei in de regio te stimuleren.",
+      ],
+      quote: "Wij bevelen Dafira aan omdat het een eenvoudig en effectief instrument is dat het werk van bestuurders en hun samenwerking vergemakkelijkt. Het bevordert transparantie en nauwkeurige informatie-uitwisseling, en met de juiste informatie kun je de juiste beslissingen nemen en vooral de juiste discussies voeren.",
+    }}
+  />
+</Layout>

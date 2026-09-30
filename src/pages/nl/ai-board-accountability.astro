@@ -1,624 +1,118 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import backgroundImage from '../../assets/images/background-image.jpg';
-import FAQ from '../../components/FAQ.astro';
+import BoardAccountability from '../../components/campaigns/BoardAccountability.astro';
 
-const testimonials = [
-  {
-    quote: "Van besluiten tot uitvoering. Geen verloren resoluties of vergeten actiepunten meer. Alles wordt automatisch gevolgd en opgevolgd.",
-    author: "Maria L.",
-    title: "Bestuurssecretaris",
-    company: "Tech Scale-up"
+const t = {
+  hero: {
+    eyebrow: 'Bestuurlijke verantwoording',
+    title: 'Van notulen naar acties: AI die bestuurlijke verantwoording ondersteunt',
+    lead: 'Neem niet alleen notities. Zet elk besluit om in traceerbare taken met eigenaren, deadlines, handtekeningen en resolutiestatus, in een veilige, AVG-conforme workflow.',
+    primary: { text: 'Start gratis proefperiode', href: '/nl/try' },
+    secondary: { text: 'Vraag een demo aan', href: '/nl/request-demo' },
+    note: 'Geen creditcard nodig · EU-gehost · AVG-conform',
   },
-  {
-    quote: "Eindelijk bestuurlijke verantwoording die echt werkt. Eigenaren weten precies wat er verwacht wordt en wanneer. Geen excuses meer.",
-    author: "Jean-Pierre K.",
-    title: "CEO",
-    company: "Productiegroep"
-  }
-];
-
-const accountabilityPromises = [
-  {
-    title: "Besluiten → Acties",
-    description: "Besluitpunten en resoluties worden gedetecteerd in uw notulen, omgezet in taken met eigenaren, deadlines en afhankelijkheden.",
-    icon: "🎯",
-    benefit: "Geen besluiten vallen meer door de mazen"
+  card: {
+    title: 'Besluit → actie → afgerond',
+    meta: 'Resolutieregister',
+    rows: [
+      { label: 'R-2026-11', text: 'Goedkeuring budget', tone: 'ok' as const, status: 'Afgesloten' },
+      { label: 'R-2026-12', text: 'Beveiligingsaudit', tone: 'pending' as const, status: 'In uitvoering' },
+      { label: 'R-2026-13', text: 'Uitbreiding van het bestuur', tone: 'info' as const, status: 'Voorgesteld' },
+    ],
+    footer: 'Elke resolutie heeft een eigenaar en een deadline',
+    footerMeta: 'eIDAS-handtekeningen',
+    caption: 'Voorbeeldregister',
   },
-  {
-    title: "Wrijvingsloze Verantwoording",
-    description: "Geautomatiseerde herinneringen, slimme opvolging, activiteitenlogboek en complete traceerbaarheid tot sluiting.",
-    icon: "📊",
-    benefit: "Eigenaren blijven op schema zonder micromanagement"
+  promise: {
+    eyebrow: 'De belofte',
+    title: 'Van verspreide besluiten naar systematische verantwoording',
+    lead: 'Elk bestuursbesluit wordt een gevolgde actie met duidelijk eigenaarschap, deadlines en bewijs van uitvoering.',
+    items: [
+      { icon: 'target', title: 'Besluiten → acties', text: 'Besluitpunten en resoluties worden in uw notulen herkend en omgezet in taken met eigenaren, deadlines en afhankelijkheden.', benefit: 'Geen besluiten die door de mazen glippen' },
+      { icon: 'bell', title: 'Verantwoording zonder wrijving', text: 'Automatische herinneringen, opvolging, een activiteitenlogboek en traceerbaarheid tot afsluiting.', benefit: 'Eigenaren blijven op schema zonder micromanagement' },
+      { icon: 'signature', title: 'Geïntegreerde ondertekening', text: 'Valideer notulen en resoluties met een eIDAS-conforme elektronische handtekening en bewijskrachtige archivering.', benefit: 'Juridische conformiteit ingebouwd' },
+      { icon: 'list', title: 'Opvolging van resoluties', text: 'Duidelijke status (Voorgesteld, Goedgekeurd, In uitvoering, Geblokkeerd, Afgesloten), bijgevoegd bewijs en tijdstempels voor audit.', benefit: 'Auditklare documentatie' },
+    ],
   },
-  {
-    title: "Geïntegreerde Ondertekening",
-    description: "Valideer notulen en resoluties met eIDAS-conforme elektronische handtekening en bewijsvoering.",
-    icon: "✍️",
-    benefit: "Juridische compliance ingebouwd"
+  roles: {
+    eyebrow: 'Voor bestuursleiders',
+    title: 'Gemaakt voor CEO’s en bestuurssecretarissen',
+    lead: 'Verschillende rollen, een gedeelde behoefte: besluiten die uitgevoerd worden.',
+    items: [
+      { icon: 'user', role: 'CEO', benefits: [
+        'Realtime zicht op wie wat doet, en tegen wanneer',
+        'Minder opvolgberichten, meer uitgevoerde besluiten, duidelijkere verantwoordelijkheid',
+        'Heldere rapportering aan de raad, zonder parallelle spreadsheets',
+      ] },
+      { icon: 'pen', role: 'Bestuurssecretaris', benefits: [
+        'Geen chaos meer na de vergadering: notulen gegenereerd, besluiten geëxtraheerd, taken automatisch aangemaakt',
+        'Handtekeningworkflow (notulen, resoluties) en veilige verspreiding naar bestuurders',
+        'Een volledig bewijsdossier voor audit en compliance',
+      ] },
+    ],
   },
-  {
-    title: "Resolutie Tracking",
-    description: "Duidelijke status (Voorgesteld, Goedgekeurd, In Uitvoering, Geblokkeerd, Afgesloten), bijgevoegd bewijs en tijdstempeling voor audit.",
-    icon: "📋",
-    benefit: "Audit-klare documentatie"
-  }
-];
-
-const workflow = [
-  {
-    step: "1",
-    title: "Vastleggen & Genereren",
-    description: "Import audio / notities / documenten → AI genereert gestructureerd notulenontwerp (agenda, besluiten, acties, resoluties).",
-    icon: "🎤"
+  workflow: {
+    eyebrow: 'Workflow',
+    title: 'Hoe het werkt: van vergadering tot verantwoording',
+    steps: [
+      { title: 'Vastleggen en genereren', text: 'Importeer audio, notities of documenten; de AI genereert een gestructureerd notulenconcept (agenda, besluiten, acties, resoluties).' },
+      { title: 'Omzetten', text: 'Besluiten en resoluties worden herkend en omgezet in taken (eigenaar, deadline, tags, bijlagen).' },
+      { title: 'Valideren en ondertekenen', text: 'Elektronische handtekeningworkflow voor notulen en resoluties. Vergrendeling, versiebeheer en tijdstempels.' },
+      { title: 'Volgen en opvolgen', text: 'Herinneringen, meldingen, eigen termijnen, opvolging van eigenaren, opmerkingen en uitvoeringsbewijs.' },
+      { title: 'Rapporteren', text: 'Dashboards en exports: resolutiestatus, voortgang, vertragingen en risico’s, en een agendapunt ‘actieopvolging’ voorbereid voor de volgende vergadering.' },
+    ],
   },
-  {
-    step: "2",
-    title: "Transformeren",
-    description: "Automatische detectie van besluiten & resoluties → creatie van taken (eigenaar, deadline, tags, bijlagen).",
-    icon: "⚡"
+  modules: {
+    eyebrow: 'Kernmodules',
+    title: 'Alles wat u nodig heeft voor volledige verantwoording',
+    lead: 'Modules die ontworpen zijn om samen te werken.',
+    items: [
+      { icon: 'tasks', title: 'Actietracker', text: 'Kanban- en lijstweergave, filters (eigenaar, comité, prioriteit, deadline), vermeldingen en toewijzing.', features: ['Kanbanborden', 'Filters', 'Teamvermeldingen', 'Prioriteitenbeheer'] },
+      { icon: 'book', title: 'Resolutieregister', text: 'Register van resoluties met status, juridische basis, bijbehorende documenten en stemmingen.', features: ['Juridische conformiteit', 'Documentkoppeling', 'Stemregistratie', 'Statusopvolging'] },
+      { icon: 'signature', title: 'E-handtekening en goedkeuringen', text: 'Gekwalificeerde handtekening, zegels, voltooiingscertificaat en een configureerbare goedkeuringsworkflow.', features: ['eIDAS-conformiteit', 'Goedkeuringsworkflows', 'Digitale certificaten', 'Audittrails'] },
+      { icon: 'shield', title: 'Audit en compliance', text: 'Activiteitenlog, audittrails, EU-hosting en AVG-conformiteit.', features: ['Volledige audittrails', 'Gegevens in de EU', 'AVG-conformiteit', 'Activiteitenlog'] },
+    ],
+    links: [
+      { text: 'Meer over beveiliging en e-handtekeningen', href: '/nl/security' },
+      { text: 'Bekijk alle functies', href: '/nl/features' },
+    ],
   },
-  {
-    step: "3",
-    title: "Valideren & Ondertekenen",
-    description: "Elektronische handtekeningworkflow voor notulen/resoluties. Document vergrendeling, versiebeheer en tijdstempeling.",
-    icon: "✍️"
+  europe: {
+    eyebrow: 'Europa eerst',
+    title: 'Van besluit tot uitvoering, met Europese waarborgen',
+    lead: 'Minder wrijving tussen vergadering en opvolging, in een platform gebouwd voor Europese governance-vereisten.',
+    callout: 'EU-hosting, AVG by design en eIDAS-conforme handtekeningen: de gegevens van uw bestuur blijven in Europa.',
+    primary: { text: 'Test op uw volgende vergadering', href: '/nl/try' },
+    secondary: { text: 'Een auditklaar resolutieregister nodig?', href: '/nl/request-demo' },
   },
-  {
-    step: "4",
-    title: "Volgen & Opvolgen",
-    description: "Herinneringen, notificaties, aangepaste SLA's, eigenaar opvolging, opmerkingen en uitvoeringsbewijs.",
-    icon: "📈"
+  faq: {
+    title: 'Veelgestelde vragen',
+    subtitle: 'Over AI-ondersteunde bestuurlijke verantwoording',
+    inLanguage: 'nl',
+    faqs: [
+      { question: 'Kunnen AI-notulen besluiten en acties volgen?', answer: 'Ja. De AI herkent besluiten en resoluties in uw notulen en zet ze om in uitvoerbare taken met eigenaren en deadlines. Elk item wordt gevolgd tot het afgerond is, met herinneringen, statusupdates en een controleerbaar spoor.' },
+      { question: 'Hoe volgen we bestuursresoluties op?', answer: 'Gebruik het resolutieregister om de status te volgen (Voorgesteld, Goedgekeurd, In uitvoering, Geblokkeerd, Afgesloten), bewijs bij te voegen, eigenaren toe te wijzen en deadlines in te stellen. Automatische herinneringen en dashboards maken opvolging deel van de gewone bestuursprocedure.' },
+      { question: 'Zijn elektronische handtekeningen juridisch bindend?', answer: 'Ja. Dafira gebruikt UniverSign, dat eIDAS-conforme gekwalificeerde elektronische handtekeningen biedt. Die hebben in de EU dezelfde juridische status als handgeschreven handtekeningen en bieden volledige audittrails voor compliance.' },
+      { question: 'Hoe voorkomt actieopvolging dat zaken door de mazen glippen?', answer: 'Elk besluit wordt een gevolgde actie met eigenaar, deadline en status. Herinneringen, escalatieworkflows en zicht via het dashboard zorgen ervoor dat niets vergeten wordt of ongemerkt vertraging oploopt.' },
+    ],
   },
-  {
-    step: "5",
-    title: "Rapporteren",
-    description: "Dashboards & exports: resolutiestatus, voltooiingspercentages, vertragingen, risico's, en automatische voorbereiding van 'actie-opvolging' voor volgende agenda.",
-    icon: "📊"
-  }
-];
-
-const keyModules = [
-  {
-    title: "Actie Tracker",
-    description: "Kanban/Lijstweergave, filters (eigenaar, commissie, prioriteit, deadline), mentions & @toewijzen.",
-    icon: "📋",
-    features: ["Kanban boards", "Slimme filters", "Team mentions", "Prioriteitsbeheer"]
-  },
-  {
-    title: "Resolutie Register",
-    description: "Resolutieregister met status, juridische basis, bijbehorende documenten, stemmen.",
-    icon: "📚",
-    features: ["Juridische compliance", "Document koppeling", "Stemrecords", "Status tracking"]
-  },
-  {
-    title: "e-Handtekening & Goedkeuringen",
-    description: "Gekwalificeerde handtekening, zegels, voltooiingscertificaat; configureerbare goedkeuringsworkflow.",
-    icon: "🔐",
-    features: ["eIDAS compliance", "Goedkeuringsworkflows", "Digitale certificaten", "Audit trails"]
-  },
-  {
-    title: "Audit & Compliance",
-    description: "Activiteitenlog, audit trails, EU hosting en AVG compliance.",
-    icon: "🛡️",
-    features: ["Complete audit trails", "EU data soevereiniteit", "AVG compliance", "Activiteitenlogboek"]
-  }
-];
-
-const rolesPersonas = [
-  {
-    role: "CEO",
-    icon: "👔",
-    benefits: [
-      "Real-time zichtbaarheid over wie wat doet, voor wanneer",
-      "Minder micro-opvolging, meer uitgevoerde besluiten, versterkte verantwoording",
-      "Duidelijke rapportage aan de raad, zonder parallelle spreadsheets"
-    ]
-  },
-  {
-    role: "Bestuurssecretaris",
-    icon: "📝",
-    benefits: [
-      "Einde van 'post-vergadering chaos': notulen gegenereerd, besluiten geëxtraheerd, taken automatisch aangemaakt",
-      "Handtekeningworkflow (notulen, resoluties) + veilige distributie naar bestuurders",
-      "Compleet bewijsdossier voor audit en compliance"
-    ]
-  }
-];
-
-const proofPoints = [
-  {
-    metric: "70%",
-    description: "tijd bespaard op voorbereiding & distributie van notulen"
-  },
-  {
-    metric: "100%",
-    description: "besluiten gevolgd van goedkeuring tot voltooiing"
-  },
-  {
-    metric: "90%",
-    description: "reductie in opvolg-e-mails"
-  }
-];
-
-const faqData = {
-  title: "Veelgestelde Vragen",
-  subtitle: "Alles wat u moet weten over AI-gestuurde bestuurlijke verantwoording",
-  inLanguage: "nl",
-  faqs: [
-    {
-      question: "Kunnen AI-notulen besluiten en acties volgen?",
-      answer: "Ja. De AI identificeert besluiten en resoluties in uw notulen en zet deze om in uitvoerbare taken met eigenaren en deadlines. Elk item wordt gevolgd tot voltooiing met herinneringen, statusupdates en een controleerbaar spoor."
+  cta: {
+    texts: {
+      title: 'Maak van elk bestuursbesluit een gevolgde actie',
+      subtitle: 'Zie hoe een besluit een gevolgde, uitgevoerde actie wordt. Geen creditcard nodig.',
+      cta1: 'Vraag een demo aan',
+      cta2: 'Start gratis proefperiode',
     },
-    {
-      question: "Hoe volgen we bestuurlijke resoluties op?",
-      answer: "Gebruik het Resolutie Register om status te volgen (Voorgesteld, Goedgekeurd, In uitvoering, Geblokkeerd, Afgesloten), bewijs bij te voegen, eigenaren toe te wijzen en deadlines in te stellen. Geautomatiseerde herinneringen en dashboards maken opvolging onderdeel van de standaard bestuursprocedure."
-    },
-    {
-      question: "Zijn elektronische handtekeningen juridisch bindend?",
-      answer: "Ja. Govrn gebruikt UniverSign, dat eIDAS-conforme gekwalificeerde elektronische handtekeningen biedt. Deze hebben dezelfde juridische status als handgeschreven handtekeningen in de EU en bieden complete audit trails voor compliance."
-    },
-    {
-      question: "Hoe voorkomt actie tracking dat zaken door de mazen vallen?",
-      answer: "Elk besluit wordt automatisch een gevolgde actie met eigenaar, deadline en status. Slimme herinneringen, escalatieworkflows en dashboard zichtbaarheid zorgen ervoor dat niets wordt vergeten of vertraagd zonder kennisgeving."
-    }
-  ]
+    links: { cta1: '/nl/request-demo', cta2: '/nl/try' },
+  },
 };
 ---
 
 <Layout
-  title="Van Notulen naar Acties – AI Bestuurlijke Verantwoording | Govrn"
-  description="Transformeer bestuurlijke notulen in traceerbare acties met eigenaren, deadlines, e-handtekeningen en resolutie tracking. EU-gehost, AVG-conforme verantwoordingssysteem voor besturen."
+  title="Van notulen naar acties – AI voor bestuurlijke verantwoording | Dafira"
+  description="Zet bestuursnotulen om in traceerbare acties met eigenaren, deadlines, e-handtekeningen en opvolging van resoluties. EU-gehost en AVG-conform."
 >
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative min-h-[90vh] flex items-center overflow-hidden">
-      <!-- Background Image -->
-      <div class="absolute inset-0 z-0">
-        <Image
-          src={backgroundImage}
-          alt="AI bestuurlijke verantwoording achtergrond"
-          class="w-full h-full object-cover"
-          quality={80}
-        />
-        <div class="absolute inset-0 bg-gradient-to-br from-primary/95 via-slate-900/90 to-slate-900/95"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(57,153,222,0.1),transparent_50%)]"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(57,153,222,0.05),transparent_60%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="flex flex-col lg:flex-row items-center gap-12">
-          <!-- Content -->
-          <div class="flex-1 text-center lg:text-left">
-            <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-white/20 text-white backdrop-blur-sm mb-8 hover:bg-white/30 transition-colors">
-              🎯 AI Bestuurlijke Verantwoording
-            </div>
-
-            <h1 class="text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6 leading-tight">
-              Van notulen naar acties: <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">AI die bestuurlijke verantwoording stimuleert</span>
-            </h1>
-            <p class="text-xl text-white/90 leading-relaxed mb-8">
-              Neem niet alleen "notities". Transformeer elk besluit in traceerbare taken, met eigenaren, deadlines, handtekeningen en resolutiestatus — allemaal in een veilige, AVG-conforme workflow.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 lg:justify-start justify-center">
-              <a href="/nl/try" class="px-8 py-4 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
-                Bekijk 3-minuten demo
-              </a>
-              <a href="/nl/request-demo" class="px-8 py-4 bg-white text-primary border-2 border-primary/20 rounded-xl font-medium hover:bg-primary/5 transition-colors">
-                Vraag een demo aan
-              </a>
-            </div>
-            <p class="text-sm text-white/70 mt-4">
-              Geen creditcard vereist • EU-gehost & AVG-conform • Setup in minuten
-            </p>
-          </div>
-
-          <!-- Accountability Visual -->
-          <div class="flex-1 lg:max-w-lg">
-            <div class="relative">
-              <div class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 shadow-xl border border-primary/20">
-                <div class="text-center">
-                  <div class="text-6xl mb-4">🎯</div>
-                  <div class="bg-white rounded-lg p-6 shadow-lg mb-4">
-                    <div class="text-center mb-4">
-                      <div class="text-2xl font-bold text-gray-900 mb-2">Besluit → Actie → Voltooid</div>
-                      <div class="text-primary font-semibold">Elke resolutie gevolgd</div>
-                    </div>
-                    <div class="space-y-2 text-sm">
-                      <div class="flex items-center justify-between p-2 bg-green-50 rounded border-l-4 border-green-400">
-                        <span>Budget goedkeuring</span>
-                        <span class="text-green-600 font-medium">✓ Voltooid</span>
-                      </div>
-                      <div class="flex items-center justify-between p-2 bg-yellow-50 rounded border-l-4 border-yellow-400">
-                        <span>Beveiligingsaudit</span>
-                        <span class="text-yellow-600 font-medium">⏳ In uitvoering</span>
-                      </div>
-                      <div class="flex items-center justify-between p-2 bg-blue-50 rounded border-l-4 border-blue-400">
-                        <span>Bestuur uitbreiding</span>
-                        <span class="text-blue-600 font-medium">📝 Voorgesteld</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="text-sm font-medium text-primary/90 italic bg-white/95 px-3 py-2 rounded-lg shadow-sm">
-                    "Eindelijk besluiten die uitgevoerd worden"
-                  </div>
-                </div>
-              </div>
-
-              <!-- Accountability indicators -->
-              <div class="absolute -top-4 -right-4 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold shadow-lg animate-bounce-slow">
-                100% gevolgd
-              </div>
-              <div class="absolute -bottom-4 -left-4 bg-white text-primary px-3 py-1 rounded-full text-sm font-semibold shadow-lg border border-primary/20">
-                eIDAS conform
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- The Promise Section -->
-    <section class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary mb-8">
-            De Belofte
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Van verspreide besluiten naar systematische verantwoording
-          </h2>
-          <p class="text-xl text-gray-600 mb-8">
-            Elk bestuurlijk besluit wordt een gevolgde actie met duidelijk eigenaarschap, deadlines en bewijs van voltooiing.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {accountabilityPromises.map((promise) => (
-            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div class="text-3xl mb-4 text-center">{promise.icon}</div>
-              <h3 class="font-bold text-gray-900 mb-3 text-center">{promise.title}</h3>
-              <p class="text-gray-600 text-sm mb-3">{promise.description}</p>
-              <div class="text-primary font-semibold text-sm text-center bg-primary/5 px-3 py-2 rounded-lg">
-                → {promise.benefit}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div class="text-center">
-          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-            <a href="/nl/try" class="inline-flex items-center px-8 py-4 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 transition-colors shadow-lg">
-              Bekijk hoe het werkt
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-            <a href="/nl/request-demo" class="inline-flex items-center px-8 py-4 bg-white text-primary border-2 border-primary rounded-xl font-medium hover:bg-primary/5 transition-colors shadow-lg">
-              Vraag demo aan
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Who It's For Section -->
-    <section class="py-24 bg-gradient-to-br from-primary/5 to-primary/10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Voor Bestuurleiders
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Gebouwd voor CEO's en Bestuurssecretarissen
-          </h2>
-          <p class="text-xl text-gray-600">
-            Verschillende rollen, gedeelde behoefte: besluiten die daadwerkelijk uitgevoerd worden.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-          {rolesPersonas.map((persona) => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-primary/20 hover:shadow-xl transition-all duration-300">
-              <div class="text-4xl mb-4 text-center">{persona.icon}</div>
-              <h3 class="font-bold text-gray-900 mb-6 text-center text-2xl">{persona.role}</h3>
-              <ul class="space-y-4">
-                {persona.benefits.map((benefit) => (
-                  <li class="flex items-start">
-                    <svg class="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span class="text-gray-600">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-gray-100 text-gray-700 mb-8">
-            Workflow
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Hoe het werkt: van vergadering tot verantwoording
-          </h2>
-        </div>
-
-        <div class="space-y-8">
-          {workflow.map((step, index) => (
-            <div class={`flex flex-col lg:flex-row items-center gap-8 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-              <div class="flex-1 max-w-md">
-                <div class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 text-center border border-primary/20">
-                  <div class="text-6xl mb-4">{step.icon}</div>
-                  <div class="inline-flex items-center justify-center w-12 h-12 bg-primary text-white rounded-full text-xl font-bold mb-4">
-                    {step.step}
-                  </div>
-                </div>
-              </div>
-              <div class="flex-1">
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">{step.title}</h3>
-                <p class="text-gray-600 text-lg leading-relaxed">{step.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Key Modules Section -->
-    <section class="py-24 bg-gradient-to-br from-gray-50 to-primary/5">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Kernmodules
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Alles wat u nodig heeft voor complete verantwoording
-          </h2>
-          <p class="text-xl text-gray-600">
-            Doelgebouwde modules die naadloos samenwerken.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          {keyModules.map((module) => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div class="text-4xl mb-4">{module.icon}</div>
-              <h3 class="font-bold text-gray-900 mb-3 text-xl">{module.title}</h3>
-              <p class="text-gray-600 mb-6">{module.description}</p>
-              <div class="space-y-2">
-                {module.features.map((feature) => (
-                  <div class="flex items-center">
-                    <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span class="text-sm text-gray-600">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div class="text-center mt-12">
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/nl/security" class="inline-flex items-center px-6 py-3 bg-white text-primary border border-primary rounded-lg font-medium hover:bg-primary/5 transition-colors">
-              Leer over beveiliging & e-handtekeningen
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-            <a href="/nl/features" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
-              Ontdek alle functies
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Proof & Differentiation Section -->
-    <section class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-green-100 text-green-700 mb-8">
-            Bewezen Resultaten
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Bewijs en differentiatie
-          </h2>
-          <p class="text-xl text-gray-600 mb-8">
-            Van besluit tot uitvoering: minder wrijving, meer resultaten. Europa-first benadering.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8 mb-12">
-          {proofPoints.map((point) => (
-            <div class="text-center bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-8 border border-primary/20">
-              <div class="text-4xl font-bold text-primary mb-2">{point.metric}</div>
-              <p class="text-gray-600">{point.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="bg-gradient-to-r from-primary/5 to-primary/10 rounded-2xl p-8 text-center border border-primary/20">
-          <div class="max-w-2xl mx-auto">
-            <div class="text-2xl font-bold text-gray-900 mb-4">
-              🇪🇺 Europa-first: EU hosting, AVG by design, eIDAS-conforme handtekeningen
-            </div>
-            <p class="text-gray-600 mb-6">
-              In tegenstelling tot Amerikaanse concurrenten verlaat uw bestuursdata nooit Europa. Gebouwd voor Europese governance vereisten vanaf dag één.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/nl/try" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
-                Test op uw volgende vergadering
-              </a>
-              <a href="/nl/request-demo" class="inline-flex items-center px-6 py-3 bg-white text-primary border border-primary rounded-lg font-medium hover:bg-primary/5 transition-colors">
-                Audit-klaar resolutieregister nodig?
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="py-24 bg-gradient-to-br from-primary/5 to-primary/10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Wat bestuurleiders zeggen
-          </h2>
-          <p class="text-xl text-gray-600">
-            Echte resultaten van echte besturen
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          {testimonials.map((testimonial) => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-primary/20">
-              <div class="mb-6">
-                <svg class="w-8 h-8 text-primary/30 mb-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
-                </svg>
-                <p class="text-gray-700 text-lg italic mb-6">"{testimonial.quote}"</p>
-              </div>
-              <div>
-                <div class="font-semibold text-gray-900">{testimonial.author}</div>
-                <div class="text-gray-600">{testimonial.title}</div>
-                <div class="text-sm text-primary font-medium">{testimonial.company}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <FAQ texts={faqData} />
-
-    <!-- Final CTA Section -->
-    <section class="bg-gradient-to-br from-primary to-primary/80 py-32">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-        <h2 class="text-4xl font-bold text-white mb-8">
-          Klaar om elk bestuurlijk besluit om te zetten in gevolgde actie?
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Zie hoe een besluit een gevolgde, uitgevoerde actie wordt in slechts 3 minuten.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/nl/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
-          >
-            Bekijk 3-minuten demo
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-7 4h12l-2 2H7l-2-2z" />
-            </svg>
-          </a>
-          <a
-            href="/nl/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-all duration-200 hover:-translate-y-1"
-          >
-            Vraag een demo aan
-          </a>
-        </div>
-        <p class="text-white/80 mt-6">
-          Geen creditcard vereist • EU-gehost & AVG-conform • Setup in 5 minuten
-        </p>
-        <p class="text-sm text-white/60 mt-2">
-          Sluit je aan bij 200+ Europese besturen die al 100% besluitverantwoordelijkheid bereiken
-        </p>
-      </div>
-    </section>
+  <main>
+    <BoardAccountability t={t} />
   </main>
 </Layout>
-
-<style>
-  /* Custom animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  @keyframes bounceSlow {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-10px);
-    }
-    60% {
-      transform: translateY(-5px);
-    }
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 1s ease-out;
-  }
-
-  .animate-slide-in-right {
-    animation: slideInRight 1s ease-out 0.3s both;
-  }
-
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  .animate-bounce-slow {
-    animation: bounceSlow 3s ease-in-out infinite;
-  }
-
-  /* FAQ Smooth Transitions */
-  .faq-content {
-    transition: all 0.3s ease-in-out;
-  }
-
-  .faq-icon {
-    transition: transform 0.3s ease-in-out;
-  }
-
-  /* Enhanced responsive tables */
-  @media (max-width: 768px) {
-    .overflow-x-auto table {
-      font-size: 0.875rem;
-    }
-
-    .overflow-x-auto td,
-    .overflow-x-auto th {
-      padding: 0.75rem 0.5rem;
-    }
-  }
-</style>

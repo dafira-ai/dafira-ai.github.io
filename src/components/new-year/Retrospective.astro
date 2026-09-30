@@ -1,4 +1,6 @@
 ---
+import { Section, SectionHeader } from '../ui';
+
 interface Milestone {
   date: string;
   title: string;
@@ -8,54 +10,36 @@ interface Milestone {
 const milestones: Milestone[] = [
   {
     date: "Q1 2024",
-    title: "Web Application Launch",
+    title: "Web application launch",
     description: "Released our core web platform for modern board management"
   },
   {
-    date: "Q2 2024", 
-    title: "Enhanced Board Tools",
+    date: "Q2 2024",
+    title: "Enhanced board tools",
     description: "Major improvements to documents, board packs and meeting management"
   },
   {
     date: "Q3 2024",
-    title: "AI Assistant Beta",
-    description: "Launched beta version of our AI-powered board management assistant"
+    title: "AI assistant beta",
+    description: "Launched the beta version of our AI board management assistant"
   },
   {
     date: "Q4 2024",
-    title: "New Website",
-    description: "Unveiled our redesigned website with improved user experience"
+    title: "New website",
+    description: "Unveiled our redesigned website with an improved user experience"
   }
 ];
 ---
 
-<section class="py-24 bg-gray-50 relative overflow-hidden backdrop-blur-sm">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-3xl font-bold text-gray-900 text-center mb-16 [text-shadow:_0_2px_8px_rgba(0,0,0,0.1)]">2024 Highlights</h2>
-    
-    <div class="relative">
-      <!-- Timeline Line -->
-      <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary/20 via-primary to-primary/20 blur-[0.5px]"></div>
-
-      <div class="space-y-16">
-        {milestones.map((milestone, i) => (
-          <div class={`relative ${i % 2 === 0 ? 'lg:flex-row-reverse' : ''} lg:flex lg:items-center group`}>
-            <!-- Timeline Dot -->
-            <div class="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 w-14 h-14 rounded-full bg-gradient-to-r from-primary to-blue-600 text-white items-center justify-center text-center shadow-lg z-10 text-sm font-medium group-hover:scale-110 transition-transform backdrop-blur-[1px] [filter:drop-shadow(0_0_8px_rgba(57,153,222,0.4))]">
-              {milestone.date}
-            </div>
-
-            <!-- Content -->
-            <div class="lg:w-1/2 lg:px-16">
-              <div class={`bg-white/90 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100/50 relative ${i % 2 === 0 ? 'lg:ml-auto' : ''} group-hover:scale-105 group-hover:bg-gradient-to-r group-hover:from-white/95 group-hover:to-blue-50/95`}>
-                <span class="absolute -top-2 left-4 px-4 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full backdrop-blur-[0.5px]">{milestone.date}</span>
-                <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors [text-shadow:_0_1px_4px_rgba(0,0,0,0.05)]">{milestone.title}</h3>
-                <p class="text-gray-600 leading-relaxed">{milestone.description}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
+<Section tone="surface" border="top">
+  <SectionHeader eyebrow="Retrospective" title="2024 highlights" />
+  <ol class="border-t border-line" data-play>
+    {milestones.map((m, i) => (
+      <li class="grid md:grid-cols-12 gap-2 md:gap-6 py-6 border-b border-line" data-step style={`--d:${i * 80}`}>
+        <span class="md:col-span-2 font-mono text-sm text-primary tabular-nums">{m.date}</span>
+        <h3 class="md:col-span-4 text-lg font-semibold text-navy">{m.title}</h3>
+        <p class="md:col-span-6 text-gray-600 leading-relaxed">{m.description}</p>
+      </li>
+    ))}
+  </ol>
+</Section>

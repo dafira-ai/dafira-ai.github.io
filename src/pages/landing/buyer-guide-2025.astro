@@ -1,442 +1,129 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import CTA from "../../components/CTA.astro";
+import { PageHero, Section, SectionHeader, FeatureColumns, Field, Button, Badge, Icon, Screenshot } from "../../components/ui";
+
 const guideFeatures = [
   {
-    icon: "🎯",
-    title: "Director Features Deep-Dive", 
-    description:
-      "Complete breakdown of essential board member tools, voting systems, and collaboration features",
-    preview: "Director-Features-Preview.pdf",
+    icon: "target",
+    title: "Director features deep-dive",
+    text: "Breakdown of the tools board members use: voting systems, board packs and collaboration features.",
   },
   {
-    icon: "⚡",
-    title: "Administrator Capabilities",
-    description:
-      "Comprehensive guide to meeting management, document control, and governance tools",
-    preview: "Admin-Features-Preview.pdf",
+    icon: "settings",
+    title: "Administrator capabilities",
+    text: "Guide to meeting management, document control and governance tools for secretaries and administrators.",
   },
   {
-    icon: "🔒",
-    title: "Security & Compliance",
-    description:
-      "In-depth analysis of security protocols, data protection, and regulatory compliance",
-    preview: "Security-Guide-Preview.pdf",
-  }
+    icon: "lock",
+    title: "Security and compliance",
+    text: "Analysis of security protocols, data protection and regulatory compliance.",
+  },
 ];
 
-const stats = [
-  { number: "97%", label: "Improved Board Efficiency" },
-  { number: "60%", label: "Time Saved on Admin Tasks" },
-  { number: "40%", label: "Cost Reduction" },
-  { number: "99.9%", label: "Data Security" },
-];
-
-const carouselSlides = [
+const previews = [
   {
-    image: "/govrn-buyer-guide-preview-1.png",
-    alt: "Guide Preview Page 1",
+    image: "/buyer-guide-preview-1.png",
+    alt: "Buyer's guide preview, page 1",
     caption: "In-depth feature analysis",
   },
   {
-    image: "/govrn-buyer-guide-preview-2.png",
-    alt: "Guide Preview Page 2",
-    caption: "ROI calculator & comparison matrix",
-  },
-  {
-    image: "/govrn-buyer-guide-preview-2.png",
-    title: "Want to know more?",
-    description: "Download Now",
-    type: "cta",
-    caption: "Download Now",
+    image: "/buyer-guide-preview-2.png",
+    alt: "Buyer's guide preview, page 2",
+    caption: "ROI calculator and comparison matrix",
   },
 ];
 ---
 
 <Layout title="2025 Board Management Software Buyer's Guide | Expert Analysis">
   <main>
-    <!-- Hero Section -->
-    <section
-      class="relative bg-gradient-to-br from-white to-gray-50 pt-32 pb-24"
+    <PageHero
+      eyebrow="Buyer's guide"
+      title="The guide to choosing board management software"
+      lead="A structured analysis of board portals to help you make the right choice for your organisation: features, administration, security and compliance."
     >
-      <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"
-      >
-      </div>
+      <div class="mt-8"><Badge tone="info">Updated for 2025</Badge></div>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <!-- Left Column - Content -->
-          <div class="max-w-xl">
-            <div
-              class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8"
-            >
-              <span class="mr-2">🔥</span>
-              Just Updated for 2025
-            </div>
+      <div slot="aside" class="border border-line rounded-md bg-white p-6 lg:p-8">
+        <h2 class="text-2xl font-semibold text-navy">Get your free guide</h2>
+        <p class="mt-2 text-gray-600">Receive the full guide to share with your board.</p>
 
-            <h1 class="text-5xl font-bold text-gray-900 leading-tight mb-6">
-              The Ultimate Guide to
-              <span
-                class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600"
-              >
-                Board Management Software
-              </span>
-            </h1>
-
-            <p class="text-xl text-gray-600 mb-8">
-              Make the right choice with our data-driven analysis of leading
-              board portals. Trusted by 500+ organizations worldwide.
-            </p>
-
-            <!-- Trust Indicators -->
-            <div class="grid grid-cols-2 gap-4 mb-8">
-              {
-                stats.map((stat) => (
-                  <div class="bg-white/80 rounded-lg p-4 text-center">
-                    <div class="text-2xl font-bold text-primary">
-                      {stat.number}
-                    </div>
-                    <div class="text-sm text-gray-600">{stat.label}</div>
-                  </div>
-                ))
-              }
-            </div>
+        <form id="downloadForm" class="mt-6 space-y-5" method="POST">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <Field id="firstName" label="First name" required placeholder="John" autocomplete="given-name" />
+            <Field id="lastName" label="Last name" required placeholder="Smith" autocomplete="family-name" />
           </div>
+          <Field id="email" type="email" label="Work email" required placeholder="john@company.com" autocomplete="email" />
+          <Field id="company" label="Company" required placeholder="Acme Inc." autocomplete="organization" />
 
-          <!-- Right Column - Form -->
-          <div
-            class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 relative"
-          >
-            <!-- FOMO Banner -->
-            <!-- <div class="absolute -top-4 left-0 right-0 mx-auto w-max bg-primary text-white px-4 py-1 rounded-full text-sm font-medium">
-              <span class="animate-pulse">🔥</span> 127 professionals downloaded this guide today
-            </div> -->
+          <Button type="submit" class="w-full">Download the free guide</Button>
 
-            <h2 class="text-2xl font-bold text-gray-900 mb-2">
-              Get Your Free Guide Now
-            </h2>
-            <p class="text-gray-600 mb-6">
-              Instant access to expert analysis
-            </p>
+          <ul class="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><Icon name="shield" class="w-4 h-4 text-navy" />GDPR compliant</li>
+            <li class="flex items-center gap-2"><Icon name="lock" class="w-4 h-4 text-navy" />SSL secure</li>
+          </ul>
+        </form>
 
-            <form
-              id="downloadForm"
-              class="space-y-4"
-              method="POST"
-            >
-              <div class="grid grid-cols-2 gap-4">
-                <div>
-                  <label
-                    for="firstName"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                    >First Name</label
-                  >
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    required
-                    class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer"
-                    placeholder="John"
-                  />
-                </div>
-                <div>
-                  <label
-                    for="lastName"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                    >Last Name</label
-                  >
-                  <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    required
-                    class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer"
-                    placeholder="Smith"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label
-                  for="email"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >Work Email</label
-                >
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer"
-                  placeholder="john@company.com"
-                />
-              </div>
-
-              <div>
-                <label
-                  for="company"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >Company</label
-                >
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  required
-                  class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer"
-                  placeholder="Acme Inc."
-                />
-              </div>
-
-              <!-- Enhanced CTA -->
-              <button
-                type="submit"
-                class="w-full px-6 py-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all transform hover:scale-[1.02] font-medium cursor-pointer flex items-center justify-center gap-2"
-              >
-                <span>Download Free Guide</span>
-                <svg
-                  class="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                </svg>
-              </button>
-
-              <!-- Trust Badges -->
-              <div class="flex items-center justify-center gap-4 pt-4">
-                <div class="flex items-center gap-2 text-gray-600 text-sm">
-                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 15V17M6 21H18C19.1046 21 20 20.1046 20 19V13C20 11.8954 19.1046 11 18 11H6C4.89543 11 4 11.8954 4 13V19C4 20.1046 4.89543 21 6 21ZM16 11V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V11H16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <span>GDPR Compliant</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-600 text-sm">
-                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 15V17M6 21H18C19.1046 21 20 20.1046 20 19V13C20 11.8954 19.1046 11 18 11H6C4.89543 11 4 11.8954 4 13V19C4 20.1046 4.89543 21 6 21ZM16 11V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V11H16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <span>SSL Secure</span>
-                </div>
-              </div>
-            </form>
-
-            <div id="successMessage" class="hidden text-center">
-              <svg
-                class="w-16 h-16 text-green-500 mx-auto mb-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              <h3 class="text-xl font-bold mb-2">Thank You!</h3>
-              <p class="text-gray-600">
-                Your download will begin automatically.
-              </p>
-            </div>
-          </div>
+        <div id="successMessage" class="hidden" role="status">
+          <Icon name="checkCircle" class="w-8 h-8 text-emerald-700" />
+          <h3 class="mt-4 text-xl font-semibold text-navy">Thank you</h3>
+          <p class="mt-2 text-gray-600">Your download will begin automatically.</p>
         </div>
       </div>
-    </section>
-    <section
-      class="relative bg-gradient-to-br from-white to-gray-50 pt-16 pb-32"
-    >
-      <div class="max-w-5xl mx-auto relative"> <!-- Changed from max-w-7xl to max-w-5xl -->
-        <h2 class="text-4xl font-bold text-center text-gray-900 leading-tight mb-12">
-          Take a Sneak Peek
-          <span
-            class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600"
-          >
-            Inside the Guide
-          </span>
-        </h2>
+    </PageHero>
 
-        <div class="overflow-hidden rounded-2xl shadow-2xl">
-          <div id="carousel" class="flex transition-transform duration-700 ease-in-out">
-            {
-              carouselSlides.map((slide, index) =>
-                slide.type === "cta" ? (
-                  <div class="flex-none w-1/3 bg-gradient-to-br from-primary/5 to-blue-50 rounded-2xl p-12 text-center">
-                    <h3 class="text-3xl font-bold text-primary mb-6">
-                      {slide.title}
-                    </h3>
-                    <p class="text-gray-700 text-lg mb-8">{slide.description}</p>
-                    <button
-                      onclick="document.getElementById('downloadForm').scrollIntoView({behavior: 'smooth'})"
-                      class="px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all transform hover:scale-105 font-medium shadow-lg"
-                    >
-                      Download Now
-                    </button>
-                  </div>
-                ) : (
-                  <div class="flex-none w-1/3 relative group shrink-0">
-                    <img 
-  loading="lazy"
-                      src={slide.image}
-                      alt={slide.alt}
-                      class="w-full h-auto rounded-2xl shadow-lg transition-transform duration-300 group-hover:scale-[1.02]"
-                    />
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6 rounded-b-2xl">
-                      <p class="text-white text-lg font-medium">{slide.caption}</p>
-                    </div>
-                  </div>
-                )
-              )
-            }
-          </div>
-        </div>
-
-        {/* Carousel Navigation */}
-        <div class="flex items-center justify-center gap-4 mt-8">
-          <button 
-            id="prevSlide" 
-            class="p-2 rounded-full bg-white shadow-md hover:bg-gray-50 transition-colors"
-            aria-label="Previous slide"
-            onclick="moveSlide(-1)"
-          >
-            <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          
-          <div class="flex gap-3">
-            {
-              carouselSlides.map((_, index) => (
-                <button
-                  class="w-4 h-4 rounded-full bg-gray-200 hover:bg-primary/70 transition-colors carousel-dot focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                  data-index={index}
-                  aria-label={`Go to slide ${index + 1}`}
-                  onclick={`goToSlide(${index})`}
-                />
-              ))
-            }
-          </div>
-
-          <button 
-            id="nextSlide" 
-            class="p-2 rounded-full bg-white shadow-md hover:bg-gray-50 transition-colors"
-            aria-label="Next slide"
-            onclick="moveSlide(1)"
-          >
-            <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
+    <!-- Guide preview -->
+    <Section>
+      <SectionHeader eyebrow="Preview" title="A look inside the guide" />
+      <div class="grid md:grid-cols-2 gap-8">
+        {previews.map((p) => (
+          <Screenshot src={p.image} alt={p.alt} caption={p.caption} />
+        ))}
       </div>
-    </section>
+      <div class="mt-10">
+        <Button href="#downloadForm" variant="secondary">Download the guide</Button>
+      </div>
+    </Section>
 
-  <!-- What's Inside Section -->
-  <section class="py-24 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">
-          What You'll Find Inside
-        </h2>
-        <p class="text-xl text-gray-600">
-          A comprehensive guide to help you make an informed decision for your
-          organization
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 lg:grid-cols-3 gap-8">
-        {
-          guideFeatures.map((feature) => (
-            <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">
-                {feature.title}
-              </h3>
-              <p class="text-gray-600 text-sm">{feature.description}</p>
-            </div>
-          ))
-        }
-      </div>
-      </div>
-    </section>
+    <!-- What's inside -->
+    <Section tone="surface" border="top">
+      <SectionHeader
+        eyebrow="Contents"
+        title="What you will find inside"
+        lead="A practical resource to help you make an informed decision for your organisation."
+      />
+      <FeatureColumns items={guideFeatures} />
+    </Section>
 
     <CTA />
   </main>
 </Layout>
 
-<style>
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
+<style is:global>
+  #downloadForm input[aria-invalid="true"] {
+    border-color: rgb(185 28 28);
   }
 </style>
 
 <script>
+  import { sendForm } from '../../utils/sendForm';
   const form = document.getElementById("downloadForm") as HTMLFormElement;
   const successMessage = document.getElementById("successMessage");
-  const carousel = document.getElementById("carousel");
-  let currentSlide = 0;
-  const totalSlides = 3; // Match with number of slides in carouselSlides
-
-  function moveSlide(direction: number) {
-    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-    updateCarousel();
-  }
-
-  function goToSlide(index: number) {
-    currentSlide = index;
-    updateCarousel();
-  }
-
-  function updateCarousel() {
-    if (carousel) {
-      carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-      updateDots();
-    }
-  }
-
-  function updateDots() {
-    document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
-      if (index === currentSlide) {
-        dot.classList.add('bg-primary');
-      } else {
-        dot.classList.remove('bg-primary');
-      }
-    });
-  }
-
-  // Initialize dots
-  updateDots();
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    form.classList.add('hidden');
-    successMessage?.classList.remove('hidden');
+    if (!(await sendForm(form as HTMLFormElement, 'Buyer guide download'))) return;
+    form.classList.add("hidden");
+    successMessage?.classList.remove("hidden");
   });
 
   const inputs = form?.querySelectorAll("input");
   inputs?.forEach((input) => {
     input.addEventListener("input", () => {
       if (input.checkValidity()) {
-        input.classList.add("border-green-500");
-        input.classList.remove("border-red-500");
+        input.removeAttribute("aria-invalid");
       } else {
-        input.classList.add("border-red-500");
-        input.classList.remove("border-green-500");
+        input.setAttribute("aria-invalid", "true");
       }
     });
   });

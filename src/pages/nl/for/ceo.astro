@@ -1,265 +1,54 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import CTA from '../../../components/CTA.astro';
+import RoleLanding from '../../../components/industries/RoleLanding.astro';
+import { customerQuote, readCaseLabel } from '../../../components/industries/customerQuotes';
 
-const challenges = [
-  {
-    icon: "📊", 
-    title: "Informatiebeheersing",
-    description: "Centraliseer en beheer effectief de informatiestroom naar uw bestuur"
-  },
-  {
-    icon: "⚡",
-    title: "Optimale communicatie", 
-    description: "Zorg voor een soepele en tijdige overdracht van strategische informatie"
-  },
-  {
-    icon: "🎯",
-    title: "Informatiebalans",
-    description: "Slimme tools om overbelasting te voorkomen met behoud van transparantie"
-  },
-  {
-    icon: "💬",
-    title: "Directe respons",
-    description: "Reageer snel op bestuursverzoeken voor effectieve besluitvorming"
-  }
-];
-
-const features = [
-  {
-    title: "Documentbeheercentrum",
-    description: "Centraal platform voor het orkestreren van documentstromen",
-    icon: "📑",
-    benefits: [
-      "Gecontroleerde distributie",
-      "Slimme organisatie",
-      "Real-time waarschuwingen",
-      "Versiebeheer"
-    ]
-  },
-  {
-    title: "AI-kennisbank",
-    description: "Intelligent systeem voor het organiseren en toegang krijgen tot essentiële informatie",
-    icon: "🤖",
-    benefits: [
-      "Automatische classificatie",
-      "Direct zoeken",
-      "Slimme samenvattingen",
-      "Gerichte informatie-uitwisseling"
-    ]
-  },
-  {
-    title: "Beveiligde communicatieruimte",
-    description: "Enterprise-grade beveiliging voor alle uitwisselingen",
-    icon: "🔒",
-    benefits: [
-      "End-to-end versleuteling",
-      "Toegangsbeheer",
-      "Volledige traceerbaarheid",
-      "Gegarandeerde compliance"
-    ]
-  }
-];
-
-const securityFeatures = [
-  {
-    icon: "🔐",
-    title: "Enterprise beveiliging",
-    description: "Bankwaardige bescherming voor al uw communicatie"
-  },
-  {
-    icon: "👥",
-    title: "Toegangscontrole",
-    description: "Nauwkeurige rechten voor gecontroleerde informatieverspreiding"
-  },
-  {
-    icon: "📋",
-    title: "Traceerbaarheid",
-    description: "Gedetailleerde monitoring van alle bestuursactiviteiten en -besluiten"
-  }
-];
-
-const testimonial = {
-  quote: "Govrn heeft ons documentbeheer aanzienlijk vereenvoudigd, waardoor onze vergadervoorbereidingen efficiënter zijn en ons bestuur zich kan concentreren op besluitvorming.",
-  author: "Pierre Hermant",
-  role: "CEO",
-  company: "Finance & Invest Brussels",
-  image: "/fib-pierre.webp"
+const hero = {
+  eyebrow: 'Voor CEO’s',
+  title: 'Houd het bestuur geïnformeerd, op uw voorwaarden',
+  lead: 'Bepaal wat het bestuur bereikt en wanneer. Dafira biedt u één gecontroleerd kanaal voor bestuursstukken, updates en opvolging, met toegang per rol.',
+  primary: { text: 'Demo aanvragen', href: '/nl/request-demo' },
+  secondary: { text: 'Contact opnemen', href: '/nl/contact' },
+  screenshot: { src: '/onboarding-event-detail.png', alt: 'Vergaderpagina in Dafira met de agenda, aanwezigheden en een openstaande stemming over de notulen' },
 };
+
+const challenges = {
+  title: 'Wat CEO’s van het bestuursproces nodig hebben',
+  lead: 'Het bestuur is voor zijn informatie afhankelijk van het management. De manier waarop die gedeeld wordt, bepaalt de kwaliteit van de bespreking.',
+  items: [
+    { icon: 'folder', title: 'Controle over informatie', text: 'Eén bibliotheek voor alles wat het bestuur ontvangt, zodat u weet welke versie elke bestuurder gelezen heeft.' },
+    { icon: 'clock', title: 'Tijdige communicatie', text: 'Updates en bestuursstukken op tijd verspreiden, zonder lange e-mailketens.' },
+    { icon: 'list', title: 'Evenwichtige informatie', text: 'Het bestuursdossier per agendapunt ordenen, zodat bestuurders vinden wat telt zonder overladen te worden.' },
+    { icon: 'chat', title: 'Bereikbaarheid', text: 'Vragen van bestuurders tussen vergaderingen beantwoorden in een beveiligde bestuurschat, met de context erbij.' },
+  ],
+};
+
+const features = {
+  title: 'Tools voor de CEO',
+  lead: 'De onderdelen van Dafira die CEO’s het vaakst gebruiken.',
+  items: [
+    { icon: 'documents', title: 'Documentcontrole', text: 'Bestuursstukken vanuit één plek delen en bijhouden wat verstuurd werd.', items: ['Gecontroleerde verspreiding', 'Bestuursdossier per agendapunt', 'Meldingen bij updates', 'Versiegeschiedenis'] },
+    { icon: 'sparkle', title: 'AI-assistent', text: 'Bestuurders kunnen vragen stellen over de bestuursstukken en samenvattingen van lange documenten krijgen.', items: ['Vragen over bestuursdocumenten', 'Samenvattingen van lange stukken', 'Zoeken in eerdere vergaderingen'] },
+    { icon: 'lock', title: 'Beveiligde communicatie', text: 'Bestuursgesprekken weg van persoonlijke e-mail en berichtenapps.', items: ['Beveiligde bestuurschat', 'Toegang per rol', 'Audittrail'] },
+  ],
+};
+
+const security = {
+  title: 'Beveiliging van de bestuurscommunicatie',
+  lead: 'Bestuursinformatie blijft binnen het bestuur.',
+  link: { text: 'Meer over beveiliging', href: '/nl/security' },
+  items: [
+    { icon: 'lock', title: 'Versleuteling', text: 'Gegevens worden versleuteld tijdens transport en in opslag, op de infrastructuur van Microsoft Azure.' },
+    { icon: 'users', title: 'Toegangsbeheer', text: 'Rechten per bestuur, comité en rol, zodat informatie alleen de bedoelde personen bereikt.' },
+    { icon: 'clipboard', title: 'Audittrail', text: 'Een spoor van de toegang tot documenten en van de genomen besluiten.' },
+  ],
+};
+
+const quote = { ...customerQuote('nl', 'pierre'), linkText: readCaseLabel.nl };
 ---
 
-<Layout title="Bestuurssoftware voor bestuurders | Govrn" description="Neem controle over uw communicatie met slimme tools voor informatiebeheer, regelmatige updates en optimale beveiliging.">
-  <main class="pt-16">
-    <!-- Hero sectie -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-              Voor bestuurders
-            </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Beheers uw
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                informatiestromen
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-12">
-              Neem controle over uw communicatie met slimme tools voor optimaal informatiebeheer.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/nl/request-demo"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Demo aanvragen
-              </a>
-              <a
-                href="/nl/contact"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-              >
-                Contact opnemen
-              </a>
-            </div>
-          </div>
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl transform rotate-3"></div>
-            <img 
-  loading="lazy"
-              src="/realestate.jpg"
-              alt="Govrn interface"
-              class="relative rounded-2xl shadow-2xl"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Uitdagingen sectie -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Uitdagingen voor bestuurders
-          </h2>
-          <p class="text-xl text-gray-600">
-            Complete oplossingen voor management- en communicatie-uitdagingen
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Functionaliteiten sectie -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Ontworpen voor bestuurders
-          </h2>
-          <p class="text-xl text-gray-600">
-            Tools op maat voor volledige controle over uw bestuur
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600 mb-6">{feature.description}</p>
-              <ul class="space-y-3">
-                {feature.benefits.map(benefit => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Beveiliging sectie -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Enterprise-grade beveiliging
-          </h2>
-          <p class="text-xl text-gray-600">
-            Maximale bescherming voor uw gevoelige communicatie
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {securityFeatures.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonial sectie -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-br from-primary to-blue-600 rounded-2xl overflow-hidden">
-          <div class="grid lg:grid-cols-2 gap-8 p-12">
-            <div class="text-white">
-              <blockquote class="text-2xl font-medium mb-8">
-                "{testimonial.quote}"
-              </blockquote>
-              <div class="flex items-center space-x-4">
-                <img 
-  loading="lazy"
-                  src={testimonial.image}
-                  alt={testimonial.author}
-                  class="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <div class="font-semibold">{testimonial.author}</div>
-                  <div class="text-white/80">{testimonial.role}</div>
-                  <div class="text-white/80">{testimonial.company}</div>
-                </div>
-              </div>
-            </div>
-            <div class="relative lg:text-right">
-              <a
-                href="/nl/case-studies/finance-invest-brussels"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-              >
-                Lees de case study
-                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Bestuurssoftware voor CEO's | Dafira" description="Bestuursportaal voor CEO's: bepaal hoe informatie het bestuur bereikt, verspreid updates op tijd en houd de bestuurscommunicatie beveiligd.">
+  <main>
+    <RoleLanding hero={hero} challenges={challenges} features={features} security={security} quote={quote} />
   </main>
 </Layout>

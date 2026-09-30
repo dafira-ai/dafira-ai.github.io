@@ -2,8 +2,8 @@
 title: "How to Choose the Right Board Management Software for Effective Governance"
 description: "A strategic guide to selecting board management software that enhances governance, supports key roles, and strengthens board oversight."
 pubDate: 2025-05-14
-author: "Ludovic Laffineur"
-authorRole: "CTO at Govrn"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/happy-people-collab.jpg"
 category: "Governance"
 tags: ["Board Management", "Governance Software", "Digital Transformation", "Board Efficiency", "CEO Succession"]

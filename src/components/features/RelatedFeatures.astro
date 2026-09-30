@@ -1,0 +1,33 @@
+---
+// "Other features" block at the end of each feature page: navigation cards to the other feature pages.
+import { Section, SectionHeader, Card, Icon, Button } from '../ui';
+import { langFromPath } from '../../i18n/routes';
+import { common, featureHref, featureLang, featureNav, type FeatureSlug } from './common';
+
+interface Props {
+  current?: FeatureSlug;
+  tone?: 'white' | 'surface';
+}
+const { current, tone = 'white' } = Astro.props;
+const lang = featureLang(langFromPath(Astro.url.pathname));
+const t = common[lang];
+const items = featureNav[lang].filter((f) => f.slug !== current);
+---
+
+<Section tone={tone} border="top" space="md">
+  <SectionHeader title={t.related} lead={t.relatedLead} />
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4" data-play>
+    {items.map((item, i) => (
+      <div data-step style={`--d:${i * 60}`}>
+        <Card href={featureHref(lang, item.slug)} class="h-full">
+          <Icon name={item.icon} class="w-5 h-5 text-navy" />
+          <h3 class="mt-4 font-semibold text-navy group-hover:text-primary transition-colors">{item.title}</h3>
+          <p class="mt-1 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
+        </Card>
+      </div>
+    ))}
+  </div>
+  <div class="mt-10">
+    <Button variant="link" href={featureHref(lang, '')}>{t.allFeatures}</Button>
+  </div>
+</Section>

@@ -1,4 +1,7 @@
 ---
+// Office: photo, city, address and contact e-mail. No overlays.
+import { Icon } from './ui';
+
 type Props = {
   city: string;
   country: string;
@@ -11,64 +14,22 @@ type Props = {
 const { city, country, address, postalCode, image, email } = Astro.props;
 ---
 
-<div
-  class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
->
-  <div class="relative h-48">
-    <img 
-  loading="lazy"
-      src={image}
-      alt={`${city} Office`}
-      class="w-full h-full object-cover"
-    />
-    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent">
-    </div>
-    <div class="absolute bottom-4 left-4 text-white">
-      <h3 class="text-xl font-bold">{city}</h3>
-      <p>{country}</p>
-    </div>
-  </div>
-  <div class="p-6 space-y-4">
-    <div class="flex items-start space-x-3">
-      <svg
-        class="w-6 h-6 text-primary flex-shrink-0"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-        ></path>
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-      </svg>
-      <div>
-        <p class="text-gray-600">{address}</p>
-        <p class="text-gray-600">{postalCode}</p>
+<article class="border border-line rounded-md overflow-hidden bg-white">
+  <img src={image} alt={`${city} office`} loading="lazy" class="w-full h-56 object-cover border-b border-line" />
+  <div class="p-6">
+    <h3 class="text-xl font-semibold text-navy">{city}</h3>
+    <p class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500 mt-1">{country}</p>
+    <dl class="mt-6 space-y-3 text-[15px] text-gray-700">
+      <div class="flex items-start gap-3">
+        <dt class="sr-only">Address</dt>
+        <Icon name="building" class="w-5 h-5 text-navy mt-0.5 shrink-0" />
+        <dd>{address}<br />{postalCode} {city}</dd>
       </div>
-      
-    </div>
-    <div class="flex items-start space-x-3">
-      <svg
-        class="w-6 h-6 text-primary"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-        ></path>
-      </svg>
-      <span class="text-gray-600">{email}</span>
-    </div>
+      <div class="flex items-start gap-3">
+        <dt class="sr-only">E-mail</dt>
+        <Icon name="mail" class="w-5 h-5 text-navy mt-0.5 shrink-0" />
+        <dd><a href={`mailto:${email}`} class="text-primary hover:text-navy transition-colors">{email}</a></dd>
+      </div>
+    </dl>
   </div>
-</div>
+</article>

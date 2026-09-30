@@ -1,5 +1,8 @@
-
 ---
+// Recent activity list of the compliance dashboard mock-up.
+import { langFromPath } from '../../../i18n/routes';
+import { complianceLabels } from '../labels';
+
 interface Activity {
   category: string;
   action: string;
@@ -9,44 +12,26 @@ interface Activity {
 
 interface Props {
   activities: Activity[];
+  title?: string;
 }
 
-const { activities } = Astro.props;
-
-const statusColors = {
-  success: 'bg-green-500',
-  warning: 'bg-yellow-500',
-  error: 'bg-red-500'
-};
+const { activities, title } = Astro.props;
+const l = complianceLabels(langFromPath(Astro.url.pathname));
+const dot = { success: 'bg-emerald-600', warning: 'bg-amber-500', error: 'bg-red-600' };
 ---
 
-<div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-  <h3 class="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
-  <div class="space-y-4">
+<div class="bg-white border border-line rounded-sm">
+  <p class="px-4 py-3 border-b border-line font-mono text-[11px] uppercase tracking-[0.08em] text-gray-500">{title ?? l.activity}</p>
+  <ul class="px-4">
     {activities.map((activity, index) => (
-      <div 
-        class="flex items-start space-x-3 animate-fade-in"
-        style={`animation-delay: ${index * 300}ms`}
-      >
-        <div class={`w-2 h-2 rounded-full mt-2 ${statusColors[activity.status]}`}></div>
+      <li class="flex items-start gap-3 py-3 border-b border-line last:border-b-0" data-step style={`--d:${400 + index * 120}`}>
+        <span class={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${dot[activity.status] ?? dot.success}`}></span>
         <div>
-          <div class="text-sm font-medium text-gray-900">{activity.category}</div>
-          <div class="text-sm text-gray-600">{activity.action}</div>
-          <div class="text-xs text-gray-500">{activity.timestamp}</div>
+          <p class="text-xs font-medium text-navy">{activity.category}</p>
+          <p class="text-[13px] text-gray-700">{activity.action}</p>
+          <p class="font-mono text-[11px] text-gray-500">{activity.timestamp}</p>
         </div>
-      </div>
+      </li>
     ))}
-  </div>
+  </ul>
 </div>
-
-<style>
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .animate-fade-in {
-    opacity: 0;
-    animation: fadeIn 0.5s ease-out forwards;
-  }
-</style>

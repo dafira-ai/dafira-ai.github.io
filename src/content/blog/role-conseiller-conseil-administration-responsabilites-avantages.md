@@ -3,7 +3,7 @@ title: "Le rôle du conseiller au conseil d'administration : responsabilités et
 description: "Comprendre le rôle essentiel des conseillers au conseil, leurs responsabilités et leur contribution à la gouvernance et au pilotage stratégique des organisations."
 pubDate: 2024-11-03
 author: "Jean-Louis Van Houwe"
-authorRole: "PDG et fondateur de Govrn"
+authorRole: "PDG et fondateur de Dafira"
 image: "/boussole.jpg"
 category: "Governance"
 tags: ["Conseillers", "Gouvernance d'entreprise", "Prise de décision", "Leadership"]

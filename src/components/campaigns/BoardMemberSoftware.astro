@@ -1,0 +1,243 @@
+---
+// Body of the Dafira One (personal board member software) page — EN/FR/NL share this layout; copy comes from the page.
+// The early-access form keeps its original behaviour (dataLayer event + inline success message; nothing is sent to a backend).
+import { Image } from 'astro:assets';
+import { PageHero, Section, SectionHeader, Button, Icon, FeatureColumns, FeatureList, CellGrid, Screenshot, Field, FAQ } from '../ui';
+import ProductCard from './ProductCard.astro';
+import applicationHomePageImg from '../../assets/images/application-home-page.png';
+import sharepointLogoImg from '../../assets/images/sharepoint-logo.png';
+import googleDriveLogoImg from '../../assets/images/google-drive-logo.png';
+import dropboxLogoImg from '../../assets/images/dropbox-logo.png';
+import oneDriveLogoImg from '../../assets/images/onedrive-logo.png';
+import diligentLogoImg from '../../assets/images/diligent-logo.png';
+
+type Item = { icon: string; title: string; text: string };
+interface Props {
+  formAnchor: string;
+  privacyHref: string;
+  t: {
+    hero: { eyebrow: string; title: string; lead: string; primary: string; note: string; imageAlt: string };
+    compare: { eyebrow: string; title: string; columns: { name: string; audience: string; items: string[] }[] };
+    integrations: { title: string; lead: string; other: string; email: string; more: string; note: string };
+    portal: { title: string; lead: string; items: Item[] };
+    ai: { title: string; lead: string; items: Item[] };
+    archive: { title: string; lead: string; items: Item[] };
+    conflicts: {
+      title: string; lead: string;
+      card: { title: string; meta: string; rows: { label: string; text: string; tone: 'ok' | 'pending' | 'danger'; status: string }[]; footer: string; caption: string };
+      items: Item[];
+    };
+    security: { title: string; lead: string; items: Item[] };
+    form: {
+      eyebrow: string; title: string; lead: string; benefits: string[]; heading: string; subheading: string;
+      firstName: string; lastName: string; email: string; emailPlaceholder: string; boardCount: string; boardOptions: { value: string; label: string }[];
+      trust: string[]; submit: string; privacyBefore: string; privacyLink: string; privacyAfter: string;
+      successTitle: string; successText: string; nextTitle: string; next: string[];
+    };
+    faq: { title: string; subtitle: string; inLanguage: string; faqs: { question: string; answer: string }[] };
+  };
+}
+const { t, formAnchor, privacyHref } = Astro.props;
+
+const logos = [
+  { name: 'SharePoint', img: sharepointLogoImg },
+  { name: 'Google Drive', img: googleDriveLogoImg },
+  { name: 'Diligent', img: diligentLogoImg },
+  { name: t.integrations.other, icon: 'layers' },
+  { name: t.integrations.email, icon: 'mail' },
+  { name: 'Dropbox', img: dropboxLogoImg },
+  { name: 'OneDrive', img: oneDriveLogoImg },
+  { name: t.integrations.more, icon: 'link' },
+];
+---
+
+<PageHero eyebrow={t.hero.eyebrow} title={t.hero.title} lead={t.hero.lead}>
+  <Fragment slot="actions">
+    <Button href={`#${formAnchor}`}>{t.hero.primary}</Button>
+  </Fragment>
+  <p class="mt-6 font-mono text-xs uppercase tracking-[0.08em] text-gray-500">{t.hero.note}</p>
+  <Screenshot slot="aside" src={applicationHomePageImg} alt={t.hero.imageAlt} width={980} height={780} eager />
+</PageHero>
+
+<!-- Dafira vs Dafira One -->
+<Section space="md" border="bottom">
+  <SectionHeader eyebrow={t.compare.eyebrow} title={t.compare.title} />
+  <CellGrid columns={2}>
+    {t.compare.columns.map((col, i) => (
+      <div class="bg-white p-6 lg:p-8">
+        <p class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">{col.audience}</p>
+        <h3 class:list={['mt-3 text-xl font-semibold', i === 1 ? 'text-primary' : 'text-navy']}>{col.name}</h3>
+        <FeatureList items={col.items} class="mt-5" />
+      </div>
+    ))}
+  </CellGrid>
+</Section>
+
+<!-- Integrations -->
+<Section>
+  <SectionHeader title={t.integrations.title} lead={t.integrations.lead} />
+  <ul class="grid grid-cols-2 sm:grid-cols-4 gap-px bg-line border border-line rounded-md overflow-hidden">
+    {logos.map((logo) => (
+      <li class="bg-white p-6 flex items-center gap-4">
+        {logo.img
+          ? <Image src={logo.img} alt="" width={32} height={32} class="w-8 h-8 object-contain" />
+          : <Icon name={logo.icon} class="w-8 h-8 p-1 text-navy" />}
+        <span class="text-[15px] font-medium text-navy">{logo.name}</span>
+      </li>
+    ))}
+  </ul>
+  <p class="mt-6 text-gray-600 max-w-3xl">{t.integrations.note}</p>
+</Section>
+
+<!-- Personal portal -->
+<Section tone="surface" border="both">
+  <SectionHeader title={t.portal.title} lead={t.portal.lead} />
+  <FeatureColumns items={t.portal.items} />
+</Section>
+
+<!-- AI preparation -->
+<Section>
+  <div class="grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-5">
+      <SectionHeader layout="stacked" title={t.ai.title} lead={t.ai.lead} class="!mb-0" />
+    </div>
+    <ul class="lg:col-span-6 lg:col-start-7 border-t border-line">
+      {t.ai.items.map((item) => (
+        <li class="flex gap-5 py-6 border-b border-line">
+          <Icon name={item.icon} class="w-6 h-6 shrink-0 text-navy" />
+          <div>
+            <h3 class="font-semibold text-navy">{item.title}</h3>
+            <p class="mt-1 text-gray-600">{item.text}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Section>
+
+<!-- Archive -->
+<Section tone="surface" border="both">
+  <SectionHeader title={t.archive.title} lead={t.archive.lead} />
+  <CellGrid columns={3}>
+    {t.archive.items.map((item) => (
+      <div class="bg-white p-6 lg:p-8">
+        <Icon name={item.icon} class="w-6 h-6 text-navy" />
+        <h3 class="mt-5 font-semibold text-navy">{item.title}</h3>
+        <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
+      </div>
+    ))}
+  </CellGrid>
+</Section>
+
+<!-- Conflicts of interest -->
+<Section>
+  <div class="grid lg:grid-cols-12 gap-10 items-center mb-14">
+    <div class="lg:col-span-6">
+      <SectionHeader layout="stacked" title={t.conflicts.title} lead={t.conflicts.lead} class="!mb-0" />
+    </div>
+    <div class="lg:col-span-5 lg:col-start-8">
+      <ProductCard {...t.conflicts.card} />
+    </div>
+  </div>
+  <FeatureColumns items={t.conflicts.items} />
+</Section>
+
+<!-- Security -->
+<Section tone="surface" border="both">
+  <SectionHeader title={t.security.title} lead={t.security.lead} />
+  <CellGrid columns={3}>
+    {t.security.items.map((item) => (
+      <div class="bg-white p-6 lg:p-8">
+        <Icon name={item.icon} class="w-6 h-6 text-navy" />
+        <h3 class="mt-5 font-semibold text-navy">{item.title}</h3>
+        <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
+      </div>
+    ))}
+  </CellGrid>
+</Section>
+
+<!-- Early access form -->
+<Section id={formAnchor}>
+  <div class="grid lg:grid-cols-12 gap-10 items-start">
+    <div class="lg:col-span-5">
+      <SectionHeader layout="stacked" eyebrow={t.form.eyebrow} title={t.form.title} lead={t.form.lead} class="!mb-0" />
+      <ul class="mt-8 space-y-3">
+        {t.form.benefits.map((b) => (
+          <li class="flex gap-3 text-gray-700"><Icon name="check" class="w-5 h-5 mt-0.5 shrink-0 text-primary" /><span>{b}</span></li>
+        ))}
+      </ul>
+    </div>
+    <div class="lg:col-span-6 lg:col-start-7 bg-white border border-line rounded-md p-6 lg:p-8">
+      <form id="dafiraOneForm" class="space-y-5">
+        <div>
+          <h3 class="text-xl font-semibold text-navy">{t.form.heading}</h3>
+          <p class="mt-1 text-sm text-gray-500">{t.form.subheading}</p>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <Field id="firstName" label={t.form.firstName} required autocomplete="given-name" />
+          <Field id="lastName" label={t.form.lastName} required autocomplete="family-name" />
+        </div>
+        <Field id="email" type="email" label={t.form.email} placeholder={t.form.emailPlaceholder} required autocomplete="email" />
+        <Field id="boardCount" as="select" label={t.form.boardCount} required options={t.form.boardOptions} />
+        <p class="flex flex-wrap gap-x-5 gap-y-1 font-mono text-[11px] uppercase tracking-[0.08em] text-gray-500">
+          {t.form.trust.map((x) => <span>{x}</span>)}
+        </p>
+        <Button type="submit" class="w-full">{t.form.submit}</Button>
+        <p class="text-xs text-gray-500">
+          {t.form.privacyBefore}<a href={privacyHref} class="underline underline-offset-2 hover:text-navy">{t.form.privacyLink}</a>{t.form.privacyAfter}
+        </p>
+      </form>
+
+      <div id="formSuccess" class="hidden" role="status">
+        <Icon name="check" class="w-8 h-8 text-emerald-700" />
+        <h3 class="mt-4 text-2xl font-semibold text-navy">{t.form.successTitle}</h3>
+        <p class="mt-2 text-gray-600">{t.form.successText}</p>
+        <div class="mt-6 border-t border-line pt-5">
+          <p class="font-medium text-navy">{t.form.nextTitle}</p>
+          <FeatureList items={t.form.next} class="mt-3" />
+        </div>
+      </div>
+    </div>
+  </div>
+</Section>
+
+<FAQ texts={t.faq} />
+
+<script>
+  import { sendForm } from '../../utils/sendForm';
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('dafiraOneForm') as HTMLFormElement | null;
+    const success = document.getElementById('formSuccess');
+    if (form && success) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const data = {
+          firstName: formData.get('firstName'),
+          lastName: formData.get('lastName'),
+          email: formData.get('email'),
+          boardCount: formData.get('boardCount'),
+        };
+
+        // Track form submission
+        const w = window as any;
+        if (typeof window !== 'undefined' && w.dataLayer) {
+          w.dataLayer.push({
+            event: 'govrn_one_signup',
+            email: data.email,
+            board_count: data.boardCount,
+          });
+        }
+
+        if (!(await sendForm(form as HTMLFormElement, 'Dafira One early access'))) return;
+
+        // Hide form and show success message
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
+
+        // Here you would typically send the data to your backend
+        console.log('Dafira One signup:', data);
+      });
+    }
+  });
+</script>

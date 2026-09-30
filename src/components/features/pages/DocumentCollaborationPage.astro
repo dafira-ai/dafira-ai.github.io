@@ -1,0 +1,269 @@
+---
+// /features/document-collaboration (EN / FR / NL)
+import { PageHero, Section, SectionHeader, Button, Screenshot, FeatureList } from '../../ui';
+import DocumentViewer from '../document-collaboration/DocumentViewer.astro';
+import CollaborationFeatures from '../document-collaboration/CollaborationFeatures.astro';
+import LiveAnnotation from '../document-collaboration/LiveAnnotation.astro';
+import SecurityFeatures from '../document-collaboration/SecurityFeatures.astro';
+import RelatedFeatures from '../RelatedFeatures.astro';
+import FeatureCTA from '../FeatureCTA.astro';
+import { langFromPath, localizePath } from '../../../i18n/routes';
+import { common, featureLang } from '../common';
+
+const lang = featureLang(langFromPath(Astro.url.pathname));
+const c = common[lang];
+
+const copy = {
+  en: {
+    eyebrow: 'Document collaboration',
+    title: 'Read, annotate and discuss the board pack in one place',
+    lead: 'Directors prepare the meeting with private annotations, discuss with comments visible to the board and always read the latest version of each document.',
+    heroAlt: 'Board pack viewer in Dafira, with the agenda on the side and annotations on the minutes',
+    features: {
+      title: 'Three ways to work on a document',
+      subtitle: 'Personal preparation, shared discussion and a clear history of every change.',
+      items: [
+        { title: 'Private annotations', description: 'Personal notes and highlights, visible only to you, to prepare the meeting.', icon: 'pen', benefits: ['Private notes', 'Personal highlights and markers', 'Preparation reminders', 'History of your annotations'] },
+        { title: 'Document comments', description: 'Comments shared with the board, next to the passage they refer to.', icon: 'chat', benefits: ['Group discussion on the document', 'Threaded replies', 'Rich text formatting', 'Comment notifications'] },
+        { title: 'Version control', description: 'Every change is recorded, with its author and date.', icon: 'refresh', benefits: ['Complete change history', 'Version comparison', 'Restore previous versions', 'Change attribution'] },
+      ],
+    },
+    viewer: {
+      eyebrow: 'Document viewer',
+      title: 'Comments and versions next to the document',
+      lead: 'The document, the discussion about it and its history on one screen.',
+      data: {
+        comments: [
+          { id: '1', author: { name: 'John Doe', initials: 'JD' }, content: 'Should we add more detail about the Q2 targets?', timestamp: '2 min ago', replies: [{ id: '2', author: { name: 'Alice Smith', initials: 'AS' }, content: "Good point, I'll update that section.", timestamp: '1 min ago' }] },
+        ],
+        versions: [
+          { id: 'v1.2', author: { name: 'Alice Smith', initials: 'AS' }, timestamp: '10 min ago', changes: ['Updated Q2 targets', 'Added financial summary'] },
+          { id: 'v1.1', author: { name: 'John Doe', initials: 'JD' }, timestamp: '1 hour ago', changes: ['Initial draft'] },
+        ],
+        tools: [{ icon: 'pen', label: 'Annotate' }, { icon: 'chat', label: 'Comment' }, { icon: 'search', label: 'Search' }, { icon: 'refresh', label: 'Versions' }],
+        texts: {
+          version: 'Version 1.2', share: 'Share', title: 'Board Meeting Minutes', date: '15 March',
+          strategicTitle: 'Strategic initiatives',
+          strategicContent: "The board discussed the company's strategic initiatives for the coming quarter, focusing on three areas:",
+          strategicItems: ['Expansion into new markets', 'Product development roadmap', 'Operational efficiency'],
+          financialTitle: 'Financial performance',
+          financialContent: 'Results for the quarter were in line with the budget, with a',
+          highlightedText: 'higher operating margin', comparedText: 'than in the previous quarter.',
+          comments: { title: 'Comments', addCommentPlaceholder: 'Add a comment', userInitials: 'ME' },
+          versionsTitle: 'Versions',
+        },
+      },
+    },
+    annotation: {
+      eyebrow: 'Annotations',
+      title: 'Annotations and comments on the page',
+      description: 'Directors highlight and annotate the documents they read. Comments shared with the board appear next to the passage they refer to, so the discussion stays attached to the text.',
+      features: [
+        { text: 'Comments visible to all participants', icon: 'users' },
+        { text: 'Rich text formatting and threaded replies', icon: 'chat' },
+        { text: 'Complete annotation history', icon: 'clipboard' },
+      ],
+      comments: [
+        { author: { name: 'John Doe', initials: 'JD' }, content: 'Good point here.' },
+        { author: { name: 'Alice Smith', initials: 'AS' }, content: 'Should we add more context?' },
+      ],
+      documentLines: ['The committee reviewed the internal audit plan for the year.', 'Two findings from the previous audit remain open.', 'Management will present a remediation plan at the next meeting.'],
+    },
+    library: {
+      eyebrow: 'Document library',
+      title: 'Every document filed with its meeting',
+      text: 'Board packs, minutes and appendices are grouped by meeting and by type. Directors find last year’s papers as easily as this month’s.',
+      items: ['Documents grouped by meeting', 'Filters by document type and date', 'Search by title', 'Documents to sign in a separate tab'],
+      alt: 'Document library in Dafira, grouped by meeting',
+    },
+    security: {
+      title: 'Security of the board pack',
+      description: 'Documents are protected by the same security measures as the rest of the platform.',
+      features: [
+        { icon: 'lock', title: 'End-to-end encryption', description: 'Documents, changes and comments are encrypted.' },
+        { icon: 'users', title: 'Role-based access', description: 'Permissions set who can view and edit each document.' },
+        { icon: 'clipboard', title: 'Audit trail', description: 'A complete history of the activity on each document.' },
+      ],
+    },
+  },
+  fr: {
+    eyebrow: 'Collaboration documentaire',
+    title: 'Lire, annoter et discuter le dossier du conseil au même endroit',
+    lead: 'Les administrateurs préparent la séance avec des annotations privées, échangent par des commentaires visibles du conseil et lisent toujours la dernière version de chaque document.',
+    heroAlt: "Lecteur du dossier du conseil dans Dafira, avec l'ordre du jour sur le côté et des annotations sur le procès-verbal",
+    features: {
+      title: 'Trois façons de travailler sur un document',
+      subtitle: "Préparation personnelle, discussion partagée et historique clair de chaque modification.",
+      items: [
+        { title: 'Notes personnelles', description: 'Des annotations privées, visibles uniquement par vous, pour préparer vos réunions.', icon: 'pen', benefits: ['Notes confidentielles', 'Surlignage personnel', 'Aide-mémoire', 'Historique de vos annotations'] },
+        { title: 'Commentaires partagés', description: 'Des commentaires partagés avec le conseil, à côté du passage concerné.', icon: 'chat', benefits: ['Discussion de groupe sur le document', 'Réponses en fil', 'Texte enrichi', 'Alertes de nouveaux commentaires'] },
+        { title: 'Historique des versions', description: 'Chaque modification est enregistrée, avec son auteur et sa date.', icon: 'refresh', benefits: ['Suivi des changements', 'Comparaison des versions', 'Retour aux versions précédentes', 'Identification des auteurs'] },
+      ],
+    },
+    viewer: {
+      eyebrow: 'Lecteur de documents',
+      title: 'Commentaires et versions à côté du document',
+      lead: 'Le document, la discussion qui l’accompagne et son historique sur un seul écran.',
+      data: {
+        comments: [
+          { id: '1', author: { name: 'Jean Dupont', initials: 'JD' }, content: 'Devrions-nous ajouter plus de détails sur les objectifs du T2 ?', timestamp: 'il y a 2 min', replies: [{ id: '2', author: { name: 'Alice Martin', initials: 'AM' }, content: 'Bonne remarque, je mets cette partie à jour.', timestamp: 'il y a 1 min' }] },
+        ],
+        versions: [
+          { id: 'v1.2', author: { name: 'Alice Martin', initials: 'AM' }, timestamp: 'il y a 10 min', changes: ['Mise à jour des objectifs T2', 'Ajout du résumé financier'] },
+          { id: 'v1.1', author: { name: 'Jean Dupont', initials: 'JD' }, timestamp: 'il y a 1 heure', changes: ['Première version'] },
+        ],
+        tools: [{ icon: 'pen', label: 'Annoter' }, { icon: 'chat', label: 'Commenter' }, { icon: 'search', label: 'Rechercher' }, { icon: 'refresh', label: 'Versions' }],
+        texts: {
+          version: 'Version 1.2', share: 'Partager', title: "Procès-verbal du conseil d'administration", date: '15 mars',
+          strategicTitle: 'Initiatives stratégiques',
+          strategicContent: 'Le conseil a discuté des initiatives stratégiques pour le trimestre à venir, autour de trois axes :',
+          strategicItems: ['Expansion sur de nouveaux marchés', 'Feuille de route produit', 'Efficacité opérationnelle'],
+          financialTitle: 'Performance financière',
+          financialContent: 'Les résultats du trimestre sont conformes au budget, avec une',
+          highlightedText: 'marge opérationnelle plus élevée', comparedText: "qu'au trimestre précédent.",
+          comments: { title: 'Commentaires', addCommentPlaceholder: 'Ajouter un commentaire', userInitials: 'MOI' },
+          versionsTitle: 'Versions',
+        },
+      },
+    },
+    annotation: {
+      eyebrow: 'Annotations',
+      title: 'Annotations et commentaires sur la page',
+      description: 'Les administrateurs surlignent et annotent les documents qu’ils lisent. Les commentaires partagés avec le conseil apparaissent à côté du passage concerné : la discussion reste attachée au texte.',
+      features: [
+        { text: 'Commentaires visibles de tous les participants', icon: 'users' },
+        { text: 'Texte enrichi et réponses en fil', icon: 'chat' },
+        { text: 'Historique complet des annotations', icon: 'clipboard' },
+      ],
+      comments: [
+        { author: { name: 'Jean Dupont', initials: 'JD' }, content: 'Bonne remarque.' },
+        { author: { name: 'Alice Martin', initials: 'AM' }, content: 'Devrions-nous ajouter du contexte ?' },
+      ],
+      documentLines: ["Le comité a examiné le plan d'audit interne de l'année.", "Deux constats de l'audit précédent restent ouverts.", 'La direction présentera un plan de remédiation à la prochaine séance.'],
+    },
+    library: {
+      eyebrow: 'Bibliothèque documentaire',
+      title: 'Chaque document classé avec sa séance',
+      text: "Dossiers du conseil, procès-verbaux et annexes sont regroupés par séance et par type. Les administrateurs retrouvent les documents de l'an dernier aussi facilement que ceux du mois.",
+      items: ['Documents regroupés par séance', 'Filtres par type de document et par date', 'Recherche par titre', 'Documents à signer dans un onglet dédié'],
+      alt: 'Bibliothèque documentaire de Dafira, classée par séance',
+    },
+    security: {
+      title: 'Sécurité du dossier du conseil',
+      description: 'Les documents bénéficient des mêmes mesures de sécurité que le reste de la plateforme.',
+      features: [
+        { icon: 'lock', title: 'Chiffrement de bout en bout', description: 'Les documents, les modifications et les commentaires sont chiffrés.' },
+        { icon: 'users', title: 'Accès par rôle', description: 'Les droits définissent qui peut consulter et modifier chaque document.' },
+        { icon: 'clipboard', title: "Piste d'audit", description: "L'historique complet de l'activité sur chaque document." },
+      ],
+    },
+  },
+  nl: {
+    eyebrow: 'Samenwerken aan documenten',
+    title: 'Het bestuursdossier lezen, annoteren en bespreken op één plek',
+    lead: 'Bestuurders bereiden de vergadering voor met persoonlijke annotaties, overleggen via opmerkingen die het bestuur ziet en lezen altijd de laatste versie van elk document.',
+    heroAlt: 'Viewer voor het bestuursdossier in Dafira, met de agenda aan de zijkant en annotaties op de notulen',
+    features: {
+      title: 'Drie manieren om aan een document te werken',
+      subtitle: 'Persoonlijke voorbereiding, gedeeld overleg en een duidelijke geschiedenis van elke wijziging.',
+      items: [
+        { title: 'Persoonlijke notities', description: 'Privéaantekeningen en markeringen, alleen zichtbaar voor u, om de vergadering voor te bereiden.', icon: 'pen', benefits: ['Vertrouwelijke notities', 'Persoonlijke markeringen', 'Geheugensteun', 'Notitiegeschiedenis'] },
+        { title: 'Gedeelde opmerkingen', description: 'Opmerkingen gedeeld met het bestuur, naast de passage waarop ze betrekking hebben.', icon: 'chat', benefits: ['Groepsoverleg op het document', 'Antwoorden in discussielijnen', 'Uitgebreide tekstopmaak', 'Meldingen bij nieuwe reacties'] },
+        { title: 'Versiebeheer', description: 'Elke wijziging wordt vastgelegd, met auteur en datum.', icon: 'refresh', benefits: ['Wijzigingen volgen', 'Versies vergelijken', 'Eerdere versies herstellen', 'Auteur van elke wijziging'] },
+      ],
+    },
+    viewer: {
+      eyebrow: 'Documentviewer',
+      title: 'Opmerkingen en versies naast het document',
+      lead: 'Het document, het overleg erover en de geschiedenis op één scherm.',
+      data: {
+        comments: [
+          { id: '1', author: { name: 'Jan de Vries', initials: 'JV' }, content: 'Moeten we meer details toevoegen over de Q2-doelstellingen?', timestamp: '2 min geleden', replies: [{ id: '2', author: { name: 'Anna Bakker', initials: 'AB' }, content: 'Goed punt, ik werk dat deel bij.', timestamp: '1 min geleden' }] },
+        ],
+        versions: [
+          { id: 'v1.2', author: { name: 'Anna Bakker', initials: 'AB' }, timestamp: '10 min geleden', changes: ['Q2-doelstellingen bijgewerkt', 'Financieel overzicht toegevoegd'] },
+          { id: 'v1.1', author: { name: 'Jan de Vries', initials: 'JV' }, timestamp: '1 uur geleden', changes: ['Eerste versie'] },
+        ],
+        tools: [{ icon: 'pen', label: 'Annoteren' }, { icon: 'chat', label: 'Reageren' }, { icon: 'search', label: 'Zoeken' }, { icon: 'refresh', label: 'Versies' }],
+        texts: {
+          version: 'Versie 1.2', share: 'Delen', title: 'Notulen bestuursvergadering', date: '15 maart',
+          strategicTitle: 'Strategische initiatieven',
+          strategicContent: 'Het bestuur besprak de strategische initiatieven voor het komende kwartaal, rond drie punten:',
+          strategicItems: ['Uitbreiding naar nieuwe markten', 'Productroadmap', 'Operationele efficiëntie'],
+          financialTitle: 'Financiële resultaten',
+          financialContent: 'De resultaten van het kwartaal liggen in lijn met het budget, met een',
+          highlightedText: 'hogere operationele marge', comparedText: 'dan in het vorige kwartaal.',
+          comments: { title: 'Opmerkingen', addCommentPlaceholder: 'Voeg een opmerking toe', userInitials: 'IK' },
+          versionsTitle: 'Versies',
+        },
+      },
+    },
+    annotation: {
+      eyebrow: 'Annotaties',
+      title: 'Annotaties en opmerkingen op de pagina',
+      description: 'Bestuurders markeren en annoteren de documenten die ze lezen. Opmerkingen die met het bestuur gedeeld worden, staan naast de passage waarop ze slaan, zodat het overleg bij de tekst blijft.',
+      features: [
+        { text: 'Opmerkingen zichtbaar voor alle deelnemers', icon: 'users' },
+        { text: 'Tekstopmaak en discussielijnen', icon: 'chat' },
+        { text: 'Volledige annotatiegeschiedenis', icon: 'clipboard' },
+      ],
+      comments: [
+        { author: { name: 'Jan de Vries', initials: 'JV' }, content: 'Goed punt.' },
+        { author: { name: 'Anna Bakker', initials: 'AB' }, content: 'Moeten we meer context toevoegen?' },
+      ],
+      documentLines: ['Het comité besprak het interne auditplan voor het jaar.', 'Twee bevindingen uit de vorige audit staan nog open.', 'Het management legt op de volgende vergadering een herstelplan voor.'],
+    },
+    library: {
+      eyebrow: 'Documentbibliotheek',
+      title: 'Elk document bewaard bij zijn vergadering',
+      text: 'Bestuursdossiers, notulen en bijlagen zijn gegroepeerd per vergadering en per type. Bestuurders vinden de stukken van vorig jaar even snel terug als die van deze maand.',
+      items: ['Documenten gegroepeerd per vergadering', 'Filters op documenttype en datum', 'Zoeken op titel', 'Te ondertekenen documenten in een apart tabblad'],
+      alt: 'Documentbibliotheek in Dafira, gegroepeerd per vergadering',
+    },
+    security: {
+      title: 'Beveiliging van het bestuursdossier',
+      description: 'Documenten genieten dezelfde beveiligingsmaatregelen als de rest van het platform.',
+      features: [
+        { icon: 'lock', title: 'End-to-end versleuteling', description: 'Documenten, wijzigingen en opmerkingen zijn versleuteld.' },
+        { icon: 'users', title: 'Toegang per rol', description: 'Rechten bepalen wie elk document kan bekijken en bewerken.' },
+        { icon: 'clipboard', title: 'Audittrail', description: 'Een volledige geschiedenis van de activiteit op elk document.' },
+      ],
+    },
+  },
+}[lang];
+---
+
+<PageHero eyebrow={copy.eyebrow} title={copy.title} lead={copy.lead}>
+  <Fragment slot="actions">
+    <Button href={localizePath(lang, '/request-demo')}>{c.demo}</Button>
+    <Button variant="secondary" href={localizePath(lang, '/contact')}>{c.contact}</Button>
+  </Fragment>
+  <Screenshot slot="aside" src="/onboarding-boardpack.png" alt={copy.heroAlt} eager />
+</PageHero>
+
+<CollaborationFeatures features={copy.features.items} texts={{ title: copy.features.title, subtitle: copy.features.subtitle }} />
+
+<Section tone="surface" border="both">
+  <SectionHeader eyebrow={copy.viewer.eyebrow} title={copy.viewer.title} lead={copy.viewer.lead} />
+  <DocumentViewer {...copy.viewer.data} />
+</Section>
+
+<LiveAnnotation texts={copy.annotation} tone="white" />
+
+<Section tone="surface" border="both">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+    <div class="lg:col-span-4">
+      <SectionHeader layout="stacked" eyebrow={copy.library.eyebrow} title={copy.library.title} lead={copy.library.text} class="mb-8" />
+      <FeatureList items={copy.library.items} />
+    </div>
+    <div class="lg:col-span-7 lg:col-start-6">
+      <Screenshot src="/onboarding-document-list.png" alt={copy.library.alt} />
+    </div>
+  </div>
+</Section>
+
+<SecurityFeatures texts={copy.security} link={{ text: c.security, href: localizePath(lang, '/security') }} />
+
+<RelatedFeatures current="document-collaboration" tone="surface" />
+
+<FeatureCTA />

@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import GuideHeader from '../../components/guides/GuideHeader.astro';
+import GuideArticle from '../../components/guides/GuideArticle.astro';
+import { Button, Icon } from '../../components/ui';
 import GuideStep from '../../components/guides/GuideStep.astro';
 import GuideSubSection from '../../components/guides/GuideSubSection.astro';
 import GuideStepList from '../../components/guides/GuideStepList.astro';
@@ -50,13 +52,13 @@ const profilePictureSteps = [
 ];
 ---
 
-<Layout title="How to Manage Your Profile - Govrn">
-  <main class="pt-24">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <GuideHeader
+<Layout title="How to Manage Your Profile - Dafira">
+  <main>
+    <GuideHeader
         title="How to Manage Your Profile Settings"
-        description="Complete guide to updating your personal information, email, phone number, and security settings in Govrn."
+        description="Complete guide to updating your personal information, email, phone number, and security settings in Dafira."
       />
+    <GuideArticle>
 
       <GuideStep
         number={1}
@@ -68,7 +70,7 @@ const profilePictureSteps = [
   loading="lazy"
             src="https://k0n.abe.mytemp.website/wp-content/uploads/2024/10/Untitled-design-1.png"
             alt="Accessing profile settings"
-            class="rounded-lg shadow-lg border border-gray-200 mb-6"
+            class="rounded-md border border-line mb-6"
           /> -->
           <GuideStepList items={accessProfileSteps} />
         </div>
@@ -78,23 +80,23 @@ const profilePictureSteps = [
         />
 
         <GuideSubSection title="Profile Information Fields">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <div class="grid md:grid-cols-2 gap-4">
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Basic Information</h4>
+                <h4 class="font-semibold text-navy mb-2">Basic Information</h4>
                 <ul class="text-sm text-gray-600 space-y-1">
-                  <li>• Full Name</li>
-                  <li>• Job Title</li>
-                  <li>• Company</li>
-                  <li>• Time Zone</li>
+                  <li>Full Name</li>
+                  <li>Job Title</li>
+                  <li>Company</li>
+                  <li>Time Zone</li>
                 </ul>
               </div>
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Contact Details</h4>
+                <h4 class="font-semibold text-navy mb-2">Contact Details</h4>
                 <ul class="text-sm text-gray-600 space-y-1">
-                  <li>• Email Address</li>
-                  <li>• Phone Number</li>
-                  <li>• Language Preference</li>
+                  <li>Email Address</li>
+                  <li>Phone Number</li>
+                  <li>Language Preference</li>
                 </ul>
               </div>
             </div>
@@ -112,7 +114,7 @@ const profilePictureSteps = [
   loading="lazy"
             src="https://k0n.abe.mytemp.website/wp-content/uploads/2024/10/Untitled-design-1.png"
             alt="Updating profile picture"
-            class="rounded-lg shadow-lg border border-gray-200 mb-6"
+            class="rounded-md border border-line mb-6"
           /> -->
           <GuideStepList items={profilePictureSteps} />
         </div>
@@ -122,12 +124,12 @@ const profilePictureSteps = [
         />
 
         <GuideSubSection title="Image Requirements">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <ul class="text-sm text-gray-600 space-y-1">
-              <li>• Maximum file size: 5MB</li>
-              <li>• Supported formats: JPG, PNG</li>
-              <li>• Recommended size: 400x400 pixels</li>
-              <li>• Square aspect ratio preferred</li>
+              <li>Maximum file size: 5MB</li>
+              <li>Supported formats: JPG, PNG</li>
+              <li>Recommended size: 400x400 pixels</li>
+              <li>Square aspect ratio preferred</li>
             </ul>
           </div>
         </GuideSubSection>
@@ -143,7 +145,7 @@ const profilePictureSteps = [
   loading="lazy"
             src="https://k0n.abe.mytemp.website/wp-content/uploads/2024/10/Untitled-design-1.png"
             alt="Changing email address"
-            class="rounded-lg shadow-lg border border-gray-200 mb-6"
+            class="rounded-md border border-line mb-6"
           /> -->
           <GuideStepList items={updateEmailSteps} />
         </div>
@@ -153,13 +155,13 @@ const profilePictureSteps = [
         />
 
         <GuideSubSection title="Important Notes">
-          <div class="bg-white rounded-lg p-4 border border-gray-200 space-y-4">
+          <div class="border border-line rounded-md p-5 space-y-4">
             <div>
-              <h4 class="font-semibold text-gray-900 mb-2">Email Verification</h4>
+              <h4 class="font-semibold text-navy mb-2">Email Verification</h4>
               <p class="text-sm text-gray-600">Your new email won't be active until you verify it through the link sent to your new address.</p>
             </div>
             <div>
-              <h4 class="font-semibold text-gray-900 mb-2">Access During Change</h4>
+              <h4 class="font-semibold text-navy mb-2">Access During Change</h4>
               <p class="text-sm text-gray-600">You can still use your old email to log in until the new one is verified.</p>
             </div>
           </div>
@@ -176,7 +178,7 @@ const profilePictureSteps = [
   loading="lazy"
             src="https://k0n.abe.mytemp.website/wp-content/uploads/2024/10/Untitled-design-1.png"
             alt="Updating phone number"
-            class="rounded-lg shadow-lg border border-gray-200 mb-6"
+            class="rounded-md border border-line mb-6"
           /> -->
           <GuideStepList items={updatePhoneSteps} />
         </div>
@@ -186,11 +188,11 @@ const profilePictureSteps = [
         />
 
         <GuideSubSection title="Phone Number Format">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <ul class="text-sm text-gray-600 space-y-1">
-              <li>• Include country code (e.g., +1 for US)</li>
-              <li>• No spaces or special characters</li>
-              <li>• Mobile numbers only (no landlines)</li>
+              <li>Include country code (e.g., +1 for US)</li>
+              <li>No spaces or special characters</li>
+              <li>Mobile numbers only (no landlines)</li>
             </ul>
           </div>
         </GuideSubSection>
@@ -206,7 +208,7 @@ const profilePictureSteps = [
   loading="lazy"
             src="https://k0n.abe.mytemp.website/wp-content/uploads/2024/10/Untitled-design-1.png"
             alt="Changing password"
-            class="rounded-lg shadow-lg border border-gray-200 mb-6"
+            class="rounded-md border border-line mb-6"
           /> -->
           <GuideStepList items={changePasswordSteps} />
         </div>
@@ -216,64 +218,54 @@ const profilePictureSteps = [
         />
 
         <GuideSubSection title="Password Requirements">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <ul class="text-sm text-gray-600 space-y-1">
-              <li>• Minimum 8 characters</li>
-              <li>• At least one uppercase letter</li>
-              <li>• At least one number</li>
-              <li>• At least one special character</li>
-              <!-- <li>• Cannot be a previously used password</li> -->
+              <li>Minimum 8 characters</li>
+              <li>At least one uppercase letter</li>
+              <li>At least one number</li>
+              <li>At least one special character</li>
+              <!-- <li>Cannot be a previously used password</li> -->
             </ul>
           </div>
         </GuideSubSection>
       </GuideStep>
 
       <!-- Quick Reference -->
-      <div class="mt-16 bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Quick Reference</h2>
+      <div class="mt-16 rounded-md p-8 border border-line bg-surface">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Quick Reference</h2>
         <div class="grid md:grid-cols-2 gap-6">
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Common Tasks</h3>
+            <h3 class="font-semibold text-navy mb-2">Common Tasks</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• Update profile: Account Settings > Edit</li>
-              <li>• Change email: Account Settings > Email > Edit</li>
-              <li>• Update phone: Account Settings > Phone > Edit</li>
-              <li>• Change password: Account Settings > Security</li>
+              <li>Update profile: Account Settings > Edit</li>
+              <li>Change email: Account Settings > Email > Edit</li>
+              <li>Update phone: Account Settings > Phone > Edit</li>
+              <li>Change password: Account Settings > Security</li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Important Tips</h3>
+            <h3 class="font-semibold text-navy mb-2">Important Tips</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• Keep contact info current</li>
-              <li>• Use a professional photo</li>
-              <li>• Enable all security features</li>
-              <li>• Update password regularly</li>
+              <li>Keep contact info current</li>
+              <li>Use a professional photo</li>
+              <li>Enable all security features</li>
+              <li>Update password regularly</li>
             </ul>
           </div>
         </div>
       </div>
 
       <!-- Help Section -->
-      <div class="mt-8 bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Need Help?</h2>
+      <div class="mt-8 rounded-md p-8 border border-line">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Need Help?</h2>
         <p class="text-gray-600 mb-6">
           Having trouble updating your profile or need assistance? Our support team is here to help.
         </p>
-        <div class="flex space-x-4">
-          <a
-            href="/contact"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors"
-          >
-            Contact Support
-          </a>
-          <a
-            href="/guides"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-gray-900 bg-white border border-gray-200 hover:bg-gray-50 transition-colors"
-          >
-            View All Guides
-          </a>
+        <div class="flex flex-wrap gap-3 df-guide-actions">
+          <Button href="/contact">Contact Support</Button>
+          <Button href="/guides" variant="secondary">View All Guides</Button>
         </div>
       </div>
-    </article>
+    </GuideArticle>
   </main>
 </Layout>

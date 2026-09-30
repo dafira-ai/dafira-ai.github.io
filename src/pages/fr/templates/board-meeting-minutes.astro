@@ -3,92 +3,32 @@ import Layout from '../../../layouts/Layout.astro';
 import PreviewCard from '../../../components/templates/minutes/PreviewCard.astro';
 import TemplateForm from '../../../components/templates/minutes/TemplateForm.astro';
 import FeatureComparison from '../../../components/templates/minutes/FeatureComparison.astro';
+import { PageHero, Section, CellGrid } from '../../../components/ui';
 
 const previews = [
-  {
-    title: "Format structuré",
-    description: "Sections claires pour l'ordre du jour, les discussions et les décisions",
-    emoji: "📋"
-  },
-  {
-    title: "Conforme aux normes",
-    description: "Répond aux exigences réglementaires de documentation",
-    emoji: "⚖️"
-  }
-];
-
-const stats = [
-  { value: "1 000+", label: "Téléchargements ce mois" },
-  { value: "4.9/5", label: "Note utilisateur" },
-  { value: "100%", label: "Conformité" }
+  { title: "Format structuré", description: "Sections claires pour l'ordre du jour, les discussions et les décisions", icon: "list" },
+  { title: "Conseils de conformité", description: "Repères sur la documentation attendue d'un conseil", icon: "scale" }
 ];
 ---
 
-<Layout 
-  title="Modèle gratuit de procès-verbal de conseil | Format professionnel [2025]"
-  description="Téléchargez notre modèle professionnel de procès-verbal. Format gratuit et complet, adopté par les organisations leaders. Inclut les bonnes pratiques et conseils de conformité."
+<Layout
+  title="Modèle gratuit de procès-verbal de conseil | Format professionnel"
+  description="Téléchargez un modèle gratuit de procès-verbal de conseil d'administration : sections claires pour l'ordre du jour, les discussions et les décisions, avec des conseils de bonnes pratiques et de conformité."
 >
-  <main class="pt-16">
-    <!-- Section principale -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
+  <main>
+    <PageHero eyebrow="Modèle gratuit" title="Modèle de procès-verbal de conseil" lead="Une structure claire et prête à l'emploi pour vos procès-verbaux, avec des conseils sur les bonnes pratiques et les exigences de documentation.">
+      <CellGrid columns={2} class="mt-10">
+        {previews.map((preview) => <PreviewCard {...preview} />)}
+      </CellGrid>
+      <TemplateForm slot="aside" />
+    </PageHero>
+
+    <Section space="md">
+      <div class="max-w-2xl mb-12">
+        <h2 class="text-3xl lg:text-4xl font-semibold text-navy leading-tight">Un bon début. Dafira s'occupe du reste.</h2>
+        <p class="mt-4 text-lg text-gray-600 leading-relaxed">De l'enregistrement au procès-verbal signé, au même endroit.</p>
       </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-green-100 text-green-800 mb-8">
-              Téléchargement gratuit • Sans carte bancaire
-            </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Modèle professionnel de
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                procès-verbal
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-8">
-              Téléchargez notre modèle complet et facile à utiliser, adopté par les secrétaires de conseil dans le monde entier. Inclut les meilleures pratiques et guides de conformité.
-            </p>
-
-            <!-- Statistiques -->
-            <div class="grid grid-cols-3 gap-8 mb-12">
-              {stats.map(stat => (
-                <div>
-                  <div class="text-3xl font-bold text-primary mb-1">{stat.value}</div>
-                  <div class="text-sm text-gray-600">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            <!-- Cartes aperçu -->
-            <div class="grid grid-cols-2 gap-4">
-              {previews.map(preview => (
-                <PreviewCard {...preview} />
-              ))}
-            </div>
-          </div>
-
-          <TemplateForm />
-        </div>
-      </div>
-    </section>
-
-    <!-- Section comparaison -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">
-            Un bon début, mais pourquoi s'arrêter là ?
-          </h2>
-          <p class="text-xl text-gray-600">
-            Découvrez comment Govrn transforme l'ensemble du processus de rédaction
-          </p>
-        </div>
-
-        <FeatureComparison />
-
-        
-    </section>
+      <FeatureComparison />
+    </Section>
   </main>
 </Layout>

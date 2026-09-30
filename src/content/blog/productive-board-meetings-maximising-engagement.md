@@ -2,8 +2,8 @@
 title: "Productive Board Meetings: Maximising Engagement and Successful Outcomes"
 description: "Discover strategies and practices to optimize board meetings, from agenda setting to actionable outcomes, ensuring seamless collaboration and informed decision-making."
 pubDate: 2023-04-10
-author: "Govrn"
-authorRole: "Govrn Editorial Team"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/meeting.jpg"
 category: "Governance"
 tags: ["Board Meetings", "Governance", "Engagement", "Best Practices"]

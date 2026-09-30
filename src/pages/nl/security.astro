@@ -1,259 +1,48 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import SecurityOverview from '../../components/security/SecurityOverview.astro';
 
-const securityFeatures = [
-  {
-    icon: "🔒",
-    title: "Enterprise-grade infrastructuur",
-    description: "Gehost op het Microsoft Azure cloudplatform, met gebruik van hun uitgebreide beveiligingsmaatregelen"
+const copy = {
+  eyebrow: 'Beveiliging',
+  title: 'Hoe Dafira bestuursinformatie beschermt',
+  lead: 'De beveiligingsmaatregelen in het platform, en de partners op wie we rekenen voor hosting, elektronische handtekening en documentverwerking.',
+  heroLink: { text: 'Multi-factor authenticatie', href: '/nl/security/mfa' },
+  measures: {
+    eyebrow: 'Maatregelen',
+    title: 'Beveiliging ingebouwd in het platform',
+    lead: 'Controles die bestuursdocumenten, besprekingen en beslissingen beschermen.',
+    items: [
+      { icon: 'building', title: 'Gehost op Microsoft Azure', text: 'Dafira draait op het cloudplatform van Microsoft Azure en profiteert van de beveiligingsmaatregelen ervan.' },
+      { icon: 'shield', title: 'Gegevensbescherming', text: 'Gegevensbeschermingspraktijken conform de AVG en industriestandaarden.' },
+      { icon: 'lock', title: 'Versleuteling', text: 'Gegevens worden versleuteld tijdens transport en in rust.' },
+      { icon: 'phone', title: 'Multi-factor authenticatie', text: 'Een eenmalige code via SMS voegt een tweede stap toe aan het wachtwoord voordat een gebruiker bestuursinformatie kan openen.', link: { text: 'Zo werkt het', href: '/nl/security/mfa' } },
+      { icon: 'key', title: 'Rolgebaseerde toegang', text: 'Toegang wordt per rol beheerd, met een audittrail van de activiteit.' },
+    ],
+    contact: { title: 'Vragen van uw IT- of risicoteam', text: 'Schrijf ons: we beantwoorden uw vragen over de beveiliging van Dafira.', link: { text: 'Contact opnemen', href: '/nl/contact' } },
   },
-  {
-    icon: "🛡️", 
-    title: "Gegevensbescherming",
-    description: "Robuuste gegevensbeschermingspraktijken conform AVG en industriestandaarden"
+  layers: {
+    eyebrow: 'Gelaagde beveiliging',
+    title: 'Drie beschermingslagen',
+    lead: 'Beveiliging op het niveau van infrastructuur, applicatie en gegevens.',
+    items: [
+      { icon: 'building', title: 'Infrastructuurbeveiliging', text: 'De cloudinfrastructuur van Microsoft Azure.', items: ['Hoogbeschikbare datacenters', 'Netwerkbeveiligingscontroles', 'DDoS-bescherming', 'Regelmatige beveiligingsupdates'] },
+      { icon: 'lock', title: 'Applicatiebeveiliging', text: 'Controles op applicatieniveau.', items: ['Tweefactorauthenticatie (2FA)', 'Sessiebeheer', 'Invoervalidatie', 'Beveiligingsheaders'] },
+      { icon: 'shield', title: 'Gegevensbescherming', text: 'Maatregelen die opgeslagen gegevens beschermen.', items: ['Versleuteling tijdens transport en in rust', 'Beveiligde opslag', 'Regelmatige back-ups', 'Gegevenstoegangscontroles'] },
+    ],
   },
-  {
-    icon: "🔐",
-    title: "Geavanceerde versleuteling",
-    description: "End-to-end versleuteling voor alle gegevensoverdracht en -opslag"
+  partners: {
+    eyebrow: 'Partners',
+    title: 'Met wie we werken',
+    lead: 'Gespecialiseerde leveranciers voor hosting, elektronische handtekening en documentverwerking.',
+    items: [
+      { name: 'Microsoft Azure', logo: '/azure-logo.png', role: 'Infrastructuur', text: 'Onze infrastructuurprovider. Microsoft Azure beschikt onder meer over ISO 27001-, FedRAMP-, SOC- en HIPAA-certificeringen.', items: ['Wereldwijd netwerk van datacenters', 'Bescherming tegen dreigingen', 'Continue beveiligingsmonitoring', 'Compliance-frameworks'] },
+      { name: 'Universign', logo: '/universign-logo.png', role: 'Elektronische handtekening', text: 'Onze partner voor elektronische handtekeningen, conform de eIDAS-verordening.', items: ['Gekwalificeerde elektronische handtekeningen', 'Wettelijke compliance', 'Beveiligd documentbeheer', 'Audittrails'] },
+      { name: 'Apryse', logo: '/apryse-logo.png', role: 'Documentverwerking', text: 'Onze partner voor documentverwerking, met meerdere compliancecertificeringen.', items: ['Beveiligde documentverwerking', 'Toegangscontrole', 'Versleuteling', 'Compliance-functionaliteiten'] },
+    ],
   },
-  {
-    icon: "📱",
-    title: "Multi-Factor Authenticatie",
-    description: "SMS-gebaseerde verificatie voegt een extra beveiligingslaag toe naast wachtwoorden om gevoelige bestuursinformatie te beschermen",
-    link: "/nl/security/mfa"
-  },
-  {
-    icon: "👤",
-    title: "Gedetailleerde toegangscontrole",
-    description: "Rolgebaseerd toegangsbeheer met volledige audittrail"
-  }
-];
-
-const securityLayers = [
-  {
-    title: "Infrastructuurbeveiliging",
-    icon: "🏢",
-    description: "Gebruik van Microsoft Azure's beveiligde cloudinfrastructuur",
-    features: [
-      "Hoogbeschikbare datacenters",
-      "Netwerkbeveiligingscontroles",
-      "DDoS-bescherming",
-      "Regelmatige beveiligingsupdates"
-    ]
-  },
-  {
-    title: "Applicatiebeveiliging",
-    icon: "🔐",
-    description: "Meerdere beveiligingslagen op applicatieniveau",
-    features: [
-      "Tweefactorauthenticatie (2FA)",
-      "Sessiebeheer",
-      "Invoervalidatie",
-      "Beveiligingsheaders"
-    ]
-  },
-  {
-    title: "Gegevensbescherming",
-    icon: "🛡️",
-    description: "Uitgebreide gegevensbeveiligingsmaatregelen",
-    features: [
-      "End-to-end versleuteling",
-      "Beveiligde opslag",
-      "Regelmatige back-ups",
-      "Gegevenstoegangscontroles"
-    ]
-  }
-];
-
-const trustedPartners = [
-  {
-    name: "Microsoft Azure",
-    logo: "/azure-logo.png",
-    description: "Onze infrastructuurprovider, die enterprise-grade beveiliging biedt met ISO 27001, FedRAMP, SOC en HIPAA-certificeringen",
-    features: [
-      "Wereldwijd netwerk van datacenters",
-      "Geavanceerde dreigingsbeveiliging",
-      "Continue beveiligingsmonitoring",
-      "Compliance-frameworks"
-    ]
-  },
-  {
-    name: "Universign",
-    logo: "/universign-logo.png",
-    description: "Onze elektronische handtekeningpartner, conform eIDAS-regelgeving",
-    features: [
-      "Gekwalificeerde elektronische handtekeningen",
-      "Wettelijke compliance",
-      "Beveiligd documentbeheer",
-      "Audittrails"
-    ]
-  },
-  {
-    name: "Apryse",
-    logo: "/apryse-logo.png",
-    description: "Onze documentverwerkingspartner, die beveiligd beheer biedt met meerdere certificeringen",
-    features: [
-      "Beveiligde documentverwerking",
-      "Toegangscontrole",
-      "Versleuteling",
-      "Compliance-functionaliteiten"
-    ]
-  }
-];
+};
 ---
 
-<Layout title="Beveiliging - Govrn Bestuursbeheersoftware" description="Beveiliging staat centraal in ons platform. We werken samen met toonaangevende partners om optimale bescherming van uw bestuursgegevens te garanderen.">
-  <main class="pt-16">
-    <!-- Hero sectie -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Enterprise-grade beveiliging
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Beveiliging op elk
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              niveau
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            Bij Govrn is beveiliging geïntegreerd in elk aspect van ons platform. We werken samen met toonaangevende partners om optimale bescherming van uw bestuursgegevens te garanderen.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Beveiligingsfuncties grid -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-gray-900">Uitgebreide beveiliging</h2>
-          <p class="mt-4 text-xl text-gray-600">Ingebouwde beveiligingsfuncties die de gevoelige informatie van uw bestuur beschermen</p>
-        </div>
-        <div class="grid md:grid-cols-2 gap-8">
-          {securityFeatures.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:border-primary/20 transition-all duration-200">
-              <div class="text-4xl mb-6">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600 mb-4">{feature.description}</p>
-              {feature.link && (
-                <a
-                  href={feature.link}
-                  class="inline-flex items-center text-primary hover:text-primary/80 font-medium"
-                >
-                  Meer informatie
-                  <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Beveiligingslagen -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-gray-900">Meerlaagse beveiliging</h2>
-          <p class="mt-4 text-xl text-gray-600">Een diepgaande defensieve aanpak om uw gegevens te beschermen</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {securityLayers.map(layer => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-4xl mb-6">{layer.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{layer.title}</h3>
-              <p class="text-gray-600 mb-6">{layer.description}</p>
-              <ul class="space-y-3">
-                {layer.features.map(feature => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Vertrouwde partners -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-gray-900">Onze beveiligingspartners</h2>
-          <p class="mt-4 text-xl text-gray-600">Samenwerking met toonaangevende partners om de hoogste beveiligingsstandaarden te garanderen</p>
-        </div>
-
-        <div class="space-y-12">
-          {trustedPartners.map(partner => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="flex flex-col md:flex-row gap-8">
-                <div class="md:w-64 flex-shrink-0 flex items-center">
-                  <img 
-  loading="lazy"
-                    src={partner.logo}
-                    alt={`Logo ${partner.name}`}
-                    class="h-12"
-                  />
-                </div>
-                <div class="flex-grow">
-                  <h3 class="text-xl font-bold text-gray-900 mb-4">{partner.name}</h3>
-                  <p class="text-gray-600 mb-6">{partner.description}</p>
-                  <div class="grid sm:grid-cols-2 gap-4">
-                    {partner.features.map(feature => (
-                      <div class="flex items-center text-gray-600">
-                        <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA sectie -->
-    <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">
-          Klaar om ultra-beveiligd bestuursbeheer te ontdekken?
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Sluit u aan bij toonaangevende organisaties die Govrn vertrouwen met hun gevoelige informatie
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/nl/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-          >
-            Demo aanvragen
-          </a>
-          <a
-            href="/nl/contact"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200"
-          >
-            Contact opnemen
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
+<Layout title="Beveiliging - Dafira Bestuursbeheersoftware" description="Hoe Dafira bestuursinformatie beschermt: hosting op Microsoft Azure, versleuteling, multi-factor authenticatie via SMS, rolgebaseerde toegang en audittrails, met Universign en Apryse als partners.">
+  <SecurityOverview copy={copy} />
 </Layout>

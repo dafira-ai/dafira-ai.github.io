@@ -1,36 +1,27 @@
 ---
+import { Section, FeatureColumns } from '../ui';
+
 const achievements = [
   {
-    icon: "🚀",
+    icon: "sparkle",
     title: "Innovation",
-    description: "Launched AI-powered board assistant and smart document management"
+    text: "Launched the AI board assistant and smart document management"
   },
   {
-    icon: "🌍",
+    icon: "globe",
     title: "Impact",
-    description: "Expanded across Europe"
+    text: "Expanded across Europe"
   }
 ];
 ---
 
-<section class="py-24 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden">
-  <div class="absolute inset-0 bg-[radial-gradient(#3999de_1px,transparent_1px)] [background-size:16px_16px] opacity-10 animate-pulse blur-[0.5px]"></div>
-  
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-    <div class="text-center space-y-8">
-      <p class="text-3xl text-gray-700 leading-relaxed animate-fade-in [text-shadow:_0_2px_8px_rgba(0,0,0,0.1)] blur-[0.2px]">
-        Thank you for being with us in 2024. Your trust drives our success. <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-400 to-blue-600 [text-shadow:_0_2px_8px_rgba(57,153,222,0.4)]">Let's make 2025 even better</span> together.
-      </p>
-
-      <div class="grid md:grid-cols-2 gap-8 mt-16">
-        {achievements.map(achievement => (
-          <div class="bg-white/80 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 group hover:scale-105 hover:bg-gradient-to-br hover:from-white hover:to-blue-50 border border-gray-100/50 [filter:drop-shadow(0_4px_12px_rgba(57,153,222,0.15))]">
-            <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300 [filter:drop-shadow(0_0_8px_rgba(57,153,222,0.4))] blur-[0.3px]">{achievement.icon}</div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors [text-shadow:_0_1px_4px_rgba(0,0,0,0.05)] blur-[0.2px]">{achievement.title}</h3>
-            <p class="text-gray-600 leading-relaxed blur-[0.2px]">{achievement.description}</p>
-          </div>
-        ))}
-      </div>
+<Section>
+  <div class="grid lg:grid-cols-12 gap-10">
+    <p class="lg:col-span-5 text-2xl lg:text-3xl text-navy leading-snug">
+      Thank you for being with us in 2024. Your trust drives our work. Let's make 2025 even better together.
+    </p>
+    <div class="lg:col-span-6 lg:col-start-7">
+      <FeatureColumns items={achievements} columns={2} />
     </div>
   </div>
-</section>
+</Section>

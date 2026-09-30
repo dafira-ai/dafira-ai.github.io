@@ -8,10 +8,10 @@ podcastAudioUrl: "/podcast-S1E1.m4a"
 image: "/podcast-S1E1.png"
 featured: true
 guests:
-  - name: "Govrn Expert Panel"
+  - name: "Dafira Expert Panel"
     role: "Governance and Leadership Specialists"
-    company: "Govrn"
-    bio: "Our experts from Govrn specialize in board governance and leadership frameworks, helping organizations achieve better outcomes through innovative practices."
+    company: "Dafira"
+    bio: "Our experts from Dafira specialize in board governance and leadership frameworks, helping organizations achieve better outcomes through innovative practices."
     image: "/logo-square.png"
 topics:
   - "Fair Process Leadership"
@@ -62,7 +62,7 @@ Real-world examples and case studies, such as Mastercard's CEO succession and In
 
 ## Guest Insights
 
-The Govrn expert panel shares actionable insights and practical examples to illustrate how FPL improves performance, builds trust, and drives better organizational outcomes.
+The Dafira expert panel shares actionable insights and practical examples to illustrate how FPL improves performance, builds trust, and drives better organizational outcomes.
 
 ## Timestamps of Topics
 

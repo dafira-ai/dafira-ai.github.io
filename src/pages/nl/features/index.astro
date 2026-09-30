@@ -1,194 +1,119 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import FeatureSection from '../../../components/features/FeatureSection.astro';
+import FeatureCTA from '../../../components/features/FeatureCTA.astro';
+import { PageHero, Button, Screenshot } from '../../../components/ui';
 
 const meetingFeatures = {
-  title: "Optimaliseer uw vergaderingen",
-  subtitle: "Excellentie in vergaderbeheer",
-  description: "Transformeer uw bestuur in een echte strategische hefboom. Govrn biedt een complete suite aan tools voor productieve vergaderingen met concrete resultaten.",
-  gradient: "from-primary to-blue-600",
-  image: "/applications-picture-meeting.png", 
-  imageAlt: "Govrn vergaderbeheersinterface",
+  title: "De vergadering voorbereiden en leiden",
+  subtitle: "Vergaderingen",
+  description: "Stel de agenda op, deel het bestuursdossier en maak de notulen zonder het platform te verlaten.",
+  image: "/applications-picture-meeting.png",
+  imageAlt: "Vergaderpagina in Dafira",
   features: [
     {
-      title: "AI-ondersteunde agendavorming",
-      description: "Genereer dynamische agenda's op maat van uw bestuur, met intelligente suggesties en sjablonen",
-      icon: "📝",
-      highlight: true,
+      title: "AI-agendabouwer",
+      description: "Vertrek van een sjabloon, geef elk punt een duur en een type en voeg de documenten toe. Suggesties komen uit eerdere vergaderingen.",
+      icon: "list",
       link: "/nl/features/ai-powered-agenda-builder"
     },
     {
-      title: "Real-time documentensamenwerking",
-      description: "Annoteer, becommentarieer en werk samen aan documenten tijdens vergaderingen in alle veiligheid",
-      icon: "✏️",
-      highlight: false,
+      title: "Samenwerken aan documenten",
+      description: "Bestuurders annoteren het dossier persoonlijk en geven samen opmerkingen bij gedeelde documenten, altijd in de laatste versie.",
+      icon: "pen",
       link: "/nl/features/document-collaboration"
     },
     {
       title: "Beveiligde communicatie",
-      description: "Bescherm gevoelige uitwisselingen met end-to-end versleuteling",
-      icon: "🔒",
-      highlight: true,
+      description: "Privéberichten, een nieuwsfeed voor het bestuur en bestandsdeling, binnen het platform in plaats van via e-mail of chatapps.",
+      icon: "lock",
       link: "/nl/features/secure-communication"
     },
     {
-      title: "AI Notulen Generator",
-      description: "Genereer automatisch uw bestuurnotulen met AI, bespaar uren aan schrijfwerk",
-      icon: "🤖",
-      highlight: false,
+      title: "AI-notulen",
+      description: "Een gestructureerd ontwerp van de notulen, opgesteld op basis van de opname en afgestemd op de agenda, in de taal van de vergadering.",
+      icon: "mic",
       link: "/nl/features/ai-minute-builder"
     }
   ]
 };
 
 const insightFeatures = {
-  title: "Onthul strategische inzichten",
-  subtitle: "Geavanceerde kunstmatige intelligentie",
-  description: "Benut de kracht van AI om uw data om te zetten in bruikbare inzichten en betere beslissingen te nemen.",
-  gradient: "from-blue-600 to-indigo-600",
+  title: "Terugvinden wat het bestuur al weet",
+  subtitle: "Informatie",
+  description: "Bestuursdocumenten worden per vergadering bewaard en kunnen doorzocht en bevraagd worden. Elk antwoord verwijst naar zijn bron.",
   image: "/applications-picture-board-chat-mobile.png",
-  imageAlt: "Govrn inzichtendashboard",
+  imageAlt: "Dafira op mobiel",
   features: [
     {
-      title: "Intelligent documentbeheer",
-      description: "Slimme organisatie en zoekfunctie voor documenten dankzij AI-categorisering",
-      icon: "🤖",
-      highlight: true
+      title: "AI-assistent",
+      description: "Stel een vraag over het bestuursdossier of eerdere notulen en krijg een antwoord met vermelding van het document en de sectie.",
+      icon: "search",
+      link: "/nl/features/ai-assistant"
     },
     {
-      title: "Voorspellende analyses",
-      description: "Anticipeer op trends en identificeer kansen met geavanceerde analyse",
-      icon: "📈",
-      highlight: false
-    },
-    {
-      title: "Real-time intelligentie",
-      description: "Blijf geïnformeerd met relevante updates en inzichten geselecteerd door AI",
-      icon: "🔍",
-      highlight: true
+      title: "Documentbibliotheek",
+      description: "Bestuursdocumenten zijn geordend per vergadering en per type, met zoeken in de hele bibliotheek.",
+      icon: "folder"
     },
     {
       title: "Compliance monitoring",
-      description: "Automatische conformiteitscontrole en opvolging van regelgevingsvereisten",
-      icon: "⚖️",
-      highlight: false,
+      description: "Volg regelgeving zoals CSRD op en zie welke bestuursdocumenten eraan beantwoorden.",
+      icon: "scale",
       link: "/nl/features/ai-board-compliance-monitoring"
     }
   ]
 };
 
 const governanceFeatures = {
-  title: "Excellentie in governance",
-  subtitle: "Optimaal bestuur",
-  description: "Zet nieuwe standaarden in governance met tools die transparantie, verantwoordelijkheid en effectieve besluitvorming garanderen.",
-  gradient: "from-indigo-600 to-primary",
+  title: "Beslissen, ondertekenen en opvolgen",
+  subtitle: "Governance",
+  description: "Leg stemmingen en resoluties vast, verzamel handtekeningen en volg de acties op die in de vergadering zijn afgesproken.",
   image: "/applications-picture-board-evaluation.png",
-  imageAlt: "Govrn governance dashboard",
+  imageAlt: "Bestuursevaluatie in Dafira",
   features: [
     {
-      title: "Dynamisch takenbeheer",
-      description: "Vereenvoudig bestuursverantwoordelijkheden met intelligente en geautomatiseerde opvolging",
-      icon: "✅",
-      highlight: true
+      title: "Taken en actiepunten",
+      description: "Wijs de acties uit de vergadering toe en volg ze op tot ze afgerond zijn.",
+      icon: "tasks"
     },
     {
-      title: "Elektronische handtekeningen",
-      description: "Versnel documentondertekening met juridisch geldige e-handtekeningen",
-      icon: "✍️",
-      highlight: false
+      title: "Stemmingen en elektronische handtekeningen",
+      description: "Bestuurders stemmen over resoluties en tekenen elektronisch, via onze eIDAS-conforme partner Universign.",
+      icon: "signature"
     },
     {
-      title: "Rolgebaseerde toegangscontrole",
-      description: "Waarborg veiligheid met nauwkeurig beheer van rechten en rollen",
-      icon: "👥",
-      highlight: true
+      title: "Toegangsbeheer per rol",
+      description: "Toegang tot vergaderingen, documenten en gesprekken wordt ingesteld per bestuur, comité en rol.",
+      icon: "users"
     },
     {
-      title: "Prestatie-analyse",
-      description: "Monitor en optimaliseer bestuurseffectiviteit met gedetailleerde metrics",
-      icon: "📊",
-      highlight: false
+      title: "Bestuursevaluatie",
+      description: "Voer de bestuursevaluatie uit in het platform en vergelijk de antwoorden van elke bestuurder.",
+      icon: "chart"
     }
   ]
 };
 ---
 
-<Layout title="Functionaliteiten - Govrn bestuurssoftware" description="Ontdek de uitgebreide functionaliteiten van Govrn: AI-gestuurde inzichten, geautomatiseerde compliance tools en naadloze samenwerking voor moderne besturen." image="/features.png">
-  <main class="pt-16">
-    <!-- Hero Sectie -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
+<Layout title="Functionaliteiten - Dafira bestuurssoftware" description="De functionaliteiten van Dafira: agenda, bestuursdossier en annotaties, AI-assistent, AI-notulen, beveiligde communicatie, stemmingen en elektronische handtekeningen." image="/features.png">
+  <main>
+    <PageHero
+      eyebrow="Functionaliteiten"
+      title="Elke stap van de bestuurscyclus, op één plek"
+      lead="Dafira ondersteunt de voorbereiding van de vergadering, de vergadering zelf en de opvolging: agenda, bestuursdossier, stemmingen, notulen en handtekeningen. Bestuurders werken in één beveiligde omgeving, op elk toestel."
+    >
+      <Fragment slot="actions">
+        <Button href="/nl/request-demo">Demo aanvragen</Button>
+        <Button variant="secondary" href="/nl/pricing">Prijzen bekijken</Button>
+      </Fragment>
+      <Screenshot slot="aside" src="/onboarding-event-detail.png" alt="Vergaderpagina in Dafira met de agenda, de aanwezigheden en een open stemming" eager />
+    </PageHero>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-4xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-6 py-2 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Professionele governance-oplossing
-          </div>
+    <FeatureSection {...meetingFeatures} demoType="meeting" id="meetings" />
+    <FeatureSection {...insightFeatures} demoType="insights" reversed={true} tone="surface" id="information" />
+    <FeatureSection {...governanceFeatures} demoType="governance" id="governance" />
 
-          <h1 class="text-6xl font-extrabold text-gray-900 tracking-tight mb-8 leading-tight">
-            Versterk uw bestuur met onze
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              innovatieve functionaliteiten
-            </span>
-          </h1>
-
-          <p class="text-xl text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto">
-            Ontdek de toekomst van bestuursbeheer met Govrn's complete toolkit, ontworpen om samenwerking te verbeteren, compliance te waarborgen en strategische besluitvorming te faciliteren.
-          </p>
-
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/nl/request-demo"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 group"
-            >
-              Demo aanvragen
-              <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </a>
-            <a
-              href="/nl/pricing"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-            >
-              Prijzen bekijken
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Functionaliteiten Secties -->
-    <FeatureSection {...meetingFeatures} demoType="meeting" />
-    <FeatureSection {...insightFeatures} demoType="insights" reversed={true} />
-    <FeatureSection {...governanceFeatures} demoType="governance" />
-
-    <!-- CTA Sectie -->
-    <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl font-bold text-white mb-8">
-          Klaar om uw governance te transformeren?
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Sluit u aan bij toonaangevende organisaties die Govrn vertrouwen
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/nl/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-          >
-            Demo aanvragen
-          </a>
-          <a
-            href="/nl/contact"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200"
-          >
-            Contact sales team
-          </a>
-        </div>
-      </div>
-    </section>
+    <FeatureCTA />
   </main>
 </Layout>

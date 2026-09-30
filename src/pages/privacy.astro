@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { PageHero, Section, Prose } from '../components/ui';
 
 const sections = [
   {
@@ -19,7 +20,7 @@ const sections = [
       },
       {
         subtitle: "Customer Databases",
-        content: "Information in your Govrn database remains under your full control and ownership. We only process this data on your behalf according to your instructions."
+        content: "Information in your Dafira database remains under your full control and ownership. We only process this data on your behalf according to your instructions."
       }
     ]
   },
@@ -68,96 +69,50 @@ const sections = [
 ];
 
 const contactInfo = {
-  email: "privacy@govrn.com",
-  address: "GORVN SA - Data Protection\n18 Avenue Roger Vandendriessche\n1150 Brussels, Belgium",
-  vat: "BE0761625687"
+  email: "info@dafira.ai",
+  address: "Dafira - Data Protection\nRue de l'Hôpital 31\n1000 Brussels, Belgium"
 };
 ---
+<Layout title="Privacy Policy - Dafira" description="We are committed to protecting your privacy and ensuring the security of your data. Learn how we collect, use, and protect your information.">
+  <main>
+    <PageHero eyebrow="Legal" title="Privacy Policy" lead="We are committed to protecting your privacy and ensuring the security of your data. Learn how we collect, use, and protect your information." />
 
-<Layout title="Privacy Policy - Govrn Board Management Software" description="We are committed to protecting your privacy and ensuring the security of your data. Learn how we collect, use, and protect your information.">
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
+    <Section size="prose" space="md">
+      <Prose>
+        <p class="text-lg">Dafira and its affiliates offer many services to help you run your business, including a platform to host your Dafira database. This policy explains what information we collect, why we collect it, and how we use it.</p>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Privacy Policy
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Your Privacy is Our
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Priority
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            We are committed to protecting your privacy and ensuring the security of your data. Learn how we collect, use, and protect your information.
-          </p>
-        </div>
-      </div>
-    </section>
+        {sections.map((section) => (
+          <Fragment>
+            <h2>{section.title}</h2>
+            {section.items.map((item) => (
+              <Fragment>
+                <h3>{item.subtitle}</h3>
+                <p>{item.content}</p>
+              </Fragment>
+            ))}
+          </Fragment>
+        ))}
 
-    <!-- Main Content -->
-    <section class="py-20 bg-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="prose prose-lg max-w-none">
-          <p class="text-xl text-gray-600 mb-12">
-            GOVRN SA and its affiliates offer many services to help you run your business, including a platform to host your Govrn database. This policy explains what information we collect, why we collect it, and how we use it.
-          </p>
+        <h2>Cookies</h2>
+        <p>Cookies are small bits of text sent by our servers to your computer when you access our services. We use them to support your activities, understand preferences, and improve our services. Third-party services like Google Analytics may also use cookies for their own purposes.</p>
+      </Prose>
 
-          {sections.map(section => (
-            <div class="mb-16">
-              <h2 class="text-3xl font-bold text-gray-900 mb-8">{section.title}</h2>
-              <div class="space-y-12">
-                {section.items.map(item => (
-                  <div class="bg-gray-50 rounded-xl p-8">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">{item.subtitle}</h3>
-                    <p class="text-gray-600">{item.content}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-
-          <!-- Cookies Section -->
-          <div class="mb-16">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8">Cookies</h2>
-            <div class="bg-gray-50 rounded-xl p-8">
-              <p class="text-gray-600">
-                Cookies are small bits of text sent by our servers to your computer when you access our services. We use them to support your activities, understand preferences, and improve our services. Third-party services like Google Analytics may also use cookies for their own purposes.
-              </p>
-            </div>
-          </div>
-
-          <!-- Contact Information -->
-          <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">Contact Us</h2>
-            <p class="text-gray-600 mb-4">
-              If you have any questions about this Privacy Policy or concerns about your personal data, please contact us:
-            </p>
-            <div class="space-y-2">
-              <p class="text-gray-600">
+      <div class="mt-16 border border-line rounded-md bg-surface p-6 lg:p-8 max-w-[68ch]">
+        <h2 class="text-2xl font-semibold text-navy">Contact Us</h2>
+        <p class="mt-3 text-gray-700">If you have any questions about this Privacy Policy or concerns about your personal data, please contact us:</p>
+        <div class="mt-4 space-y-2 text-gray-700">
+              <p>
                 <strong>Email:</strong> {contactInfo.email}
               </p>
-              <p class="text-gray-600 whitespace-pre-line">
+              <p class="whitespace-pre-line">
                 <strong>Address:</strong>
                 {contactInfo.address}
               </p>
-              <p class="text-gray-600">
-                <strong>VAT:</strong> {contactInfo.vat}
-              </p>
-            </div>
-          </div>
         </div>
       </div>
-    </section>
-    <div class="text-xs text-gray-500 text-center py-8 px-4">
-      This site is protected by reCAPTCHA and the Google
-      <a href="https://policies.google.com/privacy" class="text-primary hover:text-primary/90 underline">Privacy Policy</a> and
-      <a href="https://policies.google.com/terms" class="text-primary hover:text-primary/90 underline">Terms of Service</a> apply.
-    </div>
+    </Section>
+    <p class="pb-12 px-4 text-center text-xs text-gray-500">This site is protected by reCAPTCHA and the Google
+      <a href="https://policies.google.com/privacy" class="underline underline-offset-2 hover:text-navy">Privacy Policy</a> and
+      <a href="https://policies.google.com/terms" class="underline underline-offset-2 hover:text-navy">Terms of Service</a> apply.</p>
   </main>
 </Layout>

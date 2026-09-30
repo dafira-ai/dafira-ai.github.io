@@ -1,0 +1,35 @@
+---
+// Customer quote. Keep the customer's words; no bold emphasis inside.
+import { Image } from 'astro:assets';
+
+interface Props {
+  quote: string;
+  author: string;
+  role?: string;
+  company?: string;
+  image?: ImageMetadata | string;
+  href?: string;
+  linkText?: string;
+  size?: 'md' | 'lg';
+  class?: string;
+  [key: string]: any;
+}
+const { quote, author, role, company, image, href, linkText, size = 'md', class: className, ...rest } = Astro.props;
+const text = quote.replace(/<\/?strong>/g, '');
+---
+
+<figure class:list={['flex flex-col', className]} {...rest}>
+  <blockquote class:list={['text-ink leading-relaxed', size === 'lg' ? 'text-2xl' : 'text-lg']}>
+    <span aria-hidden="true" class="text-primary">“</span>{text}<span aria-hidden="true" class="text-primary">”</span>
+  </blockquote>
+  <figcaption class="mt-auto pt-8 flex items-center gap-4">
+    {image && (typeof image === 'string'
+      ? <img src={image} alt="" class="w-12 h-12 rounded-full object-cover border border-line bg-white" loading="lazy" />
+      : <Image src={image} alt="" class="w-12 h-12 rounded-full object-cover border border-line bg-white" width={96} height={96} />)}
+    <div class="text-sm">
+      <div class="font-medium text-navy">{author}</div>
+      {(role || company) && <div class="text-gray-500">{[role, company].filter(Boolean).join(' · ')}</div>}
+      {href && linkText && <a href={href} class="mt-1 inline-block text-primary hover:text-navy transition-colors">{linkText}</a>}
+    </div>
+  </figcaption>
+</figure>

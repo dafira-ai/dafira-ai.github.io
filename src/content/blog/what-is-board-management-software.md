@@ -2,8 +2,8 @@
 title: "What is Board Management Software? A Comprehensive Guide (2025)"
 description: "Discover the essential features, benefits, and AI advancements in board management software that streamline governance and decision-making."
 pubDate: 2025-01-27
-author: "Ludovic Laffineur"
-authorRole: "CTO at Govrn"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/what-is-bms-banner.jpg"
 category: "Technology"
 tags: ["Board Management Software", "AI", "Governance", "Digital Transformation"]

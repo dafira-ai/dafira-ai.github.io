@@ -2,8 +2,8 @@
 title: "What Is a Governing Board and How Does It Function?"
 description: "Learn what a governing board is, its roles and responsibilities, and how it provides oversight, accountability and strategic direction within an organization."
 pubDate: 2025-02-15
-author: "Ludovic Laffineur"
-authorRole: "CTO at Govrn"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/boardroom.webp"
 category: "Governance"
 tags: ["governing board", "board roles", "board duties", "board functions", "board responsibilities"]

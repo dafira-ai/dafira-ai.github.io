@@ -1,0 +1,179 @@
+---
+// /features/ai-powered-agenda-builder (EN / FR / NL)
+import { PageHero, Section, SectionHeader, Button, Screenshot, FeatureColumns, FeatureList, Steps } from '../../ui';
+import AgendaPreview from '../agenda-builder/preview/AgendaPreview.astro';
+import RelatedFeatures from '../RelatedFeatures.astro';
+import FeatureCTA from '../FeatureCTA.astro';
+import { langFromPath, localizePath } from '../../../i18n/routes';
+import { common, featureLang } from '../common';
+import type { AgendaItem } from '../agenda-builder/types';
+
+const lang = featureLang(langFromPath(Astro.url.pathname));
+const c = common[lang];
+
+const copy = {
+  en: {
+    eyebrow: 'Agenda builder',
+    title: 'Build the agenda, attach the papers, share it with the board',
+    lead: 'Start from a template, give each item a type, a duration and its documents, and share the agenda with the board. The AI suggests items based on previous meetings.',
+    heroAlt: 'Meeting page in Dafira with the agenda, item types, durations and an open vote',
+    features: {
+      title: 'What the agenda builder does',
+      lead: 'Everything a board secretary needs to prepare the agenda and the board pack in the same place.',
+      columns: [
+        { icon: 'clipboard', title: 'Templates', text: 'Start from a template for each type of meeting.', items: ['Templates by meeting type', 'Customisable layouts', 'Suggested timings'] },
+        { icon: 'sparkle', title: 'AI suggestions', text: 'Recommendations based on your board’s history.', items: ['Items carried over from past meetings', 'Suggested time allocation', 'Open actions from the previous meeting'] },
+        { icon: 'list', title: 'Organisation', text: 'Adjust the agenda until the last minute.', items: ['Drag-and-drop ordering', 'Sub-items', 'Time reallocation', 'Documents attached to each item'] },
+      ],
+    },
+    items: {
+      eyebrow: 'Agenda items',
+      title: 'Each item carries its own papers',
+      text: 'An item has a type (information, discussion or decision), a duration, a presenter, sub-items and documents. Directors open the documents from the agenda, in the order of the meeting.',
+      list: ['Information, discussion and decision items', 'Duration per item and total duration', 'Sub-items numbered automatically', 'Documents attached to the item they support'],
+    },
+    preview: {
+      title: 'Board of Directors · agenda',
+      totalDurationLabel: 'Total',
+      addItemButton: 'Add agenda item',
+      itemTexts: { documentsLabel: 'Documents', subItemsLabel: 'Sub-items', typeLabels: { discussion: 'Discussion', decision: 'Decision', information: 'Information' } },
+    },
+    agenda: [
+      { title: 'Approval of the previous minutes', type: 'decision', duration: 10, documents: [{ name: 'Minutes Q4.pdf', type: 'pdf' }] },
+      { title: 'Financial review', type: 'discussion', duration: 30, subItems: [{ title: 'Q1 financials', duration: 15 }, { title: 'Budget forecast', duration: 15 }], documents: [{ name: 'Q1-financials.pdf', type: 'pdf' }, { name: 'Budget-forecast.xlsx', type: 'xlsx' }] },
+      { title: 'Strategic initiatives', type: 'decision', duration: 30, subItems: [{ title: 'Strategic plan', duration: 15 }, { title: 'Initiative details', duration: 15 }], documents: [{ name: 'Strategic-plan.pdf', type: 'pdf' }] },
+    ],
+    how: {
+      eyebrow: 'How it works',
+      title: 'From template to shared agenda',
+      steps: [
+        { title: 'Select a template', text: 'Choose a template for the type of meeting or start from a blank agenda.' },
+        { title: 'Adjust the items', text: 'Add, remove or reorder items and accept or ignore the suggestions.' },
+        { title: 'Check the timings', text: 'Review the duration of each item against the time available.' },
+        { title: 'Share with the board', text: 'Publish the agenda and the board pack to the directors and collect their feedback.' },
+      ],
+    },
+  },
+  fr: {
+    eyebrow: "Création de l'ordre du jour",
+    title: "Construire l'ordre du jour, joindre les documents, le partager avec le conseil",
+    lead: "Partez d'un modèle, donnez à chaque point un type, une durée et ses documents, puis partagez l'ordre du jour avec le conseil. L'IA suggère des points à partir des séances précédentes.",
+    heroAlt: "Page d'une séance dans Dafira avec l'ordre du jour, le type et la durée des points et un vote ouvert",
+    features: {
+      title: "Ce que permet l'outil",
+      lead: "Tout ce dont le secrétaire du conseil a besoin pour préparer l'ordre du jour et le dossier du conseil au même endroit.",
+      columns: [
+        { icon: 'clipboard', title: 'Modèles', text: 'Partez d’un modèle pour chaque type de séance.', items: ['Modèles par type de séance', 'Mises en page personnalisables', 'Suggestions de durée'] },
+        { icon: 'sparkle', title: "Suggestions par l'IA", text: "Des recommandations fondées sur l'historique de votre conseil.", items: ['Points repris des séances précédentes', 'Répartition du temps suggérée', 'Actions ouvertes de la séance précédente'] },
+        { icon: 'list', title: 'Organisation', text: "Ajustez l'ordre du jour jusqu'au dernier moment.", items: ['Réorganisation par glisser-déposer', 'Sous-points', 'Réallocation du temps', 'Documents rattachés à chaque point'] },
+      ],
+    },
+    items: {
+      eyebrow: "Points de l'ordre du jour",
+      title: 'Chaque point porte ses propres documents',
+      text: "Un point a un type (information, discussion ou décision), une durée, un intervenant, des sous-points et des documents. Les administrateurs ouvrent les documents depuis l'ordre du jour, dans l'ordre de la séance.",
+      list: ['Points d’information, de discussion et de décision', 'Durée par point et durée totale', 'Sous-points numérotés automatiquement', 'Documents rattachés au point concerné'],
+    },
+    preview: {
+      title: "Conseil d'administration · ordre du jour",
+      totalDurationLabel: 'Total',
+      addItemButton: 'Ajouter un point',
+      itemTexts: { documentsLabel: 'Documents', subItemsLabel: 'Sous-points', typeLabels: { discussion: 'Discussion', decision: 'Décision', information: 'Information' } },
+    },
+    agenda: [
+      { title: 'Approbation du procès-verbal précédent', type: 'decision', duration: 10, documents: [{ name: 'PV T4.pdf', type: 'pdf' }] },
+      { title: 'Bilan financier', type: 'discussion', duration: 30, subItems: [{ title: 'Résultats T1', duration: 15 }, { title: 'Prévisions budgétaires', duration: 15 }], documents: [{ name: 'resultats-t1.pdf', type: 'pdf' }, { name: 'previsions-budget.xlsx', type: 'xlsx' }] },
+      { title: 'Initiatives stratégiques', type: 'decision', duration: 30, subItems: [{ title: 'Plan stratégique', duration: 15 }, { title: 'Détail des initiatives', duration: 15 }], documents: [{ name: 'plan-strategique.pdf', type: 'pdf' }] },
+    ],
+    how: {
+      eyebrow: 'Fonctionnement',
+      title: "Du modèle à l'ordre du jour partagé",
+      steps: [
+        { title: 'Choisir un modèle', text: 'Sélectionnez un modèle adapté au type de séance ou partez d’un ordre du jour vierge.' },
+        { title: 'Ajuster les points', text: 'Ajoutez, supprimez ou réordonnez les points et retenez ou non les suggestions.' },
+        { title: 'Vérifier le timing', text: 'Contrôlez la durée de chaque point par rapport au temps disponible.' },
+        { title: 'Partager avec le conseil', text: "Publiez l'ordre du jour et le dossier du conseil pour les administrateurs et recueillez leurs retours." },
+      ],
+    },
+  },
+  nl: {
+    eyebrow: 'Agendabouwer',
+    title: 'De agenda opstellen, de stukken toevoegen en delen met het bestuur',
+    lead: 'Vertrek van een sjabloon, geef elk punt een type, een duur en de bijhorende documenten, en deel de agenda met het bestuur. De AI stelt punten voor op basis van eerdere vergaderingen.',
+    heroAlt: 'Vergaderpagina in Dafira met de agenda, het type en de duur van de punten en een open stemming',
+    features: {
+      title: 'Wat de agendabouwer doet',
+      lead: 'Alles wat een bestuurssecretaris nodig heeft om de agenda en het bestuursdossier op één plek voor te bereiden.',
+      columns: [
+        { icon: 'clipboard', title: 'Sjablonen', text: 'Vertrek van een sjabloon voor elk type vergadering.', items: ['Sjablonen per type vergadering', 'Aanpasbare opmaak', 'Voorgestelde tijdsduur'] },
+        { icon: 'sparkle', title: 'Suggesties van de AI', text: 'Aanbevelingen op basis van de geschiedenis van uw bestuur.', items: ['Punten overgenomen uit eerdere vergaderingen', 'Voorgestelde tijdsverdeling', 'Open acties van de vorige vergadering'] },
+        { icon: 'list', title: 'Organisatie', text: 'Pas de agenda aan tot het laatste moment.', items: ['Volgorde wijzigen met slepen', 'Subpunten', 'Tijd herverdelen', 'Documenten per agendapunt'] },
+      ],
+    },
+    items: {
+      eyebrow: 'Agendapunten',
+      title: 'Elk punt heeft zijn eigen stukken',
+      text: 'Een punt heeft een type (informatie, bespreking of beslissing), een duur, een spreker, subpunten en documenten. Bestuurders openen de documenten vanuit de agenda, in de volgorde van de vergadering.',
+      list: ['Informatie-, bespreek- en beslispunten', 'Duur per punt en totale duur', 'Subpunten automatisch genummerd', 'Documenten gekoppeld aan het juiste punt'],
+    },
+    preview: {
+      title: 'Raad van bestuur · agenda',
+      totalDurationLabel: 'Totaal',
+      addItemButton: 'Agendapunt toevoegen',
+      itemTexts: { documentsLabel: 'Documenten', subItemsLabel: 'Subpunten', typeLabels: { discussion: 'Bespreking', decision: 'Beslissing', information: 'Informatie' } },
+    },
+    agenda: [
+      { title: 'Goedkeuring van de vorige notulen', type: 'decision', duration: 10, documents: [{ name: 'Notulen Q4.pdf', type: 'pdf' }] },
+      { title: 'Financieel overzicht', type: 'discussion', duration: 30, subItems: [{ title: 'Resultaten Q1', duration: 15 }, { title: 'Budgetprognose', duration: 15 }], documents: [{ name: 'resultaten-q1.pdf', type: 'pdf' }, { name: 'budgetprognose.xlsx', type: 'xlsx' }] },
+      { title: 'Strategische initiatieven', type: 'decision', duration: 30, subItems: [{ title: 'Strategisch plan', duration: 15 }, { title: 'Details van de initiatieven', duration: 15 }], documents: [{ name: 'strategisch-plan.pdf', type: 'pdf' }] },
+    ],
+    how: {
+      eyebrow: 'Werking',
+      title: 'Van sjabloon tot gedeelde agenda',
+      steps: [
+        { title: 'Kies een sjabloon', text: 'Kies een sjabloon voor het type vergadering of begin met een lege agenda.' },
+        { title: 'Pas de punten aan', text: 'Voeg punten toe, verwijder of herschik ze en neem de suggesties al dan niet over.' },
+        { title: 'Controleer de timing', text: 'Toets de duur van elk punt aan de beschikbare tijd.' },
+        { title: 'Deel met het bestuur', text: 'Publiceer de agenda en het bestuursdossier voor de bestuurders en verzamel hun feedback.' },
+      ],
+    },
+  },
+}[lang];
+
+const agenda = copy.agenda as AgendaItem[];
+const total = agenda.reduce((sum, item) => sum + item.duration, 0);
+---
+
+<PageHero eyebrow={copy.eyebrow} title={copy.title} lead={copy.lead}>
+  <Fragment slot="actions">
+    <Button href={localizePath(lang, '/request-demo')}>{c.demo}</Button>
+    <Button variant="secondary" href={localizePath(lang, '/contact')}>{c.contact}</Button>
+  </Fragment>
+  <Screenshot slot="aside" src="/onboarding-event-detail.png" alt={copy.heroAlt} eager />
+</PageHero>
+
+<Section>
+  <SectionHeader title={copy.features.title} lead={copy.features.lead} />
+  <FeatureColumns items={copy.features.columns} />
+</Section>
+
+<Section tone="surface" border="both">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+    <div class="lg:col-span-5">
+      <SectionHeader layout="stacked" eyebrow={copy.items.eyebrow} title={copy.items.title} lead={copy.items.text} class="mb-8" />
+      <FeatureList items={copy.items.list} />
+    </div>
+    <div class="lg:col-span-6 lg:col-start-7">
+      <AgendaPreview items={agenda} totalDuration={total} texts={copy.preview as any} />
+    </div>
+  </div>
+</Section>
+
+<Section>
+  <SectionHeader eyebrow={copy.how.eyebrow} title={copy.how.title} />
+  <Steps columns={4} items={copy.how.steps} />
+</Section>
+
+<RelatedFeatures current="ai-powered-agenda-builder" tone="surface" />
+
+<FeatureCTA />

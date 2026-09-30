@@ -1,61 +1,23 @@
 ---
-import ParticleBackground from './animations/ParticleBackground.astro';
+// Static hero on navy (the page uses a transparent header with the light logo).
+import { Container, Eyebrow, Button } from '../ui';
 ---
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-  <!-- Animated Background -->
-  <ParticleBackground />
-  <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
-    <img 
-  loading="lazy" 
-      src="/logo_white.png" 
-      alt="Govrn Logo" 
-      class="h-20 mx-auto mb-16 animate-fade-in drop-shadow-2xl filter blur-[1px] [filter:drop-shadow(0_0_8px_rgba(255,255,255,0.4))]"
-    />
-    
-    <h1 class="text-6xl sm:text-7xl lg:text-8xl font-extrabold text-white mb-12 animate-title tracking-tight [text-shadow:_0_4px_12px_rgba(255,255,255,0.4)]">
-      Happy New Year
-      <span class="block mt-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-400 to-blue-600 [text-shadow:_0_4px_16px_rgba(57,153,222,0.6)]">
-        2025
-      </span>
-    </h1>
-    
-    <p class="text-xl text-white/80 mb-12 max-w-2xl mx-auto animate-fade-in [text-shadow:_0_2px_8px_rgba(255,255,255,0.3)]">
-      Let's make this year extraordinary with better board management and governance
-    </p>
-
-    <button
-      id="make-wish-btn"
-      class="inline-flex items-center px-10 py-5 text-xl font-medium rounded-2xl text-white bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-700 shadow-lg hover:shadow-2xl transition-all duration-300 group animate-float [text-shadow:_0_2px_8px_rgba(255,255,255,0.4)]"
-    >
-      Make a Wish
-      <span class="ml-3 text-2xl group-hover:animate-pulse">✨</span>
-    </button>
-  </div>
+<section class="bg-navy text-white pt-40 pb-24 lg:pt-48 lg:pb-32">
+  <Container>
+    <div class="max-w-3xl" data-play>
+      <div data-step>
+        <Eyebrow tone="inverse">Dafira · 2024 – 2025</Eyebrow>
+        <h1 class="mt-6 text-5xl sm:text-6xl font-semibold leading-[1.05]">
+          Happy New Year <span class="font-mono tabular-nums text-white/70">2025</span>
+        </h1>
+      </div>
+      <p class="mt-8 text-xl text-white/70 leading-relaxed max-w-2xl" data-step style="--d:80">
+        Our best wishes for a year of well-prepared meetings and sound governance.
+      </p>
+      <div class="mt-10" data-step style="--d:160">
+        <Button id="make-wish-btn" variant="inverse" size="lg" aria-haspopup="dialog" aria-controls="wish-modal">Make a wish</Button>
+      </div>
+    </div>
+  </Container>
 </section>
-
-<style>
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
-  @keyframes title {
-    from { 
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  .animate-title {
-    animation: title 1s ease-out forwards;
-  }
-</style>

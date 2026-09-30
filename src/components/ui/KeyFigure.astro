@@ -1,0 +1,19 @@
+---
+// A number that matters, always with its source. No source, no figure.
+interface Props {
+  value: string;
+  label: string;
+  source: string;
+  sourceHref?: string;
+  class?: string;
+}
+const { value, label, source, sourceHref, class: className } = Astro.props;
+---
+
+<div class:list={['border-t border-navy pt-4', className]}>
+  <div class="font-mono text-4xl text-navy tabular-nums">{value}</div>
+  <p class="mt-2 text-gray-700 leading-snug">{label}</p>
+  <p class="mt-3 text-xs text-gray-500">
+    {sourceHref ? <a href={sourceHref} class="underline underline-offset-2 hover:text-navy">{source}</a> : source}
+  </p>
+</div>

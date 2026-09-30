@@ -2,8 +2,8 @@
 title: "Wat is een Board Portal in een AI-wereld: Een Intelligent Bestuursplatform"
 description: "Ontdek hoe AI traditionele bestuursportalen transformeert tot dynamische intelligentieplatforms, waardoor bestuurders en governance professionals data-gedreven inzichten kunnen benutten voor strategische besluitvorming."
 pubDate: 2023-06-15
-author: "Govrn"
-authorRole: "Govrn Redactieteam"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/ai_board.jpeg"
 category: "Technology" 
 tags: ["Kunstmatige Intelligentie", "Bestuursportaal", "Corporate Governance", "Data Analytics"]

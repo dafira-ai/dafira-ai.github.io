@@ -1,391 +1,135 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import CTA from '../../../components/CTA.astro';
 import Testimonials from '../../../components/Testimonials.astro';
+import { PageHero, Section, SectionHeader, Button, Icon, FeatureColumns, CellGrid, Screenshot, CTA } from '../../../components/ui';
+import { customerQuote } from '../../../components/industries/customerQuotes';
 
-const dayInLife = [
-  {
-    time: "9:00 AM", 
-    before: "Digging through endless email chains to find the latest board pack",
-    after: "One-click access to all board materials, perfectly organized and version controlled",
-    icon: "🌅"
-  },
-  {
-    time: "2:00 PM",
-    before: "Struggling to take detailed notes while trying to follow the discussion",
-    after: "Fully present in the meeting while AI captures every detail",
-    icon: "🎯"
-  },
-  {
-    time: "5:30 PM",
-    before: "Just starting the long process of drafting meeting minutes",
-    after: "Reviewing AI-drafted minutes while heading home on time",
-    icon: "🌙"
-  }
-];
+const dayInLife = {
+  title: 'A board day, before and after',
+  lead: 'Three moments in a board secretary’s day, with and without a board portal.',
+  beforeLabel: 'Without a portal',
+  afterLabel: 'With Dafira',
+  slots: [
+    { time: '09:00', before: 'Searching email threads for the latest version of the board pack.', after: 'The board pack is in one place, organised by agenda item, with its version history.' },
+    { time: '14:00', before: 'Taking detailed notes while trying to follow the discussion.', after: 'Following the meeting, with attendance, votes and resolutions recorded as they happen.' },
+    { time: '17:30', before: 'Starting the minutes from scratch.', after: 'Reviewing a first draft prepared with the AI minute builder.' },
+  ],
+};
 
-const painPoints = [
-  {
-    icon: "📚",
-    title: "Document Chaos Overwhelming You?",
-    description: "Replace endless email threads and version confusion with a secure, centralized hub that keeps everything organized and accessible."
-  },
-  {
-    icon: "⏰",
-    title: "Tired of Late-Night Minute Writing?",
-    description: "Let our AI assistant capture meeting details in real-time, so you can focus on what matters - facilitating meaningful discussions."
-  },
-  {
-    icon: "✍️",
-    title: "Signature Chase Getting Old?",
-    description: "Transform days of follow-ups into minutes with our seamless e-signature system that board members actually love using."
-  },
-  {
-    icon: "🔍",
-    title: "Can't Find Past Decisions?",
-    description: "Access your complete governance history instantly with intelligent search - making institutional knowledge readily available."
-  }
-];
+const painPoints = {
+  title: 'Common challenges',
+  lead: 'The daily work of a board secretary, and how Dafira handles it.',
+  items: [
+    { icon: 'documents', title: 'Scattered documents', text: 'Replace email threads and version confusion with one secure library for board papers.' },
+    { icon: 'clock', title: 'Late-night minute writing', text: 'The AI minute builder drafts the minutes, with action items and resolutions carried over.' },
+    { icon: 'signature', title: 'Chasing signatures', text: 'Collect signatures on minutes and resolutions electronically.' },
+    { icon: 'search', title: 'Finding past decisions', text: 'Search the history of meetings, minutes and decisions.' },
+  ],
+};
 
-const features = [
-  {
-    title: "Your AI Meeting Partner",
-    description: "A sophisticated assistant that enhances every aspect of your role",
-    icon: "🤖",
-    benefits: [
-      "Intelligent real-time minute taking",
-      "Automated action item tracking",
-      "Context-aware meeting summaries",
-      "Smart historical insights"
-    ]
-  },
-  {
-    title: "Document Command Center",
-    description: "Complete control over your governance documentation",
-    icon: "📚",
-    benefits: [
-      "Advanced version control",
-      "Secure document distribution",
-      "Streamlined e-signatures",
-      "Dynamic template system"
-    ]
-  },
-  {
-    title: "Meeting Excellence Hub",
-    description: "Seamless orchestration from planning to execution",
-    icon: "✨",
-    benefits: [
-      "Smart calendar management",
-      "Interactive agenda building",
-      "Real-time attendance tracking",
-      "Comprehensive follow-up system"
-    ]
-  }
-];
+const features = {
+  title: 'What you work with',
+  lead: 'The parts of Dafira board secretaries use every day.',
+  items: [
+    { icon: 'sparkle', title: 'AI minute builder', text: 'A first draft of the minutes, for you to review and complete.', items: ['Draft minutes', 'Action item follow-up', 'Meeting summaries', 'AI assistant on board documents'] },
+    { icon: 'folder', title: 'Documents', text: 'Control of the board documentation, from draft to signature.', items: ['Version history', 'Secure distribution', 'E-signature', 'Templates'] },
+    { icon: 'calendar', title: 'Meetings', text: 'From the invitation to the follow-up.', items: ['Calendar and invitations', 'Agenda builder', 'Attendance', 'Tasks and follow-up'] },
+  ],
+};
 
-const midPageCTA = {
-  title: "Experience the Future of Board Management",
-  subtitle: "See firsthand how Govrn can revolutionize your board meetings",
-  cta1: "Start for Free",
-  cta2: "Contact Sales",
-  links: {
-    cta1: "/try",
-    cta2: "/contact"
-  }
-}
+const industries = {
+  title: 'By sector',
+  lead: 'Board secretaries in regulated sectors have specific record-keeping needs.',
+  link: 'View sector page',
+  items: [
+    { id: 'financial-services', icon: 'bank', name: 'Financial services', text: 'Banks, insurers and investment firms.' },
+    { id: 'healthcare', icon: 'health', name: 'Healthcare', text: 'Hospitals, care providers and life sciences.' },
+    { id: 'real-estate', icon: 'building', name: 'Real estate', text: 'Property investment and management.' },
+  ],
+};
 
 const testimonials = {
-  texts: { 
-    title: "They Already Switched to Govrn",
-    subtitle: "See how organizations across industries transform their board management with Govrn",
-    cta: "View All Success Stories",
-    ctaLink: "/testimonials"
+  texts: {
+    title: 'What board teams say',
+    subtitle: 'Secretaries, general counsels and CEOs on running their board with Dafira.',
+    cta: 'All customer stories',
+    ctaLink: '/testimonials',
   },
-  testimonials: [
-    {
-      quote: "Govrn has <strong>transformed</strong> how we manage our board operations, bringing <strong>efficiency</strong> and <strong>clarity</strong> to our governance processes.",
-      author: "Lore Werbrouck",
-      position: "General Counsel",
-      company: "Van de Velde",
-      image: "/vdv-lore-portrait.jpg",
-      link: "/case-studies/van-de-velde"
-    },
-    {
-      quote: "Govrn has <strong>simplified</strong> our document management tremendously, making our meeting preparations more <strong>efficient</strong> and allowing our board to focus on <strong>decision-making</strong>.",
-      author: "Pierre Hermant",
-      position: "CEO",
-      company: "Finance & Invest Brussels",
-      image: "/fib-pierre.webp",
-      link: "/case-studies/finance-invest-brussels"
-    },
-    {
-      quote: "Govrn embraced the <strong>next generation</strong> of Board management software, <strong>easy to use</strong> and with <strong>AI integration</strong>.",
-      author: "Nathalie Byl",
-      position: "Paralegal en Compliance Officer",
-      company: "Care Property Invest",
-      image: "/careproperty-logo.png",
-      link: "/case-studies/care-property-invest"
-    }
-  ]
-}
-
-const stats = [
-  { value: "75%", label: "Time Saved on Admin" },
-  { value: "100%", label: "Digital Accessibility" },
-  { value: "60%", label: "Faster Meeting Prep" },
-  { value: "90%", label: "Reduced Follow-ups" }
-];
+  testimonials: (['lore', 'pierre', 'nathalie'] as const).map((k) => {
+    const q = customerQuote('en', k);
+    return { quote: q.quote, author: q.author, position: q.role, company: q.company, image: q.image, link: q.link };
+  }),
+};
 ---
 
-<Layout title="Best Board Meeting Management Software for Board Secretaries | Govrn">
-  <main class="pt-24">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
+<Layout title="Board Meeting Management Software for Board Secretaries | Dafira" description="Board portal for board secretaries: board packs, agendas, AI-drafted minutes, e-signatures and a searchable history of decisions.">
+  <main>
+    <PageHero eyebrow="For board secretaries" title="Prepare, record and follow up on every board meeting" lead="Dafira takes care of the administrative work around the board, from the agenda to the signed minutes, so you can concentrate on the substance.">
+      <Fragment slot="actions">
+        <Button href="/request-demo">Book a demo</Button>
+        <Button variant="secondary" href="/try">Start a free trial</Button>
+      </Fragment>
+      <Screenshot slot="aside" src="/applications-picture-meeting.png" alt="Dafira meeting page on desktop, tablet and phone" eager />
+    </PageHero>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8 animate-fade-in">
-              The Modern Board Secretary's Essential Platform
+    <Section>
+      <SectionHeader title={dayInLife.title} lead={dayInLife.lead} />
+      <div class="border-t border-line" data-play>
+        <div class="hidden md:grid grid-cols-12 gap-6 py-4 border-b border-line font-mono text-xs uppercase tracking-[0.08em] text-gray-500">
+          <div class="col-span-2"></div>
+          <div class="col-span-5">{dayInLife.beforeLabel}</div>
+          <div class="col-span-5">{dayInLife.afterLabel}</div>
+        </div>
+        {dayInLife.slots.map((slot, i) => (
+          <div class="grid md:grid-cols-12 gap-3 md:gap-6 py-6 border-b border-line" data-step style={`--d:${i * 80}`}>
+            <div class="md:col-span-2 font-mono text-sm text-primary tabular-nums">{slot.time}</div>
+            <div class="md:col-span-5 text-gray-500">
+              <span class="md:hidden font-mono text-xs uppercase tracking-[0.08em] block mb-1">{dayInLife.beforeLabel}</span>
+              {slot.before}
             </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8 animate-slide-up">
-              <span class="sr-only">Best Board Meeting Management Software for Board Secretaries</span>
-              Transform Your Impact as a
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                Board Secretary
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-8 animate-slide-up" style="animation-delay: 100ms">
-              Step into the future of board governance. Our AI-powered platform handles the heavy lifting - from minutes to document management - freeing you to focus on strategic leadership and value creation.
-            </p>
-
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-2 gap-4 mb-8">
-              {stats.map((stat, index) => (
-                <div 
-                  class="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:border-primary/20 transition-all duration-300 transform hover:-translate-y-1 animate-slide-up"
-                  style={`animation-delay: ${150 + index * 50}ms`}
-                >
-                  <div class="text-3xl font-bold text-primary mb-1">{stat.value}</div>
-                  <div class="text-sm text-gray-600">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-4 animate-slide-up" style="animation-delay: 350ms">
-              <a
-                href="/request-demo"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 group"
-              >
-                Book Your Demo
-                <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
-              <a
-                href="/try"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-              >
-                Start Free Trial
-              </a>
+            <div class="md:col-span-5 text-ink">
+              <span class="md:hidden font-mono text-xs uppercase tracking-[0.08em] text-gray-500 block mb-1">{dayInLife.afterLabel}</span>
+              {slot.after}
             </div>
           </div>
-          <div class="relative animate-fade-in" style="animation-delay: 400ms">
-            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl transform rotate-3 scale-110"></div>
-            <img 
-  loading="lazy"
-              src="/board-secretary.png"
-              alt="Board Secretary Using Govrn"
-              class="relative rounded-2xl shadow-2xl w-[120%] h-[120%] object-cover transform hover:scale-105 transition-transform duration-500"
-            />
+        ))}
+      </div>
+    </Section>
+
+    <Section tone="surface" border="both">
+      <SectionHeader title={painPoints.title} lead={painPoints.lead} />
+      <CellGrid columns={2}>
+        {painPoints.items.map((item) => (
+          <div class="bg-white p-8">
+            <Icon name={item.icon} class="w-6 h-6 text-navy" />
+            <h3 class="mt-5 text-lg font-semibold text-navy">{item.title}</h3>
+            <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
           </div>
-        </div>
-      </div>
-    </section>
+        ))}
+      </CellGrid>
+    </Section>
 
-    <!-- A Day in the Life Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Experience the Govrn Difference
-          </h2>
-          <p class="text-xl text-gray-600">
-            See how we transform every moment of your workday
-          </p>
-        </div>
+    <Section>
+      <SectionHeader title={features.title} lead={features.lead} />
+      <FeatureColumns items={features.items} />
+    </Section>
 
-        <div class="space-y-8">
-          {dayInLife.map((timeSlot, index) => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <div class="grid md:grid-cols-3 gap-8 items-center">
-                <div class="text-center md:text-left">
-                  <div class="text-4xl mb-2">{timeSlot.icon}</div>
-                  <div class="text-2xl font-bold text-primary">{timeSlot.time}</div>
-                </div>
-                <div class="relative">
-                  <div class="bg-red-50 rounded-lg p-4 text-red-700">
-                    <div class="font-medium mb-1">Traditional Approach:</div>
-                    {timeSlot.before}
-                  </div>
-                  {index !== dayInLife.length - 1 && (
-                    <div class="absolute left-1/2 -bottom-8 transform -translate-x-1/2">
-                      <svg class="w-6 h-6 text-primary animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                      </svg>
-                    </div>
-                  )}
-                </div>
-                <div class="bg-green-50 rounded-lg p-4 text-green-700">
-                  <div class="font-medium mb-1">With Govrn:</div>
-                  {timeSlot.after}
-                </div>
-              </div>
-            </div>
-          ))}
-
-          <div class="mt-16 text-center">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">
-              Ready for a Better Way?
-            </h2>
-            <p class="text-lg text-gray-600 mb-8">
-              Join forward-thinking board secretaries who've revolutionized their workflow
-            </p>
-            <div class="flex justify-center gap-4">
-              <a
-                href="/try"
-                class="px-6 py-3 text-white bg-primary rounded-lg hover:bg-primary/90 transition-colors transform hover:scale-105 duration-300"
-              >
-                Start Free Trial
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pain Points Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Common Challenges, Solved
-          </h2>
-          <p class="text-xl text-gray-600">
-            We've studied the daily hurdles board secretaries face - and built solutions that work.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {painPoints.map(point => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform">{point.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{point.title}</h3>
-              <p class="text-gray-600">{point.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Your New Capabilities
-          </h2>
-          <p class="text-xl text-gray-600">
-            Purpose-built tools that elevate your role and amplify your impact
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
-              <div class="text-3xl mb-4 transform group-hover:scale-110 transition-transform">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors">{feature.title}</h3>
-              <p class="text-gray-600 mb-6">{feature.description}</p>
-              <ul class="space-y-3">
-                {feature.benefits.map(benefit => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <CTA texts={midPageCTA} />
-    <!-- Mid-page CTA 2 -->
-    <Testimonials texts={testimonials.texts} testimonials={testimonials.testimonials}  />
-
-   
-
-    <!-- Final CTA -->
-    <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">
-          Ready to Elevate Your Role?
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Join the community of modern board secretaries leading the future of governance
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200 transform hover:scale-105"
-          >
-            Start Free Trial
+    <Section tone="surface" border="both" space="md">
+      <SectionHeader title={industries.title} lead={industries.lead} />
+      <CellGrid columns={3}>
+        {industries.items.map((item) => (
+          <a href={`/for/board-secretary/industry/${item.id}`} class="group bg-white p-8 hover:bg-surface transition-colors flex flex-col">
+            <Icon name={item.icon} class="w-6 h-6 text-navy" />
+            <h3 class="mt-5 text-lg font-semibold text-navy">{item.name}</h3>
+            <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
+            <span class="mt-auto pt-6 text-[15px] font-medium text-primary group-hover:text-navy transition-colors">{industries.link}</span>
           </a>
-          <a
-            href="/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200 transform hover:scale-105"
-          >
-            Schedule Demo
-          </a>
-        </div>
-        <p class="text-white/80 mt-6">
-          No credit card required. Free 30-day trial.
-        </p>
-      </div>
-    </section>
+        ))}
+      </CellGrid>
+    </Section>
+
+    <Testimonials texts={testimonials.texts} testimonials={testimonials.testimonials} />
+
+    <CTA />
   </main>
 </Layout>
-
-<style>
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes slideUp {
-    from { 
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-fade-in {
-    opacity: 0;
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-
-  .animate-slide-up {
-    opacity: 0;
-    animation: slideUp 0.8s ease-out forwards;
-  }
-</style>

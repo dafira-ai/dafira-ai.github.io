@@ -1,0 +1,56 @@
+---
+// Blog index body: PageHero, featured article, Card grid of all articles.
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import { PageHero, Section, SectionHeader, Button } from '../ui';
+import BlogCard from './BlogCard.astro';
+import { BLOG_UI, blogHref, categoryLabel, formatDate, readingMinutes, resolveBlogImage, type BlogLang } from './blog-i18n';
+
+interface Props {
+  lang: BlogLang;
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { lang, posts } = Astro.props;
+const t = BLOG_UI[lang];
+const featuredPost = posts.find((p) => p.data.featured);
+const regularPosts = posts.filter((p) => p !== featuredPost);
+const featuredImage = featuredPost ? resolveBlogImage(featuredPost.data.image) : null;
+---
+
+<PageHero eyebrow={t.eyebrow} title={t.title} lead={t.lead} />
+
+{featuredPost && (
+  <Section space="md" border="bottom">
+    <div class="grid lg:grid-cols-12 gap-10 items-center">
+      <a href={blogHref(lang, featuredPost.slug)} class="lg:col-span-7 block border border-line rounded-md overflow-hidden bg-surface aspect-[16/9]" tabindex="-1" aria-hidden="true">
+        {featuredImage && (typeof featuredImage === 'string'
+          ? <img src={featuredImage} alt="" class="w-full h-full object-cover" />
+          : <Image src={featuredImage} alt="" class="w-full h-full object-cover" widths={[640, 960]} sizes="(max-width: 1024px) 100vw, 720px" quality={80} format="webp" />)}
+      </a>
+      <div class="lg:col-span-5">
+        <p class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">
+          {t.featured} · {categoryLabel(lang, featuredPost.data.category)}
+        </p>
+        <h2 class="mt-4 text-3xl font-semibold text-navy leading-tight">
+          <a href={blogHref(lang, featuredPost.slug)} class="hover:text-primary transition-colors">{featuredPost.data.title}</a>
+        </h2>
+        <p class="mt-4 text-lg text-gray-600 leading-relaxed">{featuredPost.data.description}</p>
+        <p class="mt-6 text-sm text-gray-500">
+          {featuredPost.data.author}{featuredPost.data.authorRole && ` · ${featuredPost.data.authorRole}`}
+          <span class="mx-2" aria-hidden="true">·</span>
+          <time datetime={featuredPost.data.pubDate.toISOString()}>{formatDate(lang, featuredPost.data.pubDate)}</time>
+          <span class="mx-2" aria-hidden="true">·</span>{t.minRead(readingMinutes(featuredPost.body))}
+        </p>
+        <Button href={blogHref(lang, featuredPost.slug)} variant="link" class="mt-6">{t.read}</Button>
+      </div>
+    </div>
+  </Section>
+)}
+
+<Section tone="surface" space="md">
+  <SectionHeader title={t.latest} layout="stacked" class="!mb-10" />
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {regularPosts.map((post) => <BlogCard post={post} lang={lang} />)}
+  </div>
+</Section>

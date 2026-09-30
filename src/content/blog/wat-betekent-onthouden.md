@@ -3,7 +3,7 @@ title: "Wat Betekent Onthouden? De Betekenis en Implicaties Begrijpen"
 description: "Een diepgaande analyse van onthoudingen bij stemmen en besluitvorming, met aandacht voor de betekenis, gevolgen en strategisch gebruik ervan."
 pubDate: 2024-12-03
 author: "Jean-Louis Van Houwe"
-authorRole: "CEO & Oprichter bij Govrn"
+authorRole: "CEO & Oprichter bij Dafira"
 image: "/abstain-vote.jpg"
 category: "Governance"
 tags: ["Stemmen", "Besluitvorming", "Corporate Governance", "Ethiek"]

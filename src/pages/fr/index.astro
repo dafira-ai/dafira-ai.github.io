@@ -3,7 +3,6 @@ import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import WhyWeBuildVideo from "../../components/WhyWeBuildVideo.astro";
 import Features from "../../components/Features.astro";
-import Stats from "../../components/Stats.astro";
 import Timeline from "../../components/Timeline.astro";
 import Personas from "../../components/Personas.astro";
 import Testimonials from "../../components/Testimonials.astro";
@@ -16,128 +15,72 @@ import TaskTimeline from "../../components/animations/TaskTimeline.astro";
 import FeatureHighlight from "../../components/animations/FeatureHighlight.astro";
 
 const hero = {
-  imageValues: [
-    {
-      title: "Intelligence Artificielle",
-      description:
-        "Exploitez la puissance de l'IA pour transformer vos données en insights stratégiques",
-      position: "top-1/4 left-2/3",
-    },
-    {
-      title: "Sécurité Optimale",
-      description:
-        "Protection de niveau entreprise avec chiffrement de bout en bout et conformité garantie",
-      position: "bottom-1/3 right-10",
-    },
-    {
-      title: "Collaboration Fluide",
-      description:
-        "Des outils collaboratifs performants pour une communication efficace",
-      position: "bottom-1/4 left-1/3",
-    },
-  ],
-  badgeText: "La gouvernance d'entreprise réinventée par l'IA",
+  badgeText: "Portail du conseil · Conforme au RGPD",
   heading: {
-    main: "L'intelligence artificielle au service de vos",
-    highlight: "décisions stratégiques",
+    main: "Le portail du conseil d'administration pour les organisations qui prennent",
+    highlight: "la gouvernance au sérieux.",
   },
   description:
-    "Govrn accompagne votre conseil d'administration dans sa prise de décision. Notre plateforme IA optimise la collaboration, garantit la conformité et soutient votre développement durable.",
+    "Préparez le dossier du conseil, tenez la séance, enregistrez les votes et diffusez des procès-verbaux signés. Un seul espace sécurisé pour les administrateurs, les secrétaires généraux et les juristes.",
   ctaButtons: {
     primary: {
-      text: "Découvrir Govrn",
+      text: "Demander une démo",
       href: "/fr/request-demo",
     },
     secondary: {
-      text: "Voir la démonstration",
+      text: "Voir la visite en 2 minutes",
     },
   },
   securityFeatures: [
-    {
-      title: "RGPD",
-      subtitle: "Certifié",
-    },
-    {
-      title: "Chiffrement",
-      subtitle: "256-bit",
-    },
-    {
-      title: "Sécurité",
-      subtitle: "Multi-Facteurs",
-    },
+    { title: "256 bits", subtitle: "Chiffrement" },
+    { title: "RGPD", subtitle: "Conforme" },
+    { title: "MFA", subtitle: "Pour chaque administrateur" },
   ],
-  imageAlt: "Interface Govrn - Plateforme de gouvernance d'entreprise",
+  imageAlt: "Interface Dafira - portail du conseil d'administration",
   imageSrc: "/application-home-page.png",
 };
 
-const stats = [
-  {
-    value: "93%",
-    label: "Des administrateurs se sentent plus confiants dans leurs décisions avec l'aide de l'IA",
-    icon: "🎯",
-    bgImage: "/hero-man.jpg"
-  },
-  {
-    value: "2.5x",
-    label: "Plus rapide dans la planification et l'exécution stratégique grâce à nos outils collaboratifs",
-    icon: "⚡",
-    bgImage: "/hero-woman.jpg"
-  },
-  {
-    value: "86%",
-    label: "Des conseils constatent une meilleure implication des parties prenantes et plus de transparence",
-    icon: "🤝",
-    bgImage: "/hero-group.jpg"
-  }
-];
-
 const featuresProps = {
   texts: {
-    title: "Les fondamentaux d'une gouvernance moderne",
-    subtitle: "Découvrez comment Govrn révolutionne votre gouvernance",
-    exploreButton: "Découvrir nos fonctionnalités",
+    title: "De l'ordre du jour au procès-verbal signé, en un seul endroit",
+    subtitle: "Dafira couvre tout le cycle du conseil : préparer la séance, la tenir et assurer le suivi des décisions.",
+    exploreButton: "Voir toutes les fonctionnalités",
     exploreButtonUrl: "/fr/features",
-    learnMore: "Découvrir les fonctionnalités de gestion",
+    learnMore: "En savoir plus",
   },
   pillars: [
     {
-      title: "Performance du conseil",
+      title: "Préparer la séance",
       description:
-        "Optimisez votre gouvernance avec Govrn : centralisez vos documents et améliorez votre productivité grâce à nos outils sécurisés.",
-      icon: "⚡",
+        "Construisez l'ordre du jour, constituez le dossier du conseil et partagez-le en toute sécurité. Les administrateurs lisent et annotent sur tout appareil.",
       features: [
-        "Gestion documentaire centralisée",
-        "Annotations intelligentes",
-        "Sécurité renforcée",
-        "Outils de productivité avancés",
+        "Création de l'ordre du jour",
+        "Bibliothèque documentaire",
+        "Annotations privées",
+        "Authentification sécurisée",
       ],
-      gradient: "from-primary to-blue-500",
     },
     {
-      title: "Intelligence Collective",
+      title: "Comprendre les documents",
       description:
-        "Exploitez la puissance de l'IA pour analyser vos documents et obtenir des insights stratégiques pertinents.",
-      icon: "🤖",
+        "Interrogez l'assistant IA sur les documents du conseil et obtenez des synthèses des documents longs. Rédigez le procès-verbal en beaucoup moins de temps.",
       features: [
-        "Analyse prédictive",
-        "Insights stratégiques",
-        "Intelligence documentaire",
-        "Collaboration en temps réel",
+        "Assistant IA sur les documents du conseil",
+        "Rédaction du procès-verbal assistée par IA",
+        "Messagerie sécurisée du conseil",
+        "Suivi des actions",
       ],
-      gradient: "from-blue-500 to-indigo-500",
     },
     {
-      title: "Conformité & Gouvernance",
+      title: "Décider et consigner",
       description:
-        "Gérez vos processus selon les rôles, avec signature électronique et système de vote intégrés.",
-      icon: "⚖️",
+        "Organisez les votes, signez les procès-verbaux électroniquement et tenez un registre de chaque décision, avec des accès définis selon le rôle au sein du conseil.",
       features: [
-        "Gestion des rôles",
+        "Vote",
         "Signature électronique",
-        "Suivi de conformité",
-        "Système de vote électronique",
+        "Registre des décisions",
+        "Accès selon le rôle",
       ],
-      gradient: "from-indigo-500 to-primary",
     },
   ],
 };
@@ -203,7 +146,7 @@ const aiAssistantProps = {
     }
     ],
     headerTitle: "Assistant IA",
-    headerSubtitle: "Analyse documentaire",
+    headerSubtitle: "Analyse des documents du conseil",
     headerEmoji: "🤖"
 };
 
@@ -230,63 +173,51 @@ const gouvernanceComplianceProps = {
 
 const featureShowcaseProps = {
   texts: {
-    badge: "Résultats concrets",
-    title: "Optimisez la performance de votre conseil",
+    badge: "Fonctionnement",
+    title: "Conçu selon le fonctionnement réel des conseils",
     subtitle:
-      "Constatez l'impact tangible de Govrn sur votre gouvernance avec des améliorations mesurables en efficacité, en intelligence et en conformité.",
-    keyBenefits: "Bénéfices clés :",
+      "Documents, décisions et conformité au même endroit, avec des accès définis par rôle et une trace de chaque modification.",
+    keyBenefits: "Points clés :",
   },
   outcomes: [
     {
-      title: "Centralisation documentaire",
+      title: "Un seul endroit pour les documents du conseil",
       description:
-        "Une plateforme sécurisée pour l'ensemble de vos documents, accessible en tout lieu et à tout moment - quelle que soit votre aisance technologique.",
+        "Dossiers du conseil, procès-verbaux et politiques réunis dans un espace sécurisé, accessible depuis tout appareil, sans compétence technique particulière.",
       component: DocumentFlow,
       componentProps: documentFlowProps,
-      stats: [
-        { value: "100%", label: "Documents centralisés" },
-        { value: "24/7", label: "Accès sécurisé" },
-      ],
       benefits: [
-        "Source unique de vérité",
-        "Classification intelligente",
+        "Une source unique pour le conseil",
         "Gestion des versions",
-        "Contrôle d'accès flexible",
+        "Accès selon le rôle",
+        "Consultation sur tout appareil",
       ],
     },
     {
-      title: "Décisions data-driven",
+      title: "L'IA au service de la lecture",
       description:
-        "Transformez vos documents en insights actionnables grâce à notre IA avancée, pour des décisions stratégiques plus éclairées et plus rapides.",
+        "Posez vos questions à l'assistant IA sur le dossier du conseil et obtenez des synthèses des documents longs. L'IA aide à préparer, le conseil décide.",
       component: TaskTimeline,
       componentProps: aiAssistantProps,
-      stats: [
-        { value: "45%", label: "Qualité des décisions" },
-        { value: "24/7", label: "Analyse IA" },
-      ],
       benefits: [
-        "Analyses prédictives",
-        "Recommandations stratégiques",
-        "Veille marché",
-        "Suivi de performance",
+        "Questions sur les documents du conseil",
+        "Synthèses des documents longs",
+        "Projet de procès-verbal assisté par IA",
+        "Suivi des actions",
       ],
       link: {
-        text: "Découvrir notre IA",
+        text: "Découvrir l'assistant IA",
         url: "/fr/features/ai-assistant",
       },
     },
     {
-      title: "Conformité & Gouvernance",
+      title: "Conformité et traçabilité",
       description:
-        "Pilotez votre conseil avec des outils de gouvernance adaptés, incluant signature électronique et contrôle automatisé de la conformité.",
+        "Votes, signatures électroniques et registre des décisions, avec des droits d'accès par rôle et une piste d'audit complète.",
       component: FeatureHighlight,
       componentProps: gouvernanceComplianceProps,
-      stats: [
-        { value: "100%", label: "Conformité" },
-        { value: "40%", label: "Gain de temps administratif" },
-      ],
       benefits: [
-        "Contrôles automatisés",
+        "Vote",
         "Signature électronique",
         "Gestion des droits",
         "Piste d'audit",
@@ -297,76 +228,76 @@ const featureShowcaseProps = {
 
 const timelineProps = {
   texts: {
-    title: "Le cycle de vie du conseil",
-    subtitle: "Maîtrisez chaque étape de votre gouvernance",
-    cta: "Commencer maintenant",
+    title: "Avant, pendant et après la séance",
+    subtitle: "Un même espace suit la séance, du premier projet d'ordre du jour à la dernière signature.",
+    cta: "Essayer Dafira",
     ctaLink: "/fr/try"
   },
   timelineSteps: [
     {
-      phase: "Préparation",
-      title: "Optimisation de la préparation",
-      icon: "📋",
-      color: "from-blue-500 to-primary",
+      phase: "Avant",
+      title: "Préparation",
+      icon: "",
+      color: "",
       image: "/before-meeting.jpg",
       features: [
         {
-          title: "Ordres du jour automatisés",
-          description: "Création et diffusion efficace des ordres du jour.",
-          icon: "📅"
+          title: "Ordre du jour",
+          description: "Construisez et diffusez l'ordre du jour de chaque séance.",
+          icon: ""
         },
         {
-          title: "Gestion documentaire", 
-          description: "Organisation et partage sécurisé des documents essentiels.",
-          icon: "📁"
+          title: "Dossier du conseil",
+          description: "Rassemblez les documents et partagez-les en toute sécurité.",
+          icon: ""
         },
         {
-          title: "Analyse IA",
-          description: "Accompagnement des administrateurs avec des insights data-driven.",
-          icon: "🤖"
+          title: "Assistant IA",
+          description: "Les administrateurs interrogent le dossier et obtiennent des synthèses des documents longs avant la séance.",
+          icon: ""
         }
       ]
     },
     {
-      phase: "Durant la séance",
-      title: "Collaboration en direct",
-      icon: "🤝",
-      color: "from-primary to-blue-600",
+      phase: "Pendant",
+      title: "En séance",
+      icon: "",
+      color: "",
       image: "/during-meeting.jpg",
       features: [
         {
-          title: "Collaboration synchrone",
-          description: "Annotations et échanges en temps réel dans un environnement sécurisé.",
-          icon: "✏️"
+          title: "Annotations et échanges",
+          description: "Les administrateurs annotent les documents et échangent pendant la séance, dans un espace sécurisé.",
+          icon: ""
         },
         {
-          title: "Prise de décision",
-          description: "Suivi instantané des décisions et des actions.",
-          icon: "📝"
+          title: "Résolutions",
+          description: "Consignez les décisions en séance et suivez les actions qui en découlent.",
+          icon: ""
         }
       ]
     },
     {
-      phase: "Suivi",
-      title: "Gestion post-conseil",
-      icon: "✅",
-      color: "from-blue-600 to-primary",
+      phase: "Après",
+      title: "Suivi",
+      icon: "",
+      color: "",
       image: "/after-meeting.jpg",
       features: [
         {
-          title: "Procès-verbaux automatisés",
-          description: "Génération instantanée des PV avec intégration des décisions.",
-          icon: "⚡"
+          title: "Procès-verbal",
+          description: "Rédigez le procès-verbal avec l'assistant de rédaction IA, résolutions et actions reprises.",
+          icon: ""
         },
         {
-          title: "Suivi des actions",
-          description: "Attribution et monitoring des tâches post-conseil.",
-          icon: "📋"
+          title: "Tâches",
+          description: "Attribuez et suivez les actions décidées, sans rien perdre de vue.",
+          icon: ""
         },
         {
-          title: "Communication intégrée",
-          description: "Actualités en temps réel, votes et sondages simplifiés.",
-          icon: "💬"
+          title: "Communication",
+          description: "Fil d'actualité du conseil, votes et sondages au même endroit.",
+          icon: ""
         }
       ]
     }
@@ -375,25 +306,25 @@ const timelineProps = {
 
 const securityPreviewProps = {
   texts: {
-    badge: "Sécurité maximale",
-    title: "Votre sécurité, notre priorité absolue",
-    subtitle: "Protection de pointe pour vos données sensibles",
-    cta: "Découvrir nos fonctionnalités de sécurité",
+    badge: "Sécurité",
+    title: "Les documents du conseil restent confidentiels",
+    subtitle: "Chiffrement, authentification forte et droits d'accès par rôle protègent ce dont le conseil débat.",
+    cta: "En savoir plus sur la sécurité",
     features: [
       {
-        icon: "🔒",
-        title: "Sécurité renforcée",
-        description: "Protection maximale de vos informations confidentielles"
+        icon: "",
+        title: "Chiffrement",
+        description: "Un chiffrement 256 bits protège les documents, les messages et les votes."
       },
       {
-        icon: "🔐",
-        title: "Double authentification", 
-        description: "Sécurisation renforcée des accès"
+        icon: "",
+        title: "Double authentification",
+        description: "Chaque administrateur se connecte avec un second facteur."
       },
       {
-        icon: "👥",
-        title: "Contrôle d'accès",
-        description: "Gestion fine des droits et traçabilité complète"
+        icon: "",
+        title: "Accès par rôle",
+        description: "Chaque document n'est visible que par les personnes concernées, avec une piste d'audit de chaque action."
       }
     ]
   }
@@ -401,57 +332,57 @@ const securityPreviewProps = {
 
 const personasProps = {
   texts: {
-    title: "Une solution adaptée à chaque rôle",
-    subtitle: "Govrn propose une expérience sur mesure pour chaque acteur de la gouvernance, optimisant la prise de décision et l'efficacité opérationnelle.",
-    cta: "Découvrir votre solution",
-    learnMore: "Découvrir les fonctionnalités par rôle"
+    title: "Un portail, quatre usages",
+    subtitle: "Direction, secrétariat, administrateurs et juristes abordent chacun le conseil sous leur propre angle.",
+    cta: "Trouver la solution pour votre rôle",
+    learnMore: "Voir le fonctionnement pour ce rôle"
   },
   personas: [
     {
-      role: "Direction Générale",
-      description: "Dotez votre conseil d'administration d'un outil puissant et intuitif pour stimuler l'engagement et l'efficacité collective.",
-      icon: "👔",
+      role: "Direction générale",
+      description: "Tenez le conseil informé entre les séances et suivez les décisions sans relancer chacun par e-mail.",
+      icon: "",
       features: [
-        "Suivi de l'engagement en temps réel",
-        "Aide à la décision stratégique", 
-        "Analyse de performance",
-        "Tableaux de bord exécutifs"
+        "Fil d'actualité du conseil",
+        "Suivi des décisions",
+        "Suivi des actions",
+        "Messagerie sécurisée"
       ],
       link: "/fr/for/ceo"
     },
     {
-      role: "Secrétariat Général",
-      description: "Simplifiez l'organisation et le suivi des conseils tout en assurant une communication fluide entre les parties prenantes.",
-      icon: "📊",
+      role: "Secrétariat général",
+      description: "Préparez l'ordre du jour, constituez le dossier du conseil et diffusez le procès-verbal depuis un seul endroit, plutôt que par dossiers partagés et e-mails.",
+      icon: "",
       features: [
-        "Planification automatisée",
-        "Gestion documentaire",
-        "Suivi des actions", 
-        "Communication efficace"
+        "Création de l'ordre du jour",
+        "Diffusion des documents",
+        "Suivi des actions",
+        "Procès-verbal assisté par IA"
       ],
       link: "/fr/for/board-secretary"
     },
     {
       role: "Administrateurs",
-      description: "Accédez à une plateforme intuitive qui vous accompagne dans vos missions et simplifie votre prise de décision.",
-      icon: "🎯",
+      description: "Lisez et annotez le dossier du conseil sur tout appareil, votez et retrouvez les décisions passées quand vous en avez besoin.",
+      icon: "",
       features: [
-        "Accès simplifié aux documents",
-        "Préparation optimisée",
+        "Accès aux documents",
+        "Annotations privées",
         "Vote électronique",
-        "Analyses stratégiques"
+        "Assistant IA sur les documents"
       ],
       link: "/fr/for/board-member"
     },
     {
-      role: "Direction Juridique",
-      description: "Bénéficiez d'une solution sécurisée qui protège efficacement votre conseil et votre organisation.",
-      icon: "⚖️",
+      role: "Direction juridique",
+      description: "Gardez résolutions, signatures et piste d'audit en ordre, avec des documents qui restent au sein du conseil.",
+      icon: "",
       features: [
-        "Contrôle de conformité",
-        "Gestion des risques",
-        "Coffre-fort numérique",
-        "Traçabilité complète"
+        "Registre des décisions",
+        "Signature électronique",
+        "Accès selon le rôle",
+        "Piste d'audit"
       ],
       link: "/fr/for/general-counsel"
     }
@@ -460,60 +391,57 @@ const personasProps = {
 
 const testimonialsProps = {
   texts: {
-    title: "Ils nous font confiance",
-    subtitle: "Découvrez comment les organisations transforment leur gouvernance avec Govrn",
-    cta: "Toutes nos success stories",
+    title: "Ce qu'en disent les équipes du conseil",
+    subtitle: "Secrétaires généraux, juristes et dirigeants sur la gestion de leur conseil avec Dafira.",
+    cta: "Tous les témoignages clients",
     ctaLink: "/fr/testimonials"
   },
     testimonials: [
     {
-      quote: "Govrn a <strong>révolutionné</strong> notre gouvernance en apportant <strong>efficacité</strong> et <strong>clarté</strong> à nos processus.",
-      author: "Lore Werbrouck",
-      position: "Directrice Juridique",
-      company: "Van de Velde",
-      image: "/vdv-lore-portrait.jpg",
-      link: "/fr/case-studies/van-de-velde"
+      quote: "Dafira a <strong>révolutionné</strong> notre gouvernance en apportant <strong>efficacité</strong> et <strong>clarté</strong> à nos processus.",
+      author: "Directrice juridique",
+      position: "",
+      company: "Groupe de mode coté en bourse",
+      link: "/fr/case-studies/listed-fashion-group"
     },
     {
-      quote: "Govrn a <strong>transformé</strong> notre gestion documentaire, rendant nos conseils plus <strong>efficaces</strong> et centrés sur la <strong>prise de décision</strong>.",
-      author: "Pierre Hermant",
-      position: "Directeur Général",
-      company: "Finance & Invest Brussels",
-      image: "/fib-pierre.webp",
-      link: "/fr/case-studies/finance-invest-brussels"
+      quote: "Dafira a <strong>transformé</strong> notre gestion documentaire, rendant nos conseils plus <strong>efficaces</strong> et centrés sur la <strong>prise de décision</strong>.",
+      author: "CEO",
+      position: "",
+      company: "Fonds public d'investissement régional",
+      link: "/fr/case-studies/public-investment-fund"
     },
     {
-      quote: "Govrn représente <strong>l'avenir</strong> de la gouvernance, alliant <strong>simplicité d'usage</strong> et <strong>intelligence artificielle</strong>.",
-      author: "Nathalie Byl",
-      position: "Responsable Juridique et Conformité",
-      company: "Care Property Invest",
-      image: "/careproperty-logo.png",
-      link: "/fr/case-studies/care-property-invest"
+      quote: "Dafira représente <strong>l'avenir</strong> de la gouvernance, alliant <strong>simplicité d'usage</strong> et <strong>intelligence artificielle</strong>.",
+      author: "Juriste et responsable conformité",
+      position: "",
+      company: "Société immobilière cotée du secteur des soins",
+      link: "/fr/case-studies/healthcare-real-estate"
     }
   ]
 };
 
 const faqProps = {
   texts: {
-    title: "Questions fréquentes",
-    subtitle: "Réponses aux questions les plus courantes sur Govrn",
+    title: "Les questions que posent les conseils",
+    subtitle: "Prise en main, protection des données, accompagnement et stockage.",
     inLanguage: "fr",
     faqs: [
       {
-        question: "Comment Govrn s'adapte-t-il aux différents niveaux de maturité numérique ?",
-        answer: "L'interface intuitive de Govrn permet à tous les administrateurs de participer efficacement, quel que soit leur niveau technologique. Notre plateforme propose une prise en main progressive, des formations personnalisées et des outils accessibles pour garantir une collaboration fluide."
+        question: "Comment Dafira s'adapte-t-il aux différents niveaux de maturité numérique ?",
+        answer: "L'interface intuitive de Dafira permet à tous les administrateurs de participer efficacement, quel que soit leur niveau technologique. Notre plateforme propose une prise en main progressive, des formations personnalisées et des outils accessibles pour garantir une collaboration fluide."
       },
       {
-        question: "Govrn est-il conforme au RGPD ?",
-        answer: "Oui, Govrn respecte intégralement le RGPD et applique des mesures strictes de protection des données pour garantir la confidentialité de vos informations."
+        question: "Dafira est-il conforme au RGPD ?",
+        answer: "Oui, Dafira respecte intégralement le RGPD et applique des mesures strictes de protection des données pour garantir la confidentialité de vos informations."
       },
       {
         question: "Comment importer nos documents existants ?",
-        answer: "Govrn propose plusieurs méthodes d'import : téléchargement par lots, glisser-déposer et intégration avec vos solutions de stockage actuelles."
+        answer: "Dafira propose plusieurs méthodes d'import : téléchargement par lots, glisser-déposer et intégration avec vos solutions de stockage actuelles."
       },
       {
         question: "Est-il possible de personnaliser les processus ?",
-        answer: "Absolument ! Govrn s'adapte à vos besoins spécifiques avec des options de personnalisation étendues."
+        answer: "Oui. Dafira s'adapte à vos besoins spécifiques avec des options de personnalisation étendues."
       },
       {
         question: "Quel accompagnement proposez-vous ?",
@@ -530,7 +458,7 @@ const faqProps = {
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  name: "Govrn - Questions fréquentes",
+  name: "Dafira - Questions fréquentes",
   inLanguage: "fr",
   mainEntity: faqProps.texts.faqs.map((faq) => ({
     "@type": "Question",
@@ -543,18 +471,18 @@ const structuredData = {
 };
 
 const whyWeBuildVideoProps = {
-  title: "Pourquoi nous créons Govrn",
-  subtitle: "Notre Mission",
+  title: "Pourquoi nous construisons Dafira",
+  subtitle: "Notre mission",
   videoId: "D6vubHkS_is",
-  description: "Découvrez l'histoire derrière Govrn et pourquoi nous sommes passionnés par la transformation de la gestion des conseils avec des solutions alimentées par l'IA.",
+  description: "L'histoire de Dafira, et ce qui nous a amenés à concevoir un portail pour les conseils d'administration.",
   language: "fr"
 };
 
 const ctaProps = {
   texts: {
-    title: "Prêt à transformer votre gouvernance ?",
-    subtitle: "Rejoignez les organisations qui innovent avec Govrn",
-    cta1: "Demander une démonstration",
+    title: "Découvrez Dafira avec votre propre dossier du conseil",
+    subtitle: "Une démonstration de 30 minutes avec une personne qui a déjà organisé des séances de conseil. Apportez un véritable ordre du jour, nous le configurerons avec vous.",
+    cta1: "Demander une démo",
     cta2: "Nous contacter"
   },
   links: {
@@ -565,14 +493,13 @@ const ctaProps = {
 ---
 
 <Layout
-  title="Govrn - L'intelligence artificielle au service de votre gouvernance"
-  description="Transformez votre gouvernance avec Govrn, la plateforme IA qui optimise vos processus, renforce la collaboration et stimule l'innovation."
+  title="Dafira | ضفيرة · Le portail des conseils d'administration"
+  description="Dafira est le portail des conseils d'administration : ordre du jour, dossier du conseil, votes, signature électronique et procès-verbaux dans un espace sécurisé et conforme au RGPD."
   structuredData={structuredData}
 >
   <main class="overflow-hidden">
     <Hero {...hero} />
-    <WhyWeBuildVideo {...whyWeBuildVideoProps} />
-    <Stats stats={stats} />
+    <!-- <WhyWeBuildVideo {...whyWeBuildVideoProps} /> — thumbnail still shows the old brand -->
     <Features {...featuresProps} />
     <FeatureShowcase {...featureShowcaseProps} />
     <Timeline {...timelineProps} />

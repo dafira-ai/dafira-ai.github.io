@@ -1,6 +1,6 @@
 ---
 title: "Impact of the New EU Directive on Equal Pay for Boards"
-description: "Explore the implications of the EU's new Equal Pay Directive with Govrn experts. Learn how boards can prepare for compliance and promote pay transparency."
+description: "Explore the implications of the EU's new Equal Pay Directive with Dafira experts. Learn how boards can prepare for compliance and promote pay transparency."
 pubDate: 2025-01-17
 duration: "13 min"
 spotifyUrl: "https://open.spotify.com/show/11ejxA1c7TZcNVBJ6Pag3B?si=19b17abd580a4df2"
@@ -8,9 +8,9 @@ podcastAudioUrl: "/podcast-S1E6-equal-pay.mp3"
 image: "/podcast-S1E6.png"
 featured: false
 guests:
-  - name: "Govrn Expert Panel"
+  - name: "Dafira Expert Panel"
     role: "Governance and Employment Law Specialists"
-    company: "Govrn"
+    company: "Dafira"
     bio: "Our panel of experts specializes in EU employment law, corporate governance, and implementing pay transparency measures across organizations."
     image: "/logo-square.png"
 topics:
@@ -23,7 +23,7 @@ topics:
 
 ## Episode Overview
 
-In this episode of **Governance Matters**, Govrn experts examine the EU Directive 22397EO on equal pay and its strategic implications for corporate boards. This landmark directive mandates organizations to provide tangible evidence of equal pay compliance while fostering a culture of transparency. Our panel explores how boards can transform this regulatory requirement into a competitive advantage.
+In this episode of **Governance Matters**, Dafira experts examine the EU Directive 22397EO on equal pay and its strategic implications for corporate boards. This landmark directive mandates organizations to provide tangible evidence of equal pay compliance while fostering a culture of transparency. Our panel explores how boards can transform this regulatory requirement into a competitive advantage.
 
 Key discussion points include:
 
@@ -73,7 +73,7 @@ Our expert panel provides strategic guidance on transforming compliance requirem
 
 ## Technology Solutions for Pay Transparency
 
-Govrn's platform offers tools to help boards manage pay transparency requirements effectively:
+Dafira's platform offers tools to help boards manage pay transparency requirements effectively:
 
 ### Pay Transparency Management Features
 

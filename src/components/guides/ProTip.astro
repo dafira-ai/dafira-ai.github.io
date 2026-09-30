@@ -1,15 +1,17 @@
 ---
+// Short tip inside a guide, rendered as a Callout.
+import { Callout } from '../ui';
+import { guideLang, GUIDE_UI } from './guides-data';
+
 interface Props {
   tip: string;
+  title?: string;
 }
 
-const { tip } = Astro.props;
+const { tip, title } = Astro.props;
+const t = GUIDE_UI[guideLang(Astro.url.pathname)];
+// Legacy tips sometimes start with an emoji: drop it.
+const text = tip.replace(/^[\p{Extended_Pictographic}️\s]+/u, '');
 ---
 
-<div class="bg-primary/5 border border-primary/10 rounded-xl p-6 mb-8">
-  <div class="flex items-center space-x-3 mb-3">
-    <span class="text-2xl">✨</span>
-    <span class="font-semibold text-primary">Pro Tip</span>
-  </div>
-  <p class="text-gray-700">{tip}</p>
-</div>
+<Callout tone="tip" title={title ?? t.tip} class="my-8">{text}</Callout>

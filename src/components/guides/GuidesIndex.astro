@@ -1,0 +1,122 @@
+---
+// Help-centre index: PageHero with search, then one Card grid per category, then a support block.
+import { PageHero, Section, Card, Icon, Button, Eyebrow } from '../ui';
+import { GUIDES, GUIDE_UI, type GuideLang } from './guides-data';
+import { localizePath } from '../../i18n/routes';
+
+interface Props { lang: GuideLang }
+const { lang } = Astro.props;
+const guides = GUIDES[lang];
+const t = GUIDE_UI[lang];
+const allGuides = guides.flatMap((c) => c.guides.map((g) => ({ title: g.title, description: g.description, readTime: g.readTime, link: g.link, category: c.category })));
+---
+
+<PageHero eyebrow={t.eyebrow} title={t.title} lead={t.lead}>
+  <div class="mt-9 max-w-xl relative z-20">
+    <label for="search-guides" class="sr-only">{t.searchLabel}</label>
+    <div class="relative">
+      <span class="absolute inset-y-0 start-3 flex items-center pointer-events-none text-gray-400">
+        <Icon name="search" class="w-5 h-5" />
+      </span>
+      <input
+        type="text"
+        id="search-guides"
+        placeholder={t.search}
+        autocomplete="off"
+        class="block w-full rounded-md border border-line bg-white ps-10 pe-3 py-3 text-[15px] text-ink placeholder:text-gray-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors"
+      />
+    </div>
+    <div
+      id="search-results"
+      class="absolute start-0 end-0 top-full mt-1 bg-white rounded-md border border-line divide-y divide-line max-h-96 overflow-y-auto hidden"
+      data-empty={t.noResults}
+    ></div>
+  </div>
+</PageHero>
+
+<Section space="md">
+  <div class="space-y-16">
+    {guides.map((category) => (
+      <div class="grid lg:grid-cols-12 gap-8">
+        <div class="lg:col-span-3">
+          <Icon name={category.icon} class="w-6 h-6 text-navy" />
+          <h2 class="mt-4 text-2xl font-semibold text-navy">{category.category}</h2>
+          <p class="mt-2 text-gray-600">{category.description}</p>
+        </div>
+        <div class="lg:col-span-9 grid md:grid-cols-2 xl:grid-cols-3 gap-4">
+          {category.guides.map((guide) => (
+            <Card href={guide.link} padding="sm" class="flex flex-col">
+              <div class="flex items-center justify-between gap-4">
+                <Icon name={guide.icon} class="w-5 h-5 text-navy" />
+                <span class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">{t.readTime(guide.readTime)}</span>
+              </div>
+              <h3 class="mt-5 text-lg font-semibold text-navy group-hover:text-primary transition-colors">{guide.title}</h3>
+              <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{guide.description}</p>
+              <span class="mt-auto pt-5 inline-flex items-center gap-2 text-[15px] text-primary">
+                {t.read}
+                <svg class="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 5l7 7-7 7" /></svg>
+              </span>
+            </Card>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</Section>
+
+<Section tone="surface" space="md" border="top">
+  <div class="grid lg:grid-cols-12 gap-6 items-end">
+    <div class="lg:col-span-7">
+      <Eyebrow class="mb-4">Support</Eyebrow>
+      <h2 class="text-3xl lg:text-4xl font-semibold text-navy leading-tight">{t.helpTitle}</h2>
+      <p class="mt-4 text-lg text-gray-600 leading-relaxed">{t.helpText}</p>
+    </div>
+    <div class="lg:col-span-5 flex flex-col sm:flex-row gap-3 lg:justify-end">
+      <Button href={localizePath(lang, '/contact')}>{t.contact}</Button>
+      <Button href={localizePath(lang, '/request-demo')} variant="secondary">{t.demo}</Button>
+    </div>
+  </div>
+</Section>
+
+<script define:vars={{ allGuides }}>
+  const searchInput = document.getElementById('search-guides');
+  const searchResults = document.getElementById('search-results');
+
+  if (searchInput && searchResults) {
+    const empty = searchResults.dataset.empty || '';
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    document.addEventListener('click', (e) => {
+      if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) searchResults.classList.add('hidden');
+    });
+
+    searchInput.addEventListener('input', () => {
+      const term = searchInput.value.toLowerCase().trim();
+      if (!term) { searchResults.classList.add('hidden'); return; }
+      const found = allGuides.filter((g) => g.title.toLowerCase().includes(term) || g.description.toLowerCase().includes(term));
+      searchResults.innerHTML = found.length
+        ? found.map((g) => `
+            <a href="${g.link}" class="block px-4 py-3 hover:bg-surface transition-colors">
+              <span class="block font-medium text-navy">${esc(g.title)}</span>
+              <span class="block text-sm text-gray-600">${esc(g.description)}</span>
+              <span class="mt-1 block font-mono text-[11px] uppercase tracking-[0.08em] text-gray-500">${esc(g.category)} · ${esc(g.readTime)}</span>
+            </a>`).join('')
+        : `<div class="px-4 py-3 text-gray-500">${esc(empty)}</div>`;
+      searchResults.classList.remove('hidden');
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+      const items = Array.from(searchResults.querySelectorAll('a'));
+      const i = items.findIndex((el) => el === document.activeElement);
+      if (e.key === 'ArrowDown' && items.length) { e.preventDefault(); items[Math.min(i + 1, items.length - 1)].focus(); }
+      if (e.key === 'Escape') { searchResults.classList.add('hidden'); searchInput.blur(); }
+    });
+    searchResults.addEventListener('keydown', (e) => {
+      const items = Array.from(searchResults.querySelectorAll('a'));
+      const i = items.findIndex((el) => el === document.activeElement);
+      if (e.key === 'ArrowDown') { e.preventDefault(); if (i < items.length - 1) items[i + 1].focus(); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); if (i > 0) items[i - 1].focus(); else searchInput.focus(); }
+      if (e.key === 'Escape') { searchResults.classList.add('hidden'); searchInput.focus(); }
+    });
+  }
+</script>

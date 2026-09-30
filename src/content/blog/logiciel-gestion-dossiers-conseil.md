@@ -2,8 +2,8 @@
 title: "Qu'est-ce qu'un dossier du conseil et comment les logiciels de gestion peuvent aider ?"
 description: "Découvrez l'importance des dossiers du conseil dans la gouvernance d'entreprise et comment les logiciels de gestion peuvent simplifier leur création, génération et distribution pour une prise de décision efficace."
 pubDate: 2024-10-23
-author: "Govrn"
-authorRole: "Équipe éditoriale Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/book.jpg"
 category: "Technology"
 tags: ["Dossier du conseil", "Logiciel de gestion", "Gouvernance d'entreprise", "Préparation des réunions"]

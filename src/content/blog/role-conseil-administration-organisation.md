@@ -2,8 +2,8 @@
 title: "Le rôle du conseil d'administration dans une organisation"
 description: "Découvrez les fonctions essentielles et les responsabilités d'un conseil d'administration pour piloter la réussite d'une organisation, notamment la planification stratégique, la supervision et la gestion des risques."
 pubDate: 2024-01-03
-author: "Govrn"
-authorRole: "Équipe éditoriale Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/puzzle.jpg"
 category: "Governance"
 tags: ["conseil d'administration", "gouvernance d'entreprise", "leadership", "planification stratégique"]

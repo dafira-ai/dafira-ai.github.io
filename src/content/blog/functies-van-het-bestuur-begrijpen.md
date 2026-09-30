@@ -2,8 +2,8 @@
 title: "De Functies van het Bestuur Begrijpen: Belang en Voorbeelden"
 description: "Ontdek de cruciale rollen en verantwoordelijkheden van de uitvoerende macht, waaronder het Staatshoofd, Regeringsleider, Opperbevelhebber, Hoofddiplomaat, Wetgevingsleider en Hoofdbestuurder."
 pubDate: 2022-03-15
-author: "Govrn"
-authorRole: "Govrn Redactieteam"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/suit.jpg"
 category: "Governance"
 tags: ["Bestuursfuncties", "Overheidsrollen", "Openbaar Bestuur"]
@@ -71,6 +71,6 @@ Deze rol is cruciaal bij het vertalen van wetgevende mandaten naar uitvoerbare o
 
 Samenvattend zijn de veelzijdige functies van de uitvoerende macht vitaal voor het succes van een bestuur. Bestuurders moeten leiderschap, management en besluitvaardigheid tonen om complexe uitdagingen effectief aan te pakken.
 
-Moderne tools, zoals Govrn's bestuursmanagementsoftware, kunnen bestuurlijke prestaties verbeteren door samenwerking, veilige documentdeling en gestroomlijnde vergaderingen mogelijk te maken. Onze [AI-gestuurde compliance monitoring](/features/ai-board-compliance-monitoring) helpt bij het naleven van regelgeving, terwijl onze [AI-assistent](/features/ai-assistant) data-gedreven inzichten biedt voor strategische besluitvorming. Door gebruik te maken van dergelijke technologieën kunnen bestuurders en bestuursleden geïnformeerde beslissingen nemen en organisatorisch succes stimuleren.
+Moderne tools, zoals Dafira's bestuursmanagementsoftware, kunnen bestuurlijke prestaties verbeteren door samenwerking, veilige documentdeling en gestroomlijnde vergaderingen mogelijk te maken. Onze [AI-gestuurde compliance monitoring](/features/ai-board-compliance-monitoring) helpt bij het naleven van regelgeving, terwijl onze [AI-assistent](/features/ai-assistant) data-gedreven inzichten biedt voor strategische besluitvorming. Door gebruik te maken van dergelijke technologieën kunnen bestuurders en bestuursleden geïnformeerde beslissingen nemen en organisatorisch succes stimuleren.
 
 Het begrijpen en effectief uitvoeren van deze functies stelt overheden en organisaties in staat hun doelstellingen te bereiken en te floreren in een dynamische omgeving.

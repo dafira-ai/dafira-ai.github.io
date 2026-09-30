@@ -1,0 +1,222 @@
+---
+// /features/secure-communication (EN / FR / NL)
+import { PageHero, Section, SectionHeader, Button, Screenshot, FeatureColumns, FeatureList, CellGrid, Icon, Callout } from '../../ui';
+import RelatedFeatures from '../RelatedFeatures.astro';
+import FeatureCTA from '../FeatureCTA.astro';
+import CustomerQuote from '../CustomerQuote.astro';
+import { langFromPath, localizePath } from '../../../i18n/routes';
+import { common, featureLang } from '../common';
+
+const lang = featureLang(langFromPath(Astro.url.pathname));
+const c = common[lang];
+
+const copy = {
+  en: {
+    eyebrow: 'Secure communication',
+    title: 'Board discussions that stay with the board',
+    lead: 'Private messages, a board news feed and document sharing in the same platform as the board pack. Confidential conversations stay out of personal inboxes and messaging apps.',
+    heroAlt: 'Private messages in Dafira',
+    features: {
+      title: 'Messaging built for confidential discussions',
+      lead: 'Directors and the secretary exchange messages and files where the board papers already are.',
+      columns: [
+        { icon: 'lock', title: 'End-to-end encryption', text: 'Messages and files are encrypted, from sender to recipient.', items: ['Encryption of messages and files', 'Hosted on Microsoft Azure', 'Multi-factor authentication'] },
+        { icon: 'chat', title: 'Private chat', text: 'Real-time messaging for confidential board discussions.', items: ['One-to-one messages', 'Group discussions', 'Message expiration'] },
+        { icon: 'folder', title: 'Secure file sharing', text: 'Share sensitive documents with access controls.', items: ['Encrypted transfer', 'Access logging', 'Version control', 'Expiring share links'] },
+      ],
+    },
+    tools: {
+      eyebrow: 'Tools',
+      title: 'Three channels, one platform',
+      lead: 'Each channel has its own purpose, and all of them follow the same access rules.',
+      items: [
+        { icon: 'chat', title: 'Private board chat', text: 'Messaging for board communication.', caps: [['Real-time messaging', 'Direct communication between board members.'], ['Group channels', 'Dedicated spaces for committees and working groups.'], ['Message controls', 'Message expiration and editing permissions.']] },
+        { icon: 'bell', title: 'Board news feed', text: 'Announcements and updates for the board.', caps: [['Targeted updates', 'Share news with specific members or committees.'], ['Attachments', 'Images, documents and links, shared securely.'], ['Discussion', 'Comment on updates inside the platform.']] },
+        { icon: 'document', title: 'Document sharing', text: 'Sharing and collaboration on sensitive documents.', caps: [['Access controls', 'Permissions for viewing and editing.'], ['Version history', 'Changes tracked with a complete audit trail.'], ['Secure preview', 'Read documents in the viewer without downloading them.']] },
+      ],
+    },
+    scenarios: {
+      eyebrow: 'Why it matters',
+      title: 'Situations boards meet, and how Dafira handles them',
+      lead: 'Email and consumer messaging apps were not designed for board confidentiality.',
+      with: 'With Dafira',
+      items: [
+        { icon: 'mail', title: 'An email is forwarded', text: 'A director discusses executive pay by email. The message is forwarded outside the board, and salary data leaves the company.', points: ['Messages cannot be forwarded outside the platform', 'Access limited to authorised board members', 'The audit trail shows who read what'] },
+        { icon: 'phone', title: 'A personal device is compromised', text: 'A director’s messaging app is compromised, exposing months of board discussion about a possible acquisition.', points: ['Encryption protects the content of messages', 'Access can be revoked for a lost or compromised device', 'Message expiration limits exposure'] },
+        { icon: 'search', title: 'A regulatory audit', text: 'During a GDPR audit, the board cannot show who accessed sensitive documents or when key decisions were communicated.', points: ['Complete audit trail with timestamps', 'Access logs for documents and messages', 'Exportable reports for compliance documentation'] },
+        { icon: 'globe', title: 'An urgent decision while travelling', text: 'The CEO needs board approval on an urgent matter, while directors are in different time zones and use different tools.', points: ['One secure platform, on every device', 'Notifications for urgent matters', 'Integrated voting for quick decisions'] },
+      ],
+      note: 'Keeping board discussions in the board portal gives you one place to control access and to show, when asked, what was shared and with whom.',
+    },
+    security: {
+      title: 'Security measures',
+      lead: 'The communication tools share the security of the rest of the platform.',
+      items: [
+        { icon: 'lock', title: 'Encryption', text: 'Messages and files are encrypted, so only the members they are shared with can read them.' },
+        { icon: 'clipboard', title: 'Audit trails', text: 'Communication activity is logged, so you can show who accessed what and when.' },
+        { icon: 'shield', title: 'Continuous monitoring', text: 'The platform runs on Microsoft Azure, with continuous security monitoring and protection against unauthorised access.' },
+      ],
+    },
+  },
+  fr: {
+    eyebrow: 'Communication sécurisée',
+    title: 'Des échanges du conseil qui restent au conseil',
+    lead: "Messages privés, fil d'actualité du conseil et partage de documents, dans la même plateforme que le dossier du conseil. Les conversations confidentielles restent hors des boîtes mail personnelles et des messageries grand public.",
+    heroAlt: 'Messages privés dans Dafira',
+    features: {
+      title: 'Une messagerie conçue pour les échanges confidentiels',
+      lead: 'Administrateurs et secrétaire échangent messages et fichiers là où se trouvent déjà les documents du conseil.',
+      columns: [
+        { icon: 'lock', title: 'Chiffrement de bout en bout', text: "Les messages et fichiers sont chiffrés de l'expéditeur au destinataire.", items: ['Chiffrement des messages et fichiers', 'Hébergement sur Microsoft Azure', 'Authentification multifacteur'] },
+        { icon: 'chat', title: 'Messagerie privée', text: 'Des échanges en temps réel pour les discussions confidentielles du conseil.', items: ['Messages individuels', 'Discussions de groupe', 'Expiration des messages'] },
+        { icon: 'folder', title: 'Partage sécurisé de fichiers', text: 'Partagez des documents sensibles avec un contrôle des accès.', items: ['Transfert chiffré', 'Journal des accès', 'Gestion des versions', 'Liens de partage à durée limitée'] },
+      ],
+    },
+    tools: {
+      eyebrow: 'Outils',
+      title: 'Trois canaux, une plateforme',
+      lead: 'Chaque canal a son usage, et tous suivent les mêmes règles d’accès.',
+      items: [
+        { icon: 'chat', title: 'Messagerie du conseil', text: 'Une messagerie pour la communication du conseil.', caps: [['Messagerie instantanée', 'Communication directe entre les membres du conseil.'], ['Canaux de groupe', 'Des espaces dédiés aux comités et groupes de travail.'], ['Contrôle des messages', 'Expiration des messages et droits de modification.']] },
+        { icon: 'bell', title: "Fil d'actualité du conseil", text: 'Annonces et informations pour le conseil.', caps: [['Diffusion ciblée', 'Partagez une information avec certains membres ou comités.'], ['Pièces jointes', 'Images, documents et liens, partagés en sécurité.'], ['Discussion', 'Commentez les publications au sein de la plateforme.']] },
+        { icon: 'document', title: 'Partage de documents', text: 'Partage et collaboration sur des documents sensibles.', caps: [['Contrôle des accès', 'Droits de consultation et de modification.'], ['Historique des versions', "Modifications suivies avec une piste d'audit complète."], ['Consultation sécurisée', 'Lisez les documents dans la visionneuse, sans les télécharger.']] },
+      ],
+    },
+    scenarios: {
+      eyebrow: 'Pourquoi c’est important',
+      title: 'Des situations que les conseils rencontrent, et la réponse de Dafira',
+      lead: "L'e-mail et les messageries grand public n'ont pas été conçus pour la confidentialité du conseil.",
+      with: 'Avec Dafira',
+      items: [
+        { icon: 'mail', title: 'Un e-mail est transféré', text: "Un administrateur échange par e-mail sur la rémunération des dirigeants. Le message est transféré hors du conseil et des données salariales sortent de l'entreprise.", points: ['Les messages ne peuvent pas être transférés hors de la plateforme', 'Accès limité aux membres autorisés du conseil', "La piste d'audit montre qui a lu quoi"] },
+        { icon: 'phone', title: 'Un appareil personnel est compromis', text: "La messagerie d'un administrateur est piratée, exposant des mois de discussions du conseil sur une acquisition possible.", points: ['Le chiffrement protège le contenu des messages', "L'accès peut être révoqué pour un appareil perdu ou compromis", "L'expiration des messages limite l'exposition"] },
+        { icon: 'search', title: 'Un audit réglementaire', text: "Lors d'un audit RGPD, le conseil ne peut pas montrer qui a consulté des documents sensibles ni quand les décisions clés ont été communiquées.", points: ["Piste d'audit complète et horodatée", 'Journal des accès aux documents et messages', 'Rapports exportables pour la documentation de conformité'] },
+        { icon: 'globe', title: 'Une décision urgente en déplacement', text: "Le CEO a besoin de l'accord du conseil sur un sujet urgent, alors que les administrateurs sont dans des fuseaux horaires différents et utilisent des outils différents.", points: ['Une seule plateforme sécurisée, sur tous les appareils', 'Notifications pour les sujets urgents', 'Vote intégré pour décider rapidement'] },
+      ],
+      note: "Garder les échanges du conseil dans le portail du conseil vous donne un seul endroit pour contrôler les accès et montrer, si on vous le demande, ce qui a été partagé et avec qui.",
+    },
+    security: {
+      title: 'Mesures de sécurité',
+      lead: 'Les outils de communication bénéficient de la sécurité du reste de la plateforme.',
+      items: [
+        { icon: 'lock', title: 'Chiffrement', text: 'Les messages et fichiers sont chiffrés : seuls les membres avec qui ils sont partagés peuvent les lire.' },
+        { icon: 'clipboard', title: "Pistes d'audit", text: "L'activité de communication est journalisée : vous pouvez montrer qui a consulté quoi et quand." },
+        { icon: 'shield', title: 'Surveillance continue', text: 'La plateforme est hébergée sur Microsoft Azure, avec une surveillance de sécurité continue et une protection contre les accès non autorisés.' },
+      ],
+    },
+  },
+  nl: {
+    eyebrow: 'Beveiligde communicatie',
+    title: 'Bestuursoverleg dat binnen het bestuur blijft',
+    lead: 'Privéberichten, een nieuwsfeed voor het bestuur en documentdeling, in hetzelfde platform als het bestuursdossier. Vertrouwelijke gesprekken blijven weg uit persoonlijke mailboxen en chatapps.',
+    heroAlt: 'Privéberichten in Dafira',
+    features: {
+      title: 'Berichten voor vertrouwelijk overleg',
+      lead: 'Bestuurders en secretaris wisselen berichten en bestanden uit waar de bestuursstukken al staan.',
+      columns: [
+        { icon: 'lock', title: 'End-to-end versleuteling', text: 'Berichten en bestanden worden versleuteld van verzender tot ontvanger.', items: ['Versleuteling van berichten en bestanden', 'Gehost op Microsoft Azure', 'Meervoudige authenticatie'] },
+        { icon: 'chat', title: 'Privéberichten', text: 'Realtime berichten voor vertrouwelijk bestuursoverleg.', items: ['Persoonlijke berichten', 'Groepsgesprekken', 'Berichten met vervaldatum'] },
+        { icon: 'folder', title: 'Beveiligd bestanden delen', text: 'Deel gevoelige documenten met toegangsbeheer.', items: ['Versleutelde overdracht', 'Toegangslogboek', 'Versiebeheer', 'Tijdelijke deellinks'] },
+      ],
+    },
+    tools: {
+      eyebrow: 'Tools',
+      title: 'Drie kanalen, één platform',
+      lead: 'Elk kanaal heeft zijn eigen doel, en alle kanalen volgen dezelfde toegangsregels.',
+      items: [
+        { icon: 'chat', title: 'Bestuurschat', text: 'Berichten voor de communicatie van het bestuur.', caps: [['Realtime berichten', 'Rechtstreekse communicatie tussen bestuursleden.'], ['Groepskanalen', 'Aparte ruimtes voor comités en werkgroepen.'], ['Berichtenbeheer', 'Vervaldatum van berichten en bewerkingsrechten.']] },
+        { icon: 'bell', title: 'Nieuwsfeed van het bestuur', text: 'Aankondigingen en updates voor het bestuur.', caps: [['Gerichte updates', 'Deel nieuws met bepaalde leden of comités.'], ['Bijlagen', 'Afbeeldingen, documenten en links, veilig gedeeld.'], ['Reacties', 'Reageer op updates binnen het platform.']] },
+        { icon: 'document', title: 'Documenten delen', text: 'Delen en samenwerken aan gevoelige documenten.', caps: [['Toegangsbeheer', 'Rechten voor inzage en bewerking.'], ['Versiegeschiedenis', 'Wijzigingen gevolgd met een volledige audittrail.'], ['Veilige weergave', 'Documenten lezen in de viewer, zonder ze te downloaden.']] },
+      ],
+    },
+    scenarios: {
+      eyebrow: 'Waarom het ertoe doet',
+      title: 'Situaties die besturen kennen, en hoe Dafira ermee omgaat',
+      lead: 'E-mail en chatapps voor consumenten zijn niet ontworpen voor de vertrouwelijkheid van een bestuur.',
+      with: 'Met Dafira',
+      items: [
+        { icon: 'mail', title: 'Een e-mail wordt doorgestuurd', text: 'Een bestuurder bespreekt de verloning van het management per e-mail. Het bericht wordt buiten het bestuur doorgestuurd en loongegevens verlaten het bedrijf.', points: ['Berichten kunnen niet buiten het platform worden doorgestuurd', 'Toegang beperkt tot gemachtigde bestuursleden', 'De audittrail toont wie wat gelezen heeft'] },
+        { icon: 'phone', title: 'Een persoonlijk toestel wordt gehackt', text: 'De chatapp van een bestuurder wordt gehackt, waardoor maanden bestuursoverleg over een mogelijke overname uitlekken.', points: ['Versleuteling beschermt de inhoud van berichten', 'Toegang kan worden ingetrokken voor een verloren of gehackt toestel', 'Berichten met vervaldatum beperken de blootstelling'] },
+        { icon: 'search', title: 'Een audit door de toezichthouder', text: 'Tijdens een AVG-audit kan het bestuur niet aantonen wie gevoelige documenten raadpleegde of wanneer belangrijke beslissingen werden meegedeeld.', points: ['Volledige audittrail met tijdstempels', 'Toegangslogboeken voor documenten en berichten', 'Exporteerbare rapporten voor de compliancedocumentatie'] },
+        { icon: 'globe', title: 'Een dringende beslissing op reis', text: 'De CEO heeft dringend de goedkeuring van het bestuur nodig, terwijl de bestuurders in verschillende tijdzones zitten en verschillende tools gebruiken.', points: ['Eén beveiligd platform, op elk toestel', 'Meldingen voor dringende zaken', 'Geïntegreerde stemming voor snelle beslissingen'] },
+      ],
+      note: 'Door het bestuursoverleg in het bestuursportaal te houden, beheert u de toegang op één plek en kunt u, wanneer dat gevraagd wordt, aantonen wat met wie gedeeld werd.',
+    },
+    security: {
+      title: 'Beveiligingsmaatregelen',
+      lead: 'De communicatietools delen de beveiliging van de rest van het platform.',
+      items: [
+        { icon: 'lock', title: 'Versleuteling', text: 'Berichten en bestanden zijn versleuteld, zodat alleen de leden met wie ze gedeeld zijn ze kunnen lezen.' },
+        { icon: 'clipboard', title: 'Audittrails', text: 'Communicatieactiviteit wordt gelogd, zodat u kunt aantonen wie wat raadpleegde en wanneer.' },
+        { icon: 'shield', title: 'Continue monitoring', text: 'Het platform draait op Microsoft Azure, met continue beveiligingsmonitoring en bescherming tegen ongeoorloofde toegang.' },
+      ],
+    },
+  },
+}[lang];
+---
+
+<PageHero eyebrow={copy.eyebrow} title={copy.title} lead={copy.lead}>
+  <Fragment slot="actions">
+    <Button href={localizePath(lang, '/request-demo')}>{c.demo}</Button>
+    <Button variant="secondary" href={localizePath(lang, '/security')}>{c.security}</Button>
+  </Fragment>
+  <Screenshot slot="aside" src="/onboarding-private-chat.png" alt={copy.heroAlt} eager />
+</PageHero>
+
+<Section>
+  <SectionHeader title={copy.features.title} lead={copy.features.lead} />
+  <FeatureColumns items={copy.features.columns} />
+</Section>
+
+<Section tone="surface" border="both">
+  <SectionHeader eyebrow={copy.tools.eyebrow} title={copy.tools.title} lead={copy.tools.lead} />
+  <CellGrid columns={3}>
+    {copy.tools.items.map((tool) => (
+      <div class="bg-white p-6 lg:p-8">
+        <Icon name={tool.icon} class="w-6 h-6 text-navy" />
+        <h3 class="mt-5 text-lg font-semibold text-navy">{tool.title}</h3>
+        <p class="mt-1 text-[15px] text-gray-600">{tool.text}</p>
+        <dl class="mt-6 space-y-4">
+          {tool.caps.map(([title, text]) => (
+            <div class="border-t border-line pt-3">
+              <dt class="font-medium text-ink">{title}</dt>
+              <dd class="mt-1 text-[15px] text-gray-600 leading-relaxed">{text}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    ))}
+  </CellGrid>
+</Section>
+
+<Section>
+  <SectionHeader eyebrow={copy.scenarios.eyebrow} title={copy.scenarios.title} lead={copy.scenarios.lead} />
+  <CellGrid columns={2}>
+    {copy.scenarios.items.map((s) => (
+      <div class="bg-white p-6 lg:p-8">
+        <div class="flex items-center gap-3">
+          <Icon name={s.icon} class="w-5 h-5 text-navy" />
+          <h3 class="text-lg font-semibold text-navy">{s.title}</h3>
+        </div>
+        <p class="mt-3 text-[15px] text-gray-600 leading-relaxed">{s.text}</p>
+        <p class="mt-5 font-mono text-xs uppercase tracking-[0.08em] text-gray-500">{copy.scenarios.with}</p>
+        <FeatureList items={s.points} class="mt-3" />
+      </div>
+    ))}
+  </CellGrid>
+  <Callout class="mt-8 max-w-3xl">{copy.scenarios.note}</Callout>
+</Section>
+
+<Section tone="surface" border="both">
+  <SectionHeader title={copy.security.title} lead={copy.security.lead} />
+  <FeatureColumns items={copy.security.items} />
+  <div class="pt-8 border-t border-line">
+    <Button variant="link" href={localizePath(lang, '/security')}>{c.security}</Button>
+  </div>
+</Section>
+
+<CustomerQuote customer="pierre" />
+
+<RelatedFeatures current="secure-communication" tone="surface" />
+
+<FeatureCTA />

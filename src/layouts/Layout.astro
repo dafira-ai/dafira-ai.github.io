@@ -17,7 +17,7 @@ interface Props {
 
 const {
   title,
-  description = "Govrn - Simplify Board Management Like Never Before. A smart platform to centralize your documents, automate tasks, and enhance collaboration.",
+  description = "Dafira - Simplify Board Management Like Never Before. A smart platform to centralize your documents, automate tasks, and enhance collaboration.",
   image = "/default_sharing_meta.jpg",
   structuredData = null,
   headerTransparent = false,
@@ -32,32 +32,31 @@ const url = canonicalUrl.href;
 const organisationStructuredData = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Govrn",
-  url: "https://govrn.com",
-  logo: "https://govrn.com/logo.webp",
+  name: "Dafira",
+  alternateName: "ضفيرة",
+  url: "https://dafira.ai",
+  logo: "https://dafira.ai/favicon-dafira.svg",
   description:
-    "Govrn is a smart platform to centralize your documents, automate tasks, and enhance collaboration.",
-  email: "info@govrn.com",
+    "Dafira is a smart platform to centralize your documents, automate tasks, and enhance collaboration.",
+  email: "info@dafira.ai",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Av. Roger Vandendriessche 18",
+    streetAddress: "Rue de l'Hôpital 31",
     addressLocality: "Brussels",
     addressCountry: "BE",
     addressRegion: "Brussels",
-    postalCode: "1150",
+    postalCode: "1000",
   },
   sameAs: [
     "https://www.linkedin.com/company/govrncorp/",
-    "https://twitter.com/govrncorp",
   ],
-  vatID: "BE0761625687",
 };
 
 const aggregateRating = {
   "@context": "https://schema.org",
   "@type": ["WebApplication", "MobileApplication"],
   operatingSystem: ["ANDROID", "IOS"],
-  name: "Govrn",
+  name: "Dafira",
   applicationCategory: "BusinessApplication",
   aggregateRating: {
     "@type": "AggregateRating",
@@ -71,24 +70,51 @@ const aggregateRating = {
   },
 };
 
-const currentLang =
-  canonicalPath.startsWith("/fr/") || canonicalPath.endsWith("/fr")
-    ? "fr"
-    : canonicalPath.startsWith("/nl/") || canonicalPath.endsWith("/nl")
-      ? "nl"
-      : "en";
+const LOCALES = ["fr", "nl", "ar"] as const;
+const currentLang: "en" | "fr" | "nl" | "ar" =
+  LOCALES.find(
+    (l) => canonicalPath === `/${l}` || canonicalPath.startsWith(`/${l}/`),
+  ) ?? "en";
+const dir = currentLang === "ar" ? "rtl" : "ltr";
+const htmlLang = currentLang;
+
+// hreflang alternates: only emitted for locales where the same page exists
+const pageFiles = Object.keys(import.meta.glob("/src/pages/**/*.{astro,md}"));
+const existingRoutes = new Set(
+  pageFiles.map((f) =>
+    f
+      .replace(/^\/src\/pages/, "")
+      .replace(/\.(astro|md)$/, "")
+      .replace(/\/index$/, "") || "/",
+  ),
+);
+const basePath =
+  canonicalPath.replace(/^\/(fr|nl|ar)(?=\/|$)/, "") || "/";
+const localized = (l: string) =>
+  l === "en" ? basePath : basePath === "/" ? `/${l}` : `/${l}${basePath}`;
+const alternates = ["en", ...LOCALES]
+  .map((l) => ({ lang: l, path: localized(l) }))
+  .filter((a) => existingRoutes.has(a.path));
+const hasDynamicRoutes = pageFiles.some((f) => f.includes("["));
+
 
 
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={htmlLang} dir={dir}>
   <head>
     <meta charset="UTF-8" />
+    <script is:inline>
+      // Motion is opt-in: without JS or with reduced motion, every vignette shows its final state.
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("motion-ok");
+    </script>
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon-dafira.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#0E2238" />
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -108,10 +134,14 @@ const currentLang =
     <link rel="dns-prefetch" href="https://px4.ads.linkedin.com" />
 
     <!-- Critical font preloading -->
-    <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/inter-500.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/inter-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/plex-sans-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/plex-sans-600.woff2" as="font" type="font/woff2" crossorigin />
+    {currentLang === "ar" && (
+      <>
+        <link rel="preload" href="/fonts/plex-sans-arabic-400.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="/fonts/plex-sans-arabic-600.woff2" as="font" type="font/woff2" crossorigin />
+      </>
+    )}
     
     <!-- Critical image preloading handled by Astro Image optimization -->
     
@@ -140,6 +170,8 @@ const currentLang =
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Dafira" />
+    <meta property="og:locale" content={{ en: "en_GB", fr: "fr_BE", nl: "nl_BE", ar: "ar_SA" }[currentLang]} />
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -153,6 +185,12 @@ const currentLang =
     <meta property="twitter:image" content={image} />
 
     <link rel="canonical" href={url} />
+    {alternates.length > 1 && alternates.map((a) => (
+      <link rel="alternate" hreflang={a.lang} href={new URL(a.path, Astro.site).href} />
+    ))}
+    {alternates.length > 1 && (
+      <link rel="alternate" hreflang="x-default" href={new URL(localized("en"), Astro.site).href} />
+    )}
     <meta name="facebook-domain-verification" content="m7cig2634o3mwaduxoewzojnrd6xuo" />
     <!-- Inline critical fonts CSS -->
     <style set:html={criticalFontsCSS}></style>
@@ -214,49 +252,33 @@ const currentLang =
 
     <CookieBanner />
 
-    <!-- Sticky Trial Button -->
-    <a
-      href={currentLang === "fr"
-        ? "/fr/request-demo"
-        : currentLang === "nl"
-          ? "/nl/request-demo"
-          : "/request-demo"}
-      class="z-1000 fixed top-2 right-8 z-40 px-4 py-2.5 text-sm font-semibold rounded-full text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 group hover:scale-105 active:scale-95"
-    >
-      <svg
-        class="w-4 h-4"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-      </svg>
-      <span
-        >{
-          currentLang === "fr"
-            ? "Parler à un expert"
-            : currentLang === "nl"
-              ? "Praat met een expert"
-              : "Talk to an expert"
-        }</span
-      >
-      <svg
-        class="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-300"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M9 5l7 7-7 7"></path>
-      </svg>
-    </a>
+    <script>
+      // Play-once vignettes: [data-play] gets .is-playing when a third of it is visible.
+      const root = document.documentElement;
+      const vignettes = document.querySelectorAll<HTMLElement>("[data-play]");
+      const play = (el: HTMLElement) => {
+        el.classList.remove("is-playing");
+        void el.offsetWidth; // restart CSS animations
+        el.classList.add("is-playing");
+      };
+      if (root.classList.contains("motion-ok") && "IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => entries.forEach((e) => {
+            if (e.isIntersecting) { play(e.target as HTMLElement); io.unobserve(e.target); }
+          }),
+          { threshold: 0.35 },
+        );
+        vignettes.forEach((el) => io.observe(el));
+      } else {
+        vignettes.forEach((el) => el.classList.add("is-playing"));
+      }
+      document.querySelectorAll<HTMLButtonElement>("[data-replay]").forEach((btn) =>
+        btn.addEventListener("click", () => {
+          const target = btn.closest<HTMLElement>("[data-play]");
+          if (target) play(target);
+        }),
+      );
+    </script>
 
     <!-- Google Tag Manager (noscript) -->
     <noscript
@@ -272,16 +294,139 @@ const currentLang =
 
 <style is:global>
   :root {
-    --accent: 37, 99, 235;
-    --accent-light: 96, 165, 250;
-    --accent-dark: 30, 58, 138;
+    --navy: 14 34 56;
+    --brand: 29 95 166;
+    --ink: 19 26 36;
+    --line: 217 222 229;
+    --surface: 246 247 249;
   }
   html {
-    font-family: "Inter", system-ui, sans-serif;
+    font-family: "Dafira Sans", "Dafira Emoji", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: rgb(var(--ink));
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
   body {
     margin: 0;
     padding: 0;
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+    letter-spacing: -0.015em;
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--brand));
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: rgb(var(--brand) / 0.18);
+  }
+
+  /* ---- Motion: state changes only, no decorative loops ---- */
+  .animate-bounce,
+  .animate-bounce-slow,
+  .animate-float,
+  .animate-pulse-slow {
+    animation: none !important;
+  }
+  /* legacy hover halos (blurred gradients behind cards) */
+  .blur-xl,
+  .blur-2xl,
+  .blur-3xl {
+    display: none !important;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ---- Play-once vignettes ----
+     [data-play] container, [data-step] children. --d = delay in ms.
+     data-step="" fade-up 8px · "fade" opacity · "grow" progress bar · "draw" check mark · "out" element that leaves.
+     Base styles are the final state; hiding only happens under .motion-ok. */
+  @keyframes df-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @keyframes df-fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes df-out { from { opacity: 1; } to { opacity: 0; visibility: hidden; } }
+  @keyframes df-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes df-draw { from { stroke-dashoffset: 24; } to { stroke-dashoffset: 0; } }
+  @keyframes df-dot { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+
+  [data-step="out"] { visibility: hidden; }
+  [data-step="grow"] { transform-origin: left center; }
+  [dir="rtl"] [data-step="grow"] { transform-origin: right center; }
+  [data-step="draw"] path { stroke-dasharray: 24; }
+  .swap { display: inline-grid; }
+  .swap > * { grid-area: 1 / 1; }
+  [data-replay] { display: none; }
+
+  .motion-ok [data-replay] { display: inline-flex; }
+  .motion-ok [data-play]:not(.is-playing) [data-step]:not([data-step="out"]) { opacity: 0; }
+  .motion-ok [data-play] [data-step="out"] { visibility: visible; }
+  .motion-ok [data-play]:not(.is-playing) [data-step="grow"] { transform: scaleX(0); }
+  .motion-ok [data-play].is-playing [data-step] {
+    animation: df-in 240ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+    animation-delay: calc(var(--d, 0) * 1ms);
+  }
+  .motion-ok [data-play].is-playing [data-step="fade"] { animation-name: df-fade; }
+  .motion-ok [data-play].is-playing [data-step="out"] { animation: df-out 160ms ease-out both; animation-delay: calc(var(--d, 0) * 1ms); }
+  .motion-ok [data-play].is-playing [data-step="grow"] {
+    animation: df-grow var(--dur, 900ms) cubic-bezier(0.4, 0, 0.2, 1) both;
+    animation-delay: calc(var(--d, 0) * 1ms);
+  }
+  .motion-ok [data-play].is-playing [data-step="draw"] { animation-name: df-fade; animation-duration: 1ms; }
+  .motion-ok [data-play].is-playing [data-step="draw"] path {
+    animation: df-draw 320ms cubic-bezier(0.4, 0, 0.2, 1) both;
+    animation-delay: calc(var(--d, 0) * 1ms);
+  }
+  /* typing indicator: a short, finite pulse while the answer is being prepared */
+  .motion-ok [data-play].is-playing .typing i { animation: df-dot 600ms ease-in-out 2; }
+  .motion-ok [data-play].is-playing .typing i:nth-child(2) { animation-delay: 120ms; }
+  .motion-ok [data-play].is-playing .typing i:nth-child(3) { animation-delay: 240ms; }
+
+  /* ---- Right-to-left (Arabic) ---- */
+  /* Arabic is a connected script: tracking breaks letter joins, and it has no case or italics. */
+  :lang(ar) {
+    letter-spacing: 0 !important;
+    font-style: normal !important;
+    text-transform: none !important;
+    line-height: 1.75;
+  }
+  :lang(ar) h1, :lang(ar) h2, :lang(ar) h3, :lang(ar) h4 {
+    line-height: 1.35;
+    letter-spacing: 0 !important;
+  }
+  :lang(ar) * {
+    letter-spacing: 0 !important;
+  }
+  /* Plex Mono has no Arabic and a fixed-width space: Arabic labels use the sans instead */
+  :lang(ar) .font-mono {
+    font-family: "Dafira Sans", system-ui, sans-serif;
+  }
+  /* Directional icons (arrows, chevrons) mirror in RTL; logos, play and check icons do not. */
+  [dir="rtl"] .rtl-flip,
+  [dir="rtl"] svg:has(> path[d="M13 7l5 5m0 0l-5 5m5-5H6"]),
+  [dir="rtl"] svg:has(> path[d="M9 5l7 7-7 7"]),
+  [dir="rtl"] svg:has(> path[d="M15 19l-7-7 7-7"]),
+  [dir="rtl"] svg:has(> path[d="M17 8l4 4m0 0l-4 4m4-4H3"]),
+  [dir="rtl"] svg:has(> path[d="M14 5l7 7m0 0l-7 7m7-7H3"]),
+  [dir="rtl"] svg:has(> path[d="M5 12h14M12 5l7 7-7 7"]),
+  [dir="rtl"] svg:has(> path[d="M10 19l-7-7m0 0l7-7m-7 7h18"]) {
+    transform: scaleX(-1);
+  }
+  [dir="rtl"] .group:hover .group-hover\:translate-x-1 {
+    --tw-translate-x: -0.25rem;
+  }
+  /* Latin-only values (emails, URLs, phone numbers, codes) keep LTR inside Arabic text */
+  [dir="rtl"] input[type="email"],
+  [dir="rtl"] input[type="url"],
+  [dir="rtl"] input[type="tel"],
+  [dir="rtl"] .ltr {
+    direction: ltr;
+    text-align: end;
   }
 </style>

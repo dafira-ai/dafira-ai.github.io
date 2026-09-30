@@ -1,4 +1,7 @@
 ---
+// Annotations and comments on a page of the board pack: text and list on one side, a small static mock-up on the other.
+import { Section, SectionHeader, Icon } from '../../ui';
+
 interface Props {
   texts?: {
     title: string;
@@ -14,153 +17,70 @@ interface Props {
       };
       content: string;
     }>;
+    /** eyebrow above the title */
+    eyebrow?: string;
+    /** sample lines of the annotated document */
+    documentLines?: string[];
   };
+  tone?: 'white' | 'surface';
 }
 
-const { texts = {
-  title: "Live Annotation & Comments",
-  description: "Experience real-time collaboration with instant annotations and comments. See changes as they happen and engage in meaningful discussions right within your documents.",
+const { tone = 'surface', texts = {
+  eyebrow: "Annotations",
+  title: "Annotations and comments on the page",
+  description: "Directors highlight and annotate the documents they read. Comments shared with the board appear next to the passage they refer to, so the discussion stays attached to the text.",
   features: [
-    {
-      text: "Instant visibility for all participants",
-      icon: "👥"
-    },
-    {
-      text: "Rich text formatting and threading", 
-      icon: "✨"
-    },
-    {
-      text: "AI-powered comment suggestions",
-      icon: "🤖"
-    },
-    {
-      text: "Complete annotation history",
-      icon: "📝"
-    }
+    { text: "Comments visible to all participants of the meeting", icon: "users" },
+    { text: "Threaded replies", icon: "chat" },
+    { text: "Complete annotation history", icon: "clipboard" }
   ],
   comments: [
-    {
-      author: {
-        name: "John Doe",
-        initials: "JD"
-      },
-      content: "Great point here!"
-    },
-    {
-      author: {
-        name: "Alice Smith", 
-        initials: "AS"
-      },
-      content: "Should we add more context?"
-    }
+    { author: { name: "John Doe", initials: "JD" }, content: "Good point here." },
+    { author: { name: "Alice Smith", initials: "AS" }, content: "Should we add more context?" }
+  ],
+  documentLines: [
+    "The committee reviewed the internal audit plan for the year.",
+    "Two findings from the previous audit remain open.",
+    "Management will present a remediation plan at the next meeting."
   ]
 }} = Astro.props;
+
+const lines = texts.documentLines ?? [];
 ---
 
-<section class="py-20 bg-gray-50 overflow-hidden">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <div>
-        <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">
-          {texts.title}
-        </h2>
-        <div class="relative mb-8">
-          <p class="text-xl text-gray-600 leading-relaxed max-w-2xl">
-            {texts.description}
-          </p>
+<Section tone={tone} border={tone === 'surface' ? 'both' : 'none'}>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+    <div class="lg:col-span-5">
+      <SectionHeader layout="stacked" eyebrow={texts.eyebrow} title={texts.title} lead={texts.description} class="mb-8" />
+      <ul class="border-t border-line">
+        {texts.features.map((feature) => (
+          <li class="flex items-center gap-4 py-4 border-b border-line">
+            <Icon name={feature.icon} class="w-5 h-5 text-navy" />
+            <span class="text-gray-700">{feature.text}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="lg:col-span-6 lg:col-start-7" aria-hidden="true" data-play>
+      <div class="bg-white border border-line rounded-md p-6 lg:p-8 text-sm">
+        <div class="space-y-4">
+          {lines.map((line, i) => (
+            <p class="text-gray-700 leading-relaxed"><span class:list={[i === 1 && 'bg-amber-50 border-b-2 border-amber-500']}>{line}</span></p>
+          ))}
         </div>
-        
-        <!-- Animated Feature List -->
-        <div class="space-y-8">
-          {texts.features.map((feature, index) => (
-            <div 
-              class="flex items-center space-x-6 animate-slide-in hover:translate-x-2 transition-transform duration-200" 
-            >
-              <div class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
-                <span class="text-2xl">{feature.icon}</span>
+        <div class="mt-8 grid sm:grid-cols-2 gap-3">
+          {texts.comments.map((comment, i) => (
+            <div class="border border-line rounded-sm p-3 bg-surface" data-step style={`--d:${200 + i * 200}`}>
+              <div class="flex items-center gap-2">
+                <span class:list={['w-6 h-6 rounded-full text-white text-[10px] grid place-items-center', i === 0 ? 'bg-navy' : 'bg-primary']}>{comment.author.initials}</span>
+                <span class="text-xs font-medium text-navy">{comment.author.name}</span>
               </div>
-              <span class="text-lg text-gray-700 font-medium">{feature.text}</span>
+              <p class="mt-2 text-[13px] text-gray-700">{comment.content}</p>
             </div>
           ))}
         </div>
       </div>
-
-      <!-- Interactive Demo -->
-      <div class="relative">
-        <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl transform rotate-3"></div>
-        
-        <!-- Document Preview -->
-        <div class="relative bg-white rounded-xl shadow-xl p-6 border border-gray-100">
-          <!-- Annotation Bubbles -->
-          <div class="absolute -left-4 top-1/4 animate-float z-10">
-            <div class="bg-white rounded-lg p-3 shadow-lg border border-gray-100">
-              <div class="flex items-start space-x-2">
-                <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                  {texts.comments[0].author.initials}
-                </div>
-                <div>
-                  <p class="text-sm text-gray-900 font-medium">{texts.comments[0].author.name}</p>
-                  <p class="text-sm text-gray-600">{texts.comments[0].content}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="absolute -right-4 bottom-1/4 animate-float-delayed z-10">
-            <div class="bg-white rounded-lg p-3 shadow-lg border border-gray-100">
-              <div class="flex items-start space-x-2">
-                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-                  {texts.comments[1].author.initials}
-                </div>
-                <div>
-                  <p class="text-sm text-gray-900 font-medium">{texts.comments[1].author.name}</p>
-                  <p class="text-sm text-gray-600">{texts.comments[1].content}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Document Content -->
-          <div class="space-y-4">
-            <div class="h-4 bg-gray-100 rounded w-3/4 animate-pulse"></div>
-            <div class="h-4 bg-gray-100 rounded w-1/2 animate-pulse"></div>
-            <div class="h-4 bg-gray-100 rounded w-5/6 animate-pulse"></div>
-            <div class="h-4 bg-gray-100 rounded w-2/3 animate-pulse"></div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
-</section>
-
-<style>
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
-  .animate-slide-in {
-    opacity: 0;
-    animation: slideIn 0.5s ease-out forwards;
-  }
-
-  .animate-float {
-    animation: float 4s ease-in-out infinite;
-  }
-
-  .animate-float-delayed {
-    animation: float 4s ease-in-out infinite;
-    animation-delay: 2s;
-  }
-</style>
+</Section>

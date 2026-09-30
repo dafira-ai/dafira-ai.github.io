@@ -3,92 +3,32 @@ import Layout from '../../layouts/Layout.astro';
 import PreviewCard from '../../components/templates/minutes/PreviewCard.astro';
 import TemplateForm from '../../components/templates/minutes/TemplateForm.astro';
 import FeatureComparison from '../../components/templates/minutes/FeatureComparison.astro';
+import { PageHero, Section, CellGrid } from '../../components/ui';
 
 const previews = [
-  {
-    title: "Structured Format",
-    description: "Clear sections for agenda items, discussions, and decisions",
-    emoji: "📋"
-  },
-  {
-    title: "Compliance Ready",
-    description: "Meets regulatory requirements for board documentation",
-    emoji: "⚖️"
-  }
-];
-
-const stats = [
-  { value: "1,000+", label: "Downloads This Month" },
-  { value: "4.9/5", label: "User Rating" },
-  { value: "100%", label: "Compliance Ready" }
+  { title: "Structured format", description: "Clear sections for agenda items, discussions and decisions", icon: "list" },
+  { title: "Compliance guidance", description: "Notes on the documentation boards are expected to keep", icon: "scale" }
 ];
 ---
 
-<Layout 
-  title="Free Board Meeting Minutes Template | Professional Format [2025]"
-  description="Download our professional board meeting minutes template. Free, comprehensive format trusted by leading organizations. Includes best practices and compliance guidance."
+<Layout
+  title="Free Board Meeting Minutes Template | Professional Format"
+  description="Download a free board meeting minutes template with clear sections for agenda items, discussions and decisions, plus guidance on good practice and compliance."
 >
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
+  <main>
+    <PageHero eyebrow="Free template" title="Board meeting minutes template" lead="A clear, ready-to-use structure for your board minutes, with guidance on good practice and documentation requirements.">
+      <CellGrid columns={2} class="mt-10">
+        {previews.map((preview) => <PreviewCard {...preview} />)}
+      </CellGrid>
+      <TemplateForm slot="aside" />
+    </PageHero>
+
+    <Section space="md">
+      <div class="max-w-2xl mb-12">
+        <h2 class="text-3xl lg:text-4xl font-semibold text-navy leading-tight">A good start. Dafira covers the rest.</h2>
+        <p class="mt-4 text-lg text-gray-600 leading-relaxed">From the recording to signed minutes, in one place.</p>
       </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-green-100 text-green-800 mb-8">
-              Free Download • No Credit Card Required
-            </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Professional Board Meeting
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                Minutes Template
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-8">
-              Download our comprehensive, easy-to-use template trusted by board secretaries worldwide. Includes best practices and compliance guidance.
-            </p>
-
-            <!-- Stats -->
-            <div class="grid grid-cols-3 gap-8 mb-12">
-              {stats.map(stat => (
-                <div>
-                  <div class="text-3xl font-bold text-primary mb-1">{stat.value}</div>
-                  <div class="text-sm text-gray-600">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            <!-- Preview Cards -->
-            <div class="grid grid-cols-2 gap-4">
-              {previews.map(preview => (
-                <PreviewCard {...preview} />
-              ))}
-            </div>
-          </div>
-
-          <TemplateForm />
-        </div>
-      </div>
-    </section>
-
-    <!-- Comparison Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">
-            Good Start, But Why Stop There?
-          </h2>
-          <p class="text-xl text-gray-600">
-            See how Govrn transforms the entire minutes process
-          </p>
-        </div>
-
-        <FeatureComparison />
-
-        
-    </section>
+      <FeatureComparison />
+    </Section>
   </main>
 </Layout>

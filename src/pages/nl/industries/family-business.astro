@@ -1,447 +1,95 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import CTA from '../../../components/CTA.astro';
+import FamilyBusinessLanding, { type FamilyBusinessContent } from '../../../components/industries/FamilyBusinessLanding.astro';
 
-const challenges = [
-  {
-    title: "Meerdere besturen in holdings en operationele bedrijven",
-    description: "Beheer governance over complexe groepsstructuren met gemak",
-    icon: "🏢"
+const content: FamilyBusinessContent = {
+  hero: {
+    eyebrow: 'Familiebedrijf',
+    title: 'Governancesoftware voor familiebedrijven',
+    lead: 'Beheer van bestuur en familieraad voor familiebedrijven met meerdere entiteiten.',
+    screenshotAlt: 'Documentenbibliotheek van Dafira, geordend per vergadering',
   },
-  {
-    title: "Familieraden naast formele besturen",
-    description: "Coördineer meerdere governance-organen in één platform",
-    icon: "👥"
+  intro: {
+    title: 'Governance groeit mee met de familie en de groep',
+    paragraphs: [
+      'Familiebedrijven zijn vaak actief over meerdere entiteiten, generaties en bestuursorganen heen. Naarmate de structuur groeit, wordt governance moeilijker te beheren met e-mail, gedeelde schijven en informele processen.',
+      'Dafira is een platform voor bestuurs- en governancebeheer dat familiebedrijven ondersteunt met een duidelijke structuur, beveiligde samenwerking en gedocumenteerde besluitvorming, zonder onnodige complexiteit toe te voegen.',
+    ],
   },
-  {
-    title: "Overlappende rollen en gevoelige informatie",
-    description: "Beheer toegang met strikte rechten en audittrails",
-    icon: "🔒"
-  }
-];
-
-const features = [
-  {
-    title: "Multi-Entiteit Governance",
-    description: "Beheer besturen, familieraden en commissies onafhankelijk met eigen leden, agenda's en rechten",
-    icon: "📊"
+  challenges: {
+    title: 'Governance-uitdagingen in familiebedrijven',
+    lead: 'Familiebedrijven hebben te maken met governance-uitdagingen die verschillen van die van andere ondernemingen.',
+    items: [
+      { icon: 'building', title: 'Meerdere besturen in holding- en werkmaatschappijen', text: 'Governance beheren over groepsstructuren heen.' },
+      { icon: 'users', title: 'Familieraden naast formele besturen', text: 'Meerdere bestuursorganen coördineren in één platform.' },
+      { icon: 'lock', title: 'Overlappende rollen en gevoelige informatie', text: 'Toegang beheren met strikte rechten en audittrails.' },
+    ],
+    consequencesIntro: 'Zonder een gestructureerd governancesysteem leidt dit vaak tot:',
+    consequences: ['Beperkte zichtbaarheid en traceerbaarheid', 'Kennisverlies tussen generaties', 'Inconsistente documentatie', 'Verhoogd juridisch en operationeel risico'],
   },
-  {
-    title: "Veilige Toegangscontrole",
-    description: "Rolgebaseerde rechten, documentbeveiliging en volledige audittrails voor vertrouwelijke familiebedrijfsgovernance",
-    icon: "🔐"
+  bodies: {
+    title: 'Eén platform voor alle bestuursorganen van de familie',
+    lead: 'Dafira brengt de governance van familiebedrijven samen in één beveiligde omgeving.',
+    intro: 'U kunt beheren:',
+    items: ['Raden van bestuur (holding en dochterondernemingen)', 'Familieraden', 'Adviesraden', 'Investerings-, audit- of remuneratiecomités'],
+    outro: [
+      'Elk bestuursorgaan werkt afzonderlijk, met eigen leden en rollen, agenda’s en vergaderplanning, documenten en bestuursdossiers, en toegangs- en rechteninstellingen.',
+      'Zo kunnen familiebedrijven hun governance uitbreiden zonder versnippering.',
+    ],
+    features: [
+      { icon: 'layers', title: 'Governance over meerdere entiteiten', text: 'Besturen, familieraden en comités afzonderlijk beheren, elk met eigen leden, agenda’s en rechten.' },
+      { icon: 'lock', title: 'Beveiligd toegangsbeheer', text: 'Rolgebaseerde rechten, beveiliging op documentniveau en volledige audittrails voor vertrouwelijke familiegovernance.' },
+      { icon: 'document', title: 'Gestructureerde besluitvorming', text: 'Notulen opgesteld met AI, opvolging van acties en een doorzoekbare governancehistoriek voor continuïteit op lange termijn.' },
+    ],
   },
-  {
-    title: "Gestructureerde Besluitvorming",
-    description: "AI-gegenereerde notulen, actieopvolging en doorzoekbare governance-geschiedenis voor continuïteit op lange termijn",
-    icon: "📝"
-  }
-];
-
-const benefits = [
-  {
-    title: "Generatiecontinuïteit",
-    description: "Bewaar governance-geschiedenis en verminder afhankelijkheid van informele kennis",
-    icon: "🔄"
+  access: {
+    title: 'Beveiligde toegang voor familieleden en externe bestuurders',
+    lead: 'Familiebedrijven combineren vaak familiale belanghebbenden met onafhankelijke bestuursleden en adviseurs.',
+    intro: 'Dafira biedt:',
+    items: ['Rolgebaseerde toegang per bestuur of comité', 'Rechten op documentniveau', 'Volledige audittrails en versiegeschiedenis', 'Beveiligde samenwerking zonder gedeelde schijven of e-mailbijlagen'],
+    outro: 'Zo blijft informatie vertrouwelijk, met transparantie waar dat nodig is.',
   },
-  {
-    title: "Professionele Werking",
-    description: "Gecentraliseerde agenda's, bestuurspakketten en gedocumenteerde beslissingen zonder complexiteit",
-    icon: "✅"
+  meetings: {
+    title: 'Gestructureerde vergaderingen en gedocumenteerde besluiten',
+    lead: 'Dafira helpt familiebedrijven de werking van hun bestuur te professionaliseren, praktisch en zonder zwaarte.',
+    intro: 'De belangrijkste mogelijkheden:',
+    items: ['Centrale agenda’s en bestuursdossiers', 'Opvolging van besluiten en acties', 'Beveiligde bewaring van historische governancedocumenten', 'Notulen opgesteld met AI om het administratieve werk te verminderen'],
+    outro: 'Alle governanceactiviteit is gedocumenteerd, doorzoekbaar en toegankelijk voor bevoegde gebruikers.',
   },
-  {
-    title: "Gebouwd voor Familiebedrijven",
-    description: "Ondersteuning voor complexe structuren, meerdere besturen en governance-veerkracht op lange termijn",
-    icon: "🏛️"
-  }
-];
+  continuity: {
+    title: 'Continuïteit over generaties heen',
+    lead: 'Wanneer een familiebedrijf overgaat naar een volgende generatie, wordt continuïteit essentieel.',
+    items: [
+      { icon: 'refresh', title: 'Continuïteit tussen generaties', text: 'De governancehistoriek bewaren en minder afhankelijk zijn van informele kennis.' },
+      { icon: 'checkCircle', title: 'Professionele werking', text: 'Centrale agenda’s, bestuursdossiers en gedocumenteerde besluiten, zonder complexiteit.' },
+      { icon: 'family', title: 'Gebouwd voor familiebedrijven', text: 'Ondersteuning voor groepsstructuren, meerdere besturen en governance op lange termijn.' },
+    ],
+    intro: 'Dafira ondersteunt dit door:',
+    list: ['Governancehistoriek en besluiten doorheen de tijd te bewaren', 'Rollen en verantwoordelijkheden te verduidelijken', 'De afhankelijkheid van informele kennisdragers te verminderen', 'Een consistent governancekader over entiteiten heen te bieden'],
+    outro: 'Zo wordt governance veerkrachtiger, ongeacht wijzigingen in de leiding.',
+  },
+  why: {
+    title: 'Gebouwd voor familiebedrijven met meerdere entiteiten',
+    lead: 'Anders dan algemene samenwerkingstools is Dafira gebouwd voor governance.',
+    intro: 'Familiebedrijven kiezen voor Dafira omdat het ondersteunt:',
+    items: ['Groepsstructuren', 'Meerdere besturen binnen één organisatie', 'Governancecontinuïteit op lange termijn', 'Beveiligde bestuurswerking'],
+    outro: 'Dafira past zich aan bestaande governancestructuren aan in plaats van een vooraf bepaald model op te leggen.',
+  },
+  users: {
+    title: 'Wie gebruikt Dafira in familiebedrijven?',
+    intro: 'Dafira wordt gebruikt door:',
+    items: ['Familieaandeelhouders', 'Voorzitters en bestuursleden', 'Leden van de familieraad', 'CEO’s en directieteams', 'Externe bestuurders en adviseurs', 'Company secretaries en bestuurssecretarissen'],
+    outro: 'Elke gebruiker ziet alleen wat relevant is voor zijn of haar rol.',
+  },
+  cta: {
+    title: 'Governance voor familiebedrijven, praktisch aangepakt',
+    subtitle: 'Dafira helpt familiebedrijven hun governance te beheren met duidelijkheid, structuur en veiligheid, zonder er een consultancyproject van te maken.',
+  },
+};
 ---
 
-<Layout title="Familiebedrijf Governance Software | Govrn" description="Bestuurs- en familieraadsbeheer voor multi-entiteit familiebedrijven. Professionele governance zonder complexiteit.">
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Familiebedrijf
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Governance Software voor
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Familiebedrijven
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed mb-4">
-            Bestuurs- en familieraadsbeheer voor multi-entiteit familiebedrijven
-          </p>
-          <p class="text-lg text-gray-600 leading-relaxed mb-12">
-            Familiebedrijven opereren vaak over meerdere entiteiten, generaties en governance-organen. Naarmate structuren groeien, wordt governance moeilijker te beheren met e-mail, gedeelde schijven en informele processen.
-          </p>
-          <p class="text-lg text-gray-600 leading-relaxed mb-12">
-            Govrn is een bestuurs- en governance-managementplatform ontworpen om familiebedrijven te ondersteunen met duidelijke structuur, veilige samenwerking en gedocumenteerde besluitvorming — zonder onnodige complexiteit toe te voegen.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/nl/request-demo"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Demo aanvragen
-            </a>
-            <a
-              href="/nl/try"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-            >
-              Gratis proberen
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Challenges Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Governance-uitdagingen in familiebedrijven
-          </h2>
-          <p class="text-xl text-gray-600">
-            Familiebedrijven worden geconfronteerd met governance-uitdagingen die verschillen van traditionele bedrijven
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="mt-12 max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Zonder een gestructureerd governance-systeem leidt dit vaak tot:</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Beperkte zichtbaarheid en traceerbaarheid</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Kennisverlies tussen generaties</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Inconsistente documentatie</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Verhoogd juridisch en operationeel risico</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Eén platform voor alle familiegovernance-organen
-          </h2>
-          <p class="text-xl text-gray-600">
-            Govrn centraliseert governance van familiebedrijven in één veilige omgeving
-          </p>
-        </div>
-
-        <div class="mb-12 max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>U kunt beheren:</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Raden van bestuur (holding en dochterondernemingen)</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Familieraden</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Adviesraden</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Investerings-, audit- of remuneratiecomités</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            Elk governance-orgaan opereert onafhankelijk, met eigen leden en rollen, agenda's en vergaderplanningen, documenten en bestuurspakketten, en toegangs- en rechtenbeheer.
-          </p>
-          <p class="text-gray-600 mt-4">
-            Dit stelt familiebedrijven in staat om governance op te schalen zonder fragmentatie.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Secure Access Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Veilige toegang voor familieleden en externe bestuurders
-          </h2>
-          <p class="text-xl text-gray-600">
-            Familiebedrijven combineren vaak familieaandeelhouders met onafhankelijke bestuursleden en adviseurs
-          </p>
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Govrn biedt:</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Rolgebaseerde toegang per bestuur of comité</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Rechten op documentniveau</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Volledige audittrails en versiegeschiedenis</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Veilige samenwerking zonder gedeelde schijven of e-mailbijlagen</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            Dit garandeert vertrouwelijkheid en handhaaft tegelijkertijd transparantie waar nodig.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Structured Meetings Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Gestructureerde vergaderingen en gedocumenteerde beslissingen
-          </h2>
-          <p class="text-xl text-gray-600">
-            Govrn helpt familiebedrijven bestuursactiviteiten te professionaliseren terwijl het praktisch en lichtgewicht blijft
-          </p>
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Belangrijkste mogelijkheden zijn:</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Gecentraliseerde agenda's en bestuurspakketten</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Opvolging van beslissingen en acties</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Veilige opslag van historische governance-documenten</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>AI-gegenereerde notulen om administratieve inspanningen te verminderen</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            Alle governance-activiteiten worden gedocumenteerd, zijn doorzoekbaar en toegankelijk voor geautoriseerde gebruikers.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Ondersteuning van continuïteit over generaties heen
-          </h2>
-          <p class="text-xl text-gray-600">
-            Naarmate familiebedrijven overgaan tussen generaties, wordt continuïteit cruciaal
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8 mb-12">
-          {benefits.map(benefit => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{benefit.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{benefit.title}</h3>
-              <p class="text-gray-600">{benefit.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Govrn ondersteunt dit door:</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Governance-geschiedenis en beslissingen over tijd te bewaren</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Duidelijkheid te creëren over rollen en verantwoordelijkheden</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Afhankelijkheid van informele kennisdragers te verminderen</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Een consistent governance-raamwerk over entiteiten heen te bieden</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            Dit maakt governance veerkrachtiger — ongeacht leiderschapsveranderingen.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Why Choose Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Gebouwd voor multi-entiteit familiebedrijfsstructuren
-          </h2>
-          <p class="text-xl text-gray-600">
-            In tegenstelling tot generieke samenwerkingstools is Govrn specifiek gebouwd voor governance
-          </p>
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Familiebedrijven kiezen voor Govrn omdat het ondersteunt:</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Complexe groepsstructuren</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Meerdere besturen binnen één organisatie</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Governance-continuïteit op lange termijn</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Veilige, conforme bestuursactiviteiten</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            Govrn past zich aan bestaande governance-structuren aan in plaats van een voorgedefinieerd model op te leggen.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Who Uses Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Wie gebruikt Govrn in familiebedrijven?
-          </h2>
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Govrn wordt gebruikt door:</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Familieaandeelhouders</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Voorzitters en bestuursleden</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Familieraadsleden</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>CEO's en leidinggevende teams</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Externe bestuurders en adviseurs</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Corporate en bestuurssecretarissen</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            Elke gebruiker ziet alleen wat relevant is voor hun rol.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Final CTA Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Governance voor familiebedrijven, praktisch gemaakt
-          </h2>
-          <p class="text-xl text-gray-600 mb-8">
-            Govrn helpt familiebedrijven governance te beheren met duidelijkheid, structuur en veiligheid — zonder governance in een consultancyproject te veranderen.
-          </p>
-          <p class="text-lg text-gray-600 mb-8">
-            Eén platform. Alle governance-organen. Continuïteit op lange termijn.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Governancesoftware voor familiebedrijven | Dafira" description="Beheer van bestuur en familieraad voor familiebedrijven met meerdere entiteiten. Gestructureerde governance zonder complexiteit.">
+  <main>
+    <FamilyBusinessLanding content={content} />
   </main>
 </Layout>

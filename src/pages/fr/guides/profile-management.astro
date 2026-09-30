@@ -1,6 +1,8 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import GuideHeader from '../../../components/guides/GuideHeader.astro';
+import GuideArticle from '../../../components/guides/GuideArticle.astro';
+import { Button, Icon } from '../../../components/ui';
 import GuideStep from '../../../components/guides/GuideStep.astro';
 import GuideSubSection from '../../../components/guides/GuideSubSection.astro';
 import GuideStepList from '../../../components/guides/GuideStepList.astro';
@@ -48,13 +50,13 @@ const profilePictureSteps = [
 ];
 ---
 
-<Layout title="Gestion de votre Profil - Govrn">
-  <main class="pt-24">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <GuideHeader
+<Layout title="Gestion de votre Profil - Dafira">
+  <main>
+    <GuideHeader
         title="Personnalisez votre Profil Administrateur"
-        description="Guide complet pour gérer vos informations personnelles, coordonnées et paramètres de sécurité sur Govrn."
+        description="Guide complet pour gérer vos informations personnelles, coordonnées et paramètres de sécurité sur Dafira."
       />
+    <GuideArticle>
 
       <GuideStep
         number={1}
@@ -70,23 +72,23 @@ const profilePictureSteps = [
         />
 
         <GuideSubSection title="Données du Profil">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <div class="grid md:grid-cols-2 gap-4">
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Informations Principales</h4>
+                <h4 class="font-semibold text-navy mb-2">Informations Principales</h4>
                 <ul class="text-sm text-gray-600 space-y-1">
-                  <li>• Nom complet</li>
-                  <li>• Fonction</li>
-                  <li>• Organisation</li>
-                  <li>• Fuseau horaire</li>
+                  <li>Nom complet</li>
+                  <li>Fonction</li>
+                  <li>Organisation</li>
+                  <li>Fuseau horaire</li>
                 </ul>
               </div>
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Coordonnées</h4>
+                <h4 class="font-semibold text-navy mb-2">Coordonnées</h4>
                 <ul class="text-sm text-gray-600 space-y-1">
-                  <li>• Adresse e-mail</li>
-                  <li>• Numéro mobile</li>
-                  <li>• Langue préférée</li>
+                  <li>Adresse e-mail</li>
+                  <li>Numéro mobile</li>
+                  <li>Langue préférée</li>
                 </ul>
               </div>
             </div>
@@ -108,12 +110,12 @@ const profilePictureSteps = [
         />
 
         <GuideSubSection title="Spécifications Techniques">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <ul class="text-sm text-gray-600 space-y-1">
-              <li>• Taille maximale : 5 Mo</li>
-              <li>• Formats acceptés : JPG, PNG</li>
-              <li>• Dimensions recommandées : 400x400 pixels</li>
-              <li>• Format carré conseillé</li>
+              <li>Taille maximale : 5 Mo</li>
+              <li>Formats acceptés : JPG, PNG</li>
+              <li>Dimensions recommandées : 400x400 pixels</li>
+              <li>Format carré conseillé</li>
             </ul>
           </div>
         </GuideSubSection>
@@ -133,13 +135,13 @@ const profilePictureSteps = [
         />
 
         <GuideSubSection title="Points Importants">
-          <div class="bg-white rounded-lg p-4 border border-gray-200 space-y-4">
+          <div class="border border-line rounded-md p-5 space-y-4">
             <div>
-              <h4 class="font-semibold text-gray-900 mb-2">Vérification</h4>
+              <h4 class="font-semibold text-navy mb-2">Vérification</h4>
               <p class="text-sm text-gray-600">La nouvelle adresse sera active uniquement après validation du lien reçu.</p>
             </div>
             <div>
-              <h4 class="font-semibold text-gray-900 mb-2">Transition</h4>
+              <h4 class="font-semibold text-navy mb-2">Transition</h4>
               <p class="text-sm text-gray-600">L'ancienne adresse reste utilisable jusqu'à la validation complète.</p>
             </div>
           </div>
@@ -160,11 +162,11 @@ const profilePictureSteps = [
         />
 
         <GuideSubSection title="Format du Numéro">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <ul class="text-sm text-gray-600 space-y-1">
-              <li>• Inclure l'indicatif pays (ex: +33 pour la France)</li>
-              <li>• Sans espaces ni caractères spéciaux</li>
-              <li>• Uniquement les mobiles (pas de fixes)</li>
+              <li>Inclure l'indicatif pays (ex: +33 pour la France)</li>
+              <li>Sans espaces ni caractères spéciaux</li>
+              <li>Uniquement les mobiles (pas de fixes)</li>
             </ul>
           </div>
         </GuideSubSection>
@@ -184,61 +186,51 @@ const profilePictureSteps = [
         />
 
         <GuideSubSection title="Critères de Sécurité">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <ul class="text-sm text-gray-600 space-y-1">
-              <li>• Minimum 8 caractères</li>
-              <li>• Au moins une majuscule</li>
-              <li>• Au moins un chiffre</li>
-              <li>• Au moins un caractère spécial</li>
+              <li>Minimum 8 caractères</li>
+              <li>Au moins une majuscule</li>
+              <li>Au moins un chiffre</li>
+              <li>Au moins un caractère spécial</li>
             </ul>
           </div>
         </GuideSubSection>
       </GuideStep>
 
-      <div class="mt-16 bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Mémo Rapide</h2>
+      <div class="mt-16 rounded-md p-8 border border-line bg-surface">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Mémo Rapide</h2>
         <div class="grid md:grid-cols-2 gap-6">
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Actions Courantes</h3>
+            <h3 class="font-semibold text-navy mb-2">Actions Courantes</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• Profil : Paramètres > Modifier</li>
-              <li>• E-mail : Paramètres > E-mail > Modifier</li>
-              <li>• Mobile : Paramètres > Téléphone > Modifier</li>
-              <li>• Mot de passe : Paramètres > Sécurité</li>
+              <li>Profil : Paramètres > Modifier</li>
+              <li>E-mail : Paramètres > E-mail > Modifier</li>
+              <li>Mobile : Paramètres > Téléphone > Modifier</li>
+              <li>Mot de passe : Paramètres > Sécurité</li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Conseils Essentiels</h3>
+            <h3 class="font-semibold text-navy mb-2">Conseils Essentiels</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• Coordonnées toujours à jour</li>
-              <li>• Photo professionnelle</li>
-              <li>• Sécurité maximale activée</li>
-              <li>• Renouvellement régulier du mot de passe</li>
+              <li>Coordonnées toujours à jour</li>
+              <li>Photo professionnelle</li>
+              <li>Sécurité maximale activée</li>
+              <li>Renouvellement régulier du mot de passe</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <div class="mt-8 bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Besoin d'Aide ?</h2>
+      <div class="mt-8 rounded-md p-8 border border-line">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Besoin d'Aide ?</h2>
         <p class="text-gray-600 mb-6">
           Des difficultés avec votre profil ? Notre équipe support est à votre disposition.
         </p>
-        <div class="flex space-x-4">
-          <a
-            href="/contact"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors"
-          >
-            Contacter le Support
-          </a>
-          <a
-            href="/guides"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-gray-900 bg-white border border-gray-200 hover:bg-gray-50 transition-colors"
-          >
-            Consulter les Guides
-          </a>
+        <div class="flex flex-wrap gap-3 df-guide-actions">
+          <Button href="/contact">Contacter le Support</Button>
+          <Button href="/guides" variant="secondary">Consulter les Guides</Button>
         </div>
       </div>
-    </article>
+    </GuideArticle>
   </main>
 </Layout>

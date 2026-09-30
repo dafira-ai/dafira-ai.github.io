@@ -2,8 +2,8 @@
 title: "Voorbij Structuur: Het Bouwen van een Hoogwaardige Bestuurscultuur"
 description: "Ontdek waarom bestuurscultuur belangrijker is dan structuur en hoe Fair Process Leadership de effectiviteit van governance kan transformeren."
 pubDate: 2025-02-18
-author: "Ludovic Laffineur"
-authorRole: "CTO bij Govrn"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/blog-building-high-performing-board.jpg"
 category: "Governance"
 tags: ["Bestuurscultuur", "Fair Process Leadership", "Corporate Governance", "Leiderschap"]

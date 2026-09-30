@@ -1,181 +1,44 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import CTA from '../../../components/CTA.astro';
+import IndustryLanding from '../../../components/industries/IndustryLanding.astro';
 
-const challenges = [
-  {
-    title: "Gestion de portefeuille",
-    description: "Optimisez la supervision de vos actifs immobiliers diversifiés",
-    icon: "🏢"
-  },
-  {
-    title: "Décisions d'investissement",
-    description: "Prenez des décisions éclairées grâce à l'analyse des données",
-    icon: "📈"
-  },
-  {
-    title: "Communication avec les parties prenantes",
-    description: "Fluidifiez les échanges avec vos investisseurs et partenaires",
-    icon: "💬"
-  }
-];
+const hero = {
+  eyebrow: 'Immobilier',
+  title: 'Logiciel de gestion du conseil pour l’immobilier',
+  lead: 'Pour les conseils de sociétés d’investissement et de gestion immobilière. Dossiers d’investissement, discussions et décisions du conseil réunis, pour chaque actif.',
+};
 
-const features = [
-  {
-    title: "Tableau de bord immobilier",
-    description: "Suivi en temps réel des indicateurs de performance de vos biens",
-    icon: "📊"
-  },
-  {
-    title: "Analyse des investissements",
-    description: "Évaluation des opportunités optimisée par l'intelligence artificielle",
-    icon: "🔍"
-  },
-  {
-    title: "Gestion documentaire",
-    description: "Centralisation sécurisée de tous vos documents immobiliers",
-    icon: "📑"
-  }
-];
+const challenges = {
+  title: 'Les enjeux des conseils immobiliers',
+  lead: 'Des engagements durables, qui exigent une trace claire des décisions.',
+  items: [
+    { icon: 'building', title: 'Suivi du portefeuille', text: 'Suivre un portefeuille d’actifs au travers de documents et de rapports réguliers.' },
+    { icon: 'trend', title: 'Décisions d’investissement', text: 'Examiner les dossiers d’acquisition, de cession et de développement avant de décider.' },
+    { icon: 'users', title: 'Investisseurs et partenaires', text: 'Partager l’information avec chaque groupe de parties prenantes au bon niveau d’accès.' },
+  ],
+};
 
-const caseStudies = [
-  {
-    company: "Care Property Invest",
-    logo: "/careproperty-logo.png",
-    quote: "Govrn représente la nouvelle génération de logiciels de gestion de conseil, alliant simplicité d'utilisation et intégration de l'IA.",
-    author: "Nathalie Byl",
-    role: "Responsable juridique et conformité",
-    link: "/fr/case-studies/care-property-invest"
-  }
-];
+const features = {
+  title: 'Ce que Dafira apporte',
+  lead: 'Les outils utilisés par les sociétés immobilières.',
+  items: [
+    { icon: 'folder', title: 'Gestion documentaire', text: 'Un stockage central des dossiers d’investissement et des documents du conseil, organisés par réunion et par point de l’ordre du jour.' },
+    { icon: 'sparkle', title: 'Assistant IA', text: 'Poser des questions sur de longs dossiers d’investissement et obtenir des résumés avant la réunion.' },
+    { icon: 'vote', title: 'Décisions consignées', text: 'Votes, résolutions et signatures conservés avec chaque réunion, dans un registre des décisions.' },
+  ],
+};
 ---
 
-<Layout title="Logiciel de gestion de conseil pour l'immobilier | Govrn" description="Optimisez vos opérations de conseil d'administration avec des outils puissants conçus pour l'investissement et la gestion immobilière.">
-  <main class="pt-16">
-    <!-- Section héro -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Immobilier
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Solution de gestion de conseil pour
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              l'immobilier
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed mb-12">
-            Optimisez vos opérations de conseil avec des outils puissants conçus pour l'investissement et la gestion immobilière.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/fr/try"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Essai gratuit
-            </a>
-            <a
-              href="/fr/request-demo"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-            >
-              Demander une démo
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section défis -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Les défis que nous relevons
-          </h2>
-          <p class="text-xl text-gray-600">
-            Répondez aux enjeux majeurs des conseils d'administration du secteur immobilier grâce à notre solution complète.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section fonctionnalités -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Fonctionnalités spécifiques au secteur
-          </h2>
-          <p class="text-xl text-gray-600">
-            Des fonctionnalités conçues sur mesure pour la gestion des conseils dans l'immobilier.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section témoignages -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Témoignages clients
-          </h2>
-          <p class="text-xl text-gray-600">
-            Découvrez comment les leaders de l'immobilier transforment leur gouvernance avec Govrn.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {caseStudies.map(study => (
-            <a href={study.link} class="group">
-              <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 h-full flex flex-col">
-                <div class="flex items-center justify-center h-16 mb-8">
-                  <img 
-  loading="lazy"
-                    src={study.logo}
-                    alt={`Logo ${study.company}`}
-                    class="h-full object-contain"
-                  />
-                </div>
-                <blockquote class="flex-grow">
-                  <p class="text-gray-600 mb-6">« {study.quote} »</p>
-                </blockquote>
-                <div>
-                  <p class="font-medium text-gray-900">{study.author}</p>
-                  <p class="text-gray-500">{study.role}</p>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Logiciel de gestion de conseil pour l'immobilier | Dafira" description="Portail du conseil pour les sociétés d’investissement et de gestion immobilière : dossiers d’investissement, réunions du conseil et registre clair des décisions.">
+  <main>
+    <IndustryLanding
+      industry="real-estate"
+      hero={hero}
+      screenshot={{ src: '/onboarding-boardpack.png', alt: 'Dossier du conseil Dafira organisé par point de l’ordre du jour, avec annotations' }}
+      challenges={challenges}
+      features={features}
+      quoteKey="nathalie"
+      secondary="trial"
+    />
   </main>
 </Layout>

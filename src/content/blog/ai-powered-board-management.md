@@ -2,8 +2,8 @@
 title: "The Future of AI-Powered Board Management"
 description: "Discover how artificial intelligence is transforming board management and decision-making processes."
 pubDate: 2025-01-06
-author: "Ludovic Laffineur"
-authorRole: "CTO at Govrn"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/realestate.jpg"
 category: "Technology"
 tags: ["AI", "Innovation", "Board Management", "Digital Transformation"]

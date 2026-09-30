@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaseStudy from '../../components/case-studies/CaseStudy.astro';
+---
+
+<Layout
+  title="Non-profit support organisation: board governance with Dafira"
+  description="How a non-profit that supports other non-profits on governance runs its own board with Dafira: one place for board documents, annotation and meeting summaries. Read the case study."
+>
+  <CaseStudy
+    company="Non-profit support organisation"
+    facts={[{ label: "Sector", value: "Non-profit support organisation" }]}
+    title="Non-profit support organisation: board governance with Dafira"
+    lead="How a non-profit support organisation, for which governance is a core pillar of its work with non-profits, supports its own board members with Dafira."
+    quote={{ quote: "I'm convinced that a platform like Dafira enables better decision-making at the board level.", author: "President" }}
+    context={{
+      title: "Professionalising the non-profit sector",
+      paragraphs: [
+        "The organisation works to professionalise the non-profit sector with a community of professional volunteers who support small organisations. Governance is one of the pillars of its approach, alongside strategy, operational efficiency and funding diversification.",
+        "It provides personalised support through structured, long-term missions, and runs collective workshops on challenges that non-profits share.",
+      ],
+      quote: "Governance is one of the five pillars in [our organisation]'s support of non-profits. For us, it's absolutely essential.",
+    }}
+    challenges={[
+      { title: "Document organisation", text: "Board documents scattered across many emails." },
+      { title: "Governance standards", text: "High governance standards to uphold, as a core pillar of the mission." },
+      { title: "Board member onboarding", text: "New board members to onboard with complete documentation." },
+    ]}
+    solutions={[
+      { title: "One place", text: "A single repository for all board documents and communications." },
+      { title: "Document annotation", text: "Highlighting and annotating board materials directly in the platform." },
+      { title: "AI meeting summaries", text: "Meeting summaries and decision tracking prepared with the AI assistant." },
+    ]}
+    outcome={{
+      title: "Board work in one platform",
+      paragraphs: [
+        "With Dafira, the organisation brought its board documentation and collaboration together in a single platform, in line with its focus on governance.",
+        "Document management and decision-making are more efficient and transparent, and both the administrative team and the board members took up the platform easily.",
+      ],
+      quote: "Dafira allows us to annotate and highlight documents, providing exceptional usability for each board member.",
+    }}
+    voices={[
+      { quote: "Dafira enables annotation and highlighting, providing exceptional ease of use for every board member. I'm convinced that a platform like Dafira leads to better decision-making at the board level.", author: "President" },
+      { quote: "The question of governance is central, especially in an organization where responsibility lines can be unclear. It's crucial to work on clarifying roles and responsibilities at every level of the organization.", author: "Director" },
+    ]}
+  />
+</Layout>

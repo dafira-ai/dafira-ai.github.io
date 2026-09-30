@@ -1,61 +1,74 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { PageHero, Section } from '../../components/ui';
 import BoardResolution from '../../components/404/BoardResolution.astro';
 import NavigationSuggestions from '../../components/404/NavigationSuggestions.astro';
-import PageIllustration from '../../components/404/PageIllustration.astro';
-import { getRandomJoke } from '../../utils/boardJokes';
 
 const suggestions = [
   {
-    text: "Retour à l'accueil",
-    href: "/fr",
-    icon: "🏠"
+    "text": "Home",
+    "href": "/nl",
+    "icon": "home",
+    "description": "Terug naar de startpagina."
   },
   {
-    text: "Découvrir nos fonctionnalités",
-    href: "/fr/features",
-    icon: "✨"
+    "text": "Functies",
+    "href": "/nl/features",
+    "icon": "layers",
+    "description": "Wat Dafira voor uw bestuur doet."
   },
   {
-    text: "Contacter le support",
-    href: "/fr/contact",
-    icon: "🤝"
+    "text": "Beveiliging",
+    "href": "/nl/security",
+    "icon": "shield",
+    "description": "Hoe bestuursgegevens beschermd worden."
+  },
+  {
+    "text": "Klantverhalen",
+    "href": "/nl/testimonials",
+    "icon": "users",
+    "description": "Hoe andere besturen Dafira gebruiken."
+  },
+  {
+    "text": "Kenniscentrum",
+    "href": "/nl/resources",
+    "icon": "book",
+    "description": "Handleidingen, onderzoek en artikelen."
+  },
+  {
+    "text": "Contact",
+    "href": "/nl/contact",
+    "icon": "mail",
+    "description": "Stel ons uw vraag rechtstreeks."
   }
 ];
 
-const currentDate = new Date().toLocaleDateString('fr-FR');
-const randomJoke = getRandomJoke();
+const currentDate = new Date().toLocaleDateString('nl-BE');
+const labels = {
+  "title": "Besluit 404",
+  "date": "Datum",
+  "whereas": "Overwegende dat de gevraagde pagina niet gevonden kan worden;",
+  "resolved": "Besluit dat de bezoeker naar een geschiktere pagina wordt verwezen.",
+  "status": "Status",
+  "approved": "Goedgekeurd"
+};
 ---
 
-<Layout title="404 - Page introuvable | Govrn" description="Oups ! La page que vous recherchez n'existe pas. Laissez-nous vous remettre sur la bonne voie.">
-  <main class="min-h-screen pt-24 pb-12 flex flex-col">
-    <div class="flex-grow flex items-center">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div class="text-center">
-          <PageIllustration emoji="📋" />
+<Layout title="404 - Pagina niet gevonden | Dafira" description="De pagina die u zoekt bestaat niet of is verplaatst." noindex>
+  <PageHero eyebrow="Fout 404" title="Deze pagina werd niet gevonden" lead="Het adres is misschien verkeerd getypt, of de pagina is verplaatst. De links hieronder leiden naar de belangrijkste delen van de site.">
+    <Fragment slot="aside">
+      <BoardResolution date={currentDate} labels={labels} />
+    </Fragment>
+  </PageHero>
 
-          <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl mb-4">
-            404 : Page introuvable
-          </h1>
-
-          <p class="text-xl text-gray-600 mb-8">{randomJoke}</p>
-
-          <BoardResolution date={currentDate} />
-          <NavigationSuggestions suggestions={suggestions} />
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center text-gray-500 mt-12">
-      <p class="text-sm">
-        P.S. Notre assistant IA a noté cette page manquante pour la prochaine réunion.
-      </p>
-    </div>
-  </main>
+  <Section space="md">
+    <h2 class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500 mb-6">Waar naartoe</h2>
+    <NavigationSuggestions suggestions={suggestions} />
+  </Section>
 </Layout>
 
 <script>
-  const url = new URL(window.location);
+  const url = new URL(window.location.href);
   if (url.pathname.endsWith('/')) {
     url.pathname = url.pathname.slice(0, -1);
     window.location.replace(url.href);

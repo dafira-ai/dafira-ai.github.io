@@ -1,0 +1,13 @@
+---
+// Horizontal page frame. `size`: default (1280px), narrow (1024px), prose (720px).
+interface Props {
+  size?: 'default' | 'narrow' | 'prose';
+  class?: string;
+}
+const { size = 'default', class: className } = Astro.props;
+const width = { default: 'max-w-7xl', narrow: 'max-w-5xl', prose: 'max-w-3xl' }[size];
+---
+
+<div class:list={[width, 'mx-auto px-4 sm:px-6 lg:px-8', className]}>
+  <slot />
+</div>

@@ -3,7 +3,7 @@ title: "De Rol van een Bestuursadviseur: Verantwoordelijkheden en Voordelen"
 description: "Ontdek de cruciale rol van bestuursadviseurs, hun verantwoordelijkheden en de toegevoegde waarde die zij bieden aan organisaties via bestuur en strategische begeleiding."
 pubDate: 2024-11-03
 author: "Jean-Louis Van Houwe"
-authorRole: "CEO en Oprichter bij Govrn"
+authorRole: "CEO en Oprichter bij Dafira"
 image: "/boussole.jpg"
 category: "Governance"
 tags: ["Bestuursadviseurs", "Corporate Governance", "Besluitvorming", "Leiderschap"]

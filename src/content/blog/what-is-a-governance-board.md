@@ -2,8 +2,8 @@
 title: "What Is a Governance Board in Organisations?"
 description: "Learn what is a governance board, how it is structured, and the roles and responsibilities it carries to provide oversight, accountability and effective governance."
 pubDate: 2025-05-14
-author: "Ludovic Laffineur"
-authorRole: "CTO at Govrn"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/comite-de-direction-codir-entreprise.jpg"
 category: "Governance"
 tags: ["governance board", "organizational governance", "board structure", "governance roles", "board responsibilities"]

@@ -2,8 +2,8 @@
 title: "Bestuursvergaderingen Optimaliseren met Vergadersoftware"
 description: "Ontdek hoe bestuursvergaderingssoftware de efficiëntie, samenwerking en organisatie verbetert, tijd en geld bespaart en governanceprocessen optimaliseert."
 pubDate: 2023-06-10
-author: "Govrn"
-authorRole: "Govrn Redactieteam"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/computer.jpg"
 category: "Technology"
 tags: ["Bestuursvergaderingssoftware", "Corporate Governance", "Efficiëntie", "Samenwerking"]

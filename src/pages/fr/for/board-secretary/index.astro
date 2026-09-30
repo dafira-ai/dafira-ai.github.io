@@ -1,388 +1,136 @@
 ---
 import Layout from '../../../../layouts/Layout.astro';
-import CTA from '../../../../components/CTA.astro';
 import Testimonials from '../../../../components/Testimonials.astro';
+import { PageHero, Section, SectionHeader, Button, Icon, FeatureColumns, CellGrid, Screenshot, CTA } from '../../../../components/ui';
+import { customerQuote } from '../../../../components/industries/customerQuotes';
+import { ctaProps } from '../../../../components/industries/i18n';
 
-const dayInLife = [
-  {
-    time: "9h00",
-    before: "Perte de temps à fouiller dans les emails pour retrouver la dernière version du dossier",
-    after: "Accès immédiat à tous les documents, parfaitement classés avec historique des versions",
-    icon: "🌅"
-  },
-  {
-    time: "14h00", 
-    before: "Jonglage complexe entre prise de notes et suivi des discussions",
-    after: "Participation active aux échanges pendant que l'IA capture chaque détail",
-    icon: "🎯"
-  },
-  {
-    time: "17h30",
-    before: "Début du marathon pour rédiger le procès-verbal",
-    after: "Simple relecture du PV généré par l'IA avant de partir à l'heure",
-    icon: "🌙"
-  }
-];
+const dayInLife = {
+  title: 'Une journée de conseil, avant et après',
+  lead: 'Trois moments de la journée d’un secrétaire du conseil, avec et sans portail du conseil.',
+  beforeLabel: 'Sans portail',
+  afterLabel: 'Avec Dafira',
+  slots: [
+    { time: '09:00', before: 'Chercher dans les e-mails la dernière version du dossier du conseil.', after: 'Le dossier du conseil est en un seul endroit, organisé par point de l’ordre du jour, avec son historique des versions.' },
+    { time: '14:00', before: 'Prendre des notes détaillées tout en essayant de suivre la discussion.', after: 'Suivre la réunion, avec les présences, les votes et les résolutions enregistrés au fil de l’eau.' },
+    { time: '17:30', before: 'Commencer le procès-verbal à partir d’une page blanche.', after: 'Relire un premier projet préparé avec l’assistant de rédaction de procès-verbaux par IA.' },
+  ],
+};
 
-const painPoints = [
-  {
-    icon: "📚",
-    title: "Noyé sous les documents ?",
-    description: "Fini les emails sans fin et la confusion des versions. Place à un espace unique et sécurisé où tout est rangé et accessible en un clic."
-  },
-  {
-    icon: "⏰",
-    title: "Marre des nuits blanches à rédiger ?",
-    description: "Notre assistant IA capture tout en direct. Vous ? Concentrez-vous sur l'essentiel : animer des échanges constructifs."
-  },
-  {
-    icon: "✍️",
-    title: "En galère avec les signatures ?",
-    description: "Transformez une semaine de relances en quelques minutes grâce à notre système de signature électronique ultra simple."
-  },
-  {
-    icon: "🔍",
-    title: "Du mal à retrouver les décisions ?",
-    description: "Retrouvez n'importe quelle décision en deux clics grâce à notre recherche intelligente. La mémoire de votre conseil, toujours à portée de main."
-  }
-];
+const painPoints = {
+  title: 'Les difficultés courantes',
+  lead: 'Le travail quotidien d’un secrétaire du conseil, et la manière dont Dafira le prend en charge.',
+  items: [
+    { icon: 'documents', title: 'Documents dispersés', text: 'Remplacer les fils d’e-mails et la confusion des versions par une bibliothèque sécurisée unique pour les documents du conseil.' },
+    { icon: 'clock', title: 'Procès-verbaux rédigés tard le soir', text: 'L’assistant IA rédige un projet de procès-verbal, en reprenant les actions et les résolutions.' },
+    { icon: 'signature', title: 'Relances pour les signatures', text: 'Recueillir électroniquement les signatures des procès-verbaux et des résolutions.' },
+    { icon: 'search', title: 'Retrouver les décisions passées', text: 'Rechercher dans l’historique des réunions, procès-verbaux et décisions.' },
+  ],
+};
 
-const features = [
-  {
-    title: "Un assistant IA à vos côtés",
-    description: "Un copilote intelligent qui booste chaque aspect de votre rôle",
-    icon: "🤖",
-    benefits: [
-      "Rédaction des PV en temps réel",
-      "Suivi automatique des actions",
-      "Synthèses intelligentes des réunions",
-      "Analyse pointue de l'historique"
-    ]
-  },
-  {
-    title: "Votre tour de contrôle",
-    description: "Une maîtrise totale de vos documents de gouvernance",
-    icon: "📚",
-    benefits: [
-      "Gestion des versions sans prise de tête",
-      "Partage ultra-sécurisé",
-      "Signatures électroniques en un clic",
-      "Modèles dynamiques prêts à l'emploi"
-    ]
-  },
-  {
-    title: "Le chef d'orchestre des réunions",
-    description: "De la préparation au suivi, tout coule de source",
-    icon: "✨",
-    benefits: [
-      "Calendrier intelligent",
-      "Ordre du jour collaboratif",
-      "Suivi des présences en direct",
-      "Tableau de bord complet"
-    ]
-  }
-];
+const features = {
+  title: 'Vos outils de travail',
+  lead: 'Les fonctions de Dafira que les secrétaires du conseil utilisent chaque jour.',
+  items: [
+    { icon: 'sparkle', title: 'Rédaction de PV assistée par IA', text: 'Un premier projet de procès-verbal, à relire et compléter.', items: ['Projet de procès-verbal', 'Suivi des actions', 'Résumés de réunion', 'Assistant IA sur les documents du conseil'] },
+    { icon: 'folder', title: 'Documents', text: 'La maîtrise de la documentation du conseil, du projet à la signature.', items: ['Historique des versions', 'Diffusion sécurisée', 'Signature électronique', 'Modèles'] },
+    { icon: 'calendar', title: 'Réunions', text: 'De l’invitation au suivi.', items: ['Calendrier et invitations', 'Création d’ordres du jour', 'Présences', 'Tâches et suivi'] },
+  ],
+};
 
-const midPageCTA = {
-  title: "Découvrez le futur de la gestion des conseils",
-  subtitle: "Voyez comment Govrn transforme vos réunions",
-  cta1: "Essayer gratuitement",
-  cta2: "Parlons-en",
-  links: {
-    cta1: "/try",
-    cta2: "/contact"
-  }
-}
+const industries = {
+  title: 'Par secteur',
+  lead: 'Dans les secteurs réglementés, les secrétaires du conseil ont des besoins spécifiques en matière de registres.',
+  link: 'Voir la page sectorielle',
+  items: [
+    { id: 'financial-services', icon: 'bank', name: 'Services financiers', text: 'Banques, assureurs et sociétés d’investissement.' },
+    { id: 'healthcare', icon: 'health', name: 'Santé', text: 'Hôpitaux, prestataires de soins et sciences de la vie.' },
+    { id: 'real-estate', icon: 'building', name: 'Immobilier', text: 'Investissement et gestion immobilière.' },
+  ],
+};
 
 const testimonials = {
   texts: {
-    title: "Ils nous font confiance",
-    subtitle: "Découvrez comment des organisations de tous horizons réinventent leur conseil avec Govrn",
-    cta: "Toutes nos success stories",
-    ctaLink: "/testimonials"
+    title: "Ce qu'en disent les équipes du conseil",
+    subtitle: 'Secrétaires généraux, juristes et dirigeants sur la gestion de leur conseil avec Dafira.',
+    cta: 'Tous les témoignages clients',
+    ctaLink: '/fr/testimonials',
   },
-  testimonials: [
-    {
-      quote: "Govrn a <strong>métamorphosé</strong> notre gestion du conseil, apportant <strong>fluidité</strong> et <strong>clarté</strong> à notre gouvernance.",
-      author: "Lore Werbrouck",
-      position: "General counsel",
-      company: "Van de Velde",
-      image: "/vdv-lore-portrait.jpg",
-      link: "/case-studies/van-de-velde"
-    },
-    {
-      quote: "Govrn a <strong>révolutionné</strong> notre gestion documentaire. Nos préparations sont plus <strong>fluides</strong>, notre conseil plus <strong>efficace</strong>.",
-      author: "Pierre Hermant",
-      position: "CEO",
-      company: "Finance & Invest Brussels",
-      image: "/fib-pierre.webp",
-      link: "/case-studies/finance-invest-brussels"
-    },
-    {
-      quote: "Govrn, c'est la <strong>nouvelle génération</strong> de logiciels de conseil : <strong>intuitif</strong> et <strong>intelligent</strong>.",
-      author: "Nathalie Byl",
-      position: "Paralegal en compliance officer",
-      company: "Care Property Invest",
-      image: "/careproperty-logo.png",
-      link: "/case-studies/care-property-invest"
-    }
-  ]
-}
-
-const stats = [
-  { value: "75%", label: "de temps gagné" },
-  { value: "100%", label: "digital" },
-  { value: "60%", label: "plus rapide" },
-  { value: "90%", label: "moins de suivi" }
-];
+  testimonials: (['lore', 'pierre', 'nathalie'] as const).map((k) => {
+    const q = customerQuote('fr', k);
+    return { quote: q.quote, author: q.author, position: q.role, company: q.company, image: q.image, link: q.link };
+  }),
+};
 ---
 
-<Layout title="La solution logicielle intelligente pour les secrétaires de conseil | Govrn">
-  <main class="pt-24">
-    <!-- Hero -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
+<Layout title="Logiciel de gestion des réunions pour secrétaires du conseil | Dafira" description="Portail du conseil pour les secrétaires du conseil : dossiers du conseil, ordres du jour, procès-verbaux rédigés avec l’IA, signatures électroniques et historique des décisions consultable.">
+  <main>
+    <PageHero eyebrow="Pour les secrétaires du conseil" title="Préparer, consigner et suivre chaque réunion du conseil" lead="Dafira prend en charge le travail administratif autour du conseil, de l’ordre du jour au procès-verbal signé, pour que vous puissiez vous concentrer sur le fond.">
+      <Fragment slot="actions">
+        <Button href="/fr/request-demo">Demander une démo</Button>
+        <Button variant="secondary" href="/fr/try">Commencer l’essai gratuit</Button>
+      </Fragment>
+      <Screenshot slot="aside" src="/applications-picture-meeting.png" alt="Page de réunion Dafira sur ordinateur, tablette et téléphone" eager />
+    </PageHero>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8 animate-fade-in">
-              L'allié indispensable du secrétaire de conseil
+    <Section>
+      <SectionHeader title={dayInLife.title} lead={dayInLife.lead} />
+      <div class="border-t border-line" data-play>
+        <div class="hidden md:grid grid-cols-12 gap-6 py-4 border-b border-line font-mono text-xs uppercase tracking-[0.08em] text-gray-500">
+          <div class="col-span-2"></div>
+          <div class="col-span-5">{dayInLife.beforeLabel}</div>
+          <div class="col-span-5">{dayInLife.afterLabel}</div>
+        </div>
+        {dayInLife.slots.map((slot, i) => (
+          <div class="grid md:grid-cols-12 gap-3 md:gap-6 py-6 border-b border-line" data-step style={`--d:${i * 80}`}>
+            <div class="md:col-span-2 font-mono text-sm text-primary tabular-nums">{slot.time}</div>
+            <div class="md:col-span-5 text-gray-500">
+              <span class="md:hidden font-mono text-xs uppercase tracking-[0.08em] block mb-1">{dayInLife.beforeLabel}</span>
+              {slot.before}
             </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8 animate-slide-up">
-              <span class="sr-only">La solution logicielle intelligente pour les secrétaires de conseil</span>
-              Simplifiez votre vie de
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                secrétaire de conseil
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-8 animate-slide-up" style="animation-delay: 100ms">
-              Bienvenue dans l'ère moderne de la gouvernance. Notre plateforme IA s'occupe des tâches chronophages - des PV à la paperasse - pour vous permettre de vous concentrer sur l'essentiel : le pilotage stratégique et la création de valeur.
-            </p>
-
-            <!-- Stats -->
-            <div class="grid grid-cols-2 gap-4 mb-8">
-              {stats.map((stat, index) => (
-                <div 
-                  class="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:border-primary/20 transition-all duration-300 transform hover:-translate-y-1 animate-slide-up"
-                  style={`animation-delay: ${150 + index * 50}ms`}
-                >
-                  <div class="text-3xl font-bold text-primary mb-1">{stat.value}</div>
-                  <div class="text-sm text-gray-600">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-4 animate-slide-up" style="animation-delay: 350ms">
-              <a
-                href="/request-demo"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 group"
-              >
-                Voir une démo
-                <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
-              <a
-                href="/try"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-              >
-                Essayer gratuitement
-              </a>
+            <div class="md:col-span-5 text-ink">
+              <span class="md:hidden font-mono text-xs uppercase tracking-[0.08em] text-gray-500 block mb-1">{dayInLife.afterLabel}</span>
+              {slot.after}
             </div>
           </div>
-          <div class="relative animate-fade-in" style="animation-delay: 400ms">
-            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl transform rotate-3 scale-110"></div>
-            <img 
-  loading="lazy"
-              src="/board-secretary.png"
-              alt="Un secrétaire de conseil sur Govrn"
-              class="relative rounded-2xl shadow-2xl w-[120%] h-[120%] object-cover transform hover:scale-105 transition-transform duration-500"
-            />
+        ))}
+      </div>
+    </Section>
+
+    <Section tone="surface" border="both">
+      <SectionHeader title={painPoints.title} lead={painPoints.lead} />
+      <CellGrid columns={2}>
+        {painPoints.items.map((item) => (
+          <div class="bg-white p-8">
+            <Icon name={item.icon} class="w-6 h-6 text-navy" />
+            <h3 class="mt-5 text-lg font-semibold text-navy">{item.title}</h3>
+            <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
           </div>
-        </div>
-      </div>
-    </section>
+        ))}
+      </CellGrid>
+    </Section>
 
-    <!-- Une Journée Type -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            L'effet Govrn au quotidien
-          </h2>
-          <p class="text-xl text-gray-600">
-            Comment nous transformons chaque instant de votre journée
-          </p>
-        </div>
+    <Section>
+      <SectionHeader title={features.title} lead={features.lead} />
+      <FeatureColumns items={features.items} />
+    </Section>
 
-        <div class="space-y-8">
-          {dayInLife.map((timeSlot, index) => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <div class="grid md:grid-cols-3 gap-8 items-center">
-                <div class="text-center md:text-left">
-                  <div class="text-4xl mb-2">{timeSlot.icon}</div>
-                  <div class="text-2xl font-bold text-primary">{timeSlot.time}</div>
-                </div>
-                <div class="relative">
-                  <div class="bg-red-50 rounded-lg p-4 text-red-700">
-                    <div class="font-medium mb-1">Sans Govrn :</div>
-                    {timeSlot.before}
-                  </div>
-                  {index !== dayInLife.length - 1 && (
-                    <div class="absolute left-1/2 -bottom-8 transform -translate-x-1/2">
-                      <svg class="w-6 h-6 text-primary animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                      </svg>
-                    </div>
-                  )}
-                </div>
-                <div class="bg-green-50 rounded-lg p-4 text-green-700">
-                  <div class="font-medium mb-1">Avec Govrn :</div>
-                  {timeSlot.after}
-                </div>
-              </div>
-            </div>
-          ))}
-
-          <div class="mt-16 text-center">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">
-              Envie de changer ?
-            </h2>
-            <p class="text-lg text-gray-600 mb-8">
-              Rejoignez les secrétaires qui ont déjà fait le grand saut
-            </p>
-            <div class="flex justify-center gap-4">
-              <a
-                href="/try"
-                class="px-6 py-3 text-white bg-primary rounded-lg hover:bg-primary/90 transition-colors transform hover:scale-105 duration-300"
-              >
-                Essayer gratuitement
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Points Sensibles -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Des solutions concrètes à vos défis
-          </h2>
-          <p class="text-xl text-gray-600">
-            On a compris vos galères quotidiennes. Et on les a résolues.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {painPoints.map(point => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform">{point.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{point.title}</h3>
-              <p class="text-gray-600">{point.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Fonctionnalités -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Vos super-pouvoirs
-          </h2>
-          <p class="text-xl text-gray-600">
-            Des outils sur mesure pour décupler votre impact
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
-              <div class="text-3xl mb-4 transform group-hover:scale-110 transition-transform">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors">{feature.title}</h3>
-              <p class="text-gray-600 mb-6">{feature.description}</p>
-              <ul class="space-y-3">
-                {feature.benefits.map(benefit => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <CTA texts={midPageCTA} />
-    <Testimonials texts={testimonials.texts} testimonials={testimonials.testimonials}  />
-
-    <!-- CTA Final -->
-    <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">
-          Prêt à passer à la vitesse supérieure ?
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Rejoignez les secrétaires qui réinventent la gouvernance moderne
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200 transform hover:scale-105"
-          >
-            Essayer gratuitement
+    <Section tone="surface" border="both" space="md">
+      <SectionHeader title={industries.title} lead={industries.lead} />
+      <CellGrid columns={3}>
+        {industries.items.map((item) => (
+          <a href={`/fr/for/board-secretary/industry/${item.id}`} class="group bg-white p-8 hover:bg-surface transition-colors flex flex-col">
+            <Icon name={item.icon} class="w-6 h-6 text-navy" />
+            <h3 class="mt-5 text-lg font-semibold text-navy">{item.name}</h3>
+            <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
+            <span class="mt-auto pt-6 text-[15px] font-medium text-primary group-hover:text-navy transition-colors">{industries.link}</span>
           </a>
-          <a
-            href="/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200 transform hover:scale-105"
-          >
-            Voir une démo
-          </a>
-        </div>
-        <p class="text-white/80 mt-6">
-          Sans carte bancaire. 30 jours d'essai gratuit.
-        </p>
-      </div>
-    </section>
+        ))}
+      </CellGrid>
+    </Section>
+
+    <Testimonials texts={testimonials.texts} testimonials={testimonials.testimonials} />
+
+    <CTA {...ctaProps.fr} />
   </main>
 </Layout>
-
-<style>
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes slideUp {
-    from { 
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-fade-in {
-    opacity: 0;
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-
-  .animate-slide-up {
-    opacity: 0;
-    animation: slideUp 0.8s ease-out forwards;
-  }
-</style>

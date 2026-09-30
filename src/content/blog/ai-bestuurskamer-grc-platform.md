@@ -2,8 +2,8 @@
 title: "AI in de Bestuurskamer: Een Board GRC Platform"
 description: "Ontdek hoe AI-gestuurde bestuursportalen governance, risico en compliance (GRC) transformeren, waardoor besturen beter toezicht kunnen houden, risico's kunnen beperken en besluitvorming kunnen verbeteren."
 pubDate: 2023-03-10
-author: "Govrn"
-authorRole: "Govrn Redactieteam"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/boardroom.webp"
 category: "Technology"
 tags: ["AI", "Board GRC Platform", "Governance", "Compliance", "Risicomanagement"]
@@ -18,7 +18,7 @@ In organisaties, groot en klein, zijn governance, risico en compliance (GRC) cen
 
 ## Traditionele Besturen en de Evolutie van Bestuursportalen
 
-Jarenlang dienden traditionele bestuursportalen als fundamentele tools voor goed bestuur. Deze portalen hielpen bij het beheren van vergadercycli, fungeerden als centrale opslagplaats voor bestuursdocumenten en zorgden voor informatiebeveiliging. Moderne bestuursportalen, zoals **Govrn**, hebben echter AI omarmd en zijn geïntegreerd met GRC-systemen, waardoor ze zijn getransformeerd tot **geavanceerde GRC-platforms**. Deze AI-first platforms bieden voorspellende inzichten, proactief risicobeheer en uitgebreid compliance-toezicht, waardoor besturen traditionele governance-standaarden kunnen overtreffen.
+Jarenlang dienden traditionele bestuursportalen als fundamentele tools voor goed bestuur. Deze portalen hielpen bij het beheren van vergadercycli, fungeerden als centrale opslagplaats voor bestuursdocumenten en zorgden voor informatiebeveiliging. Moderne bestuursportalen, zoals **Dafira**, hebben echter AI omarmd en zijn geïntegreerd met GRC-systemen, waardoor ze zijn getransformeerd tot **geavanceerde GRC-platforms**. Deze AI-first platforms bieden voorspellende inzichten, proactief risicobeheer en uitgebreid compliance-toezicht, waardoor besturen traditionele governance-standaarden kunnen overtreffen.
 
 ---
 
@@ -90,4 +90,4 @@ De samensmelting van AI en GRC vertegenwoordigt een transformatieve verschuiving
 
 In de huidige onderling verbonden en gereguleerde wereldeconomie is het omarmen van AI in de bestuurskamer niet alleen een technologische vooruitgang—het is een strategische noodzaak.
 
-**Ontdek hoe AI-gedreven bestuursportalen uw governance-praktijken kunnen verbeteren. Praat met Govrn om meer te leren.**
+**Ontdek hoe AI-gedreven bestuursportalen uw governance-praktijken kunnen verbeteren. Praat met Dafira om meer te leren.**

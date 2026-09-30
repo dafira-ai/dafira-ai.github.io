@@ -1,265 +1,54 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import CTA from '../../components/CTA.astro';
+import RoleLanding from '../../components/industries/RoleLanding.astro';
+import { customerQuote, readCaseLabel } from '../../components/industries/customerQuotes';
 
-const challenges = [
-  {
-    icon: "📊",
-    title: "Information Control",
-    description: "Centralized repository to manage and control information flow to the board with precision"
-  },
-  {
-    icon: "⚡",
-    title: "Timely Communication",
-    description: "Ensure consistent and timely delivery of critical updates to board members"
-  },
-  {
-    icon: "🎯",
-    title: "Information Balance",
-    description: "Smart organization tools to prevent information overload while maintaining transparency"
-  },
-  {
-    icon: "💬",
-    title: "Real-time Responsiveness",
-    description: "Quick response capabilities for board inquiries and decision-making"
-  }
-];
-
-const features = [
-  {
-    title: "Document Control Center",
-    description: "Centralized platform for managing board information flow",
-    icon: "📑",
-    benefits: [
-      "Controlled document distribution",
-      "Smart organization tools",
-      "Update notifications",
-      "Version control"
-    ]
-  },
-  {
-    title: "AI-Powered Knowledge Base",
-    description: "Intelligent system for curating and accessing essential information",
-    icon: "🤖",
-    benefits: [
-      "Document categorization",
-      "Quick reference system",
-      "Smart summaries",
-      "Focused information sharing"
-    ]
-  },
-  {
-    title: "Secure Communication Hub",
-    description: "Enterprise-grade security for all board communications",
-    icon: "🔒",
-    benefits: [
-      "End-to-end encryption",
-      "Access controls",
-      "Audit trails",
-      "Compliance tracking"
-    ]
-  }
-];
-
-const securityFeatures = [
-  {
-    icon: "🔐",
-    title: "Enterprise-Grade Security",
-    description: "Bank-level encryption and security measures protect all board communications"
-  },
-  {
-    icon: "👥",
-    title: "Access Control",
-    description: "Granular permissions ensure information reaches only intended recipients"
-  },
-  {
-    icon: "📋",
-    title: "Audit Trails",
-    description: "Comprehensive tracking of all board activities and decisions"
-  }
-];
-
-const testimonial = {
-  quote: "Govrn has simplified our document management tremendously, making our meeting preparations more efficient and allowing our board to focus on decision-making.",
-  author: "Pierre Hermant",
-  role: "CEO",
-  company: "Finance & Invest Brussels",
-  image: "https://media.licdn.com/dms/image/C4D03AQFPYn85d5YqQw/profile-displayphoto-shrink_800_800/0/1516238871440?e=1714003200&v=beta&t=Hs_Oi_Qh_Hs_Oi_Qh_Hs_Oi_Qh_Hs_Oi_Qh"
+const hero = {
+  eyebrow: 'For CEOs',
+  title: 'Keep the board informed, on your terms',
+  lead: 'Decide what reaches the board and when. Dafira gives you one controlled channel for board papers, updates and follow-up, with access set by role.',
+  primary: { text: 'Book a demo', href: '/request-demo' },
+  secondary: { text: 'Contact sales', href: '/contact' },
+  screenshot: { src: '/onboarding-event-detail.png', alt: 'Dafira meeting page with the agenda, attendance and a pending vote on the minutes' },
 };
+
+const challenges = {
+  title: 'What CEOs need from the board process',
+  lead: 'The board relies on management for information. The way it is shared shapes the quality of the discussion.',
+  items: [
+    { icon: 'folder', title: 'Information control', text: 'One repository for everything the board receives, so you know which version each director has read.' },
+    { icon: 'clock', title: 'Timely communication', text: 'Circulate updates and board papers on schedule, without relying on email chains.' },
+    { icon: 'list', title: 'Information balance', text: 'Structure the board pack by agenda item so directors can find what matters without being overloaded.' },
+    { icon: 'chat', title: 'Responsiveness', text: 'Answer director questions between meetings in a secure board chat, with the context kept.' },
+  ],
+};
+
+const features = {
+  title: 'Tools for the CEO',
+  lead: 'The parts of Dafira CEOs use most often.',
+  items: [
+    { icon: 'documents', title: 'Document control', text: 'Share board papers from one place and keep track of what was sent.', items: ['Controlled distribution', 'Board pack by agenda item', 'Update notifications', 'Version history'] },
+    { icon: 'sparkle', title: 'AI assistant', text: 'Directors can ask questions about the board papers and get summaries of long documents.', items: ['Questions on board documents', 'Summaries of long papers', 'Search across past meetings'] },
+    { icon: 'lock', title: 'Secure communication', text: 'Keep board conversations out of personal email and messaging apps.', items: ['Secure board chat', 'Role-based access', 'Audit trail'] },
+  ],
+};
+
+const security = {
+  title: 'Security for board communication',
+  lead: 'Board information stays within the board.',
+  link: { text: 'Read about security', href: '/security' },
+  items: [
+    { icon: 'lock', title: 'Encryption', text: 'Data is encrypted in transit and at rest, on Microsoft Azure infrastructure.' },
+    { icon: 'users', title: 'Access control', text: 'Permissions by board, committee and role, so information reaches only the intended people.' },
+    { icon: 'clipboard', title: 'Audit trail', text: 'A record of access to documents and of the decisions taken.' },
+  ],
+};
+
+const quote = { ...customerQuote('en', 'pierre'), linkText: readCaseLabel.en };
 ---
 
-<Layout title="Board Management Software for CEOs | Govrn" description="Take control of your board communication with intelligent tools that help you manage information flow, ensure timely updates, and maintain security.">
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-              For CEOs
-            </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Control Your Board's
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                Information Flow
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-12">
-              Take control of your board communication with intelligent tools that help you manage information flow, ensure timely updates, and maintain security.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/request-demo"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Request Demo
-              </a>
-              <a
-                href="/contact"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-              >
-                Contact Sales
-              </a>
-            </div>
-          </div>
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl transform rotate-3"></div>
-            <img 
-  loading="lazy"
-              src="/realestate.jpg"
-              alt="Govrn Platform Interface"
-              class="relative rounded-2xl shadow-2xl"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Challenges Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            CEO Challenges We Solve
-          </h2>
-          <p class="text-xl text-gray-600">
-            Address key information management and communication challenges with our comprehensive solution
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Purpose-Built for CEOs
-          </h2>
-          <p class="text-xl text-gray-600">
-            Tools designed to give you complete control over board information and communication
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600 mb-6">{feature.description}</p>
-              <ul class="space-y-3">
-                {feature.benefits.map(benefit => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Security Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Enterprise-Grade Security
-          </h2>
-          <p class="text-xl text-gray-600">
-            Protect sensitive board communications with industry-leading security measures
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {securityFeatures.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonial Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-br from-primary to-blue-600 rounded-2xl overflow-hidden">
-          <div class="grid lg:grid-cols-2 gap-8 p-12">
-            <div class="text-white">
-              <blockquote class="text-2xl font-medium mb-8">
-                "{testimonial.quote}"
-              </blockquote>
-              <div class="flex items-center space-x-4">
-                <img 
-  loading="lazy"
-                  src={testimonial.image}
-                  alt={testimonial.author}
-                  class="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <div class="font-semibold">{testimonial.author}</div>
-                  <div class="text-white/80">{testimonial.role}</div>
-                  <div class="text-white/80">{testimonial.company}</div>
-                </div>
-              </div>
-            </div>
-            <div class="relative lg:text-right">
-              <a
-                href="/case-studies/finance-invest-brussels"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-              >
-                Read Case Study
-                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Board Management Software for CEOs | Dafira" description="Board portal for CEOs: control how information reaches the board, circulate updates on time and keep board communication secure.">
+  <main>
+    <RoleLanding hero={hero} challenges={challenges} features={features} security={security} quote={quote} />
   </main>
 </Layout>

@@ -1,4 +1,7 @@
 ---
+// Main capabilities of document collaboration, as ruled columns.
+import { Section, SectionHeader, FeatureColumns } from '../../ui';
+
 interface Props {
   features: Array<{
     title: string;
@@ -10,46 +13,13 @@ interface Props {
     title: string;
     subtitle: string;
   };
+  tone?: 'white' | 'surface';
 }
 
-const { features, texts } = Astro.props;
+const { features, texts, tone = 'white' } = Astro.props;
 ---
 
-<section class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="text-3xl font-bold text-gray-900 mb-4">
-        {texts.title}
-      </h2>
-      <p class="text-xl text-gray-600">
-        {texts.subtitle}
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-8">
-      {features.map(feature => (
-        <div class="group relative">
-          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
-          
-          <div class="relative bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-            <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-              {feature.icon}
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-            <p class="text-gray-600 mb-6">{feature.description}</p>
-            <ul class="space-y-3">
-              {feature.benefits.map(benefit => (
-                <li class="flex items-center text-gray-600">
-                  <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  {benefit}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
+<Section tone={tone} border={tone === 'surface' ? 'both' : 'none'}>
+  <SectionHeader title={texts.title} lead={texts.subtitle} />
+  <FeatureColumns items={features.map((f) => ({ icon: f.icon, title: f.title, text: f.description, items: f.benefits }))} />
+</Section>

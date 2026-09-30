@@ -1,137 +1,86 @@
 ---
-const { currentLang = 'en' } = Astro.props;
+import Logo from "./Logo.astro";
+import { localizePath, type Lang } from "../i18n/routes";
 
+const { currentLang = "en" } = Astro.props as { currentLang?: Lang };
 const currentYear = new Date().getFullYear();
 
+const t = {
+  en: {
+    tagline: "The board portal for organisations that take governance seriously.",
+    product: "Product", company: "Company", legal: "Legal",
+    features: "Features", pricing: "Pricing", security: "Security", resources: "Resources",
+    about: "About", customers: "Customers", blog: "Blog", podcast: "Podcast", contact: "Contact",
+    minutes: "Board minutes template", audio: "Audio setup guide",
+    privacy: "Privacy policy", terms: "Terms of service", rights: "All rights reserved.",
+    address: "Rue de l'Hôpital 31, 1000 Brussels, Belgium",
+  },
+  fr: {
+    tagline: "Le portail des conseils d’administration qui prennent la gouvernance au sérieux.",
+    product: "Produit", company: "Entreprise", legal: "Mentions légales",
+    features: "Fonctionnalités", pricing: "Tarifs", security: "Sécurité", resources: "Ressources",
+    about: "À propos", customers: "Clients", blog: "Blog", podcast: "Podcast", contact: "Contact",
+    minutes: "Modèle de procès-verbal", audio: "Guide de configuration audio",
+    privacy: "Politique de confidentialité", terms: "Conditions d’utilisation", rights: "Tous droits réservés.",
+    address: "Rue de l'Hôpital 31, 1000 Bruxelles, Belgique",
+  },
+  nl: {
+    tagline: "Het bestuursportaal voor organisaties die governance ernstig nemen.",
+    product: "Product", company: "Bedrijf", legal: "Juridisch",
+    features: "Functies", pricing: "Prijzen", security: "Beveiliging", resources: "Kennisbank",
+    about: "Over ons", customers: "Klanten", blog: "Blog", podcast: "Podcast", contact: "Contact",
+    minutes: "Sjabloon voor notulen", audio: "Audio-installatiegids",
+    privacy: "Privacybeleid", terms: "Gebruiksvoorwaarden", rights: "Alle rechten voorbehouden.",
+    address: "Gasthuisstraat 31, 1000 Brussel, België",
+  },
+  ar: {
+    tagline: "بوابة مجالس الإدارة للمؤسسات التي تأخذ الحوكمة على محمل الجد.",
+    product: "المنتج", company: "الشركة", legal: "الشؤون القانونية",
+    features: "المزايا", pricing: "الأسعار", security: "الأمان", resources: "الموارد",
+    about: "من نحن", customers: "العملاء", blog: "المدونة", podcast: "البودكاست", contact: "تواصل معنا",
+    minutes: "نموذج محضر الاجتماع", audio: "دليل إعداد الصوت",
+    privacy: "سياسة الخصوصية", terms: "شروط الخدمة", rights: "جميع الحقوق محفوظة.",
+    address: "Rue de l'Hôpital 31, 1000 بروكسل، بلجيكا",
+  },
+}[currentLang];
 
-
-const links = currentLang === 'fr' ? {
-  about: "/fr/about",
-  resources: "/fr/resources",
-  blog: "/fr/blog",
-  podcast: "/fr/podcast",
-  security: "/fr/security",
-  template: "/fr/templates/board-meeting-minutes",
-  audioTemplate: "/templates/audio-set-up-guide",
-  contact: "/fr/contact",
-  privacy: "/fr/privacy",
-  terms: "/fr/terms",
-  quickLinks: "Liens rapides",
-  legal: "Mentions légales",
-  connect: "Nous suivre",
-  tagline: "Simplifier la gestion des conseils pour les organisations modernes",
-  aboutText: "À propos",
-  resourcesText: "Ressources",
-  blogText: "Blog",
-  podcastText: "Podcast",
-  securityText: "Sécurité",
-  templateText: "Modèle de PV de conseil",
-  audioTemplateText: "Guide de configuration audio",
-  contactText: "Contactez-nous",
-  privacyText: "Politique de confidentialité",
-  termsText: "Conditions d'utilisation",
-  allRights: "Tous droits réservés"
-} : currentLang === 'nl' ? {
-  about: "/nl/about",
-  resources: "/nl/resources",
-  blog: "/nl/blog",
-  podcast: "/nl/podcast",
-  security: "/nl/security",
-  template: "/nl/templates/board-meeting-minutes",
-  audioTemplate: "/templates/audio-set-up-guide",
-  contact: "/nl/contact",
-  privacy: "/nl/privacy",
-  terms: "/nl/terms",
-  quickLinks: "Snelle links",
-  legal: "Juridisch",
-  connect: "Volg ons",
-  tagline: "Vereenvoudiging van bestuursbeheer voor moderne organisaties",
-  aboutText: "Over ons",
-  resourcesText: "Bronnen",
-  blogText: "Blog",
-  podcastText: "Podcast",
-  securityText: "Beveiliging",
-  templateText: "Sjabloon voor notulen",
-  audioTemplateText: "Audio setup gids",
-  contactText: "Contacteer ons",
-  privacyText: "Privacybeleid",
-  termsText: "Gebruiksvoorwaarden",
-  allRights: "Alle rechten voorbehouden"
-} : {
-  about: "/about",
-  resources: "/resources",
-  blog: "/blog",
-  podcast: "/podcast",
-  security: "/security",
-  template: "/templates/board-meeting-minutes",
-  audioTemplate: "/templates/audio-set-up-guide",
-  contact: "/contact",
-  privacy: "/privacy",
-  terms: "/terms",
-  quickLinks: "Quick Links",
-  legal: "Legal",
-  connect: "Connect",
-  tagline: "Simplifying board management for modern organizations",
-  aboutText: "About",
-  resourcesText: "Resources",
-  blogText: "Blog",
-  podcastText: "Podcast",
-  securityText: "Security",
-  templateText: "Board Meeting Minutes Template",
-  audioTemplateText: "Audio Setup Guide",
-  contactText: "Contact Us",
-  privacyText: "Privacy Policy",
-  termsText: "Terms of Service",
-  allRights: "All rights reserved"
-};
+const L = (p: string) => localizePath(currentLang, p);
+const columns = [
+  { title: t.product, links: [[t.features, L("/features")], [t.pricing, L("/pricing")], [t.security, L("/security")], [t.minutes, L("/templates/board-meeting-minutes")], [t.audio, "/templates/audio-set-up-guide"]] },
+  { title: t.company, links: [[t.about, L("/about")], [t.customers, L("/testimonials")], [t.resources, L("/resources")], [t.blog, L("/blog")], [t.podcast, L("/podcast")]] },
+  { title: t.legal, links: [[t.contact, L("/contact")], [t.privacy, L("/privacy")], [t.terms, L("/terms")]] },
+];
 ---
-<footer class="bg-gray-900 text-white relative z-10">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div class="space-y-4">
-        <h3 class="text-lg font-bold">Govrn</h3>
-        <p class="text-gray-400">{links.tagline}</p>
 
+<footer class="bg-white border-t border-line relative z-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
+    <div class="grid grid-cols-2 md:grid-cols-12 gap-10">
+      <div class="col-span-2 md:col-span-5 space-y-5">
+        <Logo />
+        <p class="text-gray-600 max-w-sm leading-relaxed">{t.tagline}</p>
+        <a href="https://www.linkedin.com/company/govrncorp" class="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-navy transition-colors">
+          <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+          LinkedIn
+        </a>
       </div>
 
-      <div>
-        <h4 class="font-semibold mb-4">{links.quickLinks}</h4>
-        <ul class="space-y-2">
-          <li><a href={links.about} class="text-gray-400 hover:text-white">{links.aboutText}</a></li>
-          <li><a href={links.resources} class="text-gray-400 hover:text-white">{links.resourcesText}</a></li>
-          <li><a href={links.blog} class="text-gray-400 hover:text-white">{links.blogText}</a></li>
-          <li><a href={links.podcast} class="text-gray-400 hover:text-white">{links.podcastText}</a></li>
-          <li><a href={links.security} class="text-gray-400 hover:text-white">{links.securityText}</a></li>
-          <li><a href={links.template} class="text-gray-400 hover:text-white">{links.templateText}</a></li>
-          <li><a href={links.audioTemplate} class="text-gray-400 hover:text-white">{links.audioTemplateText}</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="font-semibold mb-4">{links.legal}</h4>
-        <ul class="space-y-2">
-          <!-- <li><a href="/help" class="text-gray-400 hover:text-white">Help Center</a></li> -->
-          <li><a href={links.contact} class="text-gray-400 hover:text-white">{links.contactText}</a></li>
-          <li><a href={links.privacy} class="text-gray-400 hover:text-white">{links.privacyText}</a></li>
-          <li><a href={links.terms} class="text-gray-400 hover:text-white">{links.termsText}</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="font-semibold mb-4">{links.connect}</h4>
-        <div class="flex space-x-4">
-          <a href="https://www.linkedin.com/company/govrncorp" class="text-gray-400 hover:text-white">
-            <span class="sr-only">LinkedIn</span>
-            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-            </svg>
-          </a>
+      {columns.map((col, i) => (
+        <div class:list={["md:col-span-2", i === 0 && "md:col-start-7"]}>
+          <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-gray-500 mb-4">{col.title}</p>
+          <ul class="space-y-2.5">
+            {col.links.map(([label, href]) => (
+              <li><a href={href} class="text-sm text-gray-700 hover:text-navy transition-colors">{label}</a></li>
+            ))}
+          </ul>
         </div>
-      </div>
+      ))}
     </div>
 
-    <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-      <p>&copy; {currentYear} Govrn NV/SA. {links.allRights}</p>
+    <div class="mt-14 pt-6 border-t border-line flex flex-col md:flex-row gap-2 md:justify-between text-xs text-gray-500">
+      <p>&copy; {currentYear} Dafira. {t.rights}</p>
+      <p>{t.address}</p>
     </div>
   </div>
 </footer>

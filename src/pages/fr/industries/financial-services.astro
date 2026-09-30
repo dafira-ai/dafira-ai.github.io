@@ -1,246 +1,46 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import CTA from '../../../components/CTA.astro';
+import IndustryLanding from '../../../components/industries/IndustryLanding.astro';
 
-const regulations = [
-  {
-    name: "CSRD",
-    description: "Directive sur la publication d'informations en matière de durabilité pour le reporting ESG",
-    impact: "Reporting ESG obligatoire",
-    deadline: "2024-2025"
-  },
-  {
-    name: "Bâle IV",
-    description: "Renforcement des exigences en fonds propres et des normes de gestion des risques",
-    impact: "Modification des allocations de capital",
-    deadline: "2025"
-  },
-  {
-    name: "RGPD",
-    description: "Réglementation sur la protection des données personnelles des citoyens européens",
-    impact: "Conformité des données",
-    deadline: "En continu"
-  }
-];
+const hero = {
+  eyebrow: 'Services financiers',
+  title: 'Logiciel de gestion du conseil pour les services financiers',
+  lead: 'Un travail de conseil sécurisé et documenté pour les banques, assureurs et sociétés d’investissement. Documents du conseil et des comités, décisions et signatures en un seul endroit, avec des accès définis par rôle.',
+};
 
-const challenges = [
-  {
-    title: "Conformité réglementaire",
-    description: "Maîtrisez les exigences réglementaires complexes comme la CSRD, Bâle IV et le RGPD grâce à notre surveillance de conformité optimisée par l'IA",
-    icon: "⚖️"
-  },
-  {
-    title: "Gestion des risques",
-    description: "Évaluation des risques en temps réel et stratégies d'atténuation avec mises à jour réglementaires automatisées",
-    icon: "🛡️"
-  },
-  {
-    title: "Reporting ESG",
-    description: "Capacités complètes de supervision et de reporting ESG pour la conformité CSRD",
-    icon: "🌱"
-  },
-  {
-    title: "Sécurité des données",
-    description: "Sécurité de niveau bancaire pour les communications sensibles du conseil et la documentation réglementaire",
-    icon: "🔒"
-  }
-];
+const challenges = {
+  title: 'Les enjeux des conseils du secteur financier',
+  lead: 'La réglementation façonne l’ordre du jour, et les superviseurs attendent un registre clair.',
+  items: [
+    { icon: 'scale', title: 'Exigences réglementaires', text: 'Des textes comme DORA, la CSRD et le RGPD confient des responsabilités précises au conseil.' },
+    { icon: 'shield', title: 'Surveillance des risques', text: 'Les comités des risques et d’audit ont besoin d’une information complète et à jour avant chaque réunion.' },
+    { icon: 'leaf', title: 'Reporting de durabilité', text: 'Le conseil supervise la déclaration de durabilité et la manière dont elle est préparée.' },
+    { icon: 'lock', title: 'Informations confidentielles', text: 'Les documents du conseil ne doivent atteindre que les destinataires prévus, par un canal sécurisé.' },
+  ],
+};
 
-const features = [
-  {
-    title: "Intelligence réglementaire",
-    description: "Surveillance des évolutions réglementaires par IA avec analyse d'impact automatisée",
-    icon: "🤖"
-  },
-  {
-    title: "Tableau de bord ESG",
-    description: "Suivi en temps réel des métriques de durabilité et de la conformité CSRD",
-    icon: "📊"
-  },
-  {
-    title: "Automatisation de la conformité",
-    description: "Suivi automatisé des exigences réglementaires et des échéances",
-    icon: "⚡"
-  },
-  {
-    title: "Gestion documentaire sécurisée",
-    description: "Stockage et partage de documents sensibles avec chiffrement de bout en bout",
-    icon: "📑"
-  },
-  {
-    title: "Piste d'audit",
-    description: "Traçabilité complète de toutes les activités et décisions du conseil",
-    icon: "📋"
-  }
-];
-
-const caseStudies = [
-  {
-    company: "Finance & Invest Brussels",
-    logo: "/fib-logo.png",
-    quote: "Govrn a considérablement simplifié notre gestion documentaire, rendant nos préparations de réunions plus efficaces et nous aidant à anticiper les changements réglementaires.",
-    author: "Pierre Hermant",
-    role: "Directeur général",
-    link: "/fr/case-studies/finance-invest-brussels"
-  }
-];
+const features = {
+  title: 'Ce que Dafira apporte',
+  lead: 'Les outils utilisés par les institutions financières.',
+  items: [
+    { icon: 'shield', title: 'Suivi de la conformité', text: 'Suivre les sujets réglementaires qui concernent le conseil, avec les documents associés.' },
+    { icon: 'sparkle', title: 'Assistant IA', text: 'Poser des questions sur de longs documents du conseil et obtenir des résumés avant la réunion.' },
+    { icon: 'folder', title: 'Gestion documentaire sécurisée', text: 'Stockage et partage chiffrés des documents du conseil et des comités, avec des accès par rôle.' },
+    { icon: 'clipboard', title: 'Piste d’audit', text: 'Une trace des accès aux documents et des décisions prises.' },
+  ],
+};
 ---
 
-<Layout title="Logiciel de gestion de conseil pour les services financiers | Govrn" description="Gérez efficacement vos obligations réglementaires incluant la CSRD, Bâle IV et le RGPD grâce à notre surveillance de conformité optimisée par l'IA.">
-  <main class="pt-16">
-    <!-- Section héro -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Services financiers
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Solution de gestion de conseil pour les
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              services financiers
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed mb-12">
-            Donnez à votre conseil d'administration les outils sécurisés et conformes spécialement conçus pour les institutions financières. Anticipez l'évolution des réglementations comme la CSRD et Bâle IV.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/fr/try"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Essai gratuit
-            </a>
-            <a
-              href="/fr/request-demo"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-            >
-              Demander une démo
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section paysage réglementaire -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Anticipez les évolutions réglementaires
-          </h2>
-          <p class="text-xl text-gray-600">
-            Naviguez dans un environnement réglementaire en constante évolution grâce à nos analyses basées sur l'IA et notre surveillance automatisée de la conformité.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {regulations.map(reg => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="flex justify-between items-start mb-4">
-                <h3 class="text-xl font-bold text-primary">{reg.name}</h3>
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
-                  {reg.deadline}
-                </span>
-              </div>
-              <p class="text-gray-600 mb-4">{reg.description}</p>
-              <div class="text-sm font-medium text-gray-500">Impact : {reg.impact}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section défis -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Les défis que nous relevons
-          </h2>
-          <p class="text-xl text-gray-600">
-            Répondez aux enjeux majeurs des conseils d'administration du secteur financier grâce à notre solution complète.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section fonctionnalités -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Fonctionnalités spécifiques au secteur
-          </h2>
-          <p class="text-xl text-gray-600">
-            Des fonctionnalités conçues sur mesure pour la gestion des conseils dans les services financiers.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section études de cas -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Témoignages clients
-          </h2>
-          <p class="text-xl text-gray-600">
-            Découvrez comment les institutions financières leaders transforment leur gouvernance avec Govrn.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {caseStudies.map(study => (
-            <a href={study.link} class="group">
-              <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 h-full flex flex-col">
-                <div class="flex items-center justify-center h-16 mb-8">
-                  <img 
-  loading="lazy"
-                    src={study.logo}
-                    alt={`Logo ${study.company}`}
-                    class="h-full object-contain"
-                  />
-                </div>
-                <blockquote class="flex-grow">
-                  <p class="text-gray-600 mb-6">« {study.quote} »</p>
-                </blockquote>
-                <div>
-                  <p class="font-medium text-gray-900">{study.author}</p>
-                  <p class="text-gray-500">{study.role}</p>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Logiciel de gestion de conseil pour les services financiers | Dafira" description="Portail du conseil pour les banques, assureurs et sociétés d’investissement : documents du conseil et des comités, décisions et signatures dans un espace sécurisé, avec le contexte réglementaire en vue.">
+  <main>
+    <IndustryLanding
+      industry="financial-services"
+      hero={hero}
+      screenshot={{ src: '/onboarding-document-list.png', alt: 'Bibliothèque de documents Dafira, classés par réunion' }}
+      challenges={challenges}
+      features={features}
+      quoteKey="pierre"
+      secondary="trial"
+    />
   </main>
 </Layout>

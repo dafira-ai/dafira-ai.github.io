@@ -1,0 +1,31 @@
+---
+// Closing CTA with the home-page copy in the current language (EN/FR/NL; other languages fall back to EN).
+import { CTA } from '../ui';
+import { langFromPath, localizePath } from '../../i18n/routes';
+
+const lang = langFromPath(Astro.url.pathname);
+const copy = {
+  en: {
+    title: 'See Dafira with your own board pack',
+    subtitle: 'A 30-minute demo with someone who has run board meetings. Bring a real agenda and we will set it up with you.',
+    cta1: 'Book a demo',
+    cta2: 'Contact sales',
+  },
+  fr: {
+    title: 'Découvrez Dafira avec votre propre dossier du conseil',
+    subtitle: 'Une démonstration de 30 minutes avec une personne qui a déjà organisé des séances de conseil. Apportez un véritable ordre du jour, nous le configurerons avec vous.',
+    cta1: 'Demander une démo',
+    cta2: 'Nous contacter',
+  },
+  nl: {
+    title: 'Bekijk Dafira met uw eigen bestuursdossier',
+    subtitle: 'Een demo van 30 minuten met iemand die zelf bestuursvergaderingen heeft georganiseerd. Breng een echte agenda mee, dan zetten we die samen met u op.',
+    cta1: 'Demo aanvragen',
+    cta2: 'Contact opnemen',
+  },
+};
+const texts = copy[lang as keyof typeof copy] ?? copy.en;
+const links = { cta1: localizePath(lang, '/request-demo'), cta2: localizePath(lang, '/contact') };
+---
+
+<CTA texts={texts} links={links} />

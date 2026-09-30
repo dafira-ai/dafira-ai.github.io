@@ -1,265 +1,54 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import CTA from '../../../components/CTA.astro';
+import RoleLanding from '../../../components/industries/RoleLanding.astro';
+import { customerQuote, readCaseLabel } from '../../../components/industries/customerQuotes';
 
-const challenges = [
-  {
-    icon: "📊", 
-    title: "Maîtrise de l'information",
-    description: "Centralisez et contrôlez efficacement le flux d'informations vers votre conseil d'administration"
-  },
-  {
-    icon: "⚡",
-    title: "Communication optimale",
-    description: "Garantissez une transmission fluide et ponctuelle des informations stratégiques"
-  },
-  {
-    icon: "🎯",
-    title: "Équilibre informationnel",
-    description: "Des outils intelligents pour éviter la surcharge tout en maintenant la transparence"
-  },
-  {
-    icon: "💬",
-    title: "Réactivité instantanée",
-    description: "Répondez rapidement aux demandes du conseil pour une prise de décision efficace"
-  }
-];
-
-const features = [
-  {
-    title: "Centre de gestion documentaire",
-    description: "Plateforme centralisée pour orchestrer la circulation des documents",
-    icon: "📑",
-    benefits: [
-      "Distribution contrôlée",
-      "Organisation intelligente",
-      "Alertes en temps réel",
-      "Historique des versions"
-    ]
-  },
-  {
-    title: "Base de connaissances IA",
-    description: "Système intelligent pour organiser et accéder aux informations essentielles",
-    icon: "🤖",
-    benefits: [
-      "Classement automatique",
-      "Recherche instantanée",
-      "Synthèses intelligentes",
-      "Partage ciblé"
-    ]
-  },
-  {
-    title: "Espace de communication sécurisé",
-    description: "Sécurité de niveau entreprise pour tous les échanges",
-    icon: "🔒",
-    benefits: [
-      "Chiffrement de bout en bout",
-      "Gestion des accès",
-      "Traçabilité complète",
-      "Conformité garantie"
-    ]
-  }
-];
-
-const securityFeatures = [
-  {
-    icon: "🔐",
-    title: "Sécurité entreprise",
-    description: "Protection bancaire pour sécuriser l'ensemble des communications"
-  },
-  {
-    icon: "👥",
-    title: "Contrôle d'accès",
-    description: "Permissions précises pour une diffusion maîtrisée de l'information"
-  },
-  {
-    icon: "📋",
-    title: "Traçabilité",
-    description: "Suivi détaillé de toutes les activités et décisions du conseil"
-  }
-];
-
-const testimonial = {
-  quote: "Govrn a considérablement simplifié notre gestion documentaire, rendant la préparation de nos réunions plus efficace et permettant à notre conseil de se concentrer sur la prise de décision.",
-  author: "Pierre Hermant",
-  role: "CEO",
-  company: "Finance & Invest Brussels",
-  image: "/fib-pierre.webp"
+const hero = {
+  eyebrow: 'Pour les dirigeants',
+  title: 'Informer le conseil, selon vos conditions',
+  lead: 'Décidez de ce qui parvient au conseil et à quel moment. Dafira vous offre un canal unique et maîtrisé pour les documents du conseil, les mises à jour et le suivi, avec des accès définis par rôle.',
+  primary: { text: 'Demander une démo', href: '/fr/request-demo' },
+  secondary: { text: 'Nous contacter', href: '/fr/contact' },
+  screenshot: { src: '/onboarding-event-detail.png', alt: 'Page de réunion Dafira avec l’ordre du jour, les présences et un vote en attente sur le procès-verbal' },
 };
+
+const challenges = {
+  title: 'Ce que les dirigeants attendent du fonctionnement du conseil',
+  lead: 'Le conseil dépend de la direction pour s’informer. La manière dont l’information est partagée conditionne la qualité des échanges.',
+  items: [
+    { icon: 'folder', title: 'Maîtrise de l’information', text: 'Un seul espace pour tout ce que reçoit le conseil, pour savoir quelle version chaque administrateur a lue.' },
+    { icon: 'clock', title: 'Communication dans les délais', text: 'Diffuser les mises à jour et les documents du conseil à temps, sans dépendre de chaînes d’e-mails.' },
+    { icon: 'list', title: 'Équilibre de l’information', text: 'Structurer le dossier du conseil par point de l’ordre du jour, pour que les administrateurs trouvent l’essentiel sans être submergés.' },
+    { icon: 'chat', title: 'Réactivité', text: 'Répondre aux questions des administrateurs entre les réunions dans une messagerie sécurisée, en gardant le contexte.' },
+  ],
+};
+
+const features = {
+  title: 'Les outils du dirigeant',
+  lead: 'Les fonctions de Dafira que les dirigeants utilisent le plus.',
+  items: [
+    { icon: 'documents', title: 'Maîtrise des documents', text: 'Partager les documents du conseil depuis un seul endroit et garder la trace de ce qui a été envoyé.', items: ['Diffusion contrôlée', 'Dossier du conseil par point', 'Notifications de mise à jour', 'Historique des versions'] },
+    { icon: 'sparkle', title: 'Assistant IA', text: 'Les administrateurs peuvent poser des questions sur les documents du conseil et obtenir des résumés des documents longs.', items: ['Questions sur les documents du conseil', 'Résumés des documents longs', 'Recherche dans les réunions passées'] },
+    { icon: 'lock', title: 'Communication sécurisée', text: 'Garder les échanges du conseil hors des messageries et e-mails personnels.', items: ['Messagerie sécurisée du conseil', 'Accès par rôle', 'Piste d’audit'] },
+  ],
+};
+
+const security = {
+  title: 'La sécurité des échanges du conseil',
+  lead: 'Les informations du conseil restent au sein du conseil.',
+  link: { text: 'En savoir plus sur la sécurité', href: '/fr/security' },
+  items: [
+    { icon: 'lock', title: 'Chiffrement', text: 'Les données sont chiffrées en transit et au repos, sur l’infrastructure Microsoft Azure.' },
+    { icon: 'users', title: 'Contrôle des accès', text: 'Des autorisations par conseil, comité et rôle, pour que l’information n’atteigne que les bonnes personnes.' },
+    { icon: 'clipboard', title: 'Piste d’audit', text: 'Une trace des accès aux documents et des décisions prises.' },
+  ],
+};
+
+const quote = { ...customerQuote('fr', 'pierre'), linkText: readCaseLabel.fr };
 ---
 
-<Layout title="Logiciel de gestion de conseil d'administration pour dirigeants | Govrn" description="Prenez le contrôle de votre communication avec des outils intelligents pour gérer les flux d'information, assurer des mises à jour régulières et maintenir la sécurité.">
-  <main class="pt-16">
-    <!-- Section hero -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-              Pour les dirigeants
-            </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Maîtrisez les flux
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                d'information
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-12">
-              Prenez le contrôle de votre communication avec des outils intelligents pour une gestion optimale de l'information.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/fr/request-demo"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Demander une démo
-              </a>
-              <a
-                href="/fr/contact"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-              >
-                Contacter l'équipe
-              </a>
-            </div>
-          </div>
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl transform rotate-3"></div>
-            <img 
-  loading="lazy"
-              src="/realestate.jpg"
-              alt="Interface Govrn"
-              class="relative rounded-2xl shadow-2xl"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section défis -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Les défis des dirigeants
-          </h2>
-          <p class="text-xl text-gray-600">
-            Des solutions complètes pour répondre aux enjeux de gestion et de communication
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section fonctionnalités -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Conçu pour les dirigeants
-          </h2>
-          <p class="text-xl text-gray-600">
-            Des outils sur mesure pour une maîtrise totale de votre conseil d'administration
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600 mb-6">{feature.description}</p>
-              <ul class="space-y-3">
-                {feature.benefits.map(benefit => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section sécurité -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Sécurité de niveau entreprise
-          </h2>
-          <p class="text-xl text-gray-600">
-            Protection maximale pour vos communications sensibles
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {securityFeatures.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section témoignage -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-br from-primary to-blue-600 rounded-2xl overflow-hidden">
-          <div class="grid lg:grid-cols-2 gap-8 p-12">
-            <div class="text-white">
-              <blockquote class="text-2xl font-medium mb-8">
-                "{testimonial.quote}"
-              </blockquote>
-              <div class="flex items-center space-x-4">
-                <img 
-  loading="lazy"
-                  src={testimonial.image}
-                  alt={testimonial.author}
-                  class="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <div class="font-semibold">{testimonial.author}</div>
-                  <div class="text-white/80">{testimonial.role}</div>
-                  <div class="text-white/80">{testimonial.company}</div>
-                </div>
-              </div>
-            </div>
-            <div class="relative lg:text-right">
-              <a
-                href="/fr/case-studies/finance-invest-brussels"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-              >
-                Lire l'étude de cas
-                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Logiciel de gestion de conseil d'administration pour dirigeants | Dafira" description="Portail du conseil pour les dirigeants : maîtriser l’information transmise au conseil, diffuser les mises à jour à temps et sécuriser les échanges du conseil.">
+  <main>
+    <RoleLanding hero={hero} challenges={challenges} features={features} security={security} quote={quote} />
   </main>
 </Layout>

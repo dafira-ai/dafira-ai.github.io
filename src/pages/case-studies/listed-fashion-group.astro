@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaseStudy from '../../components/case-studies/CaseStudy.astro';
+---
+
+<Layout
+  title="Listed fashion group: board governance with Dafira"
+  description="How a listed fashion group runs its board with Dafira: onboarding external directors, secure access to board documents and digital signing. Read the case study."
+>
+  <CaseStudy
+    company="Listed fashion group"
+    facts={[{ label: "Sector", value: "Listed fashion group" }]}
+    title="Listed fashion group: board governance in one secure place"
+    lead="How the group's General Counsel, who also acts as Board Secretary, centralised board documents, signing and collaboration with Dafira."
+    quote={{ quote: "Dafira has transformed how we manage our board operations, bringing efficiency and clarity to our governance processes.", author: "General Counsel" }}
+    context={{
+      title: "A company built on quality",
+      paragraphs: [
+        "The group prides itself on a heritage of quality and innovation. Its General Counsel covers legal advice, compliance and policy management, and acts as Secretary to the Board of Directors.",
+        "The company is guided by a set of core values, with an emphasis on quality in products and processes, long-term relationships with stakeholders and sustainable solutions over quick wins.",
+      ],
+      quote: "At [our organisation], we are committed to not just maintaining but elevating the quality across our product lines and operational processes.",
+    }}
+    challenges={[
+      { title: "Board integration", text: "Onboarding external board members, who need a thorough understanding of operations and strategy." },
+      { title: "Digital complexity", text: "A growing range of subjects for the board to master and apply in an increasingly digital corporate landscape." },
+      { title: "Information security", text: "Secure access to sensitive board documents, while keeping them easy to reach." },
+    ]}
+    solutions={[
+      { title: "A platform that needs no manual", text: "An interface board members can use without training material." },
+      { title: "Digital documents and signing", text: "Board documents and signing processes handled entirely online." },
+      { title: "Shared workspace", text: "One place to share documents and work together on them." },
+    ]}
+    outcome={{
+      title: "A central platform for the board",
+      paragraphs: [
+        "As the corporate world becomes more digital and regulation more complex, the group’s board members are expected to master a wide range of subjects and apply them to the company’s strategy.",
+        "Dafira supports this with a central platform that simplifies document management while keeping board documents secure.",
+      ],
+      quote: "Dafira has revolutionized how we manage our board operations, bringing efficiency and clarity to our governance processes.",
+    }}
+  />
+</Layout>

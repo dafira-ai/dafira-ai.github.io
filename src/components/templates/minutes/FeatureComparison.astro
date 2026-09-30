@@ -1,95 +1,58 @@
 ---
-const features = [
-  {
-    template: { text: "Basic formatting and structure", icon: "📄" },
-    govrn: { text: "AI-powered formatting and smart suggestions", icon: "🤖" },
-    benefit: "Save 80% of time on formatting"
+// Template vs Dafira for board minutes (EN / FR / NL).
+import Comparison from '../Comparison.astro';
+import { Button } from '../../ui';
+import { langFromPath, localizePath } from '../../../i18n/routes';
+
+const lang = langFromPath(Astro.url.pathname);
+const copy = {
+  en: {
+    title: 'What Dafira adds to a template',
+    lead: 'The template gives you the structure. Dafira handles the rest of the minutes process.',
+    templateLabel: 'Word template',
+    dafiraLabel: 'Dafira',
+    rows: [
+      { template: 'Basic formatting and structure', dafira: 'AI minute builder with suggested structure' },
+      { template: 'Manual input required', dafira: 'Transcription and summary drafted from the meeting recording' },
+      { template: 'Static document', dafira: 'Real-time collaboration and version control' },
+      { template: 'Manual distribution', dafira: 'Distribution to members with tracking' },
+      { template: 'Print and sign', dafira: 'Digital signatures and approvals' },
+    ],
+    cta: 'Book a demo',
   },
-  {
-    template: { text: "Manual input required", icon: "✍️" },
-    govrn: { text: "Automatic transcription and summarization", icon: "🎙️" },
-    benefit: "Focus on the discussion, not note-taking"
+  fr: {
+    title: "Ce que Dafira ajoute à un modèle",
+    lead: 'Le modèle vous donne la structure. Dafira prend en charge le reste du processus de rédaction.',
+    templateLabel: 'Modèle Word',
+    dafiraLabel: 'Dafira',
+    rows: [
+      { template: 'Mise en forme et structure de base', dafira: "Rédaction du procès-verbal assistée par l'IA, avec une structure proposée" },
+      { template: 'Saisie manuelle', dafira: "Transcription et synthèse préparées à partir de l'enregistrement de la réunion" },
+      { template: 'Document statique', dafira: 'Collaboration en temps réel et gestion des versions' },
+      { template: 'Diffusion manuelle', dafira: 'Diffusion aux membres avec suivi' },
+      { template: 'Impression et signature', dafira: 'Signatures et approbations électroniques' },
+    ],
+    cta: 'Demander une démo',
   },
-  {
-    template: { text: "Static document", icon: "📎" },
-    govrn: { text: "Real-time collaboration and version control", icon: "👥" },
-    benefit: "Everyone stays in sync, always"
+  nl: {
+    title: 'Wat Dafira toevoegt aan een sjabloon',
+    lead: 'Het sjabloon geeft u de structuur. Dafira neemt de rest van het notuleringsproces voor zijn rekening.',
+    templateLabel: 'Word-sjabloon',
+    dafiraLabel: 'Dafira',
+    rows: [
+      { template: 'Basisopmaak en structuur', dafira: 'Notulen opstellen met AI, met een voorgestelde structuur' },
+      { template: 'Handmatige invoer', dafira: 'Transcriptie en samenvatting op basis van de opname van de vergadering' },
+      { template: 'Statisch document', dafira: 'Realtime samenwerking en versiebeheer' },
+      { template: 'Handmatige verspreiding', dafira: 'Verspreiding naar leden met opvolging' },
+      { template: 'Afdrukken en ondertekenen', dafira: 'Digitale handtekeningen en goedkeuringen' },
+    ],
+    cta: 'Demo aanvragen',
   },
-  {
-    template: { text: "Manual distribution", icon: "📨" },
-    govrn: { text: "Automated distribution with tracking", icon: "⚡" },
-    benefit: "Instant delivery with read receipts"
-  },
-  {
-    template: { text: "Print and sign", icon: "🖨️" },
-    govrn: { text: "Digital signatures and approvals", icon: "✅" },
-    benefit: "Get approvals in minutes, not days"
-  }
-];
+}[lang === 'fr' || lang === 'nl' ? lang : 'en'];
 ---
 
-<div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-2xl p-8 border border-primary/10">
-  <div class="text-center mb-12">
-    <h3 class="text-2xl font-bold text-gray-900 mb-4">Why Upgrade to Govrn?</h3>
-    <p class="text-gray-600">Experience the future of board meeting minutes</p>
+<Comparison title={copy.title} lead={copy.lead} templateLabel={copy.templateLabel} dafiraLabel={copy.dafiraLabel} rows={copy.rows}>
+  <div class="mt-8">
+    <Button href={localizePath(lang, '/request-demo')}>{copy.cta}</Button>
   </div>
-
-  <div class="space-y-8">
-    {features.map(feature => (
-      <div class="relative">
-        <!-- Connection Line -->
-        <div class="absolute left-1/2 top-1/2 h-px w-8 bg-gradient-to-r from-gray-200 to-primary transform -translate-x-1/2 -translate-y-1/2"></div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          <!-- Template Feature -->
-          <div class="bg-white/50 rounded-xl p-6 shadow-sm">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-2xl">
-                {feature.template.icon}
-              </div>
-              <div class="text-gray-600">{feature.template.text}</div>
-            </div>
-          </div>
-
-          <!-- Govrn Feature -->
-          <div class="bg-white rounded-xl p-6 shadow-md border border-primary/10 transform hover:-translate-y-1 transition-transform duration-300">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-2xl">
-                {feature.govrn.icon}
-              </div>
-              <div class="font-medium text-gray-900">{feature.govrn.text}</div>
-            </div>
-            <div class="ml-16">
-              <div class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-800">
-                {feature.benefit}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-
-  <div class="mt-12 p-6 bg-white rounded-xl border border-primary/10">
-    <div class="flex items-center justify-between">
-      <div class="flex items-center space-x-4">
-        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-2xl">
-          🚀
-        </div>
-        <div>
-          <h4 class="font-semibold text-gray-900">Ready to Transform Your Minutes Process?</h4>
-          <p class="text-sm text-gray-600">See how Govrn can automate your entire workflow</p>
-        </div>
-      </div>
-      <a
-        href="/request-demo"
-        class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors duration-200"
-      >
-        Get Started
-        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-        </svg>
-      </a>
-    </div>
-  </div>
-</div>
+</Comparison>

@@ -1,0 +1,93 @@
+---
+// HTML mock-up of the AI minute builder: minutes editor with the chapters generated from the recording. Plays once.
+import AppFrame from '../AppFrame.astro';
+import { langFromPath } from '../../../i18n/routes';
+import { featureLang } from '../common';
+
+interface Props {
+  shadow?: boolean;
+}
+const { shadow = false } = Astro.props;
+
+const t = {
+  en: {
+    title: 'Minutes · Board of Directors, 15 March', meta: 'Draft',
+    heading: 'Board of Directors meeting', sub: '15 March · 14:00 · Present: chair, CEO, CFO and four directors',
+    sections: [
+      ['1. Opening and attendance', 'The chair opened the meeting at 14:00 and noted that the quorum was met. The agenda was approved.', 'done'],
+      ['2. Financial review Q1', 'The CFO presented the Q1 results. The board approved the financial statements unanimously.', 'done'],
+      ['3. Strategic initiatives', 'The board discussed the Nordic expansion. The motion to approve the first phase was carried.', 'pending'],
+    ],
+    done: 'From chapter', pending: 'In progress',
+    tabs: ['Chapters', 'Transcript'],
+    chapters: [['Opening', '00:02'], ['Financial review Q1', '00:08'], ['Strategic initiatives', '00:15']],
+    check: 'To check', checkText: 'No action owner recorded for item 3.',
+  },
+  fr: {
+    title: 'PV · Conseil d’administration, 15 mars', meta: 'Projet',
+    heading: 'Séance du conseil d’administration', sub: '15 mars · 14:00 · Présents : président, CEO, CFO et quatre administrateurs',
+    sections: [
+      ['1. Ouverture et présences', 'Le président ouvre la séance à 14:00 et constate que le quorum est atteint. L’ordre du jour est approuvé.', 'done'],
+      ['2. Revue financière T1', 'Le CFO présente les résultats du T1. Le conseil approuve les états financiers à l’unanimité.', 'done'],
+      ['3. Initiatives stratégiques', 'Le conseil discute de l’expansion nordique. La proposition d’approuver la première phase est adoptée.', 'pending'],
+    ],
+    done: 'Issu du chapitre', pending: 'En cours',
+    tabs: ['Chapitres', 'Transcription'],
+    chapters: [['Ouverture', '00:02'], ['Revue financière T1', '00:08'], ['Initiatives stratégiques', '00:15']],
+    check: 'À vérifier', checkText: 'Aucun responsable d’action indiqué pour le point 3.',
+  },
+  nl: {
+    title: 'Notulen · Raad van bestuur, 15 maart', meta: 'Ontwerp',
+    heading: 'Vergadering van de raad van bestuur', sub: '15 maart · 14:00 · Aanwezig: voorzitter, CEO, CFO en vier bestuurders',
+    sections: [
+      ['1. Opening en aanwezigheden', 'De voorzitter opent de vergadering om 14:00 en stelt vast dat het quorum bereikt is. De agenda wordt goedgekeurd.', 'done'],
+      ['2. Financieel overzicht Q1', 'De CFO presenteert de resultaten van Q1. Het bestuur keurt de financiële staten unaniem goed.', 'done'],
+      ['3. Strategische initiatieven', 'Het bestuur bespreekt de Scandinavische uitbreiding. Het voorstel om de eerste fase goed te keuren wordt aangenomen.', 'pending'],
+    ],
+    done: 'Uit hoofdstuk', pending: 'Bezig',
+    tabs: ['Hoofdstukken', 'Transcriptie'],
+    chapters: [['Opening', '00:02'], ['Financieel overzicht Q1', '00:08'], ['Strategische initiatieven', '00:15']],
+    check: 'Na te kijken', checkText: 'Geen verantwoordelijke vermeld voor de actie bij punt 3.',
+  },
+}[featureLang(langFromPath(Astro.url.pathname))];
+---
+
+<div data-play>
+  <AppFrame title={t.title} meta={t.meta} shadow={shadow}>
+    <div class="grid md:grid-cols-[1fr_minmax(0,13rem)]">
+      <div class="p-5 space-y-4">
+        <div class="border-b border-line pb-3">
+          <p class="font-semibold text-navy">{t.heading}</p>
+          <p class="mt-1 text-xs text-gray-500">{t.sub}</p>
+        </div>
+        {t.sections.map(([title, text, state], i) => (
+          <div data-step style={`--d:${150 + i * 220}`}>
+            <p class="text-[13px] font-semibold text-ink">{title}</p>
+            <p class="mt-1 text-[13px] text-gray-700 leading-relaxed">{text}</p>
+            <span class:list={['mt-1.5 inline-block text-[11px] font-medium px-2 py-0.5 rounded-sm', state === 'done' ? 'bg-blue-50 text-primary' : 'bg-amber-50 text-amber-800']}>
+              {state === 'done' ? t.done : t.pending}
+            </span>
+          </div>
+        ))}
+      </div>
+      <div class="bg-surface border-t md:border-t-0 md:border-s border-line">
+        <div class="flex border-b border-line text-xs">
+          <span class="flex-1 px-3 py-2.5 text-navy font-medium border-b-2 border-navy -mb-px">{t.tabs[0]}</span>
+          <span class="flex-1 px-3 py-2.5 text-gray-500">{t.tabs[1]}</span>
+        </div>
+        <ul class="p-3 space-y-2">
+          {t.chapters.map(([name, time], i) => (
+            <li class="bg-white border border-line rounded-sm px-3 py-2 flex items-baseline justify-between gap-2" data-step style={`--d:${100 + i * 120}`}>
+              <span class="text-xs text-ink">{name}</span>
+              <span class="font-mono text-[11px] text-gray-500">{time}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="mx-3 mb-3 border-s-2 border-amber-500 bg-white px-3 py-2" data-step style="--d:900">
+          <p class="text-[11px] font-medium text-amber-800">{t.check}</p>
+          <p class="mt-0.5 text-xs text-gray-600">{t.checkText}</p>
+        </div>
+      </div>
+    </div>
+  </AppFrame>
+</div>

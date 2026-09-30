@@ -1,17 +1,10 @@
 ---
-import { Image } from 'astro:assets';
-import applicationHomePageImg from '../assets/images/application-home-page.png';
-import heroSidePic from '../assets/images/hero-side-pic.png';
-import govrnLogoBg from '../assets/images/govrn-logo-blue.png';
-import g2Logo from '../assets/G2_logo.jpg';
 import VideoModal from './VideoModal.astro';
+import { langFromPath } from '../i18n/routes';
 
 interface HeroProps {
-  imageValues?: {
-    title: string;
-    description: string;
-    position: string;
-  }[];
+  /** @deprecated kept for backwards compatibility with existing pages; no longer rendered */
+  imageValues?: unknown[];
   badgeText?: string;
   heading?: {
     main: string;
@@ -19,180 +12,153 @@ interface HeroProps {
   };
   description?: string;
   ctaButtons?: {
-    primary: {
-      text: string;
-      href: string;
-    };
-    secondary: {
-      text: string;
-    };
+    primary: { text: string; href: string };
+    secondary: { text: string };
   };
-  securityFeatures?: {
-    title: string;
-    subtitle: string;
-  }[];
+  securityFeatures?: { title: string; subtitle: string }[];
   imageAlt?: string;
-  imageSrc?: string;
+  imageSrc?: unknown;
 }
 
+const lang = langFromPath(Astro.url.pathname);
+
 const {
-  imageValues = [
-    {
-      title: "AI-Powered",
-      description: "Transform board data into actionable insights with our advanced AI engine",
-      position: "top-1/4 left-2/3"
-    },
-    {
-      title: "Secure", 
-      description: "Enterprise-grade security with end-to-end encryption and compliance features",
-      position: "bottom-1/3 right-10"
-    },
-    {
-      title: "Collaborative",
-      description: "Real-time collaboration tools for seamless board communication", 
-      position: "bottom-1/4 left-1/3"
-    }
-  ],
-  badgeText = "AI-Powered Board Management",
+  badgeText = "Board portal · GDPR compliant",
   heading = {
-    main: "The AI-First Board Platform to Power Your",
-    highlight: "Best Decisions"
+    main: "The board portal for organisations that take",
+    highlight: "governance seriously."
   },
-  description = "Govrn equips your board to make swift, informed decisions with ease. Our AI platform enhances collaboration, ensures compliance, and drives long-term growth and success.",
+  description = "Prepare the board pack, run the meeting, record votes and circulate signed minutes. One secure place for directors, secretaries and legal teams.",
   ctaButtons = {
-    primary: {
-      text: "Request Demo",
-      href: "/request-demo"
-    },
-    secondary: {
-      text: "Watch Video"
-    }
+    primary: { text: "Book a demo", href: "/request-demo" },
+    secondary: { text: "Watch the 2-minute tour" }
   },
   securityFeatures = [
-    {
-      title: "GDPR",
-      subtitle: "Compliant"
-    },
-    {
-      title: "256-bit",
-      subtitle: "Encryption"  
-    },
-    {
-      title: "Multi-Factor",
-      subtitle: "Authentication"
-    }
+    { title: "256-bit", subtitle: "Encryption" },
+    { title: "GDPR", subtitle: "Compliant" },
+    { title: "MFA", subtitle: "For every director" }
   ],
-  imageAlt = "Govrn Board Management Software Interface",
-  imageSrc = applicationHomePageImg
-} = Astro.props;
+} = Astro.props as HeroProps;
+
+// Product card copy — sample meeting shown next to the headline
+const card = {
+  en: { meeting: 'Board of Directors · Q3 2026', date: '14 Oct · 09:30', items: [
+      ['09:30', 'Approval of previous minutes', 'ok', 'Approved'],
+      ['09:45', 'CFO report · H1 accounts', 'ok', 'Read 7/7'],
+      ['10:30', 'Resolution 2026-14 · Capex', 'vote', 'Vote open'],
+      ['11:15', 'Remuneration committee', 'pend', 'In camera'],
+    ], signed: 'Minutes signed 4/5', quorum: 'Quorum met', g2: 'on G2' },
+  fr: { meeting: 'Conseil d’administration · T3 2026', date: '14 oct. · 09:30', items: [
+      ['09:30', 'Approbation du PV précédent', 'ok', 'Approuvé'],
+      ['09:45', 'Rapport du CFO · comptes S1', 'ok', 'Lu 7/7'],
+      ['10:30', 'Résolution 2026-14 · Capex', 'vote', 'Vote ouvert'],
+      ['11:15', 'Comité de rémunération', 'pend', 'Huis clos'],
+    ], signed: 'PV signé 4/5', quorum: 'Quorum atteint', g2: 'sur G2' },
+  nl: { meeting: 'Raad van bestuur · Q3 2026', date: '14 okt · 09:30', items: [
+      ['09:30', 'Goedkeuring vorige notulen', 'ok', 'Goedgekeurd'],
+      ['09:45', 'Rapport CFO · jaarrekening H1', 'ok', 'Gelezen 7/7'],
+      ['10:30', 'Resolutie 2026-14 · Capex', 'vote', 'Stemming open'],
+      ['11:15', 'Remuneratiecomité', 'pend', 'Besloten'],
+    ], signed: 'Notulen getekend 4/5', quorum: 'Quorum bereikt', g2: 'op G2' },
+  ar: { meeting: 'مجلس الإدارة · الربع الثالث 2026', date: '14 أكتوبر · 09:30', items: [
+      ['09:30', 'اعتماد محضر الاجتماع السابق', 'ok', 'معتمد'],
+      ['09:45', 'تقرير المدير المالي · حسابات النصف الأول', 'ok', 'قُرئ 7/7'],
+      ['10:30', 'القرار 2026-14 · النفقات الرأسمالية', 'vote', 'التصويت مفتوح'],
+      ['11:15', 'لجنة المكافآت', 'pend', 'جلسة مغلقة'],
+    ], signed: 'تم توقيع المحضر 4/5', quorum: 'النصاب مكتمل', g2: 'على G2' },
+}[lang];
+
+const statusClass = {
+  ok: 'bg-emerald-50 text-emerald-800',
+  vote: 'bg-blue-50 text-primary',
+  pend: 'bg-amber-50 text-amber-800',
+};
 ---
 
-<section class="relative bg-gradient-to-br from-white to-gray-50 pt-32 pb-24 overflow-x-hidden">
-  <!-- <div class="absolute inset-0 z-0">
-    <Image
-      src={govrnLogoBg}
-      alt=""
-      class="absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 opacity-5 pointer-events-none"
-      width={384}
-      height={384}
-    />
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-  </div> -->
+<section class="relative bg-white pt-32 pb-20 lg:pt-36 lg:pb-24 border-b border-line">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+      <div class="lg:col-span-6">
+        <p class="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.08em] text-gray-500">
+          <span class="w-5 h-px bg-primary" aria-hidden="true"></span>
+          {badgeText}
+        </p>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="relative flex items-center">
-      <!-- Left Column - Content -->
-      <div class="w-full lg:w-1/2 lg:pr-8 relative z-10">
-        <div class="flex items-center gap-4 mb-8">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary">
-            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-            {badgeText}
-          </div>
-
-          <!-- G2 Badge -->
-          <a href="https://www.g2.com/products/govrn/reviews" target="_blank" class="inline-flex items-center px-3 py-2 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100 hover:scale-105">
-            <Image
-              src={g2Logo}
-              alt="G2 Logo"
-              quality={'max'}
-              width={20}
-              height={20}
-              loading="eager"
-              class="mr-2"
-            />
-            <div class="flex items-center">
-              <div class="flex text-yellow-400 mr-1">
-                {[...Array(5)].map(() => (
-                  <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                  </svg>
-                ))}
-              </div>
-              <span class="font-semibold text-gray-900 text-sm">4.8</span>
-            </div>
-          </a>
-        </div>
-
-        <h1 class="text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-tight">
-          <span>{heading.main} <span class="bg-clip-text text-transparent" style="background: linear-gradient(to right, #00c3cc, #3372e3, #7426ef); -webkit-background-clip: text;">{heading.highlight}</span></span>
+        <h1 class="mt-6 text-4xl sm:text-5xl lg:text-[3.5rem] font-semibold text-navy leading-[1.08]">
+          {heading.main} {heading.highlight}
         </h1>
 
-        <p class="mt-8 text-xl text-gray-600 leading-relaxed">
+        <p class="mt-6 text-lg text-gray-600 leading-relaxed max-w-xl">
           {description}
         </p>
 
-        <div class="mt-10 flex flex-col sm:flex-row gap-4">
-          <a href={ctaButtons.primary.href} class="inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200">
+        <div class="mt-9 flex flex-col sm:flex-row gap-3">
+          <a
+            href={ctaButtons.primary.href}
+            class="inline-flex items-center justify-center px-5 py-3 text-[15px] font-medium rounded-md text-white bg-navy hover:bg-primary transition-colors"
+          >
             {ctaButtons.primary.text}
-            <svg class="ml-2 -mr-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
           </a>
           <button
+            type="button"
             onclick="openVideoModal()"
-            class="inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 transition-colors duration-200"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3 text-[15px] font-medium rounded-md text-navy border border-line hover:border-navy transition-colors"
           >
-            {ctaButtons.secondary.text}
-            <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10 0a10 10 0 100 20 10 10 0 000-20zm3.5 10.5l-5 3a.5.5 0 01-.75-.4v-6a.5.5 0 01.75-.4l5 3a.5.5 0 010 .8z" />
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke-width="1.5" />
+              <path d="M10 8.5v7l5.5-3.5z" fill="currentColor" stroke="none" />
             </svg>
+            {ctaButtons.secondary.text}
           </button>
         </div>
 
-        <div class="mt-12 grid grid-cols-3 gap-6">
-          {securityFeatures.map(feature => (
-            <div class="flex items-center space-x-2">
-              <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <div class="text-sm">
-                <div class="font-medium text-gray-900">{feature.title}</div>
-                <div class="text-gray-500">{feature.subtitle}</div>
-              </div>
+        <dl class="mt-12 pt-6 border-t border-line grid grid-cols-2 sm:grid-cols-4 gap-6 text-sm">
+          {securityFeatures.map((feature) => (
+            <div>
+              <dt class="font-medium text-ink">{feature.title}</dt>
+              <dd class="text-gray-500">{feature.subtitle}</dd>
             </div>
           ))}
-        </div>
-
+          <div>
+            <dt>
+              <a href="https://www.g2.com/products/govrn/reviews" target="_blank" rel="noopener" class="font-medium text-ink hover:text-primary transition-colors">
+                4.8 / 5
+              </a>
+            </dt>
+            <dd class="text-gray-500">{card.g2}</dd>
+          </div>
+        </dl>
       </div>
 
-      <!-- Right Column - Hero Image -->
-      <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 right-0">
-        <div class="relative h-full w-full flex items-center">
-
-          <Image
-            loading="eager"
-            class="w-auto max-w-none transform transition-transform duration-300 hover:scale-[1.02]"
-            style="filter: drop-shadow(0 15px 35px rgba(57, 153, 222, 0.2)) drop-shadow(0 8px 20px rgba(30, 100, 180, 0.15)); max-height: 100%;"
-            src={heroSidePic}
-            alt="Govrn AI Platform - Mobile and Desktop Interface showing Board Management Features"
-            width={1000}
-            height={786}
-            quality={"high"}
-          />
+      <!-- Sample meeting, rendered in HTML so it follows the page language and direction -->
+      <div class="lg:col-span-6 lg:ps-6" aria-hidden="true">
+        <div class="relative" data-play>
+          <div class="absolute -inset-x-4 -inset-y-6 bg-surface rounded-md hidden lg:block"></div>
+          <div class="relative bg-white border border-line rounded-md shadow-2xl text-sm">
+            <div class="flex items-baseline justify-between gap-4 px-5 py-4 border-b border-line">
+              <span class="font-semibold text-navy">{card.meeting}</span>
+              <span class="font-mono text-xs text-gray-500">{card.date}</span>
+            </div>
+            <ul>
+              {card.items.map(([time, title, status, label], i) => (
+                <li class="grid grid-cols-[3.25rem_1fr_auto] items-center gap-3 px-5 py-3.5 border-b border-line last:border-b-0" data-step style={`--d:${150 + i * 90}`}>
+                  <span class="font-mono text-xs text-gray-500 tabular-nums">{time}</span>
+                  <span class="text-ink">{title}</span>
+                  <span data-step="fade" style={`--d:${520 + i * 120}`} class={`text-[11px] font-medium px-2 py-0.5 rounded-sm whitespace-nowrap ${statusClass[status as keyof typeof statusClass]}`}>{label}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="flex items-center justify-between gap-4 px-5 py-3 bg-surface border-t border-line rounded-b-md">
+              <span class="flex items-center gap-1.5 text-xs text-gray-600">
+                {[0, 1, 2, 3].map((n) => (
+                  <span class="relative w-2 h-2 rounded-full border border-gray-300"><span class="absolute -inset-px rounded-full bg-primary" data-step="fade" style={`--d:${1000 + n * 160}`}></span></span>
+                ))}
+                <span class="w-2 h-2 rounded-full border border-gray-300"></span>
+                <span class="ms-1.5">{card.signed}</span>
+              </span>
+              <span class="font-mono text-[11px] text-gray-500">{card.quorum}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

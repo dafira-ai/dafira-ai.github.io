@@ -1,0 +1,91 @@
+---
+// Body of the "AI minute builder – time savings" campaign page (EN/FR/NL share this layout; copy comes from the page).
+import { PageHero, Section, SectionHeader, Button, Icon, FeatureColumns, CellGrid, Card, FAQ, CTA } from '../ui';
+import ProductCard from './ProductCard.astro';
+import CompareTable from './CompareTable.astro';
+
+type Item = { icon: string; title: string; text: string };
+type Link = { text: string; href: string };
+interface Props {
+  t: {
+    hero: { eyebrow: string; title: string; lead: string; primary: Link; secondary: Link; note: string };
+    card: { title: string; meta: string; rows: { label: string; text: string; tone?: 'ok' | 'info' | 'pending' | 'neutral'; status?: string }[]; footer: string; footerMeta: string; caption: string };
+    pain: { eyebrow: string; title: string; lead: string; items: Item[] };
+    changes: { eyebrow: string; title: string; lead: string; items: Item[]; link: Link };
+    compare: { eyebrow: string; title: string; lead: string; headers: string[]; rows: string[][]; cta: Link };
+    trust: { eyebrow: string; title: string; lead: string; items: Item[] };
+    alternatives: { eyebrow: string; title: string; lead: string; cards: { title: string; text: string; href: string }[] };
+    faq: { title: string; subtitle: string; inLanguage: string; faqs: { question: string; answer: string }[] };
+    cta: { texts: { title: string; subtitle: string; cta1: string; cta2: string }; links: { cta1: string; cta2: string } };
+  };
+}
+const { t } = Astro.props;
+---
+
+<PageHero eyebrow={t.hero.eyebrow} title={t.hero.title} lead={t.hero.lead}>
+  <Fragment slot="actions">
+    <Button href={t.hero.primary.href}>{t.hero.primary.text}</Button>
+    <Button variant="secondary" href={t.hero.secondary.href}>{t.hero.secondary.text}</Button>
+  </Fragment>
+  <p class="mt-6 font-mono text-xs uppercase tracking-[0.08em] text-gray-500">{t.hero.note}</p>
+  <ProductCard slot="aside" class="lg:ms-6" {...t.card} />
+</PageHero>
+
+<Section>
+  <SectionHeader eyebrow={t.pain.eyebrow} title={t.pain.title} lead={t.pain.lead} />
+  <CellGrid columns={4}>
+    {t.pain.items.map((item) => (
+      <div class="bg-white p-6 lg:p-8">
+        <Icon name={item.icon} class="w-6 h-6 text-navy" />
+        <h3 class="mt-5 font-semibold text-navy">{item.title}</h3>
+        <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
+      </div>
+    ))}
+  </CellGrid>
+</Section>
+
+<Section tone="surface" border="both">
+  <SectionHeader eyebrow={t.changes.eyebrow} title={t.changes.title} lead={t.changes.lead} />
+  <FeatureColumns columns={4} items={t.changes.items} />
+  <Button variant="link" href={t.changes.link.href}>{t.changes.link.text}</Button>
+</Section>
+
+<Section>
+  <div class="grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-4">
+      <SectionHeader layout="stacked" eyebrow={t.compare.eyebrow} title={t.compare.title} lead={t.compare.lead} class="!mb-0" />
+      <Button variant="secondary" href={t.compare.cta.href} class="mt-8">{t.compare.cta.text}</Button>
+    </div>
+    <div class="lg:col-span-8">
+      <CompareTable headers={t.compare.headers} rows={t.compare.rows} highlight={2} caption={t.compare.title} />
+    </div>
+  </div>
+</Section>
+
+<Section tone="surface" border="both">
+  <SectionHeader eyebrow={t.trust.eyebrow} title={t.trust.title} lead={t.trust.lead} />
+  <CellGrid columns={4}>
+    {t.trust.items.map((item) => (
+      <div class="bg-white p-6 lg:p-8">
+        <Icon name={item.icon} class="w-6 h-6 text-navy" />
+        <h3 class="mt-5 font-semibold text-navy">{item.title}</h3>
+        <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
+      </div>
+    ))}
+  </CellGrid>
+</Section>
+
+<Section>
+  <SectionHeader eyebrow={t.alternatives.eyebrow} title={t.alternatives.title} lead={t.alternatives.lead} />
+  <div class="grid md:grid-cols-2 gap-6">
+    {t.alternatives.cards.map((card) => (
+      <Card href={card.href}>
+        <h3 class="text-lg font-semibold text-navy group-hover:text-primary transition-colors">{card.title}</h3>
+        <p class="mt-2 text-gray-600">{card.text}</p>
+      </Card>
+    ))}
+  </div>
+</Section>
+
+<FAQ texts={t.faq} />
+<CTA texts={t.cta.texts} links={t.cta.links} />

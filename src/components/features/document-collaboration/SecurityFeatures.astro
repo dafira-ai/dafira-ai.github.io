@@ -1,4 +1,7 @@
 ---
+// Security of shared documents, as a cell grid.
+import { Section, SectionHeader, CellGrid, Icon, Button } from '../../ui';
+
 interface Props {
   texts?: {
     title: string;
@@ -9,84 +12,31 @@ interface Props {
       description: string;
     }>;
   };
+  link?: { text: string; href: string };
+  tone?: 'white' | 'surface';
 }
 
-const { texts = {
-  title: "Enterprise-Grade Security",
-  description: "Your documents are protected by industry-leading security measures",
+const { link, tone = 'white', texts = {
+  title: "Security of the board pack",
+  description: "Documents are protected by the same security measures as the rest of the platform.",
   features: [
-    {
-      icon: "🔒",
-      title: "End-to-End Encryption", 
-      description: "All document changes and comments are encrypted from end to end"
-    },
-    {
-      icon: "👥",
-      title: "Role-Based Access",
-      description: "Granular permissions control who can view and edit documents"
-    },
-    {
-      icon: "📝", 
-      title: "Audit Trails",
-      description: "Complete history of all document activities and changes"
-    }
+    { icon: "lock", title: "Encryption", description: "Documents, changes and comments are encrypted in transit and at rest." },
+    { icon: "users", title: "Role-based access", description: "Permissions set who can view, annotate and comment on each document." },
+    { icon: "clipboard", title: "Audit trail", description: "A complete history of the activity on each document." }
   ]
 }} = Astro.props;
 ---
 
-<section class="py-20 bg-white relative overflow-hidden">
-  <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50"></div>
-  
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="text-3xl font-bold text-gray-900 mb-4">
-        {texts.title}
-      </h2>
-      <p class="text-xl text-gray-600">
-        {texts.description}
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-8">
-      {texts.features.map(feature => (
-        <div class="relative group">
-          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
-          
-          <div class="relative bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-            <!-- Animated Security Icon -->
-            <div class="relative w-16 h-16 mb-6">
-              <div class="absolute inset-0 bg-primary/10 rounded-xl animate-pulse-slow"></div>
-              <div class="relative flex items-center justify-center w-full h-full text-3xl">
-                {feature.icon}
-              </div>
-            </div>
-
-            <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-            <p class="text-gray-600">{feature.description}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<style>
-  @keyframes pulseSlow {
-    0%, 100% { transform: scale(1); opacity: 0.1; }
-    50% { transform: scale(1.1); opacity: 0.2; }
-  }
-
-  @keyframes securityPattern {
-    0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-    50% { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
-    100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-  }
-
-  .animate-pulse-slow {
-    animation: pulseSlow 3s ease-in-out infinite;
-  }
-
-  .animate-security-pattern {
-    animation: securityPattern 8s ease-in-out infinite;
-  }
-</style>
+<Section tone={tone} border={tone === 'surface' ? 'both' : 'none'}>
+  <SectionHeader title={texts.title} lead={texts.description} />
+  <CellGrid columns={3}>
+    {texts.features.map((feature) => (
+      <div class="bg-white p-6 lg:p-8">
+        <Icon name={feature.icon} class="w-6 h-6 text-navy" />
+        <h3 class="mt-5 text-lg font-semibold text-navy">{feature.title}</h3>
+        <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{feature.description}</p>
+      </div>
+    ))}
+  </CellGrid>
+  {link && <div class="mt-8"><Button variant="link" href={link.href}>{link.text}</Button></div>}
+</Section>

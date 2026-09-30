@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaseStudy from '../../components/case-studies/CaseStudy.astro';
+---
+
+<Layout
+  title="Regional public investment fund: board governance with Dafira"
+  description="How a regional public investment fund moved its board documentation from SharePoint to Dafira to serve several governance bodies and a board from the public and private sectors. Read the case study."
+>
+  <CaseStudy
+    company="Regional public investment fund"
+    facts={[{ label: "Sector", value: "Regional public investment fund" }]}
+    title="Regional public investment fund: one governance platform for public and private board members"
+    lead="How the fund moved its board documentation from SharePoint to Dafira for its governance bodies and subsidiaries."
+    quote={{ quote: "Dafira has simplified our document management tremendously, making our meeting preparations more efficient and allowing our board to focus on decision-making rather than document handling.", author: "CEO" }}
+    context={{
+      title: "Financing businesses in its region",
+      paragraphs: [
+        "The fund provides financing to businesses in its region. It supports start-ups, scale-ups and SMEs through a range of financial instruments.",
+        "Its approach includes venture capital through equity participation, subordinated debt and convertible loans, alongside a fund-of-funds policy.",
+      ],
+      quote: "Our hybrid shareholding composed of private and public partners allows us to invest efficiently. We have several governance bodies and subsidiaries generating a multitude of documents to prepare for our meetings including analytical reports on the companies we invest in.",
+    }}
+    challenges={[
+      { title: "Document volume", text: "Several governance bodies and subsidiaries producing extensive documentation that must stay organised and accessible." },
+      { title: "Collaboration across organisations", text: "Board members from the public and private sectors on different email systems, which made sharing and access management difficult." },
+      { title: "Compliance requirements", text: "European governance standards to meet without slowing down operations." },
+    ]}
+    solutions={[
+      { title: "One platform", text: "All governance documents stored in one place, with secure access for each board member." },
+      { title: "Collaboration tools", text: "Communication, document annotation and decision-making in the same platform." },
+      { title: "Audit trail", text: "A complete record of documents and decisions, in support of European governance requirements." },
+    ]}
+    outcome={{
+      title: "From SharePoint to Dafira",
+      paragraphs: [
+        "The move from SharePoint to Dafira changed how the fund manages board documentation and collaboration, which matters for a board that spans the public and private sectors.",
+        "With Dafira, the fund has gained transparency and efficiency in its board operations, in support of its mission to drive economic growth in its region.",
+      ],
+      quote: "We recommend Dafira because it's a simple and effective tool that facilitates the work of administrators and their collaboration. It helps with transparency, the exchange of accurate information and when you have the right information, you can make the right decision and above all, have the right debates.",
+    }}
+  />
+</Layout>

@@ -3,7 +3,7 @@ title: "Quorum: De Sleutel tot Effectief Bestuur en Besluitvorming"
 description: "Ontdek de cruciale rol van quorum bij het waarborgen van effectieve, eerlijke en legitieme governance in bestuurskamers."
 pubDate: 2024-12-19
 author: "Jean-Louis Van Houwe"
-authorRole: "CEO en Oprichter bij Govrn"
+authorRole: "CEO en Oprichter bij Dafira"
 image: "/quorum.jpg"
 category: "Governance"
 tags: ["Quorum", "Bestuur", "Besluitvorming", "Eerlijk Proces"]
@@ -79,4 +79,4 @@ Fair process leiderschap benadrukt betrokkenheid, transparantie en verantwoordin
 
 ## Conclusie
 
-Quorum is veel meer dan een formaliteit - het is een hoeksteen van goed bestuur en eerlijk procesleiderschap. Door legitieme, representatieve en doordachte besluitvorming te waarborgen, bouwt quorum aan vertrouwen, verantwoording en operationele integriteit. Met de komst van AI-ondersteuning is het beheer van quorumvereisten efficiënter dan ooit. [Start met AI-ondersteund bestuur](https://govrn.com/nl/try)
+Quorum is veel meer dan een formaliteit - het is een hoeksteen van goed bestuur en eerlijk procesleiderschap. Door legitieme, representatieve en doordachte besluitvorming te waarborgen, bouwt quorum aan vertrouwen, verantwoording en operationele integriteit. Met de komst van AI-ondersteuning is het beheer van quorumvereisten efficiënter dan ooit. [Start met AI-ondersteund bestuur](https://dafira.ai/nl/try)

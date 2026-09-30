@@ -1,98 +1,65 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/forms/ContactForm.astro';
-import OfficeCard from '../components/OfficeCard.astro';
+import { PageHero, Section, Icon } from '../components/ui';
 
-const offices = [
-{
-    city: "Brussels",
-    country: "Belgium",
-    image: "/bxl.jpg",
-    address: "Rue de l'Hôpital 31, Brussels",
-    postalCode: "1150",
-    email: "info@govrn.com",
-  }
-];
+const office = {
+  city: "Brussels",
+  country: "Belgium",
+  image: "/bxl.jpg",
+  address: "Rue de l'Hôpital 31",
+  postalCode: "1000",
+  email: "info@dafira.ai",
+};
+
+const contactFormProps = {};
 ---
 
-<Layout title="Contact Us - Govrn Board Management Software" description="Have questions about Govrn? Our team is here to help you transform your board management experience.">
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
+<Layout title="Contact Us - Dafira Board Management Software" description="Questions about Dafira? Our team in Brussels answers questions on demos, pricing, support and partnerships.">
+  <main>
+    <PageHero eyebrow="Contact" title="Get in touch with our team" lead="Questions about Dafira? Our team is here to help with demos, pricing, technical support and partnerships." />
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Get in Touch with
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Our Team
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            Have questions about Govrn? Our team is here to help you transform your board management experience.
-          </p>
+    <Section space="md">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-10">
+        <!-- Contact form -->
+        <div class="lg:col-span-7">
+          <div class="border border-line rounded-md bg-white p-6 lg:p-8">
+            <h2 class="text-2xl font-semibold text-navy mb-8">Send us a message</h2>
+            <ContactForm {...contactFormProps} />
+          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Contact Form Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-16">
-          <!-- Contact Form -->
-          <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-            <h2 class="text-2xl font-bold text-gray-900 mb-8">Send Us a Message</h2>
-            <ContactForm />
+        <!-- Contact information -->
+        <div class="lg:col-span-4 lg:col-start-9 space-y-12">
+          <div>
+            <h2 class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">Our office</h2>
+            <figure class="mt-4 border border-line rounded-md overflow-hidden">
+              <img loading="lazy" src={office.image} alt="Brussels office" class="w-full h-44 object-cover" />
+            </figure>
+            <p class="mt-5 text-xl font-semibold text-navy">{office.city}</p>
+            <address class="mt-3 not-italic space-y-3 text-gray-700">
+              <p class="flex items-start gap-3">
+                <Icon name="building" class="w-5 h-5 text-navy mt-0.5" />
+                <span>{office.address}<br />{office.postalCode} {office.city}, {office.country}</span>
+              </p>
+              <p class="flex items-start gap-3">
+                <Icon name="mail" class="w-5 h-5 text-navy mt-0.5" />
+                <a href={`mailto:${office.email}`} class="text-primary hover:text-navy transition-colors" dir="ltr">{office.email}</a>
+              </p>
+            </address>
           </div>
 
-          <!-- Contact Information -->
-          <div class="space-y-12">
-            <div>
-              <h2 class="text-2xl font-bold text-gray-900 mb-6">Our Offices</h2>
-              <div class="space-y-8">
-                {offices.map(office => (
-                  <OfficeCard {...office} />
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h2 class="text-2xl font-bold text-gray-900 mb-6">Connect With Us</h2>
-              <div class="flex space-x-4">
-                <a href="#" class="p-3 bg-gray-50 rounded-lg text-gray-600 hover:text-primary transition-colors duration-200">
-                  <span class="sr-only">LinkedIn</span>
-                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                  </svg>
-                </a>
-                <a href="#" class="p-3 bg-gray-50 rounded-lg text-gray-600 hover:text-primary transition-colors duration-200">
-                  <span class="sr-only">Twitter</span>
-                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- <div class="bg-primary/10 rounded-xl p-8">
-              <h2 class="text-xl font-bold text-gray-900 mb-4">Need Immediate Assistance?</h2>
-              <p class="text-gray-600 mb-6">Our support team is available 24/7 to help you with any questions or concerns.</p>
-              <a
-                href="#"
-                class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors duration-200"
-              >
-                Start Live Chat
-                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-              </a>
-            </div>
-          </div> -->
+          <div class="border-t border-line pt-8">
+            <h2 class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">Follow us</h2>
+            <a href="https://www.linkedin.com/company/govrncorp" class="mt-4 inline-flex items-center gap-2 text-gray-700 hover:text-navy transition-colors" rel="noopener" target="_blank">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              LinkedIn
+            </a>
+          </div>
         </div>
       </div>
-    </section>
+    </Section>
   </main>
 </Layout>

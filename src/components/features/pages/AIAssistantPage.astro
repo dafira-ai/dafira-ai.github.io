@@ -1,0 +1,207 @@
+---
+// /features/ai-assistant (EN / FR / NL)
+import { PageHero, Section, SectionHeader, Button } from '../../ui';
+import AIChat from '../../ai/AIChat.astro';
+import AIHighlights from '../../ai/AIHighlights.astro';
+import AIFeatures from '../../ai/AIFeatures.astro';
+import AISecurity from '../../ai/AISecurity.astro';
+import RelatedFeatures from '../RelatedFeatures.astro';
+import FeatureCTA from '../FeatureCTA.astro';
+import { langFromPath, localizePath } from '../../../i18n/routes';
+import { common, featureLang } from '../common';
+
+const lang = featureLang(langFromPath(Astro.url.pathname));
+const c = common[lang];
+
+const copy = {
+  en: {
+    eyebrow: 'AI assistant',
+    title: 'Ask your board documents a question',
+    lead: 'The AI assistant answers from your own board packs, minutes and policies, and names the document and section behind every answer. It works inside Dafira, next to the documents it reads.',
+    features: {
+      title: 'What you can ask',
+      description: 'The assistant works on the documents already in Dafira: board packs, past minutes and policies.',
+      items: [
+        { icon: 'search', title: 'Search in plain language', description: 'Ask the way you would ask a colleague. The assistant looks across all the board documents you have access to.' },
+        { icon: 'document', title: 'Summaries of long documents', description: 'Get a short summary of a long report or set of minutes, with the key points listed.' },
+        { icon: 'clock', title: 'What was decided before', description: 'Find what the board discussed and decided on a topic in earlier meetings, with a reference to the minutes.' },
+      ],
+    },
+    examples: {
+      eyebrow: 'Examples',
+      title: 'Questions directors ask before and during the meeting',
+      lead: 'Typical questions when preparing the board pack or when a point comes up in the meeting.',
+      items: [
+        'What did we decide last time on this?',
+        'Which document mentions our ESG targets?',
+        'Has this proposal been reviewed by legal?',
+        'Summarise the CFO report in five points',
+      ],
+    },
+    chat: {
+      messages: [
+        { type: 'user', content: 'What did the board decide on the European expansion last quarter?' },
+        { type: 'assistant', content: 'According to the Q3 minutes:', quotes: [{ text: 'The board approved the expansion plan for the European market. The final budget will be presented with the business plan in Q4.', source: 'Q3 Board Minutes, item 2.3' }] },
+        { type: 'user', content: 'Which document sets out our sustainability targets?' },
+        { type: 'assistant', content: 'The targets are set out in the sustainability policy adopted by the board:', quotes: [{ text: 'Progress against the targets is reported to the board every six months.', source: 'Sustainability Policy, section 1' }] },
+      ],
+      header: { title: 'AI assistant', subtitle: 'Board of Directors' },
+      input: { placeholder: 'Ask a question about your board documents' },
+    },
+    highlights: {
+      title: 'Answers you can check',
+      description: 'The assistant quotes your documents instead of answering from general knowledge, so every answer can be verified.',
+      highlights: [
+        { icon: 'document', title: 'Quoted responses', description: 'Answers quote the relevant passages of your board documents, so you read the original wording.' },
+        { icon: 'lock', title: 'Inside the platform', description: 'Questions are asked inside Dafira. Directors do not need to copy board papers into outside tools.' },
+        { icon: 'book', title: 'Source attribution', description: 'Every answer names the document and the section it comes from.' },
+      ],
+    },
+    security: {
+      title: 'Security and privacy',
+      subtitle: 'The assistant runs on the same secured platform as your board documents.',
+      features: [
+        { icon: 'lock', title: 'Data protection', description: 'Your board documents stay in Dafira’s secured environment.', details: ['End-to-end encryption', 'Hosted on Microsoft Azure', 'Role-based access controls'] },
+        { icon: 'clipboard', title: 'Traceability', description: 'You can always see where an answer comes from.', details: ['Source attribution for every answer', 'Usage logging'] },
+      ],
+    },
+  },
+  fr: {
+    eyebrow: 'Assistant IA',
+    title: 'Posez une question à vos documents du conseil',
+    lead: "L'assistant IA répond à partir de vos propres dossiers du conseil, procès-verbaux et politiques, et indique le document et la section à l'origine de chaque réponse. Il fonctionne dans Dafira, à côté des documents qu'il consulte.",
+    features: {
+      title: 'Ce que vous pouvez demander',
+      description: "L'assistant travaille sur les documents déjà présents dans Dafira : dossiers du conseil, procès-verbaux passés et politiques.",
+      items: [
+        { icon: 'search', title: 'Recherche en langage courant', description: "Posez votre question comme à un collègue. L'assistant cherche dans tous les documents du conseil auxquels vous avez accès." },
+        { icon: 'document', title: 'Synthèse des documents longs', description: "Obtenez un résumé court d'un long rapport ou d'un procès-verbal, avec les points clés." },
+        { icon: 'clock', title: 'Ce qui a déjà été décidé', description: 'Retrouvez ce que le conseil a discuté et décidé sur un sujet lors des séances précédentes, avec la référence du procès-verbal.' },
+      ],
+    },
+    examples: {
+      eyebrow: 'Exemples',
+      title: 'Les questions des administrateurs avant et pendant la séance',
+      lead: "Des questions courantes lors de la préparation du dossier ou lorsqu'un point est abordé en séance.",
+      items: [
+        "Qu'avons-nous décidé la dernière fois à ce sujet ?",
+        'Quel document mentionne nos objectifs ESG ?',
+        'Cette proposition a-t-elle été revue par le service juridique ?',
+        'Résume le rapport du CFO en cinq points',
+      ],
+    },
+    chat: {
+      messages: [
+        { type: 'user', content: "Qu'a décidé le conseil au sujet de l'expansion européenne le trimestre dernier ?" },
+        { type: 'assistant', content: 'Selon le procès-verbal du T3 :', quotes: [{ text: "Le conseil a approuvé le plan d'expansion sur le marché européen. Le budget définitif sera présenté avec le plan d'affaires au T4.", source: 'Procès-verbal T3, point 2.3' }] },
+        { type: 'user', content: 'Quel document fixe nos objectifs de durabilité ?' },
+        { type: 'assistant', content: 'Les objectifs figurent dans la politique de durabilité adoptée par le conseil :', quotes: [{ text: "L'avancement par rapport aux objectifs est présenté au conseil tous les six mois.", source: 'Politique de durabilité, section 1' }] },
+      ],
+      header: { title: 'Assistant IA', subtitle: "Conseil d'administration" },
+      input: { placeholder: 'Posez une question sur vos documents du conseil' },
+    },
+    highlights: {
+      title: 'Des réponses vérifiables',
+      description: "L'assistant cite vos documents au lieu de répondre à partir de connaissances générales : chaque réponse peut être vérifiée.",
+      highlights: [
+        { icon: 'document', title: 'Réponses citées', description: 'Les réponses reprennent les passages pertinents de vos documents du conseil, dans leur formulation d’origine.' },
+        { icon: 'lock', title: 'Au sein de la plateforme', description: "Les questions sont posées dans Dafira. Les administrateurs n'ont pas besoin de copier les documents dans des outils externes." },
+        { icon: 'book', title: 'Sources indiquées', description: 'Chaque réponse indique le document et la section dont elle provient.' },
+      ],
+    },
+    security: {
+      title: 'Sécurité et confidentialité',
+      subtitle: "L'assistant fonctionne sur la même plateforme sécurisée que vos documents du conseil.",
+      features: [
+        { icon: 'lock', title: 'Protection des données', description: "Vos documents du conseil restent dans l'environnement sécurisé de Dafira.", details: ['Chiffrement de bout en bout', 'Hébergement sur Microsoft Azure', "Contrôle d'accès par rôle"] },
+        { icon: 'clipboard', title: 'Traçabilité', description: "Vous voyez toujours d'où vient une réponse.", details: ['Source indiquée pour chaque réponse', 'Journalisation des usages'] },
+      ],
+    },
+  },
+  nl: {
+    eyebrow: 'AI-assistent',
+    title: 'Stel uw bestuursdocumenten een vraag',
+    lead: 'De AI-assistent antwoordt op basis van uw eigen bestuursdossiers, notulen en beleidsdocumenten, en vermeldt bij elk antwoord het document en de sectie. Hij werkt in Dafira, naast de documenten die hij leest.',
+    features: {
+      title: 'Wat u kunt vragen',
+      description: 'De assistent werkt met de documenten die al in Dafira staan: bestuursdossiers, eerdere notulen en beleid.',
+      items: [
+        { icon: 'search', title: 'Zoeken in gewone taal', description: 'Stel uw vraag zoals aan een collega. De assistent zoekt in alle bestuursdocumenten waartoe u toegang hebt.' },
+        { icon: 'document', title: 'Samenvattingen van lange documenten', description: 'Krijg een korte samenvatting van een lang rapport of van notulen, met de belangrijkste punten.' },
+        { icon: 'clock', title: 'Wat eerder beslist werd', description: 'Vind terug wat het bestuur in eerdere vergaderingen over een onderwerp besprak en besliste, met verwijzing naar de notulen.' },
+      ],
+    },
+    examples: {
+      eyebrow: 'Voorbeelden',
+      title: 'Vragen van bestuurders voor en tijdens de vergadering',
+      lead: 'Gebruikelijke vragen bij het voorbereiden van het dossier of wanneer een punt in de vergadering aan bod komt.',
+      items: [
+        'Wat hebben we hier de vorige keer over beslist?',
+        'Welk document vermeldt onze ESG-doelstellingen?',
+        'Is dit voorstel door juridische zaken nagekeken?',
+        'Vat het rapport van de CFO samen in vijf punten',
+      ],
+    },
+    chat: {
+      messages: [
+        { type: 'user', content: 'Wat heeft het bestuur vorig kwartaal beslist over de Europese uitbreiding?' },
+        { type: 'assistant', content: 'Volgens de notulen van Q3:', quotes: [{ text: 'Het bestuur keurde het uitbreidingsplan voor de Europese markt goed. Het definitieve budget wordt in Q4 samen met het businessplan voorgelegd.', source: 'Notulen Q3, punt 2.3' }] },
+        { type: 'user', content: 'Welk document legt onze duurzaamheidsdoelstellingen vast?' },
+        { type: 'assistant', content: 'De doelstellingen staan in het duurzaamheidsbeleid dat het bestuur heeft goedgekeurd:', quotes: [{ text: 'De voortgang ten opzichte van de doelstellingen wordt elk half jaar aan het bestuur gerapporteerd.', source: 'Duurzaamheidsbeleid, sectie 1' }] },
+      ],
+      header: { title: 'AI-assistent', subtitle: 'Raad van bestuur' },
+      input: { placeholder: 'Stel een vraag over uw bestuursdocumenten' },
+    },
+    highlights: {
+      title: 'Antwoorden die u kunt nagaan',
+      description: 'De assistent citeert uw documenten in plaats van te antwoorden vanuit algemene kennis, zodat elk antwoord controleerbaar is.',
+      highlights: [
+        { icon: 'document', title: 'Geciteerde antwoorden', description: 'Antwoorden citeren de relevante passages uit uw bestuursdocumenten, in de oorspronkelijke bewoording.' },
+        { icon: 'lock', title: 'Binnen het platform', description: 'Vragen worden in Dafira gesteld. Bestuurders hoeven geen bestuursstukken naar externe tools te kopiëren.' },
+        { icon: 'book', title: 'Bronvermelding', description: 'Elk antwoord vermeldt het document en de sectie waaruit het komt.' },
+      ],
+    },
+    security: {
+      title: 'Beveiliging en privacy',
+      subtitle: 'De assistent draait op hetzelfde beveiligde platform als uw bestuursdocumenten.',
+      features: [
+        { icon: 'lock', title: 'Gegevensbescherming', description: 'Uw bestuursdocumenten blijven in de beveiligde omgeving van Dafira.', details: ['End-to-end versleuteling', 'Gehost op Microsoft Azure', 'Toegangsbeheer per rol'] },
+        { icon: 'clipboard', title: 'Traceerbaarheid', description: 'U ziet altijd waar een antwoord vandaan komt.', details: ['Bronvermelding bij elk antwoord', 'Registratie van het gebruik'] },
+      ],
+    },
+  },
+}[lang];
+---
+
+<PageHero eyebrow={copy.eyebrow} title={copy.title} lead={copy.lead}>
+  <Fragment slot="actions">
+    <Button href={localizePath(lang, '/request-demo')}>{c.demo}</Button>
+    <Button variant="secondary" href={localizePath(lang, '/contact')}>{c.contact}</Button>
+  </Fragment>
+  <AIChat slot="aside" texts={copy.chat as any} shadow />
+</PageHero>
+
+<AIFeatures features={copy.features.items} texts={{ title: copy.features.title, description: copy.features.description }} />
+
+<AIHighlights texts={copy.highlights} />
+
+<Section>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-6">
+      <SectionHeader layout="stacked" eyebrow={copy.examples.eyebrow} title={copy.examples.title} lead={copy.examples.lead} class="mb-0" />
+    </div>
+    <ul class="lg:col-span-5 lg:col-start-8 self-end border-t border-line" data-play>
+      {copy.examples.items.map((q, i) => (
+        <li class="border-b border-line py-4 text-lg text-ink" data-step style={`--d:${i * 70}`}>
+          <span class="text-primary" aria-hidden="true">“</span>{q}<span class="text-primary" aria-hidden="true">”</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Section>
+
+<AISecurity features={copy.security.features} texts={{ title: copy.security.title, subtitle: copy.security.subtitle }} link={{ text: c.security, href: localizePath(lang, '/security') }} tone="surface" />
+
+<RelatedFeatures current="ai-assistant" />
+
+<FeatureCTA />

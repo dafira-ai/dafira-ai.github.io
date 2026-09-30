@@ -1,286 +1,57 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import BlogCard from '../../components/blog/BlogCard.astro';
 import { getCollection } from 'astro:content';
-import EpisodeCard from '../../components/EpisodeCard.astro';
+import ResourceHub from '../../components/resources/ResourceHub.astro';
+
+const copy = {
+  eyebrow: 'Kenniscentrum',
+  title: 'Handleidingen, onderzoek en gesprekken over bestuur',
+  lead: 'Handleidingen voor Dafira, onderzoek naar AI in de bestuurskamer, artikelen en podcastafleveringen voor bestuurssecretarissen, bestuurders en governanceprofessionals.',
+  overview: [
+    { icon: 'mic', title: 'Podcasts', text: 'Gesprekken over modern bestuursbeheer.', href: '/nl/podcast', linkText: 'Luister afleveringen' },
+    { icon: 'document', title: 'Artikelen', text: 'Praktische artikelen over governance en bestuurswerk.', href: '/nl/blog', linkText: 'Lees artikelen' },
+    { icon: 'chart', title: 'Onderzoek', text: 'Onderzoeksrapporten en whitepapers.', href: '/nl/research/boardroom-ai-adoption', linkText: 'Bekijk onderzoek' },
+    { icon: 'book', title: 'Handleidingen', text: 'Stapsgewijze hulp voor Dafira-gebruikers.', href: '/nl/guides', linkText: 'Verken handleidingen' },
+  ],
+  podcasts: { title: 'Laatste afleveringen', link: '/nl/podcast', linkText: 'Alle podcasts' },
+  articles: { title: 'Laatste artikelen', link: '/nl/blog', linkText: 'Alle artikelen' },
+  readMore: 'Lezen',
+};
 
 const categories = [
   {
-    title: "Handleidingen & Tutorials",
-    icon: "📚",
-    description: "Stapsgewijze handleidingen om het beste uit Govrn te halen",
+    eyebrow: 'Handleidingen',
+    title: 'Handleidingen en tutorials',
+    description: 'Stapsgewijze handleidingen om het beste uit Dafira te halen.',
+    link: '/nl/guides',
+    linkText: 'Alle handleidingen',
     resources: [
-      {
-        title: "Aan de slag met Govrn",
-        description: "Een complete handleiding voor het opzetten en gebruiken van Govrn met uw bestuur",
-        type: "Handleiding",
-        readTime: "10 min leestijd",
-        image: "/applications-picture-meeting.png",
-        link: "/nl/guides/getting-started"
-      },
-      {
-        title: "Authenticatie & Beveiliging",
-        description: "Ontdek hoe u de toegang en beveiliging voor uw bestuursleden optimaal kunt beheren",
-        type: "Handleiding",
-        readTime: "8 min leestijd", 
-        image: "/en-authentication.jpg",
-        link: "/nl/guides/authentication"
-      },
-      {
-        title: "Uw Profiel Beheren",
-        description: "Leer hoe u uw Govrn-profiel kunt personaliseren voor optimale samenwerking",
-        type: "Handleiding",
-        readTime: "5 min leestijd",
-        image: "/profile-management.jpg",
-        link: "/nl/guides/profile-management"
-      }
-    ]
+      { title: 'Aan de slag met Dafira', description: 'Dafira opzetten en gebruiken met uw bestuur.', type: 'Handleiding', readTime: '10 min leestijd', image: '/applications-picture-meeting.png', link: '/nl/guides/getting-started' },
+      { title: 'Authenticatie & beveiliging', description: 'Toegang en beveiliging voor uw bestuursleden beheren.', type: 'Handleiding', readTime: '8 min leestijd', image: '/en-authentication.jpg', link: '/nl/guides/authentication' },
+      { title: 'Uw profiel beheren', description: 'Uw Dafira-profiel aanpassen en bijhouden.', type: 'Handleiding', readTime: '5 min leestijd', image: '/profile-management.jpg', link: '/nl/guides/profile-management' },
+    ],
   },
   {
-    title: "Whitepapers & Onderzoeken",
-    icon: "📊", 
-    description: "Diepgaande analyses en onderzoek naar trends in bestuurlijk management",
+    eyebrow: 'Onderzoek',
+    title: 'Whitepapers en onderzoek',
+    description: 'Diepgaande analyses en onderzoek naar bestuursbeheer.',
     resources: [
-      {
-        title: "De Toekomst van AI in de Bestuurskamer",
-        description: "Onderzoeksrapport over de uitdagingen en kansen van AI-adoptie in bestuursmanagement",
-        type: "Onderzoek",
-        readTime: "10 min leestijd",
-        image: "/research_brunel.jpg",
-        link: "/nl/research/boardroom-ai-adoption"
-      }
-    ]
-  }
+      { title: 'De toekomst van AI in de bestuurskamer', description: 'Onderzoeksrapport over de uitdagingen en kansen van AI-adoptie in bestuursbeheer.', type: 'Onderzoek', readTime: '10 min leestijd', image: '/resources.png', link: '/nl/research/boardroom-ai-adoption' },
+    ],
+  },
 ];
 
-const featuredResource = {
-  title: "De Toekomst van AI in de Bestuurskamer: Uitdagingen en Kansen",
-  description: "Een diepgaand onderzoek naar het huidige landschap van AI-adoptie in bestuurskamers van private, publieke en non-profit organisaties. Via uitgebreide interviews met bestuurders en governance professionals onderzoeken we de uitdagingen, kansen en mogelijke oplossingen voor de integratie van AI in bestuursprocessen.",
-  image: "/research_brunel-1.jpg",
-  stats: [
-    { value: "50+", label: "Geïnterviewde Bestuurders" },
-    { value: "3", label: "Geanalyseerde Sectoren" },
-    { value: "15+", label: "Geïdentificeerde Kernpunten" }
-  ],
-  authors: "Dr. Weifeng Chen",
-  institution: "Brunel Business School & Govrn"
-};
-
-const posts = await getCollection('blog');
-const publishedPosts = posts.filter(post => post.data.pubDate.getTime() <= new Date().getTime() && post.data.lang === 'nl');
-const sortedPosts = publishedPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-const latestPosts = sortedPosts.slice(0, 3);
-
-const podcasts = await getCollection('podcast');
-const publishedPodcasts = podcasts.filter(podcast => podcast.data.pubDate.getTime() <= new Date().getTime());
-const sortedPodcasts = publishedPodcasts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-const latestPodcasts = sortedPodcasts.slice(0, 3);
-
+const now = Date.now();
+const posts = (await getCollection('blog'))
+  .filter((p) => p.data.pubDate.getTime() <= now && p.data.lang === 'nl')
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+const podcasts = (await getCollection('podcast'))
+  .filter((p) => p.data.pubDate.getTime() <= now)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
 ---
 
-<Layout title="Kennisbank - Govrn Bestuurssoftware" description="Ontdek onze verzameling handleidingen, onderzoeken en best practices om uw bestuursmanagement en governance strategieën te verbeteren." image="/resources.png">
-  <main class="pt-24">
-    <!-- Vue d'ensemble des ressources -->
-    <section class="bg-white py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-6 py-2 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Kenniscentrum
-          </div>
-
-          <h1 class="text-6xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Optimaliseer uw Bestuur
-            <span class="block mt-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              met onze Bronnen
-            </span>
-          </h1>
-
-          <p class="text-xl text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto">
-            Ontdek onze verzameling essentiële bronnen: praktische handleidingen, case studies, podcasts en artikelen voor effectief bestuur.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          <!-- Sections identiques à la version FR mais avec texte en NL -->
-          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl">
-            <span class="text-3xl mb-4 block">🎙️</span>
-            <h2 class="text-xl font-bold text-gray-900 mb-2">Podcasts</h2>
-            <p class="text-gray-600 mb-4">Expertgesprekken over modern bestuur</p>
-            <a href="/nl/podcast" class="text-primary hover:text-primary/90 font-medium inline-flex items-center">
-              Luister Episodes
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-
-          <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl">
-            <span class="text-3xl mb-4 block">📝</span>
-            <h2 class="text-xl font-bold text-gray-900 mb-2">Artikelen</h2>
-            <p class="text-gray-600 mb-4">Laatste nieuws en analyses</p>
-            <a href="/nl/blog" class="text-primary hover:text-primary/90 font-medium inline-flex items-center">
-              Lees Artikelen
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-
-          <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl">
-            <span class="text-3xl mb-4 block">📊</span>
-            <h2 class="text-xl font-bold text-gray-900 mb-2">Onderzoeken</h2>
-            <p class="text-gray-600 mb-4">Diepgaande analyses en whitepapers</p>
-            <a href="/nl/research/boardroom-ai-adoption" class="text-primary hover:text-primary/90 font-medium inline-flex items-center">
-              Bekijk Onderzoeken
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-
-          <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl">
-            <span class="text-3xl mb-4 block">📚</span>
-            <h2 class="text-xl font-bold text-gray-900 mb-2">Handleidingen</h2>
-            <p class="text-gray-600 mb-4">Tutorials en praktische gidsen</p>
-            <a href="/nl/guides" class="text-primary hover:text-primary/90 font-medium inline-flex items-center">
-              Verken Handleidingen
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Uitgelichte Bron -->
-
-    <!-- Podcasts -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between mb-12">
-          <h2 class="text-3xl font-bold text-gray-900">🎙️ Laatste Podcasts</h2>
-          <a
-            href="/nl/podcast"
-            class="inline-flex items-center text-primary hover:text-primary/90 font-medium group"
-          >
-            Bekijk Alle Podcasts
-            <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </a>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {latestPodcasts.map(podcast => (
-            <EpisodeCard episode={podcast} />
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Blog Artikelen -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between mb-12">
-          <h2 class="text-3xl font-bold text-gray-900">🗞️ Laatste Artikelen</h2>
-          <a
-            href="/nl/blog"
-            class="inline-flex items-center text-primary hover:text-primary/90 font-medium group"
-          >
-            Bekijk Alle Artikelen
-            <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </a>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {latestPosts.map(post => (
-            <BlogCard post={post} lang="nl" />
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Bronnen Categorieën -->
-    {categories.map((category, index) => (
-      <section class={`py-20 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center space-x-4 mb-12">
-            <span class="text-4xl">{category.icon}</span>
-            <div>
-              <h2 class="text-3xl font-bold text-gray-900">{category.title}</h2>
-              <p class="text-gray-600 mt-2">{category.description}</p>
-            </div>
-          </div>
-
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {category.resources.map(resource => (
-              <a href={resource.link || "#"} class="block">
-                <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                  <img 
-  loading="lazy"
-                    src={resource.image}
-                    alt={resource.title}
-                    class="w-full h-48 object-cover"
-                  />
-                  <div class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                      <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                        {resource.type}
-                      </span>
-                      {resource.readTime && (
-                        <span class="text-sm text-gray-500">{resource.readTime}</span>
-                      )}
-                      {resource.date && (
-                        <span class="text-sm text-gray-500">{resource.date}</span>
-                      )}
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                      {resource.title}
-                    </h3>
-                    <p class="text-gray-600 mb-4">{resource.description}</p>
-                    <span class="text-primary hover:text-primary/90 font-medium inline-flex items-center group">
-                      En Savoir Plus
-                      <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-    ))}
-
-    <!-- Section Newsletter -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-2xl p-12 shadow-sm">
-          <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">
-              Restez Informé avec Govrn Insights
-            </h2>
-            <p class="text-gray-600 mb-8">
-              Abonnez-vous à notre newsletter pour recevoir nos dernières ressources, tendances du secteur et meilleures pratiques en matière de gestion de conseil.
-            </p>
-            <form class="flex gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Votre email"
-                class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
-              />
-              <button
-                type="submit"
-                class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200"
-              >
-                S'abonner
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+<Layout title="Kennisbank - Dafira Bestuurssoftware" description="Handleidingen, onderzoek, artikelen en podcasts over bestuursbeheer en governance, door het Dafira-team." image="/resources.png">
+  <ResourceHub lang="nl" copy={copy} categories={categories} posts={posts} podcasts={podcasts} />
 </Layout>

@@ -1,95 +1,19 @@
 ---
-const features = [
-  {
-    template: { text: "Manual setup trial and error", icon: "🔧" },
-    govrn: { text: "Expert guidance on optimal audio configuration", icon: "🎯" },
-    benefit: "Get it right the first time"
-  },
-  {
-    template: { text: "Inconsistent minute quality", icon: "📝" },
-    govrn: { text: "AI-powered transcription with human review", icon: "🤖" },
-    benefit: "Accurate, comprehensive minutes"
-  },
-  {
-    template: { text: "Technical issues during meetings", icon: "⚠️" },
-    govrn: { text: "Dedicated support and troubleshooting", icon: "🛡️" },
-    benefit: "Peace of mind for every meeting"
-  },
-  {
-    template: { text: "Different tools for different needs", icon: "🔀" },
-    govrn: { text: "All-in-one board management platform", icon: "✨" },
-    benefit: "Seamless workflow integration"
-  },
-  {
-    template: { text: "Limited guidance and resources", icon: "📚" },
-    govrn: { text: "Comprehensive onboarding and best practices", icon: "🎓" },
-    benefit: "Continuous improvement"
-  }
+// Doing it alone vs with Dafira, for meeting recordings.
+import Comparison from '../Comparison.astro';
+import { Button } from '../../ui';
+
+const rows = [
+  { template: 'Manual setup by trial and error', dafira: 'Guidance on audio configuration for your meeting room' },
+  { template: 'Inconsistent minute quality', dafira: 'AI transcription with human review' },
+  { template: 'Technical issues during meetings', dafira: 'Support and troubleshooting from our team' },
+  { template: 'Different tools for different needs', dafira: 'One board management platform' },
+  { template: 'Limited guidance and resources', dafira: 'Onboarding and good practices' },
 ];
 ---
 
-<div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-2xl p-8 border border-primary/10">
-  <div class="text-center mb-12">
-    <h3 class="text-2xl font-bold text-gray-900 mb-4">Why Boards Choose Govrn</h3>
-    <p class="text-gray-600">More than software - a partner in governance excellence</p>
+<Comparison title="Why boards choose Dafira" lead="Software, plus a team that helps you set it up." templateLabel="On your own" dafiraLabel="With Dafira" rows={rows}>
+  <div class="mt-8">
+    <Button href="/request-demo">Book a demo</Button>
   </div>
-
-  <div class="space-y-8">
-    {features.map(feature => (
-      <div class="relative">
-        <!-- Connection Line -->
-        <div class="absolute left-1/2 top-1/2 h-px w-8 bg-gradient-to-r from-gray-200 to-primary transform -translate-x-1/2 -translate-y-1/2"></div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          <!-- Without Govrn -->
-          <div class="bg-white/50 rounded-xl p-6 shadow-sm">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-2xl">
-                {feature.template.icon}
-              </div>
-              <div class="text-gray-600">{feature.template.text}</div>
-            </div>
-          </div>
-
-          <!-- With Govrn -->
-          <div class="bg-white rounded-xl p-6 shadow-md border border-primary/10 transform hover:-translate-y-1 transition-transform duration-300">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-2xl">
-                {feature.govrn.icon}
-              </div>
-              <div class="font-medium text-gray-900">{feature.govrn.text}</div>
-            </div>
-            <div class="ml-16">
-              <div class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-800">
-                {feature.benefit}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-
-  <div class="mt-12 p-6 bg-white rounded-xl border border-primary/10">
-    <div class="flex items-center justify-between flex-wrap gap-6">
-      <div class="flex items-center space-x-4">
-        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-2xl">
-          🤝
-        </div>
-        <div>
-          <h4 class="font-semibold text-gray-900">Want to Know More?</h4>
-          <p class="text-sm text-gray-600">Discover how Govrn helps boards achieve excellence in governance</p>
-        </div>
-      </div>
-      <a
-        href="/request-demo"
-        class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors duration-200"
-      >
-        Request a Demo
-        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-        </svg>
-      </a>
-    </div>
-  </div>
-</div>
+</Comparison>

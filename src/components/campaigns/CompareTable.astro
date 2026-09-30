@@ -1,0 +1,34 @@
+---
+// Ruled comparison table (hairlines, no zebra colours). First column is the row label.
+// `highlight` = index of the column to emphasise (e.g. the Dafira column).
+interface Props {
+  headers: string[];
+  rows: string[][];
+  highlight?: number;
+  caption?: string;
+  class?: string;
+}
+const { headers, rows, highlight, caption, class: className } = Astro.props;
+---
+
+<div class:list={['border border-line rounded-md overflow-x-auto bg-white', className]}>
+  <table class="w-full text-[15px] text-start">
+    {caption && <caption class="sr-only">{caption}</caption>}
+    <thead class="bg-surface">
+      <tr>
+        {headers.map((h, i) => (
+          <th scope="col" class:list={['px-5 py-3 text-start font-mono text-xs uppercase tracking-[0.08em] font-normal border-b border-line', i === highlight ? 'text-navy' : 'text-gray-500']}>{h}</th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr class="border-b border-line last:border-b-0 align-top">
+          {row.map((cell, i) => i === 0
+            ? <th scope="row" class="px-5 py-4 text-start font-medium text-navy">{cell}</th>
+            : <td class:list={['px-5 py-4', i === highlight ? 'text-ink' : 'text-gray-600']}>{cell}</td>)}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

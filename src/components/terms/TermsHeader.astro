@@ -1,4 +1,7 @@
 ---
+// Legal page header: PageHero with last-update date, intro and contact line.
+import { PageHero } from '../ui';
+
 interface Props {
   lastUpdate: string;
   title?: string;
@@ -7,45 +10,30 @@ interface Props {
   contactText?: string;
   contactEmail?: string;
   lastUpdateText?: string;
+  eyebrow?: string;
 }
 
-const { 
+const {
   lastUpdate,
   title = "General Terms and",
   titleHighlight = "Conditions",
-  description = "Please read fully and carefully these Terms & Conditions as well as Govrn's privacy policy & cookie code of conduct and the Data Processing Agreement before using any of the Services. They set forth the legally binding terms that govern the access to and use of the Services.",
+  description = "Please read fully and carefully these Terms & Conditions as well as Dafira's privacy policy & cookie code of conduct and the Data Processing Agreement before using any of the Services. They set forth the legally binding terms that govern the access to and use of the Services.",
   contactText = "For any questions or concerns, please contact",
-  contactEmail = "info@govrn.com",
-  lastUpdateText = "Last Update"
+  contactEmail = "info@dafira.ai",
+  lastUpdateText = "Last Update",
+  eyebrow = "Legal",
 } = Astro.props;
 ---
 
-<div class="mb-16">
-  <h1 class="text-4xl font-bold text-gray-900 mb-8">
-    {title}
-    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-      {titleHighlight}
-    </span>
-  </h1>
-  
-  <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-    <div class="flex items-center space-x-2 mb-4">
-      <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-      <p class="text-sm font-medium text-primary">{lastUpdateText}: {lastUpdate}</p>
+<PageHero eyebrow={eyebrow} title={`${title} ${titleHighlight}`} lead={description}>
+  <dl class="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-sm">
+    <div class="flex gap-2">
+      <dt class="text-gray-500">{lastUpdateText}:</dt>
+      <dd class="text-navy">{lastUpdate}</dd>
     </div>
-    
-    <p class="text-gray-600 leading-relaxed">
-      {description}
-    </p>
-    
-    <div class="mt-6 flex items-center space-x-2 text-sm text-primary">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-      <span>{contactText}</span>
-      <a href={`mailto:${contactEmail}`} class="font-medium hover:underline">{contactEmail}</a>
+    <div class="flex gap-2">
+      <dt class="text-gray-500">{contactText}</dt>
+      <dd><a href={`mailto:${contactEmail}`} class="text-primary hover:text-navy underline underline-offset-2">{contactEmail}</a></dd>
     </div>
-  </div>
-</div>
+  </dl>
+</PageHero>

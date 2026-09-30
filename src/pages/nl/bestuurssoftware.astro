@@ -1,46 +1,37 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Hero from "../../components/Hero.astro";
-import FAQ from "../../components/FAQ.astro";
-import CTA from "../../components/CTA.astro";
-import { Image } from 'astro:assets';
-import applicationHomePageImg from '../../assets/images/application-home-page.png';
-import sharepointLogoImg from '../../assets/images/sharepoint-logo.png';
-import googleDriveLogoImg from '../../assets/images/google-drive-logo.png';
-import dropboxLogoImg from '../../assets/images/dropbox-logo.png';
-import oneDriveLogoImg from '../../assets/images/onedrive-logo.png';
-import diligentLogoImg from '../../assets/images/diligent-logo.png';
+import BoardMemberSoftware from "../../components/campaigns/BoardMemberSoftware.astro";
 
 const boardMemberFaqs = [
   {
     question: "Behoud ik toegang tot mijn documenten als ik een bestuur verlaat?",
-    answer: "Ja — uw Govrn One archief blijft van u, zelfs na het einde van uw mandaat."
+    answer: "Ja. Uw Dafira One-archief blijft van u, ook na het einde van uw mandaat."
   },
   {
-    question: "Kan Govrn One werken met meerdere besturen tegelijkertijd?",
-    answer: "Absoluut. Govrn One is ontworpen om documenten van al uw besturen op één plek te centraliseren."
+    question: "Kan Dafira One werken met meerdere besturen tegelijkertijd?",
+    answer: "Ja. Dafira One is ontworpen om documenten van al uw besturen op één plek te centraliseren."
   },
   {
-    question: "Hoe veilig is Govrn One?",
-    answer: "Govrn One is EU-gehost, met enterprise-grade encryptie en GDPR-compliance. Uw documenten blijven privé en beveiligd."
+    question: "Hoe veilig is Dafira One?",
+    answer: "Dafira One is EU-gehost, met versleuteling op ondernemingsniveau en AVG-conformiteit. Uw documenten blijven privé en beveiligd."
   },
   {
-    question: "Wat maakt Govrn One anders dan Govrn en andere bestuursmanagementplatforms?",
-    answer: "Govrn en andere bestuursmanagementplatforms zijn gebouwd voor de organisatie. Govrn One is gebouwd voor het individuele bestuurslid - het is uw persoonlijke bestuurswerkruimte."
+    question: "Wat maakt Dafira One anders dan Dafira en andere bestuursmanagementplatforms?",
+    answer: "Dafira en andere bestuursmanagementplatforms zijn gebouwd voor de organisatie. Dafira One is gebouwd voor het individuele bestuurslid: het is uw persoonlijke bestuurswerkruimte."
   }
 ];
 
 const productStructuredData = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Govrn One",
+  "name": "Dafira One",
   "applicationCategory": "BusinessApplication",
-  "description": "Persoonlijke bestuurslid software, EU gehost & beveiligd. In tegenstelling tot Govrn dat organisaties dient, is Govrn One gebouwd voor individuele bestuursleden om documenten van al hun besturen te centraliseren, voorbereiden met AI, en hun archief voor altijd te bewaren.",
+  "description": "Persoonlijke bestuurslid software, EU gehost & beveiligd. In tegenstelling tot Dafira dat organisaties dient, is Dafira One gebouwd voor individuele bestuursleden om documenten van al hun besturen te centraliseren, voorbereiden met AI, en hun archief voor altijd te bewaren.",
   "operatingSystem": "Web",
-  "url": "https://govrn.com/nl/bestuurssoftware",
+  "url": "https://dafira.ai/nl/bestuurssoftware",
   "offers": {
     "@type": "Offer",
-    "url": "https://govrn.com/demo-aanvragen",
+    "url": "https://dafira.ai/nl/request-demo",
     "availability": "https://schema.org/InStock"
   },
   "featureList": [
@@ -51,858 +42,134 @@ const productStructuredData = {
     "EU-gehost met enterprise-grade beveiliging"
   ]
 };
+const combinedStructuredData = productStructuredData;
 
-
-const combinedStructuredData = productStructuredData
+const t = {
+  hero: {
+    eyebrow: 'Persoonlijke bestuurssoftware',
+    title: 'Bestuurssoftware, gebouwd voor u, niet voor uw bestuur',
+    lead: 'Dafira One is persoonlijke bestuurssoftware, volledig EU-gehost en beveiligd. Dafira bedient organisaties en klassieke bestuursportalen zijn gebouwd voor bedrijven; Dafira One geeft u uw eigen bestuursportaal om documenten te centraliseren, u met AI voor te bereiden en uw archief te bewaren, over al uw mandaten heen.',
+    primary: 'Vraag vroege toegang aan',
+    note: 'EU-gehost · AVG-conform · 256-bit versleuteling',
+    imageAlt: 'Interface van Dafira One, persoonlijke bestuurssoftware',
+  },
+  compare: {
+    eyebrow: 'Nieuw product',
+    title: 'Dafira vs Dafira One',
+    columns: [
+      { name: 'Dafira', audience: 'Voor organisaties', items: ['Bestuursbeheer voor bedrijven', 'Documentbeheer door de organisatie', 'Gegevens behoren toe aan het bedrijf'] },
+      { name: 'Dafira One', audience: 'Voor individuele bestuursleden', items: ['Persoonlijke werkruimte voor al uw besturen', 'Uw documenten, uw controle', 'Levenslang archief, ook na uw mandaten'] },
+    ],
+  },
+  integrations: {
+    title: 'Verbindt met uw bestuursplatformen',
+    lead: 'Dafira One synchroniseert met de platformen die uw besturen al gebruiken en brengt uw documenten samen in één persoonlijke werkruimte.',
+    other: 'Andere bestuursportalen',
+    email: 'E-mail',
+    more: 'Meer volgt',
+    note: 'Automatische synchronisatie: stel het één keer in en Dafira One houdt uw documenten actueel voor al uw bestuursfuncties.',
+  },
+  portal: {
+    title: 'Uw persoonlijk bestuursportaal en documentbeheer',
+    lead: 'Geen tijd meer verliezen in e-mailthreads. Dafira One verzamelt uw bestuursdocumenten, agenda’s en bijlagen van verschillende besturen en ordent ze in vergaderingen en gebeurtenissen.',
+    items: [
+      { icon: 'document', title: 'Automatisch documentbeheer', text: 'Dafira organiseert voor bedrijven; Dafira One organiseert voor u persoonlijk, over al uw besturen heen.' },
+      { icon: 'clock', title: 'Een tijdlijn van vergaderingen en besluiten', text: 'Volg hoe besluiten evolueren in al uw bestuursfuncties.' },
+      { icon: 'lock', title: 'Eén privéruimte, alleen voor u', text: 'Uw persoonlijke bestuurswerkruimte, onafhankelijk van Dafira of welke organisatie ook.' },
+    ],
+  },
+  ai: {
+    title: 'Bereid bestuursvergaderingen voor met AI',
+    lead: 'U hoeft niet langer honderden pagina’s alleen door te nemen. De AI van Dafira One analyseert uw documenten, regelgeving en rapporten en brengt naar voren wat telt voor uw verantwoordelijkheden als bestuurslid.',
+    items: [
+      { icon: 'document', title: 'Samenvattingen van lange documenten', text: 'Focus op de punten die belangrijk zijn voor de volgende vergadering.' },
+      { icon: 'shield', title: 'Aandachtspunten voor compliance en regelgeving', text: 'Relevante regelgevende vereisten gemarkeerd in uw documenten.' },
+      { icon: 'sparkle', title: 'AI-inzichten voor uw besluiten', text: 'Context uit uw documenten om uw vragen en besluiten te onderbouwen.' },
+    ],
+  },
+  archive: {
+    title: 'Bewaar uw bestuursarchief, ook na uw mandaat',
+    lead: 'Uw kennis stopt niet wanneer uw mandaat eindigt. Met Dafira One blijven uw documenten en notities van u, zodat u gaandeweg een persoonlijk bestuursarchief opbouwt.',
+    items: [
+      { icon: 'key', title: 'Blijvende toegang tot uw gegevens', text: 'Uw bestuursdocumenten blijven toegankelijk, ongeacht veranderingen in de organisatie.' },
+      { icon: 'bank', title: 'Een archief van uw bestuurswerk', text: 'Een volledig overzicht van uw governance-ervaring.' },
+      { icon: 'book', title: 'Uw persoonlijke governancebibliotheek', text: 'Een kennisbank voor toekomstige bestuursfuncties.' },
+    ],
+  },
+  conflicts: {
+    title: 'Ken uw besturen en herken belangenconflicten',
+    lead: 'Een bestuur draait evenveel om mensen als om documenten. Dafira One helpt u uw medebestuurders te kennen en signaleert discreet mogelijke belangenconflicten.',
+    card: {
+      title: 'Uw bestuursnetwerk',
+      meta: 'AI-analyse',
+      rows: [
+        { label: 'M. Davis', text: 'Voormalig CFO, RetailCorp', tone: 'ok' as const, status: 'Geen conflict' },
+        { label: 'J. Smith', text: 'CEO, CompetitorCorp · directe concurrent', tone: 'danger' as const, status: 'Concurrent' },
+        { label: 'R. Brown', text: 'Partner, VendorLaw LLC · levert juridische diensten', tone: 'pending' as const, status: 'Relatie' },
+      ],
+      footer: 'Mogelijke conflicten gesignaleerd vóór de vergadering',
+      caption: 'Illustratie · fictieve namen',
+    },
+    items: [
+      { icon: 'search', title: 'Automatische screening', text: 'AI bekijkt achtergronden van bestuursleden, zakelijke relaties en kruisende mandaten om mogelijke conflicten te herkennen.' },
+      { icon: 'bell', title: 'Meldingen en aanbevelingen', text: 'Meldingen over mogelijke conflicten, met aanbevelingen voor onthouding bij agendapunten.' },
+      { icon: 'users', title: 'Over al uw besturen', text: 'Gebruik wat u weet uit al uw bestuursfuncties om de governance-standaard hoog te houden.' },
+    ],
+  },
+  security: {
+    title: 'Beveiligd. EU-gehost. Altijd van u.',
+    lead: 'Uw gegevens blijven in Europa. Dafira One is volledig EU-gehost en AVG-conform.',
+    items: [
+      { icon: 'lock', title: 'Versleuteling op ondernemingsniveau', text: 'Uw documenten zijn versleuteld tijdens transport en opslag.' },
+      { icon: 'globe', title: 'Gegevens opgeslagen in de EU', text: 'Europese hosting en AVG-conformiteit.' },
+      { icon: 'shield', title: 'Privacy by design', text: 'Van bij het begin ontworpen met privacy en beveiliging voorop.' },
+    ],
+  },
+  form: {
+    eyebrow: 'Vroege toegang',
+    title: 'Krijg vroege toegang tot Dafira One',
+    lead: 'Schrijf u in en we nemen contact op zodra de vroege toegang opent.',
+    benefits: ['Gratis vroege toegang', 'EU-gehost en beveiligd', 'Voorbereiding met AI'],
+    heading: 'Vraag vroege toegang aan',
+    subheading: 'Duurt minder dan twee minuten. Geen spam; altijd uitschrijven mogelijk.',
+    firstName: 'Voornaam',
+    lastName: 'Achternaam',
+    email: 'Zakelijk e-mailadres',
+    emailPlaceholder: 'uw.email@bedrijf.com',
+    boardCount: 'In hoeveel besturen zetelt u momenteel?',
+    boardOptions: [
+      { value: '', label: 'Selecteer het aantal besturen' },
+      { value: '1', label: '1 bestuur' },
+      { value: '2', label: '2 besturen' },
+      { value: '3', label: '3 besturen' },
+      { value: '4', label: '4 besturen' },
+      { value: '5+', label: '5 of meer besturen' },
+    ],
+    trust: ['AVG-conform', '256-bit versleuteling', 'EU-datacenters'],
+    submit: 'Vraag gratis vroege toegang aan',
+    privacyBefore: 'Door u in te schrijven gaat u akkoord met ons ',
+    privacyLink: 'privacybeleid',
+    privacyAfter: '. Geen spam; altijd uitschrijven mogelijk.',
+    successTitle: 'Bedankt, u staat op de lijst',
+    successText: 'U bent ingeschreven voor vroege toegang tot Dafira One.',
+    nextTitle: 'Wat volgt',
+    next: ['Updates over de voortgang van de ontwikkeling', 'Een melding zodra de vroege toegang opent'],
+  },
+  faq: {
+    title: 'Veelgestelde vragen',
+    subtitle: 'Over Dafira One, persoonlijke bestuurssoftware',
+    inLanguage: 'nl',
+    faqs: boardMemberFaqs,
+  },
+};
 ---
 
 <Layout
-  title="Govrn One — Persoonlijke Bestuurssoftware | EU-Gehost & Beveiligd"
-  description="De eerste persoonlijke bestuurssoftware, 100% EU-gehost. Centraliseer alle bestuursdocumenten, bereid vergaderingen voor met AI en behoud uw archief voor het leven."
+  title="Dafira One — Persoonlijke bestuurssoftware | EU-gehost en beveiligd"
+  description="Persoonlijke bestuurssoftware, EU-gehost. Centraliseer de documenten van al uw besturen, bereid vergaderingen voor met AI en bewaar uw archief na uw mandaat."
   structuredData={combinedStructuredData}
 >
-  <main class="overflow-hidden">
-    <!-- Hero Section -->
-    <Hero
-      badgeText="Persoonlijke bestuurssoftware"
-      heading={{
-        main: "Bestuurssoftware — gebouwd voor u,",
-        highlight: "niet voor uw bestuur"
-      }}
-      description="Govrn One revolutioneert uw bestuurslidmaatschap. De eerste persoonlijke bestuurssoftware 100% EU-gehost, in tegenstelling tot Govrn dat organisaties dient, behoort Govrn One volledig aan u: centraliseer al uw documenten, bereid voor met AI, behoud uw archief levenslang — doorheen al uw mandaten."
-      ctaButtons={{
-        primary: {
-          text: "Verkrijg exclusieve toegang",
-          href: "#bestuurssoftware-form"
-        },
-        secondary: {
-          text: "Bekijk video"
-        }
-      }}
-      securityFeatures={[
-        {
-          title: "EU",
-          subtitle: "Gehost"
-        },
-        {
-          title: "GDPR",
-          subtitle: "Compliant"
-        },
-        {
-          title: "256-bit",
-          subtitle: "Encryptie"
-        }
-      ]}
-      imageAlt="Govrn One persoonlijke bestuurslid software interface"
-      imageSrc={applicationHomePageImg}
-    />
-
-    <!-- Govrn vs Govrn One Comparison -->
-    <section class="py-16 bg-white border-b border-gray-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <p class="text-sm font-semibold text-primary uppercase tracking-wide">Exclusieve innovatie</p>
-          <h2 class="mt-2 text-2xl font-bold text-gray-900">Govrn vs Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">One</span></h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <!-- Govrn -->
-          <div class="bg-gray-50 p-6 rounded-xl">
-            <div class="text-center">
-              <h3 class="text-xl font-semibold text-gray-900 mb-2">Govrn</h3>
-              <p class="text-sm text-gray-600 mb-4">Voor organisaties</p>
-              <div class="space-y-3 text-left">
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-gray-400 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Bestuursmanagement voor bedrijven</span>
-                </div>
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-gray-400 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Organisationele documentcontrole</span>
-                </div>
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-gray-400 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Data behoort tot het bedrijf</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Govrn One -->
-          <div class="bg-primary/5 p-6 rounded-xl border-2 border-primary/20">
-            <div class="text-center">
-              <h3 class="text-xl font-semibold text-primary mb-2">Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">One</span></h3>
-              <p class="text-sm text-primary/70 mb-4">Voor Individuele Bestuursleden</p>
-              <div class="space-y-3 text-left">
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Persoonlijke werkruimte over alle besturen</span>
-                </div>
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Uw documenten, uw controle</span>
-                </div>
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Levenslang archief, zelfs na mandaten</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Integrations Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Compatibel met alle governance-platforms
-          </h2>
-          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
-            Naadloze synchronisatie met tools die uw besturen al gebruiken. Al uw documenten gecentraliseerd in uw persoonlijke ruimte — eindelijk.
-          </p>
-        </div>
-
-        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-center">
-          <!-- SharePoint -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3 bg-white shadow-sm">
-              <Image
-                src={sharepointLogoImg}
-                alt="SharePoint"
-                class="w-10 h-10 object-contain"
-                width={40}
-                height={40}
-              />
-            </div>
-            <span class="text-sm font-semibold text-gray-900">SharePoint</span>
-          </div>
-
-          <!-- Google Drive -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3 bg-white shadow-sm">
-              <Image
-                src={googleDriveLogoImg}
-                alt="Google Drive"
-                class="w-10 h-10 object-contain"
-                width={40}
-                height={40}
-              />
-            </div>
-            <span class="text-sm font-semibold text-gray-900">Google Drive</span>
-          </div>
-
-          <!-- Diligent -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3 bg-white shadow-sm">
-              <Image
-                src={diligentLogoImg}
-                alt="Diligent"
-                class="w-10 h-10 object-contain"
-                width={40}
-                height={40}
-              />
-            </div>
-            <span class="text-sm font-semibold text-gray-900">Diligent</span>
-          </div>
-
-          <!-- Other BMS -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-3">
-              <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M9 11H7v3h2v-3zm4 0h-2v3h2v-3zm4 0h-2v3h2v-3zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
-              </svg>
-            </div>
-            <span class="text-sm font-semibold text-gray-900">Andere BMS</span>
-          </div>
-
-          <!-- Email -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center mb-3">
-              <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-              </svg>
-            </div>
-            <span class="text-sm font-semibold text-gray-900">Email</span>
-          </div>
-
-          <!-- Dropbox -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3 bg-white shadow-sm">
-              <Image
-                src={dropboxLogoImg}
-                alt="Dropbox"
-                class="w-10 h-10 object-contain"
-                width={40}
-                height={40}
-              />
-            </div>
-            <span class="text-sm font-semibold text-gray-900">Dropbox</span>
-          </div>
-
-          <!-- OneDrive -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3 bg-white shadow-sm">
-              <Image
-                src={oneDriveLogoImg}
-                alt="OneDrive"
-                class="w-8 h-8 object-contain"
-                width={32}
-                height={32}
-              />
-            </div>
-            <span class="text-sm font-semibold text-gray-900">OneDrive</span>
-          </div>
-
-          <!-- Plus More -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 bg-gray-400 rounded-lg flex items-center justify-center mb-3">
-              <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-              </svg>
-            </div>
-            <span class="text-sm font-semibold text-gray-900">+ Meer</span>
-          </div>
-        </div>
-
-        <div class="mt-12 text-center">
-          <p class="text-lg text-gray-600">
-            <span class="font-semibold">Automatische synchronisatie</span> — Stel het eenmaal in, en Govrn One houdt alles bijgewerkt over al uw bestuursposities.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Personal Board Portal Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Uw persoonlijke governance-commandocentrum
-          </h2>
-          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
-            Einde aan eindeloze emails en verspreide documenten. Govrn One organiseert automatisch al uw bestuursdocumenten in een heldere tijdlijn — klaar voor uw beslissingen.
-          </p>
-        </div>
-
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Intelligente organisatie van uw mandaten</h3>
-            <p class="mt-2 text-gray-600">In tegenstelling tot bedrijfsplatforms, past Govrn One zich aan UW werkwijze aan — doorheen al uw besturen</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Panoramisch zicht op uw beslissingen</h3>
-            <p class="mt-2 text-gray-600">Traceer de impact van uw beslissingen en anticipeer toekomstige uitdagingen — in al uw besturen</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Uw governance-sanctuarium</h3>
-            <p class="mt-2 text-gray-600">Een ruimte volledig van u, onafhankelijk van organisaties — waar uw beslissingen vorm krijgen</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- AI Preparation Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
-          <div>
-            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-              Beheers uw bestuursvergaderingen met AI
-            </h2>
-            <p class="mt-4 text-xl text-gray-600">
-              Einde aan slapeloze nachten met eindeloze rapporten. Govrn One's AI analyseert uw documenten en extraheert het essentiële voor uw strategische beslissingen.
-            </p>
-
-            <div class="mt-8 space-y-6">
-              <div class="flex items-start">
-                <div class="flex-shrink-0">
-                  <div class="flex items-center justify-center w-8 h-8 bg-primary/10 rounded-lg">
-                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="ml-4">
-                  <h3 class="text-lg font-semibold text-gray-900">Ultra-precieze syntheses van uw dossiers</h3>
-                  <p class="mt-1 text-gray-600">AI isoleert kritieke elementen voor uw besluitvorming</p>
-                </div>
-              </div>
-
-              <div class="flex items-start">
-                <div class="flex-shrink-0">
-                  <div class="flex items-center justify-center w-8 h-8 bg-primary/10 rounded-lg">
-                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="ml-4">
-                  <h3 class="text-lg font-semibold text-gray-900">Automatische regelgevingsmonitoring</h3>
-                  <p class="mt-1 text-gray-600">Anticipeer wettelijke verplichtingen zonder extra inspanning</p>
-                </div>
-              </div>
-
-              <div class="flex items-start">
-                <div class="flex-shrink-0">
-                  <div class="flex items-center justify-center w-8 h-8 bg-primary/10 rounded-lg">
-                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="ml-4">
-                  <h3 class="text-lg font-semibold text-gray-900">Gepersonaliseerde beslissingsintelligentie</h3>
-                  <p class="mt-1 text-gray-600">Op maat gemaakte aanbevelingen gebaseerd op uw expertise</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-8 lg:mt-0">
-            <Image
-              src={applicationHomePageImg}
-              alt="AI-gedreven bestuursvergadering voorbereiding interface"
-              class="rounded-lg shadow-xl"
-              width={600}
-              height={400}
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Archive Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Uw governance-erfenis — voor altijd
-          </h2>
-          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
-            Uw beslissingen en ervaringen volgen u levenslang. Bouw uw eigen governance-bibliotheek — onafhankelijk van organisaties.
-          </p>
-        </div>
-
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Absoluut eigendom van uw data</h3>
-            <p class="mt-2 text-gray-600">Geen afhankelijkheid van bedrijfssystemen — alles behoort u toe</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Persoonlijk institutioneel geheugen</h3>
-            <p class="mt-2 text-gray-600">Kapitaliseer op elke ervaring om toekomstige mandaten te verrijken</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Gepersonaliseerde governance-school</h3>
-            <p class="mt-2 text-gray-600">Transformeer elk mandaat in een troef voor de volgende</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Board Insights Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Ken uw besturen & spot belangenconflicten
-          </h2>
-          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
-            Een bestuur gaat evenveel over mensen als over documenten. Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">One</span> helpt u uw mede-bestuursleden te begrijpen en markeert discreet potentiële belangenconflicten.
-          </p>
-        </div>
-
-        <!-- Simplified Conflict Detection Demo -->
-        <div class="mt-16 bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200">
-          <div class="text-center mb-8">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">AI-gedreven conflictdetectie</h3>
-            <p class="text-gray-600">Zie hoe Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">One</span> automatisch potentiële conflicten identificeert over uw bestuursnetwerk</p>
-          </div>
-
-          <!-- Simplified Board Network -->
-          <div class="bg-white rounded-xl p-6 shadow-sm border">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-              <!-- Left Side - Simple Board Member List -->
-              <div class="space-y-4">
-                <h4 class="font-semibold text-gray-900 mb-4">Uw bestuursnetwerk</h4>
-
-                <!-- Clean Member -->
-                <div class="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
-                  <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                    <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p class="font-medium text-gray-900">Maria Jansen</p>
-                    <p class="text-sm text-gray-600">Voormalig CFO, RetailCorp</p>
-                  </div>
-                </div>
-
-                <!-- Conflict Member -->
-                <div class="flex items-center p-3 bg-red-50 rounded-lg border border-red-200">
-                  <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
-                    <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p class="font-medium text-gray-900">Jan de Vries</p>
-                    <p class="text-sm text-gray-600">CEO, ConcurrentCorp</p>
-                  </div>
-                </div>
-
-                <!-- Warning Member -->
-                <div class="flex items-center p-3 bg-orange-50 rounded-lg border border-orange-200">
-                  <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-3">
-                    <svg class="w-5 h-5 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p class="font-medium text-gray-900">Pieter van der Berg</p>
-                    <p class="text-sm text-gray-600">Partner, LeverancierRecht BV</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Right Side - AI Insights -->
-              <div class="space-y-4">
-                <h4 class="font-semibold text-gray-900 mb-4">AI-analyse</h4>
-
-                <!-- High Risk Alert -->
-                <div class="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 mr-3">
-                      <div class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center">
-                        <span class="text-red-600 text-xs font-bold">!</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 class="text-sm font-semibold text-red-800">Concurrent conflict</h5>
-                      <p class="text-sm text-red-700 mt-1">Jan de Vries werkt voor een directe concurrent</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Medium Risk Alert -->
-                <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 mr-3">
-                      <div class="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center">
-                        <span class="text-orange-600 text-xs font-bold">?</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 class="text-sm font-semibold text-orange-800">Zakelijke relatie</h5>
-                      <p class="text-sm text-orange-700 mt-1">Pieter's firma levert juridische diensten</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Clean Status -->
-                <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 mr-3">
-                      <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                        <span class="text-green-600 text-xs font-bold">✓</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 class="text-sm font-semibold text-green-800">Geen conflicten</h5>
-                      <p class="text-sm text-green-700 mt-1">Maria heeft geen geïdentificeerde conflicten</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature Highlights -->
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Automatische screening</h3>
-            <p class="mt-2 text-gray-600">AI scant bestuursleden achtergronden, zakelijke relaties en kruisbestuursfuncties om potentiële conflicten te identificeren</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Slimme waarschuwingen & aanbevelingen</h3>
-            <p class="mt-2 text-gray-600">Ontvang proactieve waarschuwingen over potentiële conflicten en uitvoerbare aanbevelingen voor agenda-onthoudingen</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Cross-bestuur intelligentie</h3>
-            <p class="mt-2 text-gray-600">Benut inzichten over al uw bestuursposities om de hoogste governance-standaarden te handhaven</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Security Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Beveiligd. EU gehost. Altijd van u.
-          </h2>
-          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
-            Uw data verlaat nooit Europa. Govrn One is volledig EU-gehost, compliant met de hoogste privacy- en beveiligingsstandaarden, en klaar voor GDPR.
-          </p>
-        </div>
-
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Enterprise-grade encryptie</h3>
-            <p class="mt-2 text-gray-600">Uw data is beschermd met de hoogste beveiligingsstandaarden</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Data uitsluitend opgeslagen in de EU</h3>
-            <p class="mt-2 text-gray-600">Volledige Europese data soevereiniteit en compliance</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Privacy-first architectuur</h3>
-            <p class="mt-2 text-gray-600">Vanaf de grond opgebouwd met privacy en beveiliging in gedachten</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Call to Action Section - Optimized for Conversion -->
-    <section class="py-20 bg-gradient-to-br from-blue-50 to-indigo-50 relative overflow-hidden">
-      <!-- Background Pattern -->
-      <div class="absolute inset-0 opacity-5">
-        <svg class="w-full h-full" fill="currentColor" viewBox="0 0 400 400">
-          <defs>
-            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-              <circle cx="10" cy="10" r="1" fill="currentColor"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)"/>
-        </svg>
-      </div>
-
-      <div id='bestuurssoftware-form' class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <!-- Social Proof & Urgency -->
-        <div class="text-center mb-8">
-          <div class="inline-flex items-center bg-green-50 border border-green-200 rounded-full px-4 py-2 mb-6">
-            <div class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-            <span class="text-sm font-medium text-green-800">Beperkte Vroege Toegang - 500 plaatsen beschikbaar</span>
-          </div>
-
-          <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl mb-4">
-            Krijg vroege toegang tot Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">One</span>
-          </h2>
-
-          <p class="text-xl text-gray-600 mb-6 max-w-3xl mx-auto">
-            Sluit u aan bij bestuursleden van toonaangevende bedrijven die al transformeren hoe zij hun governance-verantwoordelijkheden beheren.
-          </p>
-
-          <!-- Benefits List -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div class="flex items-center justify-center space-x-3">
-              <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                </svg>
-              </div>
-              <span class="font-medium text-gray-700">Gratis vroege toegang</span>
-            </div>
-            <div class="flex items-center justify-center space-x-3">
-              <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                </svg>
-              </div>
-              <span class="font-medium text-gray-700">EU gehost & beveiligd</span>
-            </div>
-            <div class="flex items-center justify-center space-x-3">
-              <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                </svg>
-              </div>
-              <span class="font-medium text-gray-700">AI-gedreven inzichten</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Main Form -->
-        <div class="bg-white rounded-2xl p-8 shadow-2xl border border-white/50">
-          <!-- Form Header -->
-          <div class="text-center mb-6">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Verzeker uw plek vandaag</h3>
-            <p class="text-gray-600">Duurt minder dan 2 minuten • Geen spam, ooit • Altijd uitschrijven mogelijk</p>
-          </div>
-
-          <form id="govrnOneForm" class="space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">
-                  Voornaam *
-                </label>
-                <input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                  required
-                />
-              </div>
-              <div>
-                <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">
-                  Achternaam *
-                </label>
-                <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                  required
-                />
-              </div>
-            </div>
-
-            <div>
-              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                Professioneel e-mailadres *
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                placeholder="uw.email@bedrijf.nl"
-                required
-              />
-            </div>
-
-            <div>
-              <label for="boardCount" class="block text-sm font-medium text-gray-700 mb-2">
-                In hoeveel besturen zit u momenteel? *
-              </label>
-              <select
-                id="boardCount"
-                name="boardCount"
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                required
-              >
-                <option value="">Selecteer aantal besturen</option>
-                <option value="1">1 Bestuur</option>
-                <option value="2">2 Besturen</option>
-                <option value="3">3 Besturen</option>
-                <option value="4">4 Besturen</option>
-                <option value="5+">5+ Besturen</option>
-              </select>
-            </div>
-
-            <!-- Trust Signals -->
-            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <div class="flex items-center justify-center space-x-8 text-sm text-gray-600">
-                <div class="flex items-center space-x-2">
-                  <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                  </svg>
-                  <span>GDPR Compliant</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                  <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                  </svg>
-                  <span>256-bit Encryptie</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                  <svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
-                  <span>EU datacenters</span>
-                </div>
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              class="w-full px-6 py-4 bg-gradient-to-r from-primary to-blue-600 text-white rounded-lg hover:from-primary/90 hover:to-blue-600/90 transition-all duration-200 font-semibold text-lg flex items-center justify-center space-x-3 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
-            >
-              <span>Krijg gratis vroege toegang</span>
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </button>
-
-            <p class="text-xs text-gray-500 text-center">
-              Door u aan te melden, gaat u akkoord met ons privacybeleid. Geen spam, altijd uitschrijven mogelijk.
-            </p>
-          </form>
-
-          <!-- Success Message -->
-          <div id="formSuccess" class="hidden text-center py-8">
-            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <h3 class="text-3xl font-bold text-gray-900 mb-4">🎉 U bent erbij!</h3>
-            <p class="text-lg text-gray-600 mb-4">
-              Welkom bij de exclusieve Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent font-semibold">One</span> early adopters lijst.
-            </p>
-            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <p class="text-blue-800 font-medium">Wat gebeurt er nu?</p>
-              <ul class="text-blue-700 text-sm mt-2 space-y-1">
-                <li>• U ontvangt binnen 5 minuten een bevestigings-e-mail</li>
-                <li>• Krijg exclusieve updates over onze ontwikkelingsvoortgang</li>
-                <li>• Word als eerste op de hoogte gebracht wanneer vroege toegang opent</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Social Proof -->
-        <div class="text-center mt-8">
-          <p class="text-sm text-gray-500 mb-4">Vertrouwd door bestuursleden van toonaangevende organisaties</p>
-          <div class="flex items-center justify-center space-x-6 opacity-70">
-            <span class="text-gray-600 font-semibold text-sm">Van de Velde</span>
-            <span class="text-gray-400">•</span>
-            <span class="text-gray-600 font-semibold text-sm">Finance & Invest Brussels</span>
-            <span class="text-gray-400">•</span>
-            <span class="text-gray-600 font-semibold text-sm">Care Property Invest</span>
-            <span class="text-gray-400">•</span>
-            <span class="text-gray-600 font-semibold text-sm">Toolbox</span>
-          </div>
-          <div class="mt-2 text-xs text-gray-400">
-            en 50+ andere organisaties
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <FAQ
-      texts={{
-        title: "Veelgestelde vragen",
-        subtitle: "Meer informatie over Govrn One persoonlijke bestuurslid software",
-        inLanguage: "nl",
-        faqs: boardMemberFaqs
-      }}
-    />
+  <main>
+    <BoardMemberSoftware t={t} formAnchor="bestuurssoftware-form" privacyHref="/nl/privacy" />
   </main>
 </Layout>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('govrnOneForm');
-    const success = document.getElementById('formSuccess');
-
-    if (form && success) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(form);
-        const data = {
-          firstName: formData.get('firstName'),
-          lastName: formData.get('lastName'),
-          email: formData.get('email'),
-          boardCount: formData.get('boardCount')
-        };
-
-        // Track form submission
-        if (typeof window !== 'undefined' && window.dataLayer) {
-          window.dataLayer.push({
-            event: 'govrn_one_signup',
-            email: data.email,
-            board_count: data.boardCount
-          });
-        }
-
-        // Hide form and show success message
-        form.classList.add('hidden');
-        success.classList.remove('hidden');
-
-        // Here you would typically send the data to your backend
-        console.log('Govrn One signup:', data);
-      });
-    }
-  });
-</script>

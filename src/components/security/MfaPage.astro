@@ -1,0 +1,100 @@
+---
+// SMS multi-factor authentication page body. Copy is passed by each language version of /security/mfa.
+import { PageHero, Section, SectionHeader, CellGrid, FeatureColumns, FeatureList, Steps, Callout, Icon, Button, CTA } from '../ui';
+
+interface Props {
+  copy: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    back: { text: string; href: string };
+    what: { eyebrow: string; title: string; paragraphs: string[] };
+    why: { eyebrow: string; title: string; lead: string; threats: string[]; note: string[] };
+    boards: { eyebrow: string; title: string; items: { icon: string; title: string; text: string; items?: string[] }[] };
+    how: { eyebrow: string; title: string; lead: string; steps: string[]; note: string };
+    regulated: { eyebrow: string; title: string; lead: string; orgsTitle: string; orgs: string[]; complianceTitle: string; compliance: string[] };
+    framework: { eyebrow: string; title: string; lead: string; items: { icon: string; text: string }[] };
+    summary: { eyebrow: string; title: string; columns: { title: string; text: string; items: string[] }[] };
+    cta: { title: string; subtitle: string; cta1: string; cta2: string; link1: string; link2: string };
+  };
+}
+
+const { copy } = Astro.props;
+const label = 'font-mono text-xs uppercase tracking-[0.08em] text-gray-500';
+---
+
+<PageHero eyebrow={copy.eyebrow} title={copy.title} lead={copy.lead}>
+  <div class="mt-8"><Button variant="link" href={copy.back.href}>{copy.back.text}</Button></div>
+</PageHero>
+
+<Section space="lg">
+  <div class="grid lg:grid-cols-12 gap-6 lg:gap-8">
+    <p class:list={[label, 'lg:col-span-3 pt-2']}>{copy.what.eyebrow}</p>
+    <div class="lg:col-span-8 lg:col-start-5">
+      <h2 class="text-3xl lg:text-4xl font-semibold text-navy leading-tight">{copy.what.title}</h2>
+      {copy.what.paragraphs.map((p) => <p class="mt-5 text-lg text-gray-700 leading-relaxed">{p}</p>)}
+    </div>
+  </div>
+</Section>
+
+<Section tone="surface" space="lg" border="both">
+  <SectionHeader eyebrow={copy.why.eyebrow} title={copy.why.title} lead={copy.why.lead} />
+  <CellGrid columns={3}>
+    {copy.why.threats.map((t) => (
+      <div class="bg-white p-6 flex items-start gap-3">
+        <span class="mt-2.5 w-1.5 h-px bg-primary shrink-0" aria-hidden="true"></span>
+        <p class="text-[15px] text-navy">{t}</p>
+      </div>
+    ))}
+  </CellGrid>
+  <Callout class="mt-8 max-w-3xl">
+    {copy.why.note.map((p, i) => <p class:list={[i > 0 && 'mt-2']}>{p}</p>)}
+  </Callout>
+</Section>
+
+<Section space="lg">
+  <SectionHeader eyebrow={copy.boards.eyebrow} title={copy.boards.title} />
+  <FeatureColumns columns={3} items={copy.boards.items} />
+</Section>
+
+<Section tone="surface" space="lg" border="both">
+  <SectionHeader eyebrow={copy.how.eyebrow} title={copy.how.title} lead={copy.how.lead} />
+  <Steps columns={4} items={copy.how.steps.map((s) => ({ title: s }))} />
+  <p class="mt-8 max-w-3xl text-lg text-gray-700 leading-relaxed">{copy.how.note}</p>
+</Section>
+
+<Section space="lg">
+  <SectionHeader eyebrow={copy.regulated.eyebrow} title={copy.regulated.title} lead={copy.regulated.lead} />
+  <div class="grid lg:grid-cols-2 gap-x-16 gap-y-10">
+    <div class="border-t border-line pt-8">
+      <h3 class="text-xl font-semibold text-navy mb-6">{copy.regulated.orgsTitle}</h3>
+      <FeatureList items={copy.regulated.orgs} />
+    </div>
+    <div class="border-t border-line pt-8">
+      <h3 class="text-xl font-semibold text-navy mb-6">{copy.regulated.complianceTitle}</h3>
+      <FeatureList items={copy.regulated.compliance} />
+    </div>
+  </div>
+</Section>
+
+<Section tone="surface" space="lg" border="both">
+  <SectionHeader eyebrow={copy.framework.eyebrow} title={copy.framework.title} lead={copy.framework.lead} />
+  <CellGrid columns={3}>
+    {copy.framework.items.map((f) => (
+      <div class="bg-white p-6 flex items-start gap-4">
+        <Icon name={f.icon} class="w-5 h-5 text-navy mt-0.5" />
+        <p class="text-[15px] text-navy">{f.text}</p>
+      </div>
+    ))}
+  </CellGrid>
+</Section>
+
+<Section space="lg">
+  <SectionHeader eyebrow={copy.summary.eyebrow} title={copy.summary.title} />
+  <FeatureColumns columns={3} items={copy.summary.columns} />
+</Section>
+
+<CTA
+  texts={{ title: copy.cta.title, subtitle: copy.cta.subtitle, cta1: copy.cta.cta1, cta2: copy.cta.cta2 }}
+  links={{ cta1: copy.cta.link1, cta2: copy.cta.link2 }}
+/>

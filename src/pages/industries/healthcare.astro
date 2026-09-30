@@ -1,172 +1,43 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import CTA from '../../components/CTA.astro';
+import IndustryLanding from '../../components/industries/IndustryLanding.astro';
 
-const challenges = [
-  {
-    title: "HIPAA Compliance",
-    description: "Ensure complete compliance with healthcare privacy regulations",
-    icon: "🔐"
-  },
-  {
-    title: "Clinical Governance",
-    description: "Streamline oversight of clinical quality and safety",
-    icon: "⚕️"
-  },
-  {
-    title: "Multi-stakeholder Collaboration",
-    description: "Connect board members, medical staff, and administrators",
-    icon: "🤝"
-  }
-];
+const hero = {
+  eyebrow: 'Healthcare',
+  title: 'Board management software for healthcare organisations',
+  lead: 'For boards of hospitals, care providers and life sciences companies. Prepare quality, safety and financial discussions, and keep confidential papers under control.',
+};
 
-const features = [
-  {
-    title: "HIPAA-Compliant Platform",
-    description: "Secure handling of protected health information",
-    icon: "🏥"
-  },
-  {
-    title: "Quality Metrics Dashboard",
-    description: "Real-time monitoring of clinical performance indicators",
-    icon: "📊"
-  },
-  {
-    title: "Credentialing Management",
-    description: "Streamlined oversight of medical staff credentials",
-    icon: "📋"
-  }
-];
+const challenges = {
+  title: 'What healthcare boards deal with',
+  lead: 'Clinical, financial and regulatory matters at the same table.',
+  items: [
+    { icon: 'lock', title: 'Sensitive information', text: 'Board papers can contain health data, which the GDPR treats as a special category.' },
+    { icon: 'health', title: 'Clinical governance', text: 'Quality and safety come back at every meeting and need a consistent record.' },
+    { icon: 'users', title: 'Many stakeholders', text: 'Board members, medical staff and management each need the right level of access.' },
+  ],
+};
 
-const caseStudies = [
-  {
-    company: "Major Healthcare Network",
-    quote: "Govrn has transformed how we manage our board operations while maintaining strict HIPAA compliance.",
-    author: "Dr. Sarah Johnson",
-    role: "Chief Medical Officer",
-    link: "#"
-  }
-];
+const features = {
+  title: 'What Dafira provides',
+  lead: 'Board tools used by healthcare organisations.',
+  items: [
+    { icon: 'shield', title: 'Protected board papers', text: 'Role-based access, encryption and an audit trail, with data protection practices aligned with the GDPR.' },
+    { icon: 'layers', title: 'Committees', text: 'Separate spaces for quality, audit and other committees, each with its own members.' },
+    { icon: 'clipboard', title: 'Recurring agenda items', text: 'Agenda templates for standing items such as quality and safety reports.' },
+  ],
+};
 ---
 
-<Layout title="Healthcare Board Management Software | Govrn" description="Ensure complete compliance with healthcare privacy regulations while streamlining oversight of clinical quality and safety.">
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Healthcare
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Board Management Software for
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Healthcare Organizations
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed mb-12">
-            HIPAA-compliant board management solutions designed specifically for healthcare organizations.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/try"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Start Free Trial
-            </a>
-            <a
-              href="/request-demo"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-            >
-              Request Demo
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Challenges Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Healthcare-Specific Challenges We Solve
-          </h2>
-          <p class="text-xl text-gray-600">
-            Address key challenges facing healthcare boards with our comprehensive solution.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Healthcare-Specific Features
-          </h2>
-          <p class="text-xl text-gray-600">
-            Purpose-built features for healthcare board management.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Case Studies Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Healthcare Success Stories
-          </h2>
-          <p class="text-xl text-gray-600">
-            See how leading healthcare organizations transform their board operations with Govrn.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {caseStudies.map(study => (
-            <a href={study.link} class="group">
-              <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 h-full flex flex-col">
-                <blockquote class="flex-grow">
-                  <p class="text-gray-600 mb-6">"{study.quote}"</p>
-                </blockquote>
-                <div>
-                  <p class="font-medium text-gray-900">{study.author}</p>
-                  <p class="text-gray-500">{study.role}</p>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Healthcare Board Management Software | Dafira" description="Board portal for hospitals and care organisations: confidential board papers under access control, committee meetings and documented decisions.">
+  <main>
+    <IndustryLanding
+      industry="healthcare"
+      hero={hero}
+      screenshot={{ src: '/onboarding-event-detail.png', alt: 'Dafira meeting page with the agenda, attendance and a vote' }}
+      challenges={challenges}
+      features={features}
+      secondary="trial"
+    />
   </main>
 </Layout>

@@ -5,14 +5,14 @@ interface Props {
 
 const { videoId } = Astro.props;
 ---
-<div id="videoModal" class="fixed inset-0 z-50 hidden">
-  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm"></div>
+<div id="videoModal" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-label="Video">
+  <div class="absolute inset-0 bg-navy/90" aria-hidden="true"></div>
   <div id="videoModalYoutube" class="absolute inset-0 flex items-center justify-center p-4" style="display: none;">
     <div class="relative w-full max-w-4xl mx-auto">
       <div class="relative pt-[56.25%]">
         <iframe
           id="youtubePlayer"
-          class="absolute inset-0 w-full h-full rounded-xl"
+          class="absolute inset-0 w-full h-full rounded-md bg-black"
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -23,10 +23,12 @@ const { videoId } = Astro.props;
       </div>
       <button
         id="closeVideoModal"
-        class="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+        type="button"
+        aria-label="Close video"
+        class="absolute -top-12 end-0 p-1 text-white/80 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
       >
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
     </div>
@@ -46,6 +48,8 @@ const { videoId } = Astro.props;
     modalYoutube.style.display = 'flex';
     iframe.style.display = 'block';
     document.body.style.overflow = 'hidden';
+
+    closeBtn?.focus();
 
     // Lazy-load YouTube only once
     if (!isLoaded) {
@@ -74,10 +78,10 @@ const { videoId } = Astro.props;
   closeBtn?.addEventListener('click', closeModal);
 
   modal?.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
+    if (e.target === modal || e.target === modalYoutube) closeModal();
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape' && !modal?.classList.contains('hidden')) closeModal();
   });
 </script>

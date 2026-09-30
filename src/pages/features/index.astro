@@ -1,194 +1,119 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import FeatureSection from '../../components/features/FeatureSection.astro';
+import FeatureCTA from '../../components/features/FeatureCTA.astro';
+import { PageHero, Button, Screenshot } from '../../components/ui';
 
 const meetingFeatures = {
-  title: "Empower Your Meetings",
-  subtitle: "Meeting Management Excellence",
-  description: "Transform your board meetings into strategic powerhouses. Govrn's comprehensive suite of tools ensures every meeting drives value and actionable outcomes.",
-  gradient: "from-primary to-blue-600",
+  title: "Prepare and run the meeting",
+  subtitle: "Meetings",
+  description: "Build the agenda, share the board pack and take the minutes without leaving the platform.",
   image: "/applications-picture-meeting.png",
-  imageAlt: "Govrn Meeting Management Interface",
+  imageAlt: "Meeting page in Dafira",
   features: [
     {
-      title: "AI-Powered Agenda Builder",
-      description: "Create dynamic agendas that adapt to your board's needs, with smart suggestions and templates",
-      icon: "📝",
-      highlight: true,
+      title: "AI agenda builder",
+      description: "Start from a template, set a duration and a type for each item and attach the documents. Suggestions come from previous meetings.",
+      icon: "list",
       link: "/features/ai-powered-agenda-builder"
     },
     {
-      title: "Real-Time Document Collaboration",
-      description: "Annotate, comment, and collaborate on documents during meetings with enterprise-grade security",
-      icon: "✏️",
-      highlight: false,
+      title: "Document collaboration",
+      description: "Directors annotate the board pack privately and comment together on shared documents, always on the latest version.",
+      icon: "pen",
       link: "/features/document-collaboration"
     },
     {
-      title: "Secure Board Communication",
-      description: "Keep sensitive discussions private with end-to-end encrypted messaging and file sharing",
-      icon: "🔒",
-      highlight: true,
+      title: "Secure board communication",
+      description: "Private messages, a board news feed and file sharing, kept inside the platform rather than in email or messaging apps.",
+      icon: "lock",
       link: "/features/secure-communication"
     },
     {
-      title: "AI Meeting Minutes Generator",
-      description: "Automatically generate professional board meeting minutes in multiple languages with AI-powered transcription",
-      icon: "🤖",
-      highlight: true,
+      title: "AI minute builder",
+      description: "A structured draft of the minutes, prepared from the meeting recording and aligned with the agenda, in the language of the meeting.",
+      icon: "mic",
       link: "/features/ai-minute-builder"
     },
   ]
 };
 
 const insightFeatures = {
-  title: "Unlock Strategic Insights",
-  subtitle: "AI-Powered Intelligence",
-  description: "Harness the power of artificial intelligence to transform your board data into actionable insights that drive better decision-making.",
-  gradient: "from-blue-600 to-indigo-600",
+  title: "Find what the board already knows",
+  subtitle: "Information",
+  description: "Board documents are filed by meeting and can be searched and questioned. Every answer points to its source.",
   image: "/applications-picture-board-chat-mobile.png",
-  imageAlt: "Govrn Insights Dashboard",
+  imageAlt: "Dafira on mobile",
   features: [
     {
-      title: "Smart Document Management",
-      description: "Intelligent organization and retrieval of board materials with AI-powered categorization",
-      icon: "🤖",
-      highlight: true
+      title: "AI assistant",
+      description: "Ask a question about the board pack or past minutes and get an answer that cites the document and section it comes from.",
+      icon: "search",
+      link: "/features/ai-assistant"
     },
     {
-      title: "Predictive Analytics",
-      description: "Forecast trends and identify opportunities with advanced data analysis",
-      icon: "📈",
-      highlight: false
+      title: "Document library",
+      description: "Board materials are organised by meeting and by type, with search across the whole library.",
+      icon: "folder"
     },
     {
-      title: "Real-Time Board Intelligence",
-      description: "Stay informed with AI-curated updates and insights relevant to your board",
-      icon: "🔍",
-      highlight: true
-    },
-    {
-      title: "Compliance Monitoring",
-      description: "Automated compliance checks and regulatory requirement tracking",
-      icon: "⚖️",
-      highlight: false,
+      title: "Compliance monitoring",
+      description: "Follow regulatory requirements such as CSRD and see which board documents address them.",
+      icon: "scale",
       link: "/features/ai-board-compliance-monitoring"
     }
   ]
 };
 
 const governanceFeatures = {
-  title: "Elevate Board Governance",
-  subtitle: "Governance Excellence",
-  description: "Set new standards in board governance with tools that ensure transparency, accountability, and efficient decision-making.",
-  gradient: "from-indigo-600 to-primary",
+  title: "Decide, sign and follow up",
+  subtitle: "Governance",
+  description: "Record votes and resolutions, collect signatures and follow the actions agreed in the meeting.",
   image: "/applications-picture-board-evaluation.png",
-  imageAlt: "Govrn Governance Dashboard",
+  imageAlt: "Board evaluation in Dafira",
   features: [
     {
-      title: "Dynamic Task Management",
-      description: "Streamline board responsibilities with intelligent task tracking and automation",
-      icon: "✅",
-      highlight: true
+      title: "Tasks and action items",
+      description: "Assign the actions agreed in the meeting and follow them until they are closed.",
+      icon: "tasks"
     },
     {
-      title: "Digital Signatures & Approvals",
-      description: "Accelerate document signing with legally-binding electronic signatures",
-      icon: "✍️",
-      highlight: false
+      title: "Votes and electronic signatures",
+      description: "Directors vote on resolutions and sign documents electronically, with signatures handled by our eIDAS-compliant partner Universign.",
+      icon: "signature"
     },
     {
-      title: "Role-Based Access Control",
-      description: "Ensure security with granular permissions and role management",
-      icon: "👥",
-      highlight: true
+      title: "Role-based access control",
+      description: "Access to meetings, documents and conversations is set by board, committee and role.",
+      icon: "users"
     },
     {
-      title: "Board Performance Analytics",
-      description: "Track and optimize board effectiveness with detailed metrics",
-      icon: "📊",
-      highlight: false
+      title: "Board evaluation",
+      description: "Run the board evaluation in the platform and compare the answers of each director.",
+      icon: "chart"
     }
   ]
 };
 ---
 
-<Layout title="Features - Govrn Board Management Software" description="Explore Govrn's comprehensive suite of board management features including AI-powered insights, automated compliance tools, and seamless collaboration capabilities designed for modern boards." image="/features.png">
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
+<Layout title="Features - Dafira Board Management Software" description="Dafira's board management features: agenda builder, board pack and annotations, AI assistant, AI minute builder, secure communication, votes and electronic signatures." image="/features.png">
+  <main>
+    <PageHero
+      eyebrow="Features"
+      title="Every step of the board cycle, in one place"
+      lead="Dafira covers the preparation of the meeting, the meeting itself and the follow-up: agenda, board pack, votes, minutes and signatures. Directors work in one secure workspace, on any device."
+    >
+      <Fragment slot="actions">
+        <Button href="/request-demo">Book a demo</Button>
+        <Button variant="secondary" href="/pricing">View pricing</Button>
+      </Fragment>
+      <Screenshot slot="aside" src="/onboarding-event-detail.png" alt="Meeting page in Dafira with the agenda, attendance and an open vote" eager />
+    </PageHero>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-4xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-6 py-2 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Enterprise-Grade Board Management
-          </div>
+    <FeatureSection {...meetingFeatures} demoType="meeting" id="meetings" />
+    <FeatureSection {...insightFeatures} demoType="insights" reversed={true} tone="surface" id="information" />
+    <FeatureSection {...governanceFeatures} demoType="governance" id="governance" />
 
-          <h1 class="text-6xl font-extrabold text-gray-900 tracking-tight mb-8 leading-tight">
-            Power Your Board's Success with
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Next-Gen Features
-            </span>
-          </h1>
-
-          <p class="text-xl text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto">
-            Experience the future of board management with Govrn's comprehensive suite of AI-powered tools, designed to enhance collaboration, ensure compliance, and drive strategic decision-making.
-          </p>
-
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/request-demo"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 group"
-            >
-              Schedule a Demo
-              <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </a>
-            <a
-              href="/pricing"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-            >
-              View Pricing
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Feature Sections -->
-    <FeatureSection {...meetingFeatures} demoType="meeting" />
-    <FeatureSection {...insightFeatures} demoType="insights" reversed={true} />
-    <FeatureSection {...governanceFeatures} demoType="governance" />
-
-    <!-- CTA Section -->
-    <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl font-bold text-white mb-8">
-          Ready to Transform Your Board Management?
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Join leading organizations that trust Govrn to power their board's success
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-          >
-            Request a Demo
-          </a>
-          <a
-            href="/contact"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200"
-          >
-            Contact Sales
-          </a>
-        </div>
-      </div>
-    </section>
+    <FeatureCTA />
   </main>
 </Layout>

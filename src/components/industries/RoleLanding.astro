@@ -1,0 +1,98 @@
+---
+// Shared layout for the role pages (/for/ceo, /for/general-counsel, /for/independent-director, /for/shareholder-director) in EN/FR/NL.
+// Each page passes its own copy; structure stays identical across languages.
+import { PageHero, Section, SectionHeader, Button, Icon, FeatureColumns, CellGrid, Quote, Screenshot, CTA } from '../ui';
+import type { CustomerQuote } from './customerQuotes';
+import { ctaProps, pageLang } from './i18n';
+import { langFromPath } from '../../i18n/routes';
+
+interface Item { icon: string; title: string; text: string; items?: string[] }
+
+interface Props {
+  hero: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    primary: { text: string; href: string };
+    secondary?: { text: string; href: string };
+    screenshot: { src: string; alt: string };
+  };
+  challenges: { eyebrow?: string; title: string; lead?: string; items: Item[] };
+  features: { eyebrow?: string; title: string; lead?: string; items: Item[] };
+  security?: { eyebrow?: string; title: string; lead?: string; items: Item[]; link?: { text: string; href: string } };
+  quote?: CustomerQuote & { linkText: string };
+  cta?: { texts: { title: string; subtitle: string; cta1: string; cta2: string }; links: { cta1: string; cta2: string } };
+}
+
+const { hero, challenges, features, security, quote, cta } = Astro.props;
+const lang = pageLang(langFromPath(Astro.url.pathname));
+const challengeCols = challenges.items.length === 4 ? 2 : 3;
+---
+
+<PageHero eyebrow={hero.eyebrow} title={hero.title} lead={hero.lead}>
+  <Fragment slot="actions">
+    <Button href={hero.primary.href}>{hero.primary.text}</Button>
+    {hero.secondary && <Button variant="secondary" href={hero.secondary.href}>{hero.secondary.text}</Button>}
+  </Fragment>
+  <Screenshot slot="aside" src={hero.screenshot.src} alt={hero.screenshot.alt} eager />
+</PageHero>
+
+<Section>
+  <SectionHeader eyebrow={challenges.eyebrow} title={challenges.title} lead={challenges.lead} />
+  <CellGrid columns={challengeCols}>
+    {challenges.items.map((item) => (
+      <div class="bg-white p-8">
+        <Icon name={item.icon} class="w-6 h-6 text-navy" />
+        <h3 class="mt-5 text-lg font-semibold text-navy">{item.title}</h3>
+        <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
+      </div>
+    ))}
+  </CellGrid>
+</Section>
+
+<Section tone="surface" border="both">
+  <SectionHeader eyebrow={features.eyebrow} title={features.title} lead={features.lead} />
+  <FeatureColumns items={features.items.map((f) => ({ icon: f.icon, title: f.title, text: f.text, items: f.items }))} columns={features.items.length === 2 ? 2 : 3} />
+</Section>
+
+{security && (
+  <Section>
+    <div class="grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-4">
+        <SectionHeader layout="stacked" eyebrow={security.eyebrow} title={security.title} lead={security.lead} class="mb-8" />
+        {security.link && <Button variant="link" href={security.link.href}>{security.link.text}</Button>}
+      </div>
+      <dl class="lg:col-span-7 lg:col-start-6 divide-y divide-line border-y border-line">
+        {security.items.map((item) => (
+          <div class="py-6 grid sm:grid-cols-12 gap-3">
+            <dt class="sm:col-span-5 flex items-start gap-3 font-medium text-navy">
+              <Icon name={item.icon} class="w-5 h-5 text-navy mt-0.5" />
+              <span>{item.title}</span>
+            </dt>
+            <dd class="sm:col-span-7 text-[15px] text-gray-600 leading-relaxed">{item.text}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </Section>
+)}
+
+{quote && (
+  <Section tone={security ? 'surface' : 'white'} border={security ? 'top' : 'none'} space="md">
+    <div class="grid lg:grid-cols-12 gap-10">
+      <Quote
+        class="lg:col-span-9"
+        size="lg"
+        quote={quote.quote}
+        author={quote.author}
+        role={quote.role}
+        company={quote.company}
+        image={quote.image}
+        href={quote.link}
+        linkText={quote.linkText}
+      />
+    </div>
+  </Section>
+)}
+
+<CTA {...(cta ?? ctaProps[lang])} />

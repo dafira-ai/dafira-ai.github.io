@@ -1,61 +1,74 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { PageHero, Section } from '../../components/ui';
 import BoardResolution from '../../components/404/BoardResolution.astro';
 import NavigationSuggestions from '../../components/404/NavigationSuggestions.astro';
-import PageIllustration from '../../components/404/PageIllustration.astro';
-import { getRandomJoke } from '../../utils/boardJokes';
 
 const suggestions = [
   {
-    text: "Retour à l'accueil",
-    href: "/fr",
-    icon: "🏠"
+    "text": "Accueil",
+    "href": "/fr",
+    "icon": "home",
+    "description": "Retour à la page d'accueil."
   },
   {
-    text: "Découvrir nos fonctionnalités",
-    href: "/fr/features",
-    icon: "✨"
+    "text": "Fonctionnalités",
+    "href": "/fr/features",
+    "icon": "layers",
+    "description": "Ce que Dafira apporte à votre conseil."
   },
   {
-    text: "Contacter le support",
-    href: "/fr/contact",
-    icon: "🤝"
+    "text": "Sécurité",
+    "href": "/fr/security",
+    "icon": "shield",
+    "description": "Comment les données du conseil sont protégées."
+  },
+  {
+    "text": "Témoignages clients",
+    "href": "/fr/testimonials",
+    "icon": "users",
+    "description": "Comment d'autres conseils utilisent Dafira."
+  },
+  {
+    "text": "Ressources",
+    "href": "/fr/resources",
+    "icon": "book",
+    "description": "Guides, études et articles."
+  },
+  {
+    "text": "Contact",
+    "href": "/fr/contact",
+    "icon": "mail",
+    "description": "Posez-nous directement votre question."
   }
 ];
 
 const currentDate = new Date().toLocaleDateString('fr-FR');
-const randomJoke = getRandomJoke();
+const labels = {
+  "title": "Résolution 404",
+  "date": "Date",
+  "whereas": "Attendu que la page demandée est introuvable ;",
+  "resolved": "Décide que le visiteur sera orienté vers une page plus appropriée.",
+  "status": "Statut",
+  "approved": "Approuvée"
+};
 ---
 
-<Layout title="404 - Page introuvable | Govrn" description="Oups ! La page que vous recherchez n'existe pas. Laissez-nous vous remettre sur la bonne voie.">
-  <main class="min-h-screen pt-24 pb-12 flex flex-col">
-    <div class="flex-grow flex items-center">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div class="text-center">
-          <PageIllustration emoji="📋" />
+<Layout title="404 - Page introuvable | Dafira" description="La page que vous recherchez n'existe pas ou a été déplacée." noindex>
+  <PageHero eyebrow="Erreur 404" title="Cette page est introuvable" lead="L'adresse est peut-être mal saisie, ou la page a été déplacée. Les liens ci-dessous mènent aux principales parties du site.">
+    <Fragment slot="aside">
+      <BoardResolution date={currentDate} labels={labels} />
+    </Fragment>
+  </PageHero>
 
-          <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl mb-4">
-            404 : Page introuvable
-          </h1>
-
-          <p class="text-xl text-gray-600 mb-8">{randomJoke}</p>
-
-          <BoardResolution date={currentDate} />
-          <NavigationSuggestions suggestions={suggestions} />
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center text-gray-500 mt-12">
-      <p class="text-sm">
-        P.S. Notre assistant IA a noté cette page manquante pour la prochaine réunion.
-      </p>
-    </div>
-  </main>
+  <Section space="md">
+    <h2 class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500 mb-6">Où aller ensuite</h2>
+    <NavigationSuggestions suggestions={suggestions} />
+  </Section>
 </Layout>
 
 <script>
-  const url = new URL(window.location);
+  const url = new URL(window.location.href);
   if (url.pathname.endsWith('/')) {
     url.pathname = url.pathname.slice(0, -1);
     window.location.replace(url.href);

@@ -1,0 +1,521 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import WhyWeBuildVideo from "../../components/WhyWeBuildVideo.astro";
+import Features from "../../components/Features.astro";
+import Timeline from "../../components/Timeline.astro";
+import Personas from "../../components/Personas.astro";
+import Testimonials from "../../components/Testimonials.astro";
+import FAQ from "../../components/FAQ.astro";
+import CTA from "../../components/CTA.astro";
+import FeatureShowcase from "../../components/features/FeatureShowcase.astro";
+import SecurityPreview from "../../components/SecurityPreview.astro";
+import DocumentFlow from "../../components/animations/DocumentFlow.astro";
+import TaskTimeline from "../../components/animations/TaskTimeline.astro";
+import FeatureHighlight from "../../components/animations/FeatureHighlight.astro";
+
+// The Arabic site only has the home page for now: internal links point to the
+// English pages (Personas and Testimonials resolve this themselves).
+
+const hero = {
+  badgeText: "بوابة مجالس الإدارة · متوافقة مع GDPR",
+  heading: {
+    main: "بوابة مجالس الإدارة للمؤسسات التي تأخذ",
+    highlight: "الحوكمة على محمل الجد.",
+  },
+  description:
+    "جهّز ملفات الاجتماع، وأدر الجلسة، وسجّل نتائج التصويت، ووزّع المحاضر الموقّعة. مساحة آمنة واحدة لأعضاء المجلس وأمناء السر والفرق القانونية.",
+  ctaButtons: {
+    primary: {
+      text: "احجز عرضاً توضيحياً",
+      href: "/request-demo",
+    },
+    secondary: {
+      text: "شاهد الجولة في دقيقتين",
+    },
+  },
+  securityFeatures: [
+    { title: "256 بت", subtitle: "تشفير" },
+    { title: "GDPR", subtitle: "متوافقة" },
+    { title: "MFA", subtitle: "لكل عضو في المجلس" },
+  ],
+  imageAlt: "واجهة ضفيرة - بوابة مجالس الإدارة",
+  imageSrc: "/application-home-page.png",
+};
+
+const featuresProps = {
+  texts: {
+    title: "من جدول الأعمال إلى المحضر الموقّع، في مكان واحد",
+    subtitle: "تغطي ضفيرة دورة عمل المجلس كاملة: التحضير للاجتماع، وعقده، ومتابعة ما تقرر فيه.",
+    exploreButton: "عرض جميع الميزات",
+    exploreButtonUrl: "/features",
+    learnMore: "اعرف المزيد",
+  },
+  pillars: [
+    {
+      title: "التحضير للاجتماع",
+      description:
+        "أعدّ جدول الأعمال، واجمع ملفات الاجتماع، وشاركها بأمان. يطّلع الأعضاء عليها ويدوّنون ملاحظاتهم من أي جهاز.",
+      features: [
+        "إعداد جدول الأعمال",
+        "مكتبة المستندات",
+        "ملاحظات خاصة على المستندات",
+        "مصادقة آمنة",
+      ],
+    },
+    {
+      title: "فهم الوثائق",
+      description:
+        "اسأل المساعد الذكي عن وثائق المجلس واحصل على ملخصات للمستندات الطويلة. وأعدّ مسودة المحضر في وقت أقصر بكثير.",
+      features: [
+        "مساعد بالذكاء الاصطناعي لوثائق المجلس",
+        "إعداد المحاضر بالذكاء الاصطناعي",
+        "محادثة آمنة للمجلس",
+        "متابعة بنود العمل",
+      ],
+    },
+    {
+      title: "القرار والتوثيق",
+      description:
+        "أجرِ التصويت، ووقّع المحاضر إلكترونياً، واحتفظ بسجل لكل قرار، مع صلاحيات وصول تُحدَّد حسب الدور في المجلس.",
+      features: [
+        "التصويت",
+        "التوقيع الإلكتروني",
+        "سجل القرارات",
+        "صلاحيات حسب الدور",
+      ],
+    },
+  ],
+};
+
+const documentFlowProps = {
+  documents: [
+    { type: "عقد", icon: "📄" },
+    { type: "محضر", icon: "📝" },
+    { type: "تقرير", icon: "📊" },
+    { type: "جدول الأعمال", icon: "📅" },
+    { type: "سياسة", icon: "📋" },
+  ],
+  sharingMethods: [
+    {
+      name: "البريد الإلكتروني",
+      line: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+    },
+    {
+      name: "الجوال",
+      line: "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z",
+    },
+    {
+      name: "الحاسوب",
+      line: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+    },
+    {
+      name: "الفريق",
+      line: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
+    },
+  ],
+  texts: {
+    centralIcon: {
+      emoji: "🔒",
+      title: "تخزين",
+      subtitle: "آمن",
+    },
+  },
+};
+
+const aiAssistantProps = {
+  messages: [
+    {
+      type: "assistant",
+      content: "اكتمل تحليل وثائق المجلس. أبرز النقاط:",
+      insights: [
+        "نمو الإيرادات يتجاوز متوسط القطاع بنسبة 15%",
+        "نسبة استيفاء متطلبات الالتزام 98%",
+        "نسبة حضور اجتماعات المجلس 95%"
+      ]
+    },
+    {
+      type: "user",
+      content: "ما أبرز المخاطر التي تم تحديدها؟"
+    },
+    {
+      type: "assistant",
+      content: "بناءً على التحليل، هذه أبرز المخاطر:",
+      insights: [
+        "تقلبات السوق في منطقة آسيا والمحيط الهادئ",
+        "تغيّرات تنظيمية في الأسواق الأوروبية",
+        "الاعتماد على سلاسل الإمداد"
+      ]
+    }
+  ],
+  headerTitle: "المساعد الذكي",
+  headerSubtitle: "تحليل وثائق المجلس",
+  headerEmoji: "🤖"
+};
+
+const gouvernanceComplianceProps = {
+  texts: {
+    tasks: [
+      { title: "محضر اجتماع المجلس", status: "pending" },
+      { title: "مراجعة التقرير السنوي", status: "signed" },
+      { title: "مراجعة الالتزام", status: "in_progress" }
+    ],
+    signatures: [
+      { name: "سارة العتيبي", role: "عضو مجلس الإدارة" },
+      { name: "خالد الراشد", role: "رئيس المجلس" },
+      { name: "نورة القحطاني", role: "أمينة سر المجلس" }
+    ],
+    labels: {
+      tasks: "المهام",
+      activeTasks: "المهام الجارية",
+      signatures: "التوقيعات",
+      pending: "قيد الانتظار"
+    }
+  }
+};
+
+const featureShowcaseProps = {
+  texts: {
+    badge: "آلية العمل",
+    title: "مصمَّمة وفق طريقة عمل مجالس الإدارة فعلياً",
+    subtitle:
+      "المستندات والقرارات ومتطلبات الالتزام في مكان واحد، مع صلاحيات وصول حسب الدور وسجل لكل تعديل.",
+    keyBenefits: "أبرز المزايا:",
+  },
+  outcomes: [
+    {
+      title: "مكان واحد لوثائق المجلس",
+      description:
+        "ملفات الاجتماعات والمحاضر والسياسات في مساحة آمنة، يمكن الوصول إليها من أي جهاز دون الحاجة إلى خبرة تقنية.",
+      component: DocumentFlow,
+      componentProps: documentFlowProps,
+      benefits: [
+        "مصدر واحد للمجلس",
+        "إدارة الإصدارات",
+        "صلاحيات حسب الدور",
+        "الاطلاع من أي جهاز",
+      ],
+    },
+    {
+      title: "الذكاء الاصطناعي عونٌ في القراءة",
+      description:
+        "اطرح أسئلتك على المساعد الذكي حول ملفات الاجتماع واحصل على ملخصات للمستندات الطويلة. الذكاء الاصطناعي يساعد في التحضير، والقرار للمجلس.",
+      component: TaskTimeline,
+      componentProps: aiAssistantProps,
+      benefits: [
+        "أسئلة حول وثائق المجلس",
+        "ملخصات للمستندات الطويلة",
+        "مسودة المحضر بمساعدة الذكاء الاصطناعي",
+        "متابعة بنود العمل",
+      ],
+      link: {
+        text: "تعرّف على المساعد الذكي",
+        url: "/features/ai-assistant",
+      },
+    },
+    {
+      title: "الالتزام وإمكانية التتبع",
+      description:
+        "التصويت والتوقيع الإلكتروني وسجل القرارات، مع صلاحيات وصول حسب الدور ومسار تدقيق كامل.",
+      component: FeatureHighlight,
+      componentProps: gouvernanceComplianceProps,
+      benefits: [
+        "التصويت",
+        "التوقيع الإلكتروني",
+        "إدارة الصلاحيات",
+        "مسار التدقيق",
+      ],
+    },
+  ],
+};
+
+const timelineProps = {
+  texts: {
+    title: "قبل الاجتماع وأثناءه وبعده",
+    subtitle: "مساحة عمل واحدة ترافق الاجتماع من أول مسودة لجدول الأعمال حتى آخر توقيع.",
+    cta: "جرّب ضفيرة",
+    ctaLink: "/try"
+  },
+  timelineSteps: [
+    {
+      phase: "قبل",
+      title: "التحضير",
+      icon: "",
+      color: "",
+      image: "/before-meeting.jpg",
+      features: [
+        {
+          title: "جدول الأعمال",
+          description: "أعدّ جدول أعمال كل اجتماع ووزّعه على الأعضاء.",
+          icon: ""
+        },
+        {
+          title: "ملفات الاجتماع",
+          description: "اجمع المستندات وشاركها بأمان.",
+          icon: ""
+        },
+        {
+          title: "المساعد الذكي",
+          description: "يطرح الأعضاء أسئلتهم حول ملفات الاجتماع ويحصلون على ملخصات للمستندات الطويلة قبل الاجتماع.",
+          icon: ""
+        }
+      ]
+    },
+    {
+      phase: "أثناء",
+      title: "خلال الجلسة",
+      icon: "",
+      color: "",
+      image: "/during-meeting.jpg",
+      features: [
+        {
+          title: "الملاحظات والنقاش",
+          description: "يدوّن الأعضاء ملاحظاتهم على المستندات ويتناقشون أثناء الاجتماع، في مساحة آمنة واحدة.",
+          icon: ""
+        },
+        {
+          title: "القرارات",
+          description: "سجّل القرارات خلال الجلسة وتابع بنود العمل المترتبة عليها.",
+          icon: ""
+        }
+      ]
+    },
+    {
+      phase: "بعد",
+      title: "المتابعة",
+      icon: "",
+      color: "",
+      image: "/after-meeting.jpg",
+      features: [
+        {
+          title: "المحضر",
+          description: "أعدّ مسودة المحضر بأداة إعداد المحاضر بالذكاء الاصطناعي، مع إدراج القرارات وبنود العمل.",
+          icon: ""
+        },
+        {
+          title: "المهام",
+          description: "وزّع مهام المتابعة وتابع تنفيذها حتى لا يفوتك شيء.",
+          icon: ""
+        },
+        {
+          title: "التواصل",
+          description: "آخر أخبار المجلس والتصويت واستطلاعات الرأي في مكان واحد.",
+          icon: ""
+        }
+      ]
+    }
+  ]
+};
+
+const securityPreviewProps = {
+  texts: {
+    badge: "الأمان",
+    title: "وثائق المجلس تبقى سرية",
+    subtitle: "التشفير والمصادقة القوية وصلاحيات الوصول حسب الدور تحمي ما يناقشه المجلس.",
+    cta: "اقرأ عن الأمان",
+    features: [
+      {
+        icon: "",
+        title: "التشفير",
+        description: "تشفير 256 بت يحمي المستندات والرسائل ونتائج التصويت."
+      },
+      {
+        icon: "",
+        title: "المصادقة الثنائية",
+        description: "يسجّل كل عضو دخوله بعامل تحقق ثانٍ."
+      },
+      {
+        icon: "",
+        title: "الوصول حسب الدور",
+        description: "لا يطّلع على كل مستند إلا من يحق له ذلك، مع مسار تدقيق لكل إجراء."
+      }
+    ]
+  }
+};
+
+const personasProps = {
+  texts: {
+    title: "بوابة واحدة لأربعة أدوار",
+    subtitle: "الإدارة التنفيذية وأمانة السر وأعضاء المجلس والفرق القانونية، لكلٍّ منهم زاويته في العمل مع المجلس.",
+    cta: "اعثر على الحل المناسب لدورك",
+    learnMore: "اطّلع على طريقة العمل لهذا الدور"
+  },
+  personas: [
+    {
+      role: "الرئيس التنفيذي والإدارة التنفيذية",
+      description: "أبقِ المجلس على اطلاع بين الاجتماعات وتابع تنفيذ القرارات دون ملاحقة الأعضاء عبر البريد الإلكتروني.",
+      icon: "",
+      features: [
+        "آخر أخبار المجلس",
+        "متابعة القرارات",
+        "متابعة بنود العمل",
+        "محادثة آمنة للمجلس"
+      ],
+      link: "/for/ceo"
+    },
+    {
+      role: "أمانة سر المجلس",
+      description: "أعدّ جداول الأعمال، واجمع ملفات الاجتماعات، ووزّع المحاضر من مكان واحد بدلاً من المجلدات المشتركة ورسائل البريد الإلكتروني.",
+      icon: "",
+      features: [
+        "إعداد جدول الأعمال",
+        "توزيع المستندات",
+        "متابعة بنود العمل",
+        "إعداد المحاضر بالذكاء الاصطناعي"
+      ],
+      link: "/for/board-secretary"
+    },
+    {
+      role: "أعضاء مجلس الإدارة",
+      description: "اطّلع على ملفات الاجتماع ودوّن ملاحظاتك من أي جهاز، وصوّت، وارجع إلى القرارات السابقة متى احتجت إليها.",
+      icon: "",
+      features: [
+        "الوصول إلى المستندات",
+        "ملاحظات خاصة على المستندات",
+        "التصويت الإلكتروني",
+        "مساعد ذكي للمستندات"
+      ],
+      link: "/for/board-member"
+    },
+    {
+      role: "المستشار القانوني العام",
+      description: "حافظ على انتظام القرارات والتوقيعات ومسار التدقيق، مع بقاء المستندات داخل نطاق المجلس.",
+      icon: "",
+      features: [
+        "سجل القرارات",
+        "التوقيع الإلكتروني",
+        "صلاحيات حسب الدور",
+        "مسار التدقيق"
+      ],
+      link: "/for/general-counsel"
+    }
+  ]
+};
+
+const testimonialsProps = {
+  texts: {
+    title: "ماذا تقول فرق مجالس الإدارة",
+    subtitle: "أمناء سر ومستشارون قانونيون ورؤساء تنفيذيون يتحدثون عن إدارة مجالسهم مع ضفيرة.",
+    cta: "جميع قصص العملاء",
+    ctaLink: "/testimonials"
+  },
+  testimonials: [
+    {
+      quote: "لقد <strong>غيّرت</strong> ضفيرة طريقة إدارتنا لأعمال المجلس، وأضفت <strong>الكفاءة</strong> و<strong>الوضوح</strong> على إجراءات الحوكمة لدينا.",
+      author: "المستشارة القانونية العامة",
+      position: "",
+      company: "مجموعة أزياء مدرجة في البورصة",
+      link: "/case-studies/listed-fashion-group"
+    },
+    {
+      quote: "لقد <strong>بسّطت</strong> ضفيرة إدارة مستنداتنا إلى حد كبير، فأصبح التحضير لاجتماعاتنا أكثر <strong>كفاءة</strong>، وأتاح لمجلسنا التركيز على <strong>اتخاذ القرار</strong>.",
+      author: "الرئيس التنفيذي",
+      position: "",
+      company: "صندوق استثمار عام إقليمي",
+      link: "/case-studies/public-investment-fund"
+    },
+    {
+      quote: "تبنّت ضفيرة <strong>الجيل الجديد</strong> من برمجيات إدارة مجالس الإدارة، فهي <strong>سهلة الاستخدام</strong> وتتضمن <strong>تكاملاً مع الذكاء الاصطناعي</strong>.",
+      author: "مسؤولة الامتثال",
+      position: "",
+      company: "شركة عقارية مدرجة في قطاع الرعاية الصحية",
+      link: "/case-studies/healthcare-real-estate"
+    }
+  ]
+};
+
+const faqProps = {
+  texts: {
+    title: "أسئلة تطرحها علينا مجالس الإدارة",
+    subtitle: "بدء الاستخدام، وحماية البيانات، والدعم، والتخزين.",
+    inLanguage: "ar",
+    faqs: [
+      {
+        question: "كيف تتعامل ضفيرة مع تفاوت مستويات الإلمام الرقمي بين الأعضاء؟",
+        answer: "صُممت منصة ضفيرة لتكون سهلة الاستخدام، بحيث يتمكن حتى أقل الأعضاء إلماماً بالتقنية من المشاركة بفاعلية. وهي موجهة لمجالس متنوعة تتفاوت في نضجها الرقمي، لذلك نوفر تهيئة ميسّرة للبدء، وتدريباً مخصصاً، وأدوات سهلة الاستخدام تجمع الأعضاء كافة وتدعم التعاون بينهم."
+      },
+      {
+        question: "هل ضفيرة متوافقة مع اللائحة العامة لحماية البيانات (GDPR)؟",
+        answer: "نعم، ضفيرة متوافقة بالكامل مع اللائحة العامة لحماية البيانات (GDPR)، وتطبق إجراءات صارمة لحماية البيانات لضمان أمن معلومات مجلسكم وسريتها."
+      },
+      {
+        question: "كيف يمكنني استيراد المستندات الحالية؟",
+        answer: "توفر ضفيرة عدة طرق لاستيراد مستنداتكم الحالية، منها الرفع الجماعي، والسحب والإفلات، والتكامل مع خدمات التخزين السحابي الشائعة."
+      },
+      {
+        question: "هل يمكن تخصيص سير العمل بما يناسب مؤسستي؟",
+        answer: "نعم. توفر ضفيرة خيارات تخصيص واسعة تتوافق مع إجراءات مؤسستكم ومتطلباتها الخاصة."
+      },
+      {
+        question: "ما أنواع الدعم التي تقدمونها؟",
+        answer: "نقدم مستويات مختلفة من الدعم حسب الباقة، من الدعم القياسي عبر البريد الإلكتروني إلى الدعم المميز على مدار الساعة طوال أيام الأسبوع مع مدير نجاح مخصص."
+      },
+      {
+        question: "هل هناك حد لعدد المستندات التي يمكننا تخزينها؟",
+        answer: "تختلف حدود التخزين حسب الباقة. تتضمن الباقات الأساسية سعة تخزين كبيرة، بينما توفر باقات المؤسسات (Enterprise) تخزيناً غير محدود لتلبية احتياجات مؤسستكم."
+      }
+    ]
+  }
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  name: "ضفيرة - الأسئلة الشائعة",
+  inLanguage: "ar",
+  mainEntity: faqProps.texts.faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+
+const whyWeBuildVideoProps = {
+  title: "لماذا نبني ضفيرة",
+  subtitle: "رسالتنا",
+  videoId: "D6vubHkS_is",
+  description: "تعرّف على قصة ضفيرة، ولماذا نعمل على تطوير بوابة لمجالس الإدارة.",
+  language: "ar"
+};
+
+const ctaProps = {
+  texts: {
+    title: "تعرّف على ضفيرة باستخدام ملفات اجتماع مجلسك",
+    subtitle: "عرض توضيحي مدته 30 دقيقة مع شخص سبق له إدارة اجتماعات مجالس الإدارة. أحضر جدول أعمال حقيقياً وسنُعدّه معك.",
+    cta1: "احجز عرضاً توضيحياً",
+    cta2: "تواصل مع فريق المبيعات"
+  },
+  links: {
+    cta1: "/request-demo",
+    cta2: "/contact"
+  }
+};
+---
+
+<Layout
+  title="ضفيرة | Dafira · بوابة مجالس الإدارة"
+  description="ضفيرة بوابة لمجالس الإدارة: جدول الأعمال، وملفات الاجتماع، والتصويت، والتوقيع الإلكتروني، والمحاضر في مساحة آمنة واحدة متوافقة مع اللائحة العامة لحماية البيانات (GDPR)."
+  structuredData={structuredData}
+>
+  <main class="overflow-hidden">
+    <Hero {...hero} />
+    <!-- <WhyWeBuildVideo {...whyWeBuildVideoProps} /> — thumbnail still shows the old brand -->
+    <Features {...featuresProps} />
+    <FeatureShowcase {...featureShowcaseProps} />
+    <Timeline {...timelineProps} />
+    <SecurityPreview {...securityPreviewProps} />
+    <Personas {...personasProps} />
+    <Testimonials {...testimonialsProps} />
+    <FAQ {...faqProps} />
+    <CTA {...ctaProps} />
+  </main>
+</Layout>
+
+<style>
+  main {
+    width: 100%;
+  }
+</style>

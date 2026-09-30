@@ -1,0 +1,43 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CaseStudy from '../../../components/case-studies/CaseStudy.astro';
+---
+
+<Layout
+  title="Beursgenoteerde modegroep: bestuursgovernance met Dafira"
+  description="Hoe een beursgenoteerde modegroep haar bestuur organiseert met Dafira: onboarding van externe bestuurders, veilige toegang tot bestuursdocumenten en digitaal ondertekenen. Lees de case study."
+>
+  <CaseStudy
+    company="Beursgenoteerde modegroep"
+    facts={[{ label: "Sector", value: "Beursgenoteerde modegroep" }]}
+    title="Beursgenoteerde modegroep: bestuurswerk op één beveiligde plek"
+    lead="Hoe de General Counsel en bestuurssecretaris van de groep bestuursdocumenten, ondertekening en samenwerking centraliseerde met Dafira."
+    quote={{ quote: "Dafira heeft ons bestuursbeheer getransformeerd, met meer efficiëntie en helderheid in onze governanceprocessen.", author: "General Counsel" }}
+    context={{
+      title: "Een bedrijf gebouwd op kwaliteit",
+      paragraphs: [
+        "De groep is trots op haar erfgoed van kwaliteit en innovatie. De General Counsel is verantwoordelijk voor juridisch advies, compliance, beleidsbeheer en het secretariaat van de raad van bestuur.",
+        "Het bedrijf wordt geleid door kernwaarden, met de nadruk op product- en proceskwaliteit, duurzame relaties met stakeholders en langetermijnoplossingen in plaats van snelle winst.",
+      ],
+      quote: "Bij [onze organisatie] streven we niet alleen naar het behoud, maar ook naar het verhogen van de kwaliteit van onze productlijnen en bedrijfsprocessen.",
+    }}
+    challenges={[
+      { title: "Integratie van het bestuur", text: "Onboarding van externe bestuurders, die een grondig inzicht in de werking en strategie nodig hebben." },
+      { title: "Digitale complexiteit", text: "Steeds meer onderwerpen die het bestuur moet beheersen en toepassen in een digitalere bedrijfsomgeving." },
+      { title: "Informatiebeveiliging", text: "Veilige toegang tot vertrouwelijke bestuursdocumenten, zonder dat ze moeilijk bereikbaar worden." },
+    ]}
+    solutions={[
+      { title: "Een platform zonder handleiding", text: "Een interface die bestuursleden gebruiken zonder opleidingsmateriaal." },
+      { title: "Digitale documenten en ondertekening", text: "Bestuursdocumenten en ondertekening volledig online." },
+      { title: "Een gedeelde werkplek", text: "Eén plek om documenten te delen en er samen aan te werken." },
+    ]}
+    outcome={{
+      title: "Een centraal platform voor het bestuur",
+      paragraphs: [
+        "Nu de bedrijfswereld digitaler wordt en regelgeving complexer, moeten de bestuurders van de groep een breed scala aan onderwerpen beheersen en toepassen op de bedrijfsstrategie.",
+        "Dafira ondersteunt dit met een centraal platform dat documentbeheer vereenvoudigt en bestuursdocumenten beveiligd houdt.",
+      ],
+      quote: "Dafira heeft ons bestuursbeheer revolutionair veranderd, met meer efficiëntie en helderheid in onze governanceprocessen.",
+    }}
+  />
+</Layout>

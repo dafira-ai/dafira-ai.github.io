@@ -1,9 +1,13 @@
 ---
+// Blog post tile (Card): image, category, reading time, title, description, author.
 import { Image } from 'astro:assets';
+import { Card } from '../ui';
+import { BLOG_UI, blogHref, categoryLabel, readingMinutes, resolveBlogImage, type BlogLang } from './blog-i18n';
 
 interface Props {
   post: {
     slug: string;
+    body?: string;
     data: {
       title: string;
       description: string;
@@ -11,6 +15,7 @@ interface Props {
       author: string;
       authorRole: string;
       image: string;
+      imageAlt?: string;
       category: string;
       tags: string[];
     };
@@ -19,68 +24,24 @@ interface Props {
   featured?: boolean;
 }
 
-const { post, featured = false, lang } = Astro.props;
-const formattedDate = post.data.pubDate.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
-
-// Dynamically import blog image from assets
-const images = import.meta.glob('/src/assets/blog-images/**/*.{png,jpg,jpeg,webp,gif}', { eager: true });
-const imagePath = post.data.image.startsWith('http')
-  ? post.data.image
-  : `/src/assets/blog-images${post.data.image}`;
-const imageModule = post.data.image.startsWith('http') ? null : images[imagePath];
-const cardImage = imageModule ? (imageModule as any).default : post.data.image;
+const { post, lang: rawLang } = Astro.props;
+const lang = (['fr', 'nl'].includes(rawLang) ? rawLang : 'en') as BlogLang;
+const t = BLOG_UI[lang];
+const cardImage = resolveBlogImage(post.data.image);
+const minutes = readingMinutes(post.body);
 ---
 
-<a href={`${lang === 'en' ? '' : `/${lang}`}/blog/${post.slug}`} class="block">
-  <article class={`group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden ${featured ? 'lg:col-span-2 lg:grid lg:grid-cols-2 lg:gap-8' : ''}`}>
-    <div class="relative overflow-hidden aspect-video lg:aspect-auto">
-      <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      <Image
-        src={cardImage}
-        alt={post.data.title}
-        class="w-full h-[10rem] object-cover transform group-hover:scale-105 transition-transform duration-500"
-        widths={[400, 760, 800]}
-        sizes="(max-width: 640px) 400px, (max-width: 1024px) 760px, 800px"
-        loading="lazy"
-        quality={85}
-        format="webp"
-      />
-    </div>
-    <div class="p-8">
-      <div class="flex items-center justify-between mb-4">
-        <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
-          {lang === 'fr' ? {
-            'Governance': 'Gouvernance',
-            'Technology': 'Technologie', 
-            'Best Practices': 'Bonnes Pratiques',
-            'Case Studies': 'Études de Cas'
-          }[post.data.category] || post.data.category : post.data.category}
-        </span>
-        <!-- <time datetime={post.data.pubDate.toISOString()} class="text-sm text-gray-500">
-          {formattedDate}
-        </time> -->
-      </div>
-      <h3 class={`${featured ? 'text-2xl' : 'text-xl'} font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors duration-300`}>
-        {post.data.title}
-      </h3>
-      <p class="text-gray-600 mb-6 line-clamp-3">{post.data.description}</p>
-      
-      <div class="flex items-center justify-between">
-        <div class="text-sm">
-          <p class="font-medium text-gray-900">{post.data.author}</p>
-          <p class="text-gray-500">{post.data.authorRole}</p>
-        </div>
-        <span class="inline-flex items-center text-primary hover:text-primary/90 font-medium group/link">
-          Read More
-          <svg class="ml-2 w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </span>
-      </div>
-    </div>
-  </article>
-</a>
+<Card href={blogHref(lang, post.slug)} padding="sm" class="flex flex-col h-full">
+  <div class="-mx-5 -mt-5 mb-5 aspect-[16/9] overflow-hidden rounded-t-md border-b border-line bg-surface">
+    {typeof cardImage === 'string'
+      ? <img src={cardImage} alt={post.data.imageAlt || ''} class="w-full h-full object-cover" loading="lazy" />
+      : <Image src={cardImage} alt={post.data.imageAlt || ''} class="w-full h-full object-cover" widths={[400, 760]} sizes="(max-width: 768px) 100vw, 400px" loading="lazy" quality={80} format="webp" />}
+  </div>
+  <p class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">
+    {categoryLabel(lang, post.data.category)}
+    {post.body && <span> · {t.minRead(minutes)}</span>}
+  </p>
+  <h3 class="mt-3 text-lg font-semibold text-navy leading-snug group-hover:text-primary transition-colors">{post.data.title}</h3>
+  <p class="mt-2 text-[15px] text-gray-600 leading-relaxed line-clamp-3">{post.data.description}</p>
+  <p class="mt-auto pt-5 text-sm text-gray-500">{post.data.author}</p>
+</Card>

@@ -1,0 +1,47 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CaseStudy from '../../../components/case-studies/CaseStudy.astro';
+---
+
+<Layout
+  title="Vzw ter ondersteuning van de non-profitsector: bestuursgovernance met Dafira"
+  description="Hoe een vzw die non-profits begeleidt op het vlak van governance haar eigen bestuur organiseert met Dafira: centrale documenten, annotatie en vergadersamenvattingen. Lees de case study."
+>
+  <CaseStudy
+    company="Vzw ter ondersteuning van de non-profitsector"
+    facts={[{ label: "Sector", value: "Vzw ter ondersteuning van de non-profitsector" }]}
+    title="Vzw ter ondersteuning van de non-profitsector: bestuursgovernance met Dafira"
+    lead="Hoe een vzw, voor wie governance een pijler is in de begeleiding van non-profits, haar eigen bestuursleden ondersteunt met Dafira."
+    quote={{ quote: "Ik ben ervan overtuigd dat een platform als Dafira betere besluitvorming op bestuursniveau mogelijk maakt.", author: "Voorzitter" }}
+    context={{
+      title: "De non-profitsector professionaliseren",
+      paragraphs: [
+        "De vzw werkt aan de professionalisering van de non-profitsector met een gemeenschap van professionele vrijwilligers die kleine organisaties ondersteunen. Bestuur is een van de pijlers van haar aanpak, naast strategie, operationele efficiëntie en diversificatie van financiering.",
+        "Ze biedt begeleiding op maat via gestructureerde trajecten van langere duur, aangevuld met collectieve workshops over gedeelde uitdagingen.",
+      ],
+      quote: "Bestuur is een van de vijf pijlers in de ondersteuning van non-profits door [onze organisatie]. Voor ons is het absoluut essentieel.",
+    }}
+    challenges={[
+      { title: "Documentbeheer", text: "Bestuursdocumenten verspreid over talrijke e-mails." },
+      { title: "Bestuursnormen", text: "Hoge bestuursnormen handhaven, als kernpijler van de missie." },
+      { title: "Onboarding van bestuursleden", text: "Nieuwe bestuursleden onthalen met volledige documentatie." },
+    ]}
+    solutions={[
+      { title: "Eén plek", text: "Alle bestuursdocumenten en communicatie op één centrale plaats." },
+      { title: "Documentannotatie", text: "Bestuursstukken rechtstreeks in het platform markeren en annoteren." },
+      { title: "AI-vergadersamenvattingen", text: "Vergadersamenvattingen en opvolging van beslissingen voorbereid met de AI-assistent." },
+    ]}
+    outcome={{
+      title: "Bestuurswerk op één platform",
+      paragraphs: [
+        "Met Dafira bracht de vzw de documentatie en samenwerking van haar bestuur samen op één platform, in lijn met haar focus op governance.",
+        "Documentbeheer en besluitvorming verlopen efficiënter en transparanter, en zowel het administratieve team als de bestuursleden namen het platform vlot in gebruik.",
+      ],
+      quote: "Met Dafira kunnen we documenten annoteren en markeren, wat voor elk bestuurslid een uitzonderlijk gebruiksgemak biedt.",
+    }}
+    voices={[
+      { quote: "Dafira maakt annotatie en markering mogelijk, wat voor elk bestuurslid een uitzonderlijk gebruiksgemak biedt. Ik ben ervan overtuigd dat een platform als Dafira leidt tot betere besluitvorming op bestuursniveau.", author: "Voorzitter" },
+      { quote: "De kwestie van bestuur staat centraal, vooral in een organisatie waar verantwoordelijkheidslijnen onduidelijk kunnen zijn. Het is cruciaal om te werken aan het verduidelijken van rollen en verantwoordelijkheden op elk niveau van de organisatie.", author: "Directeur" },
+    ]}
+  />
+</Layout>

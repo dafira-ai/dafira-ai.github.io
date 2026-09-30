@@ -2,8 +2,8 @@
 title: "De Toekomst van AI-Gedreven Bestuursmanagement"
 description: "Ontdek hoe kunstmatige intelligentie bestuursmanagement en besluitvormingsprocessen transformeert en organisaties helpt excelleren in een digitaal tijdperk."
 pubDate: 2025-01-06
-author: "Ludovic Laffineur"
-authorRole: "CTO bij Govrn"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/realestate.jpg"
 category: "Technology"
 tags: ["Kunstmatige Intelligentie", "Innovatie", "Bestuursmanagement", "Digitale Transformatie"]

@@ -1,279 +1,57 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import BlogCard from '../components/blog/BlogCard.astro';
 import { getCollection } from 'astro:content';
-import EpisodeCard from '../components/EpisodeCard.astro';
+import ResourceHub from '../components/resources/ResourceHub.astro';
+
+const copy = {
+  eyebrow: 'Resources',
+  title: 'Guides, research and conversations on board governance',
+  lead: 'Guides to using Dafira, research on AI in the boardroom, articles and podcast episodes for board secretaries, directors and governance professionals.',
+  overview: [
+    { icon: 'mic', title: 'Podcasts', text: 'Conversations on modern board management.', href: '/podcast', linkText: 'Browse episodes' },
+    { icon: 'document', title: 'Articles', text: 'Practical articles on governance and board work.', href: '/blog', linkText: 'Read articles' },
+    { icon: 'chart', title: 'Research', text: 'Research reports and whitepapers.', href: '/research/boardroom-ai-adoption', linkText: 'View research' },
+    { icon: 'book', title: 'Guides', text: 'Step-by-step help for Dafira users.', href: '/guides', linkText: 'Explore guides' },
+  ],
+  podcasts: { title: 'Latest podcast episodes', link: '/podcast', linkText: 'All episodes' },
+  articles: { title: 'Latest articles', link: '/blog', linkText: 'All articles' },
+  readMore: 'Read',
+};
 
 const categories = [
   {
-    title: "Guides & Tutorials",
-    icon: "📚",
-    description: "Step-by-step guides to help you make the most of Govrn",
-    link: "/guides",
+    eyebrow: 'Guides',
+    title: 'Guides and tutorials',
+    description: 'Step-by-step guides to help you make the most of Dafira.',
+    link: '/guides',
+    linkText: 'All guides',
     resources: [
-      {
-        title: "Getting Started with Govrn",
-        description: "A comprehensive guide to setting up and using Govrn for your board",
-        type: "Guide",
-        readTime: "10 min read",
-        image: "/applications-picture-meeting.png",
-        link: "/guides/getting-started"
-      },
-      {
-        title: "Authentication Guide",
-        description: "Learn how to set up and manage authentication for your board members",
-        type: "Guide", 
-        readTime: "8 min read",
-        image: "/en-authentication.jpg",
-        link: "/guides/authentication"
-      },
-      {
-        title: "Managing Your Profile",
-        description: "A guide to customizing and maintaining your Govrn profile",
-        type: "Guide",
-        readTime: "5 min read",
-        image: "/profile-management.jpg",
-        link: "/guides/profile-management"
-      }
-    ]
+      { title: 'Getting Started with Dafira', description: 'Setting up and using Dafira for your board.', type: 'Guide', readTime: '10 min read', image: '/applications-picture-meeting.png', link: '/guides/getting-started' },
+      { title: 'Authentication Guide', description: 'Setting up and managing authentication for your board members.', type: 'Guide', readTime: '8 min read', image: '/en-authentication.jpg', link: '/guides/authentication' },
+      { title: 'Managing Your Profile', description: 'Customising and maintaining your Dafira profile.', type: 'Guide', readTime: '5 min read', image: '/profile-management.jpg', link: '/guides/profile-management' },
+    ],
   },
   {
-    title: "Whitepapers & Research",
-    icon: "📊", 
-    description: "In-depth analysis and research on board management trends",
+    eyebrow: 'Research',
+    title: 'Whitepapers and research',
+    description: 'In-depth analysis and research on board management.',
     resources: [
-      {
-        title: "The Future of AI in the Boardroom",
-        description: "Research report on challenges and opportunities of AI adoption in board management",
-        type: "Research Paper",
-        readTime: "10 min read",
-        image: "/research_brunel.jpg",
-        link: "/research/boardroom-ai-adoption"
-      }
-    ]
-  }
+      { title: 'The Future of AI in the Boardroom', description: 'Research report on the challenges and opportunities of AI adoption in board management.', type: 'Research Paper', readTime: '10 min read', image: '/resources.png', link: '/research/boardroom-ai-adoption' },
+    ],
+  },
 ];
 
-const posts = await getCollection('blog');
-const publishedPosts = posts.filter(post => post.data.pubDate.getTime() <= new Date().getTime() && (!post.data.lang || post.data.lang === 'en'));
-const sortedPosts = publishedPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-const latestPosts = sortedPosts.slice(0, 3);
-
-const podcasts = await getCollection('podcast');
-const publishedPodcasts = podcasts.filter(podcast => podcast.data.pubDate.getTime() <= new Date().getTime());
-const sortedPodcasts = publishedPodcasts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-const latestPodcasts = sortedPodcasts.slice(0, 3);
-
+const now = Date.now();
+const posts = (await getCollection('blog'))
+  .filter((p) => p.data.pubDate.getTime() <= now && (!p.data.lang || p.data.lang === 'en'))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+const podcasts = (await getCollection('podcast'))
+  .filter((p) => p.data.pubDate.getTime() <= now)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
 ---
 
-<Layout title="Resources - Govrn Board Management Software" description="Explore our collection of guides, research, and best practices to enhance your board management and governance strategies." image="/resources.png">
-  <main class="pt-24">
-    <!-- Resource Overview Grid -->
-    <section class="bg-white py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-6 py-2 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Knowledge Center
-          </div>
-
-          <h1 class="text-6xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Empower Your Board
-            <span class="block mt-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              With Expert Resources
-            </span>
-          </h1>
-
-          <p class="text-xl text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto">
-            Discover our comprehensive collection of guides, research papers, podcasts and articles to help you excel in board management and governance.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          <!-- Podcasts Overview -->
-          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl">
-            <span class="text-3xl mb-4 block">🎙️</span>
-            <h2 class="text-xl font-bold text-gray-900 mb-2">Podcasts</h2>
-            <p class="text-gray-600 mb-4">Expert discussions on modern board management</p>
-            <a href="/podcast" class="text-primary hover:text-primary/90 font-medium inline-flex items-center">
-              Browse Episodes
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-
-          <!-- Blog Overview -->
-          <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl">
-            <span class="text-3xl mb-4 block">📝</span>
-            <h2 class="text-xl font-bold text-gray-900 mb-2">Blog Articles</h2>
-            <p class="text-gray-600 mb-4">Latest insights and thought leadership</p>
-            <a href="/blog" class="text-primary hover:text-primary/90 font-medium inline-flex items-center">
-              Read Articles
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-
-          <!-- Research Overview -->
-          <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl">
-            <span class="text-3xl mb-4 block">📊</span>
-            <h2 class="text-xl font-bold text-gray-900 mb-2">Research</h2>
-            <p class="text-gray-600 mb-4">In-depth analysis and whitepapers</p>
-            <a href="/research/boardroom-ai-adoption" class="text-primary hover:text-primary/90 font-medium inline-flex items-center">
-              View Research
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-
-          <!-- Guides Overview -->
-          <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl">
-            <span class="text-3xl mb-4 block">📚</span>
-            <h2 class="text-xl font-bold text-gray-900 mb-2">Guides</h2>
-            <p class="text-gray-600 mb-4">Step-by-step tutorials and help</p>
-            <a href="/guides" class="text-primary hover:text-primary/90 font-medium inline-flex items-center">
-              Explore Guides
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Latest Podcasts -->
-    <section class="py-16 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between mb-12">
-          <h2 class="text-3xl font-bold text-gray-900">Latest Podcasts</h2>
-          <a href="/podcast" class="inline-flex items-center text-primary hover:text-primary/90 font-medium group">
-            View All Podcasts
-            <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </a>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {latestPodcasts.map(podcast => (
-            <EpisodeCard episode={podcast} />
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Latest Articles -->
-    <section class="py-16 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between mb-12">
-          <h2 class="text-3xl font-bold text-gray-900">Latest Articles</h2>
-          <a href="/blog" class="inline-flex items-center text-primary hover:text-primary/90 font-medium group">
-            View All Articles
-            <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </a>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {latestPosts.map(post => (
-            <BlogCard post={post} lang="en" />
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Resource Categories -->
-    {categories.map((category, index) => (
-      <section class={`py-16 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between mb-12">
-            <div class="flex items-center space-x-4">
-              <span class="text-4xl">{category.icon}</span>
-              <div>
-                <h2 class="text-3xl font-bold text-gray-900">{category.title}</h2>
-                <p class="text-gray-600 mt-2">{category.description}</p>
-              </div>
-            </div>
-            {category.link && (
-              <a href={`${category.link}`} class="inline-flex items-center text-primary hover:text-primary/90 font-medium group">
-                Voir tout
-                <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                </svg>
-              </a>
-            )}
-          </div>
-
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {category.resources.map(resource => (
-              <a href={resource.link || "#"} class="block">
-                <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                  <img 
-  loading="lazy"
-                    src={resource.image}
-                    alt={resource.title}
-                    class="w-full h-48 object-cover"
-                  />
-                  <div class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                      <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                        {resource.type}
-                      </span>
-                      {resource.readTime && (
-                        <span class="text-sm text-gray-500">{resource.readTime}</span>
-                      )}
-                      {resource.date && (
-                        <span class="text-sm text-gray-500">{resource.date}</span>
-                      )}
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                      {resource.title}
-                    </h3>
-                    <p class="text-gray-600 mb-4">{resource.description}</p>
-                    <span class="text-primary hover:text-primary/90 font-medium inline-flex items-center group">
-                      Learn More
-                      <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-    ))}
-
-    <!-- Newsletter Section -->
-    <section class="py-16 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-2xl p-12 shadow-sm">
-          <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">
-              Stay Updated with Govrn Insights
-            </h2>
-            <p class="text-gray-600 mb-8">
-              Subscribe to our newsletter for the latest resources, industry trends, and best practices in board management.
-            </p>
-            <form class="flex gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
-              />
-              <button
-                type="submit"
-                class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200"
-              >
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+<Layout title="Resources - Dafira Board Management Software" description="Guides, research, articles and podcasts on board management and governance, from the Dafira team." image="/resources.png">
+  <ResourceHub lang="en" copy={copy} categories={categories} posts={posts} podcasts={podcasts} />
 </Layout>

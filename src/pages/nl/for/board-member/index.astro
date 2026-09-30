@@ -1,334 +1,109 @@
 ---
 import Layout from '../../../../layouts/Layout.astro';
-import CTA from '../../../../components/CTA.astro';
+import { PageHero, Section, SectionHeader, Button, Icon, FeatureColumns, CellGrid, FeatureList, Screenshot, CTA } from '../../../../components/ui';
+import { ctaProps } from '../../../../components/industries/i18n';
 
-const boardRoles = [
-  {
-    title: "Onafhankelijk bestuurder",
-    icon: "⚖️",
-    description: "Neem objectieve beslissingen en zorg voor onpartijdig toezicht met onze gespecialiseerde tools",
-    link: "/nl/for/independent-director", 
-    features: [
-      "Beveiligde communicatiekanalen",
-      "Onafhankelijke analyse-tools",
-      "Conflictbeheer"
-    ]
-  },
-  {
-    title: "Aandeelhoudersbestuurder",
-    icon: "📈",
-    description: "Balanceer aandeelhoudersbelangen met bedrijfsbehoeften via onze stakeholder management tools",
-    link: "/nl/for/shareholder-director",
-    features: [
-      "Stakeholdercommunicatie",
-      "Investeringstoezicht", 
-      "Prestatiemonitoring"
-    ]
-  }
-];
+const responsibilities = {
+  title: 'Ondersteuning bij uw taken als bestuurder',
+  lead: 'Wat het bestuur van zijn leden verwacht, en waar Dafira helpt.',
+  items: [
+    { icon: 'target', title: 'Strategisch toezicht', text: 'De bestuursstukken in hun context lezen, met de historiek van eerdere besprekingen bij de hand.' },
+    { icon: 'scale', title: 'Fiduciaire plicht', text: 'Beslissen op basis van volledige, actuele informatie, en die besluiten vastleggen.' },
+    { icon: 'users', title: 'Relatie met belanghebbenden', text: 'Het overleg met medebestuurders en management gestructureerd en beveiligd houden.' },
+    { icon: 'tasks', title: 'Opvolging', text: 'Actiepunten en besluiten van de ene vergadering naar de volgende opvolgen.' },
+  ],
+};
 
-const industries = [
-  {
-    id: "financial-services",
-    name: "Financiële dienstverlening",
-    icon: "🏦",
-    description: "Bank-, verzekerings- en beleggingsmaatschappijen",
-    features: [
-      "Geautomatiseerde compliance",
-      "Risico-dashboards",
-      "Veilig documentbeheer"
-    ]
-  },
-  {
-    id: "healthcare", 
-    name: "Gezondheidszorg",
-    icon: "🏥",
-    description: "Ziekenhuizen, medische apparatuur en zorgverleners",
-    features: [
-      "AVG-compliance tools",
-      "Klinische governance ondersteuning",
-      "Kwaliteitsmonitoring"
-    ]
-  },
-  {
-    id: "real-estate",
-    name: "Vastgoed",
-    icon: "🏢", 
-    description: "Vastgoedinvestering en -beheer",
-    features: [
-      "Portfolio monitoring tools",
-      "Investeringstracking",
-      "Asset management"
-    ]
-  }
-];
+const roles = {
+  title: 'Per rol',
+  lead: 'Pagina’s voor de specifieke posities in het bestuur.',
+  link: 'Bekijk de rolpagina',
+  items: [
+    { title: 'Onafhankelijk bestuurder', icon: 'scale', text: 'Objectief toezicht, met privéruimtes voor overleg tussen onafhankelijke bestuurders.', href: '/nl/for/independent-director', features: ['Privégesprekken', 'Toegang tot eerdere besluiten', 'Registratie van belangenconflicten'] },
+    { title: 'Aandeelhouder-bestuurder', icon: 'trend', text: 'Aandeelhouders vertegenwoordigen en tegelijk handelen in het belang van de onderneming.', href: '/nl/for/shareholder-director', features: ['Beveiligde communicatie', 'Geordende bestuursstukken', 'Stemmingen en besluitenregister'] },
+  ],
+};
 
-const commonFeatures = [
-  {
-    title: "Intelligent analysecentrum",
-    description: "Bestuur met vertrouwen dankzij AI-gestuurde analyses die complexe data omzetten in bruikbare inzichten",
-    icon: "🎯",
-    benefits: [
-      "Real-time prestatiemetingen",
-      "Voorspellende analyses",
-      "Strategische aanbevelingen",
-      "Trendanalyse"
-    ]
-  },
-  {
-    title: "Naadloze samenwerking",
-    description: "Laat uw stem horen met krachtige tools die uw impact in bestuursdiscussies versterken",
-    icon: "💫",
-    benefits: [
-      "Real-time annotaties",
-      "Beveiligde berichten",
-      "Virtuele vergadertools",
-      "Documentensamenwerking"
-    ]
-  },
-  {
-    title: "Strategisch controlecentrum",
-    description: "Voer uw toezicht met trots uit via complete tools die u geïnformeerd en in controle houden",
-    icon: "🌟",
-    benefits: [
-      "Persoonlijke dashboards",
-      "Risicobewaking",
-      "Compliance monitoring",
-      "Prestatie-analyses"
-    ]
-  }
-];
+const features = {
+  title: 'Tools voor elk bestuurslid',
+  lead: 'Wat elke bestuurder gebruikt, ongeacht de rol.',
+  items: [
+    { icon: 'sparkle', title: 'AI-assistent', text: 'Stel vragen over de bestuursstukken en krijg samenvattingen van lange documenten.', items: ['Vragen over bestuursdocumenten', 'Samenvattingen', 'Zoeken in eerdere vergaderingen'] },
+    { icon: 'pen', title: 'Samenwerking', text: 'De vergadering samen met de rest van het bestuur voorbereiden en bespreken.', items: ['Privé-annotaties', 'Beveiligde bestuurschat', 'Links naar online vergaderingen', 'Gedeelde documenten'] },
+    { icon: 'vote', title: 'Besluiten', text: 'Stemmen, ondertekenen en terugvinden wat besloten werd.', items: ['Stemmen', 'Elektronische handtekening', 'Besluitenregister', 'Actiepunten'] },
+  ],
+};
 
-const responsibilities = [
-  {
-    icon: "🎯",
-    title: "Strategisch toezicht",
-    description: "Stuur de organisatierichting met AI-gedreven inzichten en uitgebreide marktanalyse"
-  },
-  {
-    icon: "⚖️",
-    title: "Fiduciaire plicht",
-    description: "Neem weloverwogen beslissingen met real-time toegang tot kritieke financiële en operationele data"
-  },
-  {
-    icon: "🤝",
-    title: "Stakeholdermanagement",
-    description: "Balanceer diverse belangen met effectieve communicatie- en betrokkenheidstools"
-  },
-  {
-    icon: "📊",
-    title: "Prestatiemonitoring",
-    description: "Volg organisatieprestaties met aanpasbare dashboards en geautomatiseerde rapportages"
-  }
-];
+const industries = {
+  title: 'Per sector',
+  lead: 'Sectorpagina’s voor bestuurders in gereglementeerde sectoren.',
+  link: 'Bekijk de sectorpagina',
+  items: [
+    { id: 'financial-services', icon: 'bank', name: 'Financiële dienstverlening', text: 'Banken, verzekeraars en beleggingsondernemingen.', features: ['Regelgevend kader', 'Beveiligd documentbeheer', 'Comitévergaderingen'] },
+    { id: 'healthcare', icon: 'health', name: 'Zorg', text: 'Ziekenhuizen, zorgaanbieders en life sciences.', features: ['Klinische governance op de agenda', 'Vertrouwelijke stukken', 'Comitévergaderingen'] },
+    { id: 'real-estate', icon: 'building', name: 'Vastgoed', text: 'Vastgoedbelegging en -beheer.', features: ['Investeringsbesluiten', 'Portefeuillestukken', 'Besluitenregister'] },
+  ],
+};
 ---
 
-<Layout title="Bestuurssoftware - Govrn Bestuursplatform" description="Geef uw bestuurders de middelen om te excelleren met onze complete software, ontworpen voor betere efficiëntie, compliance en samenwerking.">
-  <main class="pt-16">
-    <!-- Hero sectie -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
+<Layout title="Bestuurssoftware voor bestuursleden | Dafira Bestuursportaal" description="Bestuursportaal voor bestuurders: lees en annoteer het bestuursdossier op elk toestel, stem, onderteken en vind eerdere besluiten terug. Pagina's per rol en per sector.">
+  <main>
+    <PageHero eyebrow="Voor bestuursleden" title="Het bestuursdossier, de bespreking en de besluiten, op één plek" lead="Of u nu onafhankelijk bestuurder, vertegenwoordiger van een aandeelhouder of sectorspecialist bent, Dafira geeft u de informatie die u nodig hebt om te beslissen, op elk toestel.">
+      <Fragment slot="actions">
+        <Button href="/nl/request-demo">Demo aanvragen</Button>
+        <Button variant="secondary" href="/nl/contact">Contact opnemen</Button>
+      </Fragment>
+      <Screenshot slot="aside" src="/onboarding-boardpack.png" alt="Bestuursdossier in Dafira per agendapunt, met annotaties op een document" eager />
+    </PageHero>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-              Oplossingen voor bestuurders
-            </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Versterk uw bestuursleiderschap met
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                intelligente tools
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-12">
-              Of u nu onafhankelijk bestuurder bent, aandeelhoudersvertegenwoordiger of sectorspecialist, Govrn biedt u de tools om weloverwogen beslissingen te nemen en organisatiesucces te stimuleren.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/nl/request-demo"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Demo aanvragen
-              </a>
-              <a
-                href="/nl/contact"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-              >
-                Contact sales
-              </a>
-            </div>
+    <Section>
+      <SectionHeader title={responsibilities.title} lead={responsibilities.lead} />
+      <CellGrid columns={2}>
+        {responsibilities.items.map((item) => (
+          <div class="bg-white p-8">
+            <Icon name={item.icon} class="w-6 h-6 text-navy" />
+            <h3 class="mt-5 text-lg font-semibold text-navy">{item.title}</h3>
+            <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
           </div>
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl transform rotate-3"></div>
-            <img 
-  loading="lazy"
-              src="/realestate.jpg"
-              alt="Govrn platform interface"
-              class="relative rounded-2xl shadow-2xl"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
+        ))}
+      </CellGrid>
+    </Section>
 
-    <!-- Bestuursverantwoordelijkheden -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Ondersteuning van uw bestuurdersverantwoordelijkheden
-          </h2>
-          <p class="text-xl text-gray-600">
-            Complete tools om u te helpen uw taken uit te voeren en organisatiesucces te stimuleren
-          </p>
-        </div>
+    <Section tone="surface" border="both">
+      <SectionHeader title={roles.title} lead={roles.lead} />
+      <CellGrid columns={2}>
+        {roles.items.map((role) => (
+          <a href={role.href} class="group bg-white p-8 lg:p-10 hover:bg-surface transition-colors flex flex-col">
+            <Icon name={role.icon} class="w-6 h-6 text-navy" />
+            <h3 class="mt-5 text-xl font-semibold text-navy">{role.title}</h3>
+            <p class="mt-3 text-gray-600 leading-relaxed">{role.text}</p>
+            <FeatureList items={role.features} class="mt-6" />
+            <span class="mt-auto pt-8 text-[15px] font-medium text-primary group-hover:text-navy transition-colors">{roles.link}</span>
+          </a>
+        ))}
+      </CellGrid>
+    </Section>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {responsibilities.map(item => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{item.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
-              <p class="text-gray-600">{item.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Section>
+      <SectionHeader title={features.title} lead={features.lead} />
+      <FeatureColumns items={features.items} />
+    </Section>
 
-    <!-- Bestuursrollen -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Oplossingen op maat van uw rol
-          </h2>
-          <p class="text-xl text-gray-600">
-            Ontdek tools op maat voor uw specifieke bestuurspositie
-          </p>
-        </div>
+    <Section tone="surface" border="both">
+      <SectionHeader title={industries.title} lead={industries.lead} />
+      <CellGrid columns={3}>
+        {industries.items.map((item) => (
+          <a href={`/nl/for/board-member/industry/${item.id}`} class="group bg-white p-8 hover:bg-surface transition-colors flex flex-col">
+            <Icon name={item.icon} class="w-6 h-6 text-navy" />
+            <h3 class="mt-5 text-lg font-semibold text-navy">{item.name}</h3>
+            <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
+            <FeatureList items={item.features} class="mt-6" />
+            <span class="mt-auto pt-8 text-[15px] font-medium text-primary group-hover:text-navy transition-colors">{industries.link}</span>
+          </a>
+        ))}
+      </CellGrid>
+    </Section>
 
-        <div class="grid md:grid-cols-2 gap-8">
-          {boardRoles.map(role => (
-            <a
-              href={role.link}
-              class="group bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-            >
-              <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                {role.icon}
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors">
-                {role.title}
-              </h3>
-              <p class="text-gray-600 mb-6">{role.description}</p>
-              <ul class="space-y-3 mb-6">
-                {role.features.map(feature => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <div class="inline-flex items-center text-primary group-hover:translate-x-2 transition-transform duration-300">
-                Bekijk specifieke oplossingen
-                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Gemeenschappelijke functies -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Tools voor elke bestuurder
-          </h2>
-          <p class="text-xl text-gray-600">
-            Essentiële functies die alle bestuurders in staat stellen impact te maken
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {commonFeatures.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600 mb-6">{feature.description}</p>
-              <ul class="space-y-3">
-                {feature.benefits.map(benefit => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Sectorselectie -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">
-            Sectoroplossingen
-          </h2>
-          <p class="text-xl text-gray-600">
-            Ontdek extra tools en functies aangepast aan de unieke eisen van uw sector
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {industries.map(industry => (
-            <a
-              href={`/nl/for/board-member/industry/${industry.id}`}
-              class="group bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-            >
-              <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                {industry.icon}
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors">
-                {industry.name}
-              </h3>
-              <p class="text-gray-600 mb-6">{industry.description}</p>
-              <ul class="space-y-3 mb-6">
-                {industry.features.map(feature => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <div class="inline-flex items-center text-primary group-hover:translate-x-2 transition-transform duration-300">
-                Bekijk sectoroplossingen
-                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-    <CTA />
+    <CTA {...ctaProps.nl} />
   </main>
 </Layout>

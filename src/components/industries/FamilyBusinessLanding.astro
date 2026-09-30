@@ -1,0 +1,120 @@
+---
+// Shared layout for /industries/family-business (EN/FR/NL). Each page passes its own copy.
+import { PageHero, Section, SectionHeader, Button, Icon, FeatureColumns, CellGrid, FeatureList, Screenshot, CTA } from '../ui';
+import { ctaProps, pageLang, prefix, ui } from './i18n';
+import { langFromPath } from '../../i18n/routes';
+
+interface Item { icon: string; title: string; text: string }
+interface ListBlock { title: string; lead?: string; intro: string; items: string[]; outro?: string }
+
+export interface FamilyBusinessContent {
+  hero: { eyebrow: string; title: string; lead: string; screenshotAlt: string };
+  intro: { title: string; paragraphs: string[] };
+  challenges: { title: string; lead: string; items: Item[]; consequencesIntro: string; consequences: string[] };
+  bodies: { title: string; lead: string; intro: string; items: string[]; outro: string[]; features: Item[] };
+  access: ListBlock;
+  meetings: ListBlock;
+  continuity: { title: string; lead: string; items: Item[]; intro: string; list: string[]; outro: string };
+  why: ListBlock;
+  users: ListBlock;
+  cta: { title: string; subtitle: string };
+}
+
+interface Props { content: FamilyBusinessContent }
+const { content: c } = Astro.props;
+const lang = pageLang(langFromPath(Astro.url.pathname));
+const p = prefix(lang);
+const t = ui[lang];
+const cta = { texts: { ...ctaProps[lang].texts, title: c.cta.title, subtitle: c.cta.subtitle }, links: ctaProps[lang].links };
+---
+
+<PageHero eyebrow={c.hero.eyebrow} title={c.hero.title} lead={c.hero.lead}>
+  <Fragment slot="actions">
+    <Button href={`${p}/request-demo`}>{t.demo}</Button>
+    <Button variant="secondary" href={`${p}/try`}>{t.trial}</Button>
+  </Fragment>
+  <Screenshot slot="aside" src="/onboarding-document-list.png" alt={c.hero.screenshotAlt} eager />
+</PageHero>
+
+<Section space="md">
+  <div class="grid lg:grid-cols-12 gap-6">
+    <h2 class="lg:col-span-5 text-3xl lg:text-4xl font-semibold text-navy leading-tight">{c.intro.title}</h2>
+    <div class="lg:col-span-6 lg:col-start-7 space-y-4 text-lg text-gray-600 leading-relaxed">
+      {c.intro.paragraphs.map((para) => <p>{para}</p>)}
+    </div>
+  </div>
+</Section>
+
+<Section tone="surface" border="both">
+  <SectionHeader title={c.challenges.title} lead={c.challenges.lead} />
+  <CellGrid columns={3}>
+    {c.challenges.items.map((item) => (
+      <div class="bg-white p-8">
+        <Icon name={item.icon} class="w-6 h-6 text-navy" />
+        <h3 class="mt-5 text-lg font-semibold text-navy">{item.title}</h3>
+        <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
+      </div>
+    ))}
+  </CellGrid>
+  <div class="mt-12 grid lg:grid-cols-12 gap-6">
+    <p class="lg:col-span-5 font-medium text-navy">{c.challenges.consequencesIntro}</p>
+    <FeatureList items={c.challenges.consequences} columns={2} class="lg:col-span-7" />
+  </div>
+</Section>
+
+<Section>
+  <SectionHeader title={c.bodies.title} lead={c.bodies.lead} />
+  <div class="grid lg:grid-cols-12 gap-10 mb-6">
+    <div class="lg:col-span-5">
+      <p class="font-medium text-navy">{c.bodies.intro}</p>
+      <FeatureList items={c.bodies.items} class="mt-4" />
+    </div>
+    <div class="lg:col-span-6 lg:col-start-7 space-y-4 text-gray-600 leading-relaxed">
+      {c.bodies.outro.map((para) => <p>{para}</p>)}
+    </div>
+  </div>
+  <FeatureColumns items={c.bodies.features} />
+</Section>
+
+{[c.access, c.meetings].map((block, i) => (
+  <Section tone={i === 0 ? 'surface' : 'white'} border={i === 0 ? 'both' : 'none'}>
+    <div class="grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-5">
+        <SectionHeader layout="stacked" title={block.title} lead={block.lead} class="mb-0" />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7">
+        <p class="font-medium text-navy">{block.intro}</p>
+        <FeatureList items={block.items} class="mt-4" />
+        {block.outro && <p class="mt-6 text-gray-600 leading-relaxed">{block.outro}</p>}
+      </div>
+    </div>
+  </Section>
+))}
+
+<Section tone="surface" border="both">
+  <SectionHeader title={c.continuity.title} lead={c.continuity.lead} />
+  <FeatureColumns items={c.continuity.items} />
+  <div class="mt-4 grid lg:grid-cols-12 gap-6">
+    <p class="lg:col-span-5 font-medium text-navy">{c.continuity.intro}</p>
+    <div class="lg:col-span-7">
+      <FeatureList items={c.continuity.list} columns={2} />
+      <p class="mt-6 text-gray-600 leading-relaxed">{c.continuity.outro}</p>
+    </div>
+  </div>
+</Section>
+
+<Section>
+  <div class="grid lg:grid-cols-2 gap-x-16 gap-y-12">
+    {[c.why, c.users].map((block) => (
+      <div class="border-t border-line pt-8">
+        <h2 class="text-2xl lg:text-3xl font-semibold text-navy leading-tight">{block.title}</h2>
+        {block.lead && <p class="mt-3 text-gray-600 leading-relaxed">{block.lead}</p>}
+        <p class="mt-6 font-medium text-navy">{block.intro}</p>
+        <FeatureList items={block.items} class="mt-4" />
+        {block.outro && <p class="mt-6 text-gray-600 leading-relaxed">{block.outro}</p>}
+      </div>
+    ))}
+  </div>
+</Section>
+
+<CTA {...cta} />

@@ -3,7 +3,7 @@ title: "Qu'est-ce que l'abstention ? Comprendre sa signification et ses implicat
 description: "Une analyse approfondie du concept d'abstention dans le vote et la prise de décision, explorant son importance, ses implications et ses utilisations stratégiques."
 pubDate: 2024-12-03
 author: "Jean-Louis Van Houwe"
-authorRole: "CEO & Fondateur de Govrn"
+authorRole: "CEO & Fondateur de Dafira"
 image: "/abstain-vote.jpg"
 category: "Governance"
 tags: ["Vote", "Prise de décision", "Gouvernance d'entreprise", "Éthique"]

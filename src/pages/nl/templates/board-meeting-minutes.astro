@@ -3,92 +3,32 @@ import Layout from '../../../layouts/Layout.astro';
 import PreviewCard from '../../../components/templates/minutes/PreviewCard.astro';
 import TemplateForm from '../../../components/templates/minutes/TemplateForm.astro';
 import FeatureComparison from '../../../components/templates/minutes/FeatureComparison.astro';
+import { PageHero, Section, CellGrid } from '../../../components/ui';
 
 const previews = [
-  {
-    title: "Gestructureerde opbouw",
-    description: "Duidelijke secties voor agenda, besprekingen en besluiten",
-    emoji: "📋"
-  },
-  {
-    title: "Volledig compliant",
-    description: "Voldoet aan alle documentatievereisten",
-    emoji: "⚖️"
-  }
-];
-
-const stats = [
-  { value: "1.000+", label: "Downloads deze maand" },
-  { value: "4.9/5", label: "Gebruikersscore" },
-  { value: "100%", label: "Compliance" }
+  { title: "Gestructureerde opbouw", description: "Duidelijke secties voor agenda, besprekingen en besluiten", icon: "list" },
+  { title: "Compliance-richtlijnen", description: "Aandachtspunten voor de documentatie die een bestuur moet bijhouden", icon: "scale" }
 ];
 ---
 
-<Layout 
-  title="Gratis professioneel sjabloon voor notulen | Professioneel formaat [2025]"
-  description="Download ons professionele sjabloon voor notulen. Gratis en compleet formaat, gebruikt door toonaangevende organisaties. Inclusief best practices en compliance tips."
+<Layout
+  title="Gratis sjabloon voor bestuursnotulen | Professioneel formaat"
+  description="Download een gratis sjabloon voor bestuursnotulen met duidelijke secties voor agenda, besprekingen en besluiten, inclusief tips over best practices en compliance."
 >
-  <main class="pt-16">
-    <!-- Hoofdsectie -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
+  <main>
+    <PageHero eyebrow="Gratis sjabloon" title="Sjabloon voor bestuursnotulen" lead="Een duidelijke, gebruiksklare structuur voor uw notulen, met richtlijnen over best practices en documentatievereisten.">
+      <CellGrid columns={2} class="mt-10">
+        {previews.map((preview) => <PreviewCard {...preview} />)}
+      </CellGrid>
+      <TemplateForm slot="aside" />
+    </PageHero>
+
+    <Section space="md">
+      <div class="max-w-2xl mb-12">
+        <h2 class="text-3xl lg:text-4xl font-semibold text-navy leading-tight">Een goed begin. Dafira doet de rest.</h2>
+        <p class="mt-4 text-lg text-gray-600 leading-relaxed">Van opname tot ondertekende notulen, op één plek.</p>
       </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-green-100 text-green-800 mb-8">
-              Gratis download • Geen creditcard nodig
-            </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Professioneel sjabloon voor
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                notulen
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-8">
-              Download ons complete en gebruiksvriendelijke sjabloon, het vertrouwde formaat voor bestuurssecretarissen wereldwijd. Inclusief best practices en compliance richtlijnen.
-            </p>
-
-            <!-- Statistieken -->
-            <div class="grid grid-cols-3 gap-8 mb-12">
-              {stats.map(stat => (
-                <div>
-                  <div class="text-3xl font-bold text-primary mb-1">{stat.value}</div>
-                  <div class="text-sm text-gray-600">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            <!-- Preview kaarten -->
-            <div class="grid grid-cols-2 gap-4">
-              {previews.map(preview => (
-                <PreviewCard {...preview} />
-              ))}
-            </div>
-          </div>
-
-          <TemplateForm />
-        </div>
-      </div>
-    </section>
-
-    <!-- Vergelijkingssectie -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">
-            Een goed begin, maar waarom hier stoppen?
-          </h2>
-          <p class="text-xl text-gray-600">
-            Ontdek hoe Govrn het hele notuleringproces transformeert
-          </p>
-        </div>
-
-        <FeatureComparison />
-
-        
-    </section>
+      <FeatureComparison />
+    </Section>
   </main>
 </Layout>

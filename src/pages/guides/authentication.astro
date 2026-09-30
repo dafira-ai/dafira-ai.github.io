@@ -1,13 +1,15 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import GuideHeader from '../../components/guides/GuideHeader.astro';
+import GuideArticle from '../../components/guides/GuideArticle.astro';
+import { Button, Icon } from '../../components/ui';
 import GuideStep from '../../components/guides/GuideStep.astro';
 import GuideSubSection from '../../components/guides/GuideSubSection.astro';
 import GuideStepList from '../../components/guides/GuideStepList.astro';
 import ProTip from '../../components/guides/ProTip.astro';
 
 const signUpSteps = [
-  "Open the invitation email from Govrn",
+  "Open the invitation email from Dafira",
   "Click the 'Accept Invitation' button",
   "Select your country from the dropdown menu",
   "Enter your mobile phone number",
@@ -18,7 +20,7 @@ const signUpSteps = [
 ];
 
 const signInSteps = [
-  "Visit app.govrn.com in your browser",
+  "Open the Dafira app in your browser",
   "Enter your email address",
   "Enter your password",
   "Click 'Sign In'",
@@ -45,7 +47,7 @@ const twoFactorTroubleshooting = [
 
 const resetPasswordTroubleshooting = [
   "Check your spam/junk folder for the reset email",
-  "Add support@govrn.com to your safe senders list",
+  "Add info@dafira.ai to your safe senders list",
   "Request a new reset link if 24 hours have passed",
   "Clear your browser cache and cookies"
 ];
@@ -58,25 +60,25 @@ const firewallTroubleshooting = [
 ];
 ---
 
-<Layout title="How to Sign Up and Sign In - Govrn Authentication Guide">
-  <main class="pt-24">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <GuideHeader
-        title="How to Sign Up and Sign In to Govrn"
+<Layout title="How to Sign Up and Sign In - Dafira Authentication Guide">
+  <main>
+    <GuideHeader
+        title="How to Sign Up and Sign In to Dafira"
         description="Complete guide to creating your account, signing in securely, and managing your authentication settings."
       />
+    <GuideArticle>
 
       <GuideStep
         number={1}
         title="How to Create Your Account"
-        description="Follow these steps to set up your Govrn account from an invitation:"
+        description="Follow these steps to set up your Dafira account from an invitation:"
       >
         <div class="mb-8">
           <!-- <img 
   loading="lazy"
             src="https://k0n.abe.mytemp.website/wp-content/uploads/2024/10/Untitled-design-1.png"
             alt="Account creation process"
-            class="rounded-lg shadow-lg border border-gray-200 mb-6"
+            class="rounded-md border border-line mb-6"
           /> -->
           <GuideStepList items={signUpSteps} />
         </div>
@@ -86,13 +88,13 @@ const firewallTroubleshooting = [
         />
 
         <GuideSubSection title="Password Requirements">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <ul class="space-y-2 text-gray-600">
-              <li>• Minimum 8 characters long</li>
-              <li>• At least one uppercase letter</li>
-              <li>• At least one number</li>
-              <li>• At least one special character</li>
-              <!-- <li>• Cannot be a previously used password</li> -->
+              <li>Minimum 8 characters long</li>
+              <li>At least one uppercase letter</li>
+              <li>At least one number</li>
+              <li>At least one special character</li>
+              <!-- <li>Cannot be a previously used password</li> -->
             </ul>
           </div>
         </GuideSubSection>
@@ -101,14 +103,14 @@ const firewallTroubleshooting = [
       <GuideStep
         number={2}
         title="How to Sign In Securely"
-        description="Access your Govrn account with these steps:"
+        description="Access your Dafira account with these steps:"
       >
         <div class="mb-8">
           <!-- <img 
   loading="lazy"
             src="https://k0n.abe.mytemp.website/wp-content/uploads/2024/10/Untitled-design-1.png"
             alt="Sign in process"
-            class="rounded-lg shadow-lg border border-gray-200 mb-6"
+            class="rounded-md border border-line mb-6"
           /> -->
           <GuideStepList items={signInSteps} />
         </div>
@@ -119,19 +121,19 @@ const firewallTroubleshooting = [
 
         <GuideSubSection title="Two-Factor Authentication (2FA)">
           <div class="grid md:grid-cols-2 gap-4">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">Why Use 2FA?</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">Why Use 2FA?</h4>
               <ul class="text-sm text-gray-600 space-y-1">
-                <li>• Extra security layer</li>
-                <li>• Prevents unauthorized access</li>
-                <li>• Protects sensitive data</li>
+                <li>Extra security layer</li>
+                <li>Prevents unauthorized access</li>
+                <li>Protects sensitive data</li>
               </ul>
             </div>
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">Troubleshooting</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">Troubleshooting</h4>
               <ul class="text-sm text-gray-600 space-y-1">
                 {twoFactorTroubleshooting.map(step => (
-                  <li>• {step}</li>
+                  <li>{step}</li>
                 ))}
               </ul>
             </div>
@@ -149,7 +151,7 @@ const firewallTroubleshooting = [
   loading="lazy"
             src="https://k0n.abe.mytemp.website/wp-content/uploads/2024/10/Untitled-design-1.png"
             alt="Password reset process"
-            class="rounded-lg shadow-lg border border-gray-200 mb-6"
+            class="rounded-md border border-line mb-6"
           /> -->
           <GuideStepList items={resetPasswordSteps} />
         </div>
@@ -159,13 +161,13 @@ const firewallTroubleshooting = [
         />
 
         <!-- <GuideSubSection title="Security Measures">
-          <div class="bg-white rounded-lg p-4 border border-gray-200 space-y-4">
+          <div class="border border-line rounded-md p-5 space-y-4">
             <div>
-              <h4 class="font-semibold text-gray-900 mb-2">Account Protection</h4>
+              <h4 class="font-semibold text-navy mb-2">Account Protection</h4>
               <p class="text-sm text-gray-600">After 3 failed login attempts, your account will be temporarily locked for 30 minutes.</p>
             </div>
             <div>
-              <h4 class="font-semibold text-gray-900 mb-2">Session Management</h4>
+              <h4 class="font-semibold text-navy mb-2">Session Management</h4>
               <p class="text-sm text-gray-600">Your session automatically expires after 30 minutes of inactivity.</p>
             </div>
           </div>
@@ -179,20 +181,20 @@ const firewallTroubleshooting = [
       >
         <div class="grid md:grid-cols-2 gap-6">
           <GuideSubSection title="Password Reset Issues">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
+            <div class="border border-line rounded-md p-5">
               <ul class="text-sm text-gray-600 space-y-2">
                 {resetPasswordTroubleshooting.map(step => (
-                  <li>• {step}</li>
+                  <li>{step}</li>
                 ))}
               </ul>
             </div>
           </GuideSubSection>
 
           <GuideSubSection title="Firewall & Access Issues">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
+            <div class="border border-line rounded-md p-5">
               <ul class="text-sm text-gray-600 space-y-2">
                 {firewallTroubleshooting.map(step => (
-                  <li>• {step}</li>
+                  <li>{step}</li>
                 ))}
               </ul>
             </div>
@@ -201,8 +203,8 @@ const firewallTroubleshooting = [
 
         <div class="mt-6">
           <p class="text-sm text-gray-600">
-            For more details about domains and protocols used by Govrn, please see our
-            <a href="/guides/domains-protocols" class="text-primary hover:text-primary/80 underline">
+            For more details about domains and protocols used by Dafira, please see our
+            <a href="/guides/domains-protocols" class="text-primary hover:text-navy underline">
               Domains & Protocols Guide
             </a>.
           </p>
@@ -210,51 +212,41 @@ const firewallTroubleshooting = [
       </GuideStep>
 
       <!-- Quick Reference -->
-      <div class="mt-16 bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Quick Reference</h2>
+      <div class="mt-16 rounded-md p-8 border border-line bg-surface">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Quick Reference</h2>
         <div class="grid md:grid-cols-2 gap-6">
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Common Issues</h3>
+            <h3 class="font-semibold text-navy mb-2">Common Issues</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• No invitation email: Check spam folder</li>
-              <li>• 2FA not received: Verify phone number</li>
-              <li>• Can't log in: Clear browser cache</li>
-              <li>• Session expired: Sign in again</li>
+              <li>No invitation email: Check spam folder</li>
+              <li>2FA not received: Verify phone number</li>
+              <li>Can't log in: Clear browser cache</li>
+              <li>Session expired: Sign in again</li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Security Tips</h3>
+            <h3 class="font-semibold text-navy mb-2">Security Tips</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• Use a unique password</li>
-              <li>• Never share 2FA codes</li>
-              <li>• Sign out on shared devices</li>
-              <li>• Update password regularly</li>
+              <li>Use a unique password</li>
+              <li>Never share 2FA codes</li>
+              <li>Sign out on shared devices</li>
+              <li>Update password regularly</li>
             </ul>
           </div>
         </div>
       </div>
 
       <!-- Help Section -->
-      <div class="mt-8 bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Need Help?</h2>
+      <div class="mt-8 rounded-md p-8 border border-line">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Need Help?</h2>
         <p class="text-gray-600 mb-6">
           Having trouble signing in or need assistance with authentication? Our support team is here to help.
         </p>
-        <div class="flex space-x-4">
-          <a
-            href="/contact"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors"
-          >
-            Contact Support
-          </a>
-          <a
-            href="/guides"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-gray-900 bg-white border border-gray-200 hover:bg-gray-50 transition-colors"
-          >
-            View All Guides
-          </a>
+        <div class="flex flex-wrap gap-3 df-guide-actions">
+          <Button href="/contact">Contact Support</Button>
+          <Button href="/guides" variant="secondary">View All Guides</Button>
         </div>
       </div>
-    </article>
+    </GuideArticle>
   </main>
 </Layout>

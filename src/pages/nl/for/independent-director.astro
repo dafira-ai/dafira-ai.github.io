@@ -1,265 +1,54 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import CTA from '../../../components/CTA.astro';
+import RoleLanding from '../../../components/industries/RoleLanding.astro';
+import { customerQuote, readCaseLabel } from '../../../components/industries/customerQuotes';
 
-const challenges = [
-  {
-    icon: "⚖️",
-    title: "Waarborg uw onafhankelijkheid",
-    description: "Beveiligde privéruimtes en communicatiekanalen om uw objectiviteit en onafhankelijkheid ten opzichte van het management te behouden"
-  },
-  {
-    icon: "🔍", 
-    title: "Effectief toezicht",
-    description: "Volledige toegang tot informatie en tools voor weloverwogen en onpartijdig toezicht"
-  },
-  {
-    icon: "🤝",
-    title: "Autonome samenwerking",
-    description: "Speciale werkruimtes waar onafhankelijke bestuurders vertrouwelijk kunnen overleggen"
-  },
-  {
-    icon: "⚡",
-    title: "Belangenconflicten beheersen",
-    description: "Documentatie-tracking tools om potentiële belangenconflicten te identificeren en te beheren"
-  }
-];
-
-const features = [
-  {
-    title: "Privé communicatieruimte",
-    description: "Beveiligde kanalen voor overleg tussen onafhankelijke bestuurders",
-    icon: "💬",
-    benefits: [
-      "Privé discussiegroepen",
-      "Speciale documentruimtes",
-      "Samenwerkingstools",
-      "Beveiligde berichten"
-    ]
-  },
-  {
-    title: "Complete toezichttools",
-    description: "Toegang tot alle informatie voor optimaal toezicht",
-    icon: "📊",
-    benefits: [
-      "Documentgeschiedenis",
-      "Activiteitenmonitoring", 
-      "Prestatie-indicatoren",
-      "Risicowaarschuwingen"
-    ]
-  },
-  {
-    title: "AI-ondersteunde analyses",
-    description: "Slimme analyses voor weloverwogen besluitvorming",
-    icon: "🤖",
-    benefits: [
-      "Onpartijdige data-analyse",
-      "Trenddetectie",
-      "Risico-identificatie",
-      "Voorspellende analyses"
-    ]
-  }
-];
-
-const securityFeatures = [
-  {
-    icon: "🔒",
-    title: "Beveiligde toegang",
-    description: "Rolgebaseerde rechten die de vertrouwelijkheid van communicatie tussen onafhankelijke bestuurders waarborgen"
-  },
-  {
-    icon: "📝", 
-    title: "Audit trail",
-    description: "Volledige traceerbaarheid van documenttoegang en -wijzigingen voor maximale transparantie"
-  },
-  {
-    icon: "🛡️",
-    title: "Gegevensbescherming",
-    description: "Enterprise-grade versleuteling en beveiliging om uw gevoelige gesprekken te beschermen"
-  }
-];
-
-const testimonial = {
-  quote: "Govrn biedt de perfecte balans tussen onafhankelijkheid en samenwerking, waardoor we onze objectiviteit kunnen behouden en tegelijk effectief kunnen bijdragen aan bestuursbesluiten.",
-  author: "Jan de Vries",
-  role: "Onafhankelijk bestuurder",
-  company: "Finance & Invest Brussels",
-  image: "/fib-pierre.webp"
+const hero = {
+  eyebrow: 'Voor onafhankelijke bestuurders',
+  title: 'Onafhankelijk toezicht, met de juiste informatie',
+  lead: 'Lees het bestuursdossier op elk toestel, bespreek zaken met andere niet-uitvoerende bestuurders in een privéruimte en vind eerdere besluiten terug wanneer u ze nodig hebt.',
+  primary: { text: 'Demo aanvragen', href: '/nl/request-demo' },
+  secondary: { text: 'Contact opnemen', href: '/nl/contact' },
+  screenshot: { src: '/onboarding-private-chat.png', alt: 'Privéberichten tussen bestuursleden in Dafira' },
 };
+
+const challenges = {
+  title: 'Wat onafhankelijke bestuurders nodig hebben',
+  lead: 'Onafhankelijkheid vraagt dezelfde informatie als het management, en ruimte om die te bespreken.',
+  items: [
+    { icon: 'scale', title: 'Onafhankelijk blijven', text: 'Privéruimtes en gesprekken, gescheiden van het uitvoerend management.' },
+    { icon: 'search', title: 'Doeltreffend toezicht', text: 'Toegang tot de bestuursstukken, eerdere notulen en besluiten om onderbouwde vragen te stellen.' },
+    { icon: 'users', title: 'Overleg onder collega’s', text: 'Privégesprekken waarin onafhankelijke bestuurders zaken voor de vergadering voorbereiden.' },
+    { icon: 'clipboard', title: 'Belangenconflicten', text: 'Een spoor van wie welk document raadpleegde en van gemelde belangen, bewaard bij de notulen.' },
+  ],
+};
+
+const features = {
+  title: 'Functies voor onafhankelijke bestuurders',
+  lead: 'Wat Dafira biedt om onafhankelijk toezicht te ondersteunen.',
+  items: [
+    { icon: 'chat', title: 'Privécommunicatie', text: 'Beveiligde kanalen voor overleg tussen onafhankelijke bestuurders.', items: ['Privégesprekken', 'Aparte documentruimtes', 'Beveiligde berichten'] },
+    { icon: 'documents', title: 'Toezichtstools', text: 'Alles wat nodig is om de onderneming tussen vergaderingen te volgen.', items: ['Documentgeschiedenis', 'Besluitenregister', 'Opvolging van actiepunten', 'Privé-annotaties'] },
+    { icon: 'sparkle', title: 'AI-assistent', text: 'Stel vragen over de bestuursstukken en krijg samenvattingen van lange documenten voor de vergadering.', items: ['Vragen over bestuursdocumenten', 'Samenvattingen van lange stukken'] },
+  ],
+};
+
+const security = {
+  title: 'Beveiliging en vertrouwelijkheid',
+  lead: 'De gesprekken van onafhankelijke bestuurders blijven privé.',
+  link: { text: 'Meer over beveiliging', href: '/nl/security' },
+  items: [
+    { icon: 'lock', title: 'Beveiligde toegang', text: 'Rolgebaseerde rechten houden de ruimtes van onafhankelijke bestuurders gescheiden van andere gebruikers.' },
+    { icon: 'clipboard', title: 'Audittrail', text: 'Een spoor van documenttoegang en wijzigingen, voor transparantie.' },
+    { icon: 'shield', title: 'Gegevensbescherming', text: 'Versleuteling tijdens transport en in opslag, en praktijken voor gegevensbescherming in lijn met de AVG.' },
+  ],
+};
+
+const quote = { ...customerQuote('nl', 'nathalie'), linkText: readCaseLabel.nl };
 ---
 
-<Layout title="Bestuurssoftware voor onafhankelijke bestuurders | Govrn" description="Versterk uw rol als onafhankelijk bestuurder met beveiligde samenwerkingsruimtes, complete toezichttools en intelligente analyses.">
-  <main class="pt-16">
-    <!-- Hero sectie -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-              Voor onafhankelijke bestuurders
-            </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Behoud uw onafhankelijkheid met
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                intelligente tools
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-12">
-              Versterk uw rol als onafhankelijk bestuurder met beveiligde werkruimtes, complete toezichttools en slimme analyses.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/nl/request-demo"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Demo aanvragen
-              </a>
-              <a
-                href="/nl/contact"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-              >
-                Contact opnemen
-              </a>
-            </div>
-          </div>
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl transform rotate-3"></div>
-            <img 
-  loading="lazy"
-              src="/realestate.jpg"
-              alt="Govrn interface"
-              class="relative rounded-2xl shadow-2xl"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Uitdagingen sectie -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            De uitdagingen die wij oplossen
-          </h2>
-          <p class="text-xl text-gray-600">
-            Ga effectief om met de kernuitdagingen van onafhankelijke bestuurders met onze complete oplossing
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Functionaliteiten sectie -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Functionaliteiten voor onafhankelijke bestuurders
-          </h2>
-          <p class="text-xl text-gray-600">
-            Tools ontwikkeld voor effectief en onafhankelijk toezicht
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600 mb-6">{feature.description}</p>
-              <ul class="space-y-3">
-                {feature.benefits.map(benefit => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Beveiliging sectie -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Enterprise-grade beveiliging
-          </h2>
-          <p class="text-xl text-gray-600">
-            Waarborg uw onafhankelijkheid met robuuste beveiligingsmaatregelen
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {securityFeatures.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonial sectie -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-br from-primary to-blue-600 rounded-2xl overflow-hidden">
-          <div class="grid lg:grid-cols-2 gap-8 p-12">
-            <div class="text-white">
-              <blockquote class="text-2xl font-medium mb-8">
-                "{testimonial.quote}"
-              </blockquote>
-              <div class="flex items-center space-x-4">
-                <img 
-  loading="lazy"
-                  src={testimonial.image}
-                  alt={testimonial.author}
-                  class="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <div class="font-semibold">{testimonial.author}</div>
-                  <div class="text-white/80">{testimonial.role}</div>
-                  <div class="text-white/80">{testimonial.company}</div>
-                </div>
-              </div>
-            </div>
-            <div class="relative lg:text-right">
-              <a
-                href="/nl/case-studies/finance-invest-brussels"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-              >
-                Lees de case study
-                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Bestuurssoftware voor onafhankelijke bestuurders | Dafira" description="Bestuursportaal voor onafhankelijke bestuurders: privéruimtes voor overleg, toegang tot bestuursstukken en eerdere besluiten, en een AI-assistent voor lange documenten.">
+  <main>
+    <RoleLanding hero={hero} challenges={challenges} features={features} security={security} quote={quote} />
   </main>
 </Layout>

@@ -2,8 +2,8 @@
 title: "AI in de Bestuurskamer: Een Revolutie in Vergaderingen en Governance"
 description: "Ontdek hoe AI-gestuurde tools bestuursvergaderingen en governance transformeren door taken te automatiseren, besluitvorming te verbeteren en compliance te versterken. Leer hoe AI tijd bespaart, kosten verlaagt en efficiëntie stimuleert in de bestuurskamer."
 pubDate: 2023-09-25
-author: "Govrn"
-authorRole: "Govrn Redactieteam"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/meeting_3.jpg"
 category: "Technology"
 tags: ["Kunstmatige Intelligentie", "Bestuursvergaderingen", "Bestuursmanagement Software", "Corporate Governance"]

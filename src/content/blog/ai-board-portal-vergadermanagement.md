@@ -2,8 +2,8 @@
 title: "Wat is een Board Portal in een AI-tijdperk: Revolutie in Vergadermanagement"
 description: "Ontdek hoe AI-gestuurde bestuursportalen het vergadermanagement transformeren met slimmere planning, realtime samenwerking en verbeterde besluitvorming voor moderne bestuurskamers."
 pubDate: 2024-05-01
-author: "Govrn"
-authorRole: "Govrn Redactieteam"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/meeting.jpg"
 category: "Technology"
 tags: ["AI", "Bestuursportaal", "Vergadermanagement", "Governance", "Digitale Transformatie"]
@@ -51,7 +51,7 @@ AI-gestuurde bestuursportalen zijn niet zomaar een tool - ze bieden een strategi
 
 ## Transformeer uw Bestuurskamer met AI
 
-Organisaties die AI-gedreven bestuursportalen zoals **Govrn** omarmen, plukken al de vruchten van gestroomlijnde governance en slimmer vergadermanagement. Van het verminderen van administratieve lasten tot het verbeteren van besluitvorming, deze platforms vertegenwoordigen de toekomst van bestuurskameroperaties.
+Organisaties die AI-gedreven bestuursportalen zoals **Dafira** omarmen, plukken al de vruchten van gestroomlijnde governance en slimmer vergadermanagement. Van het verminderen van administratieve lasten tot het verbeteren van besluitvorming, deze platforms vertegenwoordigen de toekomst van bestuurskameroperaties.
 
 ---
 

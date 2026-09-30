@@ -1,19 +1,19 @@
 export const faqs = [
     {
-        question: "How does Govrn handle different levels of digital adoption?",
-        answer: "Govrn’s intuitive platform ensures that even the least tech-savvy directors can engage effectively. Designed for diverse boards with varying digital maturity, we offer seamless onboarding, personalized training, and user-friendly tools to unify all members and support smooth collaboration."
+        question: "How does Dafira handle different levels of digital adoption?",
+        answer: "Dafira’s intuitive platform ensures that even the least tech-savvy directors can engage effectively. Designed for diverse boards with varying digital maturity, we offer guided onboarding, training for each director and simple tools so every member can take part."
     },
     {
-        question: "Is Govrn GDPR compliant?",
-        answer: "Yes, Govrn is fully GDPR compliant and implements strict data protection measures to ensure your board's information is secure and private."
+        question: "Is Dafira GDPR compliant?",
+        answer: "Yes, Dafira is fully GDPR compliant and implements strict data protection measures to ensure your board's information is secure and private."
     },
     {
         question: "How do I import existing documents?",
-        answer: "Govrn provides multiple ways to import your existing documents, including bulk upload, drag-and-drop interface, and integration with popular cloud storage services."
+        answer: "Dafira provides multiple ways to import your existing documents, including bulk upload, drag-and-drop interface, and integration with popular cloud storage services."
     },
     {
         question: "Can I customize the workflow for my organization?",
-        answer: "Absolutely! Govrn offers extensive customization options to match your organization's specific processes and requirements."
+        answer: "Yes. Dafira can be configured to follow your organization's own processes and requirements."
     },
     {
         question: "What kind of support do you offer?",
@@ -40,6 +40,6 @@ export const supportFaqs = [
     },
     {
       question: "Can you help with data migration?",
-      answer: "Absolutely! Our team will help you migrate existing documents and data to Govrn, ensuring a seamless transition while maintaining data integrity and security."
+      answer: "Yes. Our team helps you move existing documents and data to Dafira, keeping their integrity and security."
     }
   ];

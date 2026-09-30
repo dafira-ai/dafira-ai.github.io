@@ -3,148 +3,76 @@ import Layout from '../../layouts/Layout.astro';
 import PreviewCard from '../../components/templates/audio/PreviewCard.astro';
 import TemplateForm from '../../components/templates/audio/TemplateForm.astro';
 import FeatureComparison from '../../components/templates/audio/FeatureComparison.astro';
+import { PageHero, Section, SectionHeader, CellGrid, Icon, Badge, Callout, Button } from '../../components/ui';
 
 const previews = [
+  { title: "Online meetings", description: "Audio quality is typically reliable with standard video conferencing tools", icon: "desktop" },
+  { title: "Hybrid and offline", description: "Requires careful setup: see the detailed guidelines in the PDF", icon: "building" }
+];
+
+const formats = [
   {
-    title: "Online Meetings",
-    description: "Audio quality is typically reliable with standard video conferencing tools",
-    emoji: "💻"
+    icon: "desktop",
+    title: "Online meetings",
+    text: "Audio quality in fully online meetings is typically reliable. Video conferencing platforms handle audio optimisation automatically.",
+    status: "Usually fine",
+    tone: "success" as const,
   },
   {
-    title: "Hybrid & Offline",
-    description: "Requires careful setup - see our detailed guidelines in the PDF",
-    emoji: "🏢"
+    icon: "users",
+    title: "Hybrid meetings",
+    text: "Hybrid meetings bring their own challenges. Microphone placement is critical to capture in-room participants clearly, and echo appears when room speakers pick up remote participants' audio.",
+    status: "Requires setup",
+    tone: "warning" as const,
+  },
+  {
+    icon: "building",
+    title: "Offline meetings",
+    text: "In-person board meetings require proper microphone placement and attention to room acoustics. Echo and background noise affect recording quality if they are not addressed.",
+    status: "Detailed setup needed",
+    tone: "warning" as const,
   }
 ];
 ---
 
 <Layout
-  title="Audio Setup Guide for High-Quality Board Meeting Minutes | Govrn [2025]"
-  description="Recording quality is essential for accurate board meeting minutes. Download our free audio setup guide for hybrid and offline meetings. Govrn helps boards achieve professional-grade minutes."
+  title="Audio Setup Guide for Board Meeting Minutes | Dafira"
+  description="Recording quality matters for accurate board meeting minutes. Download our free audio setup guide for hybrid and offline meetings."
 >
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
+  <main>
+    <PageHero
+      eyebrow="Free guide"
+      title="Good minutes start with a good recording"
+      lead="Accurate board minutes depend on clear audio. Whether you transcribe manually or use AI tools, the quality of the recording shapes the quality of the minutes."
+    >
+      <CellGrid columns={2} class="mt-10">
+        {previews.map((preview) => <PreviewCard {...preview} />)}
+      </CellGrid>
+      <TemplateForm slot="aside" />
+    </PageHero>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-green-100 text-green-800 mb-8">
-              Free Download • Professional Guidelines
-            </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              High-Quality Minutes Start with
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                Great Recording Quality
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-12">
-              Accurate and comprehensive board meeting minutes depend on clear audio recordings. Whether you're transcribing manually or using AI-powered tools, the quality of your recording directly impacts the quality of your minutes.
-            </p>
-
-            <!-- Preview Cards -->
-            <div class="grid grid-cols-2 gap-4">
-              {previews.map(preview => (
-                <PreviewCard {...preview} />
-              ))}
-            </div>
+    <Section space="md">
+      <SectionHeader title="Why recording quality matters for board minutes" lead="The audio challenges differ with each meeting format." />
+      <CellGrid columns={3}>
+        {formats.map((f) => (
+          <div class="bg-white p-6 lg:p-8 flex flex-col">
+            <Icon name={f.icon} class="w-6 h-6 text-navy" />
+            <h3 class="mt-5 text-xl font-semibold text-navy">{f.title}</h3>
+            <p class="mt-3 text-gray-600 leading-relaxed">{f.text}</p>
+            <div class="mt-auto pt-6"><Badge tone={f.tone}>{f.status}</Badge></div>
           </div>
+        ))}
+      </CellGrid>
 
-          <TemplateForm />
-        </div>
-      </div>
-    </section>
+      <Callout tone="note" title="Hybrid or offline? Read the guidelines" class="mt-12 max-w-3xl">
+        <p>For hybrid and offline board meetings, a proper audio setup is essential. The downloadable PDF gives detailed instructions for a clear recording.</p>
+        <Button variant="link" href="#email" class="mt-3">Download the guidelines</Button>
+      </Callout>
+    </Section>
 
-    <!-- Why Recording Quality Matters Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">
-            Why Recording Quality Matters for Board Minutes
-          </h2>
-          <p class="text-xl text-gray-600">
-            Understanding the audio challenges across different meeting formats
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8 mb-16">
-          <div class="bg-gradient-to-br from-green-50 to-green-100/50 rounded-2xl p-8 border border-green-200">
-            <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center text-2xl mb-6">
-              💻
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Online Meetings</h3>
-            <p class="text-gray-600 mb-4">
-              Good news: audio quality in fully online meetings is typically reliable. Modern video conferencing platforms handle audio optimization automatically.
-            </p>
-            <div class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-800">
-              Usually OK
-            </div>
-          </div>
-
-          <div class="bg-gradient-to-br from-amber-50 to-amber-100/50 rounded-2xl p-8 border border-amber-200">
-            <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center text-2xl mb-6">
-              🔀
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Hybrid Meetings</h3>
-            <p class="text-gray-600 mb-4">
-              Hybrid meetings present unique challenges. Microphone placement is critical to capture in-room participants clearly. Echo can also become a significant issue when room speakers pick up remote participants' audio.
-            </p>
-            <div class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-amber-100 text-amber-800">
-              Requires Setup
-            </div>
-          </div>
-
-          <div class="bg-gradient-to-br from-orange-50 to-orange-100/50 rounded-2xl p-8 border border-orange-200">
-            <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center text-2xl mb-6">
-              🏢
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Offline Meetings</h3>
-            <p class="text-gray-600 mb-4">
-              In-person board meetings require proper microphone placement and room acoustics consideration. Echo and background noise can significantly impact recording quality if not addressed properly.
-            </p>
-            <div class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-orange-100 text-orange-800">
-              Detailed Setup Needed
-            </div>
-          </div>
-        </div>
-
-        <!-- CTA Box -->
-        <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-2xl p-8 border border-primary/10 mb-16">
-          <div class="max-w-3xl mx-auto text-center">
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">
-              Hybrid or Offline? Check Our Guidelines
-            </h3>
-            <p class="text-lg text-gray-600 mb-6">
-              For hybrid and offline board meetings, proper audio setup is essential. We've put together detailed instructions in our downloadable PDF to help you achieve optimal recording quality.
-            </p>
-            <a
-              href="#"
-              onclick="document.getElementById('email')?.focus(); window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
-              class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors duration-200"
-            >
-              Download Guidelines
-              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Govrn Section -->
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">
-            We Guide Our Clients Every Step of the Way
-          </h2>
-          <p class="text-xl text-gray-600">
-            At Govrn, we understand that high-quality board meeting minutes are critical for governance, compliance, and institutional memory. That's why we don't just provide software - we partner with our clients to ensure excellence.
-          </p>
-        </div>
-
-        <FeatureComparison />
-      </div>
-    </section>
+    <Section tone="surface" space="md" border="top">
+      <SectionHeader title="We guide our clients at every step" lead="Board minutes matter for governance, compliance and institutional memory. We do not just provide software: we help our clients set it up well." />
+      <FeatureComparison />
+    </Section>
   </main>
 </Layout>

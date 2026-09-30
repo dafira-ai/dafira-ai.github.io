@@ -2,8 +2,8 @@
 title: "Le portail de conseil à l'ère de l'IA : une véritable plateforme d'intelligence"
 description: "Découvrez comment l'IA transforme les portails de conseil traditionnels en plateformes dynamiques, permettant aux administrateurs d'exploiter des données pertinentes pour une meilleure prise de décision."
 pubDate: 2023-06-15
-author: "Govrn"
-authorRole: "Équipe éditoriale Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/ai_board.jpeg"
 category: "Technology"
 tags: ["Intelligence Artificielle", "Portail de Conseil", "Gouvernance d'Entreprise", "Analyse de Données"]

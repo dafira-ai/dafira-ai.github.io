@@ -2,8 +2,8 @@
 title: "De Voordelen van Besluitvormingslogboeken voor Bedrijven en Organisaties"
 description: "Ontdek hoe besluitvormingslogboeken de verantwoordingsplicht verbeteren, besluitvorming versterken en waardevolle inzichten bieden voor organisaties om hun besluitvormingsprocessen te optimaliseren."
 pubDate: 2023-03-20
-author: "Govrn"
-authorRole: "Govrn Redactieteam"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/notes.jpg"
 category: "Best Practices"
 tags: ["Besluitvormingslogboek", "Bedrijfsefficiëntie", "Verantwoordingsplicht", "Besluitvorming"]

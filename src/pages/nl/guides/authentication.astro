@@ -1,13 +1,15 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import GuideHeader from '../../../components/guides/GuideHeader.astro';
+import GuideArticle from '../../../components/guides/GuideArticle.astro';
+import { Button, Icon } from '../../../components/ui';
 import GuideStep from '../../../components/guides/GuideStep.astro';
 import GuideSubSection from '../../../components/guides/GuideSubSection.astro';
 import GuideStepList from '../../../components/guides/GuideStepList.astro';
 import ProTip from '../../../components/guides/ProTip.astro';
 
 const signUpSteps = [
-  "Open de uitnodigingsmail van Govrn",
+  "Open de uitnodigingsmail van Dafira",
   "Klik op de knop 'Uitnodiging Accepteren'", 
   "Selecteer uw land uit het dropdown menu",
   "Voer uw mobiele telefoonnummer in",
@@ -18,7 +20,7 @@ const signUpSteps = [
 ];
 
 const signInSteps = [
-  "Ga naar app.govrn.com in uw browser",
+  "Open de Dafira-app in uw browser",
   "Voer uw e-mailadres in",
   "Voer uw wachtwoord in", 
   "Klik op 'Inloggen'",
@@ -45,7 +47,7 @@ const twoFactorTroubleshooting = [
 
 const resetPasswordTroubleshooting = [
   "Controleer uw spam/ongewenste e-mail map",
-  "Voeg support@govrn.com toe aan uw veilige afzenders",
+  "Voeg info@dafira.ai toe aan uw veilige afzenders",
   "Vraag een nieuwe resetlink aan als er 24 uur verstreken zijn",
   "Wis uw browser cache en cookies"
 ];
@@ -58,18 +60,18 @@ const firewallTroubleshooting = [
 ];
 ---
 
-<Layout title="Aanmelden en Inloggen - Govrn Authenticatie Handleiding">
-  <main class="pt-24">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <GuideHeader
-        title="Aanmelden en Inloggen bij Govrn"
+<Layout title="Aanmelden en Inloggen - Dafira Authenticatie Handleiding">
+  <main>
+    <GuideHeader
+        title="Aanmelden en Inloggen bij Dafira"
         description="Complete handleiding voor het aanmaken van uw account, veilig inloggen en het beheren van uw authenticatie-instellingen."
       />
+    <GuideArticle>
 
       <GuideStep
         number={1}
         title="Uw Account Aanmaken"
-        description="Volg deze stappen om uw Govrn-account aan te maken via een uitnodiging:"
+        description="Volg deze stappen om uw Dafira-account aan te maken via een uitnodiging:"
       >
         <div class="mb-8">
           <GuideStepList items={signUpSteps} />
@@ -80,12 +82,12 @@ const firewallTroubleshooting = [
         />
 
         <GuideSubSection title="Wachtwoordvereisten">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <ul class="space-y-2 text-gray-600">
-              <li>• Minimaal 8 tekens lang</li>
-              <li>• Ten minste één hoofdletter</li>
-              <li>• Ten minste één cijfer</li>
-              <li>• Ten minste één speciaal teken</li>
+              <li>Minimaal 8 tekens lang</li>
+              <li>Ten minste één hoofdletter</li>
+              <li>Ten minste één cijfer</li>
+              <li>Ten minste één speciaal teken</li>
             </ul>
           </div>
         </GuideSubSection>
@@ -94,7 +96,7 @@ const firewallTroubleshooting = [
       <GuideStep
         number={2}
         title="Veilig Inloggen"
-        description="Toegang tot uw Govrn-account krijgt u via deze stappen:"
+        description="Toegang tot uw Dafira-account krijgt u via deze stappen:"
       >
         <div class="mb-8">
           <GuideStepList items={signInSteps} />
@@ -106,19 +108,19 @@ const firewallTroubleshooting = [
 
         <GuideSubSection title="Tweestapsverificatie (2FA)">
           <div class="grid md:grid-cols-2 gap-4">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">Waarom 2FA Gebruiken?</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">Waarom 2FA Gebruiken?</h4>
               <ul class="text-sm text-gray-600 space-y-1">
-                <li>• Extra beveiligingslaag</li>
-                <li>• Voorkomt ongeautoriseerde toegang</li>
-                <li>• Beschermt gevoelige gegevens</li>
+                <li>Extra beveiligingslaag</li>
+                <li>Voorkomt ongeautoriseerde toegang</li>
+                <li>Beschermt gevoelige gegevens</li>
               </ul>
             </div>
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">Probleemoplossing</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">Probleemoplossing</h4>
               <ul class="text-sm text-gray-600 space-y-1">
                 {twoFactorTroubleshooting.map(step => (
-                  <li>• {step}</li>
+                  <li>{step}</li>
                 ))}
               </ul>
             </div>
@@ -147,20 +149,20 @@ const firewallTroubleshooting = [
       >
         <div class="grid md:grid-cols-2 gap-6">
           <GuideSubSection title="Wachtwoord Reset Problemen">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
+            <div class="border border-line rounded-md p-5">
               <ul class="text-sm text-gray-600 space-y-2">
                 {resetPasswordTroubleshooting.map(step => (
-                  <li>• {step}</li>
+                  <li>{step}</li>
                 ))}
               </ul>
             </div>
           </GuideSubSection>
 
           <GuideSubSection title="Firewall & Toegangsproblemen">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
+            <div class="border border-line rounded-md p-5">
               <ul class="text-sm text-gray-600 space-y-2">
                 {firewallTroubleshooting.map(step => (
-                  <li>• {step}</li>
+                  <li>{step}</li>
                 ))}
               </ul>
             </div>
@@ -169,58 +171,48 @@ const firewallTroubleshooting = [
 
         <div class="mt-6">
           <p class="text-sm text-gray-600">
-            Voor meer details over domeinen en protocollen die Govrn gebruikt, zie onze
-            <a href="/nl/guides/domains-protocols" class="text-primary hover:text-primary/80 underline">
+            Voor meer details over domeinen en protocollen die Dafira gebruikt, zie onze
+            <a href="/nl/guides/domains-protocols" class="text-primary hover:text-navy underline">
               Domeinen & Protocollen Handleiding
             </a>.
           </p>
         </div>
       </GuideStep>
 
-      <div class="mt-16 bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Snelle Referentie</h2>
+      <div class="mt-16 rounded-md p-8 border border-line bg-surface">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Snelle Referentie</h2>
         <div class="grid md:grid-cols-2 gap-6">
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Veelvoorkomende Problemen</h3>
+            <h3 class="font-semibold text-navy mb-2">Veelvoorkomende Problemen</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• Geen uitnodigingsmail: Controleer spam</li>
-              <li>• 2FA niet ontvangen: Verifieer telefoonnummer</li>
-              <li>• Kan niet inloggen: Wis browser cache</li>
-              <li>• Sessie verlopen: Log opnieuw in</li>
+              <li>Geen uitnodigingsmail: Controleer spam</li>
+              <li>2FA niet ontvangen: Verifieer telefoonnummer</li>
+              <li>Kan niet inloggen: Wis browser cache</li>
+              <li>Sessie verlopen: Log opnieuw in</li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Beveiligingstips</h3>
+            <h3 class="font-semibold text-navy mb-2">Beveiligingstips</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• Gebruik een uniek wachtwoord</li>
-              <li>• Deel nooit 2FA-codes</li>
-              <li>• Log uit op gedeelde apparaten</li>
-              <li>• Update wachtwoord regelmatig</li>
+              <li>Gebruik een uniek wachtwoord</li>
+              <li>Deel nooit 2FA-codes</li>
+              <li>Log uit op gedeelde apparaten</li>
+              <li>Update wachtwoord regelmatig</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <div class="mt-8 bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Hulp Nodig?</h2>
+      <div class="mt-8 rounded-md p-8 border border-line">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Hulp Nodig?</h2>
         <p class="text-gray-600 mb-6">
           Problemen met inloggen of hulp nodig bij authenticatie? Ons supportteam staat voor u klaar.
         </p>
-        <div class="flex space-x-4">
-          <a
-            href="/nl/contact"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors"
-          >
-            Contact Support
-          </a>
-          <a
-            href="/nl/guides"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-gray-900 bg-white border border-gray-200 hover:bg-gray-50 transition-colors"
-          >
-            Bekijk Alle Handleidingen
-          </a>
+        <div class="flex flex-wrap gap-3 df-guide-actions">
+          <Button href="/nl/contact">Contact Support</Button>
+          <Button href="/nl/guides" variant="secondary">Bekijk Alle Handleidingen</Button>
         </div>
       </div>
-    </article>
+    </GuideArticle>
   </main>
 </Layout>

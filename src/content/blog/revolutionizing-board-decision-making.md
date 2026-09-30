@@ -2,8 +2,8 @@
 title: "From Slow to Swift: How Board Management Software is Revolutionizing Board Decision-Making"
 description: "Explore how modern board management software enhances agility, inclusivity, and efficiency in board decision-making processes."
 pubDate: 2023-05-01
-author: "Govrn"
-authorRole: "Govrn Editorial Team"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/fast_bike.jpg"
 category: "Technology"
 tags: ["Board Management Software", "Decision-Making", "Corporate Governance", "Agility"]

@@ -1,0 +1,103 @@
+---
+// Body of the "AI board accountability" campaign page (EN/FR/NL share this layout; copy comes from the page).
+import { PageHero, Section, SectionHeader, Button, Icon, FeatureColumns, FeatureList, CellGrid, Callout, FAQ, CTA } from '../ui';
+import ProductCard from './ProductCard.astro';
+
+type Link = { text: string; href: string };
+interface Props {
+  t: {
+    hero: { eyebrow: string; title: string; lead: string; primary: Link; secondary: Link; note: string };
+    card: { title: string; meta: string; rows: { label: string; text: string; tone?: 'ok' | 'info' | 'pending' | 'neutral'; status?: string }[]; footer: string; footerMeta: string; caption: string };
+    promise: { eyebrow: string; title: string; lead: string; items: { icon: string; title: string; text: string; benefit: string }[] };
+    roles: { eyebrow: string; title: string; lead: string; items: { icon: string; role: string; benefits: string[] }[] };
+    workflow: { eyebrow: string; title: string; lead?: string; steps: { title: string; text: string }[] };
+    modules: { eyebrow: string; title: string; lead: string; items: { icon: string; title: string; text: string; features: string[] }[]; links: Link[] };
+    europe: { eyebrow: string; title: string; lead: string; callout: string; primary: Link; secondary: Link };
+    faq: { title: string; subtitle: string; inLanguage: string; faqs: { question: string; answer: string }[] };
+    cta: { texts: { title: string; subtitle: string; cta1: string; cta2: string }; links: { cta1: string; cta2: string } };
+  };
+}
+const { t } = Astro.props;
+---
+
+<PageHero eyebrow={t.hero.eyebrow} title={t.hero.title} lead={t.hero.lead}>
+  <Fragment slot="actions">
+    <Button href={t.hero.primary.href}>{t.hero.primary.text}</Button>
+    <Button variant="secondary" href={t.hero.secondary.href}>{t.hero.secondary.text}</Button>
+  </Fragment>
+  <p class="mt-6 font-mono text-xs uppercase tracking-[0.08em] text-gray-500">{t.hero.note}</p>
+  <ProductCard slot="aside" class="lg:ms-6" {...t.card} />
+</PageHero>
+
+<Section>
+  <SectionHeader eyebrow={t.promise.eyebrow} title={t.promise.title} lead={t.promise.lead} />
+  <FeatureColumns columns={4} items={t.promise.items.map((i) => ({ icon: i.icon, title: i.title, text: i.text, items: [i.benefit] }))} />
+</Section>
+
+<Section tone="surface" border="both">
+  <SectionHeader eyebrow={t.roles.eyebrow} title={t.roles.title} lead={t.roles.lead} />
+  <div class="grid md:grid-cols-2 gap-x-10">
+    {t.roles.items.map((persona) => (
+      <div class="border-t border-line pt-8 pb-4">
+        <Icon name={persona.icon} class="w-6 h-6 text-navy" />
+        <h3 class="mt-5 text-xl font-semibold text-navy">{persona.role}</h3>
+        <ul class="mt-5 space-y-3">
+          {persona.benefits.map((b) => (
+            <li class="flex gap-3 text-gray-700 leading-relaxed">
+              <Icon name="check" class="w-5 h-5 mt-0.5 shrink-0 text-primary" />
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</Section>
+
+<Section>
+  <SectionHeader eyebrow={t.workflow.eyebrow} title={t.workflow.title} lead={t.workflow.lead} />
+  <ol class="grid gap-px bg-line border border-line rounded-md overflow-hidden md:grid-cols-2 lg:grid-cols-5" data-play>
+    {t.workflow.steps.map((step, i) => (
+      <li class="bg-white p-6" data-step style={`--d:${i * 80}`}>
+        <span class="font-mono text-xs text-primary tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+        <h3 class="mt-3 text-lg font-semibold text-navy">{step.title}</h3>
+        <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{step.text}</p>
+      </li>
+    ))}
+  </ol>
+</Section>
+
+<Section tone="surface" border="both">
+  <SectionHeader eyebrow={t.modules.eyebrow} title={t.modules.title} lead={t.modules.lead} />
+  <CellGrid columns={2}>
+    {t.modules.items.map((m) => (
+      <div class="bg-white p-6 lg:p-8">
+        <Icon name={m.icon} class="w-6 h-6 text-navy" />
+        <h3 class="mt-5 text-lg font-semibold text-navy">{m.title}</h3>
+        <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{m.text}</p>
+        <FeatureList columns={2} items={m.features} class="mt-5" />
+      </div>
+    ))}
+  </CellGrid>
+  <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+    {t.modules.links.map((l) => <Button variant="link" href={l.href}>{l.text}</Button>)}
+  </div>
+</Section>
+
+<Section>
+  <div class="grid lg:grid-cols-12 gap-10 items-start">
+    <div class="lg:col-span-6">
+      <SectionHeader layout="stacked" eyebrow={t.europe.eyebrow} title={t.europe.title} lead={t.europe.lead} class="!mb-0" />
+    </div>
+    <div class="lg:col-span-5 lg:col-start-8">
+      <Callout tone="note">{t.europe.callout}</Callout>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <Button variant="secondary" href={t.europe.primary.href}>{t.europe.primary.text}</Button>
+        <Button variant="link" href={t.europe.secondary.href}>{t.europe.secondary.text}</Button>
+      </div>
+    </div>
+  </div>
+</Section>
+
+<FAQ texts={t.faq} />
+<CTA texts={t.cta.texts} links={t.cta.links} />

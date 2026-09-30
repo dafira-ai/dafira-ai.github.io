@@ -1,4 +1,5 @@
 ---
+// Ordered list of actions inside a guide step.
 interface Props {
   items: string[];
 }
@@ -6,13 +7,6 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<ul class="space-y-4 mb-8">
-  {items.map((item, index) => (
-    <li class="flex items-start">
-      <div class="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-1">
-        <span class="text-primary font-medium text-sm">{index + 1}</span>
-      </div>
-      <span class="ml-3 text-gray-600">{item}</span>
-    </li>
-  ))}
-</ul>
+<ol class="mb-8">
+  {items.map((item) => <li>{item}</li>)}
+</ol>

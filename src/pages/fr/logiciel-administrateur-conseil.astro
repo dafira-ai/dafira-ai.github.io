@@ -1,46 +1,37 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Hero from "../../components/Hero.astro";
-import FAQ from "../../components/FAQ.astro";
-import CTA from "../../components/CTA.astro";
-import { Image } from 'astro:assets';
-import applicationHomePageImg from '../../assets/images/application-home-page.png';
-import sharepointLogoImg from '../../assets/images/sharepoint-logo.png';
-import googleDriveLogoImg from '../../assets/images/google-drive-logo.png';
-import dropboxLogoImg from '../../assets/images/dropbox-logo.png';
-import oneDriveLogoImg from '../../assets/images/onedrive-logo.png';
-import diligentLogoImg from '../../assets/images/diligent-logo.png';
+import BoardMemberSoftware from "../../components/campaigns/BoardMemberSoftware.astro";
 
 const boardMemberFaqs = [
   {
     question: "Est-ce que je garde l'accès à mes documents si je quitte un conseil ?",
-    answer: "Oui — votre archive Govrn One vous appartient, même après la fin de votre mandat."
+    answer: "Oui. Votre archive Dafira One vous appartient, même après la fin de votre mandat."
   },
   {
-    question: "Est-ce que Govrn One peut fonctionner avec plusieurs conseils en même temps ?",
-    answer: "Absolument. Govrn One a été conçu pour centraliser les documents de tous vos conseils en un seul endroit."
+    question: "Est-ce que Dafira One peut fonctionner avec plusieurs conseils en même temps ?",
+    answer: "Oui. Dafira One a été conçu pour centraliser les documents de tous vos conseils en un seul endroit."
   },
   {
-    question: "Govrn One est-il sécurisé ?",
-    answer: "Govrn One est hébergé dans l'UE, avec un cryptage de niveau entreprise et une conformité RGPD. Vos documents restent privés et sécurisés."
+    question: "Dafira One est-il sécurisé ?",
+    answer: "Dafira One est hébergé dans l'UE, avec un chiffrement de niveau entreprise et une conformité RGPD. Vos documents restent privés et sécurisés."
   },
   {
-    question: "Qu'est-ce qui différencie Govrn One de Govrn et d'autres plateformes de gestion de conseil ?",
-    answer: "Govrn et d'autres plateformes de gestion de conseil sont conçues pour l'organisation. Govrn One est conçu pour l'administrateur individuel - c'est votre espace de travail personnel de conseil."
+    question: "Qu'est-ce qui différencie Dafira One de Dafira et d'autres plateformes de gestion de conseil ?",
+    answer: "Dafira et les autres plateformes de gestion de conseil sont conçues pour l'organisation. Dafira One est conçu pour l'administrateur individuel : c'est votre espace de travail personnel de conseil."
   }
 ];
 
 const productStructuredData = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Govrn One",
+  "name": "Dafira One",
   "applicationCategory": "BusinessApplication",
-  "description": "Logiciel personnel pour administrateur de conseil, hébergé et sécurisé dans l'UE. Contrairement à Govrn qui sert les organisations, Govrn One est conçu pour les administrateurs individuels pour centraliser les documents de tous leurs conseils, se préparer avec l'IA, et conserver leurs archives pour toujours.",
+  "description": "Logiciel personnel pour administrateur de conseil, hébergé et sécurisé dans l'UE. Contrairement à Dafira qui sert les organisations, Dafira One est conçu pour les administrateurs individuels pour centraliser les documents de tous leurs conseils, se préparer avec l'IA, et conserver leurs archives pour toujours.",
   "operatingSystem": "Web",
-  "url": "https://govrn.com/fr/logiciel-administrateur-conseil",
+  "url": "https://dafira.ai/fr/logiciel-administrateur-conseil",
   "offers": {
     "@type": "Offer",
-    "url": "https://govrn.com/demande-demo",
+    "url": "https://dafira.ai/fr/request-demo",
     "availability": "https://schema.org/InStock"
   },
   "featureList": [
@@ -51,857 +42,134 @@ const productStructuredData = {
     "Hébergé dans l'UE avec sécurité de niveau entreprise"
   ]
 };
-
 const combinedStructuredData = [productStructuredData];
+
+const t = {
+  hero: {
+    eyebrow: 'Logiciel personnel pour administrateur',
+    title: 'Logiciel d’administrateur de conseil, conçu pour vous, pas pour votre conseil',
+    lead: 'Dafira One est un logiciel personnel pour administrateur de conseil, entièrement hébergé et sécurisé dans l’UE. Dafira sert les organisations et les portails de conseil classiques sont conçus pour les entreprises ; Dafira One vous donne votre propre portail pour centraliser vos documents, vous préparer avec l’IA et conserver votre archive, à travers tous vos mandats.',
+    primary: 'Demander un accès anticipé',
+    note: 'Hébergé dans l’UE · Conforme au RGPD · Chiffrement 256 bits',
+    imageAlt: 'Interface du logiciel personnel Dafira One pour administrateur de conseil',
+  },
+  compare: {
+    eyebrow: 'Nouveau produit',
+    title: 'Dafira vs Dafira One',
+    columns: [
+      { name: 'Dafira', audience: 'Pour les organisations', items: ['Gestion de conseil pour entreprises', 'Contrôle organisationnel des documents', 'Les données appartiennent à l’entreprise'] },
+      { name: 'Dafira One', audience: 'Pour les administrateurs individuels', items: ['Espace personnel pour tous vos conseils', 'Vos documents, votre contrôle', 'Archive à vie, même après vos mandats'] },
+    ],
+  },
+  integrations: {
+    title: 'Compatible avec vos plateformes de gouvernance',
+    lead: 'Dafira One se synchronise avec les outils que vos conseils utilisent déjà et centralise vos documents dans votre espace personnel.',
+    other: 'Autres portails de conseil',
+    email: 'E-mail',
+    more: 'D’autres à venir',
+    note: 'Synchronisation automatique : configurez-la une fois et Dafira One maintient vos documents à jour pour tous vos mandats.',
+  },
+  portal: {
+    title: 'Votre portail personnel et votre gestion documentaire',
+    lead: 'Fini les e-mails interminables et les documents éparpillés. Dafira One rassemble les documents, ordres du jour et pièces jointes de vos différents conseils et les organise en réunions et événements.',
+    items: [
+      { icon: 'document', title: 'Gestion documentaire automatique', text: 'Dafira organise pour les entreprises ; Dafira One organise pour vous, à travers tous vos conseils.' },
+      { icon: 'clock', title: 'Une chronologie des réunions et décisions', text: 'Suivez l’évolution des décisions dans tous vos mandats.' },
+      { icon: 'lock', title: 'Un espace privé, rien qu’à vous', text: 'Votre espace de travail personnel, indépendant de Dafira ou de toute organisation.' },
+    ],
+  },
+  ai: {
+    title: 'Préparez vos réunions de conseil avec l’IA',
+    lead: 'Plus besoin de lire seul des centaines de pages. L’IA de Dafira One analyse vos documents, réglementations et rapports pour faire ressortir ce qui compte pour vos responsabilités d’administrateur.',
+    items: [
+      { icon: 'document', title: 'Synthèses de documents longs', text: 'Concentrez-vous sur les points qui comptent pour la prochaine réunion.' },
+      { icon: 'shield', title: 'Points réglementaires et de conformité', text: 'Les exigences réglementaires pertinentes sont signalées dans vos documents.' },
+      { icon: 'sparkle', title: 'Des éclairages IA pour vos décisions', text: 'Le contexte de vos documents pour nourrir vos questions et vos décisions.' },
+    ],
+  },
+  archive: {
+    title: 'Gardez votre archive de conseil, même après votre mandat',
+    lead: 'Votre savoir ne s’arrête pas avec votre mandat. Avec Dafira One, vos documents et notes restent les vôtres : vous constituez au fil du temps votre archive personnelle.',
+    items: [
+      { icon: 'key', title: 'Accès permanent à vos données', text: 'Vos documents de conseil restent accessibles, quels que soient les changements dans l’organisation.' },
+      { icon: 'bank', title: 'Une archive de votre parcours d’administrateur', text: 'Un historique complet de votre expérience de gouvernance.' },
+      { icon: 'book', title: 'Votre bibliothèque de gouvernance', text: 'Une base de connaissances pour vos futurs mandats.' },
+    ],
+  },
+  conflicts: {
+    title: 'Connaissez vos conseils et repérez les conflits d’intérêts',
+    lead: 'Un conseil, ce sont des personnes autant que des documents. Dafira One vous aide à connaître les autres administrateurs et signale discrètement les conflits d’intérêts potentiels.',
+    card: {
+      title: 'Votre réseau de conseils',
+      meta: 'Analyse IA',
+      rows: [
+        { label: 'M. Davis', text: 'Ancienne CFO, RetailCorp', tone: 'ok' as const, status: 'Aucun conflit' },
+        { label: 'J. Dupont', text: 'CEO, ConcurrentCorp · concurrent direct', tone: 'danger' as const, status: 'Concurrent' },
+        { label: 'R. Martin', text: 'Associé, FournisseurDroit SARL · services juridiques', tone: 'pending' as const, status: 'Relation' },
+      ],
+      footer: 'Conflits potentiels signalés avant la réunion',
+      caption: 'Illustration · noms fictifs',
+    },
+    items: [
+      { icon: 'search', title: 'Analyse automatique', text: 'L’IA examine les parcours des administrateurs, les relations d’affaires et les mandats croisés pour identifier les conflits potentiels.' },
+      { icon: 'bell', title: 'Alertes et recommandations', text: 'Des alertes sur les conflits potentiels, avec des recommandations de récusation sur les points de l’ordre du jour.' },
+      { icon: 'users', title: 'Sur tous vos conseils', text: 'Tirez parti de ce que vous savez de tous vos mandats pour maintenir un haut niveau de gouvernance.' },
+    ],
+  },
+  security: {
+    title: 'Sécurisé. Hébergé dans l’UE. Toujours à vous.',
+    lead: 'Vos données restent en Europe. Dafira One est entièrement hébergé dans l’UE et conforme au RGPD.',
+    items: [
+      { icon: 'lock', title: 'Chiffrement de niveau entreprise', text: 'Vos documents sont chiffrés en transit et au repos.' },
+      { icon: 'globe', title: 'Données stockées dans l’UE', text: 'Hébergement européen et conformité RGPD.' },
+      { icon: 'shield', title: 'Architecture axée sur la confidentialité', text: 'Conçu dès le départ avec la confidentialité et la sécurité à l’esprit.' },
+    ],
+  },
+  form: {
+    eyebrow: 'Accès anticipé',
+    title: 'Obtenez un accès anticipé à Dafira One',
+    lead: 'Inscrivez-vous et nous vous contacterons à l’ouverture de l’accès anticipé.',
+    benefits: ['Accès anticipé gratuit', 'Hébergé et sécurisé dans l’UE', 'Préparation assistée par l’IA'],
+    heading: 'Demander un accès anticipé',
+    subheading: 'Moins de deux minutes. Pas de spam ; désinscription à tout moment.',
+    firstName: 'Prénom',
+    lastName: 'Nom',
+    email: 'E-mail professionnel',
+    emailPlaceholder: 'votre.email@entreprise.com',
+    boardCount: 'Dans combien de conseils siégez-vous actuellement ?',
+    boardOptions: [
+      { value: '', label: 'Sélectionnez le nombre de conseils' },
+      { value: '1', label: '1 conseil' },
+      { value: '2', label: '2 conseils' },
+      { value: '3', label: '3 conseils' },
+      { value: '4', label: '4 conseils' },
+      { value: '5+', label: '5 conseils ou plus' },
+    ],
+    trust: ['Conforme au RGPD', 'Chiffrement 256 bits', 'Centres de données UE'],
+    submit: 'Demander l’accès anticipé gratuit',
+    privacyBefore: 'En vous inscrivant, vous acceptez notre ',
+    privacyLink: 'politique de confidentialité',
+    privacyAfter: '. Pas de spam ; désinscription à tout moment.',
+    successTitle: 'Merci, vous êtes inscrit',
+    successText: 'Vous êtes inscrit pour l’accès anticipé à Dafira One.',
+    nextTitle: 'La suite',
+    next: ['Des nouvelles de l’avancement du développement', 'Une notification à l’ouverture de l’accès anticipé'],
+  },
+  faq: {
+    title: 'Questions fréquentes',
+    subtitle: 'À propos de Dafira One, le logiciel personnel pour administrateur de conseil',
+    inLanguage: 'fr',
+    faqs: boardMemberFaqs,
+  },
+};
 ---
 
 <Layout
-  title="Govrn One — Logiciel des Administrateurs de Conseil Personnel | Hébergé UE"
-  description="Premier logiciel personnel pour administrateur de conseil, 100% hébergé UE. Centralisez vos documents de tous vos conseils, préparez vos réunions avec l'IA et conservez votre archive à vie."
+  title="Dafira One — Logiciel personnel pour administrateur de conseil | Hébergé UE"
+  description="Logiciel personnel pour administrateur de conseil, hébergé dans l'UE. Centralisez les documents de tous vos conseils, préparez vos réunions avec l'IA et conservez votre archive après votre mandat."
   structuredData={combinedStructuredData}
 >
-  <main class="overflow-hidden">
-    <!-- Hero Section -->
-    <Hero
-      badgeText="Logiciel personnel pour administrateur de conseil"
-      heading={{
-        main: "Logiciel administrateur de conseil — conçu pour vous,",
-        highlight: "pas pour votre conseil"
-      }}
-      description="Govrn One révolutionne votre expérience d’administrateur de conseil. Premier logiciel personnel 100% hébergé dans l’UE, contrairement à Govrn qui sert les organisations, Govrn One vous appartient entièrement : centralisez tous vos documents, préparez-vous avec l’IA, conservez votre archive à vie — à travers tous vos mandats."
-      ctaButtons={{
-        primary: {
-          text: "Obtenir l'accès privilegié",
-          href: "#logiciel-administrateur-conseil-form"
-        },
-        secondary: {
-          text: "Regarder la vidéo"
-        }
-      }}
-      securityFeatures={[
-        {
-          title: "UE",
-          subtitle: "Hébergé"
-        },
-        {
-          title: "RGPD",
-          subtitle: "Conforme"
-        },
-        {
-          title: "256-bit",
-          subtitle: "Cryptage"
-        }
-      ]}
-      imageAlt="Interface du logiciel personnel Govrn One pour administrateur de conseil"
-      imageSrc={applicationHomePageImg}
-    />
-
-    <!-- Govrn vs Govrn One Comparison -->
-    <section class="py-16 bg-white border-b border-gray-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <p class="text-sm font-semibold text-primary uppercase tracking-wide">Innovation exclusive</p>
-          <h2 class="mt-2 text-2xl font-bold text-gray-900">Govrn vs Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">One</span></h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <!-- Govrn -->
-          <div class="bg-gray-50 p-6 rounded-xl">
-            <div class="text-center">
-              <h3 class="text-xl font-semibold text-gray-900 mb-2">Govrn</h3>
-              <p class="text-sm text-gray-600 mb-4">Pour les organisations</p>
-              <div class="space-y-3 text-left">
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-gray-400 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Gestion de conseil pour entreprises</span>
-                </div>
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-gray-400 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Contrôle organisationnel des documents</span>
-                </div>
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-gray-400 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Les données appartiennent à l'entreprise</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Govrn One -->
-          <div class="bg-primary/5 p-6 rounded-xl border-2 border-primary/20">
-            <div class="text-center">
-              <h3 class="text-xl font-semibold text-primary mb-2">Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">One</span></h3>
-              <p class="text-sm text-primary/70 mb-4">Pour les Administrateurs Individuels</p>
-              <div class="space-y-3 text-left">
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Espace de travail personnel à travers tous les conseils</span>
-                </div>
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Vos documents, votre contrôle</span>
-                </div>
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Archive à vie, même après les mandats</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Integrations Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Compatible avec toutes vos plateformes de gouvernance
-          </h2>
-          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
-            Synchronisation transparente avec les outils que vos conseils utilisent déjà. Tous vos documents centralisés dans votre espace personnel — enfin.
-          </p>
-        </div>
-
-        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-center">
-          <!-- SharePoint -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3 bg-white shadow-sm">
-              <Image
-                src={sharepointLogoImg}
-                alt="SharePoint"
-                class="w-10 h-10 object-contain"
-                width={40}
-                height={40}
-              />
-            </div>
-            <span class="text-sm font-semibold text-gray-900">SharePoint</span>
-          </div>
-
-          <!-- Google Drive -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3 bg-white shadow-sm">
-              <Image
-                src={googleDriveLogoImg}
-                alt="Google Drive"
-                class="w-10 h-10 object-contain"
-                width={40}
-                height={40}
-              />
-            </div>
-            <span class="text-sm font-semibold text-gray-900">Google Drive</span>
-          </div>
-
-          <!-- Diligent -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3 bg-white shadow-sm">
-              <Image
-                src={diligentLogoImg}
-                alt="Diligent"
-                class="w-10 h-10 object-contain"
-                width={40}
-                height={40}
-              />
-            </div>
-            <span class="text-sm font-semibold text-gray-900">Diligent</span>
-          </div>
-
-          <!-- Other BMS -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-3">
-              <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M9 11H7v3h2v-3zm4 0h-2v3h2v-3zm4 0h-2v3h2v-3zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
-              </svg>
-            </div>
-            <span class="text-sm font-semibold text-gray-900">Autres SGC</span>
-          </div>
-
-          <!-- Email -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center mb-3">
-              <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-              </svg>
-            </div>
-            <span class="text-sm font-semibold text-gray-900">Email</span>
-          </div>
-
-          <!-- Dropbox -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3 bg-white shadow-sm">
-              <Image
-                src={dropboxLogoImg}
-                alt="Dropbox"
-                class="w-10 h-10 object-contain"
-                width={40}
-                height={40}
-              />
-            </div>
-            <span class="text-sm font-semibold text-gray-900">Dropbox</span>
-          </div>
-
-          <!-- OneDrive -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3 bg-white shadow-sm">
-              <Image
-                src={oneDriveLogoImg}
-                alt="OneDrive"
-                class="w-8 h-8 object-contain"
-                width={32}
-                height={32}
-              />
-            </div>
-            <span class="text-sm font-semibold text-gray-900">OneDrive</span>
-          </div>
-
-          <!-- Plus More -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 bg-gray-400 rounded-lg flex items-center justify-center mb-3">
-              <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-              </svg>
-            </div>
-            <span class="text-sm font-semibold text-gray-900">+ Plus</span>
-          </div>
-        </div>
-
-        <div class="mt-12 text-center">
-          <p class="text-lg text-gray-600">
-            <span class="font-semibold">Configuration unique</span> — Govrn One maintient automatiquement la cohérence à travers tous vos mandats. Toujours.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Personal Board Portal Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Votre centre de commande personnel de gouvernance
-          </h2>
-          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
-            Fini les emails interminables et les documents éparpillés. Govrn One organise automatiquement tous vos documents de conseil en une timeline claire — prêt pour vos prises de décision.
-          </p>
-        </div>
-
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Organisation intelligente de vos mandats</h3>
-            <p class="mt-2 text-gray-600">Contrairement aux plateformes d'entreprise, Govrn One s'adapte à VOTRE façon de travailler — à travers tous vos conseils</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Vision panoramique de vos décisions</h3>
-            <p class="mt-2 text-gray-600">Tracez l'impact de vos décisions et anticipez les enjeux futurs — dans tous vos conseils</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Votre sanctuaire de gouvernance</h3>
-            <p class="mt-2 text-gray-600">Un espace entièrement à vous, indépendant des organisations — où vos décisions prennent forme</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- AI Preparation Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
-          <div>
-            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-              Maîtrisez vos réunions de conseil avec l'IA
-            </h2>
-            <p class="mt-4 text-xl text-gray-600">
-              Fini les nuits blanches à étudier des rapports interminables. L'IA de Govrn One analyse vos documents et extrait l'essentiel pour vos décisions stratégiques.
-            </p>
-
-            <div class="mt-8 space-y-6">
-              <div class="flex items-start">
-                <div class="flex-shrink-0">
-                  <div class="flex items-center justify-center w-8 h-8 bg-primary/10 rounded-lg">
-                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="ml-4">
-                  <h3 class="text-lg font-semibold text-gray-900">Synthèses ultra-précises de vos dossiers</h3>
-                  <p class="mt-1 text-gray-600">L'IA isole les éléments critiques pour vos prises de décision</p>
-                </div>
-              </div>
-
-              <div class="flex items-start">
-                <div class="flex-shrink-0">
-                  <div class="flex items-center justify-center w-8 h-8 bg-primary/10 rounded-lg">
-                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="ml-4">
-                  <h3 class="text-lg font-semibold text-gray-900">Veille réglementaire automatique</h3>
-                  <p class="mt-1 text-gray-600">Anticipez les obligations légales sans effort supplémentaire</p>
-                </div>
-              </div>
-
-              <div class="flex items-start">
-                <div class="flex-shrink-0">
-                  <div class="flex items-center justify-center w-8 h-8 bg-primary/10 rounded-lg">
-                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="ml-4">
-                  <h3 class="text-lg font-semibold text-gray-900">Intelligence décisionnelle sur mesure</h3>
-                  <p class="mt-1 text-gray-600">Des recommandations personnalisées basées sur votre expertise</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-8 lg:mt-0">
-            <Image
-              src={applicationHomePageImg}
-              alt="Interface de préparation de réunions de conseil alimentée par l'IA"
-              class="rounded-lg shadow-xl"
-              width={600}
-              height={400}
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Archive Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Votre héritage de gouvernance — pour toujours
-          </h2>
-          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
-            Vos décisions et expériences vous suivent à vie. Construisez votre propre bibliothèque de gouvernance — indépendante des organisations.
-          </p>
-        </div>
-
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Propriété absolue de vos données</h3>
-            <p class="mt-2 text-gray-600">Aucune dépendance aux systèmes d'entreprise — tout vous appartient</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Mémoire institutionnelle personnelle</h3>
-            <p class="mt-2 text-gray-600">Capitalisez sur chaque expérience pour enrichir vos futurs mandats</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">École de gouvernance personnalisée</h3>
-            <p class="mt-2 text-gray-600">Transformez chaque mandat en atout pour les suivants</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Board Insights Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Connaissez vos conseils et détectez les conflits d'intérêts
-          </h2>
-          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
-            La gouvernance, c’est avant tout humain. Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">One</span> vous éclaire sur votre écosystème d’administrateurs et détecte intelligemment les conflits d’intérêts potentiels.
-          </p>
-        </div>
-
-        <!-- Simplified Conflict Detection Demo -->
-        <div class="mt-16 bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200">
-          <div class="text-center mb-8">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Détection de conflits alimentée par l'IA</h3>
-            <p class="text-gray-600">Voyez comment Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">One</span> identifie automatiquement les conflits potentiels à travers votre réseau de conseils</p>
-          </div>
-
-          <!-- Simplified Board Network -->
-          <div class="bg-white rounded-xl p-6 shadow-sm border">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-              <!-- Left Side - Simple Board Member List -->
-              <div class="space-y-4">
-                <h4 class="font-semibold text-gray-900 mb-4">Votre réseau de conseils</h4>
-
-                <!-- Clean Member -->
-                <div class="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
-                  <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                    <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p class="font-medium text-gray-900">Maria Davis</p>
-                    <p class="text-sm text-gray-600">Ancienne CFO, RetailCorp</p>
-                  </div>
-                </div>
-
-                <!-- Conflict Member -->
-                <div class="flex items-center p-3 bg-red-50 rounded-lg border border-red-200">
-                  <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
-                    <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p class="font-medium text-gray-900">Jean Dupont</p>
-                    <p class="text-sm text-gray-600">CEO, ConcurrentCorp</p>
-                  </div>
-                </div>
-
-                <!-- Warning Member -->
-                <div class="flex items-center p-3 bg-orange-50 rounded-lg border border-orange-200">
-                  <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-3">
-                    <svg class="w-5 h-5 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p class="font-medium text-gray-900">Robert Martin</p>
-                    <p class="text-sm text-gray-600">Associé, FournisseurDroit SARL</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Right Side - AI Insights -->
-              <div class="space-y-4">
-                <h4 class="font-semibold text-gray-900 mb-4">Analyse IA</h4>
-
-                <!-- High Risk Alert -->
-                <div class="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 mr-3">
-                      <div class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center">
-                        <span class="text-red-600 text-xs font-bold">!</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 class="text-sm font-semibold text-red-800">Conflit concurrent</h5>
-                      <p class="text-sm text-red-700 mt-1">Jean Dupont travaille pour un concurrent direct</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Medium Risk Alert -->
-                <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 mr-3">
-                      <div class="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center">
-                        <span class="text-orange-600 text-xs font-bold">?</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 class="text-sm font-semibold text-orange-800">Relation d'affaires</h5>
-                      <p class="text-sm text-orange-700 mt-1">Le cabinet de Robert fournit des services juridiques</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Clean Status -->
-                <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 mr-3">
-                      <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                        <span class="text-green-600 text-xs font-bold">✓</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 class="text-sm font-semibold text-green-800">Aucun conflit</h5>
-                      <p class="text-sm text-green-700 mt-1">Maria n'a aucun conflit identifié</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature Highlights -->
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Screening automatique</h3>
-            <p class="mt-2 text-gray-600">L'IA scanne les antécédents des administrateurs, relations d'affaires et postes croisés pour identifier les conflits potentiels</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Alertes intelligentes et recommandations</h3>
-            <p class="mt-2 text-gray-600">Recevez des alertes proactives sur les conflits potentiels et des recommandations pour les récusations d'agenda</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Intelligence inter-conseils</h3>
-            <p class="mt-2 text-gray-600">Tirez parti des insights à travers tous vos postes de conseil pour maintenir les plus hauts standards de gouvernance</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Security Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Sécurisé. Hébergé UE. Toujours vôtre.
-          </h2>
-          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
-            Vos données ne quittent jamais l'Europe. Govrn One est entièrement hébergé dans l'UE, conforme aux plus hauts standards de confidentialité et sécurité, et prêt pour le RGPD.
-          </p>
-        </div>
-
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Cryptage de niveau entreprise</h3>
-            <p class="mt-2 text-gray-600">Vos données sont protégées avec les plus hauts standards de sécurité</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Données stockées exclusivement dans l'UE</h3>
-            <p class="mt-2 text-gray-600">Souveraineté et conformité des données européennes complètes</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Architecture axée sur la confidentialité</h3>
-            <p class="mt-2 text-gray-600">Conçu dès le départ avec la confidentialité et la sécurité à l'esprit</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Call to Action Section - Optimized for Conversion -->
-    <section id='' class="py-20 bg-gradient-to-br from-blue-50 to-indigo-50 relative overflow-hidden">
-      <!-- Background Pattern -->
-      <div class="absolute inset-0 opacity-5">
-        <svg class="w-full h-full" fill="currentColor" viewBox="0 0 400 400">
-          <defs>
-            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-              <circle cx="10" cy="10" r="1" fill="currentColor"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)"/>
-        </svg>
-      </div>
-
-      <div id='logiciel-administrateur-conseil-form' class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <!-- Social Proof & Urgency -->
-        <div class="text-center mb-8">
-          <div class="inline-flex items-center bg-green-50 border border-green-200 rounded-full px-4 py-2 mb-6">
-            <div class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-            <span class="text-sm font-medium text-green-800">Accès Anticipé Limité - 500 places disponibles</span>
-          </div>
-
-          <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl mb-4">
-            Obtenez un accès anticipé à Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">One</span>
-          </h2>
-
-          <p class="text-xl text-gray-600 mb-6 max-w-3xl mx-auto">
-            Rejoignez les administrateurs de conseils d'entreprises leaders qui transforment déjà leur gestion des responsabilités de gouvernance.
-          </p>
-
-          <!-- Benefits List -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div class="flex items-center justify-center space-x-3">
-              <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                </svg>
-              </div>
-              <span class="font-medium text-gray-700">Accès anticipé gratuit</span>
-            </div>
-            <div class="flex items-center justify-center space-x-3">
-              <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                </svg>
-              </div>
-              <span class="font-medium text-gray-700">Hébergé et sécurisé UE</span>
-            </div>
-            <div class="flex items-center justify-center space-x-3">
-              <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                </svg>
-              </div>
-              <span class="font-medium text-gray-700">Insights alimentés par l'IA</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Main Form -->
-        <div class="bg-white rounded-2xl p-8 shadow-2xl border border-white/50">
-          <!-- Form Header -->
-          <div class="text-center mb-6">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Sécurisez votre place aujourd'hui</h3>
-            <p class="text-gray-600">Prend moins de 2 minutes • Pas de spam, jamais • Se désabonner à tout moment</p>
-          </div>
-
-          <form id="govrnOneForm" class="space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">
-                  Prénom *
-                </label>
-                <input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                  required
-                />
-              </div>
-              <div>
-                <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">
-                  Nom de famille *
-                </label>
-                <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                  required
-                />
-              </div>
-            </div>
-
-            <div>
-              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                Email professionnel *
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                placeholder="votre.email@entreprise.com"
-                required
-              />
-            </div>
-
-            <div>
-              <label for="boardCount" class="block text-sm font-medium text-gray-700 mb-2">
-                Dans combien de conseils siégez-vous actuellement ? *
-              </label>
-              <select
-                id="boardCount"
-                name="boardCount"
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                required
-              >
-                <option value="">Sélectionnez le nombre de conseils</option>
-                <option value="1">1 Conseil</option>
-                <option value="2">2 Conseils</option>
-                <option value="3">3 Conseils</option>
-                <option value="4">4 Conseils</option>
-                <option value="5+">5+ Conseils</option>
-              </select>
-            </div>
-
-            <!-- Trust Signals -->
-            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <div class="flex items-center justify-center space-x-8 text-sm text-gray-600">
-                <div class="flex items-center space-x-2">
-                  <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                  </svg>
-                  <span>Conforme RGPD</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                  <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                  </svg>
-                  <span>Cryptage 256-bit</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                  <svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
-                  <span>Centres de données UE</span>
-                </div>
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              class="w-full px-6 py-4 bg-gradient-to-r from-primary to-blue-600 text-white rounded-lg hover:from-primary/90 hover:to-blue-600/90 transition-all duration-200 font-semibold text-lg flex items-center justify-center space-x-3 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
-            >
-              <span>Obtenir l'accès anticipé gratuit</span>
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </button>
-
-            <p class="text-xs text-gray-500 text-center">
-              En vous inscrivant, vous acceptez notre politique de confidentialité. Pas de spam, désabonnement à tout moment.
-            </p>
-          </form>
-
-          <!-- Success Message -->
-          <div id="formSuccess" class="hidden text-center py-8">
-            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <h3 class="text-3xl font-bold text-gray-900 mb-4">🎉 Vous y êtes !</h3>
-            <p class="text-lg text-gray-600 mb-4">
-              Bienvenue dans la liste exclusive des premiers adoptants de Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent font-semibold">One</span>.
-            </p>
-            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <p class="text-blue-800 font-medium">Que se passe-t-il ensuite ?</p>
-              <ul class="text-blue-700 text-sm mt-2 space-y-1">
-                <li>• Vous recevrez un email de confirmation dans les 5 minutes</li>
-                <li>• Recevez des mises à jour exclusives sur notre progression de développement</li>
-                <li>• Soyez notifié en premier quand l'accès anticipé s'ouvre</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Social Proof -->
-        <div class="text-center mt-8">
-          <p class="text-sm text-gray-500 mb-4">Fait confiance par les administrateurs d'organisations leaders</p>
-          <div class="flex items-center justify-center space-x-6 opacity-70">
-            <span class="text-gray-600 font-semibold text-sm">Van de Velde</span>
-            <span class="text-gray-400">•</span>
-            <span class="text-gray-600 font-semibold text-sm">Finance & Invest Brussels</span>
-            <span class="text-gray-400">•</span>
-            <span class="text-gray-600 font-semibold text-sm">Care Property Invest</span>
-            <span class="text-gray-400">•</span>
-            <span class="text-gray-600 font-semibold text-sm">Toolbox</span>
-          </div>
-          <div class="mt-2 text-xs text-gray-400">
-            et 50+ autres organisations
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <FAQ
-      texts={{
-        title: "Questions fréquemment posées",
-        subtitle: "En savoir plus sur le logiciel personnel Govrn One pour administrateur de conseil",
-        inLanguage: "fr",
-        faqs: boardMemberFaqs
-      }}
-    />
+  <main>
+    <BoardMemberSoftware t={t} formAnchor="logiciel-administrateur-conseil-form" privacyHref="/fr/privacy" />
   </main>
 </Layout>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('govrnOneForm');
-    const success = document.getElementById('formSuccess');
-
-    if (form && success) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(form);
-        const data = {
-          firstName: formData.get('firstName'),
-          lastName: formData.get('lastName'),
-          email: formData.get('email'),
-          boardCount: formData.get('boardCount')
-        };
-
-        // Track form submission
-        if (typeof window !== 'undefined' && window.dataLayer) {
-          window.dataLayer.push({
-            event: 'govrn_one_signup',
-            email: data.email,
-            board_count: data.boardCount
-          });
-        }
-
-        // Hide form and show success message
-        form.classList.add('hidden');
-        success.classList.remove('hidden');
-
-        // Here you would typically send the data to your backend
-        console.log('Govrn One signup:', data);
-      });
-    }
-  });
-</script>

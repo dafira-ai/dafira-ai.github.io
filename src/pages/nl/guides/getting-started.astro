@@ -1,6 +1,8 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import GuideHeader from '../../../components/guides/GuideHeader.astro';
+import GuideArticle from '../../../components/guides/GuideArticle.astro';
+import { Button, Icon } from '../../../components/ui';
 import GuideStep from '../../../components/guides/GuideStep.astro';
 import GuideSubSection from '../../../components/guides/GuideSubSection.astro';
 import GuideStepList from '../../../components/guides/GuideStepList.astro';
@@ -46,18 +48,18 @@ const naVergaderingStappen = [
 ];
 ---
 
-<Layout title="Aan de slag met Govrn - Complete Handleiding" description="Welkom bij Govrn—uw complete platform voor efficiënt bestuur en governance! Deze handleiding begeleidt u door de essentiële stappen om te starten en effectieve bestuursvergaderingen te organiseren.">
-  <main class="pt-16">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <GuideHeader
-        title="Aan de slag met Govrn: Uw Complete Handleiding"
-        description="Welkom bij Govrn—uw complete platform voor efficiënt bestuur en governance! Deze handleiding begeleidt u door de essentiële stappen om te starten en effectieve bestuursvergaderingen te organiseren."
+<Layout title="Aan de slag met Dafira - Complete Handleiding" description="Welkom bij Dafira—uw complete platform voor efficiënt bestuur en governance. Deze handleiding begeleidt u door de essentiële stappen om te starten en effectieve bestuursvergaderingen te organiseren.">
+  <main>
+    <GuideHeader
+        title="Aan de slag met Dafira: Uw Complete Handleiding"
+        description="Welkom bij Dafira—uw complete platform voor efficiënt bestuur en governance. Deze handleiding begeleidt u door de essentiële stappen om te starten en effectieve bestuursvergaderingen te organiseren."
       />
+    <GuideArticle>
 
       <GuideStep
         number={1}
         title="Groepen Instellen"
-        description="Groepen in Govrn helpen u bij het organiseren van uw bestuursleden in commissies, zodat de juiste mensen toegang hebben tot de juiste informatie."
+        description="Groepen in Dafira helpen u bij het organiseren van uw bestuursleden in commissies, zodat de juiste mensen toegang hebben tot de juiste informatie."
       >
         <GuideSubSection title="Groepen aanmaken voor commissies">
           <GuideStepList items={groepInstellingStappen} />
@@ -71,7 +73,7 @@ const naVergaderingStappen = [
       <GuideStep
         number={2}
         title="Bestuursleden Uitnodigen"
-        description="Voeg uw bestuursleden toe aan Govrn met de juiste rollen en rechten."
+        description="Voeg uw bestuursleden toe aan Dafira met de juiste rollen en rechten."
       >
         <GuideSubSection title="Proces voor het uitnodigen van leden">
           <GuideStepList items={ledenUitnodigenStappen} />
@@ -85,7 +87,7 @@ const naVergaderingStappen = [
       <GuideStep
         number={3}
         title="De Vergadercyclus Beheersen"
-        description="Succesvolle bestuursvergaderingen verlopen in drie fasen: Voor, Tijdens en Na. Hier leest u hoe u elke fase effectief beheert met Govrn."
+        description="Succesvolle bestuursvergaderingen verlopen in drie fasen: Voor, Tijdens en Na. Hier leest u hoe u elke fase effectief beheert met Dafira."
       >
         <GuideSubSection title="Voor de vergadering">
           <p class="text-gray-600 mb-4">Goede voorbereiding zorgt voor productieve vergaderingen. Volg deze stappen voor een succesvolle start:</p>
@@ -93,7 +95,7 @@ const naVergaderingStappen = [
         </GuideSubSection>
 
         <GuideSubSection title="Tijdens de vergadering">
-          <p class="text-gray-600 mb-4">Gebruik Govrn's realtime functies voor efficiënte discussie en besluitvorming:</p>
+          <p class="text-gray-600 mb-4">Gebruik Dafira's realtime functies voor efficiënte discussie en besluitvorming:</p>
           <GuideStepList items={tijdensVergaderingStappen} />
         </GuideSubSection>
 
@@ -103,18 +105,17 @@ const naVergaderingStappen = [
         </GuideSubSection>
 
         <ProTip
-          tip="Gebruik Govrn's documentsamenwerkingsfuncties tijdens alle vergaderfasen om één centrale bron voor alle bestuursmaterialen te behouden."
+          tip="Gebruik Dafira's documentsamenwerkingsfuncties tijdens alle vergaderfasen om één centrale bron voor alle bestuursmaterialen te behouden."
         />
       </GuideStep>
 
       <!-- Conclusie -->
-      <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Klaar voor Effectief Bestuur</h2>
+      <div class="mt-16 rounded-md p-8 border border-line bg-surface">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Klaar voor Effectief Bestuur</h2>
         <p class="text-lg text-gray-600 leading-relaxed mb-6">
-          U bent nu uitgerust om Govrn te gebruiken voor effectief bestuursbeheer. Onthoud dat succesvol bestuursbeheer een doorlopend proces is, en Govrn staat klaar om u bij elke stap te ondersteunen.
+          U bent nu uitgerust om Dafira te gebruiken voor effectief bestuursbeheer. Onthoud dat succesvol bestuursbeheer een doorlopend proces is, en Dafira staat klaar om u bij elke stap te ondersteunen.
         </p>
-        <p class="text-lg font-medium text-primary">Op weg naar beter bestuursbeheer! 🎉</p>
       </div>
-    </article>
+    </GuideArticle>
   </main>
 </Layout>

@@ -3,7 +3,6 @@ import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import WhyWeBuildVideo from "../../components/WhyWeBuildVideo.astro";
 import Features from "../../components/Features.astro";
-import Stats from "../../components/Stats.astro";
 import Timeline from "../../components/Timeline.astro";
 import Personas from "../../components/Personas.astro";
 import Testimonials from "../../components/Testimonials.astro";
@@ -16,128 +15,72 @@ import TaskTimeline from "../../components/animations/TaskTimeline.astro";
 import FeatureHighlight from "../../components/animations/FeatureHighlight.astro";
 
 const hero = {
-  imageValues: [
-    {
-      title: "Kunstmatige Intelligentie",
-      description:
-        "Benut de kracht van AI om uw data om te zetten in strategische inzichten",
-      position: "top-1/4 left-2/3",
-    },
-    {
-      title: "Optimale Beveiliging",
-      description:
-        "Enterprise-grade beveiliging met end-to-end encryptie en gegarandeerde compliance",
-      position: "bottom-1/3 right-10",
-    },
-    {
-      title: "Naadloze Samenwerking",
-      description:
-        "Krachtige samenwerkingstools voor effectieve communicatie",
-      position: "bottom-1/4 left-1/3",
-    },
-  ],
-  badgeText: "Corporate governance herontworpen door AI",
+  badgeText: "Bestuursportaal · AVG-conform",
   heading: {
-    main: "Kunstmatige intelligentie voor uw",
-    highlight: "strategische besluitvorming",
+    main: "Het bestuursportaal voor organisaties die",
+    highlight: "governance serieus nemen.",
   },
   description:
-    "Govrn ondersteunt uw raad van bestuur bij het nemen van beslissingen. Ons AI-platform optimaliseert samenwerking, waarborgt compliance en ondersteunt uw duurzame ontwikkeling.",
+    "Stel het bestuursdossier samen, leid de vergadering, registreer de stemmingen en verspreid ondertekende notulen. Eén beveiligde plek voor bestuurders, secretarissen en juristen.",
   ctaButtons: {
     primary: {
-      text: "Ontdek Govrn",
+      text: "Demo aanvragen",
       href: "/nl/request-demo",
     },
     secondary: {
-      text: "Bekijk de demo",
+      text: "Bekijk de rondleiding van 2 minuten",
     },
   },
   securityFeatures: [
-    {
-      title: "AVG",
-      subtitle: "Gecertificeerd",
-    },
-    {
-      title: "Encryptie",
-      subtitle: "256-bit",
-    },
-    {
-      title: "Beveiliging",
-      subtitle: "Multi-Factor",
-    },
+    { title: "256-bit", subtitle: "Encryptie" },
+    { title: "AVG", subtitle: "Conform" },
+    { title: "MFA", subtitle: "Voor elke bestuurder" },
   ],
-  imageAlt: "Govrn Interface - Corporate governance platform",
+  imageAlt: "Dafira-interface - portaal voor raden van bestuur",
   imageSrc: "/application-home-page.png",
 };
 
-const stats = [
-  {
-    value: "93%",
-    label: "Van de bestuurders voelt zich zekerder in hun beslissingen met AI-ondersteuning",
-    icon: "🎯",
-    bgImage: "/hero-man.jpg"
-  },
-  {
-    value: "2.5x",
-    label: "Snellere strategische planning en uitvoering met onze samenwerkingstools",
-    icon: "⚡",
-    bgImage: "/hero-woman.jpg"
-  },
-  {
-    value: "86%",
-    label: "Van de besturen rapporteert verbeterde stakeholder betrokkenheid en transparantie",
-    icon: "🤝",
-    bgImage: "/hero-group.jpg"
-  }
-];
-
 const featuresProps = {
   texts: {
-    title: "De fundamenten van moderne governance",
-    subtitle: "Ontdek hoe Govrn uw governance transformeert",
-    exploreButton: "Ontdek onze functies",
+    title: "Van agenda tot ondertekende notulen, op één plek",
+    subtitle: "Dafira dekt de volledige bestuurscyclus: de vergadering voorbereiden, houden en opvolgen wat werd beslist.",
+    exploreButton: "Alle functies bekijken",
     exploreButtonUrl: "/nl/features",
-    learnMore: "Ontdek de beheerfuncties",
+    learnMore: "Meer informatie",
   },
   pillars: [
     {
-      title: "Bestuursprestaties",
+      title: "De vergadering voorbereiden",
       description:
-        "Optimaliseer uw governance met Govrn: centraliseer uw documenten en verbeter uw productiviteit met onze beveiligde tools.",
-      icon: "⚡",
+        "Stel de agenda op, bundel het bestuursdossier en deel het veilig. Bestuurders lezen en annoteren op elk toestel.",
       features: [
-        "Gecentraliseerd documentbeheer",
-        "Intelligente annotaties",
-        "Versterkte beveiliging",
-        "Geavanceerde productiviteitstools",
+        "Agendabouwer",
+        "Documentbibliotheek",
+        "Persoonlijke annotaties",
+        "Beveiligde aanmelding",
       ],
-      gradient: "from-primary to-blue-500",
     },
     {
-      title: "Collectieve Intelligentie",
+      title: "De stukken begrijpen",
       description:
-        "Benut de kracht van AI om uw documenten te analyseren en relevante strategische inzichten te verkrijgen.",
-      icon: "🤖",
+        "Stel vragen aan de AI-assistent over de bestuursstukken en krijg samenvattingen van lange documenten. Stel de notulen op in een fractie van de tijd.",
       features: [
-        "Voorspellende analyse",
-        "Strategische inzichten",
-        "Document intelligence",
-        "Realtime samenwerking",
+        "AI-assistent voor bestuursdocumenten",
+        "AI-notulenbouwer",
+        "Beveiligde bestuurschat",
+        "Opvolging van actiepunten",
       ],
-      gradient: "from-blue-500 to-indigo-500",
     },
     {
-      title: "Compliance & Governance",
+      title: "Beslissen en vastleggen",
       description:
-        "Beheer uw processen op basis van rollen, met geïntegreerde elektronische handtekening en stemsysteem.",
-      icon: "⚖️",
+        "Organiseer stemmingen, onderteken notulen elektronisch en houd een register bij van elk besluit, met toegang per rol in het bestuur.",
       features: [
-        "Rolbeheer",
+        "Stemmen",
         "Elektronische handtekening",
-        "Compliance monitoring",
-        "Elektronisch stemsysteem",
+        "Besluitenregister",
+        "Toegang per rol",
       ],
-      gradient: "from-indigo-500 to-primary",
     },
   ],
 };
@@ -181,7 +124,7 @@ const aiAssistantProps = {
     messages: [
       {
         type: "assistant",
-        content: "Analyse van bestuurdocumenten voltooid. Belangrijkste punten:",
+        content: "Analyse van de bestuursdocumenten voltooid. Belangrijkste punten:",
         insights: [
         "Omzetgroei 15% boven sectorgemiddelde",
         "98% compliance ratio",
@@ -202,8 +145,8 @@ const aiAssistantProps = {
       ]
     }
     ],
-    headerTitle: "AI Assistent",
-    headerSubtitle: "Document analyse",
+    headerTitle: "AI-assistent",
+    headerSubtitle: "Analyse van bestuursdocumenten",
     headerEmoji: "🤖"
 };
 
@@ -230,63 +173,51 @@ const gouvernanceComplianceProps = {
 
 const featureShowcaseProps = {
   texts: {
-    badge: "Concrete resultaten",
-    title: "Optimaliseer uw bestuursprestaties",
+    badge: "Hoe het werkt",
+    title: "Gebouwd rond de manier waarop besturen echt werken",
     subtitle:
-      "Ervaar de tastbare impact van Govrn op uw governance met meetbare verbeteringen in efficiëntie, intelligentie en compliance.",
-    keyBenefits: "Belangrijkste voordelen:",
+      "Documenten, besluiten en compliance op één plek, met toegang per rol en een spoor van elke wijziging.",
+    keyBenefits: "Kernpunten:",
   },
   outcomes: [
     {
-      title: "Document centralisatie",
+      title: "Eén plek voor de bestuursdocumenten",
       description:
-        "Een beveiligd platform voor al uw documenten, overal en altijd toegankelijk - ongeacht uw technische vaardigheden.",
+        "Bestuursdossiers, notulen en beleidsdocumenten in een beveiligde omgeving, toegankelijk op elk toestel, zonder technische voorkennis.",
       component: DocumentFlow,
       componentProps: documentFlowProps,
-      stats: [
-        { value: "100%", label: "Gecentraliseerde documenten" },
-        { value: "24/7", label: "Beveiligde toegang" },
-      ],
       benefits: [
-        "Centrale informatiebron",
-        "Intelligente classificatie",
+        "Eén bron voor het bestuur",
         "Versiebeheer",
-        "Flexibele toegangscontrole",
+        "Toegang per rol",
+        "Raadplegen op elk toestel",
       ],
     },
     {
-      title: "Data-gedreven besluitvorming",
+      title: "AI als hulp bij het lezen",
       description:
-        "Transformeer uw documenten in bruikbare inzichten met onze geavanceerde AI, voor snellere en beter geïnformeerde strategische beslissingen.",
+        "Stel de AI-assistent vragen over het bestuursdossier en krijg samenvattingen van lange documenten. De AI helpt bij de voorbereiding, het bestuur beslist.",
       component: TaskTimeline,
       componentProps: aiAssistantProps,
-      stats: [
-        { value: "45%", label: "Besluitvormingskwaliteit" },
-        { value: "24/7", label: "AI-analyse" },
-      ],
       benefits: [
-        "Voorspellende analyses",
-        "Strategische aanbevelingen",
-        "Marktmonitoring",
-        "Prestatiemonitoring",
+        "Vragen over de bestuursstukken",
+        "Samenvattingen van lange documenten",
+        "Ontwerpnotulen met AI",
+        "Opvolging van actiepunten",
       ],
       link: {
-        text: "Ontdek onze AI",
+        text: "Ontdek de AI-assistent",
         url: "/nl/features/ai-assistant",
       },
     },
     {
-      title: "Compliance & Governance",
+      title: "Compliance en traceerbaarheid",
       description:
-        "Bestuur uw raad met aangepaste governance tools, inclusief elektronische handtekening en geautomatiseerde compliance controle.",
+        "Stemmingen, elektronische handtekeningen en een besluitenregister, met toegangsrechten per rol en een volledige audit trail.",
       component: FeatureHighlight,
       componentProps: gouvernanceComplianceProps,
-      stats: [
-        { value: "100%", label: "Compliance" },
-        { value: "40%", label: "Administratieve tijdsbesparing" },
-      ],
       benefits: [
-        "Geautomatiseerde controles",
+        "Stemmen",
         "Elektronische handtekening",
         "Rechtenbeheer",
         "Audit trail",
@@ -297,76 +228,76 @@ const featureShowcaseProps = {
 
 const timelineProps = {
   texts: {
-    title: "De bestuurscyclus",
-    subtitle: "Beheers elke fase van uw governance",
-    cta: "Nu beginnen",
+    title: "Voor, tijdens en na de vergadering",
+    subtitle: "Eén werkruimte volgt de vergadering, van het eerste agendaontwerp tot de laatste handtekening.",
+    cta: "Dafira uitproberen",
     ctaLink: "/nl/try"
   },
   timelineSteps: [
     {
-      phase: "Voorbereiding",
-      title: "Geoptimaliseerde voorbereiding",
-      icon: "📋",
-      color: "from-blue-500 to-primary",
+      phase: "Voor",
+      title: "Voorbereiding",
+      icon: "",
+      color: "",
       image: "/before-meeting.jpg",
       features: [
         {
-          title: "Geautomatiseerde agenda's",
-          description: "Efficiënte creatie en verspreiding van agenda's.",
-          icon: "📅"
+          title: "Agenda",
+          description: "Stel de agenda van elke vergadering op en verspreid ze.",
+          icon: ""
         },
         {
-          title: "Documentbeheer", 
-          description: "Veilige organisatie en delen van essentiële documenten.",
-          icon: "📁"
+          title: "Bestuursdossier",
+          description: "Bundel de stukken en deel ze op een beveiligde manier.",
+          icon: ""
         },
         {
-          title: "AI-analyse",
-          description: "Ondersteuning van bestuurders met data-gedreven inzichten.",
-          icon: "🤖"
+          title: "AI-assistent",
+          description: "Bestuurders stellen vragen over het dossier en krijgen samenvattingen van lange documenten vóór de vergadering.",
+          icon: ""
         }
       ]
     },
     {
-      phase: "Tijdens de vergadering",
-      title: "Live samenwerking",
-      icon: "🤝",
-      color: "from-primary to-blue-600",
+      phase: "Tijdens",
+      title: "In vergadering",
+      icon: "",
+      color: "",
       image: "/during-meeting.jpg",
       features: [
         {
-          title: "Synchrone samenwerking",
-          description: "Realtime annotaties en uitwisselingen in een beveiligde omgeving.",
-          icon: "✏️"
+          title: "Annotaties en overleg",
+          description: "Bestuurders annoteren documenten en overleggen tijdens de vergadering, in een beveiligde omgeving.",
+          icon: ""
         },
         {
-          title: "Besluitvorming",
-          description: "Directe opvolging van besluiten en acties.",
-          icon: "📝"
+          title: "Besluiten",
+          description: "Leg besluiten vast tijdens de vergadering en volg de actiepunten op.",
+          icon: ""
         }
       ]
     },
     {
-      phase: "Opvolging",
-      title: "Post-vergadering beheer",
-      icon: "✅",
-      color: "from-blue-600 to-primary",
+      phase: "Na",
+      title: "Opvolging",
+      icon: "",
+      color: "",
       image: "/after-meeting.jpg",
       features: [
         {
-          title: "Geautomatiseerde notulen",
-          description: "Directe generatie van notulen met geïntegreerde besluiten.",
-          icon: "⚡"
+          title: "Notulen",
+          description: "Stel de notulen op met de AI-notulenbouwer, met besluiten en actiepunten overgenomen.",
+          icon: ""
         },
         {
-          title: "Actie-opvolging",
-          description: "Toewijzing en monitoring van post-vergadering taken.",
-          icon: "📋"
+          title: "Taken",
+          description: "Wijs opvolgtaken toe en volg ze op, zodat niets verloren gaat.",
+          icon: ""
         },
         {
-          title: "Geïntegreerde communicatie",
-          description: "Realtime updates, vereenvoudigde stemmingen en enquêtes.",
-          icon: "💬"
+          title: "Communicatie",
+          description: "Nieuwsfeed van het bestuur, stemmingen en peilingen op één plek.",
+          icon: ""
         }
       ]
     }
@@ -375,25 +306,25 @@ const timelineProps = {
 
 const securityPreviewProps = {
   texts: {
-    badge: "Maximale beveiliging",
-    title: "Uw veiligheid, onze topprioriteit",
-    subtitle: "Geavanceerde bescherming voor uw gevoelige gegevens",
-    cta: "Ontdek onze beveiligingsfuncties",
+    badge: "Beveiliging",
+    title: "Bestuursstukken blijven vertrouwelijk",
+    subtitle: "Encryptie, sterke authenticatie en toegangsrechten per rol beschermen wat het bestuur bespreekt.",
+    cta: "Lees meer over beveiliging",
     features: [
       {
-        icon: "🔒",
-        title: "Versterkte beveiliging",
-        description: "Maximale bescherming van uw vertrouwelijke informatie"
+        icon: "",
+        title: "Encryptie",
+        description: "256-bit encryptie beschermt documenten, berichten en stemmingen."
       },
       {
-        icon: "🔐",
-        title: "Twee-factor authenticatie", 
-        description: "Versterkte toegangsbeveiliging"
+        icon: "",
+        title: "Tweefactorauthenticatie",
+        description: "Elke bestuurder meldt zich aan met een tweede factor."
       },
       {
-        icon: "👥",
-        title: "Toegangscontrole",
-        description: "Gedetailleerd rechtenbeheer en volledige traceerbaarheid"
+        icon: "",
+        title: "Toegang per rol",
+        description: "Elk document is enkel zichtbaar voor wie het moet zien, met een audit trail van elke handeling."
       }
     ]
   }
@@ -401,57 +332,57 @@ const securityPreviewProps = {
 
 const personasProps = {
   texts: {
-    title: "Een oplossing voor elke rol",
-    subtitle: "Govrn biedt een op maat gemaakte ervaring voor elke governance stakeholder, met optimalisatie van besluitvorming en operationele efficiëntie.",
-    cta: "Ontdek uw oplossing",
-    learnMore: "Ontdek de functies per rol"
+    title: "Eén portaal, vier manieren van werken",
+    subtitle: "Directie, secretariaat, bestuurders en juristen bekijken het bestuur elk vanuit hun eigen invalshoek.",
+    cta: "Vind de oplossing voor uw rol",
+    learnMore: "Bekijk hoe het werkt voor deze rol"
   },
   personas: [
     {
-      role: "Directie",
-      description: "Voorzie uw raad van bestuur van een krachtige en intuïtieve tool om betrokkenheid en collectieve effectiviteit te stimuleren.",
-      icon: "👔",
+      role: "CEO en directie",
+      description: "Houd het bestuur op de hoogte tussen de vergaderingen en volg besluiten op zonder iedereen per e-mail te moeten herinneren.",
+      icon: "",
       features: [
-        "Realtime engagement monitoring",
-        "Strategische beslissingsondersteuning", 
-        "Prestatie-analyse",
-        "Executive dashboards"
+        "Nieuwsfeed van het bestuur",
+        "Opvolging van besluiten",
+        "Opvolging van actiepunten",
+        "Beveiligde bestuurschat"
       ],
       link: "/nl/for/ceo"
     },
     {
-      role: "Algemeen Secretariaat",
-      description: "Vereenvoudig de organisatie en opvolging van vergaderingen terwijl u zorgt voor vlotte communicatie tussen stakeholders.",
-      icon: "📊",
+      role: "Bestuurssecretariaat",
+      description: "Stel agenda's op, bundel bestuursdossiers en verspreid notulen vanaf één plek, in plaats van via gedeelde mappen en e-mails.",
+      icon: "",
       features: [
-        "Geautomatiseerde planning",
-        "Documentbeheer",
-        "Actie-opvolging", 
-        "Effectieve communicatie"
+        "Agendabouwer",
+        "Verspreiding van documenten",
+        "Opvolging van actiepunten",
+        "Notulen met AI"
       ],
       link: "/nl/for/board-secretary"
     },
     {
       role: "Bestuurders",
-      description: "Krijg toegang tot een intuïtief platform dat u ondersteunt in uw taken en uw besluitvorming vereenvoudigt.",
-      icon: "🎯",
+      description: "Lees en annoteer het bestuursdossier op elk toestel, stem en vind eerdere besluiten terug wanneer u ze nodig hebt.",
+      icon: "",
       features: [
-        "Eenvoudige documenttoegang",
-        "Geoptimaliseerde voorbereiding",
+        "Toegang tot documenten",
+        "Persoonlijke annotaties",
         "Elektronisch stemmen",
-        "Strategische analyses"
+        "AI-assistent voor documenten"
       ],
       link: "/nl/for/board-member"
     },
     {
-      role: "Juridische Directie",
-      description: "Profiteer van een beveiligde oplossing die uw raad en organisatie effectief beschermt.",
-      icon: "⚖️",
+      role: "Juridische directie",
+      description: "Houd besluiten, handtekeningen en de audit trail op orde, met documenten die binnen het bestuur blijven.",
+      icon: "",
       features: [
-        "Compliance controle",
-        "Risicobeheer",
-        "Digitale kluis",
-        "Volledige traceerbaarheid"
+        "Besluitenregister",
+        "Elektronische handtekening",
+        "Toegang per rol",
+        "Audit trail"
       ],
       link: "/nl/for/general-counsel"
     }
@@ -460,59 +391,57 @@ const personasProps = {
 
 const testimonialsProps = {
   texts: {
-    title: "Zij vertrouwen op ons",
-    subtitle: "Ontdek hoe organisaties hun governance transformeren met Govrn",
-    cta: "Alle succesverhalen",
+    title: "Wat bestuursteams zeggen",
+    subtitle: "Secretarissen, juristen en CEO's over het werken met Dafira voor hun bestuur.",
+    cta: "Alle klantverhalen",
     ctaLink: "/nl/testimonials"
   },
     testimonials: [
     {
-      quote: "Govrn heeft onze governance <strong>gerevolutioneerd</strong> door <strong>efficiëntie</strong> en <strong>duidelijkheid</strong> in onze processen te brengen.",
-      author: "Lore Werbrouck",
-      position: "Juridisch Directeur",
-      company: "Van de Velde",
-      image: "/vdv-lore-portrait.jpg",
-      link: "/nl/case-studies/van-de-velde"
+      quote: "Dafira heeft onze governance <strong>gerevolutioneerd</strong> door <strong>efficiëntie</strong> en <strong>duidelijkheid</strong> in onze processen te brengen.",
+      author: "General Counsel",
+      position: "",
+      company: "Beursgenoteerde modegroep",
+      link: "/nl/case-studies/listed-fashion-group"
     },
     {
-      quote: "Govrn heeft ons documentbeheer <strong>getransformeerd</strong>, waardoor onze vergaderingen <strong>efficiënter</strong> en meer <strong>besluitgericht</strong> zijn geworden.",
-      author: "Pierre Hermant",
-      position: "CEO",
-      company: "Finance & Invest Brussels",
-      image: "/fib-pierre.webp",
-      link: "/nl/case-studies/finance-invest-brussels"
+      quote: "Dafira heeft ons documentbeheer <strong>getransformeerd</strong>, waardoor onze vergaderingen <strong>efficiënter</strong> en meer <strong>besluitgericht</strong> zijn geworden.",
+      author: "CEO",
+      position: "",
+      company: "Regionaal publiek investeringsfonds",
+      link: "/nl/case-studies/public-investment-fund"
     },
     {
-      quote: "Govrn vertegenwoordigt de <strong>toekomst</strong> van governance, met een combinatie van <strong>gebruiksgemak</strong> en <strong>kunstmatige intelligentie</strong>.",
-      author: "Nathalie Byl",
-      position: "Legal & Compliance Manager",
-      company: "Care Property Invest",
-      image: "/careproperty-logo.png",
-      link: "/nl/case-studies/care-property-invest"
+      quote: "Dafira vertegenwoordigt de <strong>toekomst</strong> van governance, met een combinatie van <strong>gebruiksgemak</strong> en <strong>kunstmatige intelligentie</strong>.",
+      author: "Paralegal en compliance officer",
+      position: "",
+      company: "Beursgenoteerde zorgvastgoedvennootschap",
+      link: "/nl/case-studies/healthcare-real-estate"
     }
   ]
 };
 
 const faqProps = {
   texts: {
-    title: "Veelgestelde vragen",
-    subtitle: "Antwoorden op de meest gestelde vragen over Govrn",
+    title: "Vragen die besturen ons stellen",
+    subtitle: "Onboarding, gegevensbescherming, ondersteuning en opslag.",
+    inLanguage: "nl",
     faqs: [
       {
-        question: "Hoe past Govrn zich aan verschillende niveaus van digitale volwassenheid aan?",
-        answer: "De intuïtieve interface van Govrn stelt alle bestuurders in staat om effectief deel te nemen, ongeacht hun technologisch niveau. Ons platform biedt geleidelijke onboarding, gepersonaliseerde training en toegankelijke tools voor soepele samenwerking."
+        question: "Hoe past Dafira zich aan verschillende niveaus van digitale volwassenheid aan?",
+        answer: "De intuïtieve interface van Dafira stelt alle bestuurders in staat om effectief deel te nemen, ongeacht hun technologisch niveau. Ons platform biedt geleidelijke onboarding, gepersonaliseerde training en toegankelijke tools voor soepele samenwerking."
       },
       {
-        question: "Is Govrn AVG-compliant?",
-        answer: "Ja, Govrn voldoet volledig aan de AVG en past strikte gegevensbeschermingsmaatregelen toe om de vertrouwelijkheid van uw informatie te waarborgen."
+        question: "Is Dafira AVG-compliant?",
+        answer: "Ja, Dafira voldoet volledig aan de AVG en past strikte gegevensbeschermingsmaatregelen toe om de vertrouwelijkheid van uw informatie te waarborgen."
       },
       {
         question: "Hoe kunnen we onze bestaande documenten importeren?",
-        answer: "Govrn biedt verschillende importmethoden: batch upload, drag-and-drop en integratie met uw huidige opslagoplossingen."
+        answer: "Dafira biedt verschillende importmethoden: batch upload, drag-and-drop en integratie met uw huidige opslagoplossingen."
       },
       {
         question: "Kunnen processen worden aangepast?",
-        answer: "Absoluut! Govrn past zich aan uw specifieke behoeften aan met uitgebreide aanpassingsmogelijkheden."
+        answer: "Ja. Dafira past zich aan uw specifieke behoeften aan met uitgebreide aanpassingsmogelijkheden."
       },
       {
         question: "Welke ondersteuning biedt u?",
@@ -529,7 +458,7 @@ const faqProps = {
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  name: "Govrn - Veelgestelde vragen",
+  name: "Dafira - Veelgestelde vragen",
   inLanguage: "nl",
   mainEntity: faqProps.texts.faqs.map((faq) => ({
     "@type": "Question",
@@ -542,17 +471,17 @@ const structuredData = {
 };
 
 const whyWeBuildVideoProps = {
-  title: "Waarom we Govrn bouwen",
-  subtitle: "Onze Missie",
+  title: "Waarom we Dafira bouwen",
+  subtitle: "Onze missie",
   videoId: "D6vubHkS_is",
-  description: "Ontdek het verhaal achter Govrn en waarom we gepassioneerd zijn over het transformeren van bestuursbeheer met AI-aangedreven oplossingen.",
+  description: "Het verhaal achter Dafira, en waarom we een portaal voor raden van bestuur ontwikkelen.",
   language: "nl"
 };
 
 const ctaProps = {
   texts: {
-    title: "Klaar om uw governance te transformeren?",
-    subtitle: "Sluit u aan bij de organisaties die innoveren met Govrn",
+    title: "Bekijk Dafira met uw eigen bestuursdossier",
+    subtitle: "Een demo van 30 minuten met iemand die zelf bestuursvergaderingen heeft georganiseerd. Breng een echte agenda mee, dan zetten we die samen met u op.",
     cta1: "Demo aanvragen",
     cta2: "Contact opnemen"
   },
@@ -564,14 +493,13 @@ const ctaProps = {
 ---
 
 <Layout
-  title="Govrn - Kunstmatige intelligentie voor uw governance"
-  description="Transformeer uw governance met Govrn, het AI-platform dat uw processen optimaliseert, samenwerking versterkt en innovatie stimuleert."
+  title="Dafira | ضفيرة · Het portaal voor raden van bestuur"
+  description="Dafira is het portaal voor raden van bestuur: agenda, bestuursdossier, stemmingen, elektronische handtekening en notulen in één beveiligde, AVG-conforme omgeving."
   structuredData={structuredData}
 >
   <main class="overflow-hidden">
     <Hero {...hero} />
-    <WhyWeBuildVideo {...whyWeBuildVideoProps} />
-    <Stats stats={stats} />
+    <!-- <WhyWeBuildVideo {...whyWeBuildVideoProps} /> — thumbnail still shows the old brand -->
     <Features {...featuresProps} />
     <FeatureShowcase {...featureShowcaseProps} />
     <Timeline {...timelineProps} />

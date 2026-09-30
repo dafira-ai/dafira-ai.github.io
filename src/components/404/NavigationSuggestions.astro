@@ -1,8 +1,12 @@
 ---
+// Helpful destinations after a 404, as a ruled grid of links. `icon` accepts an icon name (legacy emoji also mapped).
+import { Icon } from '../ui';
+
 interface Suggestion {
   text: string;
   href: string;
   icon: string;
+  description?: string;
 }
 
 interface Props {
@@ -12,14 +16,16 @@ interface Props {
 const { suggestions } = Astro.props;
 ---
 
-<div class="flex flex-wrap justify-center gap-4">
-  {suggestions.map(suggestion => (
-    <a
-      href={suggestion.href}
-      class="inline-flex items-center px-6 py-3 text-base font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-    >
-      <span class="mr-2">{suggestion.icon}</span>
-      {suggestion.text}
-    </a>
+<ul class="grid gap-px bg-line border border-line rounded-md overflow-hidden sm:grid-cols-2 lg:grid-cols-3">
+  {suggestions.map((s) => (
+    <li class="bg-white">
+      <a href={s.href} class="group flex items-start gap-4 p-6 h-full hover:bg-surface transition-colors">
+        <Icon name={s.icon} class="w-5 h-5 text-navy mt-0.5" />
+        <span>
+          <span class="block font-medium text-navy group-hover:text-primary transition-colors">{s.text}</span>
+          {s.description && <span class="block mt-1 text-sm text-gray-600">{s.description}</span>}
+        </span>
+      </a>
+    </li>
   ))}
-</div>
+</ul>

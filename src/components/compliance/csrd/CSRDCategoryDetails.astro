@@ -1,5 +1,8 @@
-
 ---
+// Detail of one CSRD category in the compliance dashboard mock-up: strengths, gaps, recommendations and supporting documents.
+import { langFromPath } from '../../../i18n/routes';
+import { complianceLabels, statusTone } from '../labels';
+
 interface DocumentEvidence {
   title: string;
   type: string;
@@ -22,91 +25,52 @@ interface Props {
 }
 
 const { title, score, status, requirement, analysis, documents } = Astro.props;
-
-const statusColors = {
-  good: 'bg-green-100 text-green-800',
-  warning: 'bg-yellow-100 text-yellow-800',
-  alert: 'bg-red-100 text-red-800'
-};
+const l = complianceLabels(langFromPath(Astro.url.pathname));
+const s = (statusTone[status] ? status : 'good') as keyof typeof statusTone;
+const columns = [
+  { label: l.strengths, items: analysis.strengths, mark: 'bg-emerald-600' },
+  { label: l.gaps, items: analysis.gaps, mark: 'bg-amber-500' },
+  { label: l.recommendations, items: analysis.recommendations, mark: 'bg-primary' },
+];
 ---
 
-<div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-  <!-- Header -->
-  <div class="flex items-start justify-between mb-6">
+<div class="bg-white border border-line rounded-md text-sm">
+  <div class="flex items-start justify-between gap-4 px-5 py-4 border-b border-line">
     <div>
-      <h3 class="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
-      <p class="text-gray-600">{requirement}</p>
+      <p class="font-semibold text-navy">{title}</p>
+      <p class="mt-0.5 text-xs text-gray-600">{requirement}</p>
     </div>
-    <span class={`px-4 py-2 rounded-full text-sm font-medium ${statusColors[status]}`}>
-      {score}% Complete
-    </span>
+    <span class={`text-[11px] font-medium px-2 py-0.5 rounded-sm whitespace-nowrap ${statusTone[s]}`}>{score}% {l.complete}</span>
   </div>
 
-  <!-- Analysis Section -->
-  <div class="grid md:grid-cols-3 gap-6 mb-8">
-    <div class="space-y-4">
-      <h4 class="font-medium text-gray-900">Strengths</h4>
-      <ul class="space-y-2">
-        {analysis.strengths.map(strength => (
-          <li class="flex items-start">
-            <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <span class="text-sm text-gray-600">{strength}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-
-    <div class="space-y-4">
-      <h4 class="font-medium text-gray-900">Gaps Identified</h4>
-      <ul class="space-y-2">
-        {analysis.gaps.map(gap => (
-          <li class="flex items-start">
-            <svg class="h-5 w-5 text-red-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-            <span class="text-sm text-gray-600">{gap}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-
-    <div class="space-y-4">
-      <h4 class="font-medium text-gray-900">Recommendations</h4>
-      <ul class="space-y-2">
-        {analysis.recommendations.map(recommendation => (
-          <li class="flex items-start">
-            <svg class="h-5 w-5 text-primary mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-            <span class="text-sm text-gray-600">{recommendation}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
+  <div class="grid md:grid-cols-3 gap-px bg-line border-b border-line">
+    {columns.map((col) => (
+      <div class="bg-white px-5 py-4">
+        <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-gray-500">{col.label}</p>
+        <ul class="mt-2 space-y-1.5">
+          {col.items.map((item) => (
+            <li class="flex items-start gap-2 text-[13px] text-gray-700">
+              <span class={`mt-2 w-1.5 h-px shrink-0 ${col.mark}`}></span>{item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
   </div>
 
-  <!-- Supporting Documents -->
-  <div>
-    <h4 class="font-medium text-gray-900 mb-4">Supporting Documents</h4>
-    <div class="space-y-3">
-      {documents.map(doc => (
-        <div class="bg-gray-50 rounded-lg p-4">
-          <div class="flex items-start justify-between">
-            <div>
-              <h5 class="font-medium text-gray-900">{doc.title}</h5>
-              <p class="text-sm text-gray-500">{doc.type} • {doc.date}</p>
-              {doc.excerpt && (
-                <p class="text-sm text-gray-600 mt-2 italic">"{doc.excerpt}"</p>
-              )}
-            </div>
-            <span class="text-sm text-primary">
-              {doc.relevance}% relevant
-            </span>
+  <div class="px-5 py-4">
+    <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-gray-500">{l.documents}</p>
+    <ul class="mt-2">
+      {documents.map((doc) => (
+        <li class="py-2.5 border-b border-line last:border-b-0">
+          <div class="flex items-baseline justify-between gap-3">
+            <span class="text-[13px] font-medium text-ink">{doc.title}</span>
+            <span class="font-mono text-[11px] text-gray-500 whitespace-nowrap">{l.relevant} {doc.relevance}%</span>
           </div>
-        </div>
+          <p class="text-xs text-gray-500">{doc.type} · {doc.date}</p>
+          {doc.excerpt && <p class="mt-1.5 border-s-2 border-line ps-3 text-xs text-gray-600">{doc.excerpt}</p>}
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 </div>

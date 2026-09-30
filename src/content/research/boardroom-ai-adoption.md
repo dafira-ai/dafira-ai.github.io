@@ -1,14 +1,14 @@
 ---
 title: "The Future of AI in the Boardroom: Challenges and Opportunities"
-authors: "Dr. Weifeng Chen"
-institution: "Brunel Business School & Govrn"
+authors: "Reader in Innovation Management and Strategy"
+institution: "A UK business school & Dafira"
 date: "2024"
 abstract: "This comprehensive study examines the current landscape of AI adoption in boardrooms across private, public, and third sectors. Through extensive interviews with board members and governance professionals, we explore the challenges, opportunities, and potential solutions for integrating AI into board management processes."
 ---
 
 ## Executive Summary
 
-The integration of Artificial Intelligence (AI) in boardroom operations represents both a significant opportunity and a complex challenge for modern organizations. This research, conducted in collaboration between Brunel Business School and Govrn, examines the current state of AI adoption in board management and provides actionable insights for organizations looking to leverage AI technologies effectively.
+The integration of Artificial Intelligence (AI) in boardroom operations represents both a significant opportunity and a complex challenge for modern organizations. This research, conducted in collaboration between a UK business school and Dafira, examines the current state of AI adoption in board management and provides actionable insights for organizations looking to leverage AI technologies effectively.
 
 ## Key Research Findings
 
@@ -158,20 +158,17 @@ Participants represented organizations across various sectors and sizes, providi
 
 ## About the Research Team
 
-### Dr. Weifeng Chen
-Reader in Innovation Management and Strategy at Brunel Business School, specializing in AI adoption and digital transformation.
+### Lead researcher
+Reader in Innovation Management and Strategy at a UK business school, specializing in AI adoption and digital transformation.
 
 ### Paul Stark
-15+ years of experience in boardroom technology, leading innovation at Govrn.
+15+ years of experience in boardroom technology, leading innovation at Dafira.
 
 ## Get Involved
 
-For more information about participating in future research or learning about Govrn's AI-Engine, contact info@govrn.com.
+For more information about participating in future research or learning about Dafira's AI-Engine, contact info@dafira.ai.
 
-## References
-
-[To be completed with actual citations and references]
 
 ---
 
-© 2024 Brunel Business School & Govrn. All rights reserved.
+© 2024 Dafira. All rights reserved.

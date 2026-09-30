@@ -1,25 +1,18 @@
 ---
+import { Section, Button } from '../ui';
 ---
 
-<section class="py-24 bg-gradient-to-br from-primary to-blue-600 text-white relative overflow-hidden backdrop-blur-sm">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 class="text-3xl font-bold mb-8 [text-shadow:_0_2px_8px_rgba(255,255,255,0.4)]">Let's Make 2025 Extraordinary Together</h2>
-    <p class="text-xl text-white/90 mb-12 [text-shadow:_0_2px_8px_rgba(255,255,255,0.3)]">
-      Ready to transform your board management in the new year? We're here to help you achieve your governance goals.
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a
-        href="/request-demo"
-        class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white/90 hover:bg-white transition-colors duration-200 backdrop-blur-sm shadow-lg hover:shadow-xl [filter:drop-shadow(0_4px_12px_rgba(255,255,255,0.2))]"
-      >
-        Schedule a Demo
-      </a>
-      <a
-        href="/contact"
-        class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white/80 hover:bg-white/10 transition-colors duration-200 backdrop-blur-sm shadow-lg hover:shadow-xl [filter:drop-shadow(0_4px_12px_rgba(255,255,255,0.2))]"
-      >
-        Contact Us
-      </a>
+<Section border="top" space="md">
+  <div class="grid lg:grid-cols-12 gap-8 items-end">
+    <div class="lg:col-span-7">
+      <h2 class="text-3xl lg:text-4xl font-semibold text-navy leading-tight">Let's make 2025 a good year for your board</h2>
+      <p class="mt-4 text-lg text-gray-600 leading-relaxed max-w-xl">
+        Planning changes to your board management in the new year? We are here to help you reach your governance goals.
+      </p>
+    </div>
+    <div class="lg:col-span-5 flex flex-col sm:flex-row lg:justify-end gap-3">
+      <Button href="/request-demo">Schedule a demo</Button>
+      <Button href="/contact" variant="secondary">Contact us</Button>
     </div>
   </div>
-</section>
+</Section>

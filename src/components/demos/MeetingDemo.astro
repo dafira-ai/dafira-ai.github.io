@@ -1,188 +1,93 @@
 ---
-// Meeting Management Demo Component
+// Vignette for /features: a meeting in session — agenda on the side, draft minutes and shared documents. Plays once.
+import AppFrame from '../features/AppFrame.astro';
+import { langFromPath } from '../../i18n/routes';
+import { featureLang } from '../features/common';
+
+const t = {
+  en: {
+    title: 'Board of Directors · Q1', meta: 'In session', agenda: 'Agenda',
+    items: [
+      ['Opening and attendance', '5 min', 'done', 'Done'],
+      ['Financial review Q1', '15 min', 'current', 'Current item'],
+      ['Strategic initiatives', '20 min', 'next', 'Next'],
+    ],
+    current: 'Financial review Q1', draft: 'Minutes · draft',
+    lines: ['The CFO presented the Q1 results and the updated forecast.', 'The board approved the Q1 financial statements.'],
+    docs: 'Documents for this item', files: [['Q1 financial report.pdf', 'Read by 6 of 7'], ['Forecast 2026.xlsx', 'Read by 5 of 7']],
+  },
+  fr: {
+    title: 'Conseil d’administration · T1', meta: 'En séance', agenda: 'Ordre du jour',
+    items: [
+      ['Ouverture et présences', '5 min', 'done', 'Traité'],
+      ['Revue financière T1', '15 min', 'current', 'Point en cours'],
+      ['Initiatives stratégiques', '20 min', 'next', 'À suivre'],
+    ],
+    current: 'Revue financière T1', draft: 'Procès-verbal · projet',
+    lines: ['Le CFO a présenté les résultats du T1 et la prévision actualisée.', 'Le conseil a approuvé les états financiers du T1.'],
+    docs: 'Documents de ce point', files: [['Rapport financier T1.pdf', 'Lu par 6 sur 7'], ['Prévisions 2026.xlsx', 'Lu par 5 sur 7']],
+  },
+  nl: {
+    title: 'Raad van bestuur · Q1', meta: 'In vergadering', agenda: 'Agenda',
+    items: [
+      ['Opening en aanwezigheden', '5 min', 'done', 'Behandeld'],
+      ['Financieel overzicht Q1', '15 min', 'current', 'Huidig punt'],
+      ['Strategische initiatieven', '20 min', 'next', 'Volgend'],
+    ],
+    current: 'Financieel overzicht Q1', draft: 'Notulen · ontwerp',
+    lines: ['De CFO presenteerde de resultaten van Q1 en de bijgewerkte prognose.', 'Het bestuur keurde de financiële staten van Q1 goed.'],
+    docs: 'Documenten bij dit punt', files: [['Financieel rapport Q1.pdf', 'Gelezen door 6 van 7'], ['Prognose 2026.xlsx', 'Gelezen door 5 van 7']],
+  },
+}[featureLang(langFromPath(Astro.url.pathname))];
+
+const status = {
+  done: 'bg-emerald-50 text-emerald-800',
+  current: 'bg-blue-50 text-primary',
+  next: 'bg-gray-100 text-gray-700',
+};
 ---
 
-<div class="relative bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden h-[500px]">
-  <!-- Demo Interface -->
-  <div class="bg-gradient-to-r from-primary to-blue-600 h-12 flex items-center justify-between px-4">
-    <div class="flex items-center space-x-2">
-      <div class="w-3 h-3 bg-white/30 rounded-full"></div>
-      <div class="w-3 h-3 bg-white/30 rounded-full"></div>
-      <div class="w-3 h-3 bg-white/30 rounded-full"></div>
-    </div>
-    <div class="text-white text-sm font-medium">Board Meeting - Q1 2024</div>
-    <div class="text-white/80 text-xs">Live</div>
-  </div>
+<div data-play>
+  <AppFrame title={t.title} meta={t.meta}>
+    <div class="grid sm:grid-cols-[minmax(0,15rem)_1fr]">
+      <div class="bg-surface border-b sm:border-b-0 sm:border-e border-line p-4">
+        <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-gray-500">{t.agenda}</p>
+        <ol class="mt-3 space-y-2">
+          {t.items.map(([title, duration, state, label], i) => (
+            <li class:list={['bg-white border rounded-sm px-3 py-2.5', state === 'current' ? 'border-primary' : 'border-line']} data-step style={`--d:${100 + i * 90}`}>
+              <div class="flex items-baseline justify-between gap-2">
+                <span class="text-[13px] text-ink">{i + 1}. {title}</span>
+                <span class="font-mono text-[11px] text-gray-500 whitespace-nowrap">{duration}</span>
+              </div>
+              <span class={`mt-1.5 inline-block text-[11px] font-medium px-2 py-0.5 rounded-sm ${status[state as keyof typeof status]}`}>{label}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
 
-  <div class="flex h-full">
-    <!-- Agenda Panel -->
-    <div class="w-1/3 bg-gray-50 p-4 border-r border-gray-200">
-      <h3 class="text-sm font-semibold text-gray-900 mb-4 flex items-center">
-        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-        </svg>
-        AI-Generated Agenda
-      </h3>
-      
-      <div class="space-y-3">
-        <div class="agenda-item bg-white p-3 rounded-lg shadow-sm border-l-4 border-green-500 cursor-pointer hover:shadow-md transition-shadow" data-item="1">
-          <div class="flex justify-between items-start mb-2">
-            <h4 class="text-sm font-medium text-gray-900">Opening & Attendance</h4>
-            <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">5 min</span>
-          </div>
-          <p class="text-xs text-gray-600">Welcome, roll call, agenda approval</p>
-          <div class="flex items-center mt-2">
-            <span class="text-xs text-green-600 bg-green-100 px-2 py-0.5 rounded-full">✓ Completed</span>
+      <div class="p-5 space-y-5">
+        <p class="font-semibold text-navy">{t.current}</p>
+        <div class="border border-line rounded-sm">
+          <p class="px-4 py-2 border-b border-line font-mono text-[11px] uppercase tracking-[0.08em] text-gray-500">{t.draft}</p>
+          <div class="px-4 py-3 space-y-2 text-[13px] text-gray-700 leading-relaxed">
+            {t.lines.map((line, i) => <p data-step style={`--d:${450 + i * 250}`}>{line}</p>)}
           </div>
         </div>
-
-        <div class="agenda-item bg-white p-3 rounded-lg shadow-sm border-l-4 border-blue-500 cursor-pointer hover:shadow-md transition-shadow animate-pulse" data-item="2">
-          <div class="flex justify-between items-start mb-2">
-            <h4 class="text-sm font-medium text-gray-900">Financial Review Q1</h4>
-            <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">15 min</span>
-          </div>
-          <p class="text-xs text-gray-600">Quarterly results presentation</p>
-          <div class="flex items-center mt-2">
-            <span class="text-xs text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full">🔴 Live</span>
-          </div>
-        </div>
-
-        <div class="agenda-item bg-white p-3 rounded-lg shadow-sm border-l-4 border-gray-300 cursor-pointer hover:shadow-md transition-shadow" data-item="3">
-          <div class="flex justify-between items-start mb-2">
-            <h4 class="text-sm font-medium text-gray-900">Strategic Initiatives</h4>
-            <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">20 min</span>
-          </div>
-          <p class="text-xs text-gray-600">2024 expansion planning</p>
-          <div class="flex items-center mt-2">
-            <span class="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">⏳ Upcoming</span>
-          </div>
+        <div>
+          <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-gray-500">{t.docs}</p>
+          <ul class="mt-2 border-t border-line">
+            {t.files.map(([name, read], i) => (
+              <li class="flex items-center justify-between gap-3 py-2.5 border-b border-line" data-step style={`--d:${900 + i * 90}`}>
+                <span class="flex items-center gap-2 text-[13px] text-ink min-w-0">
+                  <svg class="w-4 h-4 text-gray-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg>
+                  <span class="truncate">{name}</span>
+                </span>
+                <span class="text-xs text-gray-500 whitespace-nowrap">{read}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
-
-    <!-- Main Content -->
-    <div class="flex-1 p-4">
-      <div class="mb-4">
-        <div class="flex items-center justify-between mb-3">
-          <h3 class="text-lg font-semibold text-gray-900">Financial Review Q1 2024</h3>
-          <div class="flex items-center space-x-2">
-            <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-            <span class="text-sm text-gray-600">Recording</span>
-          </div>
-        </div>
-        
-        <!-- AI-Generated Minutes Preview -->
-        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
-          <div class="flex items-start space-x-3">
-            <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
-              <svg class="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-              </svg>
-            </div>
-            <div class="flex-1">
-              <h4 class="text-sm font-medium text-gray-900 mb-2">AI Assistant - Auto-generating minutes...</h4>
-              <div class="text-sm text-gray-700 space-y-1">
-                <div class="typing-animation">
-                  <span class="typing-text">CFO presented Q1 results showing 15% revenue growth...</span>
-                  <span class="cursor">|</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Document Collaboration -->
-        <div class="bg-white rounded-lg border border-gray-200 p-4">
-          <div class="flex items-center justify-between mb-3">
-            <h4 class="text-sm font-semibold text-gray-900">Shared Documents</h4>
-            <button class="text-sm text-blue-600 hover:text-blue-800 font-medium">+ Add Document</button>
-          </div>
-          
-          <div class="space-y-2">
-            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
-              <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 bg-red-100 rounded flex items-center justify-center">
-                  <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <p class="text-sm font-medium text-gray-900">Q1-2024-Financial-Report.pdf</p>
-                  <p class="text-xs text-gray-500">Updated 2 mins ago</p>
-                </div>
-              </div>
-              <div class="flex items-center space-x-2">
-                <div class="flex -space-x-2">
-                  <div class="w-6 h-6 bg-blue-500 rounded-full border-2 border-white"></div>
-                  <div class="w-6 h-6 bg-green-500 rounded-full border-2 border-white"></div>
-                  <div class="w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
-                </div>
-                <span class="text-xs text-gray-500">3 collaborators</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  </AppFrame>
 </div>
-
-<style>
-  @keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-  }
-
-  @keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: orange; }
-  }
-
-  .typing-animation {
-    display: flex;
-    align-items: center;
-  }
-
-  .typing-text {
-    overflow: hidden;
-    border-right: 2px solid orange;
-    white-space: nowrap;
-    animation: typing 3s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
-  }
-
-  .cursor {
-    animation: blink-caret 0.75s step-end infinite;
-    color: orange;
-  }
-
-  .agenda-item:hover {
-    transform: translateX(2px);
-    transition: transform 0.2s ease;
-  }
-</style>
-
-<script>
-  // Add interactivity
-  document.addEventListener('DOMContentLoaded', function() {
-    const agendaItems = document.querySelectorAll('.agenda-item');
-    
-    agendaItems.forEach(item => {
-      item.addEventListener('click', function() {
-        // Remove active state from all items
-        agendaItems.forEach(i => i.classList.remove('ring-2', 'ring-blue-500'));
-        
-        // Add active state to clicked item
-        this.classList.add('ring-2', 'ring-blue-500');
-        
-        // Simulate loading new content
-        const mainContent = document.querySelector('.flex-1 p-4');
-        if (mainContent) {
-          mainContent.style.opacity = '0.5';
-          setTimeout(() => {
-            mainContent.style.opacity = '1';
-          }, 300);
-        }
-      });
-    });
-  });
-</script>

@@ -1,451 +1,97 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import MfaPage from '../../../components/security/MfaPage.astro';
 
-const securityThreats = [
-  {
-    threat: "accès non autorisé",
-    icon: "🚫"
+const copy = {
+  eyebrow: 'Authentification multi-facteurs',
+  title: 'Un accès sécurisé aux informations du conseil grâce à la vérification par SMS',
+  lead: "Dafira protège les informations du conseil avec l'authentification multi-facteurs (MFA) par SMS. Cette page explique comment la vérification par SMS sécurise l'accès des administrateurs et des équipes de gouvernance.",
+  back: { text: 'Vue d’ensemble de la sécurité', href: '/fr/security' },
+  what: {
+    eyebrow: 'Définition',
+    title: "Qu'est-ce que le MFA, et pourquoi c'est important pour les conseils",
+    paragraphs: [
+      "Les environnements de conseil impliquent des informations hautement confidentielles : stratégie, finance, documents d'audit, documentation juridique et discussions de direction. Une authentification sécurisée est essentielle.",
+      "L'authentification multi-facteurs (MFA) ajoute une deuxième étape de vérification, au-delà du mot de passe, pour que seules les personnes autorisées accèdent à la plateforme.",
+      "Dans Dafira, cette deuxième étape est un code envoyé par SMS : une méthode rapide et fiable pour confirmer l'identité de l'utilisateur avant de donner accès aux données de gouvernance.",
+    ],
   },
-  {
-    threat: "vol ou partage de mot de passe",
-    icon: "🔑"
+  why: {
+    eyebrow: 'Risques couverts',
+    title: 'Pourquoi le MFA par SMS est important pour la gouvernance',
+    lead: 'La vérification par SMS réduit le risque de :',
+    threats: ['Accès non autorisé', 'Vol ou partage de mot de passe', 'Attaques de phishing', "Usurpation d'identité", 'Prise de contrôle de compte', 'Exposition de documents confidentiels'],
+    note: [
+      "Même si un mot de passe est compromis, l'accès à Dafira nécessite toujours le code unique envoyé par SMS au numéro de mobile enregistré de l'utilisateur.",
+      'Pour les conseils, comités et équipes de direction, c’est une protection importante.',
+    ],
   },
-  {
-    threat: "attaques de phishing",
-    icon: "🎣"
+  boards: {
+    eyebrow: 'Conçu pour les conseils',
+    title: 'Le MFA pour les conseils, comités et équipes de gouvernance',
+    items: [
+      { icon: 'user', title: 'Simple pour les administrateurs', text: "Les membres du conseil travaillent souvent sur différents appareils et depuis différents lieux. Le MFA par SMS fonctionne sans application d'authentification ni configuration technique." },
+      { icon: 'desktop', title: 'Un accès sécurisé partout', text: 'Depuis un ordinateur portable, une tablette ou un mobile, les utilisateurs reçoivent le code par SMS, y compris en déplacement.' },
+      { icon: 'lock', title: 'Protection des données de gouvernance', text: "Le MFA par SMS sécurise l'accès aux :", items: ['Dossiers et ordres du jour', 'Pièces jointes confidentielles', 'Documents annotés', 'Votes et résolutions', 'Procès-verbaux générés par IA', 'Discussions internes', 'Archives de gouvernance'] },
+    ],
   },
-  {
-    threat: "usurpation d'identité",
-    icon: "👥"
+  how: {
+    eyebrow: 'Fonctionnement',
+    title: "Comment fonctionne l'authentification multi-facteurs dans Dafira",
+    lead: 'Dafira utilise la vérification par SMS pour renforcer la sécurité de connexion.',
+    steps: [
+      "L'utilisateur saisit son adresse e-mail et son mot de passe",
+      'Dafira envoie par SMS un code unique à durée limitée',
+      "L'utilisateur saisit le code",
+      "L'accès n'est accordé que si les deux étapes réussissent",
+    ],
+    note: "L'accès est réservé à la personne qui contrôle le numéro de mobile enregistré, sans ajouter de complexité pour l'utilisateur.",
   },
-  {
-    threat: "prise de contrôle de compte",
-    icon: "⚠️"
+  regulated: {
+    eyebrow: 'Organisations réglementées',
+    title: 'Pour les organisations européennes et réglementées',
+    lead: "Le MFA par SMS aide les organisations à répondre aux attentes internes et externes en matière d'authentification sécurisée.",
+    orgsTitle: 'Particulièrement pertinent pour',
+    orgs: ['Sociétés cotées', 'Services financiers et assurances', 'Communes et institutions publiques', 'Hôpitaux et enseignement', 'Entreprises privées dotées de conseils stratégiques'],
+    complianceTitle: 'Soutient la conformité avec',
+    compliance: ['Les exigences de sécurité du RGPD', 'Les politiques IT et de gestion des risques internes', "Les exigences d'audit et de supervision"],
   },
-  {
-    threat: "exposition de documents confidentiels",
-    icon: "📄"
-  }
-];
-
-const mfaBenefits = [
-  "Renforce la protection contre les accès non autorisés",
-  "Simple pour les administrateurs, aucune application requise",
-  "Sécurisé sur n'importe quel appareil",
-  "Répond aux exigences de conformité et d'audit",
-  "Idéal pour les réunions hybrides ou à distance",
-  "Renforce la confiance dans la gouvernance numérique"
-];
-
-const protectedData = [
-  "dossiers et ordres du jour",
-  "pièces jointes confidentielles",
-  "documents annotés",
-  "votes et résolutions",
-  "procès-verbaux générés par IA",
-  "discussions internes",
-  "archives complètes de gouvernance"
-];
-
-const mfaSteps = [
-  {
-    step: "1",
-    title: "L'utilisateur saisit son email et son mot de passe",
-    icon: "📧"
+  framework: {
+    eyebrow: 'Cadre de sécurité',
+    title: 'Une partie du cadre de sécurité de Dafira',
+    lead: 'Le MFA par SMS fonctionne avec les autres mesures de sécurité de la plateforme.',
+    items: [
+      { icon: 'globe', text: "Hébergement des données dans l'UE" },
+      { icon: 'lock', text: 'Chiffrement au repos et en transit' },
+      { icon: 'key', text: 'Accès et permissions par rôle' },
+      { icon: 'list', text: "Pistes d'audit et journaux d'activité détaillés" },
+      { icon: 'documents', text: 'Distribution sécurisée des dossiers' },
+      { icon: 'refresh', text: 'Redondance et sauvegardes' },
+    ],
   },
-  {
-    step: "2",
-    title: "Govrn envoie automatiquement un code unique à durée limitée par SMS",
-    icon: "📱"
+  summary: {
+    eyebrow: 'En pratique',
+    title: 'Utiliser le MFA par SMS avec Dafira',
+    columns: [
+      { title: 'Avantages', text: 'Ce que le MFA par SMS apporte au travail du conseil.', items: ['Protection renforcée contre les accès non autorisés', 'Simple pour les administrateurs, aucune application requise', 'Fonctionne sur tous les appareils', "Répond aux exigences de conformité et d'audit", 'Adapté aux réunions hybrides ou à distance', 'Renforce la confiance dans la gouvernance numérique'] },
+      { title: "Qui devrait l'activer", text: "Nous recommandons d'activer le MFA par SMS pour :", items: ['Tous les membres du conseil', 'Les comités de direction', 'La direction exécutive', 'Les secrétaires de conseil', "Les comités d'audit, des risques et de rémunération", 'Les conseillers externes et observateurs'] },
+      { title: "Où il s'applique", text: "Le MFA par SMS sécurise l'accès à toutes les fonctionnalités de Dafira :", items: ['Procès-verbaux IA', 'Générateur de dossiers', "Gestion de l'ordre du jour", 'Gestion des résolutions', 'Bibliothèque de documents et archives', 'Collaboration entre comités', "Outils d'annotation et de préparation"] },
+    ],
   },
-  {
-    step: "3",
-    title: "L'utilisateur saisit le code",
-    icon: "🔢"
+  cta: {
+    title: 'Activez le MFA par SMS pour votre conseil',
+    subtitle: 'Notre équipe peut vous guider dans les bonnes pratiques et les options de configuration.',
+    cta1: 'Demander une démo',
+    cta2: 'Parler à notre équipe',
+    link1: '/fr/request-demo',
+    link2: '/fr/contact',
   },
-  {
-    step: "4",
-    title: "L'accès n'est accordé que si les deux étapes correspondent",
-    icon: "✅"
-  }
-];
-
-const securityFramework = [
-  "Hébergement des données dans l'UE",
-  "Chiffrement au repos et en transit",
-  "Accès et permissions basés sur les rôles",
-  "Pistes d'audit et journaux d'activité détaillés",
-  "Distribution sécurisée des dossiers",
-  "Redondance et sauvegardes"
-];
-
-const complianceAreas = [
-  {
-    title: "Exigences de sécurité RGPD",
-    icon: "🇪🇺"
-  },
-  {
-    title: "Politiques IT et de risque internes",
-    icon: "📋"
-  },
-  {
-    title: "Exigences d'audit et de supervision",
-    icon: "🔍"
-  }
-];
-
-const targetOrganizations = [
-  "sociétés cotées",
-  "services financiers et assurances",
-  "municipalités et institutions publiques",
-  "hôpitaux et éducation",
-  "entreprises privées avec conseils stratégiques"
-];
-
-const mfaUsers = [
-  "tous les membres du conseil",
-  "comités de direction",
-  "direction exécutive",
-  "secrétaires de conseil",
-  "comités d'audit, de risque et de rémunération",
-  "conseillers externes et observateurs"
-];
-
-const govrnFeatures = [
-  "procès-verbaux IA",
-  "générateur de dossiers",
-  "gestion de l'ordre du jour",
-  "gestion des résolutions",
-  "bibliothèque de documents et archives",
-  "collaboration inter-comités",
-  "outils d'annotation et de préparation"
-];
+};
 ---
 
 <Layout
-  title="Authentification Multi-Facteurs (MFA) par SMS pour un Accès Sécurisé au Conseil | Govrn"
-  description="Govrn protège les informations du conseil avec l'authentification multi-facteurs (MFA) par SMS. Découvrez comment la vérification SMS renforce l'accès sécurisé pour les administrateurs et les équipes de gouvernance."
+  title="Authentification Multi-Facteurs (MFA) par SMS pour un Accès Sécurisé au Conseil | Dafira"
+  description="Dafira protège les informations du conseil avec l'authentification multi-facteurs (MFA) par SMS. Découvrez comment la vérification par SMS sécurise l'accès des administrateurs et des équipes de gouvernance."
 >
-  <main class="pt-16">
-    <!-- Section héro -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Authentification Multi-Facteurs
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Accès Sécurisé aux Informations Sensibles du Conseil Avec
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Vérification SMS
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            Govrn protège les informations du conseil avec l'authentification multi-facteurs (MFA) par SMS. Découvrez comment la vérification SMS renforce l'accès sécurisé pour les administrateurs et les équipes de gouvernance.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section Qu'est-ce que le MFA -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-gray-900 mb-6">🔐 Qu'est-ce que le MFA — Et Pourquoi C'est Important pour les Conseils</h2>
-          <div class="prose prose-lg text-gray-600 space-y-4">
-            <p>
-              Les environnements de conseil impliquent des informations hautement confidentielles : stratégie, finance, documents d'audit, documentation juridique et discussions exécutives. Cela rend l'authentification sécurisée essentielle.
-            </p>
-            <p>
-              <strong>L'Authentification Multi-Facteurs (MFA)</strong> ajoute une deuxième étape de vérification — au-delà du mot de passe — pour garantir que seules les personnes autorisées accèdent à la plateforme.
-            </p>
-            <p>
-              Avec Govrn, cette deuxième étape est délivrée par SMS, offrant aux organisations une méthode rapide, fiable et sécurisée pour confirmer l'identité de l'utilisateur avant d'accorder l'accès aux données sensibles de gouvernance.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pourquoi le MFA par SMS est Important -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">🛡️ Pourquoi le MFA par SMS est Important pour la Gouvernance</h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            La vérification SMS réduit significativement le risque de multiples menaces de sécurité
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {securityThreats.map(item => (
-            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-3">{item.icon}</div>
-              <p class="text-gray-900 font-medium">{item.threat}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="bg-gradient-to-br from-primary/5 to-blue-50 rounded-2xl p-8 max-w-4xl mx-auto">
-          <p class="text-lg text-gray-700 leading-relaxed">
-            Même si un mot de passe est compromis, l'accès à Govrn nécessite toujours le code unique envoyé par SMS au numéro de mobile enregistré de l'utilisateur.
-          </p>
-          <p class="text-lg text-gray-700 leading-relaxed mt-4">
-            Pour les contextes de gouvernance — conseils, comités, équipes exécutives — c'est une protection cruciale.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- MFA Conçu pour les Conseils -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">💼 MFA Conçu pour les Conseils, Comités et Équipes de Gouvernance</h2>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8 mb-12">
-          <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-            <h3 class="text-xl font-bold text-gray-900 mb-4">✔️ Simple et Rapide pour les Administrateurs</h3>
-            <p class="text-gray-600">
-              Les membres du conseil travaillent souvent sur différents appareils et lieux. Le MFA par SMS offre une authentification instantanée et conviviale sans nécessiter d'applications ou de configuration technique.
-            </p>
-          </div>
-
-          <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-            <h3 class="text-xl font-bold text-gray-900 mb-4">✔️ Accès Sécurisé Partout</h3>
-            <p class="text-gray-600">
-              Que vous vous connectiez depuis un ordinateur portable, une tablette ou un mobile, les utilisateurs reçoivent le code SMS en quelques secondes — garantissant un accès sécurisé même en déplacement.
-            </p>
-          </div>
-
-          <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-            <h3 class="text-xl font-bold text-gray-900 mb-4">✔️ Protection de Toutes les Données Sensibles de Gouvernance</h3>
-            <p class="text-gray-600 mb-6">Le MFA par SMS sécurise :</p>
-            <ul class="space-y-2">
-              {protectedData.map(item => (
-                <li class="flex items-center text-gray-600">
-                  <svg class="h-5 w-5 text-primary mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Comment Ça Marche -->
-    <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">🔧 Comment Fonctionne l'Authentification Multi-Facteurs dans Govrn</h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Govrn utilise la vérification par SMS pour renforcer la sécurité de connexion. Voici comment cela fonctionne :
-          </p>
-        </div>
-
-        <div class="max-w-4xl mx-auto">
-          <div class="grid gap-6">
-            {mfaSteps.map(step => (
-              <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 flex items-start">
-                <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-6">
-                  <span class="text-2xl">{step.icon}</span>
-                </div>
-                <div>
-                  <div class="text-sm font-semibold text-primary mb-2">ÉTAPE {step.step}</div>
-                  <p class="text-lg text-gray-900">{step.title}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div class="bg-gradient-to-br from-primary to-blue-600 rounded-2xl p-8 text-white mt-8">
-            <p class="text-lg">
-              Cela garantit que l'accès est limité à la personne qui contrôle le numéro de mobile enregistré — offrant une protection robuste sans complexité.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Essentiel pour les Organisations Européennes -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-gray-900 mb-8">🌍 Essentiel pour les Organisations Européennes et Réglementées</h2>
-
-          <p class="text-lg text-gray-600 mb-8">
-            Le MFA par SMS de Govrn aide les organisations à répondre aux attentes internes et externes en matière d'authentification sécurisée.
-          </p>
-
-          <div class="bg-gray-50 rounded-xl p-8 mb-8">
-            <h3 class="text-xl font-bold text-gray-900 mb-6">Ceci est particulièrement important pour :</h3>
-            <div class="grid sm:grid-cols-2 gap-4">
-              {targetOrganizations.map(org => (
-                <div class="flex items-center text-gray-700">
-                  <svg class="h-5 w-5 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  {org}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div class="bg-primary/5 rounded-xl p-8">
-            <h3 class="text-xl font-bold text-gray-900 mb-6">Le MFA par SMS soutient la conformité avec :</h3>
-            <div class="grid md:grid-cols-3 gap-6">
-              {complianceAreas.map(area => (
-                <div class="text-center">
-                  <div class="text-3xl mb-3">{area.icon}</div>
-                  <p class="text-gray-900 font-medium">{area.title}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Cadre de Sécurité -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-gray-900 mb-8">🔒 Partie de l'Architecture Sécurisée par Conception de Govrn</h2>
-
-          <p class="text-lg text-gray-600 mb-8">
-            Le MFA par SMS fonctionne aux côtés du cadre de sécurité complet de Govrn :
-          </p>
-
-          <div class="grid sm:grid-cols-2 gap-4 mb-8">
-            {securityFramework.map(feature => (
-              <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 flex items-center">
-                <svg class="h-6 w-6 text-primary mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-                <span class="text-gray-900">{feature}</span>
-              </div>
-            ))}
-          </div>
-
-          <p class="text-lg text-gray-600">
-            Cette approche en couches garantit une protection continue pour vos flux de travail de gouvernance.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Avantages -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">📊 Avantages de l'Utilisation du MFA par SMS avec Govrn</h2>
-        </div>
-
-        <div class="max-w-4xl mx-auto grid sm:grid-cols-2 gap-6">
-          {mfaBenefits.map(benefit => (
-            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 flex items-start">
-              <svg class="h-6 w-6 text-primary mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span class="text-gray-900">{benefit}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Qui Devrait Activer le MFA -->
-    <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-gray-900 mb-8">🚀 Qui Devrait Activer le MFA ?</h2>
-
-          <p class="text-lg text-gray-600 mb-8">
-            Nous recommandons vivement d'activer le MFA par SMS pour :
-          </p>
-
-          <div class="grid sm:grid-cols-2 gap-4 mb-8">
-            {mfaUsers.map(user => (
-              <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 flex items-center">
-                <svg class="h-6 w-6 text-primary mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-                <span class="text-gray-900">{user}</span>
-              </div>
-            ))}
-          </div>
-
-          <div class="bg-gradient-to-br from-primary to-blue-600 rounded-2xl p-8 text-white">
-            <p class="text-lg">
-              Pour les organisations gérant des décisions critiques, le MFA est central pour la sécurité de la gouvernance numérique.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Flux de Travail Intégré -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-gray-900 mb-8">🧩 Intégré dans le Flux de Travail de Gouvernance</h2>
-
-          <p class="text-lg text-gray-600 mb-8">
-            Le MFA par SMS garantit un accès sécurisé à toutes les fonctionnalités de Govrn :
-          </p>
-
-          <div class="grid sm:grid-cols-2 gap-4 mb-8">
-            {govrnFeatures.map(feature => (
-              <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 flex items-center">
-                <svg class="h-6 w-6 text-primary mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-gray-900">{feature}</span>
-              </div>
-            ))}
-          </div>
-
-          <div class="bg-primary/5 rounded-xl p-6 text-center">
-            <p class="text-xl text-gray-900 font-semibold">
-              Chaque connexion est protégée — à chaque fois.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section CTA -->
-    <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">
-          📞 Renforcez la Sécurité de Votre Gouvernance avec le MFA par SMS
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Si vous souhaitez renforcer davantage vos processus de gouvernance, notre équipe peut vous guider à travers les meilleures pratiques et options de configuration.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/fr/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-          >
-            Demander une démo
-          </a>
-          <a
-            href="/fr/contact"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200"
-          >
-            Parler à Notre Équipe
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
+  <MfaPage copy={copy} />
 </Layout>

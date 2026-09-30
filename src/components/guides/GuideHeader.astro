@@ -1,13 +1,25 @@
 ---
+// Guide article header: sober PageHero with category, reading time and a link back to the guides index.
+import { PageHero } from '../ui';
+import { findGuide, GUIDE_UI } from './guides-data';
+
 interface Props {
   title: string;
   description: string;
 }
 
 const { title, description } = Astro.props;
+const { guide, category, lang } = findGuide(Astro.url.pathname);
+const t = GUIDE_UI[lang];
+const indexHref = lang === 'en' ? '/guides' : `/${lang}/guides`;
 ---
 
-<div class="mb-12">
-  <h1 class="text-4xl font-bold text-gray-900 mb-6">{title}</h1>
-  <p class="text-xl text-gray-600 leading-relaxed">{description}</p>
-</div>
+<PageHero eyebrow={category ? `${t.guideEyebrow} · ${category}` : t.guideEyebrow} title={title} lead={description}>
+  <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs uppercase tracking-[0.08em] text-gray-500">
+    {guide && <span>{t.readTime(guide.readTime)}</span>}
+    <a href={indexHref} class="inline-flex items-center gap-1.5 text-primary hover:text-navy transition-colors">
+      <svg class="w-3.5 h-3.5 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 19l-7-7 7-7" /></svg>
+      {t.allGuides}
+    </a>
+  </div>
+</PageHero>

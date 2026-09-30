@@ -1,367 +1,67 @@
 ---
-import Testimonials from '../../components/Testimonials.astro';
 import Layout from '../../layouts/Layout.astro';
+import ComparisonPage from '../../components/vs/ComparisonPage.astro';
+import type { CriterionKey } from '../../components/vs/copy';
 
-const comparisonFeatures = [
+// Criteria compared on this page. The Dafira side of each criterion comes from components/vs/copy.ts;
+// the iBabs side lists questions to check with the vendor (no claims about iBabs are made here).
+const criteria: { key: CriterionKey; label: string; questions: string[] }[] = [
   {
-    category: "User Experience",
-    ibabs: {
-      title: "Outdated Interface",
-      points: [
-        "Steep learning curve",
-        "Limited customization",
-        "Complex navigation"
-      ],
-      icon: "🖥️"
-    },
-    govrn: {
-      title: "Modern & Intuitive",
-      points: [
-        "User-friendly design",
-        "Extensive customization",
-        "Streamlined workflows"
-      ],
-      icon: "✨"
-    }
+    key: 'ux',
+    label: "User experience",
+    questions: [
+      "How much training do directors need before their first meeting?",
+      "Can the workspace be adapted to your boards, committees and roles?",
+      "How do occasional users find the current board pack?",
+    ],
   },
   {
-    category: "AI Capabilities",
-    ibabs: {
-      title: "No AI Features",
-      points: [
-        "Manual document processing",
-        "Basic search functionality",
-        "Traditional workflows"
-      ],
-      icon: "🤖"
-    },
-    govrn: {
-      title: "AI-Powered Platform",
-      points: [
-        "Intelligent document analysis",
-        "Automated meeting minutes",
-        "Smart agenda building"
-      ],
-      icon: "🚀"
-    }
+    key: 'ai',
+    label: "AI capabilities",
+    questions: [
+      "Which AI features are included, and in which plan?",
+      "Where are documents processed when AI features are used?",
+      "Can draft minutes be produced in the languages your board uses?",
+    ],
   },
   {
-    category: "Document Management",
-    ibabs: {
-      title: "Basic Tools",
-      points: [
-        "Limited collaboration",
-        "Manual organization",
-        "Basic version control"
-      ],
-      icon: "📄"
-    },
-    govrn: {
-      title: "Advanced Collaboration",
-      points: [
-        "Real-time co-editing",
-        "Smart document organization",
-        "Comprehensive versioning"
-      ],
-      icon: "💫"
-    }
+    key: 'docs',
+    label: "Document management",
+    questions: [
+      "How are board packs assembled and updated after they are sent?",
+      "Is there a version history for each document?",
+      "Can directors annotate privately?",
+    ],
   },
   {
-    category: "Support",
-    ibabs: {
-      title: "Limited Support",
-      points: [
-        "Local support only",
-        "Business hours coverage",
-        "Basic implementation help"
-      ],
-      icon: "🤝"
-    },
-    govrn: {
-      title: "24/7 Global Support",
-      points: [
-        "Multilingual support",
-        "Dedicated success manager",
-        "Comprehensive onboarding"
-      ],
-      icon: "🌟"
-    }
-  }
+    key: 'support',
+    label: "Support",
+    questions: [
+      "Which support hours and channels are included in your plan?",
+      "Is support available in your language?",
+      "Is support available outside local business hours?",
+    ],
+  },
 ];
 
-const testimonials = {
-  texts: { 
-    title: "They Already Switched to Govrn",
-    subtitle: "See how organizations across industries transform their board management with Govrn",
-    cta: "View All Success Stories",
-    ctaLink: "/testimonials"
-  },
-  testimonials: [
-    {
-      quote: "Govrn has <strong>transformed</strong> how we manage our board operations, bringing <strong>efficiency</strong> and <strong>clarity</strong> to our governance processes.",
-      author: "Lore Werbrouck",
-      position: "General Counsel",
-      company: "Van de Velde",
-      image: "/vdv-lore-portrait.jpg",
-      link: "/case-studies/van-de-velde"
-    },
-    {
-      quote: "Govrn has <strong>simplified</strong> our document management tremendously, making our meeting preparations more <strong>efficient</strong> and allowing our board to focus on <strong>decision-making</strong>.",
-      author: "Pierre Hermant",
-      position: "CEO",
-      company: "Finance & Invest Brussels",
-      image: "/fib-pierre.webp",
-      link: "/case-studies/finance-invest-brussels"
-    },
-    {
-      quote: "Govrn embraced the <strong>next generation</strong> of Board management software, <strong>easy to use</strong> and with <strong>AI integration</strong>.",
-      author: "Nathalie Byl",
-      position: "Paralegal en Compliance Officer",
-      company: "Care Property Invest",
-      image: "/careproperty-logo.png",
-      link: "/case-studies/care-property-invest"
-    }
-  ]
-}
-
-const switchBenefits = [
-  {
-    title: "Free Trial",
-    description: "Experience all features for 14 days with no commitment",
-    icon: "🎁",
-    cta: "Start Free Trial",
-    link: "/try"
-  },
-  {
-    title: "Easy Migration",
-    description: "Seamless transition from iBabs with our migration team",
-    icon: "🔄",
-    cta: "Learn About Migration",
-    link: "/contact"
-  },
-  {
-    title: "Price Match",
-    description: "We'll match or beat your current iBabs pricing",
-    icon: "💰",
-    cta: "See Pricing",
-    link: "/pricing"
-  }
-];
-
-const stats = [
-  { value: "50%", label: "Faster Implementation" },
-  { value: "40%", label: "Cost Savings" },
-  { value: "95%", label: "User Satisfaction" },
-  { value: "24/7", label: "Support Available" }
+// Customer quotes, verbatim.
+const quotes = [
+  { quote: "Dafira has transformed how we manage our board operations, bringing efficiency and clarity to our governance processes.", author: "General Counsel", position: "", company: "Listed fashion group", link: "/case-studies/listed-fashion-group" },
+  { quote: "Dafira has simplified our document management tremendously, making our meeting preparations more efficient and allowing our board to focus on decision-making.", author: "CEO", position: "", company: "Regional public investment fund", link: "/case-studies/public-investment-fund" },
+  { quote: "Dafira embraced the next generation of Board management software, easy to use and with AI integration.", author: "Paralegal & Compliance Officer", position: "", company: "Listed healthcare real estate company", link: "/case-studies/healthcare-real-estate" },
 ];
 ---
 
-<Layout 
-  title="iBabs vs Govrn Comparison | Best Modern Board Management Software Alternative"
-  description="Compare Govrn's AI-powered board management platform with iBabs. See why organizations choose Govrn as their iBabs alternative in 2025."
+<Layout
+  title="iBabs vs Dafira: board portal comparison | Dafira"
+  description="Compare Dafira and iBabs on ease of use, AI features, document management and support: what Dafira offers, and the questions to ask iBabs. Free 14-day trial, no credit card."
 >
-  <main class="pt-24">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            2025 Comparison
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            iBabs vs Govrn Comparison:
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Best iBabs Alternative 2025
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed mb-8">
-            Experience the future of board management with Govrn's AI-powered platform. Start your free trial today or schedule a personalized demo.
-          </p>
-
-          <!-- Quick Action Cards -->
-          <div class="grid sm:grid-cols-2 gap-4 mb-12">
-            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Try Govrn Free</h3>
-              <p class="text-gray-600 mb-4">Full access to all features for 14 days</p>
-              <a
-                href="/try"
-                class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors w-full justify-center"
-              >
-                Start Free Trial
-              </a>
-            </div>
-            <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-6 shadow-lg border border-primary/10">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">See Govrn in Action</h3>
-              <p class="text-gray-600 mb-4">Get a personalized platform tour</p>
-              <a
-                href="/request-demo"
-                class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors w-full justify-center"
-              >
-                Schedule Demo
-              </a>
-            </div>
-          </div>
-
-          <!-- Stats -->
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {stats.map(stat => (
-              <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                <div class="text-3xl font-bold text-primary mb-1">{stat.value}</div>
-                <div class="text-sm text-gray-600">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Comparison Grid -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Why Organizations Choose Govrn Over iBabs
-          </h2>
-          <p class="text-xl text-gray-600 mb-8">
-            See how our modern features compare
-          </p>
-          <div class="flex justify-center">
-            <a
-              href="/features"
-              class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors"
-            >
-              See Features in Action
-            </a>
-          </div>
-        </div>
-
-        <div class="space-y-8">
-          {comparisonFeatures.map(feature => (
-            <div class="grid md:grid-cols-2 gap-8">
-              <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-                <div class="flex items-center space-x-4 mb-6">
-                  <div class="text-3xl">{feature.ibabs.icon}</div>
-                  <div>
-                    <h3 class="text-lg font-semibold text-gray-900">{feature.category}</h3>
-                    <p class="text-gray-500">iBabs</p>
-                  </div>
-                </div>
-                <h4 class="text-xl font-bold text-gray-900 mb-4">{feature.ibabs.title}</h4>
-                <ul class="space-y-3">
-                  {feature.ibabs.points.map(point => (
-                    <li class="flex items-center text-gray-600">
-                      <svg class="h-5 w-5 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 shadow-lg border border-primary/10">
-                <div class="flex items-center space-x-4 mb-6">
-                  <div class="text-3xl">{feature.govrn.icon}</div>
-                  <div>
-                    <h3 class="text-lg font-semibold text-gray-900">{feature.category}</h3>
-                    <p class="text-primary">Govrn</p>
-                  </div>
-                </div>
-                <h4 class="text-xl font-bold text-gray-900 mb-4">{feature.govrn.title}</h4>
-                <ul class="space-y-3">
-                  {feature.govrn.points.map(point => (
-                    <li class="flex items-center text-gray-600">
-                      <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <!-- Mid-page CTA -->
-        <div class="mt-12 text-center">
-          <a
-            href="/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            Experience the Difference Free for 14 Days
-            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Switch Benefits -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Switching is Easier Than You Think
-          </h2>
-          <p class="text-xl text-gray-600">
-            We make the transition from iBabs smooth and hassle-free
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {switchBenefits.map(benefit => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{benefit.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{benefit.title}</h3>
-              <p class="text-gray-600 mb-6">{benefit.description}</p>
-              <a
-                href={benefit.link}
-                class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors w-full justify-center"
-              >
-                {benefit.cta}
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Success Stories -->
-    <Testimonials texts={testimonials.texts} testimonials={testimonials.testimonials} />
-
-    <!-- Final CTA -->
-    <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">
-          Ready to Make the Switch?
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Join organizations that have already upgraded to Govrn's modern platform
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-          >
-            Start Free Trial
-          </a>
-          <a
-            href="/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200"
-          >
-            Schedule Demo
-          </a>
-        </div>
-        <p class="text-white/80 mt-6">
-          No credit card required. Cancel anytime.
-        </p>
-      </div>
-    </section>
-  </main>
+  <ComparisonPage
+    lang="en"
+    competitor="iBabs"
+    title="iBabs alternative: how Dafira compares"
+    lead="If you are evaluating iBabs or considering a change, this page sets out what Dafira offers on each criterion and what to check with iBabs. You can then test Dafira with your own board pack for 14 days."
+    criteria={criteria}
+    quotes={quotes}
+  />
 </Layout>

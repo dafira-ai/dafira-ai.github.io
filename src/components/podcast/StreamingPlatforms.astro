@@ -1,4 +1,7 @@
 ---
+// Links to the podcast on streaming platforms. Plain outline buttons, no brand colours.
+import { podcastLang, PODCAST_UI } from './podcast-i18n';
+
 interface Props {
   spotifyUrl?: string;
   applePodcastsUrl?: string;
@@ -7,57 +10,28 @@ interface Props {
   className?: string;
 }
 
-const { 
-  spotifyUrl,
-  applePodcastsUrl,
-  castboxUrl,
-  amazonMusicUrl,
-  className = ""
-} = Astro.props;
-
+const { spotifyUrl, applePodcastsUrl, castboxUrl, amazonMusicUrl, className = '' } = Astro.props;
+const t = PODCAST_UI[podcastLang(Astro.url.pathname)];
 const platforms = [
-  {
-    name: "Spotify",
-    url: spotifyUrl,
-    icon: "🎧",
-    bgColor: "bg-[#1DB954]",
-    hoverBgColor: "hover:bg-[#1DB954]/90"
-  },
-  {
-    name: "Apple Podcasts",
-    url: applePodcastsUrl,
-    icon: "🎙️",
-    bgColor: "bg-[#872EC4]",
-    hoverBgColor: "hover:bg-[#872EC4]/90"
-  },
-  {
-    name: "Castbox",
-    url: castboxUrl,
-    icon: "📻",
-    bgColor: "bg-[#F55B23]",
-    hoverBgColor: "hover:bg-[#F55B23]/90"
-  },
-  {
-    name: "Amazon Music",
-    url: amazonMusicUrl,
-    icon: "🎵",
-    bgColor: "bg-[#00A8E1]",
-    hoverBgColor: "hover:bg-[#00A8E1]/90"
-  }
-];
+  { name: 'Spotify', url: spotifyUrl },
+  { name: 'Apple Podcasts', url: applePodcastsUrl },
+  { name: 'Castbox', url: castboxUrl },
+  { name: 'Amazon Music', url: amazonMusicUrl },
+].filter((p) => p.url);
 ---
 
-<div class={`flex flex-wrap gap-4 ${className}`}>
-  {platforms.map(platform => platform.url && (
-    <a
-      href={platform.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      class={`inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg text-white ${platform.bgColor} ${platform.hoverBgColor} transition-colors duration-200`}
-      aria-label={`Listen on ${platform.name}`}
-    >
-      <Fragment set:html={platform.icon} />
-      <span class="ml-2">{platform.name}</span>
-    </a>
-  ))}
-</div>
+{platforms.length > 0 && (
+  <div class:list={['flex flex-wrap items-center gap-2', className]}>
+    <span class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500 me-2">{t.listenOn}</span>
+    {platforms.map((platform) => (
+      <a
+        href={platform.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md text-navy bg-white border border-line hover:border-navy transition-colors"
+      >
+        {platform.name}
+      </a>
+    ))}
+  </div>
+)}

@@ -2,8 +2,8 @@
 title: "Réunions de conseil d'administration productives : maximiser l'engagement et les résultats"
 description: "Découvrez les stratégies et pratiques pour optimiser vos réunions de conseil, de la préparation de l'ordre du jour aux résultats concrets, en assurant une collaboration fluide et une prise de décision éclairée."
 pubDate: 2023-04-10
-author: "Govrn"
-authorRole: "Équipe éditoriale Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/meeting.jpg"
 category: "Governance"
 tags: ["Réunions de conseil", "Gouvernance", "Engagement", "Bonnes pratiques"]

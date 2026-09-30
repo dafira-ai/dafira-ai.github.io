@@ -1,0 +1,41 @@
+---
+// Form field: label + input / textarea / select, with hint and error text.
+interface Props {
+  id: string;
+  label: string;
+  name?: string;
+  type?: string;
+  as?: 'input' | 'textarea' | 'select';
+  required?: boolean;
+  placeholder?: string;
+  hint?: string;
+  error?: string;
+  autocomplete?: string;
+  options?: { value: string; label: string }[];
+  rows?: number;
+  class?: string;
+  [key: string]: any;
+}
+const { id, label, name = id, type = 'text', as = 'input', required, placeholder, hint, error, autocomplete, options = [], rows = 4, class: className, ...rest } = Astro.props;
+const control = 'block w-full rounded-md border border-line bg-white px-3 py-2.5 text-[15px] text-ink placeholder:text-gray-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors';
+const describedBy = [hint && `${id}-hint`, error && `${id}-error`].filter(Boolean).join(' ') || undefined;
+// Latin-only values stay LTR inside RTL pages
+const ltr = ['email', 'url', 'tel'].includes(type) ? 'ltr' : undefined;
+---
+
+<div class:list={['space-y-1.5', className]}>
+  <label for={id} class="block text-sm font-medium text-navy">
+    {label}{required && <span class="text-gray-400" aria-hidden="true"> *</span>}
+  </label>
+  {as === 'textarea' ? (
+    <textarea id={id} name={name} rows={rows} required={required} placeholder={placeholder} aria-describedby={describedBy} aria-invalid={error ? 'true' : undefined} class={control} {...rest}></textarea>
+  ) : as === 'select' ? (
+    <select id={id} name={name} required={required} aria-describedby={describedBy} aria-invalid={error ? 'true' : undefined} class={control} {...rest}>
+      {options.map((o) => <option value={o.value}>{o.label}</option>)}
+    </select>
+  ) : (
+    <input id={id} name={name} type={type} required={required} placeholder={placeholder} autocomplete={autocomplete} dir={ltr} aria-describedby={describedBy} aria-invalid={error ? 'true' : undefined} class={control} {...rest} />
+  )}
+  {hint && <p id={`${id}-hint`} class="text-xs text-gray-500">{hint}</p>}
+  {error && <p id={`${id}-error`} class="text-xs text-red-700">{error}</p>}
+</div>

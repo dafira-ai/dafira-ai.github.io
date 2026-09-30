@@ -2,8 +2,8 @@
 title: "Board of Directors Structure: Roles, Composition and Governance Basics?"
 description: "Discover how the board of directors structure works, including one-tier, two-tier and hybrid models that shape governance, oversight and accountability in organizations."
 pubDate: 2025-05-21
-author: "Ludovic Laffineur"
-authorRole: "CTO at Govrn"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/corporate-governance.jpg"
 category: "Governance"
 tags: ["Board Structure", "Corporate Governance", "One-Tier Board", "Two-Tier Board", "Board Oversight"]

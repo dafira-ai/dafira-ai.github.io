@@ -73,11 +73,13 @@ export default defineConfig({
     }
   ), sitemap(
     {
+      filter: (page) => !page.includes('/styleguide'),
       i18n: {
         locales: {
           en: 'en', // The `defaultLocale` value must present in `locales` keys
           fr: 'fr',
           nl: 'nl',
+          ar: 'ar',
         },
         defaultLocale: "en",
 
@@ -85,8 +87,8 @@ export default defineConfig({
       serialize: (page) => {
 
         var pageUrl = page.url;
-        if (page.url.startsWith('https://govrn.com')) {
-          pageUrl = page.url.replace('https://govrn.com', '');
+        if (page.url.startsWith('https://dafira.ai')) {
+          pageUrl = page.url.replace('https://dafira.ai', '');
         }
         if (!pageUrl.startsWith("/blog/") && !pageUrl.startsWith("/fr/blog/") && !pageUrl.startsWith("/nl/blog/")) {
           return page;
@@ -136,7 +138,7 @@ export default defineConfig({
       }
     }
   )],
-  site: 'https://govrn.com',
+  site: 'https://dafira.ai',
   i18n: {
     locales: ["en", {
       path: "fr",
@@ -144,6 +146,9 @@ export default defineConfig({
     }, {
         path: "nl",
         codes: ["nl", "nl-NL", "nl-BE", "nl-SR", "nl-AW", "nl-CW", "nl-SX", "nl-BQ"]
+      }, {
+        path: "ar",
+        codes: ["ar", "ar-SA", "ar-AE", "ar-QA", "ar-KW", "ar-BH", "ar-OM", "ar-EG", "ar-JO", "ar-MA"]
       }],
     defaultLocale: 'en',
     routing: {

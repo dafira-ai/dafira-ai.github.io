@@ -1,0 +1,21 @@
+---
+// Product screenshot in a neutral frame. Real screenshots only.
+import { Image } from 'astro:assets';
+interface Props {
+  src: ImageMetadata | string;
+  alt: string;
+  caption?: string;
+  width?: number;
+  height?: number;
+  eager?: boolean;
+  class?: string;
+}
+const { src, alt, caption, width = 1200, height = 800, eager = false, class: className } = Astro.props;
+---
+
+<figure class:list={['bg-surface border border-line rounded-md p-2 sm:p-3', className]}>
+  {typeof src === 'string'
+    ? <img src={src} alt={alt} class="w-full h-auto rounded-sm border border-line bg-white" loading={eager ? 'eager' : 'lazy'} />
+    : <Image src={src} alt={alt} width={width} height={height} class="w-full h-auto rounded-sm border border-line bg-white" loading={eager ? 'eager' : 'lazy'} />}
+  {caption && <figcaption class="px-1 pt-3 pb-1 text-sm text-gray-500">{caption}</figcaption>}
+</figure>

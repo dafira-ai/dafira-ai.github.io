@@ -1,624 +1,118 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import backgroundImage from '../assets/images/background-image.jpg';
-import FAQ from '../components/FAQ.astro';
+import BoardAccountability from '../components/campaigns/BoardAccountability.astro';
 
-const testimonials = [
-  {
-    quote: "From decisions to done. No more lost resolutions or forgotten action items. Everything is tracked and followed up automatically.",
-    author: "Maria L.",
-    title: "Board Secretary",
-    company: "Tech Scale-up"
+const t = {
+  hero: {
+    eyebrow: 'Board accountability',
+    title: 'From minutes to actions: AI that supports board accountability',
+    lead: 'Do more than take notes. Turn every decision into traceable tasks with owners, deadlines, signatures and resolution status, in a secure, GDPR-compliant workflow.',
+    primary: { text: 'Start free trial', href: '/try' },
+    secondary: { text: 'Book a demo', href: '/request-demo' },
+    note: 'No credit card required · EU-hosted · GDPR compliant',
   },
-  {
-    quote: "Finally, board accountability that actually works. Owners know exactly what's expected and when. No more excuses.",
-    author: "Jean-Pierre K.",
-    title: "CEO",
-    company: "Manufacturing Group"
-  }
-];
-
-const accountabilityPromises = [
-  {
-    title: "Decisions → Actions",
-    description: "Decision points and resolutions are detected in your minutes, converted into tasks with owners, due dates and dependencies.",
-    icon: "🎯",
-    benefit: "Zero decisions slip through the cracks"
+  card: {
+    title: 'Decision → action → done',
+    meta: 'Resolution register',
+    rows: [
+      { label: 'R-2026-11', text: 'Budget approval', tone: 'ok' as const, status: 'Completed' },
+      { label: 'R-2026-12', text: 'Security audit', tone: 'pending' as const, status: 'In progress' },
+      { label: 'R-2026-13', text: 'Board expansion', tone: 'info' as const, status: 'Proposed' },
+    ],
+    footer: 'Each resolution has an owner and a due date',
+    footerMeta: 'eIDAS signatures',
+    caption: 'Sample register',
   },
-  {
-    title: "Frictionless Accountability",
-    description: "Automated reminders, smart follow-ups, activity journal and complete traceability until closure.",
-    icon: "📊",
-    benefit: "Owners stay on track without micro-management"
+  promise: {
+    eyebrow: 'The promise',
+    title: 'From scattered decisions to systematic accountability',
+    lead: 'Every board decision becomes a tracked action with clear ownership, deadlines and proof of completion.',
+    items: [
+      { icon: 'target', title: 'Decisions → actions', text: 'Decision points and resolutions are detected in your minutes and converted into tasks with owners, due dates and dependencies.', benefit: 'Decisions do not slip through the cracks' },
+      { icon: 'bell', title: 'Accountability without friction', text: 'Automated reminders, follow-ups, an activity journal and traceability until closure.', benefit: 'Owners stay on track without micro-management' },
+      { icon: 'signature', title: 'Integrated signatures', text: 'Validate minutes and resolutions with eIDAS-compliant electronic signature and evidential archiving.', benefit: 'Legal compliance built in' },
+      { icon: 'list', title: 'Resolution tracking', text: 'Clear status (Proposed, Approved, In progress, Blocked, Closed), attached evidence and timestamps for audit.', benefit: 'Audit-ready documentation' },
+    ],
   },
-  {
-    title: "Integrated Signatures",
-    description: "Validate minutes and resolutions with eIDAS-compliant electronic signature and probative archiving.",
-    icon: "✍️",
-    benefit: "Legal compliance built-in"
+  roles: {
+    eyebrow: 'For board leaders',
+    title: 'Built for CEOs and board secretaries',
+    lead: 'Different roles, shared need: decisions that get executed.',
+    items: [
+      { icon: 'user', role: 'CEO', benefits: [
+        'Real-time visibility on who is doing what, and by when',
+        'Fewer follow-up messages, more decisions executed, clearer accountability',
+        'Clear reporting to the board, without parallel spreadsheets',
+      ] },
+      { icon: 'pen', role: 'Board secretary', benefits: [
+        'No more post-meeting chaos: minutes generated, decisions extracted, tasks created automatically',
+        'Signature workflow (minutes, resolutions) and secure distribution to directors',
+        'A complete evidence file for audit and compliance',
+      ] },
+    ],
   },
-  {
-    title: "Resolution Tracking",
-    description: "Clear status (Proposed, Approved, In Progress, Blocked, Closed), attached evidence, and timestamping for audit.",
-    icon: "📋",
-    benefit: "Audit-ready documentation"
-  }
-];
-
-const workflow = [
-  {
-    step: "1",
-    title: "Capture & Generate",
-    description: "Import audio / notes / documents → AI generates structured minutes draft (agenda, decisions, actions, resolutions).",
-    icon: "🎤"
+  workflow: {
+    eyebrow: 'Workflow',
+    title: 'How it works: from meeting to accountability',
+    steps: [
+      { title: 'Capture and generate', text: 'Import audio, notes or documents; the AI generates a structured draft of the minutes (agenda, decisions, actions, resolutions).' },
+      { title: 'Transform', text: 'Decisions and resolutions are detected and turned into tasks (owner, due date, tags, attachments).' },
+      { title: 'Validate and sign', text: 'Electronic signature workflow for minutes and resolutions. Document locking, versioning and timestamps.' },
+      { title: 'Track and follow up', text: 'Reminders, notifications, custom deadlines, owner follow-ups, comments and proof of execution.' },
+      { title: 'Report', text: 'Dashboards and exports: resolution status, completion, delays and risks, plus an action follow-up item prepared for the next agenda.' },
+    ],
   },
-  {
-    step: "2",
-    title: "Transform",
-    description: "Automatic detection of decisions & resolutions → creation of tasks (owner, due date, tags, attachments).",
-    icon: "⚡"
+  modules: {
+    eyebrow: 'Key modules',
+    title: 'Everything you need for complete accountability',
+    lead: 'Modules designed to work together.',
+    items: [
+      { icon: 'tasks', title: 'Action tracker', text: 'Kanban and list views, filters (owner, committee, priority, deadline), mentions and assignment.', features: ['Kanban boards', 'Filters', 'Team mentions', 'Priority management'] },
+      { icon: 'book', title: 'Resolution register', text: 'Register of resolutions with status, legal basis, associated documents and votes.', features: ['Legal compliance', 'Document linking', 'Voting records', 'Status tracking'] },
+      { icon: 'signature', title: 'E-signature and approvals', text: 'Qualified signature, seals, completion certificate and a configurable approval workflow.', features: ['eIDAS compliance', 'Approval workflows', 'Digital certificates', 'Audit trails'] },
+      { icon: 'shield', title: 'Audit and compliance', text: 'Activity log, audit trails, EU hosting and GDPR compliance.', features: ['Complete audit trails', 'EU data hosting', 'GDPR compliance', 'Activity logging'] },
+    ],
+    links: [
+      { text: 'Learn about security and e-signatures', href: '/security' },
+      { text: 'Explore all features', href: '/features' },
+    ],
   },
-  {
-    step: "3",
-    title: "Validate & Sign",
-    description: "Electronic signature workflow for minutes/resolutions. Document locking, versioning and timestamping.",
-    icon: "✍️"
+  europe: {
+    eyebrow: 'Europe first',
+    title: 'From decision to execution, with European safeguards',
+    lead: 'Less friction between the meeting and the follow-up, in a platform built for European governance requirements.',
+    callout: 'EU hosting, GDPR by design and eIDAS-compliant signatures: your board data stays in Europe.',
+    primary: { text: 'Try it on your next meeting', href: '/try' },
+    secondary: { text: 'Need an audit-ready resolution register?', href: '/request-demo' },
   },
-  {
-    step: "4",
-    title: "Track & Follow Up",
-    description: "Reminders, notifications, custom SLAs, owner follow-ups, comments and execution proof.",
-    icon: "📈"
+  faq: {
+    title: 'Frequently asked questions',
+    subtitle: 'About AI-assisted board accountability',
+    inLanguage: 'en',
+    faqs: [
+      { question: 'Can AI minutes track decisions and actions?', answer: 'Yes. The AI identifies decisions and resolutions in your minutes and converts them into actionable tasks with owners and due dates. Each item is tracked until completion with reminders, status updates and an auditable trail.' },
+      { question: 'How do we follow up on board resolutions?', answer: 'Use the Resolution Register to track status (Proposed, Approved, In progress, Blocked, Closed), attach proof, assign owners and set deadlines. Automated reminders and dashboards make follow-up part of the standard board workflow.' },
+      { question: 'Are electronic signatures legally binding?', answer: 'Yes. Dafira uses UniverSign, which provides eIDAS-compliant qualified electronic signatures. These have the same legal status as handwritten signatures in the EU and provide complete audit trails for compliance.' },
+      { question: 'How does action tracking prevent things from falling through the cracks?', answer: 'Every decision becomes a tracked action with owner, deadline and status. Reminders, escalation workflows and dashboard visibility make sure nothing is forgotten or delayed without notice.' },
+    ],
   },
-  {
-    step: "5",
-    title: "Report",
-    description: "Dashboards & exports: resolution status, completion rates, delays, risks, and automatic preparation of 'action follow-up' for next agenda.",
-    icon: "📊"
-  }
-];
-
-const keyModules = [
-  {
-    title: "Action Tracker",
-    description: "Kanban/List view, filters (owner, committee, priority, deadline), mentions & @assign.",
-    icon: "📋",
-    features: ["Kanban boards", "Smart filters", "Team mentions", "Priority management"]
-  },
-  {
-    title: "Resolution Register",
-    description: "Resolution registry with status, legal basis, associated documents, votes.",
-    icon: "📚",
-    features: ["Legal compliance", "Document linking", "Voting records", "Status tracking"]
-  },
-  {
-    title: "e-Signature & Approvals",
-    description: "Qualified signature, seals, completion certificate; configurable approval workflow.",
-    icon: "🔐",
-    features: ["eIDAS compliance", "Approval workflows", "Digital certificates", "Audit trails"]
-  },
-  {
-    title: "Audit & Compliance",
-    description: "Activity log, audit trails, EU hosting and GDPR compliance.",
-    icon: "🛡️",
-    features: ["Complete audit trails", "EU data sovereignty", "GDPR compliance", "Activity logging"]
-  }
-];
-
-const rolesPersonas = [
-  {
-    role: "CEO",
-    icon: "👔",
-    benefits: [
-      "Real-time visibility on who's doing what, for when",
-      "Less micro-follow-ups, more decisions executed, reinforced accountability",
-      "Clear reporting to the board, without parallel spreadsheets"
-    ]
-  },
-  {
-    role: "Board Secretary",
-    icon: "📝",
-    benefits: [
-      "End of 'post-meeting chaos': minutes generated, decisions extracted, tasks created automatically",
-      "Signature workflow (minutes, resolutions) + secure distribution to directors",
-      "Complete evidence file for audit and compliance"
-    ]
-  }
-];
-
-const proofPoints = [
-  {
-    metric: "70%",
-    description: "time saved on preparation & distribution of minutes"
-  },
-  {
-    metric: "100%",
-    description: "decisions tracked from approval to completion"
-  },
-  {
-    metric: "90%",
-    description: "reduction in follow-up emails"
-  }
-];
-
-const faqData = {
-  title: "Frequently Asked Questions",
-  subtitle: "Everything you need to know about AI-powered board accountability",
-  inLanguage: "en",
-  faqs: [
-    {
-      question: "Can AI minutes track decisions and actions?",
-      answer: "Yes. The AI identifies decisions and resolutions in your minutes and converts them into actionable tasks with owners and due dates. Each item is tracked until completion with reminders, status updates, and an auditable trail."
+  cta: {
+    texts: {
+      title: 'Turn every board decision into a tracked action',
+      subtitle: 'See how a decision becomes a tracked, executed action. No credit card required.',
+      cta1: 'Book a demo',
+      cta2: 'Start free trial',
     },
-    {
-      question: "How do we follow up on board resolutions?",
-      answer: "Use the Resolution Register to track status (Proposed, Approved, In progress, Blocked, Closed), attach proof, assign owners, and set deadlines. Automated reminders and dashboards make follow-up part of the standard board workflow."
-    },
-    {
-      question: "Are electronic signatures legally binding?",
-      answer: "Yes. Govrn uses UniverSign, which provides eIDAS-compliant qualified electronic signatures. These have the same legal status as handwritten signatures in the EU and provide complete audit trails for compliance."
-    },
-    {
-      question: "How does action tracking prevent things from falling through the cracks?",
-      answer: "Every decision automatically becomes a tracked action with owner, deadline, and status. Smart reminders, escalation workflows, and dashboard visibility ensure nothing gets forgotten or delayed without notice."
-    }
-  ]
+    links: { cta1: '/request-demo', cta2: '/try' },
+  },
 };
 ---
 
 <Layout
-  title="From Minutes to Actions – AI Board Accountability | Govrn"
-  description="Transform board minutes into trackable actions with owners, deadlines, e-signatures and resolution tracking. EU-hosted, GDPR-compliant accountability system for boards."
+  title="From Minutes to Actions – AI Board Accountability | Dafira"
+  description="Turn board minutes into trackable actions with owners, deadlines, e-signatures and resolution tracking. An EU-hosted, GDPR-compliant accountability workflow for boards."
 >
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative min-h-[90vh] flex items-center overflow-hidden">
-      <!-- Background Image -->
-      <div class="absolute inset-0 z-0">
-        <Image
-          src={backgroundImage}
-          alt="AI board accountability background"
-          class="w-full h-full object-cover"
-          quality={80}
-        />
-        <div class="absolute inset-0 bg-gradient-to-br from-primary/95 via-slate-900/90 to-slate-900/95"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(57,153,222,0.1),transparent_50%)]"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(57,153,222,0.05),transparent_60%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="flex flex-col lg:flex-row items-center gap-12">
-          <!-- Content -->
-          <div class="flex-1 text-center lg:text-left">
-            <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-white/20 text-white backdrop-blur-sm mb-8 hover:bg-white/30 transition-colors">
-              🎯 AI Board Accountability
-            </div>
-
-            <h1 class="text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6 leading-tight">
-              From minutes to actions: <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">AI that drives board accountability</span>
-            </h1>
-            <p class="text-xl text-white/90 leading-relaxed mb-8">
-              Don't just "take notes". Transform every decision into traceable tasks, with owners, deadlines, signatures and resolution status — all in a secure, GDPR-compliant workflow.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 lg:justify-start justify-center">
-              <a href="/try" class="px-8 py-4 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
-                See 3-minute demo
-              </a>
-              <a href="/request-demo" class="px-8 py-4 bg-white text-primary border-2 border-primary/20 rounded-xl font-medium hover:bg-primary/5 transition-colors">
-                Book a demo
-              </a>
-            </div>
-            <p class="text-sm text-white/70 mt-4">
-              No credit card required • EU-hosted & GDPR compliant • Setup in minutes
-            </p>
-          </div>
-
-          <!-- Accountability Visual -->
-          <div class="flex-1 lg:max-w-lg">
-            <div class="relative">
-              <div class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 shadow-xl border border-primary/20">
-                <div class="text-center">
-                  <div class="text-6xl mb-4">🎯</div>
-                  <div class="bg-white rounded-lg p-6 shadow-lg mb-4">
-                    <div class="text-center mb-4">
-                      <div class="text-2xl font-bold text-gray-900 mb-2">Decision → Action → Done</div>
-                      <div class="text-primary font-semibold">Every resolution tracked</div>
-                    </div>
-                    <div class="space-y-2 text-sm">
-                      <div class="flex items-center justify-between p-2 bg-green-50 rounded border-l-4 border-green-400">
-                        <span>Budget approval</span>
-                        <span class="text-green-600 font-medium">✓ Completed</span>
-                      </div>
-                      <div class="flex items-center justify-between p-2 bg-yellow-50 rounded border-l-4 border-yellow-400">
-                        <span>Security audit</span>
-                        <span class="text-yellow-600 font-medium">⏳ In progress</span>
-                      </div>
-                      <div class="flex items-center justify-between p-2 bg-blue-50 rounded border-l-4 border-blue-400">
-                        <span>Board expansion</span>
-                        <span class="text-blue-600 font-medium">📝 Proposed</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="text-sm font-medium text-primary/90 italic bg-white/95 px-3 py-2 rounded-lg shadow-sm">
-                    "Finally, decisions that get done"
-                  </div>
-                </div>
-              </div>
-
-              <!-- Accountability indicators -->
-              <div class="absolute -top-4 -right-4 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold shadow-lg animate-bounce-slow">
-                100% tracked
-              </div>
-              <div class="absolute -bottom-4 -left-4 bg-white text-primary px-3 py-1 rounded-full text-sm font-semibold shadow-lg border border-primary/20">
-                eIDAS compliant
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- The Promise Section -->
-    <section class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary mb-8">
-            The Promise
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            From scattered decisions to systematic accountability
-          </h2>
-          <p class="text-xl text-gray-600 mb-8">
-            Every board decision becomes a tracked action with clear ownership, deadlines, and proof of completion.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {accountabilityPromises.map((promise) => (
-            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div class="text-3xl mb-4 text-center">{promise.icon}</div>
-              <h3 class="font-bold text-gray-900 mb-3 text-center">{promise.title}</h3>
-              <p class="text-gray-600 text-sm mb-3">{promise.description}</p>
-              <div class="text-primary font-semibold text-sm text-center bg-primary/5 px-3 py-2 rounded-lg">
-                → {promise.benefit}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div class="text-center">
-          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-            <a href="/try" class="inline-flex items-center px-8 py-4 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 transition-colors shadow-lg">
-              See how it works
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-            <a href="/request-demo" class="inline-flex items-center px-8 py-4 bg-white text-primary border-2 border-primary rounded-xl font-medium hover:bg-primary/5 transition-colors shadow-lg">
-              Request demo
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Who It's For Section -->
-    <section class="py-24 bg-gradient-to-br from-primary/5 to-primary/10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary mb-8">
-            For Board Leaders
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Built for CEOs and Board Secretaries
-          </h2>
-          <p class="text-xl text-gray-600">
-            Different roles, shared need: decisions that actually get executed.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-          {rolesPersonas.map((persona) => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-primary/20 hover:shadow-xl transition-all duration-300">
-              <div class="text-4xl mb-4 text-center">{persona.icon}</div>
-              <h3 class="font-bold text-gray-900 mb-6 text-center text-2xl">{persona.role}</h3>
-              <ul class="space-y-4">
-                {persona.benefits.map((benefit) => (
-                  <li class="flex items-start">
-                    <svg class="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span class="text-gray-600">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-gray-100 text-gray-700 mb-8">
-            Workflow
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            How it works: from meeting to accountability
-          </h2>
-        </div>
-
-        <div class="space-y-8">
-          {workflow.map((step, index) => (
-            <div class={`flex flex-col lg:flex-row items-center gap-8 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-              <div class="flex-1 max-w-md">
-                <div class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 text-center border border-primary/20">
-                  <div class="text-6xl mb-4">{step.icon}</div>
-                  <div class="inline-flex items-center justify-center w-12 h-12 bg-primary text-white rounded-full text-xl font-bold mb-4">
-                    {step.step}
-                  </div>
-                </div>
-              </div>
-              <div class="flex-1">
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">{step.title}</h3>
-                <p class="text-gray-600 text-lg leading-relaxed">{step.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Key Modules Section -->
-    <section class="py-24 bg-gradient-to-br from-gray-50 to-primary/5">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Key Modules
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Everything you need for complete accountability
-          </h2>
-          <p class="text-xl text-gray-600">
-            Purpose-built modules that work together seamlessly.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          {keyModules.map((module) => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div class="text-4xl mb-4">{module.icon}</div>
-              <h3 class="font-bold text-gray-900 mb-3 text-xl">{module.title}</h3>
-              <p class="text-gray-600 mb-6">{module.description}</p>
-              <div class="space-y-2">
-                {module.features.map((feature) => (
-                  <div class="flex items-center">
-                    <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span class="text-sm text-gray-600">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div class="text-center mt-12">
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/security" class="inline-flex items-center px-6 py-3 bg-white text-primary border border-primary rounded-lg font-medium hover:bg-primary/5 transition-colors">
-              Learn about security & e-signatures
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-            <a href="/features" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
-              Explore all features
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Proof & Differentiation Section -->
-    <section class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-green-100 text-green-700 mb-8">
-            Proven Results
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Proof and differentiation
-          </h2>
-          <p class="text-xl text-gray-600 mb-8">
-            From decision to execution: less friction, more results. Europe-first approach.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8 mb-12">
-          {proofPoints.map((point) => (
-            <div class="text-center bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-8 border border-primary/20">
-              <div class="text-4xl font-bold text-primary mb-2">{point.metric}</div>
-              <p class="text-gray-600">{point.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="bg-gradient-to-r from-primary/5 to-primary/10 rounded-2xl p-8 text-center border border-primary/20">
-          <div class="max-w-2xl mx-auto">
-            <div class="text-2xl font-bold text-gray-900 mb-4">
-              🇪🇺 Europe-first: EU hosting, GDPR by design, eIDAS-compliant signatures
-            </div>
-            <p class="text-gray-600 mb-6">
-              Unlike US competitors, your board data never leaves Europe. Built for European governance requirements from day one.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/try" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
-                Test on your next meeting
-              </a>
-              <a href="/request-demo" class="inline-flex items-center px-6 py-3 bg-white text-primary border border-primary rounded-lg font-medium hover:bg-primary/5 transition-colors">
-                Need an audit-ready resolution register?
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="py-24 bg-gradient-to-br from-primary/5 to-primary/10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            What board leaders say
-          </h2>
-          <p class="text-xl text-gray-600">
-            Real results from real boards
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          {testimonials.map((testimonial) => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-primary/20">
-              <div class="mb-6">
-                <svg class="w-8 h-8 text-primary/30 mb-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
-                </svg>
-                <p class="text-gray-700 text-lg italic mb-6">"{testimonial.quote}"</p>
-              </div>
-              <div>
-                <div class="font-semibold text-gray-900">{testimonial.author}</div>
-                <div class="text-gray-600">{testimonial.title}</div>
-                <div class="text-sm text-primary font-medium">{testimonial.company}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <FAQ texts={faqData} />
-
-    <!-- Final CTA Section -->
-    <section class="bg-gradient-to-br from-primary to-primary/80 py-32">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-        <h2 class="text-4xl font-bold text-white mb-8">
-          Ready to turn every board decision into tracked action?
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          See how a decision becomes a tracked, executed action in just 3 minutes.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
-          >
-            See 3-minute demo
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-7 4h12l-2 2H7l-2-2z" />
-            </svg>
-          </a>
-          <a
-            href="/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-all duration-200 hover:-translate-y-1"
-          >
-            Book a demo
-          </a>
-        </div>
-        <p class="text-white/80 mt-6">
-          No credit card required • EU-hosted & GDPR compliant • Setup in 5 minutes
-        </p>
-        <p class="text-sm text-white/60 mt-2">
-          Join 200+ European boards already achieving 100% decision accountability
-        </p>
-      </div>
-    </section>
+  <main>
+    <BoardAccountability t={t} />
   </main>
 </Layout>
-
-<style>
-  /* Custom animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  @keyframes bounceSlow {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-10px);
-    }
-    60% {
-      transform: translateY(-5px);
-    }
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 1s ease-out;
-  }
-
-  .animate-slide-in-right {
-    animation: slideInRight 1s ease-out 0.3s both;
-  }
-
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  .animate-bounce-slow {
-    animation: bounceSlow 3s ease-in-out infinite;
-  }
-
-  /* FAQ Smooth Transitions */
-  .faq-content {
-    transition: all 0.3s ease-in-out;
-  }
-
-  .faq-icon {
-    transition: transform 0.3s ease-in-out;
-  }
-
-  /* Enhanced responsive tables */
-  @media (max-width: 768px) {
-    .overflow-x-auto table {
-      font-size: 0.875rem;
-    }
-
-    .overflow-x-auto td,
-    .overflow-x-auto th {
-      padding: 0.75rem 0.5rem;
-    }
-  }
-</style>

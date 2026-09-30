@@ -1,4 +1,7 @@
 ---
+// What the AI assistant does, as ruled columns.
+import { Section, SectionHeader, FeatureColumns } from '../ui';
+
 interface Props {
   features: Array<{
     icon: string;
@@ -8,34 +11,17 @@ interface Props {
   texts?: {
     title: string;
     description: string;
-  }
+  };
+  tone?: 'white' | 'surface';
 }
 
-const { features, texts = {
-  title: "Intelligent Features for Smarter Governance",
-  description: "Powerful AI capabilities designed specifically for board management"
+const { features, tone = 'white', texts = {
+  title: "What you can ask",
+  description: "The assistant works on the documents you already have in Dafira: board packs, minutes and policies."
 }} = Astro.props;
 ---
 
-<section class="py-20 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="text-3xl font-bold text-gray-900 mb-4">
-        {texts.title}
-      </h2>
-      <p class="text-xl text-gray-600">
-        {texts.description}
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-8">
-      {features.map(feature => (
-        <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-          <div class="text-4xl mb-6">{feature.icon}</div>
-          <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-          <p class="text-gray-600">{feature.description}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
+<Section tone={tone} border={tone === 'surface' ? 'both' : 'none'}>
+  <SectionHeader title={texts.title} lead={texts.description} />
+  <FeatureColumns items={features.map((f) => ({ icon: f.icon, title: f.title, text: f.description }))} />
+</Section>

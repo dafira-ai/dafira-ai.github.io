@@ -1,0 +1,13 @@
+---
+// Grid of cells separated by hairlines (gap-px on a line-coloured ground). Put <div class="bg-white p-8"> cells in the slot.
+interface Props {
+  columns?: 2 | 3 | 4;
+  class?: string;
+}
+const { columns = 3, class: className } = Astro.props;
+const cols = { 2: 'md:grid-cols-2', 3: 'md:grid-cols-2 lg:grid-cols-3', 4: 'sm:grid-cols-2 lg:grid-cols-4' }[columns];
+---
+
+<div class:list={['grid gap-px bg-line border border-line rounded-md overflow-hidden', cols, className]}>
+  <slot />
+</div>

@@ -1,0 +1,75 @@
+---
+// Security overview page body. Copy is passed by each language version of /security.
+import { PageHero, Section, SectionHeader, CellGrid, FeatureColumns, FeatureList, Icon, Button } from '../ui';
+import LocalizedCTA from '../case-studies/LocalizedCTA.astro';
+
+interface Measure { icon: string; title: string; text: string; link?: { text: string; href: string } }
+interface Layer { icon: string; title: string; text: string; items: string[] }
+interface Partner { name: string; logo: string; role: string; text: string; items: string[] }
+
+interface Props {
+  copy: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    heroLink: { text: string; href: string };
+    measures: { eyebrow: string; title: string; lead: string; items: Measure[]; contact: { title: string; text: string; link: { text: string; href: string } } };
+    layers: { eyebrow: string; title: string; lead: string; items: Layer[] };
+    partners: { eyebrow: string; title: string; lead: string; items: Partner[] };
+  };
+}
+
+const { copy } = Astro.props;
+---
+
+<PageHero eyebrow={copy.eyebrow} title={copy.title} lead={copy.lead}>
+  <div class="mt-8"><Button variant="link" href={copy.heroLink.href}>{copy.heroLink.text}</Button></div>
+</PageHero>
+
+<Section space="lg">
+  <SectionHeader eyebrow={copy.measures.eyebrow} title={copy.measures.title} lead={copy.measures.lead} />
+  <CellGrid columns={3}>
+    {copy.measures.items.map((m) => (
+      <div class="bg-white p-6 lg:p-8 flex flex-col">
+        <Icon name={m.icon} class="w-6 h-6 text-navy" />
+        <h3 class="mt-5 text-lg font-semibold text-navy">{m.title}</h3>
+        <p class="mt-2 text-[15px] text-gray-600 leading-relaxed flex-1">{m.text}</p>
+        {m.link && <Button variant="link" href={m.link.href} class="mt-5 self-start">{m.link.text}</Button>}
+      </div>
+    ))}
+    <div class="bg-surface p-6 lg:p-8 flex flex-col">
+      <Icon name="chat" class="w-6 h-6 text-navy" />
+      <h3 class="mt-5 text-lg font-semibold text-navy">{copy.measures.contact.title}</h3>
+      <p class="mt-2 text-[15px] text-gray-600 leading-relaxed flex-1">{copy.measures.contact.text}</p>
+      <Button variant="link" href={copy.measures.contact.link.href} class="mt-5 self-start">{copy.measures.contact.link.text}</Button>
+    </div>
+  </CellGrid>
+</Section>
+
+<Section tone="surface" space="lg" border="both">
+  <SectionHeader eyebrow={copy.layers.eyebrow} title={copy.layers.title} lead={copy.layers.lead} />
+  <FeatureColumns columns={3} items={copy.layers.items} />
+</Section>
+
+<Section space="lg">
+  <SectionHeader eyebrow={copy.partners.eyebrow} title={copy.partners.title} lead={copy.partners.lead} />
+  <div class="border-t border-line">
+    {copy.partners.items.map((p) => (
+      <article class="grid lg:grid-cols-12 gap-6 lg:gap-8 py-10 border-b border-line">
+        <div class="lg:col-span-3 flex items-start">
+          <img src={p.logo} alt={`${p.name} logo`} loading="lazy" class="h-10 w-auto max-w-[180px] object-contain" />
+        </div>
+        <div class="lg:col-span-4">
+          <h3 class="text-xl font-semibold text-navy">{p.name}</h3>
+          <p class="mt-1 font-mono text-xs uppercase tracking-[0.08em] text-gray-500">{p.role}</p>
+          <p class="mt-4 text-gray-600 leading-relaxed">{p.text}</p>
+        </div>
+        <div class="lg:col-span-4 lg:col-start-9">
+          <FeatureList items={p.items} />
+        </div>
+      </article>
+    ))}
+  </div>
+</Section>
+
+<LocalizedCTA />

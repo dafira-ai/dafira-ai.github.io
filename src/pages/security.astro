@@ -1,259 +1,48 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SecurityOverview from '../components/security/SecurityOverview.astro';
 
-const securityFeatures = [
-  {
-    icon: "🔒",
-    title: "Enterprise-Grade Infrastructure",
-    description: "Built on Microsoft Azure's secure cloud platform, benefiting from their comprehensive security measures"
+const copy = {
+  eyebrow: 'Security',
+  title: 'How Dafira protects board information',
+  lead: 'The security measures built into the platform, and the partners we rely on for hosting, electronic signature and document processing.',
+  heroLink: { text: 'Multi-factor authentication', href: '/security/mfa' },
+  measures: {
+    eyebrow: 'Measures',
+    title: 'Security built into the platform',
+    lead: 'Controls that protect board documents, discussions and decisions.',
+    items: [
+      { icon: 'building', title: 'Hosted on Microsoft Azure', text: 'Dafira runs on Microsoft Azure’s cloud platform and benefits from its security measures.' },
+      { icon: 'shield', title: 'Data protection', text: 'Data protection practices aligned with GDPR requirements and industry standards.' },
+      { icon: 'lock', title: 'Encryption', text: 'Data is encrypted in transit and at rest.' },
+      { icon: 'phone', title: 'Multi-factor authentication', text: 'A one-time code sent by SMS adds a second step to the password before a user can open board information.', link: { text: 'How it works', href: '/security/mfa' } },
+      { icon: 'key', title: 'Role-based access control', text: 'Access is managed by role, with an audit trail of activity.' },
+    ],
+    contact: { title: 'Questions from your IT or risk team', text: 'Write to us and we will answer your questions about how Dafira handles security.', link: { text: 'Contact us', href: '/contact' } },
   },
-  {
-    icon: "🛡️",
-    title: "Data Protection",
-    description: "Robust data protection practices aligned with GDPR requirements and industry standards"
+  layers: {
+    eyebrow: 'Defence in depth',
+    title: 'Three layers of protection',
+    lead: 'Security is applied at the infrastructure, application and data levels.',
+    items: [
+      { icon: 'building', title: 'Infrastructure security', text: 'Microsoft Azure’s cloud infrastructure.', items: ['High-availability data centres', 'Network security controls', 'DDoS protection', 'Regular security updates'] },
+      { icon: 'lock', title: 'Application security', text: 'Controls at the application level.', items: ['Multi-factor authentication (MFA)', 'Session management', 'Input validation', 'Security headers'] },
+      { icon: 'shield', title: 'Data protection', text: 'Measures that protect stored data.', items: ['Encryption in transit and at rest', 'Secure data storage', 'Regular backups', 'Data access controls'] },
+    ],
   },
-  {
-    icon: "🔐",
-    title: "Advanced Encryption",
-    description: "End-to-end encryption for all data transmission and storage using industry-leading protocols"
+  partners: {
+    eyebrow: 'Partners',
+    title: 'Who we work with',
+    lead: 'Specialist providers for hosting, electronic signature and document processing.',
+    items: [
+      { name: 'Microsoft Azure', logo: '/azure-logo.png', role: 'Infrastructure', text: 'Our infrastructure provider. Microsoft Azure holds certifications including ISO 27001, FedRAMP, SOC and HIPAA.', items: ['Global data centre network', 'Threat protection', 'Continuous security monitoring', 'Compliance frameworks'] },
+      { name: 'Universign', logo: '/universign-logo.png', role: 'Electronic signature', text: 'Our electronic signature partner, compliant with the eIDAS regulation.', items: ['Qualified electronic signatures', 'Legal compliance', 'Secure document handling', 'Audit trails'] },
+      { name: 'Apryse', logo: '/apryse-logo.png', role: 'Document processing', text: 'Our document processing partner, with multiple compliance certifications.', items: ['Secure document processing', 'Access control', 'Encryption', 'Compliance features'] },
+    ],
   },
-  {
-    icon: "📱",
-    title: "Multi-Factor Authentication",
-    description: "SMS-based verification adds an extra layer of security beyond passwords to protect sensitive board information",
-    link: "/security/mfa"
-  },
-  {
-    icon: "👤",
-    title: "Granular Access Control",
-    description: "Role-based access management with comprehensive audit trails"
-  }
-];
-
-const securityLayers = [
-  {
-    title: "Infrastructure Security",
-    icon: "🏢",
-    description: "Leveraging Microsoft Azure's secure cloud infrastructure",
-    features: [
-      "High-availability data centers",
-      "Network security controls",
-      "DDoS protection",
-      "Regular security updates"
-    ]
-  },
-  {
-    title: "Application Security",
-    icon: "🔐",
-    description: "Multiple layers of security at the application level",
-    features: [
-      "Multi-factor authentication (MFA)",
-      "Session management",
-      "Input validation",
-      "Security headers"
-    ]
-  },
-  {
-    title: "Data Protection",
-    icon: "🛡️",
-    description: "Comprehensive data security measures",
-    features: [
-      "End-to-end encryption",
-      "Secure data storage",
-      "Regular backups",
-      "Data access controls"
-    ]
-  }
-];
-
-const trustedPartners = [
-  {
-    name: "Microsoft Azure",
-    logo: "/azure-logo.png",
-    description: "Our infrastructure provider, offering enterprise-grade security with certifications including ISO 27001, FedRAMP, SOC, and HIPAA compliance",
-    features: [
-      "Global data center network",
-      "Advanced threat protection",
-      "Continuous security monitoring",
-      "Compliance frameworks"
-    ]
-  },
-  {
-    name: "UniverSign",
-    logo: "/universign-logo.png",
-    description: "Our electronic signature partner, compliant with eIDAS regulations",
-    features: [
-      "Qualified electronic signatures",
-      "Legal compliance",
-      "Secure document handling",
-      "Audit trails"
-    ]
-  },
-  {
-    name: "Apryse",
-    logo: "/apryse-logo.png",
-    description: "Our document processing partner, offering secure document handling with multiple compliance certifications",
-    features: [
-      "Secure document processing",
-      "Access control",
-      "Encryption",
-      "Compliance features"
-    ]
-  }
-];
+};
 ---
 
-<Layout title="Security - Govrn Board Management Software" description="We've built security into every aspect of our platform, partnering with industry leaders to ensure your board's data is protected by the most robust security measures available.">
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Enterprise-Grade Security
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Security at Every
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Layer
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            At Govrn, we've built security into every aspect of our platform, partnering with industry leaders to ensure your board's data is protected by the most robust security measures available.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Security Features Grid -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-gray-900">Comprehensive Security</h2>
-          <p class="mt-4 text-xl text-gray-600">Built-in security features that protect your board's sensitive information</p>
-        </div>
-        <div class="grid md:grid-cols-2 gap-8">
-          {securityFeatures.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:border-primary/20 transition-all duration-200">
-              <div class="text-4xl mb-6">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600 mb-4">{feature.description}</p>
-              {feature.link && (
-                <a
-                  href={feature.link}
-                  class="inline-flex items-center text-primary hover:text-primary/80 font-medium"
-                >
-                  Learn more
-                  <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Security Layers -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-gray-900">Multi-Layered Security</h2>
-          <p class="mt-4 text-xl text-gray-600">Defense in depth approach to protect your data</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {securityLayers.map(layer => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-4xl mb-6">{layer.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{layer.title}</h3>
-              <p class="text-gray-600 mb-6">{layer.description}</p>
-              <ul class="space-y-3">
-                {layer.features.map(feature => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Trusted Partners -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-gray-900">Our Security Partners</h2>
-          <p class="mt-4 text-xl text-gray-600">Working with industry leaders to ensure the highest security standards</p>
-        </div>
-
-        <div class="space-y-12">
-          {trustedPartners.map(partner => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="flex flex-col md:flex-row gap-8">
-                <div class="md:w-64 flex-shrink-0 flex items-center">
-                  <img 
-  loading="lazy"
-                    src={partner.logo}
-                    alt={`${partner.name} logo`}
-                    class="h-12"
-                  />
-                </div>
-                <div class="flex-grow">
-                  <h3 class="text-xl font-bold text-gray-900 mb-4">{partner.name}</h3>
-                  <p class="text-gray-600 mb-6">{partner.description}</p>
-                  <div class="grid sm:grid-cols-2 gap-4">
-                    {partner.features.map(feature => (
-                      <div class="flex items-center text-gray-600">
-                        <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">
-          Ready to Experience Secure Board Management?
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Join leading organizations that trust Govrn with their sensitive board information
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-          >
-            Request Demo
-          </a>
-          <a
-            href="/contact"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200"
-          >
-            Contact Sales
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
+<Layout title="Security - Dafira Board Management Software" description="How Dafira protects board information: Microsoft Azure hosting, encryption, SMS multi-factor authentication, role-based access and audit trails, with Universign and Apryse as partners.">
+  <SecurityOverview copy={copy} />
 </Layout>

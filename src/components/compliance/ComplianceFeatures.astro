@@ -1,7 +1,6 @@
 ---
-interface Benefit {
-  text: string;
-}
+// Regulatory areas followed in the compliance dashboard, as ruled columns.
+import { Section, SectionHeader, FeatureColumns } from '../ui';
 
 interface Feature {
   title: string;
@@ -11,86 +10,49 @@ interface Feature {
 }
 
 interface Props {
-  texts: {
+  texts?: {
     title: string;
     description: string;
     features: Feature[];
-  }
-}
-const defaultTexts = {
-  texts: {
-    title: "Your Board's Regulatory",
-    description: "Transform regulatory complexity into clarity. Our AI-powered monitoring keeps your board confidently informed about upcoming regulations and their strategic impact, so you can focus on what matters most.",
-    features: [
-    {
-    title: "CSRD Compliance",
-    description: "Automated tracking and reporting of sustainability metrics for Corporate Sustainability Reporting Directive compliance",
-    icon: "🌱",
-    benefits: [
-      "ESG metrics tracking",
-      "Automated report generation",
-      "Impact assessment",
-      "Stakeholder reporting"
-    ]
-  },
-  {
-    title: "GDPR Protection",
-    description: "Comprehensive data protection measures ensuring compliance with EU privacy regulations",
-    icon: "🔒",
-    benefits: [
-      "Data privacy controls",
-      "Consent management",
-      "Access tracking",
-      "Breach prevention"
-    ]
-  },
-  {
-    title: "HIPAA Security",
-    description: "Healthcare-specific security measures protecting sensitive patient information",
-    icon: "🏥",
-    benefits: [
-      "PHI protection",
-      "Access controls",
-      "Audit logging",
-      "Secure sharing"
-    ]
-  }
-    ]
-  }
+  };
+  tone?: 'white' | 'surface';
 }
 
-const { texts = defaultTexts.texts } = Astro.props;
+const defaultTexts = {
+  title: "Regulatory areas",
+  description: "The dashboard follows the requirements that reach the board and links them to the documents that address them.",
+  features: [
+    {
+      title: "CSRD",
+      description: "Follow the sustainability reporting requirements of the Corporate Sustainability Reporting Directive.",
+      icon: "leaf",
+      benefits: [
+        "ESG indicators followed by category",
+        "Board documents linked to each requirement",
+        "Gaps and recommendations",
+        "Stakeholder reporting"
+      ]
+    },
+    {
+      title: "GDPR",
+      description: "Keep board data protection practices in line with EU privacy rules.",
+      icon: "lock",
+      benefits: [
+        "Data privacy controls",
+        "Access tracking",
+        "Audit trail"
+      ]
+    }
+  ]
+};
+
+const { texts = defaultTexts, tone = 'white' } = Astro.props;
 ---
 
-<section class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="text-3xl font-bold text-gray-900 mb-4">
-        {texts.title}
-      </h2>
-      <p class="text-xl text-gray-600">
-        {texts.description}
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-8">
-      {texts.features.map(feature => (
-        <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-          <div class="text-4xl mb-6">{feature.icon}</div>
-          <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-          <p class="text-gray-600 mb-6">{feature.description}</p>
-          <ul class="space-y-3">
-            {feature.benefits.map(benefit => (
-              <li class="flex items-center text-gray-600">
-                <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                {benefit}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
+<Section tone={tone} border={tone === 'surface' ? 'both' : 'none'}>
+  <SectionHeader title={texts.title} lead={texts.description} />
+  <FeatureColumns
+    columns={texts.features.length === 2 ? 2 : texts.features.length === 4 ? 4 : 3}
+    items={texts.features.map((f) => ({ icon: f.icon, title: f.title, text: f.description, items: f.benefits }))}
+  />
+</Section>

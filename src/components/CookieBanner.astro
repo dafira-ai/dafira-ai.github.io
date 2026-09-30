@@ -1,20 +1,22 @@
 ---
-// Note: Add i18n support later if needed
-// import { getLangFromUrl, useTranslations } from '../i18n/utils';
-// const lang = getLangFromUrl(Astro.url);
-// const t = useTranslations(lang);
+import { langFromPath, localizePath } from '../i18n/routes';
+
+const lang = langFromPath(Astro.url.pathname);
+const t = {
+  en: { text: 'We use cookies to measure traffic and improve the site. You can accept or decline analytics cookies.', policy: 'Privacy policy', decline: 'Decline', accept: 'Accept' },
+  fr: { text: 'Nous utilisons des cookies pour mesurer l’audience et améliorer le site. Vous pouvez accepter ou refuser les cookies de mesure.', policy: 'Politique de confidentialité', decline: 'Refuser', accept: 'Accepter' },
+  nl: { text: 'We gebruiken cookies om het bezoek te meten en de site te verbeteren. U kunt analytische cookies accepteren of weigeren.', policy: 'Privacybeleid', decline: 'Weigeren', accept: 'Accepteren' },
+  ar: { text: 'نستخدم ملفات تعريف الارتباط لقياس الزيارات وتحسين الموقع. يمكنك قبول ملفات القياس أو رفضها.', policy: 'سياسة الخصوصية', decline: 'رفض', accept: 'قبول' },
+}[lang];
 ---
 
-<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 transform translate-y-full transition-transform duration-300 hidden">
+<div id="cookie-banner" class="fixed bottom-0 start-0 end-0 bg-white border-t border-line shadow-lg z-50 transform translate-y-full transition-transform duration-300 hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
       <div class="flex-1">
         <p class="text-sm text-gray-600 leading-relaxed">
-          We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic.
-          By clicking "Accept", you consent to our use of cookies.
-          <a href="/privacy-policy" class="text-primary hover:text-primary/80 underline ml-1 font-medium">
-            Privacy Policy
-          </a>
+          {t.text}
+          <a href={localizePath(lang, '/privacy')} class="text-primary hover:text-navy underline underline-offset-2 ms-1">{t.policy}</a>
         </p>
       </div>
       <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
@@ -22,13 +24,13 @@
           id="cookie-decline"
           class="px-4 py-2 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors duration-200 w-full sm:w-auto font-medium"
         >
-          Decline
+          {t.decline}
         </button>
         <button
           id="cookie-accept"
-          class="px-4 py-2 text-sm bg-primary text-white border border-transparent rounded-md hover:bg-primary/90 transition-colors duration-200 w-full sm:w-auto font-medium"
+          class="px-4 py-2 text-sm bg-navy text-white border border-transparent rounded-md hover:bg-primary transition-colors duration-200 w-full sm:w-auto font-medium"
         >
-          Accept
+          {t.accept}
         </button>
       </div>
     </div>

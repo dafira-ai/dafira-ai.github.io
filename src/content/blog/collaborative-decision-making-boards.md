@@ -2,8 +2,8 @@
 title: "Collaborative Decision Making in Board Governance"
 description: "How collaborative decision making strengthens board governance, improves accountability, and enhances strategic outcomes through structured processes and clear decision rights."
 pubDate: 2025-12-15
-author: "Hanne Gellynck"
-authorRole: "Head of Commercial at Govrn"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/comite-de-direction-codir-entreprise.jpg"
 category: "Governance"
 tags: ["collaborative decision making", "board governance", "decision process", "board effectiveness", "committee governance"]
@@ -136,7 +136,7 @@ To implement **collaborative decision making** effectively, boards should:
 - **Record dissent in minutes**: Protect individual directors by documenting where they disagreed with the majority.
 - **Use decision logs**: Track major decisions, rationale, and outcomes to build institutional memory and support audits.
 - **Empower the chair to manage discussion**: The chair ensures all voices are heard, prevents dominant personalities from stifling debate, and keeps the meeting focused.
-- **Leverage board management platforms**: Tools like Govrn streamline document distribution, secure communication, and decision tracking, enabling boards to operate more efficiently.
+- **Leverage board management platforms**: Tools like Dafira streamline document distribution, secure communication, and decision tracking, enabling boards to operate more efficiently.
 
 ---
 

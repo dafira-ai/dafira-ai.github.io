@@ -1,5 +1,6 @@
 ---
 import FormSuccess from "./FormSuccess.astro";
+import { Field } from "../ui";
 
 // Add type declaration for intl-tel-input
 declare global {
@@ -58,7 +59,7 @@ const {
     termsLink: "Terms of Service",
     privacyLink: "Privacy Policy",
   },
-  successTitle = "Welcome to Govrn!",
+  successTitle = "Welcome to Dafira",
   successMessage = "Your trial account is being set up. Check your email for login instructions.",
   selectReasonText = "Select a reason",
   termsUrl = "/terms",
@@ -74,155 +75,71 @@ const {
       defer
       data-cfasync="false"></script>
 
-<form id="trialForm" class="space-y-6">
-  <div class="grid grid-cols-2 gap-6">
-    <div>
-      <label
-        for="firstName"
-        class="block text-sm font-medium text-gray-700 mb-2"
-      >
-        {labels.firstName}
-      </label>
-      <input
-        type="text"
-        id="firstName"
-        name="firstName"
-        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
-        required
-      />
-    </div>
-    <div>
-      <label
-        for="lastName"
-        class="block text-sm font-medium text-gray-700 mb-2"
-      >
-        {labels.lastName}
-      </label>
-      <input
-        type="text"
-        id="lastName"
-        name="lastName"
-        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
-        required
-      />
-    </div>
+<form id="trialForm" class="space-y-5">
+  <div class="grid sm:grid-cols-2 gap-4">
+    <Field id="firstName" label={labels.firstName} required autocomplete="given-name" />
+    <Field id="lastName" label={labels.lastName} required autocomplete="family-name" />
   </div>
 
-  <div>
-    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-      {labels.email}
-    </label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
-      required
-    />
-  </div>
+  <Field id="email" type="email" label={labels.email} required autocomplete="email" />
 
-  <div>
-    <label for="company" class="block text-sm font-medium text-gray-700 mb-2">
-      {labels.company}
-    </label>
-    <input
-      type="text"
-      id="company"
-      name="company"
-      class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
-      required
-    />
-  </div>
+  <Field id="company" label={labels.company} required autocomplete="organization" />
 
-  <div class="w-full">
-    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
-      {labels.phone}
+  <div class="space-y-1.5">
+    <label for="phone" class="block text-sm font-medium text-navy">
+      {labels.phone}<span class="text-gray-400" aria-hidden="true"> *</span>
     </label>
     <div class="phone-input-container w-full">
       <input
         type="tel"
         id="phone"
         name="phone"
-        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
+        dir="ltr"
+        autocomplete="tel"
+        aria-describedby="phone-error"
+        class="block w-full rounded-md border border-line bg-white px-3 py-2.5 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
         required
       />
     </div>
+    <p id="phone-error" class="hidden text-xs text-red-700" aria-live="polite">Please enter a valid phone number</p>
   </div>
-  <span id="phone-error" class="hidden text-red-500 text-sm mt-1"
-    >Please enter a valid phone number</span
-  >
 
-  <div>
-    <label for="reason" class="block text-sm font-medium text-gray-700 mb-2">
-      {labels.reason}
-    </label>
-    <select
-      id="reason"
-      name="reason"
-      class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
-      required
-    >
-      <option value="">{selectReasonText}</option>
-      {reasons.map((reason) => <option value={reason}>{reason}</option>)}
-    </select>
-  </div>
-  
-  </div>
+  <Field
+    id="reason"
+    as="select"
+    label={labels.reason}
+    required
+    options={[{ value: "", label: selectReasonText }, ...reasons.map((r) => ({ value: r, label: r }))]}
+  />
+
   <button
     type="submit"
     id="submitButton"
-    class="w-full px-6 py-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200 font-medium flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+    class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 text-[15px] font-medium rounded-md bg-navy text-white hover:bg-primary transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed"
   >
     <span id="buttonText">{labels.submit}</span>
-    <svg
-      id="buttonArrow"
-      class="w-5 h-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-    </svg>
+    <span id="buttonArrow" class="hidden" aria-hidden="true"></span>
     <svg
       id="buttonLoader"
       class="animate-spin h-5 w-5 hidden"
-      xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
+      aria-hidden="true"
     >
-      <circle
-        class="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        stroke-width="4"></circle>
-      <path
-        class="opacity-75"
-        fill="currentColor"
-        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-      ></path>
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
     </svg>
   </button>
 
-  <p class="text-sm text-gray-500 text-center">
+  <p class="text-sm text-gray-500">
     {labels.termsText}
-    <a href={termsUrl} class="text-primary hover:text-primary/90"
-      >{labels.termsLink}</a
-    >
+    <a href={termsUrl} class="text-primary hover:text-navy underline underline-offset-2">{labels.termsLink}</a>
     and
-    <a href={privacyUrl} class="text-primary hover:text-primary/90"
-      >{labels.privacyLink}</a
-    >.
+    <a href={privacyUrl} class="text-primary hover:text-navy underline underline-offset-2">{labels.privacyLink}</a>.
   </p>
-  
 </form>
 
-<div id="formSuccess" class="hidden">
+<div id="formSuccess" class="hidden" role="status">
   <FormSuccess title={successTitle} message={successMessage} />
 </div>
 
@@ -248,45 +165,43 @@ const {
   .iti__tel-input,
   .iti input {
     width: 100% !important;
-    border-radius: 0.5rem !important;
-    border: 1px solid rgb(209, 213, 219) !important;
-    padding: 0.75rem 1rem !important;
-    padding-left: 90px !important;
-    font-size: 1rem !important;
+    border-radius: 4px !important;
+    border: 1px solid rgb(var(--line)) !important;
+    padding: 0.625rem 0.75rem !important;
+    padding-inline-start: 90px !important;
+    font-size: 15px !important;
     line-height: 1.5 !important;
   }
 
   .iti input:focus {
     outline: none !important;
-    border-color: rgb(99, 102, 241) !important;
-    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2) !important;
+    border-color: rgb(var(--brand)) !important;
+    box-shadow: 0 0 0 2px rgb(var(--brand) / 0.2) !important;
   }
 
   /* Style the flag container */
 
   .iti__selected-flag {
-    border-radius: 0.5rem 0 0 0.5rem !important;
-    transition: all 0.2s ease !important;
-    background-color: rgb(249, 250, 251) !important;
+    border-start-start-radius: 4px !important;
+    border-end-start-radius: 4px !important;
+    background-color: rgb(var(--surface)) !important;
     height: 100% !important;
   }
 
   .iti__selected-flag:hover,
   .iti__selected-flag:focus {
-    background-color: rgb(239, 246, 255) !important;
-    border-radius: 0.5rem 0 0 0.5rem !important;
+    background-color: rgb(var(--surface)) !important;
   }
 
   .iti__country-list {
-    border-radius: 0.5rem !important;
-    border: 1px solid rgb(229, 231, 235) !important;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
+    border-radius: 4px !important;
+    border: 1px solid rgb(var(--line)) !important;
   }
 
   .iti__country.iti__highlight,
   .iti__country:hover,
   .iti__country.iti__active {
-    background-color: rgb(239, 246, 255) !important;
+    background-color: rgb(var(--surface)) !important;
   }
 </style>
 

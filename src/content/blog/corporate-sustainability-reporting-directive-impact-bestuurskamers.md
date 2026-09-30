@@ -2,8 +2,8 @@
 title: "De Corporate Sustainability Reporting Directive: Een Keerpunt voor Bestuurskamers"
 description: "Ontdek hoe de Corporate Sustainability Reporting Directive (CSRD) de bestuursdynamiek verandert en besturen dwingt hun rol, expertise en benadering van duurzaamheid te heroverwegen."
 pubDate: 2024-12-23
-author: "Ludovic Laffineur"
-authorRole: "CPTO bij Govrn"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/csrd-esg-leadership-substainability.jpg"
 category: "Regulatory"
 tags: ["CSRD", "Bestuursdynamiek", "ESG-rapportage", "Corporate Governance", "Duurzaamheid"]
@@ -24,8 +24,7 @@ Dit is niet zomaar een nieuwe nalevingsmaatregel—CSRD zorgt voor een fundament
 
 CSRD vereist dat bedrijven rapporteren over hun **sociale en milieu-impact** in de **gehele waardeketen**—niet alleen intern, maar ook upstream (leveranciers) en downstream (productgebruik en -verwijdering). Zie het als een stap verder dan financiële rapportages, die slechts een momentopname van de financiële gezondheid geven, naar een **panoramische film** die laat zien hoe een bedrijf met de wereld interacteert.
 
-> "CSRD vereist dat bedrijven de ESG-kwesties identificeren en rapporteren die het meest relevant zijn voor hun bedrijf en stakeholders." – Ludovic Laffineur
-
+CSRD vereist dat bedrijven de ESG-kwesties identificeren en rapporteren die het meest relevant zijn voor hun bedrijf en stakeholders.
 Voor besturen betekent dit het aanpakken van complexe vraagstukken zoals:
 - **Mondiale toeleveringsketens**
 - **Klimaatrisicobeoordelingen**

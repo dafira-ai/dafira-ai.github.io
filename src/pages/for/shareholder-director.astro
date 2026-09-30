@@ -1,265 +1,54 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import CTA from '../../components/CTA.astro';
+import RoleLanding from '../../components/industries/RoleLanding.astro';
+import { customerQuote, readCaseLabel } from '../../components/industries/customerQuotes';
 
-const challenges = [
-  {
-    icon: "⚖️",
-    title: "Balancing Interests",
-    description: "Tools to effectively balance shareholder demands with company needs while maintaining objectivity"
-  },
-  {
-    icon: "🤝",
-    title: "Stakeholder Management",
-    description: "Manage diverse shareholder interests and expectations with structured communication tools"
-  },
-  {
-    icon: "📢",
-    title: "Effective Communication",
-    description: "Ensure clear, timely communication with all shareholders while maintaining appropriate confidentiality"
-  },
-  {
-    icon: "📋",
-    title: "Request Management",
-    description: "Efficiently handle and track shareholder requests, complaints, and concerns"
-  }
-];
-
-const features = [
-  {
-    title: "Secure Communication Hub",
-    description: "Centralized platform for managing shareholder communications",
-    icon: "💬",
-    benefits: [
-      "Structured communication channels",
-      "Document sharing controls",
-      "Confidentiality management",
-      "Update distribution"
-    ]
-  },
-  {
-    title: "Knowledge Management",
-    description: "Comprehensive system for organizing and accessing relevant information",
-    icon: "📚",
-    benefits: [
-      "Document organization",
-      "Information access control",
-      "Historical context",
-      "Search capabilities"
-    ]
-  },
-  {
-    title: "AI-Powered Insights",
-    description: "Intelligent analysis to support balanced decision-making",
-    icon: "🤖",
-    benefits: [
-      "Data-driven insights",
-      "Trend analysis",
-      "Impact assessment",
-      "Performance tracking"
-    ]
-  }
-];
-
-const governanceFeatures = [
-  {
-    icon: "🔒",
-    title: "Access Control",
-    description: "Granular permissions ensure appropriate information sharing with different shareholder groups"
-  },
-  {
-    icon: "📊",
-    title: "Performance Tracking",
-    description: "Monitor and report on key metrics relevant to shareholder interests"
-  },
-  {
-    icon: "📝",
-    title: "Documentation",
-    description: "Comprehensive record-keeping of all shareholder communications and decisions"
-  }
-];
-
-const testimonial = {
-  quote: "Govrn has transformed how we manage shareholder communications and expectations, providing the perfect balance of transparency and control.",
-  author: "James Chen",
-  role: "Shareholder Director",
-  company: "Finance & Invest Brussels",
-  image: "https://media.licdn.com/dms/image/C4D03AQFPYn85d5YqQw/profile-displayphoto-shrink_800_800/0/1516238871440?e=1714003200&v=beta&t=Hs_Oi_Qh_Hs_Oi_Qh_Hs_Oi_Qh_Hs_Oi_Qh"
+const hero = {
+  eyebrow: 'For shareholder directors',
+  title: 'Represent shareholders, with a clear record',
+  lead: 'Balance the interests of the shareholders you represent with those of the company. Dafira keeps board papers, discussions and decisions in one secure place, with access set by role.',
+  primary: { text: 'Book a demo', href: '/request-demo' },
+  secondary: { text: 'Contact sales', href: '/contact' },
+  screenshot: { src: '/onboarding-boardpack.png', alt: 'Dafira board pack organised by agenda item, with annotations on the minutes' },
 };
+
+const challenges = {
+  title: 'What shareholder directors need',
+  lead: 'Representing a shareholder on the board means handling several sets of expectations at once.',
+  items: [
+    { icon: 'scale', title: 'Balancing interests', text: 'Weigh shareholder expectations against the company’s needs, with the facts in front of you.' },
+    { icon: 'users', title: 'Stakeholder relations', text: 'Keep exchanges with the shareholders you represent structured and documented.' },
+    { icon: 'mail', title: 'Clear communication', text: 'Share information on time while respecting the confidentiality of board matters.' },
+    { icon: 'tasks', title: 'Follow-up of requests', text: 'Track questions and action items raised at the board until they are closed.' },
+  ],
+};
+
+const features = {
+  title: 'Features for shareholder directors',
+  lead: 'What Dafira provides to support the role.',
+  items: [
+    { icon: 'chat', title: 'Secure communication', text: 'Board conversations in one place instead of email and messaging apps.', items: ['Secure board chat', 'Controlled document sharing', 'News feed for updates'] },
+    { icon: 'folder', title: 'Document library', text: 'Board papers, minutes and decisions, organised and searchable.', items: ['Board pack by agenda item', 'Access by role', 'Past minutes and decisions', 'Search'] },
+    { icon: 'sparkle', title: 'AI assistant', text: 'Ask questions about the board papers and get summaries of long documents.', items: ['Questions on board documents', 'Summaries of long papers'] },
+  ],
+};
+
+const security = {
+  title: 'Governance and confidentiality',
+  lead: 'Share what should be shared, and keep a record of it.',
+  link: { text: 'Read about security', href: '/security' },
+  items: [
+    { icon: 'lock', title: 'Access control', text: 'Permissions by board, committee and role determine who sees which information.' },
+    { icon: 'vote', title: 'Voting and decisions', text: 'Votes and resolutions recorded with the meeting, in a decision log.' },
+    { icon: 'document', title: 'Documentation', text: 'Minutes, decisions and board papers kept together, with an audit trail.' },
+  ],
+};
+
+const quote = { ...customerQuote('en', 'pierre'), linkText: readCaseLabel.en };
 ---
 
-<Layout title="Board Management Software for Shareholder Directors | Govrn" description="Empower your role as a shareholder director with comprehensive tools for managing stakeholder communications, balancing interests, and making informed decisions.">
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-              For Shareholder Directors
-            </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Balance Stakeholder Interests with
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                Intelligent Tools
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-12">
-              Empower your role as a shareholder director with comprehensive tools for managing stakeholder communications, balancing interests, and making informed decisions.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/request-demo"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Request Demo
-              </a>
-              <a
-                href="/contact"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-              >
-                Contact Sales
-              </a>
-            </div>
-          </div>
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl transform rotate-3"></div>
-            <img 
-  loading="lazy"
-              src="/realestate.jpg"
-              alt="Govrn Platform Interface"
-              class="relative rounded-2xl shadow-2xl"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Challenges Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Challenges We Solve
-          </h2>
-          <p class="text-xl text-gray-600">
-            Address key challenges facing shareholder directors with our comprehensive solution
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Features for Shareholder Directors
-          </h2>
-          <p class="text-xl text-gray-600">
-            Purpose-built tools to support effective stakeholder management
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600 mb-6">{feature.description}</p>
-              <ul class="space-y-3">
-                {feature.benefits.map(benefit => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Governance Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Governance & Compliance
-          </h2>
-          <p class="text-xl text-gray-600">
-            Maintain high standards of governance while managing shareholder interests
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {governanceFeatures.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonial Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-br from-primary to-blue-600 rounded-2xl overflow-hidden">
-          <div class="grid lg:grid-cols-2 gap-8 p-12">
-            <div class="text-white">
-              <blockquote class="text-2xl font-medium mb-8">
-                "{testimonial.quote}"
-              </blockquote>
-              <div class="flex items-center space-x-4">
-                <img 
-  loading="lazy"
-                  src={testimonial.image}
-                  alt={testimonial.author}
-                  class="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <div class="font-semibold">{testimonial.author}</div>
-                  <div class="text-white/80">{testimonial.role}</div>
-                  <div class="text-white/80">{testimonial.company}</div>
-                </div>
-              </div>
-            </div>
-            <div class="relative lg:text-right">
-              <a
-                href="/case-studies/finance-invest-brussels"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-              >
-                Read Case Study
-                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Board Management Software for Shareholder Directors | Dafira" description="Board portal for shareholder directors: secure board communication, organised board papers and a clear record of votes and decisions.">
+  <main>
+    <RoleLanding hero={hero} challenges={challenges} features={features} security={security} quote={quote} />
   </main>
 </Layout>

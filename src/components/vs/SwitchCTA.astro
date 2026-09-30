@@ -1,0 +1,22 @@
+---
+// "Moving from <competitor>" section: header + ruled columns (trial, migration help, pricing) + a small note.
+import { Section, SectionHeader, FeatureColumns } from '../ui';
+import type { FeatureColumn } from '../ui/FeatureColumns.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  items: FeatureColumn[];
+  note?: string;
+  tone?: 'white' | 'surface';
+}
+
+const { eyebrow, title, lead, items, note, tone = 'white' } = Astro.props;
+---
+
+<Section tone={tone} border="top">
+  <SectionHeader eyebrow={eyebrow} title={title} lead={lead} />
+  <FeatureColumns items={items} columns={3} />
+  {note && <p class="pt-6 border-t border-line text-sm text-gray-500">{note}</p>}
+</Section>

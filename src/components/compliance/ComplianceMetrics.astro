@@ -1,4 +1,8 @@
 ---
+// Row of dashboard indicators. Only pass figures that have a source; the defaults are descriptive, not measured results.
+import { Section } from '../ui';
+import MetricCard from './dashboard/MetricCard.astro';
+
 interface Props {
   metrics?: {
     title: string;
@@ -6,51 +10,19 @@ interface Props {
     change: string;
     icon: string;
   }[];
+  tone?: 'white' | 'surface';
 }
 
-const { metrics = [
-  {
-    title: "Compliance Score",
-    value: "92%",
-    change: "+5%",
-    icon: "📈"
-  },
-  {
-    title: "Issues Resolved",
-    value: "127",
-    change: "Last 30 days",
-    icon: "✅"
-  },
-  {
-    title: "Time Saved",
-    value: "40hrs",
-    change: "per month",
-    icon: "⚡"
-  },
-  {
-    title: "Cost Reduction",
-    value: "30%",
-    change: "vs. manual tracking",
-    icon: "💰"
-  }
+const { tone = 'surface', metrics = [
+  { title: "Regulations followed", value: "CSRD · GDPR", change: "EU requirements", icon: "scale" },
+  { title: "Evidence", value: "Minutes", change: "and board policies", icon: "document" },
+  { title: "Follow-up", value: "Gaps", change: "with recommendations", icon: "list" },
+  { title: "Record", value: "Audit trail", change: "of every change", icon: "clipboard" }
 ]} = Astro.props;
 ---
 
-<section class="py-20 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid md:grid-cols-4 gap-8">
-      {metrics.map(metric => (
-        <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-3xl">{metric.icon}</span>
-            <span class="text-sm text-green-600 bg-green-100 px-2 py-1 rounded-full">
-              {metric.change}
-            </span>
-          </div>
-          <h3 class="text-gray-600 text-sm mb-1">{metric.title}</h3>
-          <div class="text-3xl font-bold text-gray-900">{metric.value}</div>
-        </div>
-      ))}
-    </div>
+<Section tone={tone} border={tone === 'surface' ? 'both' : 'none'} space="md">
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    {metrics.map((metric) => <MetricCard {...metric} />)}
   </div>
-</section>
+</Section>

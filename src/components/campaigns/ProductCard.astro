@@ -1,0 +1,56 @@
+---
+// Sober product vignette for campaign heroes: a header, rows with an optional status chip, and a footer line.
+// Rendered in HTML so it follows the page language and direction. Sample content only (aria-hidden).
+interface Row {
+  label?: string;
+  text: string;
+  tone?: 'ok' | 'info' | 'pending' | 'danger' | 'neutral';
+  status?: string;
+}
+interface Props {
+  title: string;
+  meta?: string;
+  rows: Row[];
+  footer?: string;
+  footerMeta?: string;
+  /** optional mono caption shown under the card */
+  caption?: string;
+  class?: string;
+}
+const { title, meta, rows, footer, footerMeta, caption, class: className } = Astro.props;
+const tones = {
+  ok: 'bg-emerald-50 text-emerald-800',
+  info: 'bg-blue-50 text-primary',
+  pending: 'bg-amber-50 text-amber-800',
+  danger: 'bg-red-50 text-red-700',
+  neutral: 'bg-gray-100 text-gray-700',
+};
+---
+
+<div class:list={['relative', className]} aria-hidden="true" data-play>
+  <div class="absolute -inset-x-4 -inset-y-6 bg-surface rounded-md hidden lg:block"></div>
+  <div class="relative bg-white border border-line rounded-md shadow-2xl text-sm">
+    <div class="flex items-baseline justify-between gap-4 px-5 py-4 border-b border-line">
+      <span class="font-semibold text-navy">{title}</span>
+      {meta && <span class="font-mono text-xs text-gray-500">{meta}</span>}
+    </div>
+    <ul>
+      {rows.map((row, i) => (
+        <li class="grid grid-cols-[auto_1fr_auto] items-center gap-3 px-5 py-3.5 border-b border-line last:border-b-0" data-step style={`--d:${150 + i * 90}`}>
+          <span class="font-mono text-[11px] uppercase tracking-[0.06em] text-gray-500 min-w-[4.5rem]">{row.label}</span>
+          <span class="text-ink">{row.text}</span>
+          {row.status
+            ? <span data-step="fade" style={`--d:${520 + i * 120}`} class:list={['text-[11px] font-medium px-2 py-0.5 rounded-sm whitespace-nowrap', tones[row.tone ?? 'neutral']]}>{row.status}</span>
+            : <span></span>}
+        </li>
+      ))}
+    </ul>
+    {(footer || footerMeta) && (
+      <div class="flex items-center justify-between gap-4 px-5 py-3 bg-surface border-t border-line rounded-b-md">
+        <span class="text-xs text-gray-600">{footer}</span>
+        <span class="font-mono text-[11px] text-gray-500">{footerMeta}</span>
+      </div>
+    )}
+  </div>
+  {caption && <p class="relative mt-8 font-mono text-[11px] uppercase tracking-[0.08em] text-gray-400">{caption}</p>}
+</div>

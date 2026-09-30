@@ -1,0 +1,42 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CaseStudy from '../../../components/case-studies/CaseStudy.astro';
+---
+
+<Layout
+  title="Société immobilière cotée du secteur des soins : la gouvernance du conseil avec Dafira"
+  description="Pourquoi une société immobilière cotée du secteur des soins a confié la gestion de son conseil à Dafira : modèles et terminologie juridique de l'entreprise, présences hybrides et procurations, administrateurs multilingues. Lisez l'étude de cas."
+>
+  <CaseStudy
+    company="Société immobilière cotée du secteur des soins"
+    facts={[{ label: "Secteur", value: "Société immobilière cotée du secteur des soins" }]}
+    title="Société immobilière cotée du secteur des soins : un portail du conseil adapté à ses modèles, ses règles de présence et ses langues"
+    lead="Pourquoi la société a remplacé sa précédente solution de gestion du conseil par Dafira."
+    quote={{ quote: "Dafira représente la nouvelle génération de logiciels de gestion du conseil, facile à utiliser et intégrant l'IA.", author: "Juriste et responsable conformité" }}
+    context={{
+      title: "Le besoin de changement",
+      paragraphs: [
+        "La société faisait face à d'importantes limitations avec sa précédente solution de gestion du conseil. Le système ne permettait pas d'intégrer les modèles spécifiques et les exigences légales de l'entreprise, ce qui compliquait ses processus de gouvernance.",
+        "Il ne permettait pas non plus de suivre correctement les différents types de participation aux réunions hybrides, et les annotations sur les documents étaient souvent perdues. La société avait besoin d'une solution plus robuste.",
+      ],
+      quote: "Les limitations de l'ancien système en termes de personnalisation et de suivi des présences créaient des complications inutiles dans nos opérations.",
+    }}
+    challenges={[
+      { title: "Personnalisation limitée", text: "L'ancien système ne permettait pas d'intégrer les modèles et la terminologie juridique propres à l'entreprise." },
+      { title: "Suivi des présences", text: "Des fonctionnalités inadaptées aux réunions hybrides et aux procurations." },
+      { title: "Barrière de la langue", text: "Un support limité pour les administrateurs non francophones." },
+    ]}
+    solutions={[
+      { title: "Modèles personnalisables", text: "Des modèles qui respectent la terminologie juridique et la charte graphique de l'entreprise." },
+      { title: "Gestion des présences", text: "Présences physiques, virtuelles et par procuration enregistrées pour chaque réunion." },
+      { title: "Support multilingue", text: "La plateforme et l’assistance disponibles en plusieurs langues." },
+    ]}
+    outcome={{
+      title: "Pourquoi ils ont choisi Dafira",
+      paragraphs: [
+        "Plusieurs facteurs ont motivé le changement : la personnalisation des modèles et de la terminologie juridique, la fiabilité de la gestion documentaire et le support multilingue.",
+        "La société a également apprécié la réactivité de Dafira aux retours des utilisateurs, à l'opposé de la réticence de son précédent fournisseur à faire évoluer son produit.",
+      ],
+    }}
+  />
+</Layout>

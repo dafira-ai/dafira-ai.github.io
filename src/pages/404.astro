@@ -1,61 +1,74 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { PageHero, Section } from '../components/ui';
 import BoardResolution from '../components/404/BoardResolution.astro';
 import NavigationSuggestions from '../components/404/NavigationSuggestions.astro';
-import PageIllustration from '../components/404/PageIllustration.astro';
-import { getRandomJoke } from '../utils/boardJokes';
 
 const suggestions = [
   {
-    text: "Return to Dashboard",
-    href: "/",
-    icon: "🏠"
+    "text": "Home",
+    "href": "/",
+    "icon": "home",
+    "description": "Back to the start page."
   },
   {
-    text: "View Board Features",
-    href: "/features",
-    icon: "✨"
+    "text": "Features",
+    "href": "/features",
+    "icon": "layers",
+    "description": "What Dafira does for your board."
   },
   {
-    text: "Contact Support",
-    href: "/contact",
-    icon: "🤝"
+    "text": "Security",
+    "href": "/security",
+    "icon": "shield",
+    "description": "How board data is protected."
+  },
+  {
+    "text": "Customer stories",
+    "href": "/testimonials",
+    "icon": "users",
+    "description": "How other boards use Dafira."
+  },
+  {
+    "text": "Resources",
+    "href": "/resources",
+    "icon": "book",
+    "description": "Guides, research and articles."
+  },
+  {
+    "text": "Contact",
+    "href": "/contact",
+    "icon": "mail",
+    "description": "Ask us directly."
   }
 ];
 
-const currentDate = new Date().toLocaleDateString();
-const randomJoke = getRandomJoke();
+const currentDate = new Date().toLocaleDateString('en-GB');
+const labels = {
+  "title": "Resolution 404",
+  "date": "Date",
+  "whereas": "Whereas the requested page cannot be found;",
+  "resolved": "Resolved, that the visitor be directed to a more suitable page.",
+  "status": "Status",
+  "approved": "Approved"
+};
 ---
 
-<Layout title="404 - Page Not Found | Govrn" description="Oops! The page you're looking for doesn't exist. Let's get you back on track.">
-  <main class="min-h-screen pt-24 pb-12 flex flex-col">
-    <div class="flex-grow flex items-center">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div class="text-center">
-          <PageIllustration emoji="📋" />
+<Layout title="404 - Page Not Found | Dafira" description="The page you are looking for does not exist or has moved." noindex>
+  <PageHero eyebrow="Error 404" title="This page could not be found" lead="The address may be mistyped, or the page may have moved. The links below lead to the main parts of the site.">
+    <Fragment slot="aside">
+      <BoardResolution date={currentDate} labels={labels} />
+    </Fragment>
+  </PageHero>
 
-          <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl mb-4">
-            404: Motion Not Found
-          </h1>
-
-          <p class="text-xl text-gray-600 mb-8">{randomJoke}</p>
-
-          <BoardResolution date={currentDate} />
-          <NavigationSuggestions suggestions={suggestions} />
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center text-gray-500 mt-12">
-      <p class="text-sm">
-        P.S. Our AI assistant has noted this missing page for the next board meeting agenda.
-      </p>
-    </div>
-  </main>
+  <Section space="md">
+    <h2 class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500 mb-6">Where to go next</h2>
+    <NavigationSuggestions suggestions={suggestions} />
+  </Section>
 </Layout>
 
 <script>
-  const url = new URL(window.location);
+  const url = new URL(window.location.href);
   if (url.pathname.endsWith('/')) {
     url.pathname = url.pathname.slice(0, -1);
     window.location.replace(url.href);

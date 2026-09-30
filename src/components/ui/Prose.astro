@@ -1,0 +1,34 @@
+---
+// Typography for long-form content (blog posts, legal pages, guides). Styles rendered HTML/markdown in the slot.
+interface Props { class?: string }
+const { class: className } = Astro.props;
+---
+
+<div class:list={['df-prose', className]}>
+  <slot />
+</div>
+
+<style is:global>
+  .df-prose { color: rgb(var(--ink)); font-size: 1.0625rem; line-height: 1.75; max-width: 68ch; }
+  .df-prose > * + * { margin-top: 1.1em; }
+  .df-prose h2 { font-size: 1.75rem; line-height: 1.25; font-weight: 600; color: rgb(var(--navy)); margin-top: 2.2em; }
+  .df-prose h3 { font-size: 1.3rem; line-height: 1.35; font-weight: 600; color: rgb(var(--navy)); margin-top: 1.8em; }
+  .df-prose h4 { font-size: 1.05rem; font-weight: 600; color: rgb(var(--navy)); margin-top: 1.5em; }
+  .df-prose a { color: rgb(var(--brand)); text-decoration: underline; text-underline-offset: 2px; }
+  .df-prose a:hover { color: rgb(var(--navy)); }
+  .df-prose strong { font-weight: 600; color: rgb(var(--navy)); }
+  .df-prose ul, .df-prose ol { padding-inline-start: 1.25em; }
+  .df-prose ul { list-style: disc; }
+  .df-prose ol { list-style: decimal; }
+  .df-prose li + li { margin-top: 0.4em; }
+  .df-prose li::marker { color: rgb(var(--brand)); }
+  .df-prose blockquote { border-inline-start: 2px solid rgb(var(--brand)); padding-inline-start: 1.25em; color: #4B5565; }
+  .df-prose code { font-family: "Dafira Mono", ui-monospace, monospace; font-size: 0.9em; background: rgb(var(--surface)); border: 1px solid rgb(var(--line)); padding: 0.1em 0.35em; border-radius: 3px; }
+  .df-prose pre { background: rgb(var(--navy)); color: #E7ECF2; padding: 1em 1.25em; border-radius: 4px; overflow-x: auto; }
+  .df-prose pre code { background: none; border: 0; padding: 0; color: inherit; }
+  .df-prose table { width: 100%; border-collapse: collapse; font-size: 0.95rem; display: block; overflow-x: auto; }
+  .df-prose th, .df-prose td { border-bottom: 1px solid rgb(var(--line)); padding: 0.6em 0.8em; text-align: start; vertical-align: top; }
+  .df-prose th { font-weight: 600; color: rgb(var(--navy)); background: rgb(var(--surface)); }
+  .df-prose img { border: 1px solid rgb(var(--line)); border-radius: 4px; }
+  .df-prose hr { border: 0; border-top: 1px solid rgb(var(--line)); margin: 2.5em 0; }
+</style>

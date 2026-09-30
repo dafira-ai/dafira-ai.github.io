@@ -1,265 +1,54 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import CTA from '../../../components/CTA.astro';
+import RoleLanding from '../../../components/industries/RoleLanding.astro';
+import { customerQuote, readCaseLabel } from '../../../components/industries/customerQuotes';
 
-const challenges = [
-  {
-    icon: "⚖️",
-    title: "Belangenafweging",
-    description: "Tools om de verwachtingen van aandeelhouders effectief af te stemmen op de behoeften van de onderneming"
-  },
-  {
-    icon: "🤝",
-    title: "Stakeholdermanagement", 
-    description: "Beheer de diverse belangen en verwachtingen van aandeelhouders met gestructureerde communicatietools"
-  },
-  {
-    icon: "📢",
-    title: "Soepele communicatie",
-    description: "Zorg voor heldere en tijdige communicatie met alle aandeelhouders met behoud van vertrouwelijkheid"
-  },
-  {
-    icon: "📋",
-    title: "Verzoekenbeheer",
-    description: "Verwerk en volg verzoeken, klachten en zorgen van aandeelhouders efficiënt op"
-  }
-];
-
-const features = [
-  {
-    title: "Beveiligd communicatieplatform",
-    description: "Centrale hub voor het beheer van aandeelhouderscommunicatie",
-    icon: "💬",
-    benefits: [
-      "Gestructureerde communicatiekanalen",
-      "Documentdeling onder controle",
-      "Vertrouwelijkheidsbeheer",
-      "Updates verspreiden"
-    ]
-  },
-  {
-    title: "Kennisbeheer",
-    description: "Uitgebreid systeem voor het organiseren en toegang krijgen tot relevante informatie",
-    icon: "📚",
-    benefits: [
-      "Documentorganisatie",
-      "Toegangscontrole",
-      "Volledige historie",
-      "Geavanceerd zoeken"
-    ]
-  },
-  {
-    title: "AI-ondersteunde analyses",
-    description: "Intelligente analyse voor evenwichtige besluitvorming",
-    icon: "🤖",
-    benefits: [
-      "Data-gedreven inzichten",
-      "Trendanalyse",
-      "Impactbeoordeling",
-      "Prestatiemonitoring"
-    ]
-  }
-];
-
-const governanceFeatures = [
-  {
-    icon: "🔒",
-    title: "Toegangsbeheer",
-    description: "Gedetailleerde rechten voor aangepaste informatiedeling tussen aandeelhoudersgroepen"
-  },
-  {
-    icon: "📊",
-    title: "Prestatiemonitoring",
-    description: "Bewaking en rapportage van belangrijke indicatoren voor aandeelhouders"
-  },
-  {
-    icon: "📝",
-    title: "Documentatie",
-    description: "Volledig archief van aandeelhouderscommunicatie en -besluiten"
-  }
-];
-
-const testimonial = {
-  quote: "Govrn heeft onze manier van communiceren met aandeelhouders getransformeerd en biedt de perfecte balans tussen transparantie en controle.",
-  author: "James Chen",
-  role: "Bestuurder namens aandeelhouders",
-  company: "Finance & Invest Brussels",
-  image: "https://media.licdn.com/dms/image/C4D03AQFPYn85d5YqQw/profile-displayphoto-shrink_800_800/0/1516238871440?e=1714003200&v=beta&t=Hs_Oi_Qh_Hs_Oi_Qh_Hs_Oi_Qh_Hs_Oi_Qh"
+const hero = {
+  eyebrow: 'Voor aandeelhouder-bestuurders',
+  title: 'Vertegenwoordig aandeelhouders, met een duidelijk register',
+  lead: 'Breng de belangen van de aandeelhouders die u vertegenwoordigt in evenwicht met die van de onderneming. Dafira bewaart bestuursstukken, besprekingen en besluiten op één beveiligde plek, met toegang per rol.',
+  primary: { text: 'Demo aanvragen', href: '/nl/request-demo' },
+  secondary: { text: 'Contact opnemen', href: '/nl/contact' },
+  screenshot: { src: '/onboarding-boardpack.png', alt: 'Bestuursdossier in Dafira per agendapunt, met annotaties op de notulen' },
 };
+
+const challenges = {
+  title: 'Wat aandeelhouder-bestuurders nodig hebben',
+  lead: 'Een aandeelhouder vertegenwoordigen in het bestuur betekent verschillende verwachtingen tegelijk behartigen.',
+  items: [
+    { icon: 'scale', title: 'Belangen afwegen', text: 'De verwachtingen van aandeelhouders afwegen tegen de noden van de onderneming, met de feiten voor u.' },
+    { icon: 'users', title: 'Relatie met belanghebbenden', text: 'Het contact met de aandeelhouders die u vertegenwoordigt gestructureerd en gedocumenteerd houden.' },
+    { icon: 'mail', title: 'Heldere communicatie', text: 'Informatie tijdig delen met respect voor de vertrouwelijkheid van bestuurszaken.' },
+    { icon: 'tasks', title: 'Opvolging van vragen', text: 'Vragen en actiepunten uit het bestuur opvolgen tot ze afgerond zijn.' },
+  ],
+};
+
+const features = {
+  title: 'Functies voor aandeelhouder-bestuurders',
+  lead: 'Wat Dafira biedt om de rol te ondersteunen.',
+  items: [
+    { icon: 'chat', title: 'Beveiligde communicatie', text: 'Bestuursgesprekken op één plek in plaats van e-mail en berichtenapps.', items: ['Beveiligde bestuurschat', 'Gecontroleerd delen van documenten', 'Nieuwsfeed voor updates'] },
+    { icon: 'folder', title: 'Documentenbibliotheek', text: 'Bestuursstukken, notulen en besluiten, geordend en doorzoekbaar.', items: ['Bestuursdossier per agendapunt', 'Toegang per rol', 'Eerdere notulen en besluiten', 'Zoeken'] },
+    { icon: 'sparkle', title: 'AI-assistent', text: 'Stel vragen over de bestuursstukken en krijg samenvattingen van lange documenten.', items: ['Vragen over bestuursdocumenten', 'Samenvattingen van lange stukken'] },
+  ],
+};
+
+const security = {
+  title: 'Governance en vertrouwelijkheid',
+  lead: 'Deel wat gedeeld moet worden, en houd daar een spoor van bij.',
+  link: { text: 'Meer over beveiliging', href: '/nl/security' },
+  items: [
+    { icon: 'lock', title: 'Toegangsbeheer', text: 'Rechten per bestuur, comité en rol bepalen wie welke informatie ziet.' },
+    { icon: 'vote', title: 'Stemmingen en besluiten', text: 'Stemmingen en resoluties vastgelegd bij de vergadering, in een besluitenregister.' },
+    { icon: 'document', title: 'Documentatie', text: 'Notulen, besluiten en bestuursstukken samen bewaard, met een audittrail.' },
+  ],
+};
+
+const quote = { ...customerQuote('nl', 'pierre'), linkText: readCaseLabel.nl };
 ---
 
-<Layout title="Bestuurssoftware voor aandeelhouder-bestuurders | Govrn" description="Optimaliseer uw rol als aandeelhouder-bestuurder met uitgebreide tools voor communicatiebeheer, belangenafweging en onderbouwde besluitvorming.">
-  <main class="pt-16">
-    <!-- Hero sectie -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-              Voor aandeelhouder-bestuurders
-            </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Balanceer belangen met
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                intelligente tools
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-12">
-              Versterk uw positie als aandeelhouder-bestuurder met complete tools voor communicatiebeheer, belangenafweging en onderbouwde besluitvorming.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/nl/request-demo"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Demo aanvragen
-              </a>
-              <a
-                href="/nl/contact"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-              >
-                Contact opnemen
-              </a>
-            </div>
-          </div>
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl transform rotate-3"></div>
-            <img 
-  loading="lazy"
-              src="/realestate.jpg"
-              alt="Govrn interface"
-              class="relative rounded-2xl shadow-2xl"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Uitdagingen sectie -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            De uitdagingen die wij oplossen
-          </h2>
-          <p class="text-xl text-gray-600">
-            Pak de belangrijkste uitdagingen van aandeelhouder-bestuurders aan met onze complete oplossing
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Functionaliteiten sectie -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Functionaliteiten voor aandeelhouder-bestuurders
-          </h2>
-          <p class="text-xl text-gray-600">
-            Op maat gemaakte tools voor effectief stakeholdermanagement
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600 mb-6">{feature.description}</p>
-              <ul class="space-y-3">
-                {feature.benefits.map(benefit => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Governance sectie -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Governance en compliance
-          </h2>
-          <p class="text-xl text-gray-600">
-            Handhaaf hoge governancestandaarden tijdens het beheer van aandeelhoudersbelangen
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {governanceFeatures.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonial sectie -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-br from-primary to-blue-600 rounded-2xl overflow-hidden">
-          <div class="grid lg:grid-cols-2 gap-8 p-12">
-            <div class="text-white">
-              <blockquote class="text-2xl font-medium mb-8">
-                "{testimonial.quote}"
-              </blockquote>
-              <div class="flex items-center space-x-4">
-                <img 
-  loading="lazy"
-                  src={testimonial.image}
-                  alt={testimonial.author}
-                  class="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <div class="font-semibold">{testimonial.author}</div>
-                  <div class="text-white/80">{testimonial.role}</div>
-                  <div class="text-white/80">{testimonial.company}</div>
-                </div>
-              </div>
-            </div>
-            <div class="relative lg:text-right">
-              <a
-                href="/nl/case-studies/finance-invest-brussels"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-              >
-                Lees de case study
-                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Bestuurssoftware voor aandeelhouder-bestuurders | Dafira" description="Bestuursportaal voor aandeelhouder-bestuurders: beveiligde bestuurscommunicatie, geordende bestuursstukken en een duidelijk register van stemmingen en besluiten.">
+  <main>
+    <RoleLanding hero={hero} challenges={challenges} features={features} security={security} quote={quote} />
   </main>
 </Layout>

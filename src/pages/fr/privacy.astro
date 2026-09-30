@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { PageHero, Section, Prose } from '../../components/ui';
 
 const sections = [
   {
@@ -19,7 +20,7 @@ const sections = [
       },
       {
         subtitle: "Bases de données clients",
-        content: "Les informations contenues dans votre base de données Govrn restent sous votre contrôle et propriété exclusive. Nous ne traitons ces données que selon vos instructions."
+        content: "Les informations contenues dans votre base de données Dafira restent sous votre contrôle et propriété exclusive. Nous ne traitons ces données que selon vos instructions."
       }
     ]
   },
@@ -68,91 +69,47 @@ const sections = [
 ];
 
 const contactInfo = {
-  email: "privacy@govrn.com",
-  address: "GOVRN SA - Protection des données\n18 Avenue Roger Vandendriessche\n1150 Bruxelles, Belgique",
-  vat: "BE0761625687"
+  email: "info@dafira.ai",
+  address: "Dafira - Protection des données\nRue de l'Hôpital 31\n1000 Bruxelles, Belgique"
 };
 ---
+<Layout title="Politique de confidentialité - Dafira" description="Nous nous engageons à protéger votre vie privée et à garantir la sécurité de vos données. Découvrez comment nous collectons, utilisons et protégeons vos informations.">
+  <main>
+    <PageHero eyebrow="Mentions légales" title="Politique de confidentialité" lead="Nous nous engageons à protéger votre vie privée et à garantir la sécurité de vos données. Découvrez comment nous collectons, utilisons et protégeons vos informations." />
 
-<Layout title="Politique de confidentialité - Logiciel de gestion de conseil Govrn" description="Nous nous engageons à protéger votre vie privée et à garantir la sécurité de vos données. Découvrez comment nous collectons, utilisons et protégeons vos informations.">
-  <main class="pt-16">
-    <!-- Section héro -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
+    <Section size="prose" space="md">
+      <Prose>
+        <p class="text-lg">Dafira et ses filiales proposent de nombreux services pour vous aider à gérer votre entreprise, notamment une plateforme pour héberger votre base de données Dafira. Cette politique explique quelles informations nous collectons, pourquoi nous les collectons et comment nous les utilisons.</p>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Politique de confidentialité
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Votre confidentialité est notre
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              priorité
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            Nous nous engageons à protéger votre vie privée et à garantir la sécurité de vos données. Découvrez comment nous collectons, utilisons et protégeons vos informations.
-          </p>
-        </div>
-      </div>
-    </section>
+        {sections.map((section) => (
+          <Fragment>
+            <h2>{section.title}</h2>
+            {section.items.map((item) => (
+              <Fragment>
+                <h3>{item.subtitle}</h3>
+                <p>{item.content}</p>
+              </Fragment>
+            ))}
+          </Fragment>
+        ))}
 
-    <!-- Contenu principal -->
-    <section class="py-20 bg-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="prose prose-lg max-w-none">
-          <p class="text-xl text-gray-600 mb-12">
-            GOVRN SA et ses filiales proposent de nombreux services pour vous aider à gérer votre entreprise, notamment une plateforme pour héberger votre base de données Govrn. Cette politique explique quelles informations nous collectons, pourquoi nous les collectons et comment nous les utilisons.
-          </p>
+        <h2>Cookies</h2>
+        <p>Les cookies sont de petits fichiers texte envoyés par nos serveurs à votre ordinateur lorsque vous accédez à nos services. Nous les utilisons pour faciliter votre navigation, comprendre vos préférences et améliorer nos services. Des services tiers comme Google Analytics peuvent également utiliser des cookies à leurs propres fins.</p>
+      </Prose>
 
-          {sections.map(section => (
-            <div class="mb-16">
-              <h2 class="text-3xl font-bold text-gray-900 mb-8">{section.title}</h2>
-              <div class="space-y-12">
-                {section.items.map(item => (
-                  <div class="bg-gray-50 rounded-xl p-8">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">{item.subtitle}</h3>
-                    <p class="text-gray-600">{item.content}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-
-          <!-- Section cookies -->
-          <div class="mb-16">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8">Cookies</h2>
-            <div class="bg-gray-50 rounded-xl p-8">
-              <p class="text-gray-600">
-                Les cookies sont de petits fichiers texte envoyés par nos serveurs à votre ordinateur lorsque vous accédez à nos services. Nous les utilisons pour faciliter votre navigation, comprendre vos préférences et améliorer nos services. Des services tiers comme Google Analytics peuvent également utiliser des cookies à leurs propres fins.
-              </p>
-            </div>
-          </div>
-
-          <!-- Coordonnées -->
-          <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">Nous contacter</h2>
-            <p class="text-gray-600 mb-4">
-              Si vous avez des questions concernant cette politique de confidentialité ou vos données personnelles, n'hésitez pas à nous contacter :
-            </p>
-            <div class="space-y-2">
-              <p class="text-gray-600">
+      <div class="mt-16 border border-line rounded-md bg-surface p-6 lg:p-8 max-w-[68ch]">
+        <h2 class="text-2xl font-semibold text-navy">Nous contacter</h2>
+        <p class="mt-3 text-gray-700">Si vous avez des questions concernant cette politique de confidentialité ou vos données personnelles, n'hésitez pas à nous contacter :</p>
+        <div class="mt-4 space-y-2 text-gray-700">
+              <p>
                 <strong>Courriel :</strong> {contactInfo.email}
               </p>
-              <p class="text-gray-600 whitespace-pre-line">
+              <p class="whitespace-pre-line">
                 <strong>Adresse :</strong>
                 {contactInfo.address}
               </p>
-              <p class="text-gray-600">
-                <strong>TVA :</strong> {contactInfo.vat}
-              </p>
-            </div>
-          </div>
         </div>
       </div>
-    </section>
+    </Section>
   </main>
 </Layout>

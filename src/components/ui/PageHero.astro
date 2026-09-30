@@ -1,0 +1,30 @@
+---
+// Top of an inner page: eyebrow, h1, lead, actions (slot "actions") and optional aside (slot "aside": screenshot, vignette, form).
+import Container from './Container.astro';
+import Eyebrow from './Eyebrow.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  tone?: 'white' | 'surface';
+  class?: string;
+}
+const { eyebrow, title, lead, tone = 'white', class: className } = Astro.props;
+const hasAside = Astro.slots.has('aside');
+---
+
+<section class:list={['pt-32 pb-16 lg:pt-36 lg:pb-20 border-b border-line', tone === 'white' ? 'bg-white' : 'bg-surface', className]}>
+  <Container>
+    <div class:list={['grid gap-12 items-center', hasAside && 'lg:grid-cols-12 lg:gap-10']}>
+      <div class:list={[hasAside ? 'lg:col-span-6' : 'max-w-3xl']}>
+        {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+        <h1 class:list={['text-4xl sm:text-5xl font-semibold text-navy leading-[1.1]', eyebrow && 'mt-6']}>{title}</h1>
+        {lead && <p class="mt-6 text-lg text-gray-600 leading-relaxed max-w-2xl">{lead}</p>}
+        {Astro.slots.has('actions') && <div class="mt-9 flex flex-col sm:flex-row gap-3"><slot name="actions" /></div>}
+        <slot />
+      </div>
+      {hasAside && <div class="lg:col-span-6"><slot name="aside" /></div>}
+    </div>
+  </Container>
+</section>

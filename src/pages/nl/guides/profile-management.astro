@@ -1,6 +1,8 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import GuideHeader from '../../../components/guides/GuideHeader.astro';
+import GuideArticle from '../../../components/guides/GuideArticle.astro';
+import { Button, Icon } from '../../../components/ui';
 import GuideStep from '../../../components/guides/GuideStep.astro';
 import GuideSubSection from '../../../components/guides/GuideSubSection.astro';
 import GuideStepList from '../../../components/guides/GuideStepList.astro';
@@ -48,13 +50,13 @@ const profilePictureSteps = [
 ];
 ---
 
-<Layout title="Uw Profiel Beheren - Govrn">
-  <main class="pt-24">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <GuideHeader
+<Layout title="Uw Profiel Beheren - Dafira">
+  <main>
+    <GuideHeader
         title="Hoe u uw Profielinstellingen Beheert"
-        description="Complete handleiding voor het bijwerken van uw persoonlijke gegevens, e-mail, telefoonnummer en beveiligingsinstellingen in Govrn."
+        description="Complete handleiding voor het bijwerken van uw persoonlijke gegevens, e-mail, telefoonnummer en beveiligingsinstellingen in Dafira."
       />
+    <GuideArticle>
 
       <GuideStep
         number={1}
@@ -70,23 +72,23 @@ const profilePictureSteps = [
         />
 
         <GuideSubSection title="Profielinformatievelden">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <div class="grid md:grid-cols-2 gap-4">
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Basisinformatie</h4>
+                <h4 class="font-semibold text-navy mb-2">Basisinformatie</h4>
                 <ul class="text-sm text-gray-600 space-y-1">
-                  <li>• Volledige Naam</li>
-                  <li>• Functietitel</li>
-                  <li>• Bedrijf</li>
-                  <li>• Tijdzone</li>
+                  <li>Volledige Naam</li>
+                  <li>Functietitel</li>
+                  <li>Bedrijf</li>
+                  <li>Tijdzone</li>
                 </ul>
               </div>
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Contactgegevens</h4>
+                <h4 class="font-semibold text-navy mb-2">Contactgegevens</h4>
                 <ul class="text-sm text-gray-600 space-y-1">
-                  <li>• E-mailadres</li>
-                  <li>• Telefoonnummer</li>
-                  <li>• Taalvoorkeur</li>
+                  <li>E-mailadres</li>
+                  <li>Telefoonnummer</li>
+                  <li>Taalvoorkeur</li>
                 </ul>
               </div>
             </div>
@@ -108,12 +110,12 @@ const profilePictureSteps = [
         />
 
         <GuideSubSection title="Afbeeldingsvereisten">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <ul class="text-sm text-gray-600 space-y-1">
-              <li>• Maximale bestandsgrootte: 5MB</li>
-              <li>• Ondersteunde formaten: JPG, PNG</li>
-              <li>• Aanbevolen grootte: 400x400 pixels</li>
-              <li>• Bij voorkeur vierkante verhouding</li>
+              <li>Maximale bestandsgrootte: 5MB</li>
+              <li>Ondersteunde formaten: JPG, PNG</li>
+              <li>Aanbevolen grootte: 400x400 pixels</li>
+              <li>Bij voorkeur vierkante verhouding</li>
             </ul>
           </div>
         </GuideSubSection>
@@ -133,13 +135,13 @@ const profilePictureSteps = [
         />
 
         <GuideSubSection title="Belangrijke Opmerkingen">
-          <div class="bg-white rounded-lg p-4 border border-gray-200 space-y-4">
+          <div class="border border-line rounded-md p-5 space-y-4">
             <div>
-              <h4 class="font-semibold text-gray-900 mb-2">E-mailverificatie</h4>
+              <h4 class="font-semibold text-navy mb-2">E-mailverificatie</h4>
               <p class="text-sm text-gray-600">Uw nieuwe e-mailadres wordt pas actief na verificatie via de link die naar uw nieuwe adres is verzonden.</p>
             </div>
             <div>
-              <h4 class="font-semibold text-gray-900 mb-2">Toegang Tijdens Wijziging</h4>
+              <h4 class="font-semibold text-navy mb-2">Toegang Tijdens Wijziging</h4>
               <p class="text-sm text-gray-600">U kunt nog steeds inloggen met uw oude e-mailadres totdat het nieuwe is geverifieerd.</p>
             </div>
           </div>
@@ -160,11 +162,11 @@ const profilePictureSteps = [
         />
 
         <GuideSubSection title="Telefoonnummerformaat">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <ul class="text-sm text-gray-600 space-y-1">
-              <li>• Inclusief landcode (bijv. +31 voor Nederland)</li>
-              <li>• Geen spaties of speciale tekens</li>
-              <li>• Alleen mobiele nummers (geen vaste lijnen)</li>
+              <li>Inclusief landcode (bijv. +31 voor Nederland)</li>
+              <li>Geen spaties of speciale tekens</li>
+              <li>Alleen mobiele nummers (geen vaste lijnen)</li>
             </ul>
           </div>
         </GuideSubSection>
@@ -184,61 +186,51 @@ const profilePictureSteps = [
         />
 
         <GuideSubSection title="Wachtwoordvereisten">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <ul class="text-sm text-gray-600 space-y-1">
-              <li>• Minimaal 8 tekens</li>
-              <li>• Ten minste één hoofdletter</li>
-              <li>• Ten minste één cijfer</li>
-              <li>• Ten minste één speciaal teken</li>
+              <li>Minimaal 8 tekens</li>
+              <li>Ten minste één hoofdletter</li>
+              <li>Ten minste één cijfer</li>
+              <li>Ten minste één speciaal teken</li>
             </ul>
           </div>
         </GuideSubSection>
       </GuideStep>
 
-      <div class="mt-16 bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Snelle Referentie</h2>
+      <div class="mt-16 rounded-md p-8 border border-line bg-surface">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Snelle Referentie</h2>
         <div class="grid md:grid-cols-2 gap-6">
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Veelvoorkomende Taken</h3>
+            <h3 class="font-semibold text-navy mb-2">Veelvoorkomende Taken</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• Profiel bijwerken: Accountinstellingen > Bewerken</li>
-              <li>• E-mail wijzigen: Accountinstellingen > E-mail > Bewerken</li>
-              <li>• Telefoon bijwerken: Accountinstellingen > Telefoon > Bewerken</li>
-              <li>• Wachtwoord wijzigen: Accountinstellingen > Beveiliging</li>
+              <li>Profiel bijwerken: Accountinstellingen > Bewerken</li>
+              <li>E-mail wijzigen: Accountinstellingen > E-mail > Bewerken</li>
+              <li>Telefoon bijwerken: Accountinstellingen > Telefoon > Bewerken</li>
+              <li>Wachtwoord wijzigen: Accountinstellingen > Beveiliging</li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Belangrijke Tips</h3>
+            <h3 class="font-semibold text-navy mb-2">Belangrijke Tips</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• Houd contactgegevens actueel</li>
-              <li>• Gebruik een professionele foto</li>
-              <li>• Activeer alle beveiligingsfuncties</li>
-              <li>• Werk wachtwoord regelmatig bij</li>
+              <li>Houd contactgegevens actueel</li>
+              <li>Gebruik een professionele foto</li>
+              <li>Activeer alle beveiligingsfuncties</li>
+              <li>Werk wachtwoord regelmatig bij</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <div class="mt-8 bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Hulp Nodig?</h2>
+      <div class="mt-8 rounded-md p-8 border border-line">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Hulp Nodig?</h2>
         <p class="text-gray-600 mb-6">
           Heeft u problemen met het bijwerken van uw profiel of heeft u hulp nodig? Ons ondersteuningsteam staat voor u klaar.
         </p>
-        <div class="flex space-x-4">
-          <a
-            href="/nl/contact"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors"
-          >
-            Contact Opnemen
-          </a>
-          <a
-            href="/nl/guides"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-gray-900 bg-white border border-gray-200 hover:bg-gray-50 transition-colors"
-          >
-            Alle Handleidingen Bekijken
-          </a>
+        <div class="flex flex-wrap gap-3 df-guide-actions">
+          <Button href="/nl/contact">Contact Opnemen</Button>
+          <Button href="/nl/guides" variant="secondary">Alle Handleidingen Bekijken</Button>
         </div>
       </div>
-    </article>
+    </GuideArticle>
   </main>
 </Layout>

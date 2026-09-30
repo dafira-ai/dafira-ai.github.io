@@ -1,0 +1,30 @@
+---
+// Grid of anonymised customer stories: industry, story title, quote (attributed to a job title) and a link to the case study.
+import { CellGrid, Quote } from '../ui';
+
+export interface CustomerQuote {
+  industry: string;
+  title: string;
+  quote: string;
+  author: string;
+  href: string;
+}
+
+interface Props {
+  items: CustomerQuote[];
+  linkText: string;
+}
+const { items, linkText } = Astro.props;
+---
+
+<CellGrid columns={2}>
+  {items.map((t) => (
+    <article class="bg-white p-6 lg:p-10 flex flex-col">
+      <p class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">{t.industry}</p>
+      <h2 class="mt-4 text-xl lg:text-2xl font-semibold text-navy leading-snug">
+        <a href={t.href} class="hover:text-primary transition-colors">{t.title}</a>
+      </h2>
+      <Quote class="mt-8 pt-8 border-t border-line flex-1" quote={t.quote} author={t.author} href={t.href} linkText={linkText} />
+    </article>
+  ))}
+</CellGrid>

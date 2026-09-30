@@ -1,273 +1,54 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { PageHero, Section } from '../components/ui';
+import CustomerQuotes from '../components/case-studies/CustomerQuotes.astro';
+import LocalizedCTA from '../components/case-studies/LocalizedCTA.astro';
 
 const testimonials = [
-{
-    company: "Toolbox ASBL",
-    title: "Elevating Board Governance with Govrn",
-    logo: "/toolbox-logo.png",
-    image: "/toolbox-caroline-thijssen-1.jpg",
-    videoUrl: "https://www.youtube.com/embed/A-PBcYyW9pQ",
-    quote: "I'm convinced that a platform like Govrn enables better decision-making at the board level.",
-    content: `Toolbox ASBL leads the charge in professionalizing Belgium's non-profit sector, orchestrating a dynamic community of over 250 professional volunteers who dedicate their expertise to supporting small organizations. The adoption of Govrn marked a transformative milestone in Toolbox's governance approach, bringing newfound efficiency and transparency to document management and decision-making.`,
-    results: [
-      "250+ professional volunteers managed",
-      "150 organizations supported annually",
-      "100% digital document accessibility",
-      "Enhanced board collaboration"
-    ],
-    additionalImage: "/toolbox-cecile-vennat.jpg",
-    articleUrl: "/case-studies/toolbox",
-    industry: "Non-Profit",
-    location: "Belgium",
-    yearFounded: "2003",
-    testimonialBy: "Caroline Thijssen",
-    testimonialRole: "President"
+  {
+    industry: "Non-profit support organisation",
+    title: "Board governance with Dafira",
+    quote: "I'm convinced that a platform like Dafira enables better decision-making at the board level.",
+    author: "President",
+    href: "/case-studies/non-profit-organisation",
   },
   {
-    company: "Van de Velde",
-    title: "Revolutionising Governance in Retail with Govrn",
-    logo: "/vdv-logo.png",
-    image: "/vdv-lore-portrait.jpg",
-    videoUrl: "https://www.youtube.com/embed/sabn6q1gsBw",
-    quote: "Govrn has transformed how we manage our board operations, bringing efficiency and clarity to our governance processes.",
-    content: `Van de Velde, a leading international lingerie company with iconic brands like Marie Jo, PrimaDonna, and Sarda, has revolutionized their board management approach with Govrn. The implementation has streamlined their decision-making processes and enhanced collaboration among board members, supporting their century-long legacy of excellence.`,
-    results: [
-      "50% reduction in meeting preparation time",
-      "Improved document security and accessibility",
-      "Enhanced board member engagement",
-      "Streamlined decision-making process"
-    ],
-    articleUrl: "/case-studies/van-de-velde",
-    industry: "Retail & Fashion",
-    location: "Belgium",
-    yearFounded: "1919",
-    testimonialBy: "Lore Werbrouck",
-    testimonialRole: "General Counsel"
+    industry: "Listed fashion group",
+    title: "Board governance in one secure place",
+    quote: "Dafira has transformed how we manage our board operations, bringing efficiency and clarity to our governance processes.",
+    author: "General Counsel",
+    href: "/case-studies/listed-fashion-group",
   },
   {
-    company: "Finance & Invest Brussels",
-    title: "Revolutionising Governance: Finance & Invest Brussels Leverages Govrn",
-    logo: "/fib-logo.png",
-    image: "/fib-offices.webp",
-    videoUrl: "https://www.youtube.com/embed/f4WxKjenVK4",
-    quote: "Govrn has been instrumental in modernizing our governance structure and improving operational efficiency.",
-    content: `Finance & Invest Brussels chose Govrn to enhance their board management capabilities. The platform's comprehensive features have enabled them to achieve greater transparency and efficiency in their operations, supporting their mission to drive economic growth in the Brussels region.`,
-    results: [
-      "Improved compliance tracking",
-      "Enhanced collaboration between stakeholders",
-      "Reduced administrative overhead",
-      "Better strategic decision-making"
-    ],
-    additionalImage: "/fib-pierre.webp",
-    articleUrl: "/case-studies/finance-invest-brussels",
-    industry: "Financial Services",
-    location: "Brussels",
-    yearFounded: "2003",
-    testimonialBy: "Pierre Hermant",
-    testimonialRole: "CEO"
+    industry: "Regional public investment fund",
+    title: "One governance platform for public and private board members",
+    quote: "Dafira has been instrumental in modernizing our governance structure and improving operational efficiency.",
+    author: "CEO",
+    href: "/case-studies/public-investment-fund",
   },
   {
-    company: "Care Property Invest",
-    title: "Embracing Next-Generation Board Management with Govrn",
-    logo: "/careproperty-logo.png",
-    image: "/careproperty-logo-picture.jpeg",
-    quote: "Govrn embraced the next generation of Board management software, easy to use and with AI integration.",
-    content: `Care Property Invest made the strategic decision to switch to Govrn, driven by the need for enhanced flexibility and reliability in their board management processes. The transition has resulted in improved customization capabilities, better document handling, and more efficient multilingual support for their diverse board.`,
-    results: [
-      "Enhanced template customization",
-      "Improved attendance tracking",
-      "Cost-effective solution",
-      "Multilingual support"
-    ],
-    images: [
-      "/careproperty-building-1.webp",
-      "/careproperty-building-2.webp"
-    ],
-    articleUrl: "/case-studies/care-property-invest",
-    industry: "Real Estate Investment",
-    location: "Belgium",
-    yearFounded: "1995",
-    testimonialBy: "Nathalie Byl",
-    testimonialRole: "Paralegal en Compliance Officer"
-  }
+    industry: "Listed healthcare real estate company",
+    title: "A board portal that fits its templates, attendance rules and languages",
+    quote: "Dafira embraced the next generation of Board management software, easy to use and with AI integration.",
+    author: "Paralegal & Compliance Officer",
+    href: "/case-studies/healthcare-real-estate",
+  },
 ];
 ---
 
-<Layout title="Customer Success Stories - Govrn" description="Discover how leading organizations are revolutionizing their board management with Govrn's innovative solutions." image="/testimonials.png">
-  <!-- Hero Section -->
-  <section class="relative pt-32 pb-24 overflow-hidden bg-gradient-to-br from-white to-gray-50">
-    <div class="absolute inset-0 z-0">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-    </div>
+<Layout
+  title="Customer Success Stories - Dafira"
+  description="How a listed fashion group, a regional public investment fund, a listed healthcare real estate company and a non-profit support organisation run their board with Dafira."
+>
+  <PageHero
+    eyebrow="Customer stories"
+    title="How boards work with Dafira"
+    lead="Chairs, general counsels, compliance officers and CEOs describe, in their own words, how they run their board with Dafira."
+  />
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="text-center max-w-4xl mx-auto">
-        <div class="inline-flex items-center rounded-full px-6 py-2 text-sm font-medium bg-primary/10 text-primary mb-8">
-          Customer Success Stories
-        </div>
+  <Section space="lg">
+    <CustomerQuotes items={testimonials} linkText="Read the case study" />
+  </Section>
 
-        <h1 class="text-6xl font-extrabold text-gray-900 tracking-tight mb-8">
-          See How Leading Organizations
-          <span class="block mt-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-            Transform with Govrn
-          </span>
-        </h1>
-
-        <p class="text-xl text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto">
-          Discover how organizations across industries are revolutionizing their board management with Govrn's innovative solutions.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Success Stories Grid -->
-  <section class="py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="space-y-32">
-        {testimonials.map((testimonial, index) => (
-          <div class="group">
-            <div class={`grid lg:grid-cols-2 gap-16 items-center ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
-              <div class={`space-y-8 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                <div class="flex items-center space-x-6">
-                  <img 
-  loading="lazy"
-                    src={testimonial.logo}
-                    alt={`${testimonial.company} logo`}
-                    class="h-16 w-auto"
-                  />
-                  <div class="flex flex-col">
-                    <div class="text-sm text-gray-500">{testimonial.industry}</div>
-                    <div class="text-sm text-gray-500">{testimonial.location} • Est. {testimonial.yearFounded}</div>
-                  </div>
-                </div>
-
-                <h2 class="text-4xl font-bold text-gray-900 group-hover:text-primary transition-colors duration-300">
-                  {testimonial.title}
-                </h2>
-
-                <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 border border-primary/10 rounded-xl p-8">
-                  <blockquote class="text-xl text-gray-700 italic">
-                    "{testimonial.quote}"
-                    <footer class="mt-4 text-sm text-gray-500 non-italic">
-                      - {testimonial.testimonialBy}, {testimonial.testimonialRole}
-                    </footer>
-                  </blockquote>
-                </div>
-
-                <p class="text-gray-600 leading-relaxed">
-                  {testimonial.content}
-                </p>
-
-                <div class="bg-white rounded-xl border border-gray-200 p-8">
-                  <h3 class="text-lg font-semibold text-gray-900 mb-6">Key Results & Impact:</h3>
-                  <ul class="space-y-4">
-                    {testimonial.results.map(result => (
-                      <li class="flex items-start">
-                        <div class="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-1">
-                          <svg class="h-4 w-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
-                        <span class="ml-3 text-gray-600">{result}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div class="flex items-center justify-start pt-4">
-                  <a
-                    href={testimonial.articleUrl}
-                    class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-all duration-300 group"
-                  >
-                    Read Full Case Study
-                    <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-
-              <div class={`space-y-8 ${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
-                {testimonial.videoUrl ? (
-                  <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl relative group">
-                    <iframe
-                      class="w-full h-full"
-                      src={testimonial.videoUrl}
-                      title={`${testimonial.company} Case Study Video`}
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen
-                    ></iframe>
-                  </div>
-                ) : null}
-                <div class="grid gap-4">
-                  <div class="relative group">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-                    <img 
-  loading="lazy"
-                      src={testimonial.image}
-                      alt={`${testimonial.company} Case Study`}
-                      class="rounded-2xl shadow-lg w-full object-cover h-64 transform group-hover:scale-[1.02] transition-transform duration-300"
-                    />
-                  </div>
-                  {testimonial.additionalImage && (
-                    <div class="relative group">
-                      <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-                      <img 
-  loading="lazy"
-                        src={testimonial.additionalImage}
-                        alt={`${testimonial.company} Additional Case Study Image`}
-                        class="rounded-2xl shadow-lg w-full object-cover h-64 transform group-hover:scale-[1.02] transition-transform duration-300"
-                      />
-                    </div>
-                  )}
-                  {testimonial.images && testimonial.images.map(image => (
-                    <div class="relative group">
-                      <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-                      <img 
-  loading="lazy"
-                        src={image}
-                        alt={`${testimonial.company} Additional Image`}
-                        class="rounded-2xl shadow-lg w-full object-cover h-64 transform group-hover:scale-[1.02] transition-transform duration-300"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            {index !== testimonials.length - 1 && (
-              <div class="mt-16 border-b border-gray-100"></div>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-white mb-8">
-        Ready to Transform Your Board Management?
-      </h2>
-      <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-        Join these leading organizations and revolutionize your board operations with Govrn
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="#"
-          class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-        >
-          Request a Demo
-        </a>
-        <a
-          href="#"
-          class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200"
-        >
-          Contact Sales
-        </a>
-      </div>
-    </div>
-  </section>
-</Layout></content>
+  <LocalizedCTA />
+</Layout>

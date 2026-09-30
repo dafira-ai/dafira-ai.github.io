@@ -2,8 +2,8 @@
 title: "De Complete Gids voor Besturen van Non-Profitorganisaties: Rollen, Verantwoordelijkheden en Best Practices"
 description: "Ontdek de essentiële rollen, verantwoordelijkheden en best practices voor besturen van non-profitorganisaties om effectief richting te geven aan het bereiken van hun missies."
 pubDate: 2024-02-15
-author: "Govrn"
-authorRole: "Govrn Redactieteam"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/ngo.jpg"
 category: "Governance"
 tags: ["Non-Profit Bestuur", "Bestuursverantwoordelijkheden", "Best Practices", "Strategische Planning"]
@@ -56,7 +56,7 @@ Een bestuur van een non-profitorganisatie fungeert als sturende kracht, verantwo
 
 Een effectief non-profit bestuur houdt niet alleen toezicht—het inspireert, leidt en stimuleert impact. Besturen die hun verantwoordelijkheden omarmen en best practices toepassen, zijn beter toegerust om uitdagingen aan te gaan, groei te ondersteunen en de missie van de organisatie te vervullen.
 
-Moderne bestuurstools, zoals de bestuursmanagementoplossingen van Govrn, vergroten de effectiviteit van een bestuur door samenwerking, veilige communicatie en het delen van documenten te stroomlijnen. Door gebruik te maken van deze technologieën kunnen besturen zich meer richten op strategie en minder op logistiek.
+Moderne bestuurstools, zoals de bestuursmanagementoplossingen van Dafira, vergroten de effectiviteit van een bestuur door samenwerking, veilige communicatie en het delen van documenten te stroomlijnen. Door gebruik te maken van deze technologieën kunnen besturen zich meer richten op strategie en minder op logistiek.
 
 ---
 

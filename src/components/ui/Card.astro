@@ -1,0 +1,25 @@
+---
+// Bordered panel. With href the whole card is a link (hover: surface background).
+interface Props {
+  href?: string;
+  padding?: 'sm' | 'md' | 'lg';
+  tone?: 'white' | 'surface';
+  class?: string;
+}
+const { href, padding = 'md', tone = 'white', class: className } = Astro.props;
+const pad = { sm: 'p-5', md: 'p-6 lg:p-8', lg: 'p-8 lg:p-10' }[padding];
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag
+  href={href}
+  class:list={[
+    'block border border-line rounded-md',
+    tone === 'white' ? 'bg-white' : 'bg-surface',
+    pad,
+    href && 'group hover:border-navy/40 transition-colors',
+    className,
+  ]}
+>
+  <slot />
+</Tag>

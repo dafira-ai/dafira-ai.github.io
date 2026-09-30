@@ -1,339 +1,197 @@
 ---
-import { Image } from "astro:assets";
 import MegaMenu from "./navigation/MegaMenu.astro";
-import logoImg from '../assets/images/logo.webp';
-import logoWhiteImg from '../assets/images/logo_white.png';
-
-const { transparent = false, hideMenu = false, whiteLogo = false, currentLang = 'en' } = Astro.props;
-
-// Get current path and language for language selector
-const path = Astro.url.pathname;
-
-// Generate language URLs
-// Remove .html extension and language prefix
-const cleanPath = path.replace(/\.html$/, '').replace(/^\/(fr|nl)(\/|$)/, '/');
-const basePath = cleanPath === '/' ? '/' : cleanPath;
-const enUrl = basePath;
-const frUrl = basePath === '/' ? '/fr' : `/fr${basePath}`;
-const nlUrl = basePath === '/' ? '/nl' : `/nl${basePath}`;
-const buttonTexts = currentLang === 'fr' ? {
-  signIn: "Se connecter",
-  tryForFree: "Parler à un expert",
-  tryPath: "/fr/request-demo"
-} : currentLang === 'nl' ? {
-  signIn: "Inloggen",
-  tryForFree: "Praat met een expert",
-  tryPath: "/nl/request-demo"
-} : {
-  signIn: "Sign In",
-  tryForFree: "Talk to an expert",
-  tryPath: "/request-demo"
-};
-
-const navItems = currentLang === 'fr' ? [
-  {
-    label: "Fonctionnalités",
-    href: "/fr/features",
-  },
-  {
-    label: "Cas d'usage",
-    href: "/fr#use-cases",
-    hasMegaMenu: true,
-  },
-  { label: "Tarifs", href: "/fr/pricing" },
-  { label: "Témoignages", href: "/fr/testimonials" },
-  { label: "Ressources", href: "/fr/resources" },
-  { label: "À propos", href: "/fr/about" },
-] : currentLang === 'nl' ? [
-  {
-    label: "Functies",
-    href: "/nl/features",
-  },
-  {
-    label: "Gebruiksscenario's",
-    href: "/nl#use-cases",
-    hasMegaMenu: true,
-  },
-  { label: "Prijzen", href: "/nl/pricing" },
-  { label: "Getuigenissen", href: "/nl/testimonials" },
-  { label: "Kennisbank", href: "/nl/resources" },
-  { label: "Over ons", href: "/nl/about" },
-] : [
-  {
-    label: "Features",
-    href: "/features",
-  },
-  {
-    label: "Use Cases",
-    href: "/#use-cases",
-    hasMegaMenu: true,
-  },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Testimonials", href: "/testimonials" },
-  { label: "Resources", href: "/resources" },
-  { label: "About", href: "/about" },
-];
+import Logo from "./Logo.astro";
+import { LANGS, LANG_LABELS, localizePath, stripLang, routeExists, type Lang } from "../i18n/routes";
 
 interface Props {
   transparent?: boolean;
   hideMenu?: boolean;
   whiteLogo?: boolean;
-  currentLang?: 'en' | 'fr' | 'nl';
+  currentLang?: Lang;
 }
+
+const { transparent = false, hideMenu = false, whiteLogo = false, currentLang = "en" } = Astro.props;
+
+const basePath = stripLang(Astro.url.pathname);
+// Language switcher: link to the same page in each language, or to that language's home when it doesn't exist.
+const langLinks = LANGS.map((l) => {
+  const target = l === "en" ? basePath : basePath === "/" ? `/${l}` : `/${l}${basePath}`;
+  return { lang: l, href: routeExists(target) ? target : l === "en" ? "/" : `/${l}` };
+});
+
+const t = {
+  en: { demo: "Book a demo", menu: "Menu", language: "Language",
+    nav: [["Features", "/features"], ["Use cases", "#", true], ["Pricing", "/pricing"], ["Customers", "/testimonials"], ["Resources", "/resources"], ["About", "/about"]] },
+  fr: { demo: "Demander une démo", menu: "Menu", language: "Langue",
+    nav: [["Fonctionnalités", "/features"], ["Cas d'usage", "#", true], ["Tarifs", "/pricing"], ["Clients", "/testimonials"], ["Ressources", "/resources"], ["À propos", "/about"]] },
+  nl: { demo: "Demo aanvragen", menu: "Menu", language: "Taal",
+    nav: [["Functies", "/features"], ["Toepassingen", "#", true], ["Prijzen", "/pricing"], ["Klanten", "/testimonials"], ["Kennisbank", "/resources"], ["Over ons", "/about"]] },
+  ar: { demo: "اطلب عرضًا توضيحيًا", menu: "القائمة", language: "اللغة",
+    nav: [["المزايا", "/features"], ["حالات الاستخدام", "#", true], ["الأسعار", "/pricing"], ["العملاء", "/testimonials"], ["الموارد", "/resources"], ["من نحن", "/about"]] },
+}[currentLang];
+
+const navItems = t.nav.map(([label, href, mega]) => ({
+  label: label as string,
+  href: mega ? undefined : localizePath(currentLang, href as string),
+  mega: Boolean(mega),
+}));
+const homeHref = currentLang === "en" ? "/" : `/${currentLang}`;
+const demoHref = localizePath(currentLang, "/request-demo");
 ---
 
 <header
-  class={`fixed w-full z-50 transition-all duration-300
-    ${transparent 
-      ? 'bg-transparent border-transparent' 
-      : 'bg-white/95 backdrop-blur-sm border-b border-gray-100'
-    }
-  `}
-  data-current-lang={currentLang}
+  id="site-header"
+  class:list={[
+    "fixed inset-x-0 top-0 z-50 transition-colors",
+    transparent ? "bg-transparent border-b border-transparent" : "bg-white/95 backdrop-blur border-b border-line",
+  ]}
+  data-transparent={transparent ? "true" : "false"}
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center py-3">
-      <!-- Logo -->
-      <div class="flex items-center">
-        <a href={currentLang === 'en' ? '/' : `/${currentLang}`} class="flex items-center group">
-          <Image
-            loading="eager"
-            src={whiteLogo ? logoWhiteImg : logoImg}
-            alt="Govrn Logo"
-            class="h-7 w-auto object-contain transform transition-transform duration-200 group-hover:scale-105"
-            widths={[152, 304]}
-            sizes="152px"
-            quality={90}
-            format="webp"
-          />
-        </a>
-      </div>
+    <div class="flex items-center justify-between gap-6 h-16">
+      <a href={homeHref} class="shrink-0" aria-label="Dafira">
+        <Logo tone={whiteLogo ? "light" : "dark"} />
+      </a>
 
-      <!-- Desktop Navigation -->
       {!hideMenu && (
-        <nav class="hidden lg:flex items-center space-x-1">
-        {
-          navItems.map((item) => (
-            <div class="relative group">
-              <a
-                href={item.href}
-                class="px-3 py-2 text-sm text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-all duration-200 flex items-center"
-              >
-                {item.label}
-                {item.hasMegaMenu && (
-                  <svg
-                    class="w-3 h-3 ml-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    />
+        <nav class="hidden lg:flex items-center gap-1" aria-label="Main">
+          {navItems.map((item) =>
+            item.mega ? (
+              <div class="relative group">
+                <button
+                  type="button"
+                  class="inline-flex items-center gap-1 px-3 py-2 text-sm text-gray-600 hover:text-navy rounded-md transition-colors"
+                  aria-haspopup="true"
+                >
+                  {item.label}
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M19 9l-7 7-7-7" />
                   </svg>
-                )}
-              </a>
-              {item.hasMegaMenu && <MegaMenu isOpen={false} lang={currentLang}/>}
+                </button>
+                <MegaMenu lang={currentLang} />
               </div>
-            ))
-          }
+            ) : (
+              <a href={item.href} class="px-3 py-2 text-sm text-gray-600 hover:text-navy rounded-md transition-colors">
+                {item.label}
+              </a>
+            ),
+          )}
         </nav>
       )}
 
-      <!-- Action Buttons -->
-      <div class="flex items-center space-x-2">
-        <!-- Language Selector -->
-        <div class="hidden lg:block">
-          <select 
-            class="bg-white border border-gray-200 text-gray-600 hover:text-gray-900 rounded-md py-1 px-2 text-xs focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200"
-            onchange="window.location.href=this.value"
+      <div class="flex items-center gap-2">
+        <details class="relative hidden lg:block lang-switch">
+          <summary
+            class="list-none cursor-pointer inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-gray-600 hover:text-navy border border-line rounded-md transition-colors"
+            aria-label={t.language}
           >
-            <option value={enUrl} selected={currentLang === 'en'}>EN</option>
-            <option value={frUrl} selected={currentLang === 'fr'}>FR</option>
-            <option value={nlUrl} selected={currentLang === 'nl'}>NL</option>
-          </select>
-        </div>
-        
+            {LANG_LABELS[currentLang].short}
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <ul class="absolute end-0 mt-2 w-40 bg-white border border-line rounded-md shadow-lg py-1 z-50">
+            {langLinks.map((l) => (
+              <li>
+                <a
+                  href={l.href}
+                  hreflang={l.lang}
+                  lang={l.lang}
+                  class:list={[
+                    "flex justify-between px-3 py-2 text-sm hover:bg-surface",
+                    l.lang === currentLang ? "text-navy font-medium" : "text-gray-600",
+                  ]}
+                  aria-current={l.lang === currentLang ? "true" : undefined}
+                >
+                  {LANG_LABELS[l.lang].long}
+                  <span class="font-mono text-[11px] text-gray-400">{l.lang.toUpperCase()}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
         <a
-          href="https://app.govrn.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hidden lg:inline-flex items-center px-3 py-2 text-xs font-medium rounded-lg text-primary hover:bg-primary/5 transition-all duration-200"
+          href={demoHref}
+          class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md text-white bg-navy hover:bg-primary transition-colors"
         >
-          {buttonTexts.signIn}
-        </a>
-        <a
-          href={buttonTexts.tryPath}
-          class="hidden lg:inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary/90 shadow-sm hover:shadow-md transition-all duration-200"
-        >
-          {buttonTexts.tryForFree}
+          {t.demo}
         </a>
 
-        <!-- Mobile Menu Button -->
-        <button
-          class="lg:hidden p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200"
-          id="mobile-menu-button-main"
-          aria-label="Toggle menu"
-        >
-          <svg
-            class="h-6 w-6 text-gray-600"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        {!hideMenu && (
+          <button
+            class="lg:hidden p-2 -me-2 rounded-md text-gray-600 hover:text-navy"
+            id="mobile-menu-button"
+            aria-label={t.menu}
+            aria-expanded="false"
+            aria-controls="mobile-menu"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 7h16M4 12h16M4 17h16"></path>
+            </svg>
+          </button>
+        )}
       </div>
     </div>
   </div>
 
-  <!-- Mobile Menu -->
   {!hideMenu && (
-    <div
-      class="hidden lg:hidden border-t border-gray-100 bg-white/95 backdrop-blur-sm transition-all duration-300"
-      id="mobile-menu"
-    >
-      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-2">
-        {
-          navItems.map((item) => (
-            <>
-              <a
-                href={item.href}
-                class="block px-4 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200"
-              >
-                {item.label}
-              </a>
-            </>
-          ))
-        }
-        <div class="pt-4 space-y-2">
-          <!-- Mobile Language Selector -->
-          <div class="px-4">
-            <select 
-              class="w-full bg-white border border-gray-200 text-gray-600 rounded-md py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200"
-              onchange="window.location.href=this.value"
-            >
-              <option value={enUrl} selected={currentLang === 'en'}>English</option>
-              <option value={frUrl} selected={currentLang === 'fr'}>Français</option>
-              <option value={nlUrl} selected={currentLang === 'nl'}>Nederlands</option>
-            </select>
-          </div>
-          
-          <a
-            href="https://app.govrn.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="block px-4 py-2 text-base font-medium text-gray-700 border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 rounded-lg transition-all duration-200"
-          >
-            {buttonTexts.signIn}
+    <div class="hidden lg:hidden border-t border-line bg-white" id="mobile-menu">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 space-y-1" aria-label="Mobile">
+        {navItems.filter((i) => !i.mega).map((item) => (
+          <a href={item.href} class="block px-3 py-2.5 text-base text-gray-700 hover:text-navy hover:bg-surface rounded-md">
+            {item.label}
           </a>
+        ))}
+        <div class="flex flex-wrap gap-2 pt-4 mt-2 border-t border-line">
+          {langLinks.map((l) => (
+            <a
+              href={l.href}
+              hreflang={l.lang}
+              lang={l.lang}
+              class:list={[
+                "px-3 py-1.5 text-sm border rounded-md",
+                l.lang === currentLang ? "border-navy text-navy" : "border-line text-gray-600",
+              ]}
+            >
+              {LANG_LABELS[l.lang].long}
+            </a>
+          ))}
         </div>
       </nav>
     </div>
   )}
-  <div class="lg:hidden flex items-center fixed top-4 right-4 z-50 space-x-2">
-    <button
-      class="p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200 bg-white"
-      id="mobile-menu-button-fixed"
-      aria-label="Toggle menu"
-    >
-      <svg
-        class="h-6 w-6 text-gray-600"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-    </button>
-    <a
-      href={buttonTexts.tryPath}
-      class="inline-flex items-center px-3 py-1.5 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded-lg shadow-lg transition-all duration-200"
-    >
-      {buttonTexts.tryForFree}
-    </a>
-  </div>
-  </header>
+</header>
+
+<style>
+  .lang-switch summary::-webkit-details-marker { display: none; }
+</style>
 
 <script>
-  function detectLanguage() {
-    const path = window.location.pathname;
-    return path.startsWith('/fr/') || path === '/fr' 
-      ? 'fr' 
-      : path.startsWith('/nl/') || path === '/nl' 
-        ? 'nl' 
-        : 'en';
-  }
+  const header = document.getElementById("site-header");
+  const button = document.getElementById("mobile-menu-button");
+  const menu = document.getElementById("mobile-menu");
 
-  // Update the header's data attribute with the correct language
-  const header = document.querySelector('header');
-  if (header) {
-    console.log(detectLanguage());
-    header.dataset.currentLang = detectLanguage();
-  }
-
-  // Get both mobile menu buttons
-  const mobileMenuButtonMain = document.getElementById("mobile-menu-button-main");
-  const mobileMenuButtonFixed = document.getElementById("mobile-menu-button-fixed");
-  const mobileMenu = document.getElementById("mobile-menu");
-
-  // Handle mobile menu toggle for both buttons
-  function toggleMobileMenu() {
-    mobileMenu?.classList.toggle("hidden");
-    header?.classList.toggle("bg-white");
-    header?.classList.toggle("bg-white/95");
-  }
-
-  mobileMenuButtonMain?.addEventListener("click", toggleMobileMenu);
-  mobileMenuButtonFixed?.addEventListener("click", toggleMobileMenu);
-
-  // Handle scroll behavior
-  let lastScroll = 0;
-  window.addEventListener("scroll", () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll <= 0) {
-      header?.classList.remove("shadow-lg");
-      header?.classList.remove("-translate-y-full");
-    }
-
-    if (currentScroll > lastScroll && currentScroll > 80) {
-      // Scrolling down & past header
-      header?.classList.add("-translate-y-full");
-    } else {
-      // Scrolling up
-      header?.classList.remove("-translate-y-full");
-      header?.classList.add("shadow-lg");
-    }
-
-    lastScroll = currentScroll;
+  button?.addEventListener("click", () => {
+    const open = menu?.classList.toggle("hidden") === false;
+    button.setAttribute("aria-expanded", String(open));
+    if (header?.dataset.transparent === "true") header.classList.toggle("bg-white", open);
   });
 
-  // Handle mega menu
-  document.querySelectorAll('.group').forEach(group => {
-    const megaMenu = group.querySelector('div[class*="absolute"]');
-    if (megaMenu) {
-      group.addEventListener('mouseenter', () => {
-        megaMenu.classList.remove('opacity-0', 'invisible', '-translate-y-4');
-        megaMenu.classList.add('opacity-100', 'visible', 'translate-y-0');
-      });
-      
-      group.addEventListener('mouseleave', () => {
-        megaMenu.classList.add('opacity-0', 'invisible', '-translate-y-4');
-        megaMenu.classList.remove('opacity-100', 'visible', 'translate-y-0');
-      });
-    }
+  // The header stays in place; once the page scrolls it gets a solid background.
+  const onScroll = () => {
+    if (header?.dataset.transparent !== "true") return;
+    const scrolled = window.scrollY > 8;
+    header.classList.toggle("bg-white", scrolled);
+    header.classList.toggle("border-line", scrolled);
+    header.classList.toggle("bg-transparent", !scrolled);
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // Close the language menu when clicking elsewhere
+  document.addEventListener("click", (e) => {
+    document.querySelectorAll<HTMLDetailsElement>(".lang-switch[open]").forEach((d) => {
+      if (!d.contains(e.target as Node)) d.open = false;
+    });
   });
 </script>

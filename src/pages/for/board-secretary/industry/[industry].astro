@@ -1,79 +1,36 @@
 ---
 import Layout from '../../../../layouts/Layout.astro';
-import CTA from '../../../../components/CTA.astro';
-import IndustryRegulations from '../../../../components/regulations/IndustryRegulations.astro';
-import BoardSecretaryHero from '../../../../components/industries/BoardSecretaryHero.astro';
-import IndustryChallenges from '../../../../components/industries/IndustryChallenges.astro';
-import IndustryFeatures from '../../../../components/industries/IndustryFeatures.astro';
-import TestimonialSection from '../../../../components/industries/TestimonialSection.astro';
-
-// Import industry data
-import { industryData, testimonials } from '../../../../data/board-secretary-industries';
+import IndustryLanding from '../../../../components/industries/IndustryLanding.astro';
+import { industryIds, getIndustry, testimonials } from '../../../../data/board-secretary-industries';
 
 export function getStaticPaths() {
-  return Object.keys(industryData).map(industry => ({
-    params: { industry }
-  }));
+  return industryIds.map((industry) => ({ params: { industry } }));
 }
 
 const { industry } = Astro.params;
-const industryInfo = industryData[industry];
+const info = getIndustry('en', industry);
 
-// Redirect if invalid industry
-if (!industryInfo) {
+if (!info) {
   return Astro.redirect('/for/board-secretary');
 }
 
-// Get testimonial for this industry
-const testimonial = testimonials[industry];
-
-// SEO metadata based on industry
-const seoTitles = {
-  'financial-services': 'Financial Services Board Secretary Software | Govrn',
-  'healthcare': 'Healthcare Board Secretary Platform | HIPAA Compliant | Govrn',
-  'real-estate': 'Real Estate Board Secretary Software | Portfolio Management | Govrn'
-};
-
-const seoDescriptions = {
-  'financial-services': 'Streamline financial services board administration with specialized tools for regulatory compliance and secure document management.',
-  'healthcare': 'HIPAA-compliant board secretary platform designed for healthcare organizations. Efficiently manage board documentation while ensuring compliance.',
-  'real-estate': 'Optimize real estate board administration with comprehensive portfolio documentation and meeting management tools.'
+const screenshots = {
+  'financial-services': { src: '/onboarding-document-list.png', alt: 'Dafira document library, with board papers grouped by meeting' },
+  healthcare: { src: '/onboarding-event-detail.png', alt: 'Dafira meeting page with the agenda, attendance and a vote' },
+  'real-estate': { src: '/onboarding-boardpack.png', alt: 'Dafira board pack organised by agenda item, with annotations' },
 };
 ---
 
-<Layout 
-  title={seoTitles[industry] || `${industryInfo.name} Board Secretary Software - Govrn`}
-  description={seoDescriptions[industry] || industryInfo.description}
->
-  <main class="pt-16">
-    <BoardSecretaryHero
+<Layout title={info.seo.title} description={info.seo.description}>
+  <main>
+    <IndustryLanding
       industry={industry}
-      icon={industryInfo.icon}
-      name={industryInfo.name}
-      description={industryInfo.description}
+      hero={info.hero}
+      screenshot={screenshots[industry]}
+      challenges={info.challenges}
+      features={info.features}
+      quoteKey={testimonials[industry]}
+      secondary="trial"
     />
-
-    <!-- Industry Regulations -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <IndustryRegulations industry={industry} />
-      </div>
-    </section>
-
-    <IndustryChallenges
-      name={industryInfo.name}
-      role="board-secretary"
-      challenges={industryInfo.challenges}
-    />
-
-    <IndustryFeatures
-      name={industryInfo.name}
-      role="board-secretary"
-      features={industryInfo.features}
-    />
-
-    <TestimonialSection testimonial={testimonial} />
-
-    <CTA />
   </main>
 </Layout>

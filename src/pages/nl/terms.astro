@@ -13,18 +13,17 @@ const termsHeader = {
   titleHighlight: "d'utilisation",
   description: "Veuillez lire attentivement ces conditions générales avant d'utiliser nos services.",
   contactText: "Pour toute question ou préoccupation, veuillez contacter",
-  contactEmail: "info@govrn.com",
+  contactEmail: "info@dafira.ai",
   lastUpdateText: "Dernière mise à jour"
 }
 ---
 
-<Layout title="Conditions générales - Govrn" description="Veuillez lire attentivement ces conditions générales avant d'utiliser nos services.">
-  <main class="pt-16">
+<Layout title="Conditions générales - Dafira (Dafira)" description="Veuillez lire attentivement ces conditions générales avant d'utiliser nos services.">
+  <main>
+    <TermsHeader eyebrow="Mentions légales" lastUpdate={lastUpdate} {...termsHeader} />
     <TermsLayout title="Conditions générales">
-      <TableOfContents slot="sidebar" className="hidden lg:block sticky top-24" />
-      
+      <TableOfContents slot="sidebar" sections={termsSections} />
       <div>
-        <TermsHeader lastUpdate={lastUpdate} {...termsHeader} />
         {termsSections.map((section) => (
           <TermsContent key={section.key} title={section.title} sections={section.sections} />
         ))}

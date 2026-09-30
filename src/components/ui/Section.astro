@@ -1,0 +1,31 @@
+---
+// Vertical rhythm + background. One strong (navy) section per page at most.
+import Container from './Container.astro';
+
+interface Props {
+  id?: string;
+  tone?: 'white' | 'surface' | 'navy';
+  /** vertical padding */
+  space?: 'sm' | 'md' | 'lg';
+  /** hairline borders */
+  border?: 'none' | 'top' | 'bottom' | 'both';
+  size?: 'default' | 'narrow' | 'prose';
+  class?: string;
+}
+
+const { id, tone = 'white', space = 'lg', border = 'none', size = 'default', class: className } = Astro.props;
+const bg = { white: 'bg-white', surface: 'bg-surface', navy: 'bg-navy text-white' }[tone];
+const pad = { sm: 'py-10', md: 'py-16 lg:py-20', lg: 'py-20 lg:py-28' }[space];
+const borders = {
+  none: '',
+  top: 'border-t border-line',
+  bottom: 'border-b border-line',
+  both: 'border-y border-line',
+}[border];
+---
+
+<section id={id} class:list={[bg, pad, borders, className]}>
+  <Container size={size}>
+    <slot />
+  </Container>
+</section>

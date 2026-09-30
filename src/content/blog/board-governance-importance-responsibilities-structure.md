@@ -2,8 +2,8 @@
 title: "What Is Board Governance and Why Does It Matter?"
 description: "Understand the critical role of board governance in corporate performance, accountability, and long-term sustainability."
 pubDate: 2025-05-14
-author: "Ludovic Laffineur"
-authorRole: "CTO at Govrn"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/board-collab-blog.jpg"
 category: "Technology"
 tags: ["board governance", "corporate governance", "board responsibilities", "governance structure", "board oversight"]

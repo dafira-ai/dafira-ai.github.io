@@ -1,172 +1,43 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import CTA from '../../../components/CTA.astro';
+import IndustryLanding from '../../../components/industries/IndustryLanding.astro';
 
-const challenges = [
-  {
-    title: "Protection des données de santé",
-    description: "Assurez une conformité totale avec les réglementations sur la confidentialité des données de santé",
-    icon: "🔐"
-  },
-  {
-    title: "Gouvernance clinique",
-    description: "Optimisez la supervision de la qualité et de la sécurité des soins",
-    icon: "⚕️"
-  },
-  {
-    title: "Collaboration multi-acteurs",
-    description: "Connectez les administrateurs, le personnel médical et la direction",
-    icon: "🤝"
-  }
-];
+const hero = {
+  eyebrow: 'Santé',
+  title: 'Logiciel de gestion du conseil pour les organisations de santé',
+  lead: 'Pour les conseils d’hôpitaux, de prestataires de soins et d’entreprises des sciences de la vie. Préparez les discussions sur la qualité, la sécurité et les finances, et gardez la maîtrise des documents confidentiels.',
+};
 
-const features = [
-  {
-    title: "Plateforme sécurisée",
-    description: "Gestion sécurisée des informations médicales protégées",
-    icon: "🏥"
-  },
-  {
-    title: "Tableau de bord qualité",
-    description: "Suivi en temps réel des indicateurs de performance clinique",
-    icon: "📊"
-  },
-  {
-    title: "Gestion des accréditations",
-    description: "Supervision simplifiée des qualifications du personnel médical",
-    icon: "📋"
-  }
-];
+const challenges = {
+  title: 'Les enjeux des conseils du secteur de la santé',
+  lead: 'Questions cliniques, financières et réglementaires autour de la même table.',
+  items: [
+    { icon: 'lock', title: 'Informations sensibles', text: 'Les documents du conseil peuvent contenir des données de santé, que le RGPD traite comme une catégorie particulière.' },
+    { icon: 'health', title: 'Gouvernance clinique', text: 'La qualité et la sécurité reviennent à chaque réunion et demandent un registre cohérent.' },
+    { icon: 'users', title: 'Parties prenantes multiples', text: 'Administrateurs, corps médical et direction ont chacun besoin du bon niveau d’accès.' },
+  ],
+};
 
-const caseStudies = [
-  {
-    company: "Groupe hospitalier majeur",
-    quote: "Govrn a transformé notre gestion de conseil tout en garantissant une conformité totale avec les normes de sécurité des données de santé.",
-    author: "Dr Marie Lambert",
-    role: "Directrice médicale",
-    link: "#demo"
-  }
-];
+const features = {
+  title: 'Ce que Dafira apporte',
+  lead: 'Les outils utilisés par les organisations de santé.',
+  items: [
+    { icon: 'shield', title: 'Documents du conseil protégés', text: 'Accès par rôle, chiffrement et piste d’audit, avec des pratiques de protection des données conformes au RGPD.' },
+    { icon: 'layers', title: 'Comités', text: 'Des espaces distincts pour les comités qualité, audit et autres, chacun avec ses propres membres.' },
+    { icon: 'clipboard', title: 'Points récurrents', text: 'Des modèles d’ordre du jour pour les points permanents, comme les rapports qualité et sécurité.' },
+  ],
+};
 ---
 
-<Layout title="Logiciel de gestion de conseil pour la santé | Govrn" description="Garantissez la conformité aux réglementations sur la confidentialité des données de santé tout en optimisant la supervision de la qualité des soins.">
-  <main class="pt-16">
-    <!-- Section héro -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Santé
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Solution de gestion de conseil pour les
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              établissements de santé
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed mb-12">
-            Solutions de gestion de conseil sécurisées spécialement conçues pour les établissements de santé.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/fr/try"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Essai gratuit
-            </a>
-            <a
-              href="/fr/request-demo"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-            >
-              Demander une démo
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section défis -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Les défis spécifiques que nous relevons
-          </h2>
-          <p class="text-xl text-gray-600">
-            Répondez aux enjeux majeurs des conseils dans le secteur de la santé grâce à notre solution complète.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section fonctionnalités -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Fonctionnalités dédiées au secteur de la santé
-          </h2>
-          <p class="text-xl text-gray-600">
-            Des fonctionnalités conçues sur mesure pour la gestion des conseils dans le secteur de la santé.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section témoignages -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Témoignages du secteur de la santé
-          </h2>
-          <p class="text-xl text-gray-600">
-            Découvrez comment les établissements de santé leaders transforment leur gouvernance avec Govrn.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {caseStudies.map(study => (
-            <a href={study.link} class="group">
-              <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 h-full flex flex-col">
-                <blockquote class="flex-grow">
-                  <p class="text-gray-600 mb-6">« {study.quote} »</p>
-                </blockquote>
-                <div>
-                  <p class="font-medium text-gray-900">{study.author}</p>
-                  <p class="text-gray-500">{study.role}</p>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Logiciel de gestion de conseil pour la santé | Dafira" description="Portail du conseil pour les hôpitaux et organisations de soins : documents confidentiels sous contrôle d’accès, réunions des comités et décisions documentées.">
+  <main>
+    <IndustryLanding
+      industry="healthcare"
+      hero={hero}
+      screenshot={{ src: '/onboarding-event-detail.png', alt: 'Page de réunion Dafira avec l’ordre du jour, les présences et un vote' }}
+      challenges={challenges}
+      features={features}
+      secondary="trial"
+    />
   </main>
 </Layout>

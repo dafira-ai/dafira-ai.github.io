@@ -1,421 +1,154 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import ExecutiveSummary from '../../../components/research/ExecutiveSummary.astro';
-import ResearchStats from '../../../components/research/ResearchStats.astro';
-import KeyFindings from '../../../components/research/KeyFindings.astro';
-import Solutions from '../../../components/research/Solutions.astro';
-import Methodology from '../../../components/research/Methodology.astro';
-import FutureOutlook from '../../../components/research/FutureOutlook.astro';
-import CTA from '../../../components/CTA.astro';
-import SharingButtons from '../../../components/socials/SharingButtons.astro';
+import ResearchPaper from '../../../components/ResearchPaper.astro';
 
-const researchStats = [
-  {
-    icon: "👥",
-    value: "50+", 
-    label: "Administrateurs interrogés"
-  },
-  {
-    icon: "🏢",
-    value: "3",
-    label: "Secteurs étudiés"
-  },
-  {
-    icon: "💡", 
-    value: "15+",
-    label: "Points clés identifiés"
-  },
-  {
-    icon: "📊",
-    value: "100%",
-    label: "Recommandations basées sur les données"
-  }
-]
-
-const keyFindings = 
-{ 
-  title: "Principales Conclusions de l'Étude",
-  subtitle: "Notre analyse approfondie révèle les défis majeurs et les opportunités de l'adoption de l'IA dans la gestion des conseils d'administration.",
-  findings: [
-    {
-      title: "Obstacles à l'Adoption Technologique",
-      description: "Notre étude met en évidence des défis importants dans l'adoption des technologies d'IA au sein des conseils d'administration, particulièrement dans les organisations établies.",
-      sections: [
-        {
-          subtitle: "Résistance Générationnelle",
-          content: "Les membres seniors des conseils montrent une réticence significative face à l'IA, principalement en raison des préoccupations de sécurité et de confidentialité, de la complexité technologique perçue, et de leur préférence pour les méthodes traditionnelles.",
-          stats: {
-            percentage: "73%",
-            label: "des administrateurs expriment des inquiétudes sur la sécurité"
-          },
-          insights: [
-            "Préoccupations liées à la confidentialité des données",
-            "Résistance au changement des méthodes de travail",
-            "Besoin d'interfaces plus simples"
-          ]
-        },
-        {
-          subtitle: "Dépendance aux Systèmes Existants",
-          content: "L'utilisation actuelle d'outils traditionnels comme l'email et SharePoint crée des inefficacités dans la gestion documentaire, la collaboration entre plateformes et l'accès à l'information.",
-          stats: {
-            percentage: "65%",
-            label: "signalent des difficultés d'intégration"
-          },
-          insights: [
-            "Partage de documents centré sur l'email",
-            "Outils de collaboration fragmentés",
-            "Accès mobile limité"
-          ]
-        }
-      ]
-    },
-    {
-      title: "Enjeux de Gestion des Données",
-      description: "La complexité croissante des données et de la documentation du conseil présente des défis majeurs en termes d'organisation, d'accessibilité et d'utilisation.",
-      sections: [
-        {
-          subtitle: "Surcharge d'Information",
-          content: "Les organisations font face à des exigences réglementaires croissantes entraînant une prolifération documentaire, tout en manquant d'outils de synthèse efficaces et en luttant avec des systèmes décentralisés qui nuisent à l'efficacité.",
-          stats: {
-            percentage: "89%",
-            label: "sont confrontés à une surcharge documentaire"
-          },
-          insights: [
-            "Complexité réglementaire croissante",
-            "Traitement manuel des documents",
-            "Recherche d'information inefficace"
-          ]
-        },
-        {
-          subtitle: "Préoccupations liées à l'IA",
-          content: "Les principaux défis incluent le manque de standardisation dans l'intégration des données, les inquiétudes sur la précision des résumés générés par l'IA et les questions de confiance concernant les analyses automatisées.",
-          stats: {
-            percentage: "82%",
-            label: "souhaitent des garanties sur la précision de l'IA"
-          },
-          insights: [
-            "Besoins en standardisation des données",
-            "Validation de la précision de l'IA",
-            "Nécessité de construire la confiance"
-          ]
-        }
-      ]
-    }
-  ]
-}
-
-const solutions = {
-  sectionTitle: "Solutions identifiées",
-  sectionDescription: "Notre recherche a identifié des solutions clés qui répondent aux défis de l'adoption de l'IA dans la gestion des conseils, en mettant l'accent sur la mise en œuvre pratique et les résultats mesurables.",
-  solutions: [
-    {
-      title: "Systèmes d'aide à la décision",
-      description: "Donnez aux administrateurs les moyens d'agir avec des outils basés sur l'IA qui améliorent la prise de décision tout en maintenant la sécurité et la conformité.",
-      icon: "🎯",
-      items: [
-        {
-          name: "Génération automatique de résumés",
-          description: "Création automatique de synthèses concises des documents du conseil, mettant en évidence les points clés et les actions à mener.",
-          impact: "70% de réduction du temps de lecture"
-        },
-        {
-          name: "Outils d'analyse concurrentielle",
-          description: "Veille du marché et analyse des concurrents en temps réel grâce aux algorithmes d'IA.",
-          impact: "Décisions stratégiques 2x plus rapides"
-        },
-        {
-          name: "Tableau de bord sécurisé",
-          description: "Tableaux de bord centralisés avec accès basé sur les rôles, offrant des analyses en temps réel et suivi des KPI.",
-          impact: "Accès aux données 100% sécurisé"
-        }
-      ]
-    },
-    {
-      title: "Stratégie de transformation numérique",
-      description: "Une approche structurée pour déployer les solutions d'IA qui garantit une adoption fluide et une valeur maximale.",
-      icon: "🚀",
-      items: [
-        {
-          name: "Déploiement par phases",
-          description: "Stratégie de déploiement planifiée avec des objectifs et indicateurs de succès clairs.",
-          impact: "85% de taux d'adoption"
-        },
-        {
-          name: "Solutions sur site",
-          description: "Options d'hébergement local sécurisées pour les organisations ayant des exigences strictes de souveraineté des données.",
-          impact: "Contrôle total des données"
-        },
-        {
-          name: "Programmes de formation complets",
-          description: "Sessions de formation personnalisées et support continu pour garantir une adoption réussie.",
-          impact: "95% de confiance utilisateur"
-        }
-      ]
-    },
-    {
-      title: "Amélioration de la gestion documentaire",
-      description: "Transformez la gestion des documents avec des outils d'IA qui optimisent l'organisation, la recherche et la collaboration.",
-      icon: "📑",
-      items: [
-        {
-          name: "Synthèse automatisée",
-          description: "Analyse des documents et extraction des points clés par l'IA pour une compréhension plus rapide.",
-          impact: "60% plus rapide dans le traitement"
-        },
-        {
-          name: "Recherche intelligente",
-          description: "Capacités de recherche avancées avec traitement du langage naturel et compréhension sémantique.",
-          impact: "90% plus rapide pour trouver l'information"
-        },
-        {
-          name: "Référentiel centralisé",
-          description: "Source unique de vérité pour tous les documents du conseil avec contrôle des versions et pistes d'audit.",
-          impact: "100% de traçabilité documentaire"
-        }
-      ]
-    }
-  ],
-  ctaText: "En savoir plus sur nos solutions"
+// Traduction de l'étude (source : src/content/research/boardroom-ai-adoption.md). Étude qualitative : aucun chiffre n'y est publié.
+const title = "L'avenir de l'IA dans la salle du conseil : défis et opportunités";
+const abstract = "Cette étude examine l'adoption de l'IA dans les conseils d'administration des secteurs privé, public et associatif. À partir d'entretiens avec des administrateurs et des professionnels de la gouvernance, elle explore les défis, les opportunités et les solutions possibles pour intégrer l'IA dans la gestion des conseils.";
+const toc = [
+  { id: 'resume-executif', text: 'Résumé exécutif' },
+  { id: 'principales-conclusions', text: 'Principales conclusions' },
+  { id: 'besoins-et-solutions', text: 'Besoins et solutions identifiés' },
+  { id: 'recommandations', text: 'Recommandations de mise en œuvre' },
+  { id: 'perspectives', text: "Perspectives d'avenir" },
+  { id: 'methodologie', text: 'Méthodologie' },
+  { id: 'equipe', text: "L'équipe de recherche" },
+  { id: 'participer', text: 'Participer' },
+];
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": title,
+  "abstract": abstract,
+  "inLanguage": "fr",
+  "author": { "@type": "Organization", "name": "Dafira" },
+  "datePublished": "2024",
+  "publisher": { "@type": "Organization", "name": "Dafira" }
 };
-
-const methodology = {
-  title: "Méthodologie de Recherche",
-  description: "Notre approche de recherche allie méthodes académiques rigoureuses et perspectives pratiques du secteur pour garantir des résultats exploitables.",
-  researchPhases: [
-    {
-      title: "Collecte de Données",
-      icon: "📊",
-      description: "Une approche multi-méthodes complète pour recueillir des perspectives variées.",
-      methods: [
-        {
-          name: "Entretiens Approfondis",
-          details: "Sessions individuelles avec les membres du conseil et les dirigeants",
-          count: "Plus de 50 entretiens"
-        },
-        {
-          name: "Analyse par Sondage",
-          details: "Collecte de données quantitatives auprès des organisations",
-          count: "Plus de 200 réponses"
-        },
-        {
-          name: "Études de Cas",
-          details: "Examen détaillé des réussites d'implémentation d'IA",
-          count: "15 cas"
-        }
-      ]
-    },
-    {
-      title: "Portée de l'Étude",
-      icon: "🎯",
-      description: "Participants soigneusement sélectionnés dans divers secteurs et fonctions.",
-      participants: [
-        {
-          role: "Direction du Conseil",
-          positions: ["Présidents du Conseil", "Responsables de Comités", "Administrateurs Principaux"],
-          percentage: "35%"
-        },
-        {
-          role: "Direction Exécutive",
-          positions: ["PDG", "Directeurs Financiers", "Directeurs Informatiques"],
-          percentage: "40%"
-        },
-        {
-          role: "Professionnels de la Gouvernance",
-          positions: ["Secrétaires Généraux", "Responsables des Risques", "Responsables de la Conformité"],
-          percentage: "25%"
-        }
-      ]
-    },
-    {
-      title: "Cadre d'Analyse",
-      icon: "🔍",
-      description: "Approche analytique rigoureuse combinant méthodes qualitatives et quantitatives.",
-      components: [
-        {
-          name: "Analyse Thématique",
-          description: "Identification des tendances clés dans les défis d'adoption"
-        },
-        {
-          name: "Validation Statistique",
-          description: "Vérification quantitative des résultats et corrélations"
-        },
-        {
-          name: "Comparaison Intersectorielle",
-          description: "Analyse des variations entre différents secteurs et régions"
-        }
-      ]
-    }
-  ]
-};
-
-const futureOutlook = {
-  title: "Perspectives d'avenir",
-  description: "Notre recherche révèle les tendances qui transformeront l'utilisation de l'IA dans la gestion des conseils d'administration au cours des cinq prochaines années.",
-  marketProjectionsTitle: "Projections de croissance du marché",
-  trends: [
-    {
-      title: "Évolution des analyses par IA",
-      icon: "📊",
-      description: "Les capacités d'analyse deviendront plus sophistiquées et essentielles aux opérations du conseil.",
-      timeline: "12-24 prochains mois",
-      impact: "Élevé",
-      points: [
-        {
-          title: "Traitement en temps réel",
-          description: "Analyse instantanée des documents et données du marché",
-          readiness: "85%"
-        },
-        {
-          title: "Prévisions avancées",
-          description: "Anticipation basée sur l'IA pour la planification stratégique",
-          readiness: "75%"
-        },
-        {
-          title: "Aide à la décision",
-          description: "Recommandations contextuelles basées sur l'historique",
-          readiness: "80%"
-        }
-      ]
-    },
-    {
-      title: "Gestion intelligente de la conformité",
-      icon: "⚖️",
-      description: "L'automatisation va transformer la gestion des exigences réglementaires et des risques.",
-      timeline: "18-36 prochains mois",
-      impact: "Critique",
-      points: [
-        {
-          title: "Suivi réglementaire",
-          description: "Surveillance automatisée des obligations de conformité",
-          readiness: "90%"
-        },
-        {
-          title: "Évaluation des risques",
-          description: "Identification proactive des risques potentiels",
-          readiness: "85%"
-        },
-        {
-          title: "Automatisation des audits",
-          description: "Processus d'audit simplifiés avec assistance IA",
-          readiness: "70%"
-        }
-      ]
-    },
-    {
-      title: "Gouvernance éthique de l'IA",
-      icon: "🎯",
-      description: "L'accent sera mis sur une mise en œuvre responsable de l'IA.",
-      timeline: "24-48 prochains mois",
-      impact: "Transformateur",
-      points: [
-        {
-          title: "Transparence des algorithmes",
-          description: "Visibilité claire sur les processus décisionnels de l'IA",
-          readiness: "65%"
-        },
-        {
-          title: "Prévention des biais",
-          description: "Systèmes avancés de détection et prévention des biais",
-          readiness: "70%"
-        },
-        {
-          title: "Déploiement responsable",
-          description: "Cadre pour une mise en œuvre éthique de l'IA",
-          readiness: "80%"
-        }
-      ]
-    }
-  ],
-  marketProjections: [
-    { year: "2024", value: "5,2 Mrd€", growth: "+45%" },
-    { year: "2025", value: "7,8 Mrd€", growth: "+50%" },
-    { year: "2026", value: "12,1 Mrd€", growth: "+55%" }
-  ]
-}
-
-const cta = {
-  texts: {
-    title: "Prêt à transformer la gestion de votre conseil ?",
-    subtitle: "Rejoignez les organisations qui font confiance à govrn pour la gestion de leur conseil",
-    cta1: "Demander une démo",
-    cta2: "Contacter l'équipe commerciale"
-  },
-  links: {
-    cta1: "/fr/request-demo", 
-    cta2: "/fr/contact"
-  }
-}
 ---
 
-<Layout title="L'Avenir de l'IA dans la Salle du Conseil | Recherche Govrn" description="Une étude approfondie examinant comment l'intelligence artificielle transforme la gestion et la gouvernance des conseils à l'ère numérique.">
-  <main class="pt-16">
-    <!-- Section d'en-tête -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-20">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
+<Layout title="L'Avenir de l'IA dans la Salle du Conseil | Recherche Dafira" description="Une étude menée avec une école de commerce britannique sur l'approche de l'IA par les conseils d'administration : obstacles, besoins et recommandations de mise en œuvre." structuredData={structuredData}>
+  <main>
+    <ResearchPaper title={title} authors="Reader en management de l'innovation et stratégie" institution="Une école de commerce britannique & Dafira" date="2024" abstract={abstract} toc={toc}>
+      <h2 id="resume-executif">Résumé exécutif</h2>
+      <p>L'intégration de l'intelligence artificielle (IA) dans le fonctionnement des conseils d'administration représente à la fois une opportunité importante et un défi complexe pour les organisations. Cette recherche, menée conjointement par une école de commerce britannique et Dafira, examine l'état actuel de l'adoption de l'IA dans la gestion des conseils et propose des pistes concrètes aux organisations qui souhaitent utiliser ces technologies à bon escient.</p>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Recherche Innovante
-          </div>
-          <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 leading-tight">
-            L'Avenir de l'IA dans la Salle du Conseil :
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Défis et Opportunités
-            </span>
-          </h1>
-          <div class="flex flex-wrap justify-center gap-4 text-gray-600 mb-8">
-            <p class="font-medium">Dr. Weifeng Chen</p>
-            <span class="hidden sm:inline">•</span>
-            <p>Brunel Business School & Govrn</p>
-            <span class="hidden sm:inline">•</span>
-            <p>2024</p>
-          </div>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            Une étude complète sur la transformation de la gestion et de la gouvernance des conseils d'administration par l'intelligence artificielle.
-          </p>
-        </div>
-      </div>
-    </section>
+      <h2 id="principales-conclusions">Principales conclusions</h2>
+      <h3>1. Obstacles à l'adoption technologique</h3>
+      <h4>Résistance générationnelle</h4>
+      <p>Les administrateurs les plus expérimentés se montrent réticents face à l'IA, principalement en raison :</p>
+      <ul>
+        <li>de préoccupations de sécurité et de confidentialité ;</li>
+        <li>d'une complexité technologique perçue ;</li>
+        <li>d'une préférence pour les méthodes traditionnelles.</li>
+      </ul>
+      <h4>Dépendance aux systèmes existants</h4>
+      <p>L'usage d'outils traditionnels comme l'e-mail et SharePoint crée des inefficacités dans :</p>
+      <ul>
+        <li>la gestion documentaire ;</li>
+        <li>la collaboration entre plateformes ;</li>
+        <li>l'accès à l'information.</li>
+      </ul>
+      <h3>2. Enjeux de gestion des données</h3>
+      <h4>Surcharge d'information</h4>
+      <ul>
+        <li>Des exigences réglementaires croissantes qui multiplient les documents</li>
+        <li>L'absence d'outils de synthèse efficaces</li>
+        <li>Des systèmes décentralisés qui nuisent à l'efficacité</li>
+      </ul>
+      <h4>Préoccupations liées à l'intégration de l'IA</h4>
+      <ul>
+        <li>Un manque de standardisation dans l'intégration des données</li>
+        <li>Des doutes sur la précision des résumés générés par l'IA</li>
+        <li>Une confiance limitée dans les analyses automatisées</li>
+      </ul>
+      <h3>3. Gouvernance et conformité</h3>
+      <h4>Automatisation des processus</h4>
+      <ul>
+        <li>Le suivi manuel des activités du conseil reste répandu</li>
+        <li>Peu d'outils pour automatiser les processus de gouvernance</li>
+        <li>Un suivi de la conformité réglementaire difficile</li>
+      </ul>
+      <h4>Considérations juridiques</h4>
+      <ul>
+        <li>Des hésitations à utiliser l'IA pour des documents sensibles</li>
+        <li>Les implications juridiques des transcriptions de réunion générées par l'IA</li>
+        <li>Les exigences de protection des données</li>
+      </ul>
 
-    <ResearchStats stats={researchStats} />
-    <section class="py-16 bg-white">
-      <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl font-bold text-gray-900 mb-8">Résumé</h2>
-        <div class="prose prose-lg">
-          <p class="text-gray-600 leading-relaxed">
-            L'intégration de l'Intelligence Artificielle (IA) dans le fonctionnement des conseils d'administration représente à la fois une opportunité majeure et un défi complexe pour les organisations modernes. Cette étude, menée conjointement par la Brunel Business School et Govrn, analyse l'état actuel de l'adoption de l'IA dans la gestion des conseils et propose des recommandations concrètes pour les organisations souhaitant tirer parti efficacement des technologies d'IA.
-          </p>
-        </div>
-      </div>
-    </section>
-    <KeyFindings {...keyFindings} />
-    <Solutions {...solutions} />
-    <Methodology {...methodology} />
-    <FutureOutlook {...futureOutlook} />
-    
-    <!-- Informations sur l'auteur -->
-    <SharingButtons title="L'Avenir de l'IA dans la Salle du Conseil | Recherche Govrn" message="Une étude approfondie examinant comment l'intelligence artificielle transforme la gestion et la gouvernance des conseils à l'ère numérique." href={Astro.url.href} />
-    <section class="py-16 bg-gray-50">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid sm:grid-cols-2 gap-8">
-          <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="font-semibold text-gray-900 mb-2">À propos des auteurs</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">
-              Dr. Weifeng Chen est Maître de conférences en Management de l'Innovation et Stratégie à la Brunel Business School, spécialisé dans l'adoption de l'IA et la transformation numérique.
-            </p>
-          </div>
-          <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="font-semibold text-gray-900 mb-2">Participez</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">
-              Intéressé par une participation à nos futures recherches ou par notre moteur d'IA ? Contactez-nous à info@govrn.com
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <CTA {...cta} />
+      <h2 id="besoins-et-solutions">Besoins et solutions identifiés</h2>
+      <h3>1. Systèmes d'aide à la décision</h3>
+      <ul>
+        <li><strong>Génération de résumés par l'IA</strong> : analyse automatisée des documents, extraction des points clés, mise en évidence des priorités</li>
+        <li><strong>Outils d'analyse concurrentielle</strong> : tendances du marché, comparaison avec les pairs, positionnement stratégique</li>
+        <li><strong>Tableaux de bord sécurisés</strong> : indicateurs en temps réel, vues personnalisables, accès selon les rôles</li>
+      </ul>
+      <h3>2. Stratégie de transformation numérique</h3>
+      <ul>
+        <li><strong>Déploiement par phases</strong> : évaluation initiale, projets pilotes, déploiement à l'échelle</li>
+        <li><strong>Solutions sur site</strong> : traitement sécurisé des données, intégration sur mesure, traitement local</li>
+        <li><strong>Programmes de formation</strong> : prise en main, développement des compétences, accompagnement continu</li>
+      </ul>
+      <h3>3. Amélioration de la gestion documentaire</h3>
+      <ul>
+        <li><strong>Synthèse automatisée</strong> : analyse contextuelle, extraction des points clés, signalement des priorités</li>
+        <li><strong>Recherche intelligente</strong> : traitement du langage naturel, compréhension sémantique, liens entre contenus</li>
+        <li><strong>Référentiels centralisés</strong> : gestion des versions, gestion des accès, pistes d'audit</li>
+      </ul>
+      <h3>4. Conformité et suivi</h3>
+      <ul>
+        <li><strong>Suivi en temps réel</strong> : évolutions réglementaires, contrôles de conformité, alertes sur les risques</li>
+        <li><strong>Analyses intégrées</strong> : tendances de comportement, analyse des décisions, indicateurs de performance</li>
+        <li><strong>Implication des parties prenantes</strong> : rapports transparents, outils de communication, retours d'expérience</li>
+      </ul>
+
+      <h2 id="recommandations">Recommandations de mise en œuvre</h2>
+      <h3>1. Une adoption par étapes</h3>
+      <ul>
+        <li>Commencer par une automatisation de base</li>
+        <li>Introduire progressivement les fonctionnalités d'IA</li>
+        <li>Veiller au confort des utilisateurs et à l'adoption</li>
+      </ul>
+      <h3>2. La sécurité d'abord</h3>
+      <ul>
+        <li>Donner la priorité à la protection des données</li>
+        <li>Mettre en place une authentification robuste</li>
+        <li>Garantir la conformité réglementaire</li>
+      </ul>
+      <h3>3. Formation et accompagnement</h3>
+      <ul>
+        <li>Des programmes de prise en main complets</li>
+        <li>Un support technique continu</li>
+        <li>Des mises à jour régulières des fonctionnalités</li>
+      </ul>
+
+      <h2 id="perspectives">Perspectives d'avenir</h2>
+      <p>L'étude indique une évolution claire vers l'adoption de l'IA dans les conseils, avec plusieurs tendances :</p>
+      <ol>
+        <li><strong>Une demande accrue d'analyses</strong> : traitement des données en temps réel, analyses prédictives, outils d'aide à la décision</li>
+        <li><strong>L'automatisation de la conformité</strong> : veille réglementaire, évaluation des risques, automatisation des audits</li>
+        <li><strong>Une IA éthique</strong> : algorithmes transparents, prévention des biais, mise en œuvre responsable</li>
+      </ol>
+
+      <h2 id="methodologie">Méthodologie</h2>
+      <p>Cette étude repose sur une approche qualitative, fondée sur des entretiens approfondis avec :</p>
+      <ul>
+        <li>des présidents de conseil ;</li>
+        <li>des CEO ;</li>
+        <li>des administrateurs non exécutifs ;</li>
+        <li>des secrétaires de conseil ;</li>
+        <li>des professionnels de la gouvernance.</li>
+      </ul>
+      <p>Les participants représentent des organisations de secteurs et de tailles variés, ce qui offre une vue d'ensemble des défis et besoins actuels.</p>
+
+      <h2 id="equipe">L'équipe de recherche</h2>
+      <h3>Chercheur principal</h3>
+      <p>Reader en management de l'innovation et stratégie dans une école de commerce britannique, spécialiste de l'adoption de l'IA et de la transformation numérique.</p>
+      <h3>Paul Stark</h3>
+      <p>Plus de 15 ans d'expérience dans les technologies pour conseils d'administration, responsable de l'innovation chez Dafira.</p>
+
+      <h2 id="participer">Participer</h2>
+      <p>Pour participer à nos prochaines recherches ou en savoir plus sur le moteur d'IA de Dafira, écrivez à <a href="mailto:info@dafira.ai">info@dafira.ai</a>.</p>
+    </ResearchPaper>
   </main>
 </Layout>

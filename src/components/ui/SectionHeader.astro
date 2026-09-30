@@ -1,0 +1,41 @@
+---
+// Section heading block.
+// layout="split": title on the left, lead on the right (default for home-style sections)
+// layout="stacked": eyebrow, title and lead in one column
+import Eyebrow from './Eyebrow.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  layout?: 'split' | 'stacked';
+  as?: 'h1' | 'h2' | 'h3';
+  tone?: 'default' | 'inverse';
+  class?: string;
+}
+
+const { eyebrow, title, lead, layout = 'split', as: Tag = 'h2', tone = 'default', class: className } = Astro.props;
+const titleColor = tone === 'inverse' ? 'text-white' : 'text-navy';
+const leadColor = tone === 'inverse' ? 'text-white/70' : 'text-gray-600';
+const titleSize = Tag === 'h1' ? 'text-4xl sm:text-5xl' : 'text-3xl lg:text-4xl';
+---
+
+{layout === 'split' ? (
+  <div class:list={['grid lg:grid-cols-12 gap-6 mb-14', className]} data-play>
+    <div class="lg:col-span-6" data-step>
+      {eyebrow && <Eyebrow tone={tone} class="mb-4">{eyebrow}</Eyebrow>}
+      <Tag class:list={[titleSize, 'font-semibold leading-tight', titleColor]}>{title}</Tag>
+    </div>
+    {lead && <p class:list={['lg:col-span-5 lg:col-start-8 text-lg leading-relaxed self-end', leadColor]} data-step style="--d:80">{lead}</p>}
+    <slot />
+  </div>
+) : (
+  <div class:list={['max-w-2xl mb-14', className]} data-play>
+    <div data-step>
+      {eyebrow && <Eyebrow tone={tone} class="mb-4">{eyebrow}</Eyebrow>}
+      <Tag class:list={[titleSize, 'font-semibold leading-tight', titleColor]}>{title}</Tag>
+    </div>
+    {lead && <p class:list={['mt-4 text-lg leading-relaxed', leadColor]} data-step style="--d:80">{lead}</p>}
+    <slot />
+  </div>
+)}

@@ -1,308 +1,54 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from '../../layouts/Layout.astro';
+import { PageHero, Section } from '../../components/ui';
+import CustomerQuotes from '../../components/case-studies/CustomerQuotes.astro';
+import LocalizedCTA from '../../components/case-studies/LocalizedCTA.astro';
 
 const testimonials = [
   {
-    company: "Van de Velde",
-    title: "Van de Velde modernise sa gouvernance avec Govrn",
-    logo: "/vdv-logo.png",
-    image: "/vdv-lore-portrait.jpg",
-    videoUrl: "https://www.youtube.com/embed/sabn6q1gsBw",
-    quote:
-      "Govrn a transformé notre gestion du conseil d'administration, apportant efficacité et clarté à nos processus de gouvernance.",
-    content: `Van de Velde, entreprise internationale de lingerie reconnue pour ses marques Marie Jo, PrimaDonna et Sarda, a révolutionné sa gestion du conseil d'administration avec Govrn. Cette mise en place a simplifié leurs processus décisionnels et amélioré la collaboration entre les membres du conseil, soutenant ainsi leur héritage centenaire d'excellence.`,
-    results: [
-      "Temps de préparation des réunions réduit de 50%",
-      "Sécurité et accessibilité des documents améliorées",
-      "Meilleur engagement des membres du conseil",
-      "Processus décisionnel optimisé",
-    ],
-    articleUrl: "/fr/case-studies/van-de-velde",
-    industry: "Mode et distribution",
-    location: "Belgique",
-    yearFounded: "1919",
-    testimonialBy: "Lore Werbrouck",
-    testimonialRole: "Directrice juridique",
+    industry: "Association d'accompagnement du secteur associatif",
+    title: "La gouvernance du conseil avec Dafira",
+    quote: "Je suis persuadée qu'une plateforme comme Dafira favorise une prise de décision plus éclairée au niveau du conseil d'administration.",
+    author: "Présidente",
+    href: "/fr/case-studies/non-profit-organisation",
   },
   {
-    company: "Finance & Invest Brussels",
-    title: "Finance & Invest Brussels modernise sa gouvernance avec Govrn",
-    logo: "/fib-logo.png",
-    image: "/fib-offices.webp",
-    videoUrl: "https://www.youtube.com/embed/f4WxKjenVK4",
-    quote:
-      "Govrn a joué un rôle essentiel dans la modernisation de notre structure de gouvernance et l'amélioration de notre efficacité opérationnelle.",
-    content: `Finance & Invest Brussels a choisi Govrn pour améliorer sa gestion du conseil d'administration. Les fonctionnalités complètes de la plateforme leur ont permis d'atteindre une plus grande transparence et efficacité dans leurs opérations, soutenant leur mission de développement économique de la région bruxelloise.`,
-    results: [
-      "Meilleur suivi de la conformité",
-      "Collaboration renforcée entre les parties prenantes",
-      "Réduction des tâches administratives",
-      "Prise de décision stratégique améliorée",
-    ],
-    additionalImage: "/fib-pierre.webp",
-    articleUrl: "/fr/case-studies/finance-invest-brussels",
-    industry: "Services financiers",
-    location: "Bruxelles",
-    yearFounded: "2003",
-    testimonialBy: "Pierre Hermant",
-    testimonialRole: "PDG",
+    industry: "Groupe de mode coté en bourse",
+    title: "La gouvernance du conseil réunie en un lieu sécurisé",
+    quote: "Dafira a transformé notre gestion du conseil d'administration, apportant efficacité et clarté à nos processus de gouvernance.",
+    author: "Directrice juridique",
+    href: "/fr/case-studies/listed-fashion-group",
   },
   {
-    company: "Care Property Invest",
-    title:
-      "Care Property Invest adopte la nouvelle génération de gestion du conseil avec Govrn",
-    logo: "/careproperty-logo.png",
-    image: "/careproperty-logo-picture.jpeg",
-    quote:
-      "Govrn représente la nouvelle génération de logiciels de gestion du conseil d'administration, facile à utiliser et intégrant l'IA.",
-    content: `Care Property Invest a fait le choix stratégique de passer à Govrn, motivé par le besoin d'une plus grande flexibilité et fiabilité dans leurs processus de gestion du conseil. Cette transition a permis d'améliorer les capacités de personnalisation, la gestion des documents et le support multilingue pour leur conseil d'administration diversifié.`,
-    results: [
-      "Personnalisation améliorée des modèles",
-      "Meilleur suivi des présences",
-      "Solution économique",
-      "Support multilingue",
-    ],
-    images: ["/careproperty-building-1.webp", "/careproperty-building-2.webp"],
-    articleUrl: "/fr/case-studies/care-property-invest",
-    industry: "Investissement immobilier",
-    location: "Belgique",
-    yearFounded: "1995",
-    testimonialBy: "Nathalie Byl",
-    testimonialRole: "Responsable juridique et conformité",
+    industry: "Fonds public d'investissement régional",
+    title: "Une plateforme de gouvernance pour des administrateurs publics et privés",
+    quote: "Dafira a joué un rôle essentiel dans la modernisation de notre structure de gouvernance et l'amélioration de notre efficacité opérationnelle.",
+    author: "CEO",
+    href: "/fr/case-studies/public-investment-fund",
+  },
+  {
+    industry: "Société immobilière cotée du secteur des soins",
+    title: "Un portail du conseil adapté à ses modèles, ses règles de présence et ses langues",
+    quote: "Dafira représente la nouvelle génération de logiciels de gestion du conseil d'administration, facile à utiliser et intégrant l'IA.",
+    author: "Juriste et responsable conformité",
+    href: "/fr/case-studies/healthcare-real-estate",
   },
 ];
-
 ---
 
 <Layout
-  title="Témoignages clients - Govrn"
-  description="Découvrez comment les organisations leaders révolutionnent leur gestion du conseil d'administration avec les solutions innovantes de Govrn."
-  image="/testimonials.png"
+  title="Témoignages clients - Dafira"
+  description="Comment un groupe de mode coté en bourse, un fonds public d'investissement régional, une société immobilière cotée du secteur des soins et une association d'accompagnement du secteur associatif gèrent leur conseil avec Dafira."
 >
-  <!-- Section héro -->
-  <section
-    class="relative pt-32 pb-24 overflow-hidden bg-gradient-to-br from-white to-gray-50"
-  >
-    <div class="absolute inset-0 z-0">
-      <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"
-      >
-      </div>
-    </div>
+  <PageHero
+    eyebrow="Témoignages clients"
+    title="Comment les conseils travaillent avec Dafira"
+    lead="Présidents, directions juridiques, responsables conformité et dirigeants racontent, avec leurs propres mots, comment ils gèrent leur conseil avec Dafira."
+  />
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="text-center max-w-4xl mx-auto">
-        <div
-          class="inline-flex items-center rounded-full px-6 py-2 text-sm font-medium bg-primary/10 text-primary mb-8"
-        >
-          Témoignages clients
-        </div>
+  <Section space="lg">
+    <CustomerQuotes items={testimonials} linkText="Lire l’étude de cas" />
+  </Section>
 
-        <h1 class="text-6xl font-extrabold text-gray-900 tracking-tight mb-8">
-          Découvrez comment les organisations
-          <span
-            class="block mt-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600"
-          >
-            se transforment avec Govrn
-          </span>
-        </h1>
-
-        <p
-          class="text-xl text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto"
-        >
-          Découvrez comment les organisations de différents secteurs modernisent
-          leur gestion du conseil d'administration avec les solutions innovantes
-          de Govrn.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Grille des success stories -->
-  <section class="py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="space-y-32">
-        {
-          testimonials.map((testimonial, index) => (
-            <div class="group">
-              <div
-                class={`grid lg:grid-cols-2 gap-16 items-center ${index % 2 === 1 ? "lg:grid-flow-dense" : ""}`}
-              >
-                <div
-                  class={`space-y-8 ${index % 2 === 1 ? "lg:col-start-2" : ""}`}
-                >
-                  <div class="flex items-center space-x-6">
-                    <img 
-  loading="lazy"
-                      src={testimonial.logo}
-                      alt={`Logo ${testimonial.company}`}
-                      class="h-16 w-auto"
-                    />
-                    <div class="flex flex-col">
-                      <div class="text-sm text-gray-500">
-                        {testimonial.industry}
-                      </div>
-                      <div class="text-sm text-gray-500">
-                        {testimonial.location} • Créée en{" "}
-                        {testimonial.yearFounded}
-                      </div>
-                    </div>
-                  </div>
-
-                  <h2 class="text-4xl font-bold text-gray-900 group-hover:text-primary transition-colors duration-300">
-                    {testimonial.title}
-                  </h2>
-
-                  <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 border border-primary/10 rounded-xl p-8">
-                    <blockquote class="text-xl text-gray-700 italic">
-                      "{testimonial.quote}"
-                      <footer class="mt-4 text-sm text-gray-500 non-italic">
-                        - {testimonial.testimonialBy},{" "}
-                        {testimonial.testimonialRole}
-                      </footer>
-                    </blockquote>
-                  </div>
-
-                  <p class="text-gray-600 leading-relaxed">
-                    {testimonial.content}
-                  </p>
-
-                  <div class="bg-white rounded-xl border border-gray-200 p-8">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-6">
-                      Résultats clés et impact :
-                    </h3>
-                    <ul class="space-y-4">
-                      {testimonial.results.map((result) => (
-                        <li class="flex items-start">
-                          <div class="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-1">
-                            <svg
-                              class="h-4 w-4 text-primary"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M5 13l4 4L19 7"
-                              />
-                            </svg>
-                          </div>
-                          <span class="ml-3 text-gray-600">{result}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div class="flex items-center justify-start pt-4">
-                    <a
-                      href={testimonial.articleUrl}
-                      class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-all duration-300 group"
-                    >
-                      Lire l'étude de cas complète
-                      <svg
-                        class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M13 7l5 5m0 0l-5 5m5-5H6"
-                        />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-
-                <div
-                  class={`space-y-8 ${index % 2 === 1 ? "lg:col-start-1" : ""}`}
-                >
-                  {testimonial.videoUrl ? (
-                    <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl relative group">
-                      <iframe
-                        class="w-full h-full"
-                        src={testimonial.videoUrl}
-                        title={`Vidéo étude de cas ${testimonial.company}`}
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen
-                      />
-                    </div>
-                  ) : null}
-                  <div class="grid gap-4">
-                    <div class="relative group">
-                      <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-                      <img 
-  loading="lazy"
-                        src={testimonial.image}
-                        alt={`Étude de cas ${testimonial.company}`}
-                        class="rounded-2xl shadow-lg w-full object-cover h-64 transform group-hover:scale-[1.02] transition-transform duration-300"
-                      />
-                    </div>
-                    {testimonial.additionalImage && (
-                      <div class="relative group">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-                        <img 
-  loading="lazy"
-                          src={testimonial.additionalImage}
-                          alt={`Image supplémentaire ${testimonial.company}`}
-                          class="rounded-2xl shadow-lg w-full object-cover h-64 transform group-hover:scale-[1.02] transition-transform duration-300"
-                        />
-                      </div>
-                    )}
-                    {testimonial.images &&
-                      testimonial.images.map((image) => (
-                        <div class="relative group">
-                          <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-                          <img 
-  loading="lazy"
-                            src={image}
-                            alt={`Image supplémentaire ${testimonial.company}`}
-                            class="rounded-2xl shadow-lg w-full object-cover h-64 transform group-hover:scale-[1.02] transition-transform duration-300"
-                          />
-                        </div>
-                      ))}
-                  </div>
-                </div>
-              </div>
-              {index !== testimonials.length - 1 && (
-                <div class="mt-16 border-b border-gray-100" />
-              )}
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- Section CTA -->
-  <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-white mb-8">
-        Prêt à transformer la gestion de votre conseil ?
-      </h2>
-      <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-        Rejoignez ces organisations leaders et révolutionnez vos opérations de
-        conseil avec Govrn
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="/fr"
-          class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-        >
-          Demander une démo
-        </a>
-        <a
-          href="/fr"
-          class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200"
-        >
-          Contacter l'équipe commerciale
-        </a>
-      </div>
-    </div>
-  </section>
+  <LocalizedCTA />
 </Layout>

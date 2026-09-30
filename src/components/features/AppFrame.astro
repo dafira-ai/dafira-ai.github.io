@@ -1,0 +1,19 @@
+---
+// Sober HTML mock-up of a Dafira screen: hairline frame and a title bar. Decorative (aria-hidden); content goes in the slot.
+interface Props {
+  title: string;
+  meta?: string;
+  /** strong shadow — only for the hero product visual */
+  shadow?: boolean;
+  class?: string;
+}
+const { title, meta, shadow = false, class: className } = Astro.props;
+---
+
+<div class:list={['bg-white border border-line rounded-md text-sm overflow-hidden', shadow && 'shadow-2xl', className]} aria-hidden="true">
+  <div class="flex items-baseline justify-between gap-4 px-5 py-3.5 border-b border-line">
+    <span class="font-semibold text-navy truncate">{title}</span>
+    {meta && <span class="font-mono text-xs text-gray-500 whitespace-nowrap">{meta}</span>}
+  </div>
+  <slot />
+</div>

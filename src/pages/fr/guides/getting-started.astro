@@ -1,6 +1,8 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import GuideHeader from '../../../components/guides/GuideHeader.astro';
+import GuideArticle from '../../../components/guides/GuideArticle.astro';
+import { Button, Icon } from '../../../components/ui';
 import GuideStep from '../../../components/guides/GuideStep.astro';
 import GuideSubSection from '../../../components/guides/GuideSubSection.astro';
 import GuideStepList from '../../../components/guides/GuideStepList.astro';
@@ -46,18 +48,18 @@ const afterMeetingSteps = [
 ];
 ---
 
-<Layout title="Démarrer avec Govrn - Guide Complet" description="Bienvenue sur Govrn, votre plateforme complète pour une gouvernance efficace ! Ce guide vous accompagnera dans la prise en main et l'organisation de vos conseils d'administration.">
-  <main class="pt-16">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <GuideHeader
-        title="Débuter avec Govrn : Votre Guide Complet"
-        description="Bienvenue sur Govrn, votre plateforme de gouvernance nouvelle génération ! Découvrez comment optimiser la gestion de votre conseil d'administration étape par étape."
+<Layout title="Démarrer avec Dafira - Guide Complet" description="Bienvenue sur Dafira, votre plateforme complète pour une gouvernance efficace. Ce guide vous accompagnera dans la prise en main et l'organisation de vos conseils d'administration.">
+  <main>
+    <GuideHeader
+        title="Débuter avec Dafira : Votre Guide Complet"
+        description="Bienvenue sur Dafira, votre plateforme de gestion de conseil. Découvrez comment optimiser la gestion de votre conseil d'administration étape par étape."
       />
+    <GuideArticle>
 
       <GuideStep
         number={1}
         title="Structurez vos Groupes"
-        description="Les groupes dans Govrn permettent d'organiser vos administrateurs en comités, garantissant un accès ciblé aux informations pertinentes."
+        description="Les groupes dans Dafira permettent d'organiser vos administrateurs en comités, garantissant un accès ciblé aux informations pertinentes."
       >
         <GuideSubSection title="Création des Comités">
           <GuideStepList items={groupSetupSteps} />
@@ -71,7 +73,7 @@ const afterMeetingSteps = [
       <GuideStep
         number={2}
         title="Constituez votre Conseil"
-        description="Intégrez vos administrateurs sur Govrn avec les rôles et permissions adaptés."
+        description="Intégrez vos administrateurs sur Dafira avec les rôles et permissions adaptés."
       >
         <GuideSubSection title="Processus d'invitation des membres">
           <GuideStepList items={inviteMembersSteps} />
@@ -85,7 +87,7 @@ const afterMeetingSteps = [
       <GuideStep
         number={3}
         title="Maîtrisez le Cycle des Réunions"
-        description="Une réunion efficace se déroule en trois temps : la préparation, la séance et le suivi. Voici comment optimiser chaque phase avec Govrn."
+        description="Une réunion efficace se déroule en trois temps : la préparation, la séance et le suivi. Voici comment optimiser chaque phase avec Dafira."
       >
         <GuideSubSection title="Avant la Réunion">
           <p class="text-gray-600 mb-4">Une préparation minutieuse est la clé du succès. Suivez ces étapes :</p>
@@ -93,7 +95,7 @@ const afterMeetingSteps = [
         </GuideSubSection>
 
         <GuideSubSection title="Pendant la Réunion">
-          <p class="text-gray-600 mb-4">Exploitez les fonctionnalités en temps réel de Govrn pour des échanges productifs :</p>
+          <p class="text-gray-600 mb-4">Exploitez les fonctionnalités en temps réel de Dafira pour des échanges productifs :</p>
           <GuideStepList items={duringMeetingSteps} />
         </GuideSubSection>
 
@@ -103,18 +105,17 @@ const afterMeetingSteps = [
         </GuideSubSection>
 
         <ProTip
-          tip="Utilisez les outils collaboratifs de Govrn tout au long du processus pour maintenir une source unique de vérité pour tous vos documents."
+          tip="Utilisez les outils collaboratifs de Dafira tout au long du processus pour maintenir une source unique de vérité pour tous vos documents."
         />
       </GuideStep>
 
       <!-- Conclusion -->
-      <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Prêt pour une Gouvernance Efficace</h2>
+      <div class="mt-16 rounded-md p-8 border border-line bg-surface">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Prêt pour une Gouvernance Efficace</h2>
         <p class="text-lg text-gray-600 leading-relaxed mb-6">
-          Vous disposez maintenant de tous les outils pour piloter efficacement votre conseil d'administration. La bonne gouvernance est un processus continu, et Govrn vous accompagne à chaque étape.
+          Vous disposez maintenant de tous les outils pour piloter efficacement votre conseil d'administration. La bonne gouvernance est un processus continu, et Dafira vous accompagne à chaque étape.
         </p>
-        <p class="text-lg font-medium text-primary">Pour une meilleure gouvernance ! 🎉</p>
       </div>
-    </article>
+    </GuideArticle>
   </main>
 </Layout>

@@ -3,7 +3,7 @@ title: "Quorum: The Key to Effective Board Governance and Decision-Making"
 description: "Explore the critical role of quorum in ensuring effective, fair, and legitimate governance."
 pubDate: 2024-12-19
 author: "Jean-Louis Van Houwe"
-authorRole: "CEO and Founder at Govrn"
+authorRole: "CEO and Founder at Dafira"
 image: "/quorum.jpg"
 category: "Governance"
 tags: ["Quorum", "Governance", "Decision-Making", "Fair Process"]
@@ -78,4 +78,4 @@ Fair process leadership (FPL) emphasizes engagement, transparency, and accountab
 
 ## Conclusion
 
-Quorum is far more than a procedural formality—it is a cornerstone of good governance and fair process leadership. By ensuring legitimate, representative, and thoughtful decision-making, quorum builds trust, accountability, and operational integrity. Organizations that respect quorum requirements position themselves to act ethically, effectively, and sustainably, fostering a governance culture that benefits all stakeholders. With the advent of AI assistance, managing quorum requirements and shareholder agreements has become more streamlined and accurate than ever before. [Get started with AI-powered governance](https://govrn.com/try)
+Quorum is far more than a procedural formality—it is a cornerstone of good governance and fair process leadership. By ensuring legitimate, representative, and thoughtful decision-making, quorum builds trust, accountability, and operational integrity. Organizations that respect quorum requirements position themselves to act ethically, effectively, and sustainably, fostering a governance culture that benefits all stakeholders. With the advent of AI assistance, managing quorum requirements and shareholder agreements has become more streamlined and accurate than ever before. [Get started with AI-powered governance](https://dafira.ai/try)

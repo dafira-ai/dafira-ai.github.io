@@ -1,0 +1,240 @@
+---
+// /features/ai-board-compliance-monitoring (EN / FR / NL)
+import { Section, SectionHeader, FeatureColumns, Callout } from '../../ui';
+import ComplianceHero from '../../compliance/ComplianceHero.astro';
+import ComplianceAnimation from '../../compliance/ComplianceAnimation.astro';
+import ComplianceFeatures from '../../compliance/ComplianceFeatures.astro';
+import CSRDCategoryCard from '../../compliance/csrd/CSRDCategoryCard.astro';
+import AppFrame from '../AppFrame.astro';
+import RelatedFeatures from '../RelatedFeatures.astro';
+import FeatureCTA from '../FeatureCTA.astro';
+import CustomerQuote from '../CustomerQuote.astro';
+import { langFromPath } from '../../../i18n/routes';
+import { common, featureLang } from '../common';
+
+const lang = featureLang(langFromPath(Astro.url.pathname));
+const c = common[lang];
+
+const copy = {
+  en: {
+    hero: {
+      badge: 'Compliance monitoring',
+      title: 'Follow regulatory requirements',
+      titleHighlight: 'with the board',
+      description: 'The compliance dashboard maps requirements such as CSRD to your board documents. The AI points to the minutes and policies that address each requirement, and to the gaps that remain.',
+      cta1: c.demo,
+      cta2: c.contact,
+    },
+    dashboard: {
+      eyebrow: 'Dashboard',
+      title: 'Requirements, evidence and gaps on one screen',
+      lead: 'Each category of a regulation shows its progress, the board documents that support it and what is still missing.',
+    },
+    shows: {
+      title: 'What the dashboard shows',
+      lead: 'The information a board secretary or general counsel needs to report on compliance to the board.',
+      columns: [
+        { icon: 'list', title: 'Requirements by category', text: 'Each regulation is broken down into categories with their progress and due dates.' },
+        { icon: 'document', title: 'Evidence from board documents', text: 'Minutes, policies and reports that address a requirement, with the relevant excerpt.' },
+        { icon: 'warning', title: 'Gaps and recommendations', text: 'Strengths, identified gaps and recommendations for each category.' },
+        { icon: 'clipboard', title: 'Activity', text: 'A log of recent updates to the compliance data.' },
+      ],
+    },
+    note: 'The dashboard helps the board follow its obligations. It does not replace the advice of your legal and compliance advisers.',
+    data: {
+      texts: { title: 'CSRD dashboard', csrdDashboard: 'CSRD dashboard' },
+      metrics: [
+        { title: 'CSRD readiness', value: '78%', change: 'Across all categories', icon: 'leaf' },
+        { title: 'Open gaps', value: '4', change: 'With recommendations', icon: 'warning' },
+      ],
+      csrdCategories: [
+        { title: 'Impact on operations', score: 85, status: 'good', requirement: 'Assessment of operational impacts on the environment and society', dueDate: '31/12' },
+        { title: 'Finance, costs and resources', score: 72, status: 'warning', requirement: 'Financial implications of sustainability initiatives', dueDate: '31/12' },
+        { title: 'Risks and risk management', score: 90, status: 'good', requirement: 'Identification and mitigation of sustainability risks', dueDate: '31/12' },
+      ],
+      recentActivities: [
+        { category: 'CSRD', action: 'Environmental impact report updated', timestamp: '2 hours ago', status: 'success' },
+        { category: 'ESG reporting', action: 'Social indicators need attention', timestamp: '4 hours ago', status: 'warning' },
+        { category: 'Sustainability', action: 'Carbon footprint data collected', timestamp: '1 day ago', status: 'success' },
+      ],
+      selectedCategory: {
+        title: 'Impact on operations', score: 85, status: 'good', requirement: 'Climate change mitigation and adaptation strategies',
+        analysis: {
+          strengths: ['Climate risk assessment in place', 'Emission reduction targets approved by the board'],
+          gaps: ['Limited scope 3 emissions data', 'Supplier assessments incomplete'],
+          recommendations: ['Extend scope 3 tracking', 'Add supplier environmental scoring'],
+        },
+        documents: [
+          { title: 'Board minutes · Q1', type: 'Minutes', date: '15/03', relevance: 95, excerpt: 'The board approved new climate targets for the group.' },
+          { title: 'Environmental policy', type: 'Policy', date: '28/02', relevance: 90 },
+        ],
+      },
+    },
+    areas: {
+      title: 'Regulatory areas',
+      description: 'The dashboard follows the requirements that reach the board and links them to the documents that address them.',
+      features: [
+        { title: 'CSRD', description: 'Follow the sustainability reporting requirements of the Corporate Sustainability Reporting Directive.', icon: 'leaf', benefits: ['ESG indicators followed by category', 'Board documents linked to each requirement', 'Gaps and recommendations', 'Stakeholder reporting'] },
+        { title: 'GDPR', description: 'Keep board data protection practices in line with EU privacy rules.', icon: 'lock', benefits: ['Data privacy controls', 'Access tracking', 'Audit trail'] },
+      ],
+    },
+  },
+  fr: {
+    hero: {
+      badge: 'Suivi de la conformité',
+      title: 'Suivre les exigences réglementaires',
+      titleHighlight: 'avec le conseil',
+      description: "Le tableau de bord de conformité relie des exigences comme la CSRD à vos documents du conseil. L'IA indique les procès-verbaux et politiques qui répondent à chaque exigence, et les lacunes qui subsistent.",
+      cta1: c.demo,
+      cta2: c.contact,
+    },
+    dashboard: {
+      eyebrow: 'Tableau de bord',
+      title: 'Exigences, justificatifs et lacunes sur un seul écran',
+      lead: "Chaque catégorie d'une réglementation affiche son avancement, les documents du conseil qui la documentent et ce qui manque encore.",
+    },
+    shows: {
+      title: 'Ce que montre le tableau de bord',
+      lead: 'Les informations dont le secrétaire du conseil ou le directeur juridique a besoin pour rendre compte de la conformité au conseil.',
+      columns: [
+        { icon: 'list', title: 'Exigences par catégorie', text: 'Chaque réglementation est découpée en catégories, avec leur avancement et leurs échéances.' },
+        { icon: 'document', title: 'Justificatifs issus des documents du conseil', text: "Procès-verbaux, politiques et rapports qui répondent à une exigence, avec l'extrait pertinent." },
+        { icon: 'warning', title: 'Lacunes et recommandations', text: 'Points forts, lacunes identifiées et recommandations pour chaque catégorie.' },
+        { icon: 'clipboard', title: 'Activité', text: 'Un journal des dernières mises à jour des données de conformité.' },
+      ],
+    },
+    note: 'Le tableau de bord aide le conseil à suivre ses obligations. Il ne remplace pas l’avis de vos conseillers juridiques et conformité.',
+    data: {
+      texts: { title: 'Tableau de bord CSRD', csrdDashboard: 'Tableau de bord CSRD' },
+      metrics: [
+        { title: 'Préparation CSRD', value: '78%', change: 'Toutes catégories', icon: 'leaf' },
+        { title: 'Lacunes ouvertes', value: '4', change: 'Avec recommandations', icon: 'warning' },
+      ],
+      csrdCategories: [
+        { title: 'Impact sur les opérations', score: 85, status: 'good', requirement: "Évaluation des impacts opérationnels sur l'environnement et la société", dueDate: '31/12' },
+        { title: 'Finances, coûts et ressources', score: 72, status: 'warning', requirement: 'Implications financières des initiatives de durabilité', dueDate: '31/12' },
+        { title: 'Risques et gestion des risques', score: 90, status: 'good', requirement: 'Identification et atténuation des risques de durabilité', dueDate: '31/12' },
+      ],
+      recentActivities: [
+        { category: 'CSRD', action: "Rapport d'impact environnemental mis à jour", timestamp: 'il y a 2 heures', status: 'success' },
+        { category: 'Reporting ESG', action: 'Indicateurs sociaux à compléter', timestamp: 'il y a 4 heures', status: 'warning' },
+        { category: 'Durabilité', action: 'Données d’empreinte carbone collectées', timestamp: 'il y a 1 jour', status: 'success' },
+      ],
+      selectedCategory: {
+        title: 'Impact sur les opérations', score: 85, status: 'good', requirement: "Stratégies d'atténuation et d'adaptation au changement climatique",
+        analysis: {
+          strengths: ['Évaluation des risques climatiques en place', "Objectifs de réduction des émissions approuvés par le conseil"],
+          gaps: ['Données limitées sur les émissions de scope 3', 'Évaluations des fournisseurs incomplètes'],
+          recommendations: ['Étendre le suivi du scope 3', 'Ajouter une notation environnementale des fournisseurs'],
+        },
+        documents: [
+          { title: 'Procès-verbal du conseil · T1', type: 'Procès-verbal', date: '15/03', relevance: 95, excerpt: 'Le conseil a approuvé de nouveaux objectifs climatiques pour le groupe.' },
+          { title: 'Politique environnementale', type: 'Politique', date: '28/02', relevance: 90 },
+        ],
+      },
+    },
+    areas: {
+      title: 'Domaines réglementaires',
+      description: 'Le tableau de bord suit les exigences qui concernent le conseil et les relie aux documents qui y répondent.',
+      features: [
+        { title: 'CSRD', description: 'Suivez les exigences de reporting de la directive sur la publication d’informations en matière de durabilité (CSRD).', icon: 'leaf', benefits: ['Indicateurs ESG suivis par catégorie', 'Documents du conseil reliés à chaque exigence', 'Lacunes et recommandations', 'Reporting aux parties prenantes'] },
+        { title: 'RGPD', description: 'Maintenez les pratiques de protection des données du conseil conformes aux règles européennes.', icon: 'lock', benefits: ['Contrôles de confidentialité', 'Suivi des accès', "Piste d'audit"] },
+      ],
+    },
+  },
+  nl: {
+    hero: {
+      badge: 'Compliance monitoring',
+      title: 'Regelgeving opvolgen',
+      titleHighlight: 'samen met het bestuur',
+      description: 'Het compliancedashboard koppelt vereisten zoals CSRD aan uw bestuursdocumenten. De AI toont welke notulen en beleidsstukken aan elke vereiste beantwoorden, en welke lacunes er nog zijn.',
+      cta1: c.demo,
+      cta2: c.contact,
+    },
+    dashboard: {
+      eyebrow: 'Dashboard',
+      title: 'Vereisten, bewijsstukken en lacunes op één scherm',
+      lead: 'Elke categorie van een regelgeving toont de voortgang, de bestuursdocumenten die ze onderbouwen en wat nog ontbreekt.',
+    },
+    shows: {
+      title: 'Wat het dashboard toont',
+      lead: 'De informatie die een bestuurssecretaris of general counsel nodig heeft om aan het bestuur over compliance te rapporteren.',
+      columns: [
+        { icon: 'list', title: 'Vereisten per categorie', text: 'Elke regelgeving is opgedeeld in categorieën, met hun voortgang en deadlines.' },
+        { icon: 'document', title: 'Bewijs uit bestuursdocumenten', text: 'Notulen, beleid en rapporten die aan een vereiste beantwoorden, met het relevante fragment.' },
+        { icon: 'warning', title: 'Lacunes en aanbevelingen', text: 'Sterke punten, vastgestelde lacunes en aanbevelingen per categorie.' },
+        { icon: 'clipboard', title: 'Activiteit', text: 'Een logboek van de recente wijzigingen in de compliancegegevens.' },
+      ],
+    },
+    note: 'Het dashboard helpt het bestuur zijn verplichtingen op te volgen. Het vervangt het advies van uw juridische en compliance-adviseurs niet.',
+    data: {
+      texts: { title: 'CSRD-dashboard', csrdDashboard: 'CSRD-dashboard' },
+      metrics: [
+        { title: 'CSRD-gereedheid', value: '78%', change: 'Over alle categorieën', icon: 'leaf' },
+        { title: 'Open lacunes', value: '4', change: 'Met aanbevelingen', icon: 'warning' },
+      ],
+      csrdCategories: [
+        { title: 'Impact op de activiteiten', score: 85, status: 'good', requirement: 'Beoordeling van de operationele impact op milieu en samenleving', dueDate: '31/12' },
+        { title: 'Financiën, kosten en middelen', score: 72, status: 'warning', requirement: 'Financiële gevolgen van duurzaamheidsinitiatieven', dueDate: '31/12' },
+        { title: 'Risico’s en risicobeheer', score: 90, status: 'good', requirement: 'Identificatie en beperking van duurzaamheidsrisico’s', dueDate: '31/12' },
+      ],
+      recentActivities: [
+        { category: 'CSRD', action: 'Milieu-impactrapport bijgewerkt', timestamp: '2 uur geleden', status: 'success' },
+        { category: 'ESG-rapportering', action: 'Sociale indicatoren vragen aandacht', timestamp: '4 uur geleden', status: 'warning' },
+        { category: 'Duurzaamheid', action: 'Gegevens over CO2-voetafdruk verzameld', timestamp: '1 dag geleden', status: 'success' },
+      ],
+      selectedCategory: {
+        title: 'Impact op de activiteiten', score: 85, status: 'good', requirement: 'Strategieën voor mitigatie van en aanpassing aan klimaatverandering',
+        analysis: {
+          strengths: ['Klimaatrisicobeoordeling aanwezig', 'Doelstellingen voor emissiereductie goedgekeurd door het bestuur'],
+          gaps: ['Beperkte gegevens over scope 3-emissies', 'Leveranciersbeoordelingen onvolledig'],
+          recommendations: ['Opvolging van scope 3 uitbreiden', 'Milieuscore voor leveranciers toevoegen'],
+        },
+        documents: [
+          { title: 'Notulen raad van bestuur · Q1', type: 'Notulen', date: '15/03', relevance: 95, excerpt: 'Het bestuur keurde nieuwe klimaatdoelstellingen voor de groep goed.' },
+          { title: 'Milieubeleid', type: 'Beleid', date: '28/02', relevance: 90 },
+        ],
+      },
+    },
+    areas: {
+      title: 'Domeinen van regelgeving',
+      description: 'Het dashboard volgt de vereisten die het bestuur aanbelangen en koppelt ze aan de documenten die eraan beantwoorden.',
+      features: [
+        { title: 'CSRD', description: 'Volg de rapporteringsvereisten van de Corporate Sustainability Reporting Directive op.', icon: 'leaf', benefits: ['ESG-indicatoren per categorie', 'Bestuursdocumenten gekoppeld aan elke vereiste', 'Lacunes en aanbevelingen', 'Rapportering aan stakeholders'] },
+        { title: 'AVG', description: 'Houd de gegevensbescherming van het bestuur in lijn met de Europese privacyregels.', icon: 'lock', benefits: ['Privacycontroles', 'Opvolging van toegang', 'Audittrail'] },
+      ],
+    },
+  },
+}[lang];
+---
+
+<ComplianceHero texts={copy.hero}>
+  <div slot="aside" data-play>
+    <AppFrame title={copy.data.texts.title} shadow>
+      <div class="p-4 bg-surface space-y-3">
+        {copy.data.csrdCategories.map((cat, index) => (
+          <CSRDCategoryCard {...(cat as any)} index={index} />
+        ))}
+      </div>
+    </AppFrame>
+  </div>
+</ComplianceHero>
+
+<Section>
+  <SectionHeader title={copy.shows.title} lead={copy.shows.lead} />
+  <FeatureColumns columns={4} items={copy.shows.columns} />
+</Section>
+
+<Section tone="surface" border="both">
+  <SectionHeader eyebrow={copy.dashboard.eyebrow} title={copy.dashboard.title} lead={copy.dashboard.lead} />
+  <ComplianceAnimation {...(copy.data as any)} />
+  <Callout tone="note" class="mt-8 max-w-3xl">{copy.note}</Callout>
+</Section>
+
+<ComplianceFeatures texts={copy.areas} />
+
+<CustomerQuote customer="lore" tone="surface" />
+
+<RelatedFeatures current="ai-board-compliance-monitoring" />
+
+<FeatureCTA />

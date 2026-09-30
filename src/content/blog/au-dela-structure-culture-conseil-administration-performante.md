@@ -2,8 +2,8 @@
 title: "Au-delà de la structure : construire une culture de conseil d'administration performante"
 description: "Découvrez pourquoi la culture du conseil d'administration est plus importante que sa structure et comment le leadership de processus équitable peut transformer l'efficacité de la gouvernance."
 pubDate: 2025-02-18
-author: "Ludovic Laffineur"
-authorRole: "CTO chez Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/blog-building-high-performing-board.jpg"
 category: "Governance"
 tags: ["Culture du conseil", "Leadership de processus équitable", "Gouvernance d'entreprise", "Leadership"]

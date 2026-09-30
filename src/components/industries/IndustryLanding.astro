@@ -1,0 +1,80 @@
+---
+// Shared layout for sector pages: /industries/{financial-services,healthcare,real-estate} and
+// /for/{board-member,board-secretary}/industry/[industry], in EN/FR/NL.
+import { PageHero, Section, SectionHeader, Button, Icon, FeatureColumns, CellGrid, Quote, Screenshot, CTA } from '../ui';
+import IndustryRegulations from '../regulations/IndustryRegulations.astro';
+import { customerQuote, readCaseLabel, type QuoteKey } from './customerQuotes';
+import { ctaProps, pageLang, prefix, ui } from './i18n';
+import { langFromPath } from '../../i18n/routes';
+
+interface Item { icon: string; title: string; text: string; items?: string[] }
+
+interface Props {
+  industry: string;
+  hero: { eyebrow: string; title: string; lead: string };
+  screenshot: { src: string; alt: string };
+  challenges: { title: string; lead?: string; items: Item[] };
+  features: { title: string; lead?: string; items: Item[] };
+  quoteKey?: QuoteKey | null;
+  /** show the regulatory overview for this industry (default true) */
+  regulations?: boolean;
+  /** secondary hero action: contact (default) or free trial */
+  secondary?: 'contact' | 'trial';
+}
+
+const { industry, hero, screenshot, challenges, features, quoteKey, regulations = true, secondary = 'contact' } = Astro.props;
+const lang = pageLang(langFromPath(Astro.url.pathname));
+const p = prefix(lang);
+const t = ui[lang];
+const quote = quoteKey ? customerQuote(lang, quoteKey) : null;
+---
+
+<PageHero eyebrow={hero.eyebrow} title={hero.title} lead={hero.lead}>
+  <Fragment slot="actions">
+    <Button href={`${p}/request-demo`}>{t.demo}</Button>
+    {secondary === 'trial'
+      ? <Button variant="secondary" href={`${p}/try`}>{t.trial}</Button>
+      : <Button variant="secondary" href={`${p}/contact`}>{t.contact}</Button>}
+  </Fragment>
+  <Screenshot slot="aside" src={screenshot.src} alt={screenshot.alt} eager />
+</PageHero>
+
+<Section>
+  <SectionHeader title={challenges.title} lead={challenges.lead} />
+  <CellGrid columns={challenges.items.length === 4 ? 2 : 3}>
+    {challenges.items.map((item) => (
+      <div class="bg-white p-8">
+        <Icon name={item.icon} class="w-6 h-6 text-navy" />
+        <h3 class="mt-5 text-lg font-semibold text-navy">{item.title}</h3>
+        <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
+      </div>
+    ))}
+  </CellGrid>
+</Section>
+
+{regulations && <IndustryRegulations industry={industry} tone="surface" />}
+
+<Section border={regulations ? 'none' : 'top'}>
+  <SectionHeader title={features.title} lead={features.lead} />
+  <FeatureColumns items={features.items} columns={features.items.length === 4 ? 2 : 3} />
+</Section>
+
+{quote && (
+  <Section tone="surface" border="top" space="md">
+    <div class="grid lg:grid-cols-12 gap-10">
+      <Quote
+        class="lg:col-span-9"
+        size="lg"
+        quote={quote.quote}
+        author={quote.author}
+        role={quote.role}
+        company={quote.company}
+        image={quote.image}
+        href={quote.link}
+        linkText={readCaseLabel[lang]}
+      />
+    </div>
+  </Section>
+)}
+
+<CTA {...ctaProps[lang]} />

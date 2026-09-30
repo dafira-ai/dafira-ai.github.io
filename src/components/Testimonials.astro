@@ -1,8 +1,9 @@
 ---
-import { Image } from 'astro:assets';
-import vdvLorePortraitImg from '../assets/images/vdv-lore-portrait.jpg';
-import fibPierreImg from '../assets/images/fib-pierre.webp';
-import carepropertyLogoImg from '../assets/images/careproperty-logo.png';
+import { langFromPath, localizePath } from '../i18n/routes';
+import Section from "./ui/Section.astro";
+import SectionHeader from "./ui/SectionHeader.astro";
+import Quote from "./ui/Quote.astro";
+import Button from "./ui/Button.astro";
 
 interface Props {
   texts?: {
@@ -23,102 +24,59 @@ interface Props {
 
 const {
   texts = {
-    title: "Trusted by Leading Organizations",
-    subtitle: "See how organizations across industries transform their board management with Govrn",
-    cta: "View All Success Stories",
+    title: "What board teams say",
+    subtitle: "Secretaries, general counsels and CEOs on running their board with Dafira.",
+    cta: "All customer stories",
     ctaLink: "/testimonials"
   },
   testimonials = [
     {
-      quote: "Govrn has <strong>transformed</strong> how we manage our board operations, bringing <strong>efficiency</strong> and <strong>clarity</strong> to our governance processes.",
-      author: "Lore Werbrouck",
-      position: "General Counsel",
-      company: "Van de Velde",
-      image: vdvLorePortraitImg,
-      link: "/case-studies/van-de-velde"
+      quote: "Dafira has <strong>transformed</strong> how we manage our board operations, bringing <strong>efficiency</strong> and <strong>clarity</strong> to our governance processes.",
+      author: "General Counsel",
+      position: "",
+      company: "Listed fashion group",
+      link: "/case-studies/listed-fashion-group"
     },
     {
-      quote: "Govrn has <strong>simplified</strong> our document management tremendously, making our meeting preparations more <strong>efficient</strong> and allowing our board to focus on <strong>decision-making</strong>.",
-      author: "Pierre Hermant",
-      position: "CEO",
-      company: "Finance & Invest Brussels",
-      image: fibPierreImg,
-      link: "/case-studies/finance-invest-brussels"
+      quote: "Dafira has <strong>simplified</strong> our document management tremendously, making our meeting preparations more <strong>efficient</strong> and allowing our board to focus on <strong>decision-making</strong>.",
+      author: "CEO",
+      position: "",
+      company: "Regional public investment fund",
+      link: "/case-studies/public-investment-fund"
     },
     {
-      quote: "Govrn embraced the <strong>next generation</strong> of Board management software, <strong>easy to use</strong> and with <strong>AI integration</strong>.",
-      author: "Nathalie Byl",
-      position: "Paralegal en Compliance Officer",
-      company: "Care Property Invest",
-      image: carepropertyLogoImg,
-      link: "/case-studies/care-property-invest"
+      quote: "Dafira embraced the <strong>next generation</strong> of Board management software, <strong>easy to use</strong> and with <strong>AI integration</strong>.",
+      author: "Paralegal & Compliance Officer",
+      position: "",
+      company: "Listed healthcare real estate company",
+      link: "/case-studies/healthcare-real-estate"
     }
   ]
 } = Astro.props;
+
+const lang = langFromPath(Astro.url.pathname);
+const readCase = { en: 'Read the case study', fr: 'Lire l’étude de cas', nl: 'Lees het klantverhaal', ar: 'اقرأ دراسة الحالة' }[lang];
 ---
 
-<section id="testimonials" class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center">
-      <h2 class="text-4xl font-extrabold text-gray-900 mb-4">
-        {texts.title}
-      </h2>
-      <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-        {texts.subtitle}
-      </p>
-    </div>
-
-    <div class="mt-20 grid gap-8 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1">
-      {testimonials.map(testimonial => (
-        <a href={testimonial.link} class="group">
-          <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-            <div class="relative h-64">
-              <Image 
-                loading="lazy"
-                src={testimonial.image}
-                alt={testimonial.author}
-                class="w-full h-full object-cover"
-                width={400}
-                height={256}
-                quality={90}
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div class="absolute bottom-4 left-4 text-white">
-                <h3 class="text-xl font-bold">{testimonial.author}</h3>
-                <p class="text-sm text-white/90">{testimonial.position}</p>
-                <p class="text-sm text-white/80">{testimonial.company}</p>
-              </div>
-            </div>
-            
-            <div class="p-6">
-              <div class="text-primary mb-4">
-                <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-              </div>
-              <p class="text-lg text-gray-600" set:html={testimonial.quote}></p>
-              <div class="mt-6 text-primary font-medium flex items-center opacity-0 group-hover:opacity-100 transition-opacity">
-                Read Case Study
-                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </a>
-      ))}
-    </div>
-
-    <div class="mt-16 text-center">
-      <a
-        href={texts.ctaLink}
-        class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 group"
-      >
-        {texts.cta}
-        <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-        </svg>
-      </a>
-    </div>
+<Section id="testimonials">
+  <SectionHeader title={texts.title} lead={texts.subtitle} />
+  <div class="grid lg:grid-cols-3 gap-x-10" data-play>
+    {testimonials.map((t, i) => (
+      <Quote
+        class="border-t border-line pt-8 pb-10"
+        data-step
+        style={`--d:${i * 80}`}
+        quote={t.quote}
+        author={t.author}
+        role={t.position}
+        company={t.company}
+        image={t.image}
+        href={localizePath(lang, t.link)}
+        linkText={readCase}
+      />
+    ))}
   </div>
-</section>
+  <div class="pt-8 border-t border-line">
+    <Button variant="link" href={texts.ctaLink}>{texts.cta}</Button>
+  </div>
+</Section>

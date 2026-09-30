@@ -2,8 +2,8 @@
 title: "What is a Board Portal in an AI World: A True Board Intelligence Platform"
 description: "Discover how AI transforms traditional board portals into dynamic intelligence platforms, enabling directors and governance professionals to unlock data-driven insights for strategic decision-making and governance."
 pubDate: 2023-06-15
-author: "Govrn"
-authorRole: "Govrn Editorial Team"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/ai_board.jpeg"
 category: "Technology"
 tags: ["Artificial Intelligence", "Board Portal", "Corporate Governance", "Data Analytics"]

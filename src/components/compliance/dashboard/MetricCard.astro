@@ -1,24 +1,22 @@
-
 ---
+// A single indicator of the compliance dashboard mock-up. `icon` accepts an icon name or a legacy emoji.
+import { Icon } from '../../ui';
+
 interface Props {
   title: string;
   value: string;
   change?: string;
-  icon: string;
+  icon?: string;
 }
 
 const { title, value, change, icon } = Astro.props;
 ---
 
-<div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-  <div class="flex items-center justify-between mb-4">
-    <span class="text-3xl">{icon}</span>
-    {change && (
-      <span class="text-sm text-green-600 bg-green-100 px-2 py-1 rounded-full">
-        {change}
-      </span>
-    )}
+<div class="bg-white border border-line rounded-sm p-4">
+  <div class="flex items-center justify-between gap-3">
+    <p class="text-xs text-gray-600">{title}</p>
+    {icon && <Icon name={icon} class="w-4 h-4 text-gray-400" />}
   </div>
-  <h3 class="text-gray-600 text-sm mb-1">{title}</h3>
-  <div class="text-3xl font-bold text-gray-900">{value}</div>
+  <p class="mt-2 font-mono text-2xl text-navy tabular-nums">{value}</p>
+  {change && <p class="mt-1 text-xs text-gray-500">{change}</p>}
 </div>

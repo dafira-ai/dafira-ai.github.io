@@ -1,4 +1,11 @@
 ---
+import { langFromPath, localizePath } from "../i18n/routes";
+import Section from "./ui/Section.astro";
+import SectionHeader from "./ui/SectionHeader.astro";
+import CellGrid from "./ui/CellGrid.astro";
+import FeatureList from "./ui/FeatureList.astro";
+import Button from "./ui/Button.astro";
+
 interface Persona {
   role: string;
   description: string;
@@ -19,15 +26,15 @@ interface Props {
 
 const {
   texts = {
-    title: "Maximize Efficiency Across Every Role",
-    subtitle: "Govrn delivers a tailored experience for every governance role, empowering stakeholders with optimized board management for better decisions and efficiency.",
+    title: "One portal, four ways to use it",
+    subtitle: "Executives, secretaries, directors and legal teams each see the board from their own angle.",
     cta: "Find Your Role-Based Solution",
-    learnMore: "Explore role-specific features"
+    learnMore: "See how it works for this role"
   },
   personas = [
     {
       role: "CEO & Executives",
-      description: "Equip your board of directors with Govrn, a potent yet user-friendly tool that aids CEOs in maintaining an engaged board — fostering smarter work, swifter actions, and elevated achievements.",
+      description: "Keep the board informed between meetings and follow up on decisions without chasing people by email.",
       icon: "👔",
       features: [
         "Real-time board engagement tracking",
@@ -39,7 +46,7 @@ const {
     },
     {
       role: "Board Professionals & Admin",
-      description: "Govrn simplifies the creation, distribution, and organization of meeting details — bolstering your efforts to keep all stakeholders informed, satisfied, and actively involved.",
+      description: "Prepare agendas, assemble board packs and circulate minutes from one place instead of shared drives and email threads.",
       icon: "📊",
       features: [
         "Automated meeting scheduling",
@@ -51,7 +58,7 @@ const {
     },
     {
       role: "Directors & Trustees",
-      description: "Navigate a confident path towards the future with Govrn, an intuitive platform that keeps you informed and simplifies intricate tasks, enabling you to fulfill your organization's mission and vision.",
+      description: "Read and annotate the board pack on any device, vote, and find past decisions when you need them.",
       icon: "🎯",
       features: [
         "Intuitive document access",
@@ -63,8 +70,8 @@ const {
     },
     {
       role: "General Counsels",
-      description: "With industry-leading security and encryption combined with data management capabilities, Govrn makes it effortless to safeguard the board, its members, and the organization from risk.",
-      icon: "⚖️",
+      description: "Keep resolutions, signatures and the audit trail in order, with documents that stay inside the board.",
+      icon: "⚖",
       features: [
         "Compliance monitoring",
         "Risk management tools",
@@ -75,57 +82,25 @@ const {
     }
   ]
 } = Astro.props;
+
+const lang = langFromPath(Astro.url.pathname);
 ---
 
-<section class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto">
-      <h2 class="text-4xl font-extrabold text-gray-900">
-        {texts.title}
-      </h2>
-      <p class="mt-4 text-xl text-gray-500">
-        {texts.subtitle}
-      </p>
-    </div>
-
-    <div class="mt-20 grid gap-8 lg:grid-cols-2">
-      {personas.map((persona, index) => (
-        <a 
-          href={persona.link}
-          class="relative group"
-        >
-          <div class="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
-          <div class="relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
-            <div class="flex items-start space-x-6">
-              <div class="flex-shrink-0 w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center">
-                <span class="text-3xl">{persona.icon}</span>
-              </div>
-              <div class="flex-1">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">{persona.role}</h3>
-                <p class="text-gray-600 mb-6 leading-relaxed">{persona.description}</p>
-                <ul class="space-y-3">
-                  {persona.features.map(feature => (
-                    <li class="flex items-center text-gray-600">
-                      <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <div class="mt-6 inline-flex items-center text-primary group-hover:translate-x-2 transition-transform duration-300">
-                  {texts.learnMore}
-                  <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-      ))}
-    </div>
-
-   
-  </div>
-</section>
+<Section id="use-cases">
+  <SectionHeader title={texts.title} lead={texts.subtitle} />
+  <CellGrid columns={2}>
+    {personas.map((persona) => (
+      <a href={localizePath(lang, persona.link)} class="group bg-white p-8 lg:p-10 hover:bg-surface transition-colors flex flex-col">
+        <h3 class="text-xl font-semibold text-navy">{persona.role}</h3>
+        <p class="mt-3 text-gray-600 leading-relaxed">{persona.description}</p>
+        <FeatureList items={persona.features} columns={2} class="mt-6" />
+        <span class="mt-auto pt-8 inline-flex items-center gap-2 text-[15px] font-medium text-primary group-hover:text-navy transition-colors">
+          {texts.learnMore}
+          <svg class="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 5l7 7-7 7" />
+          </svg>
+        </span>
+      </a>
+    ))}
+  </CellGrid>
+</Section>

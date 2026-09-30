@@ -1,0 +1,180 @@
+---
+// Customer story template: hero with optional facts, main quote, then context / challenge / solution / outcome.
+// Customers are anonymised: `company` holds the industry label; logo, media, gallery and portraits are optional.
+// Copy comes from the page (EN/FR/NL); quotes are rendered verbatim (bold markup stripped by Quote).
+import { PageHero, Section, Quote, FeatureColumns, Button } from '../ui';
+import LocalizedCTA from './LocalizedCTA.astro';
+import { langFromPath, localizePath } from '../../i18n/routes';
+
+interface Item { title: string; text: string }
+interface Story { title: string; paragraphs: string[]; quote?: string }
+interface Voice { quote: string; author: string; role?: string; image?: ImageMetadata | string }
+
+interface Props {
+  company: string;
+  logo?: { src: string; alt: string; h?: string };
+  facts?: { label: string; value: string }[];
+  title: string;
+  lead: string;
+  media?: { video?: string; videoTitle?: string; image?: string; imageAlt?: string };
+  quote: Voice;
+  context: Story;
+  challenges: Item[];
+  solutions: Item[];
+  outcome: Story;
+  gallery?: { src: string; alt: string }[];
+  voices?: Voice[];
+}
+
+const { company, logo, facts = [], title, lead, media, quote, context, challenges, solutions, outcome, gallery = [], voices = [] } = Astro.props;
+const lang = langFromPath(Astro.url.pathname);
+
+const L = {
+  en: {
+    eyebrow: 'Customer story', context: 'Context', challenge: 'Challenge', solution: 'Solution', outcome: 'Outcome',
+    challengeTitle: 'What needed to change', solutionTitle: 'How they use Dafira', gallery: 'In pictures',
+    voices: 'In their words', all: 'All customer stories',
+  },
+  fr: {
+    eyebrow: 'Témoignage client', context: 'Contexte', challenge: 'Enjeu', solution: 'Solution', outcome: 'Résultat',
+    challengeTitle: 'Ce qui devait changer', solutionTitle: 'Comment ils utilisent Dafira', gallery: 'En images',
+    voices: 'En leurs mots', all: 'Tous les témoignages clients',
+  },
+  nl: {
+    eyebrow: 'Klantverhaal', context: 'Context', challenge: 'Uitdaging', solution: 'Oplossing', outcome: 'Resultaat',
+    challengeTitle: 'Wat moest veranderen', solutionTitle: 'Hoe zij Dafira gebruiken', gallery: 'In beeld',
+    voices: 'In hun woorden', all: 'Alle klantverhalen',
+  },
+}[lang as 'en' | 'fr' | 'nl'] ?? {
+  eyebrow: 'Customer story', context: 'Context', challenge: 'Challenge', solution: 'Solution', outcome: 'Outcome',
+  challengeTitle: 'What needed to change', solutionTitle: 'How they use Dafira', gallery: 'In pictures',
+  voices: 'In their words', all: 'All customer stories',
+};
+
+const label = 'font-mono text-xs uppercase tracking-[0.08em] text-gray-500';
+---
+
+<PageHero eyebrow={L.eyebrow} title={title} lead={lead}>
+  {(logo || facts.length > 0) && (
+    <div class="mt-10 pt-8 border-t border-line flex flex-wrap items-center gap-x-10 gap-y-6">
+      {logo && <img src={logo.src} alt={logo.alt} class:list={[logo.h ?? 'h-12', 'w-auto max-w-[200px] object-contain']} loading="eager" />}
+      {facts.length > 0 && (
+        <dl class="flex flex-wrap gap-x-10 gap-y-4">
+          {facts.map((f) => (
+            <div>
+              <dt class={label}>{f.label}</dt>
+              <dd class="mt-1 text-[15px] text-navy">{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+    </div>
+  )}
+  {(media?.video || media?.image) && (
+    <Fragment slot="aside">
+      {media?.video ? (
+        <figure class="bg-surface border border-line rounded-md p-2 sm:p-3">
+          <div class="aspect-video rounded-sm overflow-hidden border border-line bg-navy">
+            <iframe
+              class="w-full h-full"
+              src={media.video}
+              title={media.videoTitle ?? company}
+              loading="lazy"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </figure>
+      ) : media?.image ? (
+        <figure class="bg-surface border border-line rounded-md p-2 sm:p-3">
+          <img src={media.image} alt={media.imageAlt ?? ''} class="w-full aspect-video object-cover rounded-sm border border-line" loading="eager" />
+        </figure>
+      ) : null}
+    </Fragment>
+  )}
+</PageHero>
+
+<Section tone="surface" space="md" border="bottom">
+  <div class="grid lg:grid-cols-12 gap-8">
+    <p class:list={[label, 'lg:col-span-3 pt-2']}>{company}</p>
+    <Quote class="lg:col-span-8 lg:col-start-5" size="lg" quote={quote.quote} author={quote.author} role={quote.role} image={quote.image} />
+  </div>
+</Section>
+
+<Section space="lg">
+    <article class="grid lg:grid-cols-12 gap-6 lg:gap-8">
+      <p class:list={[label, 'lg:col-span-3 pt-2']}><span class="text-primary tabular-nums">01</span> · {L.context}</p>
+      <div class="lg:col-span-8 lg:col-start-5">
+        <h2 class="text-3xl lg:text-4xl font-semibold text-navy leading-tight">{context.title}</h2>
+        {context.paragraphs.map((p) => <p class="mt-5 text-lg text-gray-700 leading-relaxed">{p}</p>)}
+        {context.quote && (
+          <blockquote class="mt-8 border-s-2 border-primary ps-6 text-lg text-ink leading-relaxed">
+            <span aria-hidden="true" class="text-primary">“</span>{context.quote.replace(/<\/?strong>/g, '')}<span aria-hidden="true" class="text-primary">”</span>
+          </blockquote>
+        )}
+      </div>
+    </article>
+
+  <div class="mt-20 lg:mt-24 grid lg:grid-cols-12 gap-6 lg:gap-8">
+    <p class:list={[label, 'lg:col-span-3 pt-2']}><span class="text-primary tabular-nums">02</span> · {L.challenge}</p>
+    <div class="lg:col-span-9 lg:col-start-4 xl:col-span-8 xl:col-start-5">
+      <h2 class="text-3xl lg:text-4xl font-semibold text-navy leading-tight mb-10">{L.challengeTitle}</h2>
+      <FeatureColumns columns={3} items={challenges.map((c) => ({ title: c.title, text: c.text }))} />
+    </div>
+  </div>
+
+  <div class="mt-12 grid lg:grid-cols-12 gap-6 lg:gap-8">
+    <p class:list={[label, 'lg:col-span-3 pt-2']}><span class="text-primary tabular-nums">03</span> · {L.solution}</p>
+    <div class="lg:col-span-9 lg:col-start-4 xl:col-span-8 xl:col-start-5">
+      <h2 class="text-3xl lg:text-4xl font-semibold text-navy leading-tight mb-10">{L.solutionTitle}</h2>
+      <FeatureColumns columns={3} items={solutions.map((c) => ({ title: c.title, text: c.text }))} />
+    </div>
+  </div>
+
+  <article class="mt-12 grid lg:grid-cols-12 gap-6 lg:gap-8">
+    <p class:list={[label, 'lg:col-span-3 pt-2']}><span class="text-primary tabular-nums">04</span> · {L.outcome}</p>
+    <div class="lg:col-span-8 lg:col-start-5">
+      <h2 class="text-3xl lg:text-4xl font-semibold text-navy leading-tight">{outcome.title}</h2>
+      {outcome.paragraphs.map((p) => <p class="mt-5 text-lg text-gray-700 leading-relaxed">{p}</p>)}
+      {outcome.quote && (
+        <blockquote class="mt-8 border-s-2 border-primary ps-6 text-lg text-ink leading-relaxed">
+          <span aria-hidden="true" class="text-primary">“</span>{outcome.quote.replace(/<\/?strong>/g, '')}<span aria-hidden="true" class="text-primary">”</span>
+        </blockquote>
+      )}
+    </div>
+  </article>
+</Section>
+
+{gallery.length > 0 && (
+  <Section tone="surface" space="md" border="top">
+    <p class:list={[label, 'mb-6']}>{L.gallery}</p>
+    <div class:list={['grid gap-4', gallery.length > 1 && 'sm:grid-cols-2']}>
+      {gallery.map((img) => (
+        <img src={img.src} alt={img.alt} loading="lazy" class="w-full h-64 lg:h-80 object-cover rounded-md border border-line" />
+      ))}
+    </div>
+  </Section>
+)}
+
+{voices.length > 0 && (
+  <Section space="md" border="top">
+    <h2 class="text-3xl lg:text-4xl font-semibold text-navy leading-tight mb-10">{L.voices}</h2>
+    <div class="grid lg:grid-cols-2 border-t border-line">
+      {voices.map((v, i) => (
+        <Quote
+          class:list={['pt-8 pb-10 lg:pe-10', i > 0 && 'lg:ps-10 lg:border-s border-line border-t lg:border-t-0']}
+          quote={v.quote}
+          author={v.author}
+          role={v.role}
+          image={v.image}
+        />
+      ))}
+    </div>
+  </Section>
+)}
+
+<Section space="sm" border="top">
+  <Button variant="link" href={localizePath(lang, '/testimonials')}>{L.all}</Button>
+</Section>
+
+<LocalizedCTA />

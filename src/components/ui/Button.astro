@@ -1,0 +1,46 @@
+---
+// Buttons and text links.
+// primary: navy fill · secondary: hairline outline · inverse: white on navy · ghost: text only · link: text + chevron
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'inverse' | 'inverse-outline' | 'ghost' | 'link';
+  size?: 'sm' | 'md' | 'lg';
+  type?: 'button' | 'submit' | 'reset';
+  target?: string;
+  rel?: string;
+  class?: string;
+  /** show a trailing chevron (mirrors in RTL) — always on for variant="link" */
+  arrow?: boolean;
+  [key: string]: any;
+}
+
+const { href, variant = 'primary', size = 'md', type = 'button', class: className, arrow, ...rest } = Astro.props;
+
+const base = 'inline-flex items-center justify-center gap-2 font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:pointer-events-none';
+const sizes = {
+  sm: 'px-3 py-2 text-sm rounded-md',
+  md: 'px-5 py-3 text-[15px] rounded-md',
+  lg: 'px-6 py-3.5 text-base rounded-md',
+}[size];
+const variants = {
+  primary: 'bg-navy text-white hover:bg-primary',
+  secondary: 'bg-white text-navy border border-line hover:border-navy',
+  inverse: 'bg-white text-navy hover:bg-blue-50',
+  'inverse-outline': 'text-white border border-white/30 hover:border-white',
+  ghost: 'text-gray-600 hover:text-navy',
+  link: 'text-primary hover:text-navy',
+}[variant];
+const classes = [base, variant === 'link' ? 'text-[15px]' : sizes, variants, className];
+const showArrow = arrow || variant === 'link';
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag class:list={classes} href={href} type={href ? undefined : type} {...rest}>
+  <slot name="icon" />
+  <slot />
+  {showArrow && (
+    <svg class="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 5l7 7-7 7" />
+    </svg>
+  )}
+</Tag>

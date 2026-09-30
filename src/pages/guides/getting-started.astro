@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import GuideHeader from '../../components/guides/GuideHeader.astro';
+import GuideArticle from '../../components/guides/GuideArticle.astro';
+import { Button, Icon } from '../../components/ui';
 import GuideStep from '../../components/guides/GuideStep.astro';
 import GuideSubSection from '../../components/guides/GuideSubSection.astro';
 import GuideStepList from '../../components/guides/GuideStepList.astro';
@@ -46,18 +48,18 @@ const afterMeetingSteps = [
 ];
 ---
 
-<Layout title="Getting Started with Govrn - Complete Guide" description="Welcome to Govrn—your comprehensive platform for efficient board management and governance! This guide will walk you through the essential steps to get started and run effective board meetings.">
-  <main class="pt-16">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <GuideHeader
-        title="Getting Started with Govrn: Your Complete Guide"
-        description="Welcome to Govrn—your comprehensive platform for efficient board management and governance! This guide will walk you through the essential steps to get started and run effective board meetings."
+<Layout title="Getting Started with Dafira - Complete Guide" description="Welcome to Dafira—your comprehensive platform for efficient board management and governance. This guide will walk you through the essential steps to get started and run effective board meetings.">
+  <main>
+    <GuideHeader
+        title="Getting Started with Dafira: Your Complete Guide"
+        description="Welcome to Dafira—your comprehensive platform for efficient board management and governance. This guide will walk you through the essential steps to get started and run effective board meetings."
       />
+    <GuideArticle>
 
       <GuideStep
         number={1}
         title="Set Up Your Groups"
-        description="Groups in Govrn help you organize your board members into committees, ensuring the right people have access to the right information."
+        description="Groups in Dafira help you organize your board members into committees, ensuring the right people have access to the right information."
       >
         <GuideSubSection title="Creating Groups for Committees">
           <GuideStepList items={groupSetupSteps} />
@@ -71,7 +73,7 @@ const afterMeetingSteps = [
       <GuideStep
         number={2}
         title="Invite Your Board Members"
-        description="Add your board members to Govrn with the appropriate roles and permissions."
+        description="Add your board members to Dafira with the appropriate roles and permissions."
       >
         <GuideSubSection title="Member Invitation Process">
           <GuideStepList items={inviteMembersSteps} />
@@ -85,7 +87,7 @@ const afterMeetingSteps = [
       <GuideStep
         number={3}
         title="Master the Meeting Lifecycle"
-        description="Successful board meetings happen in three phases: Before, During, and After. Here's how to manage each phase effectively with Govrn."
+        description="Successful board meetings happen in three phases: Before, During, and After. Here's how to manage each phase effectively with Dafira."
       >
         <GuideSubSection title="Before the Meeting">
           <p class="text-gray-600 mb-4">Proper preparation ensures productive meetings. Follow these steps to set up for success:</p>
@@ -93,7 +95,7 @@ const afterMeetingSteps = [
         </GuideSubSection>
 
         <GuideSubSection title="During the Meeting">
-          <p class="text-gray-600 mb-4">Use Govrn's real-time features to facilitate efficient discussion and decision-making:</p>
+          <p class="text-gray-600 mb-4">Use Dafira's real-time features to facilitate efficient discussion and decision-making:</p>
           <GuideStepList items={duringMeetingSteps} />
         </GuideSubSection>
 
@@ -103,18 +105,17 @@ const afterMeetingSteps = [
         </GuideSubSection>
 
         <ProTip
-          tip="Use Govrn's document collaboration features throughout all meeting phases to maintain a single source of truth for all board materials."
+          tip="Use Dafira's document collaboration features throughout all meeting phases to maintain a single source of truth for all board materials."
         />
       </GuideStep>
 
       <!-- Conclusion -->
-      <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Ready for Effective Governance</h2>
+      <div class="mt-16 rounded-md p-8 border border-line bg-surface">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Ready for Effective Governance</h2>
         <p class="text-lg text-gray-600 leading-relaxed mb-6">
-          You're now equipped to use Govrn for managing your board effectively. Remember that successful board management is an ongoing process, and Govrn is here to support you at every step.
+          You're now equipped to use Dafira for managing your board effectively. Remember that successful board management is an ongoing process, and Dafira is here to support you at every step.
         </p>
-        <p class="text-lg font-medium text-primary">Here's to better board management! 🎉</p>
       </div>
-    </article>
+    </GuideArticle>
   </main>
 </Layout>

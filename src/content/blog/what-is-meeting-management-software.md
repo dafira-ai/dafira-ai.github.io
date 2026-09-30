@@ -2,8 +2,8 @@
 title: "What is Meeting Management Software? Complete Guide (2025)"
 description: "Learn what meeting management software is and how it streamlines meetings with AI-driven workflows, secure collaboration, and built-in compliance tools."
 pubDate: 2025-01-10
-author: "Ludovic Laffineur"
-authorRole: "CTO at Govrn"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/what-is-meeting-software.jpg"
 category: "Technology"
 tags: ["Meeting Management", "AI", "Productivity", "Board Governance", "Digital Transformation"]
@@ -61,7 +61,7 @@ Unlike general meeting platforms, specialized board meeting software incorporate
 <div class="info-box">
 <div class="content">
 
-#### Transform Your Board's Effectiveness with Govrn
+#### Transform Your Board's Effectiveness with Dafira
 
 Our comprehensive platform tackles modern board challenges head-on with:
 - Secure document sharing and collaboration
@@ -72,7 +72,7 @@ Our comprehensive platform tackles modern board challenges head-on with:
 [Start Your Journey →](/try)
 </div>
 
-![Govrn Board Management Platform](/applications-picture-board-chat-mobile_croped.png)
+![Dafira Board Management Platform](/applications-picture-board-chat-mobile_croped.png)
 </div>
 
 ---

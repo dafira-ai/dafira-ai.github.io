@@ -2,8 +2,8 @@
 title: "Effectieve Bestuursvergaderingen: Maximaliseren van Betrokkenheid en Succesvolle Resultaten"
 description: "Ontdek strategieën en praktijken om bestuursvergaderingen te optimaliseren, van agendabepaling tot concrete resultaten, voor een naadloze samenwerking en weloverwogen besluitvorming."
 pubDate: 2023-04-10
-author: "Govrn"
-authorRole: "Govrn Redactieteam"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/meeting.jpg"
 category: "Governance"
 tags: ["Bestuursvergaderingen", "Governance", "Betrokkenheid", "Best Practices"]

@@ -1,4 +1,9 @@
 ---
+// Top of the compliance monitoring page, built on PageHero. `title` and `titleHighlight` are joined into one h1.
+// Optional slot "aside" (dashboard mock-up or screenshot).
+import { PageHero, Button } from '../ui';
+import { langFromPath, localizePath } from '../../i18n/routes';
+
 interface Props {
   texts?: {
     badge: string;
@@ -8,48 +13,35 @@ interface Props {
     cta1: string;
     cta2: string;
   };
+  links?: {
+    cta1: string;
+    cta2: string;
+  };
 }
 
+const lang = langFromPath(Astro.url.pathname);
 const {
   texts = {
-    badge: "Intelligent Compliance Monitoring",
-    title: "Your Board's Regulatory",
-    titleHighlight: "Peace of Mind",
-    description: "Transform regulatory complexity into clarity. Our AI-powered monitoring keeps your board confidently informed about upcoming regulations and their strategic impact, so you can focus on what matters most.",
-    cta1: "See It In Action",
-    cta2: "Contact Sales"
+    badge: "Compliance monitoring",
+    title: "Follow regulatory requirements",
+    titleHighlight: "with the board",
+    description: "The compliance dashboard maps requirements such as CSRD to your board documents. It points to the minutes and policies that address each requirement, and to the gaps that remain.",
+    cta1: "Book a demo",
+    cta2: "Contact sales"
+  },
+  links = {
+    cta1: localizePath(lang, '/request-demo'),
+    cta2: localizePath(lang, '/contact')
   }
 } = Astro.props;
+const title = [texts.title, texts.titleHighlight].filter(Boolean).join(' ');
+const hasAside = Astro.slots.has('aside');
 ---
 
-<section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-  <div class="absolute inset-0 z-0">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-  </div>
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="text-center max-w-3xl mx-auto">
-      <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-        {texts.badge}
-      </div>
-      <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">{texts.title}<span class="px-2 mt-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">{texts.titleHighlight}</span></h1>
-      <p class="text-xl text-gray-600 leading-relaxed mb-12">
-        {texts.description}
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="/request-demo"
-          class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-        >
-          {texts.cta1}
-        </a>
-        <a
-          href="/contact"
-          class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-        >
-          {texts.cta2}
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+<PageHero eyebrow={texts.badge} title={title} lead={texts.description}>
+  <Fragment slot="actions">
+    <Button href={links.cta1}>{texts.cta1}</Button>
+    <Button variant="secondary" href={links.cta2}>{texts.cta2}</Button>
+  </Fragment>
+  {hasAside && <div slot="aside"><slot name="aside" /></div>}
+</PageHero>

@@ -11,7 +11,7 @@ export interface SubItem {
 }
 
 export interface AgendaItem {
-  id: string;
+  id?: string;
   title: string;
   type: AgendaItemType;
   duration: number;

@@ -1,4 +1,6 @@
 ---
+import Section from "./ui/Section.astro";
+
 interface Props {
   texts?: {
     title: string;
@@ -13,25 +15,25 @@ interface Props {
 
 const {
   texts = {
-    title: "Frequently Asked Questions",
-    subtitle: "Find answers to common questions about Govrn",
+    title: "Questions boards ask us",
+    subtitle: "Onboarding, data protection, support and storage.",
     inLanguage: "en",
     faqs: [
       {
-        question: "How does Govrn handle different levels of digital adoption?",
-        answer: "Govrn's intuitive platform ensures that even the least tech-savvy directors can engage effectively. Designed for diverse boards with varying digital maturity, we offer seamless onboarding, personalized training, and user-friendly tools to unify all members and support smooth collaboration."
+        question: "How does Dafira handle different levels of digital adoption?",
+        answer: "Dafira's intuitive platform ensures that even the least tech-savvy directors can engage effectively. Designed for diverse boards with varying digital maturity, we offer seamless onboarding, personalized training, and user-friendly tools to unify all members and support smooth collaboration."
       },
       {
-        question: "Is Govrn GDPR compliant?",
-        answer: "Yes, Govrn is fully GDPR compliant and implements strict data protection measures to ensure your board's information is secure and private."
+        question: "Is Dafira GDPR compliant?",
+        answer: "Yes, Dafira is fully GDPR compliant and implements strict data protection measures to ensure your board's information is secure and private."
       },
       {
         question: "How do I import existing documents?",
-        answer: "Govrn provides multiple ways to import your existing documents, including bulk upload, drag-and-drop interface, and integration with popular cloud storage services."
+        answer: "Dafira provides multiple ways to import your existing documents, including bulk upload, drag-and-drop interface, and integration with popular cloud storage services."
       },
       {
         question: "Can I customize the workflow for my organization?",
-        answer: "Absolutely! Govrn offers extensive customization options to match your organization's specific processes and requirements."
+        answer: "Absolutely! Dafira offers extensive customization options to match your organization's specific processes and requirements."
       },
       {
         question: "What kind of support do you offer?",
@@ -62,26 +64,19 @@ const structuredData = {
 ---
 <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
-<section id="faq" class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center">
-      <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-        {texts.title}
-      </h2>
-      <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-        {texts.subtitle}
-      </p>
+<Section id="faq" tone="surface" border="top">
+  <div class="grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-4" data-play>
+      <h2 class="text-3xl lg:text-4xl font-semibold text-navy leading-tight" data-step>{texts.title}</h2>
+      <p class="mt-4 text-lg text-gray-600 leading-relaxed" data-step style="--d:80">{texts.subtitle}</p>
     </div>
-
-    <div class="mt-20 max-w-3xl mx-auto">
-      <dl class="space-y-8">
-        {texts.faqs.map(faq => (
-          <div class="bg-gray-50 p-8 rounded-lg">
-            <dt class="text-lg font-semibold text-gray-900">{faq.question}</dt>
-            <dd class="mt-2 text-gray-600">{faq.answer}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
+    <dl class="lg:col-span-7 lg:col-start-6 border-t border-line">
+      {texts.faqs.map((faq) => (
+        <div class="py-6 border-b border-line">
+          <dt class="text-lg font-medium text-navy">{faq.question}</dt>
+          <dd class="mt-2 text-gray-600 leading-relaxed">{faq.answer}</dd>
+        </div>
+      ))}
+    </dl>
   </div>
-</section>
+</Section>

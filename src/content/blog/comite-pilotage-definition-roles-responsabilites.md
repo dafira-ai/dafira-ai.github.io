@@ -2,8 +2,8 @@
 title: "Le comité de pilotage : définition, rôles et responsabilités"
 description: "Découvrez le rôle essentiel des comités de pilotage dans la conduite des projets, leurs responsabilités clés et leur fonctionnement."
 pubDate: 2024-04-03
-author: "Govrn"
-authorRole: "Équipe éditoriale Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/meeting-committee.jpg"
 category: "Governance"
 tags: ["Comité de pilotage", "Gestion de projet", "Gouvernance", "Leadership"]

@@ -8,10 +8,10 @@ image: "/podcast-S1E4.png"
 featured: true
 podcastAudioUrl: "/podcast-S1E4.m4a"
 guests:
-  - name: "Govrn Expert Panel"
+  - name: "Dafira Expert Panel"
     role: "Governance and Leadership Specialists"
-    company: "Govrn"
-    bio: "Our experts from Govrn specialize in board governance and leadership frameworks, helping organizations achieve better outcomes through innovative practices."
+    company: "Dafira"
+    bio: "Our experts from Dafira specialize in board governance and leadership frameworks, helping organizations achieve better outcomes through innovative practices."
     image: "/logo-square.png"
 topics:
   - "AI in Governance"

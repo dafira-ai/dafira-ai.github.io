@@ -1,0 +1,42 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CaseStudy from '../../../components/case-studies/CaseStudy.astro';
+---
+
+<Layout
+  title="Beursgenoteerde zorgvastgoedvennootschap: bestuursgovernance met Dafira"
+  description="Waarom een beursgenoteerde zorgvastgoedvennootschap haar bestuursbeheer naar Dafira bracht: eigen sjablonen en juridische formuleringen, hybride aanwezigheid en volmachten, meertalige bestuurders. Lees de case study."
+>
+  <CaseStudy
+    company="Beursgenoteerde zorgvastgoedvennootschap"
+    facts={[{ label: "Sector", value: "Beursgenoteerde zorgvastgoedvennootschap" }]}
+    title="Beursgenoteerde zorgvastgoedvennootschap: een bestuursportaal dat past bij haar sjablonen, aanwezigheidsregels en talen"
+    lead="Waarom de vennootschap overstapte van haar vorige bestuursbeheersysteem naar Dafira."
+    quote={{ quote: "Dafira vertegenwoordigt de nieuwe generatie bestuurssoftware, gebruiksvriendelijk en met AI-integratie.", author: "Paralegal en compliance officer" }}
+    context={{
+      title: "De behoefte aan verandering",
+      paragraphs: [
+        "De vennootschap werd geconfronteerd met belangrijke beperkingen in haar vorige bestuursbeheersysteem. Het systeem kon geen bedrijfsspecifieke sjablonen en wettelijke vereisten integreren, wat de governanceprocessen onnodig complex maakte.",
+        "Het kon ook de verschillende vormen van deelname aan hybride vergaderingen niet correct opvolgen, en annotaties op documenten gingen vaak verloren. De vennootschap had een robuustere oplossing nodig.",
+      ],
+      quote: "De beperkingen van het oude systeem qua personalisatie en aanwezigheidsregistratie creëerden onnodige complicaties in onze activiteiten.",
+    }}
+    challenges={[
+      { title: "Beperkte aanpasbaarheid", text: "Het vorige systeem kon bedrijfsspecifieke sjablonen en juridische terminologie niet integreren." },
+      { title: "Aanwezigheidsregistratie", text: "Ontoereikende functies voor hybride vergaderingen en volmachten." },
+      { title: "Taalbarrière", text: "Beperkte ondersteuning voor niet-Nederlandstalige bestuurders." },
+    ]}
+    solutions={[
+      { title: "Aanpasbare sjablonen", text: "Sjablonen die de juridische formuleringen en huisstijl van het bedrijf volgen." },
+      { title: "Aanwezigheidsbeheer", text: "Fysieke, virtuele en volmachtdeelname per vergadering geregistreerd." },
+      { title: "Meertalige ondersteuning", text: "Het platform en de ondersteuning beschikbaar in meerdere talen." },
+    ]}
+    outcome={{
+      title: "Waarom zij voor Dafira kozen",
+      paragraphs: [
+        "Verschillende factoren gaven de doorslag: aanpasbare sjablonen en juridische formuleringen, betrouwbaar documentbeheer en meertalige ondersteuning.",
+        "De vennootschap waardeerde ook de manier waarop Dafira op gebruikersfeedback reageert, in tegenstelling tot de terughoudendheid van de vorige leverancier om zich aan te passen.",
+      ],
+    }}
+  />
+</Layout>

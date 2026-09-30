@@ -1,143 +1,80 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import FAQ from '../../components/FAQ.astro';
+import { PageHero, Button, Icon } from '../../components/ui';
+import { localizePath } from '../../i18n/routes';
 
 const benefits = [
   {
-    icon: "⚡",
-    title: "Accès instantané",
-    description: "Commencez immédiatement avec notre plateforme complète"
+    "icon": "bolt",
+    "title": "Accès complet",
+    "description": "Toutes les fonctionnalités de la plateforme dès le premier jour"
   },
   {
-    icon: "🎯",
-    title: "Sans carte bancaire",
-    description: "Testez toutes les fonctionnalités sans risque pendant 14 jours"
+    "icon": "target",
+    "title": "Sans carte bancaire",
+    "description": "Testez toutes les fonctionnalités pendant 14 jours sans informations de paiement"
   },
   {
-    icon: "👥",
-    title: "Accès équipe illimité",
-    description: "Invitez tous les membres de votre conseil d'administration à découvrir Govrn"
+    "icon": "users",
+    "title": "Accès pour toute l'équipe",
+    "description": "Invitez tous les membres de votre conseil à découvrir Dafira"
   },
   {
-    icon: "🔒",
-    title: "Sécurité de niveau entreprise",
-    description: "Protection et cryptage de niveau bancaire dès le premier jour"
+    "icon": "lock",
+    "title": "Sécurité de niveau entreprise",
+    "description": "Chiffrement et sécurité dès le premier jour"
   }
 ];
+
+const faqData = {
+  "title": "Questions fréquentes",
+  "subtitle": "À propos de l'essai gratuit.",
+  "inLanguage": "fr",
+  "faqs": [
+    {
+      "question": "Que comprend l'essai gratuit ?",
+      "answer": "Vous bénéficiez d'un accès complet à toutes les fonctionnalités de Dafira pendant 14 jours, incluant la gestion documentaire, les outils de réunion et les fonctionnalités collaboratives."
+    },
+    {
+      "question": "Une carte bancaire est-elle nécessaire ?",
+      "answer": "Non, vous pouvez démarrer votre essai gratuit sans fournir d'informations de paiement. Nous vous avertirons avant la fin de la période d'essai."
+    },
+    {
+      "question": "Et après l'essai ?",
+      "answer": "À l'issue des 14 jours, vous pourrez opter pour l'un de nos forfaits payants. Nous vous accompagnerons pour choisir la formule la plus adaptée à vos besoins."
+    }
+  ]
+};
+
+const trialHref = `${localizePath('fr', '/request-demo')}?from=trial`;
 ---
 
-<Layout title="Essayez Govrn gratuitement - Optimisez la gestion de votre conseil" description="Découvrez comment Govrn peut transformer la gestion de votre conseil avec notre essai gratuit de 14 jours. Aucune carte bancaire requise.">
-  <main class="pt-16">
-    <!-- Section héro -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <!-- Colonne gauche - Contenu -->
-          <div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Commencez votre essai gratuit de
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                Govrn aujourd'hui
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-12">
-              Découvrez comment Govrn peut transformer la gestion de votre conseil avec notre essai gratuit de 14 jours. Aucune carte bancaire requise.
-            </p>
-
-            <div class="grid sm:grid-cols-2 gap-6">
-              {benefits.map(benefit => (
-                <div class="flex items-start space-x-4">
-                  <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-2xl">
-                    {benefit.icon}
-                  </div>
-                  <div>
-                    <h2 class="font-semibold text-gray-900">{benefit.title}</h3>
-                    <p class="text-sm text-gray-600">{benefit.description}</p>
-                  </div>
-                </div>
-              ))}
+<Layout title="Essayez Dafira gratuitement - Essai de 14 jours" description="Essayez Dafira gratuitement pendant 14 jours, accompagné par notre équipe. Aucune carte bancaire requise.">
+  <main>
+    <PageHero eyebrow="Essai gratuit · 14 jours" title="Commencez votre essai gratuit de Dafira" lead="Essayez Dafira pendant 14 jours avec votre propre conseil. Aucune carte bancaire requise.">
+      <dl class="mt-10 grid sm:grid-cols-2 gap-x-8 border-t border-line">
+        {benefits.map((b) => (
+          <div class="py-5 border-b border-line flex gap-3">
+            <Icon name={b.icon} class="w-5 h-5 text-navy mt-0.5" />
+            <div>
+              <dt class="font-medium text-navy">{b.title}</dt>
+              <dd class="mt-1 text-sm text-gray-600 leading-relaxed">{b.description}</dd>
             </div>
           </div>
+        ))}
+      </dl>
 
-          <!-- Colonne droite - CTA -->
-          <div class="bg-white rounded-2xl p-10 shadow-xl border border-gray-100 text-center">
-            <div class="mb-8">
-              <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                </svg>
-              </div>
-              <h2 class="text-2xl font-bold text-gray-900 mb-4">Démarrez avec l'aide d'un expert</h2>
-              <p class="text-lg text-gray-600 leading-relaxed">
-                Notre expert vous accompagnera personnellement pour configurer votre essai gratuit et vous garantir de tirer le meilleur parti de Govrn dès le premier jour.
-              </p>
-            </div>
-            <a
-              href="/fr/request-demo?from=trial"
-              class="inline-flex items-center justify-center w-full px-8 py-4 text-lg font-semibold text-white bg-primary hover:bg-primary/90 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
-            >
-              Commencer maintenant
-              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-              </svg>
-            </a>
-            <p class="mt-4 text-sm text-gray-500">Sans engagement</p>
-          </div>
-        </div>
+      <div slot="aside" class="border border-line rounded-md bg-white p-6 lg:p-10">
+        <Icon name="users" class="w-6 h-6 text-navy" />
+        <h2 class="mt-5 text-2xl font-semibold text-navy">Démarrez avec l'aide d'un expert</h2>
+        <p class="mt-3 text-gray-600 leading-relaxed">Notre expert vous aide à configurer votre essai gratuit pour que votre conseil utilise Dafira dès le premier jour.</p>
+        <Button href={trialHref} size="lg" class="mt-8 w-full">Commencer maintenant</Button>
+        <p class="mt-3 text-sm text-gray-500">Sans engagement</p>
       </div>
-    </section>
+    </PageHero>
 
-    <!-- Section preuves sociales -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-bold text-gray-900 mb-8">Ils nous font confiance</h2>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-8 items-center opacity-70">
-            <img 
-  loading="lazy"
-              src="/vdv-logo.png"
-              alt="Van de Velde"
-              class="h-24 object-contain mx-auto"
-            />
-            <img 
-  loading="lazy"
-              src="/fib-logo.png"
-              alt="Finance & Invest Brussels"
-              class="h-24 object-contain mx-auto"
-            />
-            <img 
-  loading="lazy"
-              src="/careproperty-logo.png"
-              alt="Care Property Invest"
-              class="h-24 object-contain mx-auto"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Section FAQ -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">Questions fréquentes</h2>
-        <div class="space-y-8">
-          <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">Que comprend l'essai gratuit ?</h3>
-            <p class="text-gray-600">Vous bénéficiez d'un accès complet à toutes les fonctionnalités de Govrn pendant 14 jours, incluant la gestion documentaire, les outils de réunion et les fonctionnalités collaboratives.</p>
-          </div>
-          <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">Une carte bancaire est-elle nécessaire ?</h3>
-            <p class="text-gray-600">Non, vous pouvez démarrer votre essai gratuit sans fournir d'informations de paiement. Nous vous avertirons avant la fin de la période d'essai.</p>
-          </div>
-          <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">Et après l'essai ?</h3>
-            <p class="text-gray-600">À l'issue des 14 jours, vous pourrez opter pour l'un de nos forfaits payants. Nous vous accompagnerons pour choisir la formule la plus adaptée à vos besoins.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <FAQ texts={faqData} />
   </main>
 </Layout>

@@ -1,0 +1,42 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaseStudy from '../../components/case-studies/CaseStudy.astro';
+---
+
+<Layout
+  title="Listed healthcare real estate company: board governance with Dafira"
+  description="Why a listed healthcare real estate company moved its board management to Dafira: company templates and legal wording, hybrid and proxy attendance, multilingual board members. Read the case study."
+>
+  <CaseStudy
+    company="Listed healthcare real estate company"
+    facts={[{ label: "Sector", value: "Listed healthcare real estate company" }]}
+    title="Listed healthcare real estate company: a board portal that fits its templates, attendance rules and languages"
+    lead="Why the company switched from its previous board management solution to Dafira."
+    quote={{ quote: "Dafira embraced the next generation of Board management software, easy to use and with AI integration.", author: "Paralegal & Compliance Officer" }}
+    context={{
+      title: "The need for change",
+      paragraphs: [
+        "The company faced significant limitations with its previous board management solution. The system could not incorporate company-specific templates and legal requirements, which complicated its governance processes.",
+        "It could not properly track the different forms of attendance at hybrid meetings, and annotations on documents were frequently lost. The company needed a more robust solution.",
+      ],
+      quote: "The previous system's limitations in customization and attendance tracking were creating unnecessary friction in our board operations.",
+    }}
+    challenges={[
+      { title: "Limited customisation", text: "The previous system could not incorporate company-specific templates and legal wording." },
+      { title: "Attendance tracking", text: "Inadequate features for hybrid meetings and proxy attendance." },
+      { title: "Language barriers", text: "Limited support for board members who do not work in English." },
+    ]}
+    solutions={[
+      { title: "Customisable templates", text: "Templates that follow the company’s legal wording and branding." },
+      { title: "Attendance management", text: "Physical, virtual and proxy attendance recorded for each meeting." },
+      { title: "Multilingual support", text: "The platform and support available in several languages." },
+    ]}
+    outcome={{
+      title: "Why they chose Dafira",
+      paragraphs: [
+        "Several factors decided the switch: customisation of templates and legal wording, reliable document handling and multilingual support.",
+        "The company also valued Dafira’s responsiveness to user feedback, in contrast with its previous provider’s reluctance to adapt.",
+      ],
+    }}
+  />
+</Layout>

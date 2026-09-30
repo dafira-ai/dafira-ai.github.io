@@ -1,10 +1,17 @@
 ---
+import Section from "./ui/Section.astro";
+import SectionHeader from "./ui/SectionHeader.astro";
+import FeatureColumns from "./ui/FeatureColumns.astro";
+import Button from "./ui/Button.astro";
+
 interface Feature {
   title: string;
   description: string;
-  icon: string;
+  /** @deprecated emoji icons are no longer rendered; icons follow the pillar order */
+  icon?: string;
   features: string[];
-  gradient: string;
+  /** @deprecated */
+  gradient?: string;
 }
 
 interface Texts {
@@ -22,110 +29,39 @@ interface Props {
 
 const {
   texts = {
-    title: "Three Pillars of Modern Board Management",
-    subtitle: "Discover how Govrn's comprehensive approach transforms your board operations",
-    exploreButton: "Explore All Features",
-    learnMore: "Explore board management features",
+    title: "From agenda to signed minutes, in one place",
+    subtitle: "Dafira covers the full board cycle: preparing the meeting, holding it, and following up on what was decided.",
+    exploreButton: "See all features",
+    learnMore: "Learn more",
     exploreButtonUrl: "/features"
   },
   pillars = [
     {
-      title: "Board Effectiveness",
-      description: "Optimize your board with Govrn: streamline, organize docs, boost productivity with annotation and secured authentication.",
-      icon: "⚡",
-      features: [
-        "Document organization",
-        "Smart annotation", 
-        "Secure authentication",
-        "Productivity tools"
-      ],
-      gradient: "from-primary to-blue-500"
+      title: "Prepare the meeting",
+      description: "Build the agenda, assemble the board pack and share it securely. Directors read and annotate on any device.",
+      features: ["Agenda builder", "Document library", "Private annotations", "Secure authentication"],
     },
     {
-      title: "Board Collaboration & Insights",
-      description: "Explore board documents with our AI-Assistant, providing deeper insights and understanding on strategic imperatives.",
-      icon: "🤖", 
-      features: [
-        "AI-powered analysis",
-        "Strategic insights",
-        "Document intelligence",
-        "Real-time collaboration"
-      ],
-      gradient: "from-blue-500 to-indigo-500"
+      title: "Understand the papers",
+      description: "Ask the AI assistant about the board papers and get summaries of long documents. Draft minutes in a fraction of the time.",
+      features: ["AI assistant on board documents", "AI minute builder", "Secure board chat", "Action item follow-up"],
     },
     {
-      title: "Board Governance & Compliance",
-      description: "Organize tasks according to board roles & responsibilities, integrate e-signature for timely administration, collaboration & voting.",
-      icon: "⚖️",
-      features: [
-        "Role-based management",
-        "E-signature integration", 
-        "Compliance tracking",
-        "Voting system"
-      ],
-      gradient: "from-indigo-500 to-primary"
+      title: "Decide and record",
+      description: "Hold votes, sign minutes electronically and keep a register of every decision, with access set by board role.",
+      features: ["Voting", "E-signature", "Decision log", "Role-based access"],
     }
   ]
 } = Astro.props;
+
+const icons = ["document", "sparkle", "shield"];
+const columns = pillars.map((p, i) => ({ icon: icons[i % icons.length], title: p.title, text: p.description, items: p.features }));
 ---
 
-<section id="features" class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="text-4xl font-extrabold text-gray-900 mb-4">
-        {texts.title}
-      </h2>
-      <p class="text-xl text-gray-600">
-        {texts.subtitle}
-      </p>
-    </div>
-
-    <div class="grid lg:grid-cols-3 gap-8">
-      {pillars.map(pillar => (
-        <div class="relative group">
-          <div class={`absolute inset-0 bg-gradient-to-br ${pillar.gradient} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl`}></div>
-          <div class="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
-            <div class="text-4xl mb-4">{pillar.icon}</div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">
-              {pillar.title}
-            </h3>
-            <p class="text-gray-600 mb-6">
-              {pillar.description}
-            </p>
-            <ul class="space-y-3 mb-8">
-              {pillar.features.map(feature => (
-                <li class="flex items-center text-gray-600">
-                  <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  {feature}
-                </li>
-              ))}
-            </ul>
-            <a 
-              href={texts.exploreButtonUrl} 
-              class="inline-flex items-center text-primary hover:text-primary/90 font-medium group"
-            >
-              {texts.learnMore}
-              <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      ))}
-    </div>
-
-    <div class="mt-16 text-center">
-      <a 
-        href={texts.exploreButtonUrl}
-        class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 group"
-      >
-        {texts.exploreButton}
-        <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-        </svg>
-      </a>
-    </div>
+<Section id="features">
+  <SectionHeader title={texts.title} lead={texts.subtitle} />
+  <FeatureColumns items={columns} />
+  <div class="pt-8 border-t border-line">
+    <Button variant="link" href={texts.exploreButtonUrl}>{texts.exploreButton}</Button>
   </div>
-</section>
+</Section>

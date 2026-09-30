@@ -1,0 +1,47 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CaseStudy from '../../../components/case-studies/CaseStudy.astro';
+---
+
+<Layout
+  title="Association d'accompagnement du secteur associatif : la gouvernance du conseil avec Dafira"
+  description="Comment une association qui accompagne les ASBL en gouvernance gère son propre conseil avec Dafira : documents centralisés, annotation et synthèses de réunion. Consultez l'étude de cas."
+>
+  <CaseStudy
+    company="Association d'accompagnement du secteur associatif"
+    facts={[{ label: "Secteur", value: "Association d'accompagnement du secteur associatif" }]}
+    title="Association d'accompagnement du secteur associatif : la gouvernance du conseil avec Dafira"
+    lead="Comment une association pour qui la gouvernance est un pilier de l'accompagnement des ASBL soutient ses propres administrateurs avec Dafira."
+    quote={{ quote: "Je suis persuadée qu'une plateforme comme Dafira favorise une prise de décision plus éclairée au niveau du conseil d'administration.", author: "Présidente" }}
+    context={{
+      title: "Professionnaliser le secteur non marchand",
+      paragraphs: [
+        "L'association contribue à la professionnalisation du secteur non marchand avec une communauté de bénévoles experts qui accompagnent de petites organisations. La gouvernance est l'un des piliers de son approche, aux côtés de la stratégie, de l'efficacité opérationnelle et de la diversification des ressources.",
+        "Elle propose un accompagnement sur mesure au travers de missions structurées dans la durée, complété par des ateliers collectifs sur des défis communs.",
+      ],
+      quote: "La gouvernance constitue l'un des cinq piliers fondamentaux du soutien de [notre organisation] aux ASBL. C'est pour nous une priorité absolue.",
+    }}
+    challenges={[
+      { title: "Organisation documentaire", text: "Des documents du conseil dispersés dans de multiples e-mails." },
+      { title: "Exigence de gouvernance", text: "De hauts standards de gouvernance à maintenir, pilier de la mission." },
+      { title: "Intégration des administrateurs", text: "De nouveaux membres à accueillir avec une documentation complète." },
+    ]}
+    solutions={[
+      { title: "Un espace unique", text: "Tous les documents et communications du conseil au même endroit." },
+      { title: "Annotation de documents", text: "Surligner et commenter les documents du conseil directement dans la plateforme." },
+      { title: "Synthèses de réunion par IA", text: "Synthèses de réunion et suivi des décisions préparés avec l'assistant IA." },
+    ]}
+    outcome={{
+      title: "Le travail du conseil sur une seule plateforme",
+      paragraphs: [
+        "Avec Dafira, l'association a réuni la documentation et la collaboration de son conseil sur une seule plateforme, en cohérence avec l’importance qu’elle accorde à la gouvernance.",
+        "La gestion documentaire et la prise de décision gagnent en fluidité et en transparence, et l'équipe administrative comme les administrateurs ont adopté la plateforme sans difficulté.",
+      ],
+      quote: "Grâce à Dafira, nous pouvons facilement annoter et surligner les documents, offrant une expérience optimale à chaque membre du conseil.",
+    }}
+    voices={[
+      { quote: "Avec Dafira, l'annotation et le surlignage deviennent un jeu d'enfant pour chaque membre du conseil. Cette simplicité d'utilisation nous permet d'être plus efficaces dans nos prises de décision collectives.", author: "Présidente" },
+      { quote: "La gouvernance est au cœur de nos préoccupations, surtout dans une structure où les responsabilités peuvent se chevaucher. Notre priorité est de bien définir les rôles et les responsabilités à tous les niveaux de l'organisation.", author: "Directrice" },
+    ]}
+  />
+</Layout>

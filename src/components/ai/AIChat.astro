@@ -1,4 +1,7 @@
 ---
+// HTML mock-up of the AI assistant: questions and answers quoted from board documents, with their source. Plays once.
+import AppFrame from '../features/AppFrame.astro';
+
 interface Props {
   texts?: {
     messages: {
@@ -16,127 +19,76 @@ interface Props {
     input: {
       placeholder: string;
     };
-  }
+  };
+  /** strong shadow when used as the hero visual */
+  shadow?: boolean;
 }
 
-const { texts = {
+const { shadow = false, texts = {
   messages: [
     {
       type: "user",
-      content: "What were the key decisions from last quarter's board meetings?"
+      content: "What did the board decide on the European expansion last quarter?"
     },
     {
-      type: "assistant", 
-      content: "Based on the Q3 board minutes, here are the key decisions:",
+      type: "assistant",
+      content: "According to the Q3 minutes:",
       quotes: [
         {
-          text: "The board approved the expansion plan for the European market with a budget of €2.5M",
-          source: "Q3 Board Minutes, Section 2.3"
-        },
-        {
-          text: "A new sustainability initiative was approved, targeting 30% reduction in carbon emissions by 2025",
-          source: "Q3 Board Minutes, Section 4.1"
+          text: "The board approved the expansion plan for the European market. The final budget will be presented with the business plan in Q4.",
+          source: "Q3 Board Minutes, item 2.3"
         }
       ]
     },
     {
       type: "user",
-      content: "What's our current progress on the sustainability initiative?"
+      content: "Which document sets out our sustainability targets?"
     },
     {
       type: "assistant",
-      content: "According to the latest sustainability report:",
+      content: "The targets are set out in the sustainability policy adopted by the board:",
       quotes: [
         {
-          text: "Current emissions reduction stands at 12%, with all major facilities now running on renewable energy",
-          source: "Sustainability Report 2024, Page 15"
+          text: "The company commits to reducing its emissions in line with the targets approved by the board, with progress reported every six months.",
+          source: "Sustainability Policy, section 1"
         }
       ]
     }
   ],
   header: {
-    title: "Board AI Assistant",
-    subtitle: "Powered by your board documents"
+    title: "AI assistant",
+    subtitle: "Answers from your board documents"
   },
   input: {
-    placeholder: "Ask a question about your board documents..."
+    placeholder: "Ask a question about your board documents"
   }
 }} = Astro.props;
 ---
 
-<div class="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden max-h-[600px] flex flex-col">
-  <!-- Chat Header -->
-  <div class="bg-gradient-to-r from-primary to-blue-600 p-4">
-    <div class="flex items-center space-x-3">
-      <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-        <span class="text-2xl">🤖</span>
-      </div>
-      <div class="text-white">
-        <div class="font-medium">{texts.header.title}</div>
-        <div class="text-sm text-white/80">{texts.header.subtitle}</div>
-      </div>
+<div data-play>
+  <AppFrame title={texts.header.title} meta={texts.header.subtitle} shadow={shadow}>
+    <div class="p-5 space-y-4">
+      {texts.messages.map((msg, index) => (
+        msg.type === 'user' ? (
+          <div class="flex justify-end" data-step style={`--d:${100 + index * 350}`}>
+            <p class="max-w-[85%] bg-surface border border-line rounded-md px-4 py-3 text-[13px] text-ink">{msg.content}</p>
+          </div>
+        ) : (
+          <div class="max-w-[92%] space-y-2.5" data-step style={`--d:${100 + index * 350}`}>
+            <p class="text-[13px] text-gray-700">{msg.content}</p>
+            {msg.quotes?.map((quote) => (
+              <div class="border-s-2 border-primary ps-3 py-1">
+                <p class="text-[13px] text-ink leading-relaxed">{quote.text}</p>
+                <p class="mt-1 font-mono text-[11px] text-primary">{quote.source}</p>
+              </div>
+            ))}
+          </div>
+        )
+      ))}
     </div>
-  </div>
-
-  <!-- Chat Messages -->
-  <div class="flex-1 overflow-y-auto p-4 space-y-4">
-    {texts.messages.map((msg, index) => (
-      <div class={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'} animate-slide-up`}
-        style={`animation-delay: ${index * 0.5}s`}
-      >
-        <div class={`max-w-[80%] rounded-xl p-4 ${
-          msg.type === 'user' 
-            ? 'bg-primary/10 text-primary' 
-            : 'bg-gradient-to-br from-gray-50 to-gray-100'
-        }`}>
-          <p class="text-sm mb-2">{msg.content}</p>
-          {msg.quotes && (
-            <div class="space-y-3 mt-4">
-              {msg.quotes.map(quote => (
-                <div class="bg-white rounded-lg p-3 border border-gray-200">
-                  <p class="text-gray-700 text-sm mb-1">{quote.text}</p>
-                  <p class="text-xs text-primary font-medium">{quote.source}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-    ))}
-
-    <!-- Typing Indicator -->
-    <div class="flex items-center space-x-2">
-      <div class="w-2 h-2 bg-primary/40 rounded-full animate-bounce" style="animation-delay: 0s;"></div>
-      <div class="w-2 h-2 bg-primary/40 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
-      <div class="w-2 h-2 bg-primary/40 rounded-full animate-bounce" style="animation-delay: 0.4s;"></div>
+    <div class="border-t border-line px-5 py-3 flex items-center gap-3">
+      <span class="flex-1 border border-line rounded-sm px-3 py-2 text-[13px] text-gray-400">{texts.input.placeholder}</span>
+      <svg class="w-5 h-5 text-navy rtl-flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
     </div>
-  </div>
-
-  <!-- Chat Input -->
-  <div class="border-t border-gray-100 p-4">
-    <div class="flex items-center space-x-4">
-      <input
-        type="text"
-        placeholder={texts.input.placeholder}
-        class="flex-1 px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary"
-      />
-      <button class="p-2 text-primary hover:text-primary/90">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-        </svg>
-      </button>
-    </div>
-  </div>
+  </AppFrame>
 </div>
-
-<style>
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .animate-slide-up {
-    opacity: 0;
-    animation: slideUp 0.5s ease-out forwards;
-  }
-</style>

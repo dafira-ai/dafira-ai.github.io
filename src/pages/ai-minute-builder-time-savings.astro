@@ -1,614 +1,112 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import backgroundImage from '../assets/images/background-image.jpg';
-import FAQ from '../components/FAQ.astro';
+import MinuteBuilderSavings from '../components/campaigns/MinuteBuilderSavings.astro';
 
-const testimonials = [
-  {
-    quote: "From 5 hours to 30 minutes per meeting. Govrn's AI gives me structured, professional drafts that only need minor review.",
-    author: "Sarah M.",
-    title: "Corporate Secretary",
-    company: "Tech Company"
+const t = {
+  hero: {
+    eyebrow: 'AI minute builder',
+    title: 'Turn hours of manual note-taking into a structured draft of the minutes',
+    lead: 'Board secretaries spend long evenings drafting, rewriting and aligning minutes after every meeting. With the Dafira AI minute builder you start from a structured, EU-hosted draft shortly after the meeting ends, then review and publish it.',
+    primary: { text: 'Start free trial', href: '/try' },
+    secondary: { text: 'Book a demo', href: '/request-demo' },
+    note: 'No credit card required · EU-hosted · GDPR compliant',
   },
-  {
-    quote: "The AI understands board terminology and governance requirements. I save 70% of my time and deliver better quality minutes.",
-    author: "Lore Werbrouck",
-    title: "General Counsel",
-    company: "Van de Velde"
-  }
-];
-
-const painPoints = [
-  {
-    title: "5+ hours of post-meeting work",
-    description: "Board secretaries spend entire evenings transcribing notes, formatting documents, and ensuring nothing was missed.",
-    icon: "⏰",
-    painLevel: "high"
+  card: {
+    title: 'Draft minutes · Board of Directors',
+    meta: 'Generated after the meeting',
+    rows: [
+      { label: 'Item 1', text: 'Approval of previous minutes', tone: 'ok' as const, status: 'Decision' },
+      { label: 'Item 2', text: 'H1 accounts presented by the CFO', tone: 'neutral' as const, status: 'Noted' },
+      { label: 'Item 3', text: 'Resolution 2026-14 · Capex budget', tone: 'ok' as const, status: 'Resolution' },
+      { label: 'Item 4', text: 'Prepare supplier tender · CFO', tone: 'info' as const, status: 'Action' },
+    ],
+    footer: 'Draft ready for the secretary to review',
+    footerMeta: 'Not yet published',
+    caption: 'Sample draft',
   },
-  {
-    title: "Inconsistent drafts and multiple versions",
-    description: "Manual note-taking leads to incomplete records, missed decisions, and endless back-and-forth revisions.",
-    icon: "📝",
-    painLevel: "high"
+  pain: {
+    eyebrow: 'The time drain',
+    title: 'Stop wasting time, focus on decisions',
+    lead: 'Manual minutes slow boards down. Dafira changes this: you start from a ready-to-review draft, not a blank page.',
+    items: [
+      { icon: 'clock', title: 'Hours of post-meeting work', text: 'Board secretaries spend entire evenings transcribing notes, formatting documents and making sure nothing was missed.' },
+      { icon: 'document', title: 'Inconsistent drafts and multiple versions', text: 'Manual note-taking leads to incomplete records, missed decisions and endless back-and-forth revisions.' },
+      { icon: 'warning', title: 'Risk of errors or missing key decisions', text: 'Resolutions and action items get lost in handwritten notes or scattered digital documents.' },
+      { icon: 'calendar', title: 'Pressure to finalise minutes quickly', text: 'Governance requirements call for a quick turnaround, which manual processes make difficult.' },
+    ],
   },
-  {
-    title: "Risk of errors or missing key decisions",
-    description: "Critical resolutions and action items get lost in messy handwritten notes or scattered digital documents.",
-    icon: "❌",
-    painLevel: "critical"
+  changes: {
+    eyebrow: 'What changes',
+    title: 'Time back after every meeting with the AI minute builder',
+    lead: 'The work moves from writing to reviewing. The secretary stays in charge of the final text.',
+    items: [
+      { icon: 'sparkle', title: 'A draft shortly after the meeting', text: 'Get a structured draft that follows your agenda as soon as the meeting ends.' },
+      { icon: 'pen', title: 'Review, not rewrite', text: 'You validate and refine instead of starting from scratch. Full editorial control stays with you.' },
+      { icon: 'gavel', title: 'Built for board meetings', text: 'Designed for governance rather than generic transcription: it identifies decisions, actions and resolutions.' },
+      { icon: 'users', title: 'Publish to directors in one step', text: 'Share the final minutes with all directors through the secure, GDPR-compliant platform.' },
+    ],
+    link: { text: 'Discover how the AI minute builder works', href: '/features/ai-minute-builder' },
   },
-  {
-    title: "Stress to finalize minutes quickly for compliance",
-    description: "Governance requirements demand quick turnaround, but manual processes make this nearly impossible.",
-    icon: "😰",
-    painLevel: "critical"
-  }
-];
-
-const timeSavings = [
-  {
-    feature: "AI-powered draft in minutes",
-    benefit: "reduces workload by 70%",
-    description: "Get a structured, governance-compliant draft immediately after your meeting ends."
+  compare: {
+    eyebrow: 'Before and after',
+    title: 'Before and after Dafira',
+    lead: 'Where the time goes after a board meeting, and what changes when you start from an AI draft.',
+    headers: ['Task', 'Before Dafira', 'With Dafira'],
+    rows: [
+      ['Drafting minutes', 'Written from notes after the meeting', 'AI draft generated from the meeting'],
+      ['Rewriting and aligning', 'Several rounds of edits and versions', 'One review of a structured draft'],
+      ['Sharing with directors', 'Emails and attachments', 'Published to directors from the platform'],
+    ],
+    cta: { text: 'Book a demo', href: '/request-demo' },
   },
-  {
-    feature: "Review, not rewrite",
-    benefit: "secretaries keep full control",
-    description: "You validate and refine instead of starting from scratch. Full editorial control maintained."
+  trust: {
+    eyebrow: 'European trust',
+    title: 'Why European boards trust Dafira',
+    lead: 'Dafira is designed for European boards and European data protection rules.',
+    items: [
+      { icon: 'globe', title: 'EU hosting and GDPR compliance', text: 'Your board data is hosted in Europe.' },
+      { icon: 'lock', title: 'Encryption and certified infrastructure', text: 'Encrypted data on ISO 27001-certified hosting infrastructure.' },
+      { icon: 'users', title: 'Unlimited users included', text: 'No per-seat costs for directors and guests.' },
+      { icon: 'sparkle', title: 'AI built into the platform', text: 'The minute builder is part of Dafira, not a separate add-on.' },
+    ],
   },
-  {
-    feature: "Governance-trained AI",
-    benefit: "understands decisions, actions, resolutions",
-    description: "Purpose-built for board meetings, not generic transcription. Identifies key governance elements."
+  alternatives: {
+    eyebrow: 'Comparing platforms',
+    title: 'Dafira vs OnBoard vs Diligent',
+    lead: 'Evaluating board portals? Our comparison pages set out the differences in hosting, pricing model and AI features.',
+    cards: [
+      { title: 'Dafira vs OnBoard', text: 'Hosting, pricing and AI minutes compared.', href: '/vs/onboard' },
+      { title: 'Dafira vs Diligent', text: 'Hosting, pricing and AI minutes compared.', href: '/vs/diligent' },
+    ],
   },
-  {
-    feature: "One-click publishing",
-    benefit: "distribute securely to all directors",
-    description: "Seamlessly share final minutes through secure, GDPR-compliant channels."
-  }
-];
-
-const comparisonData = [
-  {
-    task: "Drafting minutes",
-    before: "3–4 hours",
-    after: "< 10 minutes (AI draft)"
+  faq: {
+    title: 'Frequently asked questions',
+    subtitle: 'About AI-assisted board minutes',
+    inLanguage: 'en',
+    faqs: [
+      { question: 'How fast can AI generate minutes?', answer: 'Dafira creates a draft within minutes after the meeting ends, so the secretary starts from a structured text instead of a blank page.' },
+      { question: 'Can AI minutes replace a secretary?', answer: 'No. AI does the heavy lifting, but secretaries remain in control for review, validation and publication.' },
+      { question: 'Is it safe to let AI handle board minutes?', answer: 'Yes. Dafira is EU-based, GDPR compliant and encrypted. Your data is hosted in Europe.' },
+      { question: 'What if I need to customise the minutes?', answer: 'You can review, edit and add context. The AI draft is a starting point, not a rigid output.' },
+    ],
   },
-  {
-    task: "Rewriting & aligning",
-    before: "1–2 hours",
-    after: "< 20 minutes (review)"
-  },
-  {
-    task: "Sharing with directors",
-    before: "1 hour",
-    after: "1 click"
-  }
-];
-
-const trustFactors = [
-  {
-    title: "EU-based hosting & GDPR compliance",
-    description: "your data never leaves Europe",
-    icon: "🇪🇺"
-  },
-  {
-    title: "Bank-grade security",
-    description: "AES 256, ISO-certified",
-    icon: "🔒"
-  },
-  {
-    title: "Unlimited users included",
-    description: "no hidden per-seat costs",
-    icon: "👥"
-  },
-  {
-    title: "AI native, not an add-on",
-    description: "built directly into the platform",
-    icon: "🤖"
-  }
-];
-
-const competitorComparison = [
-  {
-    feature: "AI-generated minutes",
-    govrn: { status: "✅", description: "Native, governance-trained" },
-    onboard: { status: "✅", description: "Add-on" },
-    diligent: { status: "✅", description: "Add-on" }
-  },
-  {
-    feature: "GDPR compliance",
-    govrn: { status: "✅", description: "100% EU" },
-    onboard: { status: "❌", description: "US-based" },
-    diligent: { status: "❌", description: "US-based" }
-  },
-  {
-    feature: "Unlimited users",
-    govrn: { status: "✅", description: "Yes" },
-    onboard: { status: "❌", description: "No" },
-    diligent: { status: "❌", description: "No" }
-  },
-  {
-    feature: "Pricing transparency",
-    govrn: { status: "✅", description: "Fixed plans" },
-    onboard: { status: "❌", description: "Hidden fees" },
-    diligent: { status: "❌", description: "Quote-only" }
-  },
-  {
-    feature: "Time saved per meeting",
-    govrn: { status: "✅", description: "70% (5h → 30min)" },
-    onboard: { status: "~40%", description: "" },
-    diligent: { status: "~40%", description: "" }
-  }
-];
-
-const faqData = {
-  title: "Frequently Asked Questions",
-  subtitle: "Everything you need to know about AI-powered board minutes",
-  inLanguage: "en",
-  faqs: [
-    {
-      question: "How fast can AI generate minutes?",
-      answer: "Govrn creates a draft within minutes after the meeting ends — secretaries typically reduce their workload by 70%."
+  cta: {
+    texts: {
+      title: 'Save hours after every board meeting',
+      subtitle: 'Start a free trial or book a demo with your own agenda. No credit card required.',
+      cta1: 'Book a demo',
+      cta2: 'Start free trial',
     },
-    {
-      question: "Can AI minutes replace a secretary?",
-      answer: "No. AI does the heavy lifting, but secretaries remain in control for review, validation, and publication."
-    },
-    {
-      question: "Is it safe to let AI handle board minutes?",
-      answer: "Yes. Govrn is EU-based, GDPR compliant, and encrypted end-to-end. Unlike US providers, your data never leaves Europe."
-    },
-    {
-      question: "What if I need to customize the minutes?",
-      answer: "You can easily review, edit, and add context. The AI draft is a starting point, not a rigid output."
-    }
-  ]
+    links: { cta1: '/request-demo', cta2: '/try' },
+  },
 };
 ---
 
 <Layout
-  title="AI Meeting Minutes Generator – Save Hours | Govrn"
-  description="Turn hours of manual note-taking into minutes. Govrn's AI Minute Builder saves 70% of your time. EU-based, GDPR compliant."
-  
+  title="AI Meeting Minutes Generator – Save Hours | Dafira"
+  description="Turn hours of manual note-taking into a structured draft of the minutes. Dafira's AI minute builder for board secretaries. EU-based, GDPR compliant."
 >
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative min-h-[90vh] flex items-center overflow-hidden">
-      <!-- Background Image -->
-      <div class="absolute inset-0 z-0">
-        <Image
-          src={backgroundImage}
-          alt="AI meeting minutes background"
-          class="w-full h-full object-cover"
-          quality={80}
-        />
-        <div class="absolute inset-0 bg-gradient-to-br from-primary/95 via-slate-900/90 to-slate-900/95"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(57,153,222,0.1),transparent_50%)]"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(57,153,222,0.05),transparent_60%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="flex flex-col lg:flex-row items-center gap-12">
-          <!-- Content -->
-          <div class="flex-1 text-center lg:text-left">
-            <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-white/20 text-white backdrop-blur-sm mb-8 hover:bg-white/30 transition-colors">
-              📝 AI Minute Builder
-            </div>
-
-            <h1 class="text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6 leading-tight">
-              Turn hours of manual note-taking into <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">minutes of smart AI summaries</span>
-            </h1>
-            <p class="text-xl text-white/90 leading-relaxed mb-8">
-              Board secretaries no longer need to spend 5+ hours per meeting drafting, rewriting, and aligning board minutes. With Govrn's AI Minute Builder, you get a structured, secure, EU-hosted draft in just minutes — saving up to 70% of your time.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 lg:justify-start justify-center">
-              <a href="/try" class="px-8 py-4 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
-                Start free trial
-              </a>
-              <a href="/request-demo" class="px-8 py-4 bg-white text-primary border-2 border-primary/20 rounded-xl font-medium hover:bg-primary/5 transition-colors">
-                Book a demo
-              </a>
-            </div>
-            <p class="text-sm text-white/70 mt-4">
-              No credit card required • EU-hosted & GDPR compliant • Setup in minutes
-            </p>
-          </div>
-
-          <!-- Time Savings Visual -->
-          <div class="flex-1 lg:max-w-lg">
-            <div class="relative">
-              <div class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 shadow-xl border border-primary/20">
-                <div class="text-center">
-                  <div class="text-6xl mb-4">⚡</div>
-                  <div class="bg-white rounded-lg p-6 shadow-lg mb-4">
-                    <div class="text-center mb-4">
-                      <div class="text-2xl font-bold text-gray-900 mb-2">From 5 hours → 30 minutes</div>
-                      <div class="text-primary font-semibold">Every meeting</div>
-                    </div>
-                    <div class="flex items-center justify-between text-sm">
-                      <div class="text-red-500 font-medium">Before: Manual work</div>
-                      <div class="text-primary font-medium">After: AI draft</div>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
-                      <div class="bg-primary h-2 rounded-full" style="width: 30%"></div>
-                    </div>
-                    <div class="text-xs text-gray-500 mt-2 text-center">70% less time spent</div>
-                  </div>
-                  <div class="text-sm font-medium text-primary/90 italic bg-white/95 px-3 py-2 rounded-lg shadow-sm">
-                    "Finally, I can focus on the meeting, not the notes"
-                  </div>
-                </div>
-              </div>
-
-              <!-- Time savings indicators -->
-              <div class="absolute -top-4 -right-4 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold shadow-lg animate-bounce-slow">
-                70% time saved
-              </div>
-              <div class="absolute -bottom-4 -left-4 bg-white text-primary px-3 py-1 rounded-full text-sm font-semibold shadow-lg border border-primary/20">
-                AI-powered
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Stop Wasting Time Section -->
-    <section class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-red-100 text-red-700 mb-8">
-            Stop the Time Drain
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Stop wasting time, focus on decisions
-          </h2>
-          <p class="text-xl text-gray-600 mb-8">
-            Manual minutes are slowing boards down. Govrn changes this: you start from a ready-to-review draft, not a blank page.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {painPoints.map((point) => (
-            <div class={`rounded-xl p-6 border ${point.painLevel === 'critical' ? 'bg-red-50 border-red-200' : 'bg-orange-50 border-orange-200'}`}>
-              <div class="text-3xl mb-4 text-center">{point.icon}</div>
-              <h3 class="font-bold text-gray-900 mb-3 text-center">{point.title}</h3>
-              <p class="text-gray-600 text-sm text-center">{point.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="text-center">
-          <p class="text-lg font-semibold text-gray-900 mb-6">
-            Govrn changes this: you start from a ready-to-review draft, not a blank page.
-          </p>
-          <a href="/try" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
-            Start free trial
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Immediate Time Savings Section -->
-    <section class="py-24 bg-gradient-to-br from-primary/5 to-primary/10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Immediate Time Savings
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Immediate time savings with AI Minute Builder
-          </h2>
-          <p class="text-xl text-gray-600">
-            👉 From 5 hours → 30 minutes. Every meeting.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {timeSavings.map((item) => (
-            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div class="mb-4">
-                <h3 class="font-bold text-gray-900 mb-2">{item.feature}</h3>
-                <div class="text-primary font-semibold text-sm mb-3">→ {item.benefit}</div>
-              </div>
-              <p class="text-gray-600 text-sm">{item.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="text-center">
-          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-            <a href="/try" class="inline-flex items-center px-8 py-4 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 transition-colors shadow-lg">
-              Start free trial
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-            <a href="/features/ai-minute-builder" class="inline-flex items-center px-8 py-4 bg-white text-primary border-2 border-primary rounded-xl font-medium hover:bg-primary/5 transition-colors shadow-lg">
-              Discover how it works
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Before & After Govrn Section -->
-    <section class="py-24 bg-white">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Before & after Govrn
-          </h2>
-          <p class="text-xl text-gray-600">
-            See the dramatic time savings in action
-          </p>
-        </div>
-
-        <div class="bg-gradient-to-r from-gray-50 to-primary/5 rounded-2xl p-8 shadow-xl border border-gray-200">
-          <div class="overflow-x-auto">
-            <table class="w-full">
-              <thead>
-                <tr class="border-b border-gray-200">
-                  <th class="text-left py-4 px-6 font-bold text-gray-900">Task</th>
-                  <th class="text-center py-4 px-6 font-bold text-red-600">Before Govrn</th>
-                  <th class="text-center py-4 px-6 font-bold text-primary">With Govrn</th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonData.map((row, index) => (
-                  <tr class={`border-b border-gray-100 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
-                    <td class="py-4 px-6 font-semibold text-gray-900">{row.task}</td>
-                    <td class="py-4 px-6 text-center text-red-600 font-medium">{row.before}</td>
-                    <td class="py-4 px-6 text-center text-primary font-medium">{row.after}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div class="mt-8 text-center bg-white rounded-xl p-6 border border-primary/20">
-            <div class="text-2xl font-bold text-gray-900 mb-2">
-              Total time saved: <span class="text-primary">4.5+ hours per meeting</span>
-            </div>
-            <p class="text-gray-600 mb-4">That's getting your entire weekend back!</p>
-            <a href="/request-demo" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
-              Book a demo
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Why European Boards Trust Govrn -->
-    <section class="py-24 bg-gradient-to-br from-primary/5 to-primary/10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary mb-8">
-            European Trust
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Why European boards trust Govrn
-          </h2>
-          <p class="text-xl text-gray-600 mb-6">
-            👉 Unlike US competitors, Govrn is designed for European boards first.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {trustFactors.map((factor) => (
-            <div class="bg-white rounded-xl p-6 shadow-lg border border-primary/20 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center">
-              <div class="text-3xl mb-4">{factor.icon}</div>
-              <h3 class="font-bold text-gray-900 mb-3">{factor.title}</h3>
-              <p class="text-gray-600 text-sm">{factor.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="text-center">
-          <div class="inline-flex items-center rounded-full px-6 py-3 bg-primary/10 text-primary font-medium mb-6">
-            🇪🇺 100% European data sovereignty
-          </div>
-          <br>
-          <a href="/try" class="inline-flex items-center px-8 py-4 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 transition-colors shadow-lg">
-            Experience European-first governance
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Competitor Comparison -->
-    <section class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Govrn vs OnBoard vs Diligent
-          </h2>
-          <p class="text-xl text-gray-600">
-            👉 Govrn is the only EU-native board platform combining AI speed with GDPR-level security.
-          </p>
-        </div>
-
-        <div class="bg-gradient-to-br from-gray-50 to-primary/5 rounded-2xl p-8 shadow-xl border border-gray-200">
-          <div class="overflow-x-auto">
-            <table class="w-full">
-              <thead>
-                <tr class="border-b border-gray-200">
-                  <th class="text-left py-4 px-6 font-bold text-gray-900">Feature</th>
-                  <th class="text-center py-4 px-6 font-bold text-primary">Govrn</th>
-                  <th class="text-center py-4 px-6 font-bold text-gray-600">OnBoard</th>
-                  <th class="text-center py-4 px-6 font-bold text-gray-600">Diligent</th>
-                </tr>
-              </thead>
-              <tbody>
-                {competitorComparison.map((row, index) => (
-                  <tr class={`border-b border-gray-100 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
-                    <td class="py-4 px-6 font-semibold text-gray-900">{row.feature}</td>
-                    <td class="py-4 px-6 text-center">
-                      <div class="font-bold text-primary">{row.govrn.status}</div>
-                      <div class="text-sm text-gray-600">{row.govrn.description}</div>
-                    </td>
-                    <td class="py-4 px-6 text-center">
-                      <div class="font-bold text-gray-600">{row.onboard.status}</div>
-                      <div class="text-sm text-gray-600">{row.onboard.description}</div>
-                    </td>
-                    <td class="py-4 px-6 text-center">
-                      <div class="font-bold text-gray-600">{row.diligent.status}</div>
-                      <div class="text-sm text-gray-600">{row.diligent.description}</div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div class="mt-8 text-center bg-white rounded-xl p-6 border border-primary/20">
-            <div class="text-xl font-bold text-gray-900 mb-4">
-              Ready to switch to the European leader in AI governance?
-            </div>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/try" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
-                Start free trial
-              </a>
-              <a href="/request-demo" class="inline-flex items-center px-6 py-3 bg-white text-primary border border-primary rounded-lg font-medium hover:bg-primary/5 transition-colors">
-                Book a demo
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <FAQ texts={faqData} />
-
-    <!-- Final CTA Section -->
-    <section class="bg-gradient-to-br from-primary to-primary/80 py-32">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-        <h2 class="text-4xl font-bold text-white mb-8">
-          Ready to save hours after every board meeting?
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          👉 Start your free trial now and see why European boards switch from OnBoard & Diligent to Govrn.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
-          >
-            Book a demo
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-          <a
-            href="/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-all duration-200 hover:-translate-y-1"
-          >
-            Start free trial
-          </a>
-        </div>
-        <p class="text-white/80 mt-6">
-          No credit card required • EU-hosted & GDPR compliant • Setup in 5 minutes
-        </p>
-        <p class="text-sm text-white/60 mt-2">
-          Join 200+ European boards already saving 70% of their time with AI
-        </p>
-      </div>
-    </section>
+  <main>
+    <MinuteBuilderSavings t={t} />
   </main>
 </Layout>
-
-
-<style>
-  /* Custom animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  @keyframes bounceSlow {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-10px);
-    }
-    60% {
-      transform: translateY(-5px);
-    }
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 1s ease-out;
-  }
-
-  .animate-slide-in-right {
-    animation: slideInRight 1s ease-out 0.3s both;
-  }
-
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  .animate-bounce-slow {
-    animation: bounceSlow 3s ease-in-out infinite;
-  }
-
-  /* FAQ Smooth Transitions */
-  .faq-content {
-    transition: all 0.3s ease-in-out;
-  }
-
-  .faq-icon {
-    transition: transform 0.3s ease-in-out;
-  }
-
-  /* Enhanced responsive tables */
-  @media (max-width: 768px) {
-    .overflow-x-auto table {
-      font-size: 0.875rem;
-    }
-
-    .overflow-x-auto td,
-    .overflow-x-auto th {
-      padding: 0.75rem 0.5rem;
-    }
-  }
-</style>

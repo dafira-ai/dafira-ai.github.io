@@ -1,367 +1,67 @@
 ---
-import Testimonials from '../../../components/Testimonials.astro';
 import Layout from '../../../layouts/Layout.astro';
+import ComparisonPage from '../../../components/vs/ComparisonPage.astro';
+import type { CriterionKey } from '../../../components/vs/copy';
 
-const comparisonFeatures = [
+// Criteria compared on this page. The Dafira side of each criterion comes from components/vs/copy.ts;
+// the BoardPaq side lists questions to check with the vendor (no claims about BoardPaq are made here).
+const criteria: { key: CriterionKey; label: string; questions: string[] }[] = [
   {
-    category: "Expérience Utilisateur",
-    boardpaq: {
-      title: "Interface Basique",
-      points: [
-        "Fonctionnalités simples mais limitées",
-        "Solution unique pour tous",
-        "Absence de fonctions avancées"
-      ],
-      icon: "🖥️"
-    },
-    govrn: {
-      title: "Moderne & Évolutif",
-      points: [
-        "Design intuitif et contemporain",
-        "Fonctionnalités complètes",
-        "S'adapte à vos besoins"
-      ],
-      icon: "✨"
-    }
+    key: 'ux',
+    label: "Expérience utilisateur",
+    questions: [
+      "Quelle formation les administrateurs doivent-ils suivre avant leur première séance ?",
+      "L’espace s’adapte-t-il à vos conseils, comités et rôles ?",
+      "Comment un utilisateur occasionnel retrouve-t-il le dossier en cours ?",
+    ],
   },
   {
-    category: "Capacités IA",
-    boardpaq: {
-      title: "Pas d'Intelligence Artificielle",
-      points: [
-        "Traitement manuel des documents",
-        "Recherche basique",
-        "Aucune automatisation"
-      ],
-      icon: "🤖"
-    },
-    govrn: {
-      title: "Plateforme IA Intégrée",
-      points: [
-        "Analyse intelligente des documents",
-        "Insights automatisés des réunions",
-        "Automatisation avancée des workflows"
-      ],
-      icon: "🚀"
-    }
+    key: 'ai',
+    label: "Capacités IA",
+    questions: [
+      "Quelles fonctionnalités IA sont incluses, et dans quelle offre ?",
+      "Où les documents sont-ils traités lorsque l’IA est utilisée ?",
+      "Les projets de procès-verbal peuvent-ils être rédigés dans les langues de votre conseil ?",
+    ],
   },
   {
-    category: "Gestion Documentaire",
-    boardpaq: {
-      title: "Stockage Simple",
-      points: [
-        "Stockage basique de fichiers",
-        "Collaboration limitée",
-        "Contrôle de version basique"
-      ],
-      icon: "📄"
-    },
-    govrn: {
-      title: "Collaboration Avancée",
-      points: [
-        "Édition en temps réel",
-        "Gestion intelligente des versions",
-        "Workflows automatisés"
-      ],
-      icon: "💫"
-    }
+    key: 'docs',
+    label: "Gestion documentaire",
+    questions: [
+      "Comment les dossiers sont-ils constitués et mis à jour après envoi ?",
+      "Existe-t-il un historique des versions pour chaque document ?",
+      "Les administrateurs peuvent-ils annoter en privé ?",
+    ],
   },
   {
-    category: "Support & Sécurité",
-    boardpaq: {
-      title: "Support Basique",
-      points: [
-        "Support aux heures de bureau",
-        "Fonctions de sécurité limitées",
-        "Assistance basique au déploiement"
-      ],
-      icon: "🔒"
-    },
-    govrn: {
-      title: "Niveau Entreprise",
-      points: [
-        "Support mondial 24/7",
-        "Sécurité renforcée",
-        "Accompagnement complet"
-      ],
-      icon: "🌟"
-    }
-  }
+    key: 'supportSecurity',
+    label: "Support & sécurité",
+    questions: [
+      "Quelles certifications et quels lieux d’hébergement s’appliquent à vos données ?",
+      "L’authentification à deux facteurs est-elle disponible pour tous ?",
+      "Quels horaires et canaux de support sont inclus dans votre offre ?",
+    ],
+  },
 ];
 
-const testimonials = {
-  texts: { 
-    title: "Ils ont Choisi Govrn",
-    subtitle: "Découvrez comment les organisations transforment leurs réunions de conseil avec Govrn",
-    cta: "Voir Tous les Témoignages",
-    ctaLink: "/fr/testimonials"
-  },
-  testimonials: [
-    {
-      quote: "Govrn a <strong>transformé</strong> nos réunions de conseil, apportant plus d'<strong>efficacité</strong> et de <strong>clarté</strong> dans nos processus de gouvernance.",
-      author: "Lore Werbrouck",
-      position: "General Counsel",
-      company: "Van de Velde",
-      image: "/vdv-lore-portrait.jpg",
-      link: "/fr/case-studies/van-de-velde"
-    },
-    {
-      quote: "Govrn a considérablement <strong>simplifié</strong> notre gestion documentaire, rendant nos préparations de réunions plus <strong>efficaces</strong> et permettant à notre conseil de se concentrer sur la <strong>prise de décision</strong>.",
-      author: "Pierre Hermant",
-      position: "CEO",
-      company: "Finance & Invest Brussels",
-      image: "/fib-pierre.webp",
-      link: "/fr/case-studies/finance-invest-brussels"
-    },
-    {
-      quote: "Govrn incarne la <strong>nouvelle génération</strong> de logiciels de gestion de conseil, <strong>facile à utiliser</strong> et doté d'une <strong>intégration IA</strong>.",
-      author: "Nathalie Byl",
-      position: "Paralegal et Compliance Officer",
-      company: "Care Property Invest",
-      image: "/careproperty-logo.png",
-      link: "/fr/case-studies/care-property-invest"
-    }
-  ]
-}
-
-const switchBenefits = [
-  {
-    title: "Essai Gratuit",
-    description: "Testez toutes les fonctionnalités pendant 14 jours sans engagement",
-    icon: "🎁",
-    cta: "Démarrer l'Essai Gratuit",
-    link: "/fr/try"
-  },
-  {
-    title: "Migration Simplifiée",
-    description: "Notre équipe gère la transition complète depuis BoardPaq",
-    icon: "🔄",
-    cta: "En Savoir Plus",
-    link: "/fr/contact"
-  },
-  {
-    title: "Meilleur Rapport Qualité-Prix",
-    description: "Fonctionnalités avancées à des prix compétitifs",
-    icon: "💰",
-    cta: "Demander un Devis",
-    link: "/fr/pricing"
-  }
-];
-
-const stats = [
-  { value: "60%", label: "Réunions Plus Productives" },
-  { value: "45%", label: "Gain de Temps Administratif" },
-  { value: "95%", label: "Satisfaction Client" },
-  { value: "24/7", label: "Support Assisté par IA" }
+// Customer quotes, verbatim.
+const quotes = [
+  { quote: "Dafira a transformé nos réunions de conseil, apportant plus d'efficacité et de clarté dans nos processus de gouvernance.", author: "Directrice juridique", position: "", company: "Groupe de mode coté en bourse", link: "/fr/case-studies/listed-fashion-group" },
+  { quote: "Dafira a considérablement simplifié notre gestion documentaire, rendant nos préparations de réunions plus efficaces et permettant à notre conseil de se concentrer sur la prise de décision.", author: "CEO", position: "", company: "Fonds public d'investissement régional", link: "/fr/case-studies/public-investment-fund" },
+  { quote: "Dafira incarne la nouvelle génération de logiciels de gestion de conseil, facile à utiliser et doté d'une intégration IA.", author: "Juriste et responsable conformité", position: "", company: "Société immobilière cotée du secteur des soins", link: "/fr/case-studies/healthcare-real-estate" },
 ];
 ---
 
-<Layout 
-  title="Govrn vs BoardPaq Comparatif | Alternative Moderne pour les Conseils d'Administration"
-  description="Comparez la plateforme Govrn, propulsée par l'IA, avec BoardPaq. Découvrez pourquoi les organisations choisissent Govrn comme alternative à BoardPaq en 2024."
+<Layout
+  title="BoardPaq vs Dafira : comparatif de portails du conseil | Dafira"
+  description="Comparez Dafira et BoardPaq sur la facilité d’utilisation, l’IA, la gestion documentaire et la sécurité et le support : ce que propose Dafira, et les questions à poser à BoardPaq. Essai gratuit de 14 jours, sans carte bancaire."
 >
-  <main class="pt-24">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Comparatif 2025
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            BoardPaq vs Govrn :
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              La Meilleure Alternative à BoardPaq en 2025
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed mb-8">
-            Découvrez l'avenir des réunions de conseil avec la plateforme complète de Govrn. Commencez votre essai gratuit ou planifiez une démo personnalisée.
-          </p>
-
-          <!-- Quick Action Cards -->
-          <div class="grid sm:grid-cols-2 gap-4 mb-12">
-            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Essayez Govrn Gratuitement</h3>
-              <p class="text-gray-600 mb-4">Accès complet pendant 14 jours</p>
-              <a
-                href="/fr/try"
-                class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors w-full justify-center"
-              >
-                Démarrer l'Essai Gratuit
-              </a>
-            </div>
-            <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-6 shadow-lg border border-primary/10">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Découvrez Govrn en Action</h3>
-              <p class="text-gray-600 mb-4">Obtenez une démonstration personnalisée</p>
-              <a
-                href="/fr/request-demo"
-                class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors w-full justify-center"
-              >
-                Planifier une Démo
-              </a>
-            </div>
-          </div>
-
-          <!-- Stats -->
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {stats.map(stat => (
-              <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                <div class="text-3xl font-bold text-primary mb-1">{stat.value}</div>
-                <div class="text-sm text-gray-600">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Comparison Grid -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Pourquoi les Organisations Choisissent Govrn
-          </h2>
-          <p class="text-xl text-gray-600 mb-8">
-            Découvrez nos fonctionnalités modernes
-          </p>
-          <div class="flex justify-center">
-            <a
-              href="/fr/features"
-              class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors"
-            >
-              Voir Toutes les Fonctionnalités
-            </a>
-          </div>
-        </div>
-
-        <div class="space-y-8">
-          {comparisonFeatures.map(feature => (
-            <div class="grid md:grid-cols-2 gap-8">
-              <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-                <div class="flex items-center space-x-4 mb-6">
-                  <div class="text-3xl">{feature.boardpaq.icon}</div>
-                  <div>
-                    <h3 class="text-lg font-semibold text-gray-900">{feature.category}</h3>
-                    <p class="text-gray-500">BoardPaq</p>
-                  </div>
-                </div>
-                <h4 class="text-xl font-bold text-gray-900 mb-4">{feature.boardpaq.title}</h4>
-                <ul class="space-y-3">
-                  {feature.boardpaq.points.map(point => (
-                    <li class="flex items-center text-gray-600">
-                      <svg class="h-5 w-5 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 shadow-lg border border-primary/10">
-                <div class="flex items-center space-x-4 mb-6">
-                  <div class="text-3xl">{feature.govrn.icon}</div>
-                  <div>
-                    <h3 class="text-lg font-semibold text-gray-900">{feature.category}</h3>
-                    <p class="text-primary">Govrn</p>
-                  </div>
-                </div>
-                <h4 class="text-xl font-bold text-gray-900 mb-4">{feature.govrn.title}</h4>
-                <ul class="space-y-3">
-                  {feature.govrn.points.map(point => (
-                    <li class="flex items-center text-gray-600">
-                      <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <!-- Mid-page CTA -->
-        <div class="mt-12 text-center">
-          <a
-            href="/fr/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            Testez la Différence Gratuitement Pendant 14 Jours
-            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Switch Benefits -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            La Transition est Plus Simple que Vous ne le Pensez
-          </h2>
-          <p class="text-xl text-gray-600">
-            Nous assurons une transition en douceur depuis BoardPaq
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {switchBenefits.map(benefit => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{benefit.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{benefit.title}</h3>
-              <p class="text-gray-600 mb-6">{benefit.description}</p>
-              <a
-                href={benefit.link}
-                class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors w-full justify-center"
-              >
-                {benefit.cta}
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Success Stories -->
-    <Testimonials texts={testimonials.texts} testimonials={testimonials.testimonials} />
-
-    <!-- Final CTA -->
-    <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">
-          Prêt à Faire le Changement ?
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Rejoignez les organisations qui ont déjà adopté la plateforme moderne de Govrn
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/fr/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-          >
-            Démarrer l'Essai Gratuit
-          </a>
-          <a
-            href="/fr/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200"
-          >
-            Planifier une Démo
-          </a>
-        </div>
-        <p class="text-white/80 mt-6">
-          Pas de carte bancaire requise. Annulation possible à tout moment.
-        </p>
-      </div>
-    </section>
-  </main>
+  <ComparisonPage
+    lang="fr"
+    competitor="BoardPaq"
+    title="Alternative à BoardPaq : comment Dafira se compare"
+    lead="Si vous évaluez BoardPaq ou envisagez un changement, cette page présente ce que Dafira propose pour chaque critère et ce qu’il convient de vérifier auprès de BoardPaq. Vous pouvez ensuite tester Dafira avec votre propre dossier du conseil pendant 14 jours."
+    criteria={criteria}
+    quotes={quotes}
+  />
 </Layout>

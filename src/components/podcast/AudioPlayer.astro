@@ -1,71 +1,42 @@
 ---
+// Inline audio player for an episode.
+import { podcastLang, PODCAST_UI } from './podcast-i18n';
+
 interface Props {
   title: string;
   audioUrl: string;
-  spotifyUrl: string;
+  spotifyUrl?: string;
+  class?: string;
 }
 
-const { title, audioUrl, spotifyUrl } = Astro.props;
+const { title, audioUrl, class: className } = Astro.props;
+const t = PODCAST_UI[podcastLang(Astro.url.pathname)];
 ---
 
-<div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50" data-audio-url={audioUrl}>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="py-4 flex items-center justify-between">
-      <div class="flex items-center space-x-4">
-        <button
-          id="playPauseBtn"
-          class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary/90 transition-colors"
-          aria-label="Play/Pause"
-        >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="playIcon">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <svg class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="pauseIcon">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-        </button>
-        <div>
-          <p class="font-medium text-gray-900 truncate max-w-[150px] sm:max-w-[300px]">{title}</p>
-          <div class="flex items-center space-x-2 text-sm text-gray-500">
-            <span id="currentTime">0:00</span>
-            <span>/</span>
-            <span id="duration">0:00</span>
-          </div>
-        </div>
+<div class:list={['border border-line rounded-md bg-white px-4 py-3', className]} data-audio-url={audioUrl} data-title={title}>
+  <div class="flex items-center gap-4">
+    <button
+      id="playPauseBtn"
+      type="button"
+      class="w-11 h-11 rounded-md bg-navy text-white flex items-center justify-center hover:bg-primary transition-colors shrink-0"
+      aria-label={t.play}
+    >
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" id="playIcon" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" /></svg>
+      <svg class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24" id="pauseIcon" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /></svg>
+    </button>
+    <div class="flex-grow min-w-0">
+      <div class="relative w-full h-1.5 bg-line rounded-sm">
+        <div id="progressBar" class="absolute start-0 top-0 h-full bg-primary rounded-sm" style="width: 0%"></div>
+        <input type="range" id="seekBar" aria-label={t.seek} class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" min="0" max="100" value="0" />
       </div>
-
-      <div class="flex-grow mx-8">
-        <div class="relative w-full h-2 bg-gray-200 rounded-full">
-          <div id="progressBar" class="absolute left-0 top-0 h-full bg-primary rounded-full" style="width: 0%"></div>
-          <input 
-            type="range" 
-            id="seekBar" 
-            class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-            min="0" 
-            max="100" 
-            value="0"
-          />
-        </div>
-      </div>
-
-      <div class="flex items-center space-x-4">
-        <button
-          id="volumeBtn"
-          class="p-2 text-gray-500 hover:text-gray-700 transition-colors"
-          aria-label="Volume"
-        >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="volumeIcon">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M12 8v8M8.5 8.5L11 6v12l-2.5-2.5h-2a1 1 0 01-1-1v-5a1 1 0 011-1h2z" />
-          </svg>
-          <svg class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="muteIcon">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-          </svg>
-        </button>
-       
+      <div class="mt-2 flex items-center gap-1.5 font-mono text-xs text-gray-500 tabular-nums">
+        <span id="currentTime">0:00</span><span>/</span><span id="duration">0:00</span>
       </div>
     </div>
+    <button id="volumeBtn" type="button" class="p-2 text-gray-500 hover:text-navy transition-colors" aria-label={t.mute}>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" id="volumeIcon" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" /></svg>
+      <svg class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" id="muteIcon" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM17 10l4 4M21 10l-4 4" /></svg>
+    </button>
   </div>
 </div>
 
@@ -132,7 +103,7 @@ const { title, audioUrl, spotifyUrl } = Astro.props;
   volumeBtn?.addEventListener('click', () => {
     if (!audio) return;
     audio.muted = !audio.muted;
-    volumeBtn.classList.toggle('text-primary');
+    volumeBtn.classList.toggle('text-navy');
     document.getElementById('volumeIcon')?.classList.toggle('hidden');
     document.getElementById('muteIcon')?.classList.toggle('hidden');
   });
@@ -150,8 +121,8 @@ const { title, audioUrl, spotifyUrl } = Astro.props;
     appearance: none;
     width: 16px;
     height: 16px;
-    background: var(--tw-prose-links);
-    border-radius: 50%;
+    background: rgb(var(--brand));
+    border-radius: 2px;
     cursor: pointer;
     margin-top: -7px;
   }
@@ -159,8 +130,8 @@ const { title, audioUrl, spotifyUrl } = Astro.props;
   input[type="range"]::-moz-range-thumb {
     width: 16px;
     height: 16px;
-    background: var(--tw-prose-links);
-    border-radius: 50%;
+    background: rgb(var(--brand));
+    border-radius: 2px;
     cursor: pointer;
   }
 </style>

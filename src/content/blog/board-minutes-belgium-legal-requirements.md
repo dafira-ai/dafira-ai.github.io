@@ -1,10 +1,10 @@
 ---
 title: "Board Minutes in Belgium: Legal Requirements and How to Stay Compliant"
 slug: "board-minutes-belgium-legal-requirements"
-description: "Discover the legal requirements for board minutes in Belgium under the Companies and Associations Code (BCCA) and how Govrn automates compliance with AI, e-signatures, and secure archiving."
+description: "Discover the legal requirements for board minutes in Belgium under the Companies and Associations Code (BCCA) and how Dafira automates compliance with AI, e-signatures, and secure archiving."
 pubDate: 2025-09-15
-author: "Ludovic Laffineur"
-authorRole: "CPTO at Govrn"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/board-minutes-belgium-legal-requirements.jpg"
 category: "Governance"
 tags: ["Board Minutes", "Belgium", "Compliance", "Governance", "AI"]
@@ -13,7 +13,7 @@ lang: "en"
 ---
 
 Board secretaries and CEOs in Belgium face a delicate balance: ensuring that **board minutes (procès-verbaux)** are not only accurate but also **compliant with Belgian law**. Under the **Companies and Associations Code (CSA/BCCA)**, boards must carefully record decisions, safeguard them for inspection, and ensure they are signed and archived properly.  
-Yet, many boards still rely on outdated manual processes, creating unnecessary risks and delays. Let’s explore the main legal requirements for board minutes in Belgium — and how **Govrn** makes compliance effortless.
+Yet, many boards still rely on outdated manual processes, creating unnecessary risks and delays. Let’s explore the main legal requirements for board minutes in Belgium — and how **Dafira** makes compliance effortless.
 
 
 ## 1. Are board minutes mandatory?
@@ -29,8 +29,8 @@ Minutes serve as **prima facie evidence** in court or in shareholder disputes. W
 ### The pain point:
 Board secretaries often spend **4–6 hours per meeting** drafting minutes manually, increasing the risk of errors or omissions. They chase clarity, cross-reference discussions, and struggle with complex issues without proper context.
 
-### The Govrn solution:
-Govrn uses **AI-powered drafting** to automatically generate structured minutes, ensuring completeness and consistency. Explore our [AI Minute Builder](/features/ai-minute-builder).
+### The Dafira solution:
+Dafira uses **AI-powered drafting** to automatically generate structured minutes, ensuring completeness and consistency. Explore our [AI Minute Builder](/features/ai-minute-builder).
 
 ---
 
@@ -68,8 +68,8 @@ Poor archiving practices can result in non-compliance, create disputes during du
 ### The pain point:
 Many boards still rely on **scattered emails or shared drives**, creating version control problems and security risks. Corporate secretaries struggle with **document distribution** across multiple general-purpose tools, often leading to confidential information leakage.
 
-### The Govrn solution:
-Govrn offers a **secure, GDPR-compliant repository**, with encryption, role-based access, and audit trails. Documents remain accessible only to authorised stakeholders. Learn more about our [secure document collaboration](/features/document-collaboration).
+### The Dafira solution:
+Dafira offers a **secure, GDPR-compliant repository**, with encryption, role-based access, and audit trails. Documents remain accessible only to authorised stakeholders. Learn more about our [secure document collaboration](/features/document-collaboration).
 
 ---
 
@@ -106,8 +106,8 @@ Belgium’s linguistic regime applies to official company documents:
 ### Why it matters:  
 Minutes filed in the wrong language risk being rejected by the clerk’s office or court registry.  
 
-### The Govrn solution:  
-Govrn allows **multilingual templates**, so boards can draft minutes internally in English and then export them in the legally required language for compliance.
+### The Dafira solution:  
+Dafira allows **multilingual templates**, so boards can draft minutes internally in English and then export them in the legally required language for compliance.
 
 
 ## 4. Can board minutes be signed electronically?
@@ -122,8 +122,8 @@ Using the wrong type of signature can delay filings or invalidate records.
 ### The pain point:
 Boards often lose time chasing directors for "wet ink" signatures after meetings. Corporate secretaries struggle to **ensure timely signing of meeting minutes and documents**, creating delays in finalizing decisions and governance compliance.
 
-### The Govrn solution:
-Govrn integrates with **advanced and qualified e-signature providers**, ensuring signatures are legally binding in Belgium and across the EU. Our platform automatically tracks pending signatures and provides clear visibility of the approval process.
+### The Dafira solution:
+Dafira integrates with **advanced and qualified e-signature providers**, ensuring signatures are legally binding in Belgium and across the EU. Our platform automatically tracks pending signatures and provides clear visibility of the approval process.
 
 ---
 
@@ -160,8 +160,8 @@ The CSA allows:
 ### Why it matters:  
 Boards must clearly document the method of decision-making (physical, electronic, or written) in the minutes.  
 
-### The Govrn solution:
-Govrn automatically tracks whether a resolution was adopted during a meeting, electronically, or in writing — and reflects this in the official record. Our platform provides comprehensive [meeting management](/features/) throughout the entire lifecycle.
+### The Dafira solution:
+Dafira automatically tracks whether a resolution was adopted during a meeting, electronically, or in writing — and reflects this in the official record. Our platform provides comprehensive [meeting management](/features/) throughout the entire lifecycle.
 
 
 ---
@@ -251,11 +251,11 @@ Govrn automatically tracks whether a resolution was adopted during a meeting, el
 
 ---
 
-## Strengthen your board's compliance with Govrn
+## Strengthen your board's compliance with Dafira
 
 Belgian boards face real challenges: **4–6 hours per meeting** drafting minutes manually, scattered document distribution across email, chasing directors for signatures, and ensuring CSA compliance. These pain points create unnecessary risks and delays.
 
-**Govrn eliminates these challenges** with purpose-built tools:
+**Dafira eliminates these challenges** with purpose-built tools:
 
 - **AI-powered minute drafting** that cuts drafting time by 50% while ensuring CSA Article 7:104 compliance
 - **Secure, GDPR-compliant document repository** eliminating email storms and SSO login pain
@@ -263,7 +263,7 @@ Belgian boards face real challenges: **4–6 hours per meeting** drafting minute
 - **Multilingual templates** supporting Belgium's linguistic requirements
 - **Automated resolution tracking** for electronic, written, and in-person decisions
 
-By automating compliance and eliminating administrative burden, Govrn enables Belgian boards to focus on what truly matters: **strategic governance and informed decision-making**.
+By automating compliance and eliminating administrative burden, Dafira enables Belgian boards to focus on what truly matters: **strategic governance and informed decision-making**.
 
 
 ---
@@ -272,7 +272,7 @@ By automating compliance and eliminating administrative burden, Govrn enables Be
 
 <div class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl p-8 my-8 border border-indigo-100 text-center">
   <h3 class="text-xl font-bold text-gray-900 mb-4">Transform Your Board Minutes Process</h3>
-  <p class="text-gray-700 mb-6">See how Govrn helps Belgian boards cut minute drafting time by 50% while ensuring full CSA compliance.</p>
+  <p class="text-gray-700 mb-6">See how Dafira helps Belgian boards cut minute drafting time by 50% while ensuring full CSA compliance.</p>
   <div class="space-y-3">
     <p class="text-sm text-gray-600">✅ Belgian legal requirements built-in</p>
     <p class="text-sm text-gray-600">✅ GDPR-compliant document management</p>
@@ -280,6 +280,6 @@ By automating compliance and eliminating administrative burden, Govrn enables Be
   </div>
 </div>
 
-👉 **[Discover all Govrn features](/features)** and see how we help boards stay compliant and efficient.  
+👉 **[Discover all Dafira features](/features)** and see how we help boards stay compliant and efficient.  
 
 ---

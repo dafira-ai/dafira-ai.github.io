@@ -2,8 +2,8 @@
 title: "Wat is een Stuurgroep? Definitie, Rollen en Verantwoordelijkheden"
 description: "Ontdek de essentiële rol van stuurgroepen bij het begeleiden van projecten en initiatieven, inclusief hun kernverantwoordelijkheden en operationele dynamiek."
 pubDate: 2024-04-03
-author: "Govrn"
-authorRole: "Govrn Redactieteam"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/meeting-committee.jpg"
 category: "Governance"
 tags: ["Stuurgroep", "Projectmanagement", "Governance", "Leiderschap"]

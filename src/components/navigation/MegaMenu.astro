@@ -1,218 +1,125 @@
 ---
-import IndustriesMenu from './menus/IndustriesMenu.astro';
-import RolesMenu from './menus/RolesMenu.astro';
-import RegionsMenu from './menus/RegionsMenu.astro';
+import { localizePath, type Lang } from '../../i18n/routes';
 
 interface Props {
-  isOpen: boolean;
-  lang: string;
+  lang?: Lang;
 }
 
-const { isOpen, lang="en" } = Astro.props;
+const { lang = 'en' } = Astro.props;
 
-const texts = {
+const t = {
   en: {
-    industries: "Industries",
-    roles: "Roles",
-    regions: "Regions"
+    industries: 'Industries', roles: 'Roles', regions: 'Regions',
+    items: {
+      industries: [
+        ['Financial services', 'Banks, insurers and investment firms', '/industries/financial-services'],
+        ['Healthcare', 'Hospitals, care groups and medical devices', '/industries/healthcare'],
+        ['Real estate', 'Property investment and management', '/industries/real-estate'],
+        ['Family business', 'Multi-entity governance for family groups', '/industries/family-business'],
+      ],
+      roles: [
+        ['CEO & executives', 'Prepare the board and follow up on decisions', '/for/ceo'],
+        ['Board members', 'Read, annotate and vote from any device', '/for/board-member'],
+        ['Board secretary', 'Agendas, board packs and minutes in one flow', '/for/board-secretary'],
+        ['General counsel', 'Resolutions, registers and audit trail', '/for/general-counsel'],
+      ],
+      regions: [
+        ['Saudi Arabia · Vision 2030', 'CMA corporate governance requirements', '/regions/saudi-vision-2030'],
+      ],
+    },
   },
   fr: {
-    industries: "Industries",
-    roles: "Rôles",
-    regions: "Régions"
+    industries: 'Secteurs', roles: 'Rôles', regions: 'Régions',
+    items: {
+      industries: [
+        ['Services financiers', 'Banques, assureurs et sociétés d’investissement', '/industries/financial-services'],
+        ['Santé', 'Hôpitaux, groupes de soins et dispositifs médicaux', '/industries/healthcare'],
+        ['Immobilier', 'Investissement et gestion immobilière', '/industries/real-estate'],
+        ['Entreprise familiale', 'Gouvernance multi-entités des groupes familiaux', '/industries/family-business'],
+      ],
+      roles: [
+        ['CEO et direction', 'Préparer le conseil et suivre les décisions', '/for/ceo'],
+        ['Administrateurs', 'Lire, annoter et voter depuis tout appareil', '/for/board-member'],
+        ['Secrétaire du conseil', 'Ordres du jour, board packs et procès-verbaux', '/for/board-secretary'],
+        ['Directeur juridique', 'Résolutions, registres et piste d’audit', '/for/general-counsel'],
+      ],
+      regions: [
+        ['Arabie saoudite · Vision 2030', 'Exigences de gouvernance de la CMA', '/regions/saudi-vision-2030'],
+      ],
+    },
   },
   nl: {
-    industries: "Industrieën",
-    roles: "Rollen",
-    regions: "Regio's"
-  }
+    industries: 'Sectoren', roles: 'Rollen', regions: 'Regio’s',
+    items: {
+      industries: [
+        ['Financiële diensten', 'Banken, verzekeraars en beleggingsbedrijven', '/industries/financial-services'],
+        ['Gezondheidszorg', 'Ziekenhuizen, zorggroepen en medische technologie', '/industries/healthcare'],
+        ['Vastgoed', 'Vastgoedinvestering en -beheer', '/industries/real-estate'],
+        ['Familiebedrijf', 'Governance over meerdere entiteiten', '/industries/family-business'],
+      ],
+      roles: [
+        ['CEO en directie', 'De raad voorbereiden en besluiten opvolgen', '/for/ceo'],
+        ['Bestuurders', 'Lezen, annoteren en stemmen op elk toestel', '/for/board-member'],
+        ['Bestuurssecretaris', 'Agenda’s, board packs en notulen', '/for/board-secretary'],
+        ['General counsel', 'Resoluties, registers en audittrail', '/for/general-counsel'],
+      ],
+      regions: [
+        ['Saoedi-Arabië · Vision 2030', 'CMA-vereisten voor corporate governance', '/regions/saudi-vision-2030'],
+      ],
+    },
+  },
+  ar: {
+    industries: 'القطاعات', roles: 'الأدوار', regions: 'المناطق',
+    items: {
+      industries: [
+        ['الخدمات المالية', 'البنوك وشركات التأمين والاستثمار', '/industries/financial-services'],
+        ['الرعاية الصحية', 'المستشفيات ومجموعات الرعاية والأجهزة الطبية', '/industries/healthcare'],
+        ['العقارات', 'الاستثمار العقاري وإدارة الأملاك', '/industries/real-estate'],
+        ['الشركات العائلية', 'حوكمة متعددة الكيانات للمجموعات العائلية', '/industries/family-business'],
+      ],
+      roles: [
+        ['الرئيس التنفيذي والإدارة', 'التحضير لاجتماعات المجلس ومتابعة القرارات', '/for/ceo'],
+        ['أعضاء مجلس الإدارة', 'القراءة والتعليق والتصويت من أي جهاز', '/for/board-member'],
+        ['أمين سر المجلس', 'جداول الأعمال وحزم المجلس والمحاضر', '/for/board-secretary'],
+        ['المستشار القانوني', 'القرارات والسجلات ومسار التدقيق', '/for/general-counsel'],
+      ],
+      regions: [
+        ['المملكة العربية السعودية · رؤية 2030', 'متطلبات الحوكمة الصادرة عن هيئة السوق المالية', '/regions/saudi-vision-2030'],
+      ],
+    },
+  },
 }[lang];
 
-const industries = {
-  en: [
-    {
-      name: "Financial Services",
-      icon: "🏦",
-      description: "Banking, Insurance, and Investment firms",
-      href: "/industries/financial-services",
-    },
-    {
-      name: "Healthcare",
-      icon: "🏥",
-      description: "Hospitals, Medical Devices, and Healthcare providers",
-      href: "/industries/healthcare",
-    },
-    {
-      name: "Real Estate",
-      icon: "🏢",
-      description: "Property Investment and Management",
-      href: "/industries/real-estate",
-    },
-    {
-      name: "Family Business",
-      icon: "👨‍👩‍👧‍👦",
-      description: "Multi-entity governance for family businesses",
-      href: "/industries/family-business",
-    }
-  ],
-  fr: [
-    {
-      name: "Services Financiers",
-      icon: "🏦",
-      description: "Banque, Assurance et Sociétés d'investissement",
-      href: "/fr/industries/financial-services",
-    },
-    {
-      name: "Santé",
-      icon: "🏥",
-      description: "Hôpitaux, Dispositifs médicaux et Prestataires de soins",
-      href: "/fr/industries/healthcare",
-    },
-    {
-      name: "Immobilier",
-      icon: "🏢",
-      description: "Investissement et Gestion immobilière",
-      href: "/fr/industries/real-estate",
-    },
-    {
-      name: "Entreprise Familiale",
-      icon: "👨‍👩‍👧‍👦",
-      description: "Gouvernance multi-entités pour entreprises familiales",
-      href: "/fr/industries/family-business",
-    }
-  ],
-  nl: [
-    {
-      name: "Financiële Diensten",
-      icon: "🏦",
-      description: "Bank-, Verzekerings- en Beleggingsbedrijven",
-      href: "/nl/industries/financial-services",
-    },
-    {
-      name: "Gezondheidszorg",
-      icon: "🏥",
-      description: "Ziekenhuizen, Medische apparatuur en Zorgverleners",
-      href: "/nl/industries/healthcare",
-    },
-    {
-      name: "Vastgoed",
-      icon: "🏢",
-      description: "Vastgoedinvestering en -beheer",
-      href: "/nl/industries/real-estate",
-    },
-    {
-      name: "Familiebedrijf",
-      icon: "👨‍👩‍👧‍👦",
-      description: "Multi-entiteit governance voor familiebedrijven",
-      href: "/nl/industries/family-business",
-    }
-  ]
-}[lang];
-
-const regions = {
-  en: [
-    {
-      name: "Saudi Arabia - Vision 2030",
-      icon: "🇸🇦",
-      description: "CMA Corporate Governance & Economic Diversification",
-      href: "/regions/saudi-vision-2030",
-    }
-  ],
-  fr: [
-    {
-      name: "Arabie Saoudite - Vision 2030",
-      icon: "🇸🇦",
-      description: "Gouvernance d'entreprise CMA et diversification économique",
-      href: "/regions/saudi-vision-2030",
-    }
-  ],
-  nl: [
-    {
-      name: "Saoedi-Arabië - Vision 2030",
-      icon: "🇸🇦",
-      description: "CMA Corporate Governance en economische diversificatie",
-      href: "/regions/saudi-vision-2030",
-    }
-  ]
-}[lang];
+const columns = [
+  { title: t.industries, items: t.items.industries },
+  { title: t.roles, items: t.items.roles },
+  { title: t.regions, items: t.items.regions },
+];
 ---
 
-<div 
-  class={`absolute top-[calc(100%+1rem)] left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-sm shadow-xl border-t border-gray-100 transition-all duration-300 z-50 ${
-    isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4'
-  } overflow-hidden`}
-  style="min-width: 60vw;" >
-  <div class="w-full mx-auto px-2 sm:px-4 lg:px-4 py-12">
-    <div class="grid lg:grid-cols-5 gap-4"> <!-- Expanded to 5 columns for a wider layout -->
-      
-      <!-- Primary Navigation -->
-      <div class="w-full space-y-2">
-        <div class="space-y-2">
-          <button class="w-full text-left px-2 py-3 rounded-lg hover:bg-gray-50 text-gray-900 font-medium flex items-center justify-between group/nav" data-section="industries">
-            {texts.industries}
-            <svg class="w-5 h-5 text-gray-400 group-hover/nav:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-          <button class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 text-gray-900 font-medium flex items-center justify-between group/nav" data-section="roles">
-            {texts.roles}
-            <svg class="w-5 h-5 text-gray-400 group-hover/nav:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-          <button class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 text-gray-900 font-medium flex items-center justify-between group/nav" data-section="regions">
-            {texts.regions}
-            <svg class="w-5 h-5 text-gray-400 group-hover/nav:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+<div
+  class="mega-menu absolute top-full start-0 pt-3 opacity-0 invisible translate-y-1 transition group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 z-50"
+>
+  <div class="w-[min(880px,90vw)] bg-white border border-line rounded-md shadow-xl">
+    <div class="grid grid-cols-3 divide-x divide-line rtl:divide-x-reverse">
+      {columns.map((col) => (
+        <div class="p-6">
+          <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-gray-500 mb-4">{col.title}</p>
+          <ul class="space-y-1">
+            {col.items.map(([name, description, href]) => (
+              <li>
+                <a
+                  href={localizePath(lang, href)}
+                  class="block -mx-3 px-3 py-2.5 rounded-md hover:bg-surface transition-colors"
+                >
+                  <span class="block text-sm font-medium text-navy">{name}</span>
+                  <span class="block text-[13px] leading-snug text-gray-500 mt-0.5">{description}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
-      </div>
-
-      <!-- Content Sections -->
-      <div class="lg:col-span-4"> <!-- Increased the content area width -->
-        <div id="industries-content" class="hidden">
-          <IndustriesMenu industries={industries} />
-        </div>
-        <div id="roles-content" class="hidden">
-          <RolesMenu />
-        </div>
-        <div id="regions-content" class="hidden">
-          <RegionsMenu regions={regions} />
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </div>
-
-<script>
-  function initializeMegaMenu() {
-    const navButtons = document.querySelectorAll('button[data-section]');
-    const contentSections = {
-      industries: document.getElementById('industries-content'),
-      roles: document.getElementById('roles-content'),
-      regions: document.getElementById('regions-content')
-    };
-
-    // Show industries by default
-    contentSections.industries?.classList.remove('hidden');
-
-    navButtons.forEach(button => {
-      button.addEventListener('mouseenter', () => {
-        const section = button.getAttribute('data-section');
-        if (section) {
-          // Hide all sections
-          Object.values(contentSections).forEach(content => {
-            content?.classList.add('hidden');
-          });
-          // Show selected section
-          contentSections[section]?.classList.remove('hidden');
-        }
-      });
-    });
-  }
-
-  // Initialize when the DOM is ready
-  document.addEventListener('astro:page-load', initializeMegaMenu);
-  initializeMegaMenu();
-</script>

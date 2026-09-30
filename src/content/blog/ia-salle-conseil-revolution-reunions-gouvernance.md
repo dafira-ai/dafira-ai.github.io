@@ -2,8 +2,8 @@
 title: "L'IA dans la salle du conseil : révolutionner les réunions et la gouvernance"
 description: "Découvrez comment les outils propulsés par l'IA transforment les réunions du conseil et la gouvernance en automatisant les tâches, améliorant la prise de décision et renforçant la conformité. Apprenez comment l'IA permet de gagner du temps, réduire les coûts et optimiser l'efficacité en salle du conseil."
 pubDate: 2023-09-25
-author: "Govrn"
-authorRole: "Équipe éditoriale Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/meeting_3.jpg"
 category: "Technology"
 tags: ["Intelligence artificielle", "Réunions du conseil", "Logiciel de gestion du conseil", "Gouvernance d'entreprise"]

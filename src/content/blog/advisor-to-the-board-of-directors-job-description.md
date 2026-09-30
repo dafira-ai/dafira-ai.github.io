@@ -3,7 +3,7 @@ title: "Board of Directors Advisor: Job Description and Core Requirements"
 description: "Discover what a board of directors advisor does, including key responsibilities, required skills, and how this role strengthens governance, oversight and decision-making."
 pubDate: 2024-11-03
 author: "Jean-Louis Van Houwe"
-authorRole: "CEO & Founder at Govrn"
+authorRole: "CEO & Founder at Dafira"
 image: "/boussole.jpg"
 imageAlt: "Advisor to the board of directors job description: Strategic guidance compass for corporate governance and board decision-making excellence"
 category: "Governance"

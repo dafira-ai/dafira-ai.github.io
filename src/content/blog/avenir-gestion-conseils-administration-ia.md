@@ -2,8 +2,8 @@
 title: "L'avenir de la gestion des conseils d'administration propulsée par l'IA"
 description: "Découvrez comment l'intelligence artificielle transforme la gestion des conseils d'administration et leurs processus décisionnels."
 pubDate: 2024-01-06
-author: "Ludovic Laffineur"
-authorRole: "CTO chez Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/realestate.jpg"
 category: "Technology"
 tags: ["IA", "Innovation", "Gestion des conseils", "Transformation numérique"]

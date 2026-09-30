@@ -2,8 +2,8 @@
 title: "Wat is een Board Pack en Hoe Kan Bestuurssoftware Helpen?"
 description: "Ontdek het belang van board packs in corporate governance en hoe bestuurssoftware het maken, genereren en distribueren kan stroomlijnen voor effectieve besluitvorming."
 pubDate: 2024-10-23
-author: "Govrn"
-authorRole: "Govrn Redactieteam"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/book.jpg"
 category: "Technology"
 tags: ["Board Pack", "Bestuurssoftware", "Corporate Governance", "Vergadervoorbereiding"]

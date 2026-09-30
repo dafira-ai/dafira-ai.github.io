@@ -2,8 +2,8 @@
 title: "Understanding the Functions of the Executive: Importance and Examples"
 description: "Explore the pivotal roles and responsibilities of the executive branch in government, including the Head of State, Head of Government, Commander-in-Chief, Chief Diplomat, Chief Legislator, and Chief Executive."
 pubDate: 2022-03-15
-author: "Govrn"
-authorRole: "Govrn Editorial Team"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/suit.jpg"
 category: "Governance"
 tags: ["Executive Functions", "Government Roles", "Public Administration"]
@@ -69,6 +69,6 @@ This role is pivotal in translating legislative mandates into actionable governm
 
 In summary, the executive branch's multifaceted functions are vital for a government's success. Executives must exhibit leadership, management, and decision-making prowess to navigate complex challenges effectively.
 
-Modern tools, such as Govrn's board management software, can enhance executive performance by facilitating collaboration, secure document sharing, and streamlined meeting management. Our [AI-powered compliance monitoring](/features/ai-board-compliance-monitoring) helps ensure regulatory adherence, while our [AI assistant](/features/ai-assistant) provides data-driven insights for strategic decision-making. By leveraging such technologies, executives and board members can make informed decisions and drive organizational success.
+Modern tools, such as Dafira's board management software, can enhance executive performance by facilitating collaboration, secure document sharing, and streamlined meeting management. Our [AI-powered compliance monitoring](/features/ai-board-compliance-monitoring) helps ensure regulatory adherence, while our [AI assistant](/features/ai-assistant) provides data-driven insights for strategic decision-making. By leveraging such technologies, executives and board members can make informed decisions and drive organizational success.
 
 Understanding and effectively executing these functions enable governments and organizations to achieve their objectives and thrive in a dynamic environment.

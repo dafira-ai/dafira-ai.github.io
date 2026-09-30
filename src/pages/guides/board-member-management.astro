@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import GuideHeader from '../../components/guides/GuideHeader.astro';
+import GuideArticle from '../../components/guides/GuideArticle.astro';
+import { Button, Icon } from '../../components/ui';
 import GuideStep from '../../components/guides/GuideStep.astro';
 import GuideSubSection from '../../components/guides/GuideSubSection.astro';
 import GuideStepList from '../../components/guides/GuideStepList.astro';
@@ -44,13 +46,13 @@ const deactivateSteps = [
 ];
 ---
 
-<Layout title="How to Add and Manage Board Members - Govrn">
-  <main class="pt-24">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <GuideHeader
+<Layout title="How to Add and Manage Board Members - Dafira">
+  <main>
+    <GuideHeader
         title="How to Add and Manage Board Members"
-        description="Step-by-step instructions for adding new board members, managing roles, creating committees, and handling member deactivation in Govrn."
+        description="Step-by-step instructions for adding new board members, managing roles, creating committees, and handling member deactivation in Dafira."
       />
+    <GuideArticle>
 
       <GuideStep
         number={1}
@@ -62,13 +64,13 @@ const deactivateSteps = [
   loading="lazy"
             src="https://k0n.abe.mytemp.website/wp-content/uploads/2024/10/Untitled-design-1.png"
             alt="Inviting a new board member"
-            class="rounded-lg shadow-lg border border-gray-200 mb-6"
+            class="rounded-md border border-line mb-6"
           />
           <GuideStepList items={inviteSteps} />
         </div>
         
         <ProTip
-          tip="💡 You can invite multiple members at once by clicking 'Add Another' before sending the invitations."
+          tip="You can invite multiple members at once by clicking 'Add Another' before sending the invitations."
         />
 
         <GuideSubSection title="What Happens Next?">
@@ -90,35 +92,35 @@ const deactivateSteps = [
   loading="lazy"
             src="https://k0n.abe.mytemp.website/wp-content/uploads/2024/10/Untitled-design-1.png"
             alt="Changing member roles"
-            class="rounded-lg shadow-lg border border-gray-200 mb-6"
+            class="rounded-md border border-line mb-6"
           />
           <GuideStepList items={updateRoleSteps} />
         </div>
 
         <GuideSubSection title="Available Roles">
           <div class="grid md:grid-cols-3 gap-4">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">👑 Admin</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">Admin</h4>
               <ul class="text-sm text-gray-600 space-y-1">
-                <li>• Create content</li>
-                <li>• Manage members</li>
-                <li>• Full access</li>
+                <li>Create content</li>
+                <li>Manage members</li>
+                <li>Full access</li>
               </ul>
             </div>
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">👥 Member</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">Member</h4>
               <ul class="text-sm text-gray-600 space-y-1">
-                <li>• View content</li>
-                <li>• Add comments</li>
-                <li>• Vote on items</li>
+                <li>View content</li>
+                <li>Add comments</li>
+                <li>Vote on items</li>
               </ul>
             </div>
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">👀 Observer</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">Observer</h4>
               <ul class="text-sm text-gray-600 space-y-1">
-                <li>• View content</li>
-                <li>• Limited access</li>
-                <li>• No editing</li>
+                <li>View content</li>
+                <li>Limited access</li>
+                <li>No editing</li>
               </ul>
             </div>
           </div>
@@ -135,23 +137,23 @@ const deactivateSteps = [
   loading="lazy"
             src="https://k0n.abe.mytemp.website/wp-content/uploads/2024/10/Untitled-design-1.png"
             alt="Creating a committee"
-            class="rounded-lg shadow-lg border border-gray-200 mb-6"
+            class="rounded-md border border-line mb-6"
           />
           <GuideStepList items={createGroupSteps} />
         </div>
         
         <ProTip
-          tip="💡 Enable 'Historical Access' to give new committee members access to past documents and discussions."
+          tip="Enable 'Historical Access' to give new committee members access to past documents and discussions."
         />
 
         <GuideSubSection title="Quick Actions">
           <div class="grid grid-cols-2 gap-4">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">✏️ Edit Committee</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">Edit Committee</h4>
               <p class="text-sm text-gray-600">Click the committee name > Edit button > Make changes > Save</p>
             </div>
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">🗑️ Delete Committee</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">Delete Committee</h4>
               <p class="text-sm text-gray-600">Click the committee name > Settings > Delete > Confirm</p>
             </div>
           </div>
@@ -168,69 +170,59 @@ const deactivateSteps = [
   loading="lazy"
             src="https://k0n.abe.mytemp.website/wp-content/uploads/2024/10/Untitled-design-1.png"
             alt="Deactivating a member"
-            class="rounded-lg shadow-lg border border-gray-200 mb-6"
+            class="rounded-md border border-line mb-6"
           />
           <GuideStepList items={deactivateSteps} />
         </div>
         
         <ProTip
-          tip="⚠️ Before deactivating a member, make sure to transfer ownership of any documents they own to another member."
+          tip="Before deactivating a member, make sure to transfer ownership of any documents they own to another member."
         />
 
         <GuideSubSection title="What Happens After Deactivation?">
-          <div class="bg-white rounded-lg p-4 border border-gray-200 space-y-2">
-            <p class="text-gray-600">• Member loses access on the specified date</p>
-            <p class="text-gray-600">• Their comments and annotations remain visible</p>
-            <p class="text-gray-600">• Their account can be reactivated if needed</p>
+          <div class="border border-line rounded-md p-5 space-y-2">
+            <p class="text-gray-600">Member loses access on the specified date</p>
+            <p class="text-gray-600">Their comments and annotations remain visible</p>
+            <p class="text-gray-600">Their account can be reactivated if needed</p>
           </div>
         </GuideSubSection>
       </GuideStep>
 
       <!-- Quick Reference -->
-      <div class="mt-16 bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Quick Reference</h2>
+      <div class="mt-16 rounded-md p-8 border border-line bg-surface">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Quick Reference</h2>
         <div class="grid md:grid-cols-2 gap-6">
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Common Tasks</h3>
+            <h3 class="font-semibold text-navy mb-2">Common Tasks</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• Invite member: + > Invite Member</li>
-              <li>• Change role: Members > Name > Edit Role</li>
-              <li>• Create committee: Groups > + New Group</li>
-              <li>• Deactivate: Members > Name > Deactivate</li>
+              <li>Invite member: + > Invite Member</li>
+              <li>Change role: Members > Name > Edit Role</li>
+              <li>Create committee: Groups > + New Group</li>
+              <li>Deactivate: Members > Name > Deactivate</li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Keyboard Shortcuts</h3>
+            <h3 class="font-semibold text-navy mb-2">Keyboard Shortcuts</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• Open member list: <kbd class="px-2 py-1 bg-gray-100 rounded">M</kbd></li>
-              <li>• New invitation: <kbd class="px-2 py-1 bg-gray-100 rounded">N</kbd> + <kbd class="px-2 py-1 bg-gray-100 rounded">I</kbd></li>
-              <li>• Open groups: <kbd class="px-2 py-1 bg-gray-100 rounded">G</kbd></li>
+              <li>Open member list: <kbd class="px-1.5 py-0.5 bg-surface border border-line rounded-sm font-mono text-xs">M</kbd></li>
+              <li>New invitation: <kbd class="px-1.5 py-0.5 bg-surface border border-line rounded-sm font-mono text-xs">N</kbd> + <kbd class="px-1.5 py-0.5 bg-surface border border-line rounded-sm font-mono text-xs">I</kbd></li>
+              <li>Open groups: <kbd class="px-1.5 py-0.5 bg-surface border border-line rounded-sm font-mono text-xs">G</kbd></li>
             </ul>
           </div>
         </div>
       </div>
 
       <!-- Help Section -->
-      <div class="mt-8 bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Need Help?</h2>
+      <div class="mt-8 rounded-md p-8 border border-line">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Need Help?</h2>
         <p class="text-gray-600 mb-6">
           Our support team is available 24/7 to assist you with member management.
         </p>
-        <div class="flex space-x-4">
-          <a
-            href="/contact"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors"
-          >
-            Contact Support
-          </a>
-          <a
-            href="/guides"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-gray-900 bg-white border border-gray-200 hover:bg-gray-50 transition-colors"
-          >
-            View All Guides
-          </a>
+        <div class="flex flex-wrap gap-3 df-guide-actions">
+          <Button href="/contact">Contact Support</Button>
+          <Button href="/guides" variant="secondary">View All Guides</Button>
         </div>
       </div>
-    </article>
+    </GuideArticle>
   </main>
 </Layout>

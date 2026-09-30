@@ -2,8 +2,8 @@
 title: "The Risk of Strategic Management: What Leaders Should Know"
 description: "Explore the risk of strategic management and discover how organizations can recognize threats, address uncertainty and implement strategies to reduce potential negative impacts."
 pubDate: 2023-05-15
-author: "Govrn"
-authorRole: "Govrn Editorial Team"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/jump.jpg"
 category: "Best Practices"
 tags: ["Strategic Management", "Risk Management", "Corporate Governance", "Leadership"]

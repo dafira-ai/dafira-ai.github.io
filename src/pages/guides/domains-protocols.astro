@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import GuideHeader from '../../components/guides/GuideHeader.astro';
+import GuideArticle from '../../components/guides/GuideArticle.astro';
+import { Button, Icon } from '../../components/ui';
 import GuideStep from '../../components/guides/GuideStep.astro';
 import GuideSubSection from '../../components/guides/GuideSubSection.astro';
 import GuideStepList from '../../components/guides/GuideStepList.astro';
@@ -8,7 +10,7 @@ import ProTip from '../../components/guides/ProTip.astro';
 
 const networkRequirements = [
   "Allow HTTPS traffic (port 443) for all domains",
-  "Allow WSS traffic (port 443) for api.govrn.com",
+  "Allow WSS traffic (port 443) for api.dafira.ai",
   "Configure firewall rules to permit access",
   "Ensure DNS resolution for all domains",
   "Test connectivity to all required domains"
@@ -23,79 +25,59 @@ const troubleshootingSteps = [
 ];
 ---
 
-<Layout title="Domains and Protocols Guide - Govrn">
-  <main class="pt-24">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <GuideHeader
-        title="Understanding Govrn's Domains and Protocols"
-        description="Complete guide to the domains and protocols used by Govrn, including network requirements and troubleshooting tips."
+<Layout title="Domains and Protocols Guide - Dafira">
+  <main>
+    <GuideHeader
+        title="Understanding Dafira's Domains and Protocols"
+        description="Complete guide to the domains and protocols used by Dafira, including network requirements and troubleshooting tips."
       />
+    <GuideArticle>
 
       <GuideStep
         number={1}
         title="Core Domains Overview"
-        description="Learn about the essential domains that power Govrn's functionality:"
+        description="Learn about the essential domains that power Dafira's functionality:"
       >
         <div class="space-y-6">
-          <div class="bg-white rounded-lg p-6 border border-gray-200">
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-xl">
-                🖥️
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Front-end Domain</h4>
-                <p class="text-gray-600 mb-2">app.govrn.com</p>
-                <p class="text-sm text-gray-500">Main user interface for accessing Govrn platform</p>
-              </div>
-            </div>
-          </div>
 
-          <div class="bg-white rounded-lg p-6 border border-gray-200">
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-xl">
-                🗄️
-              </div>
+          <div class="border border-line rounded-md p-6">
+            <div class="flex items-start gap-4">
+              <Icon name="folder" class="w-5 h-5 text-navy mt-1" />
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Storage Domain</h4>
+                <h4 class="font-semibold text-navy mb-2">Storage Domain</h4>
                 <p class="text-gray-600 mb-2">stgovrnprodfr001.blob.core.windows.net</p>
                 <p class="text-sm text-gray-500">Secure storage for static files and documents</p>
               </div>
             </div>
           </div>
 
-          <div class="bg-white rounded-lg p-6 border border-gray-200">
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-xl">
-                🔗
-              </div>
+          <div class="border border-line rounded-md p-6">
+            <div class="flex items-start gap-4">
+              <Icon name="link" class="w-5 h-5 text-navy mt-1" />
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">API Domain</h4>
+                <h4 class="font-semibold text-navy mb-2">API Domain</h4>
                 <p class="text-gray-600 mb-2">prod.api.ongovrn.com</p>
                 <p class="text-sm text-gray-500">Backend services and data processing</p>
               </div>
             </div>
           </div>
 
-          <div class="bg-white rounded-lg p-6 border border-gray-200">
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-xl">
-                🔄
-              </div>
+          <div class="border border-line rounded-md p-6">
+            <div class="flex items-start gap-4">
+              <Icon name="refresh" class="w-5 h-5 text-navy mt-1" />
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">WebSocket Domain</h4>
-                <p class="text-gray-600 mb-2">api.govrn.com</p>
+                <h4 class="font-semibold text-navy mb-2">WebSocket Domain</h4>
+                <p class="text-gray-600 mb-2">api.dafira.ai</p>
                 <p class="text-sm text-gray-500">Real-time updates and notifications</p>
               </div>
             </div>
           </div>
 
-          <div class="bg-white rounded-lg p-6 border border-gray-200">
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-xl">
-                📝
-              </div>
+          <div class="border border-line rounded-md p-6">
+            <div class="flex items-start gap-4">
+              <Icon name="pen" class="w-5 h-5 text-navy mt-1" />
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Signature Domain</h4>
+                <h4 class="font-semibold text-navy mb-2">Signature Domain</h4>
                 <p class="text-gray-600 mb-2">apps.universign.com</p>
                 <p class="text-sm text-gray-500">E-signature services integration</p>
               </div>
@@ -104,14 +86,14 @@ const troubleshootingSteps = [
         </div>
 
         <ProTip
-          tip="Save these domains to your IT team's allowlist to ensure uninterrupted access to Govrn."
+          tip="Save these domains to your IT team's allowlist to ensure uninterrupted access to Dafira."
         />
       </GuideStep>
 
       <GuideStep
         number={2}
         title="Network Requirements"
-        description="Ensure your network is properly configured to use Govrn:"
+        description="Ensure your network is properly configured to use Dafira:"
       >
         <div class="mb-8">
           <GuideStepList items={networkRequirements} />
@@ -119,20 +101,20 @@ const troubleshootingSteps = [
 
         <GuideSubSection title="Protocol Details">
           <div class="grid md:grid-cols-2 gap-4">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">HTTPS (Port 443)</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">HTTPS (Port 443)</h4>
               <ul class="text-sm text-gray-600 space-y-1">
-                <li>• Secure web traffic</li>
-                <li>• Encrypted data transfer</li>
-                <li>• Required for all domains</li>
+                <li>Secure web traffic</li>
+                <li>Encrypted data transfer</li>
+                <li>Required for all domains</li>
               </ul>
             </div>
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">WSS (Port 443)</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">WSS (Port 443)</h4>
               <ul class="text-sm text-gray-600 space-y-1">
-                <li>• Real-time communication</li>
-                <li>• Live updates</li>
-                <li>• Required for api.govrn.com</li>
+                <li>Real-time communication</li>
+                <li>Live updates</li>
+                <li>Required for api.dafira.ai</li>
               </ul>
             </div>
           </div>
@@ -154,16 +136,16 @@ const troubleshootingSteps = [
 
         <GuideSubSection title="Common Issues">
           <div class="space-y-4">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">Connection Timeout</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">Connection Timeout</h4>
               <p class="text-sm text-gray-600">Usually indicates a firewall issue or network restriction. Contact your IT team to verify domain access.</p>
             </div>
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">WebSocket Error</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">WebSocket Error</h4>
               <p class="text-sm text-gray-600">Check if your network allows WebSocket connections. Some corporate networks may block them.</p>
             </div>
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">SSL Certificate Error</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">SSL Certificate Error</h4>
               <p class="text-sm text-gray-600">Ensure your system's date and time are correct, and your browser is up to date.</p>
             </div>
           </div>
@@ -171,50 +153,39 @@ const troubleshootingSteps = [
       </GuideStep>
 
       <!-- Quick Reference -->
-      <div class="mt-16 bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Quick Reference</h2>
+      <div class="mt-16 rounded-md p-8 border border-line bg-surface">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Quick Reference</h2>
         <div class="grid md:grid-cols-2 gap-6">
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Required Domains</h3>
+            <h3 class="font-semibold text-navy mb-2">Required Domains</h3>
             <ul class="space-y-2 text-gray-600 text-sm">
-              <li>• app.govrn.com</li>
-              <li>• stgovrnprodfr001.blob.core.windows.net</li>
-              <li>• prod.api.ongovrn.com</li>
-              <li>• api.govrn.com</li>
-              <li>• apps.universign.com</li>
+              <li>stgovrnprodfr001.blob.core.windows.net</li>
+              <li>prod.api.ongovrn.com</li>
+              <li>api.dafira.ai</li>
+              <li>apps.universign.com</li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Required Ports</h3>
+            <h3 class="font-semibold text-navy mb-2">Required Ports</h3>
             <ul class="space-y-2 text-gray-600 text-sm">
-              <li>• HTTPS: 443 (TCP)</li>
-              <li>• WSS: 443 (TCP)</li>
+              <li>HTTPS: 443 (TCP)</li>
+              <li>WSS: 443 (TCP)</li>
             </ul>
           </div>
         </div>
       </div>
 
       <!-- Help Section -->
-      <div class="mt-8 bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Need Help?</h2>
+      <div class="mt-8 rounded-md p-8 border border-line">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Need Help?</h2>
         <p class="text-gray-600 mb-6">
-          Having trouble connecting to Govrn? Our technical support team is here to help.
+          Having trouble connecting to Dafira? Our technical support team is here to help.
         </p>
-        <div class="flex space-x-4">
-          <a
-            href="/contact"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors"
-          >
-            Contact Support
-          </a>
-          <a
-            href="/guides"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-gray-900 bg-white border border-gray-200 hover:bg-gray-50 transition-colors"
-          >
-            View All Guides
-          </a>
+        <div class="flex flex-wrap gap-3 df-guide-actions">
+          <Button href="/contact">Contact Support</Button>
+          <Button href="/guides" variant="secondary">View All Guides</Button>
         </div>
       </div>
-    </article>
+    </GuideArticle>
   </main>
 </Layout>

@@ -1,265 +1,54 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import CTA from '../../../components/CTA.astro';
+import RoleLanding from '../../../components/industries/RoleLanding.astro';
+import { customerQuote, readCaseLabel } from '../../../components/industries/customerQuotes';
 
-const challenges = [
-  {
-    icon: "⚖️", 
-    title: "Indépendance préservée",
-    description: "Espaces privés et canaux de communication sécurisés pour maintenir votre objectivité et votre indépendance vis-à-vis de la direction"
-  },
-  {
-    icon: "🔍",
-    title: "Supervision efficace",
-    description: "Accès complet aux informations et outils nécessaires pour exercer un contrôle éclairé et impartial"
-  },
-  {
-    icon: "🤝",
-    title: "Collaboration autonome",
-    description: "Espaces de travail dédiés permettant aux administrateurs indépendants d'échanger en toute confidentialité"
-  },
-  {
-    icon: "⚡",
-    title: "Gestion des conflits",
-    description: "Outils de traçabilité documentaire pour identifier et gérer les potentiels conflits d'intérêts"
-  }
-];
-
-const features = [
-  {
-    title: "Espace de communication privé",
-    description: "Canaux sécurisés pour les échanges entre administrateurs indépendants",
-    icon: "💬",
-    benefits: [
-      "Fils de discussion privés",
-      "Espaces documentaires dédiés",
-      "Outils collaboratifs",
-      "Messagerie sécurisée"
-    ]
-  },
-  {
-    title: "Outils de supervision complets",
-    description: "Accédez à toutes les informations nécessaires pour un contrôle optimal",
-    icon: "📊",
-    benefits: [
-      "Historique documentaire",
-      "Suivi des activités",
-      "Indicateurs de performance",
-      "Alertes risques"
-    ]
-  },
-  {
-    title: "Analyses assistées par IA",
-    description: "Analyses intelligentes pour des décisions éclairées",
-    icon: "🤖",
-    benefits: [
-      "Analyse impartiale des données",
-      "Détection de tendances",
-      "Identification des risques",
-      "Analyses prédictives"
-    ]
-  }
-];
-
-const securityFeatures = [
-  {
-    icon: "🔒",
-    title: "Accès sécurisé",
-    description: "Permissions par rôle garantissant la confidentialité des échanges entre administrateurs indépendants"
-  },
-  {
-    icon: "📝",
-    title: "Piste d'audit",
-    description: "Traçabilité complète des accès et modifications de documents pour une transparence totale"
-  },
-  {
-    icon: "🛡️",
-    title: "Protection des données",
-    description: "Chiffrement et sécurité de niveau entreprise pour protéger vos discussions sensibles"
-  }
-];
-
-const testimonial = {
-  quote: "Govrn offre l'équilibre parfait entre indépendance et collaboration, nous permettant de maintenir notre objectivité tout en contribuant efficacement aux décisions du conseil.",
-  author: "Jean Dupont",
-  role: "Administrateur indépendant",
-  company: "Finance & Invest Brussels",
-  image: "/fib-pierre.webp"
+const hero = {
+  eyebrow: 'Pour les administrateurs indépendants',
+  title: 'Une supervision indépendante, avec la bonne information',
+  lead: 'Lisez le dossier du conseil sur n’importe quel appareil, échangez avec les autres administrateurs non exécutifs dans un espace privé et retrouvez les décisions passées quand vous en avez besoin.',
+  primary: { text: 'Demander une démo', href: '/fr/request-demo' },
+  secondary: { text: 'Nous contacter', href: '/fr/contact' },
+  screenshot: { src: '/onboarding-private-chat.png', alt: 'Messages privés entre membres du conseil dans Dafira' },
 };
+
+const challenges = {
+  title: 'Ce dont les administrateurs indépendants ont besoin',
+  lead: 'L’indépendance suppose de disposer de la même information que la direction, et d’un espace pour en discuter.',
+  items: [
+    { icon: 'scale', title: 'Préserver l’indépendance', text: 'Des espaces et des échanges privés, distincts de la direction exécutive.' },
+    { icon: 'search', title: 'Une supervision efficace', text: 'L’accès aux documents du conseil, aux procès-verbaux et aux décisions passées pour poser des questions éclairées.' },
+    { icon: 'users', title: 'Échanges entre pairs', text: 'Des conversations privées entre administrateurs indépendants pour préparer les sujets avant la réunion.' },
+    { icon: 'clipboard', title: 'Conflits d’intérêts', text: 'Une trace des accès aux documents et des intérêts déclarés, conservée avec les procès-verbaux.' },
+  ],
+};
+
+const features = {
+  title: 'Fonctionnalités pour les administrateurs indépendants',
+  lead: 'Ce que Dafira apporte à une supervision indépendante.',
+  items: [
+    { icon: 'chat', title: 'Communication privée', text: 'Des canaux sécurisés pour les échanges entre administrateurs indépendants.', items: ['Conversations privées', 'Espaces documentaires séparés', 'Messagerie sécurisée'] },
+    { icon: 'documents', title: 'Outils de supervision', text: 'Tout ce qu’il faut pour suivre la société entre les réunions.', items: ['Historique des documents', 'Registre des décisions', 'Suivi des actions', 'Annotations privées'] },
+    { icon: 'sparkle', title: 'Assistant IA', text: 'Posez des questions sur les documents du conseil et obtenez des résumés des documents longs avant la réunion.', items: ['Questions sur les documents du conseil', 'Résumés des documents longs'] },
+  ],
+};
+
+const security = {
+  title: 'Sécurité et confidentialité',
+  lead: 'Les échanges des administrateurs indépendants restent privés.',
+  link: { text: 'En savoir plus sur la sécurité', href: '/fr/security' },
+  items: [
+    { icon: 'lock', title: 'Accès sécurisé', text: 'Des autorisations par rôle séparent les espaces des administrateurs indépendants de ceux des autres utilisateurs.' },
+    { icon: 'clipboard', title: 'Piste d’audit', text: 'Une trace des accès et des modifications des documents, pour la transparence.' },
+    { icon: 'shield', title: 'Protection des données', text: 'Chiffrement en transit et au repos, et pratiques de protection des données conformes au RGPD.' },
+  ],
+};
+
+const quote = { ...customerQuote('fr', 'nathalie'), linkText: readCaseLabel.fr };
 ---
 
-<Layout title="Logiciel de gestion du conseil pour administrateurs indépendants | Govrn" description="Renforcez votre rôle d'administrateur indépendant avec des espaces sécurisés de collaboration, des outils de supervision complets et des analyses intelligentes.">
-  <main class="pt-16">
-    <!-- Section héro -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-              Pour les administrateurs indépendants
-            </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Préservez votre indépendance avec des
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                outils intelligents
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-12">
-              Renforcez votre rôle d'administrateur indépendant grâce à des espaces sécurisés, des outils de supervision complets et des analyses intelligentes.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/fr/request-demo"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Demander une démo
-              </a>
-              <a
-                href="/fr/contact"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-              >
-                Contacter l'équipe
-              </a>
-            </div>
-          </div>
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl transform rotate-3"></div>
-            <img 
-  loading="lazy"
-              src="/realestate.jpg"
-              alt="Interface Govrn"
-              class="relative rounded-2xl shadow-2xl"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section défis -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Les défis que nous résolvons
-          </h2>
-          <p class="text-xl text-gray-600">
-            Répondez aux enjeux clés des administrateurs indépendants avec notre solution complète
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section fonctionnalités -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Fonctionnalités pour administrateurs indépendants
-          </h2>
-          <p class="text-xl text-gray-600">
-            Des outils conçus pour soutenir une supervision efficace et indépendante
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600 mb-6">{feature.description}</p>
-              <ul class="space-y-3">
-                {feature.benefits.map(benefit => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section sécurité -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Sécurité de niveau entreprise
-          </h2>
-          <p class="text-xl text-gray-600">
-            Préservez votre indépendance grâce à des mesures de sécurité robustes
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {securityFeatures.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section témoignage -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-br from-primary to-blue-600 rounded-2xl overflow-hidden">
-          <div class="grid lg:grid-cols-2 gap-8 p-12">
-            <div class="text-white">
-              <blockquote class="text-2xl font-medium mb-8">
-                "{testimonial.quote}"
-              </blockquote>
-              <div class="flex items-center space-x-4">
-                <img 
-  loading="lazy"
-                  src={testimonial.image}
-                  alt={testimonial.author}
-                  class="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <div class="font-semibold">{testimonial.author}</div>
-                  <div class="text-white/80">{testimonial.role}</div>
-                  <div class="text-white/80">{testimonial.company}</div>
-                </div>
-              </div>
-            </div>
-            <div class="relative lg:text-right">
-              <a
-                href="/fr/case-studies/finance-invest-brussels"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-              >
-                Lire l'étude de cas
-                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Logiciel de gestion du conseil pour administrateurs indépendants | Dafira" description="Portail du conseil pour les administrateurs indépendants : espaces privés d’échange, accès aux documents du conseil et aux décisions passées, assistant IA pour les documents longs.">
+  <main>
+    <RoleLanding hero={hero} challenges={challenges} features={features} security={security} quote={quote} />
   </main>
 </Layout>

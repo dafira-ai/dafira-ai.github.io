@@ -1,538 +1,159 @@
 ---
-import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
-import saudiVisionLogo from '../../assets/Saudi_Vision_2030_logo.png';
-import saudiBoardMeeting from '../../assets/sa-thriving-economy-3.webp';
-import governanceSummit from '../../assets/sa-collaboration.jpg';
-import applicationHome from '../../assets/sa-man-working-tablet.jpg';
-import duringMeeting from '../../assets/sa-medium-shot-colleagues-having-meeting.jpg';
-import beforeMeeting from '../../assets/closeup-shot-male-hand-holding-crystal-ball-with-reflection-city.jpg';
-import dataDuringMeeting from '../../assets/business-person-looking-finance-graphs.jpg';
+import { PageHero, Section, SectionHeader, Button, Icon, CellGrid, FeatureList, Callout, Screenshot, CTA } from '../../components/ui';
 
-const visionPillars = [
+// Source: CMA Corporate Governance Regulations, English translation of the official Arabic text.
+// Issued by CMA Board Resolution 8-16-2017 (13/2/2017G), amended by Resolution 8-5-2023 (18/1/2023G).
+// Paraphrased, not quoted; article numbers checked against that text.
+const cgrUrl = 'https://cma.gov.sa/en/RulesRegulations/Regulations/Pages/default.aspx';
+
+const requirements = [
   {
-    title: "Governance, transparency & supervision",
-    quote: "Provide a safe and transparent infrastructure (maintaining financial markets stability).",
-    source: "Vision 2030 - Financial Sector Development Program",
-    icon: "⚖️",
-    image: governanceSummit,
-    govrnResponse: "Govrn's immutable digital ledger and AI-powered compliance monitoring create the transparent infrastructure demanded by Vision 2030. Every board decision, vote, and resolution is automatically documented and auditable, ensuring regulatory oversight and market confidence.",
-    features: [
-      { text: "Immutable audit trail", link: "/features/ai-board-compliance-monitoring" },
-      { text: "CMA compliance tracking", link: "/features/ai-board-compliance-monitoring" },
-      { text: "Automated governance reporting", link: "/features" }
-    ],
-    cta: { text: "Explore compliance features", link: "/features/ai-board-compliance-monitoring" }
+    article: 'Art. 30(b)',
+    requirement: 'The board meets at least four times a year, and at least once every three months.',
+    dafira: 'Board and committee meetings planned in one calendar, with invitations sent to every member.',
   },
   {
-    title: "Improve governance, performance & efficiency",
-    quote: "Improve governance, performance, and efficiency.",
-    source: "Vision 2030 - Financial Sector Development Program",
-    icon: "⚡",
-    image: duringMeeting,
-    govrnResponse: "Transform administrative burden into strategic velocity. Govrn's AI Minutes and automated workflows eliminate hours of manual work, allowing boards to focus on high-impact decisions that drive national economic diversification.",
-    features: [
-      { text: "AI-powered meeting minutes", link: "/features/ai-minute-builder" },
-      { text: "Automated agenda building", link: "/features/ai-powered-agenda-builder" },
-      { text: "Smart document management", link: "/features/document-collaboration" }
-    ],
-    cta: { text: "See how AI Minutes work", link: "/features/ai-minute-builder" }
+    article: 'Art. 30(c)',
+    requirement: 'The invitation reaches each member at least five days before the meeting, with the agenda and the necessary documents, except for urgent meetings.',
+    dafira: 'The agenda and the board pack are published together with the invitation.',
   },
   {
-    title: "Digital infrastructure for operational excellence",
-    quote: "The Program envisions a digital infrastructure that leads to a cashless society. As a result, the sector will provide a superior customer experience and achieve higher operational efficiency.",
-    source: "Vision 2030 - Financial Sector Development Program",
-    icon: "🏗️",
-    image: applicationHome,
-    govrnResponse: "Govrn delivers the digital governance infrastructure that Vision 2030 mandates. Our cloud-native platform enables seamless collaboration, real-time decision-making, and operational efficiency across your entire board ecosystem.",
-    features: [
-      { text: "Cloud-native architecture", link: "/security" },
-      { text: "Real-time collaboration", link: "/features/document-collaboration" },
-      { text: "Mobile-first design", link: "/features" }
-    ],
-    cta: { text: "Learn about our platform", link: "/features" }
+    article: 'Art. 33',
+    requirement: 'The board approves the agenda at the start of the meeting; any member may propose items, and objections are recorded in the minutes.',
+    dafira: 'Agenda builder with items per section; objections and additions recorded in the minutes.',
   },
   {
-    title: "Data transparency & performance tracking",
-    quote: "Ensure greater transparency for governments to monitor cash flows... Make available better information to support SME financing and facilitate performance tracking.",
-    source: "Vision 2030 - Financial Sector Development Program",
-    icon: "📊",
-    image: dataDuringMeeting,
-    govrnResponse: "Govrn's AI Insights transform board data into strategic intelligence. Track performance metrics, monitor regulatory compliance, and generate reports that demonstrate governance excellence to regulators and stakeholders.",
-    features: [
-      { text: "Board performance dashboards", link: "/features" },
-      { text: "Compliance analytics", link: "/features/ai-board-compliance-monitoring" },
-      { text: "Automated regulatory reporting", link: "/features" }
-    ],
-    cta: { text: "Discover AI insights", link: "/features/ai-assistant" }
+    article: 'Art. 31',
+    requirement: 'Unresolved remarks by members, and any opinion that differs from a board resolution, are recorded in detail in the minutes.',
+    dafira: 'The minutes keep dissenting opinions and remarks alongside the resolution they relate to.',
   },
   {
-    title: "FinTech innovation & trust",
-    quote: "In a FinTech-enabled digital economy, the ultimate currency in which stakeholders transact is trust.",
-    source: "Vision 2030 - FinTech Strategy",
-    icon: "🔐",
-    image: beforeMeeting,
-    govrnResponse: "Trust is built through transparency and security. Govrn combines bank-grade encryption, and complete auditability to establish trust as the foundation of your digital governance infrastructure.",
-    features: [
-      { text: "256-bit encryption", link: "/security" },
-      { text: "GDPR compliant", link: "/security" }
-    ],
-    cta: { text: "View security details", link: "/security" }
-  }
+    article: 'Art. 35(a)(1)',
+    requirement: 'The secretary documents each meeting: discussions, place, date, start and end times, attendees, decisions and voting results, kept in an organised register. The minutes are signed by the chair of the meeting, the attending members and the secretary.',
+    dafira: 'Attendance, votes and resolutions recorded with the meeting and kept in a decision log; minutes drafted with the AI minute builder and signed electronically.',
+  },
+  {
+    article: 'Art. 35(a)(6–7)',
+    requirement: 'Draft minutes are presented to members for their opinion before signature, and members receive a copy of the signed minutes promptly.',
+    dafira: 'Draft minutes shared in the board pack, where members can annotate them before signature, then circulated once signed.',
+  },
+  {
+    article: 'Art. 38',
+    requirement: 'Management provides board and committee members with complete, clear and accurate information in due course.',
+    dafira: 'One document library per board and committee, with access by role and an AI assistant to question long papers.',
+  },
+  {
+    article: 'Art. 39',
+    requirement: 'The board sets up mechanisms to assess annually the performance of the board, its members, its committees and executive management.',
+    dafira: 'Board evaluation questionnaires, with results kept alongside the board’s records.',
+  },
 ];
 
-const solutions = [
-  {
-    challenge: "Manual documentation & administrative burden",
-    solution: "AI Minutes + Automated Workflows",
-    impact: "Save 10+ hours per meeting cycle, eliminate documentation errors"
-  },
-  {
-    challenge: "Incomplete audit trails exposing directors to liability",
-    solution: "Immutable Digital Ledger",
-    impact: "Complete traceability of every decision, vote, and resolution"
-  },
-  {
-    challenge: "Difficulty measuring board effectiveness",
-    solution: "AI-Powered Performance Dashboards",
-    impact: "Real-time insights into governance quality and strategic gaps"
-  },
-  {
-    challenge: "Regulatory compliance burden (CMA, CSRD, GDPR)",
-    solution: "Automated Compliance Monitoring",
-    impact: "Continuous compliance tracking with proactive risk alerts"
-  },
-  {
-    challenge: "Fragmented communication & document chaos",
-    solution: "Centralized Knowledge Base",
-    impact: "Single source of truth for all board materials and decisions"
-  }
+const security = [
+  'Hosted on Microsoft Azure infrastructure',
+  'Encryption in transit and at rest',
+  'Access by board, committee and role',
+  'Multi-factor authentication',
+  'Audit trail of access and decisions',
+  'Data protection practices aligned with the GDPR',
 ];
 
-const trustLogos = [
-  { name: "Van de Velde", src: "/vdv-logo.png", link: "/case-studies/van-de-velde" },
-  { name: "Finance & Invest Brussels", src: "/fib-logo.png", link: "/case-studies/finance-invest-brussels" },
-  { name: "Care Property Invest", src: "/careproperty-logo.png", link: "/case-studies/care-property-invest" },
-  { name: "Toolbox", src: "/toolbox-logo.png", link: "/case-studies/toolbox" }
+const roles = [
+  { icon: 'user', title: 'Chair and CEO', text: 'Keep the board informed between meetings.', href: '/for/ceo' },
+  { icon: 'gavel', title: 'General counsel', text: 'Resolutions, signatures and the audit trail.', href: '/for/general-counsel' },
+  { icon: 'clipboard', title: 'Board secretary', text: 'Invitations, board packs, minutes and the register.', href: '/for/board-secretary' },
+  { icon: 'scale', title: 'Independent director', text: 'Information and private discussion for independent oversight.', href: '/for/independent-director' },
 ];
 ---
 
 <Layout
-  title="Saudi Vision 2030 Board Governance | CMA Compliance | Govrn"
-  description="Align with Vision 2030's digital governance mandate. Govrn delivers the transparent, efficient, and secure board infrastructure required by Saudi Arabia's Financial Sector Development Program."
-  image="/sau-vision-meta.jpg"
+  title="Board Governance in Saudi Arabia: CMA Regulations and Vision 2030 | Dafira"
+  description="How a board portal supports the board process set out in the CMA Corporate Governance Regulations: meetings, invitations, minutes, signatures, a register of decisions and board evaluation."
 >
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative min-h-[90vh] flex items-center overflow-hidden">
-      <!-- Background Image -->
-      <div class="absolute inset-0 z-0">
-        <Image
-          src={saudiBoardMeeting}
-          alt="Saudi Arabian board meeting - Vision 2030 digital transformation"
-          class="w-full h-full object-cover"
-          loading="eager"
-          quality={90}
-        />
-        <!-- Gradient Overlay for text readability -->
-        <div class="absolute inset-0 bg-gradient-to-br from-emerald-700/85 via-teal-600/80 to-green-600/85"></div>
-        <!-- Pattern Overlay -->
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_60%)]"></div>
-      </div>
+  <main>
+    <PageHero
+      eyebrow="Saudi Arabia · Vision 2030"
+      title="Board governance in Saudi Arabia"
+      lead="The Capital Market Authority’s Corporate Governance Regulations set out how boards of listed companies meet, record their decisions and keep their records. Dafira supports that process: invitations, board packs, minutes, signatures and a register of decisions."
+    >
+      <Fragment slot="actions">
+        <Button href="/request-demo">Book a demo</Button>
+        <Button variant="secondary" href="/contact">Contact sales</Button>
+      </Fragment>
+      <Screenshot slot="aside" src="/onboarding-event-detail.png" alt="Dafira meeting page with the agenda, attendance and a vote on the minutes" eager />
+    </PageHero>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-32">
-        <div class="text-center max-w-4xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-white/20 backdrop-blur-sm text-white border border-white/30 mb-8">
-            🇸🇦 Saudi Arabia - Vision 2030
-          </div>
-          <h1 class="text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-8">
-            Digital governance infrastructure <span class="text-emerald-200">aligned with Vision 2030</span>
-          </h1>
-          <p class="text-xl text-emerald-50 leading-relaxed mb-12">
-            Govrn delivers the transparent, efficient, and secure board management platform mandated by Saudi Arabia's Financial Sector Development Program. Transform regulatory compliance into competitive advantage.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/request-demo"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-emerald-900 bg-white hover:bg-emerald-50 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Request a demo
-            </a>
-            <a
-              href="/try"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-emerald-700/50 hover:bg-emerald-700/70 backdrop-blur-sm border-2 border-white/40 transition-colors duration-200"
-            >
-              Try for free
-            </a>
+
+    <Section space="md">
+      <div class="grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-5">
+          <SectionHeader layout="stacked" eyebrow="Context" title="Vision 2030 and the CMA framework" class="mb-0" />
+        </div>
+        <div class="lg:col-span-6 lg:col-start-7 space-y-4 text-gray-600 leading-relaxed">
+          <p>Vision 2030 includes a Financial Sector Development Program that aims to develop a diversified and effective financial sector, including a developed capital market.</p>
+          <p>For companies listed on the Saudi Exchange, board requirements are set by the Capital Market Authority in its Corporate Governance Regulations. They were issued in 2017 and amended in January 2023 following the new Companies Law. They are mandatory for companies listed on the Main Market, with some exceptions for guiding provisions, and largely guiding for the Parallel Market (Article 2).</p>
+          <p>The Regulations also set the composition of the board: at least two independent directors, or one third of the board, whichever is greater (Article 16).</p>
+          <div class="pt-2 flex flex-col sm:flex-row gap-x-8 gap-y-2">
+            <Button variant="link" href={cgrUrl} target="_blank" rel="noopener noreferrer">CMA rules and regulations</Button>
+            <Button variant="link" href="https://www.vision2030.gov.sa/en" target="_blank" rel="noopener noreferrer">Vision 2030 official site</Button>
           </div>
         </div>
       </div>
-    </section>
+    </Section>
 
-    <!-- Trust Section -->
-    <section class="py-16 bg-white border-y border-gray-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-center text-xl font-semibold text-gray-900 mb-12">
-          Trusted by forward-thinking leaders
-        </h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center mb-8">
-          {trustLogos.map(logo => (
-            <a href={logo.link} class="group opacity-70 hover:opacity-100 transition-opacity">
-              <img
-                loading="lazy"
-                src={logo.src}
-                alt={logo.name}
-                class="h-20 object-contain mx-auto grayscale group-hover:grayscale-0 transition-all duration-300"
-              />
-            </a>
-          ))}
+    <Section tone="surface" border="both">
+      <SectionHeader
+        eyebrow="CMA Corporate Governance Regulations"
+        title="What the Regulations ask of the board process"
+        lead="Selected provisions on meetings, minutes and records, summarised, with the part of Dafira that supports each one. The board and its secretary remain responsible for compliance."
+      />
+      <div class="border-t border-line">
+        <div class="hidden lg:grid grid-cols-12 gap-8 py-4 border-b border-line font-mono text-xs uppercase tracking-[0.08em] text-gray-500">
+          <div class="col-span-2">Article</div>
+          <div class="col-span-5">Requirement (summary)</div>
+          <div class="col-span-5">In Dafira</div>
         </div>
-        <div class="text-center">
-          <a
-            href="/testimonials"
-            class="inline-flex items-center text-green-700 hover:text-green-800 font-medium group"
-          >
-            Read customer success stories
-            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Vision 2030 Alignment Intro -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl font-bold text-gray-900 mb-6">
-          Built for Vision 2030's digital transformation
-        </h2>
-        <p class="text-xl text-gray-600 leading-relaxed mb-8">
-          Saudi Arabia's Financial Sector Development Program demands transparent governance, digital infrastructure, and operational efficiency. Govrn delivers on every mandate.
-        </p>
-        <p class="mb-8">
-          <Image
-            src={saudiVisionLogo}
-            alt="Saudi Vision 2030 - Kingdom of Saudi Arabia"
-            class="mx-auto h-24 w-auto"
-            loading="eager"
-          />
-        </p>
-        <div class="flex items-center justify-center gap-4 text-sm text-gray-500">
-          <a
-            href="https://www.vision2030.gov.sa/en"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center hover:text-green-700 transition-colors"
-          >
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-            Vision 2030 official site
-          </a>
-          <span class="text-gray-300">|</span>
-          <a
-            href="https://cma.org.sa/en/RulesRegulations/Regulations/Pages/default.aspx"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center hover:text-green-700 transition-colors"
-          >
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-            CMA regulations
-          </a>
-        </div>
-        
-      </div>
-    </section>
-
-    <!-- Vision 2030 Pillars -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="space-y-24">
-          {visionPillars.map((pillar, index) => (
-            <div class={`grid lg:grid-cols-2 gap-12 items-start ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
-              <!-- Content -->
-              <div class={index % 2 === 1 ? 'lg:col-start-2' : ''}>
-                <div class="text-5xl mb-6">{pillar.icon}</div>
-                <h3 class="text-3xl font-bold text-gray-900 mb-6">
-                  {pillar.title}
-                </h3>
-
-                <!-- Official Quote -->
-                <div class="bg-green-50 border-l-4 border-green-700 p-6 mb-8">
-                  <p class="text-lg text-gray-800 italic mb-4">"{pillar.quote}"</p>
-                  <p class="text-sm text-gray-600 font-medium">— {pillar.source}</p>
-                </div>
-
-                <!-- Govrn Response -->
-                <div class="mb-6">
-                  <h4 class="text-xl font-semibold text-gray-900 mb-3">How Govrn delivers</h4>
-                  <p class="text-lg text-gray-600 leading-relaxed mb-6">
-                    {pillar.govrnResponse}
-                  </p>
-                </div>
-
-                <!-- Key Features -->
-                <div class="space-y-2 mb-6">
-                  {pillar.features.map(feature => (
-                    <a href={feature.link} class="flex items-center text-gray-700 hover:text-green-700 transition-colors group">
-                      <svg class="w-5 h-5 text-green-700 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span class="group-hover:underline">{feature.text}</span>
-                      <svg class="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                      </svg>
-                    </a>
-                  ))}
-                </div>
-
-                <!-- CTA -->
-                <a
-                  href={pillar.cta.link}
-                  class="inline-flex items-center text-green-700 hover:text-green-800 font-semibold group"
-                >
-                  {pillar.cta.text}
-                  <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </a>
-              </div>
-
-              <!-- Image -->
-              <div class={index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
-                <div class="rounded-xl overflow-hidden shadow-lg h-full">
-                  <Image
-                    src={pillar.image}
-                    alt={pillar.title}
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                    quality={85}
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Mid-Page CTA -->
-    <section class="py-16 bg-gradient-to-r from-green-700 to-green-600 text-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold mb-4">
-          Ready to transform your board governance?
-        </h2>
-        <p class="text-xl text-green-50 mb-8">
-          See how Govrn aligns with Vision 2030 mandates to deliver transparent, efficient, and secure digital governance.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-green-700 bg-white hover:bg-gray-50 shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            Request a demo
-          </a>
-          <a
-            href="/features"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-green-800 hover:bg-green-900 border-2 border-white/20 transition-colors duration-200"
-          >
-            Explore all features
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- How Govrn Delivers Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            From governance complexity to strategic clarity
-          </h2>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            Govrn transforms the five critical challenges facing Saudi boards into competitive advantages through AI-powered automation and digital infrastructure.
-          </p>
-        </div>
-
-        <!-- Solutions Table -->
-        <div class="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden">
-          <div class="overflow-x-auto">
-            <table class="w-full">
-              <thead>
-                <tr class="bg-gray-50 border-b border-gray-200">
-                  <th class="px-6 py-4 text-left text-sm font-bold text-gray-900 uppercase tracking-wider">
-                    Governance challenge
-                  </th>
-                  <th class="px-6 py-4 text-left text-sm font-bold text-green-700 uppercase tracking-wider">
-                    Govrn solution
-                  </th>
-                  <th class="px-6 py-4 text-left text-sm font-bold text-gray-900 uppercase tracking-wider">
-                    Business impact
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-gray-200">
-                {solutions.map((item, index) => (
-                  <tr class={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                    <td class="px-6 py-6 text-gray-700">
-                      {item.challenge}
-                    </td>
-                    <td class="px-6 py-6">
-                      <p class="font-semibold text-green-700">{item.solution}</p>
-                    </td>
-                    <td class="px-6 py-6 text-gray-600">
-                      {item.impact}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        {requirements.map((row) => (
+          <div class="grid lg:grid-cols-12 gap-3 lg:gap-8 py-6 border-b border-line">
+            <p class="lg:col-span-2 font-mono text-sm text-navy">{row.article}</p>
+            <p class="lg:col-span-5 text-[15px] text-gray-700 leading-relaxed">{row.requirement}</p>
+            <p class="lg:col-span-5 text-[15px] text-ink leading-relaxed">{row.dafira}</p>
           </div>
+        ))}
+      </div>
+      <Callout class="mt-10 max-w-3xl">
+        Summaries based on the English translation of the Corporate Governance Regulations published by the CMA (Board Resolution 8-16-2017, amended by Resolution 8-5-2023). Arabic is the official language of the Regulations, and the current version is on the CMA website. This page is for information and is not legal advice.
+      </Callout>
+    </Section>
+
+    <Section>
+      <div class="grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-5">
+          <SectionHeader layout="stacked" eyebrow="Security" title="Confidential board information" lead="Board papers and minutes stay within the board." class="mb-8" />
+          <Button variant="link" href="/security">Read about security</Button>
+        </div>
+        <div class="lg:col-span-6 lg:col-start-7">
+          <FeatureList items={security} columns={2} />
+          <p class="mt-8 text-gray-600 leading-relaxed">Hosting location and local data protection requirements, including the Personal Data Protection Law, are discussed with each organisation before deployment.</p>
         </div>
       </div>
-    </section>
+    </Section>
 
-    <!-- For Board Leaders Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Purpose-built for board leaders
-          </h2>
-          <p class="text-xl text-gray-600">
-            Discover how Govrn empowers each board role to excel in Vision 2030's digital governance environment.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <a href="/for/ceo" class="group bg-gray-50 rounded-xl p-6 hover:bg-green-50 hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-green-700">
-            <div class="text-3xl mb-4">👔</div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-700">Chairman & CEO</h3>
-            <p class="text-gray-600 text-sm mb-4">Strategic oversight and performance dashboards</p>
-            <div class="flex items-center text-green-700 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-              Learn more
-              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
+    <Section tone="surface" border="top">
+      <SectionHeader title="By role" lead="How each member of the board works with Dafira." />
+      <CellGrid columns={4}>
+        {roles.map((role) => (
+          <a href={role.href} class="group bg-white p-6 lg:p-8 hover:bg-surface transition-colors flex flex-col">
+            <Icon name={role.icon} class="w-6 h-6 text-navy" />
+            <h3 class="mt-5 text-lg font-semibold text-navy">{role.title}</h3>
+            <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{role.text}</p>
+            <span class="mt-auto pt-6 text-[15px] font-medium text-primary group-hover:text-navy transition-colors">View role page</span>
           </a>
+        ))}
+      </CellGrid>
+    </Section>
 
-          <a href="/for/general-counsel" class="group bg-gray-50 rounded-xl p-6 hover:bg-green-50 hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-green-700">
-            <div class="text-3xl mb-4">⚖️</div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-700">General Counsel</h3>
-            <p class="text-gray-600 text-sm mb-4">Compliance automation and risk management</p>
-            <div class="flex items-center text-green-700 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-              Learn more
-              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </a>
-
-          <a href="/for/board-secretary" class="group bg-gray-50 rounded-xl p-6 hover:bg-green-50 hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-green-700">
-            <div class="text-3xl mb-4">📋</div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-700">Board Secretary</h3>
-            <p class="text-gray-600 text-sm mb-4">AI-powered minutes and workflow automation</p>
-            <div class="flex items-center text-green-700 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-              Learn more
-              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </a>
-
-          <a href="/for/independent-director" class="group bg-gray-50 rounded-xl p-6 hover:bg-green-50 hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-green-700">
-            <div class="text-3xl mb-4">🎯</div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-700">Independent Director</h3>
-            <p class="text-gray-600 text-sm mb-4">Complete transparency and audit trails</p>
-            <div class="flex items-center text-green-700 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-              Learn more
-              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Trust as Currency Section -->
-    <section class="py-20 bg-gradient-to-br from-green-700 to-green-600 text-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="mb-8">
-          <div class="text-6xl mb-6">🔐</div>
-          <h2 class="text-4xl font-bold mb-6">
-            "Trust is the ultimate currency"
-          </h2>
-          <p class="text-xl text-green-50 italic mb-4">
-            — Vision 2030 FinTech Strategy
-          </p>
-        </div>
-
-        <p class="text-xl leading-relaxed mb-12 text-green-50">
-          Govrn builds trust through transparency, security, and compliance. Our platform combines bank-grade encryption, and complete audit trails to establish the digital trust infrastructure that Vision 2030 demands.
-        </p>
-
-        <div class="grid md:grid-cols-3 gap-6 mb-12">
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-            <div class="text-2xl font-bold mb-2">256-bit</div>
-            <div class="text-green-100">Encryption</div>
-          </div>
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-            <div class="text-2xl font-bold mb-2">GDPR</div>
-            <div class="text-green-100">Compliant</div>
-          </div>
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-            <div class="text-2xl font-bold mb-2">100%</div>
-            <div class="text-green-100">Audit trail</div>
-          </div>
-        </div>
-
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-green-700 bg-white hover:bg-gray-50 shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            Request a demo
-          </a>
-          <a
-            href="/security"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-green-800 hover:bg-green-900 border-2 border-white/20 transition-colors duration-200"
-          >
-            Learn about security
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="py-20 bg-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl font-bold text-gray-900 mb-6">
-          Ready to align with Vision 2030?
-        </h2>
-        <p class="text-xl text-gray-600 leading-relaxed mb-8">
-          Join forward-thinking organizations building the transparent, efficient, and secure governance infrastructure mandated by Saudi Arabia's digital transformation.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-green-700 hover:bg-green-800 shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            Request a demo
-          </a>
-          <a
-            href="/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-green-700/20 hover:bg-gray-50 transition-colors duration-200"
-          >
-            Try for free
-          </a>
-        </div>
-      </div>
-    </section>
-
+    <CTA />
   </main>
 </Layout>

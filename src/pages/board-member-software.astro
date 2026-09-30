@@ -1,46 +1,37 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
-import FAQ from "../components/FAQ.astro";
-import CTA from "../components/CTA.astro";
-import { Image } from 'astro:assets';
-import applicationHomePageImg from '../assets/images/application-home-page.png';
-import sharepointLogoImg from '../assets/images/sharepoint-logo.png';
-import googleDriveLogoImg from '../assets/images/google-drive-logo.png';
-import dropboxLogoImg from '../assets/images/dropbox-logo.png';
-import oneDriveLogoImg from '../assets/images/onedrive-logo.png';
-import diligentLogoImg from '../assets/images/diligent-logo.png';
+import BoardMemberSoftware from "../components/campaigns/BoardMemberSoftware.astro";
 
 const boardMemberFaqs = [
   {
     question: "Do I keep access to my documents if I leave a board?",
-    answer: "Yes — your Govrn One archive remains yours, even after your mandate ends."
+    answer: "Yes. Your Dafira One archive remains yours, even after your mandate ends."
   },
   {
-    question: "Can Govrn One work with multiple boards at the same time?",
-    answer: "Absolutely. Govrn One was designed to centralize documents across all your boards in one place."
+    question: "Can Dafira One work with multiple boards at the same time?",
+    answer: "Yes. Dafira One was designed to centralise documents across all your boards in one place."
   },
   {
-    question: "How secure is Govrn One?",
-    answer: "Govrn One is EU hosted, with enterprise-grade encryption and GDPR compliance. Your documents remain private and secured."
+    question: "How secure is Dafira One?",
+    answer: "Dafira One is EU hosted, with enterprise-grade encryption and GDPR compliance. Your documents remain private and secured."
   },
   {
-    question: "What makes Govrn One different from Govrn and other board management platforms?",
-    answer: "Govrn and other board management platforms are built for the organization. Govrn One is built for the individual board member - it's your personal board workspace."
+    question: "What makes Dafira One different from Dafira and other board management platforms?",
+    answer: "Dafira and other board management platforms are built for the organisation. Dafira One is built for the individual board member: it is your personal board workspace."
   }
 ];
 
 const productStructuredData = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Govrn One",
+  "name": "Dafira One",
   "applicationCategory": "BusinessApplication",
-  "description": "Personal board member software, EU hosted & secured. Unlike Govrn which serves organizations, Govrn One is built for individual board members to centralize documents from all their boards, prepare with AI, and keep their archive forever.",
+  "description": "Personal board member software, EU hosted & secured. Unlike Dafira which serves organizations, Dafira One is built for individual board members to centralize documents from all their boards, prepare with AI, and keep their archive forever.",
   "operatingSystem": "Web",
-  "url": "https://govrn.com/board-member-software",
+  "url": "https://dafira.ai/board-member-software",
   "offers": {
     "@type": "Offer",
-    "url": "https://govrn.com/request-demo",
+    "url": "https://dafira.ai/request-demo",
     "availability": "https://schema.org/InStock"
   },
   "featureList": [
@@ -51,857 +42,134 @@ const productStructuredData = {
     "EU-hosted with enterprise-grade security"
   ]
 };
-
 const combinedStructuredData = [productStructuredData];
+
+const t = {
+  hero: {
+    eyebrow: 'Personal board member software',
+    title: 'Board member software, built for you, not your board',
+    lead: 'Dafira One is personal board member software, fully EU-hosted and secured. Dafira serves organisations and traditional board portals are built for companies; Dafira One gives you your own board portal to centralise documents, prepare with AI and keep your archive, across all your boards.',
+    primary: 'Request early access',
+    note: 'EU hosted · GDPR compliant · 256-bit encryption',
+    imageAlt: 'Dafira One personal board member software interface',
+  },
+  compare: {
+    eyebrow: 'New product',
+    title: 'Dafira vs Dafira One',
+    columns: [
+      { name: 'Dafira', audience: 'For organisations', items: ['Board management for companies', 'Organisational document control', 'Data belongs to the company'] },
+      { name: 'Dafira One', audience: 'For individual board members', items: ['Personal workspace across all boards', 'Your documents, your control', 'Lifetime archive, even after mandates'] },
+    ],
+  },
+  integrations: {
+    title: 'Connects to your board platforms',
+    lead: 'Dafira One syncs with the platforms your boards already use and brings your documents into one personal workspace.',
+    other: 'Other board portals',
+    email: 'Email',
+    more: 'More to come',
+    note: 'Automatic synchronisation: set it up once and Dafira One keeps your documents up to date across all your board positions.',
+  },
+  portal: {
+    title: 'Your personal board portal and document management',
+    lead: 'Stop losing time in email threads. Dafira One collects your board documents, agendas and attachments from different boards and arranges them into a clear structure of meetings and events.',
+    items: [
+      { icon: 'document', title: 'Automatic document management', text: 'Dafira organises for companies; Dafira One organises for you personally, across all your boards.' },
+      { icon: 'clock', title: 'A timeline of meetings and decisions', text: 'Follow how decisions evolve across all your board positions.' },
+      { icon: 'lock', title: 'One private space, just for you', text: 'Your personal board workspace, independent from Dafira or any organisation.' },
+    ],
+  },
+  ai: {
+    title: 'Prepare for board meetings with AI',
+    lead: 'No need to read hundreds of pages unaided. Dafira One’s AI reviews your documents, regulations and reports to surface what matters for your responsibilities as a board member.',
+    items: [
+      { icon: 'document', title: 'Summaries of lengthy documents', text: 'Focus on the points that matter for the next meeting.' },
+      { icon: 'shield', title: 'Compliance and regulation highlights', text: 'Relevant regulatory requirements flagged in your documents.' },
+      { icon: 'sparkle', title: 'AI insights to support your decisions', text: 'Context from your documents to inform your questions and decisions.' },
+    ],
+  },
+  archive: {
+    title: 'Keep your board archive, even after your mandate',
+    lead: 'Your knowledge does not end when your mandate does. Dafira One keeps your documents and notes yours, so you build a personal board archive over time.',
+    items: [
+      { icon: 'key', title: 'Permanent access to your data', text: 'Your board documents remain accessible regardless of organisational changes.' },
+      { icon: 'bank', title: 'A lifetime archive of your board work', text: 'Build a complete record of your governance experience.' },
+      { icon: 'book', title: 'Your personal governance library', text: 'A knowledge base for future board positions.' },
+    ],
+  },
+  conflicts: {
+    title: 'Know your boards and spot conflicts of interest',
+    lead: 'A board is about people as much as documents. Dafira One helps you understand your fellow board members and discreetly flags potential conflicts of interest.',
+    card: {
+      title: 'Your board network',
+      meta: 'AI analysis',
+      rows: [
+        { label: 'M. Davis', text: 'Former CFO, RetailCorp', tone: 'ok' as const, status: 'No conflict' },
+        { label: 'J. Smith', text: 'CEO, CompetitorCorp · direct competitor', tone: 'danger' as const, status: 'Competitor' },
+        { label: 'R. Brown', text: 'Partner, VendorLaw LLC · provides legal services', tone: 'pending' as const, status: 'Relationship' },
+      ],
+      footer: 'Potential conflicts flagged before the meeting',
+      caption: 'Illustration · fictional names',
+    },
+    items: [
+      { icon: 'search', title: 'Automatic screening', text: 'AI reviews board member backgrounds, business relationships and cross-board positions to identify potential conflicts.' },
+      { icon: 'bell', title: 'Alerts and recommendations', text: 'Alerts about potential conflicts, with recommendations for recusal on agenda items.' },
+      { icon: 'users', title: 'Across all your boards', text: 'Use what you know from all your board positions to keep governance standards high.' },
+    ],
+  },
+  security: {
+    title: 'Secured. EU hosted. Always yours.',
+    lead: 'Your data stays in Europe. Dafira One is fully EU-hosted and GDPR compliant.',
+    items: [
+      { icon: 'lock', title: 'Enterprise-grade encryption', text: 'Your documents are encrypted in transit and at rest.' },
+      { icon: 'globe', title: 'Data stored in the EU', text: 'European data hosting and GDPR compliance.' },
+      { icon: 'shield', title: 'Privacy-first architecture', text: 'Designed from the start with privacy and security in mind.' },
+    ],
+  },
+  form: {
+    eyebrow: 'Early access',
+    title: 'Get early access to Dafira One',
+    lead: 'Register your interest and we will contact you when early access opens.',
+    benefits: ['Free early access', 'EU hosted and secured', 'AI-assisted preparation'],
+    heading: 'Request early access',
+    subheading: 'Takes less than two minutes. No spam; unsubscribe at any time.',
+    firstName: 'First name',
+    lastName: 'Last name',
+    email: 'Professional email',
+    emailPlaceholder: 'your.email@company.com',
+    boardCount: 'How many boards do you currently serve on?',
+    boardOptions: [
+      { value: '', label: 'Select number of boards' },
+      { value: '1', label: '1 board' },
+      { value: '2', label: '2 boards' },
+      { value: '3', label: '3 boards' },
+      { value: '4', label: '4 boards' },
+      { value: '5+', label: '5 or more boards' },
+    ],
+    trust: ['GDPR compliant', '256-bit encryption', 'EU data centres'],
+    submit: 'Request free early access',
+    privacyBefore: 'By signing up, you agree to our ',
+    privacyLink: 'privacy policy',
+    privacyAfter: '. No spam; unsubscribe at any time.',
+    successTitle: 'Thank you, you are on the list',
+    successText: 'You are registered for early access to Dafira One.',
+    nextTitle: 'What happens next',
+    next: ['Updates on our development progress', 'A notification when early access opens'],
+  },
+  faq: {
+    title: 'Frequently asked questions',
+    subtitle: 'About Dafira One, personal board member software',
+    inLanguage: 'en',
+    faqs: boardMemberFaqs,
+  },
+};
 ---
 
 <Layout
-  title="Govrn One — Secured EU Hosted Board Member Software"
-  description="Personal board member software, EU hosted & secured. Centralize documents from all your boards, prepare with AI, and keep your archive forever."
+  title="Dafira One — Secured EU Hosted Board Member Software"
+  description="Personal board member software, EU hosted & secured. Centralise documents from all your boards, prepare with AI, and keep your archive after your mandate."
   structuredData={combinedStructuredData}
 >
-  <main class="overflow-hidden">
-    <!-- Hero Section -->
-    <Hero
-      badgeText="Personal board member software"
-      heading={{
-        main: "Board member software — built for you,",
-        highlight: "not your board"
-      }}
-      description="Govrn One is the first personal board member software, fully EU-hosted and secured. Unlike Govrn which serves organizations, or traditional board portals built for companies, Govrn One gives you your own personal board portal: a space to centralize documents, prepare with AI insights, and keep your archive forever — across all your boards."
-      ctaButtons={{
-        primary: {
-          text: "Request early access",
-          href: "#board-member-software-form"
-        },
-        secondary: {
-          text: "Watch video"
-        }
-      }}
-      securityFeatures={[
-        {
-          title: "EU",
-          subtitle: "Hosted"
-        },
-        {
-          title: "GDPR",
-          subtitle: "Compliant"
-        },
-        {
-          title: "256-bit",
-          subtitle: "Encryption"
-        }
-      ]}
-      imageAlt="Govrn One personal board member software interface"
-      imageSrc={applicationHomePageImg}
-    />
-
-    <!-- Govrn vs Govrn One Comparison -->
-    <section class="py-16 bg-white border-b border-gray-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <p class="text-sm font-semibold text-primary uppercase tracking-wide">New product</p>
-          <h2 class="mt-2 text-2xl font-bold text-gray-900">Govrn vs Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">One</span></h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <!-- Govrn -->
-          <div class="bg-gray-50 p-6 rounded-xl">
-            <div class="text-center">
-              <h3 class="text-xl font-semibold text-gray-900 mb-2">Govrn</h3>
-              <p class="text-sm text-gray-600 mb-4">For organizations</p>
-              <div class="space-y-3 text-left">
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-gray-400 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Board management for companies</span>
-                </div>
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-gray-400 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Organizational document control</span>
-                </div>
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-gray-400 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Data belongs to the company</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Govrn One -->
-          <div class="bg-primary/5 p-6 rounded-xl border-2 border-primary/20">
-            <div class="text-center">
-              <h3 class="text-xl font-semibold text-primary mb-2">Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">One</span></h3>
-              <p class="text-sm text-primary/70 mb-4">For Individual Board Members</p>
-              <div class="space-y-3 text-left">
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Personal workspace across all boards</span>
-                </div>
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Your documents, your control</span>
-                </div>
-                <div class="flex items-start">
-                  <svg class="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-sm text-gray-700">Lifetime archive, even after mandates</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Integrations Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Connects to all your board platforms
-          </h2>
-          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
-            Govrn One automatically syncs with the platforms your boards already use, bringing all your documents into one personal workspace.
-          </p>
-        </div>
-
-        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-center">
-          <!-- SharePoint -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3 bg-white shadow-sm">
-              <Image
-                src={sharepointLogoImg}
-                alt="SharePoint"
-                class="w-10 h-10 object-contain"
-                width={40}
-                height={40}
-              />
-            </div>
-            <span class="text-sm font-semibold text-gray-900">SharePoint</span>
-          </div>
-
-          <!-- Google Drive -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3 bg-white shadow-sm">
-              <Image
-                src={googleDriveLogoImg}
-                alt="Google Drive"
-                class="w-10 h-10 object-contain"
-                width={40}
-                height={40}
-              />
-            </div>
-            <span class="text-sm font-semibold text-gray-900">Google Drive</span>
-          </div>
-
-          <!-- Diligent -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3 bg-white shadow-sm">
-              <Image
-                src={diligentLogoImg}
-                alt="Diligent"
-                class="w-10 h-10 object-contain"
-                width={40}
-                height={40}
-              />
-            </div>
-            <span class="text-sm font-semibold text-gray-900">Diligent</span>
-          </div>
-
-          <!-- Other BMS -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-3">
-              <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M9 11H7v3h2v-3zm4 0h-2v3h2v-3zm4 0h-2v3h2v-3zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
-              </svg>
-            </div>
-            <span class="text-sm font-semibold text-gray-900">Other BMS</span>
-          </div>
-
-          <!-- Email -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center mb-3">
-              <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-              </svg>
-            </div>
-            <span class="text-sm font-semibold text-gray-900">Email</span>
-          </div>
-
-          <!-- Dropbox -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3 bg-white shadow-sm">
-              <Image
-                src={dropboxLogoImg}
-                alt="Dropbox"
-                class="w-10 h-10 object-contain"
-                width={40}
-                height={40}
-              />
-            </div>
-            <span class="text-sm font-semibold text-gray-900">Dropbox</span>
-          </div>
-
-          <!-- OneDrive -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3 bg-white shadow-sm">
-              <Image
-                src={oneDriveLogoImg}
-                alt="OneDrive"
-                class="w-8 h-8 object-contain"
-                width={32}
-                height={32}
-              />
-            </div>
-            <span class="text-sm font-semibold text-gray-900">OneDrive</span>
-          </div>
-
-          <!-- Plus More -->
-          <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <div class="w-12 h-12 bg-gray-400 rounded-lg flex items-center justify-center mb-3">
-              <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-              </svg>
-            </div>
-            <span class="text-sm font-semibold text-gray-900">+ More</span>
-          </div>
-        </div>
-
-        <div class="mt-12 text-center">
-          <p class="text-lg text-gray-600">
-            <span class="font-semibold">Automatic synchronization</span> — Set it once, and Govrn One keeps everything up to date across all your board positions.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Personal Board Portal Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Your personal board portal & document management
-          </h2>
-          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
-            Stop losing time in email threads. Govrn One automatically collects your board documents, agendas, and attachments from different boards and rebuilds them into a clear structure of meetings and events.
-          </p>
-        </div>
-
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Automatic board member document management</h3>
-            <p class="mt-2 text-gray-600">Unlike Govrn which organizes for companies, Govrn One organizes for you personally across all your boards</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Clean timeline of meetings & decisions</h3>
-            <p class="mt-2 text-gray-600">Track the evolution of decisions across all your board positions</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">One private space, just for you</h3>
-            <p class="mt-2 text-gray-600">Your personal board workspace, completely independent from Govrn or any organization</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- AI Preparation Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
-          <div>
-            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-              Get prepared for board meetings with AI
-            </h2>
-            <p class="mt-4 text-xl text-gray-600">
-              No need to read hundreds of pages. Govrn One's AI reviews your documents, regulations, and reports to surface what matters most for your responsibilities as a board member.
-            </p>
-
-            <div class="mt-8 space-y-6">
-              <div class="flex items-start">
-                <div class="flex-shrink-0">
-                  <div class="flex items-center justify-center w-8 h-8 bg-primary/10 rounded-lg">
-                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="ml-4">
-                  <h3 class="text-lg font-semibold text-gray-900">Smart summaries of lengthy documents</h3>
-                  <p class="mt-1 text-gray-600">AI-powered insights help you focus on what matters most</p>
-                </div>
-              </div>
-
-              <div class="flex items-start">
-                <div class="flex-shrink-0">
-                  <div class="flex items-center justify-center w-8 h-8 bg-primary/10 rounded-lg">
-                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="ml-4">
-                  <h3 class="text-lg font-semibold text-gray-900">Compliance & regulation highlights</h3>
-                  <p class="mt-1 text-gray-600">Stay on top of regulatory requirements automatically</p>
-                </div>
-              </div>
-
-              <div class="flex items-start">
-                <div class="flex-shrink-0">
-                  <div class="flex items-center justify-center w-8 h-8 bg-primary/10 rounded-lg">
-                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="ml-4">
-                  <h3 class="text-lg font-semibold text-gray-900">AI insights for board members to support decision-making</h3>
-                  <p class="mt-1 text-gray-600">Make better informed decisions with contextual intelligence</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-8 lg:mt-0">
-            <Image
-              src={applicationHomePageImg}
-              alt="AI-powered board meeting preparation interface"
-              class="rounded-lg shadow-xl"
-              width={600}
-              height={400}
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Archive Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Keep your board archive — even after your mandate
-          </h2>
-          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
-            Your knowledge doesn't end when your mandate does. Govrn One ensures your documents and notes remain yours, so you build your personal board archive over time.
-          </p>
-        </div>
-
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Permanent access to your data</h3>
-            <p class="mt-2 text-gray-600">Your board documents remain accessible regardless of organizational changes</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">A lifetime archive of your board work</h3>
-            <p class="mt-2 text-gray-600">Build a comprehensive record of your governance experience</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Your personal governance library</h3>
-            <p class="mt-2 text-gray-600">Create a valuable knowledge base for future board positions</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Board Insights Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Know your boards & spot conflicts of interest
-          </h2>
-          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
-            A board is about people as much as documents. Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">One</span> helps you understand your fellow board members and discreetly flags potential conflicts of interest.
-          </p>
-        </div>
-
-        <!-- Simplified Conflict Detection Demo -->
-        <div class="mt-16 bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200">
-          <div class="text-center mb-8">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">AI-powered conflict detection</h3>
-            <p class="text-gray-600">See how Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">One</span> automatically identifies potential conflicts across your board network</p>
-          </div>
-
-          <!-- Simplified Board Network -->
-          <div class="bg-white rounded-xl p-6 shadow-sm border">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-              <!-- Left Side - Simple Board Member List -->
-              <div class="space-y-4">
-                <h4 class="font-semibold text-gray-900 mb-4">Your board network</h4>
-
-                <!-- Clean Member -->
-                <div class="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
-                  <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                    <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p class="font-medium text-gray-900">Maria Davis</p>
-                    <p class="text-sm text-gray-600">Former CFO, RetailCorp</p>
-                  </div>
-                </div>
-
-                <!-- Conflict Member -->
-                <div class="flex items-center p-3 bg-red-50 rounded-lg border border-red-200">
-                  <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
-                    <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p class="font-medium text-gray-900">John Smith</p>
-                    <p class="text-sm text-gray-600">CEO, CompetitorCorp</p>
-                  </div>
-                </div>
-
-                <!-- Warning Member -->
-                <div class="flex items-center p-3 bg-orange-50 rounded-lg border border-orange-200">
-                  <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-3">
-                    <svg class="w-5 h-5 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p class="font-medium text-gray-900">Robert Brown</p>
-                    <p class="text-sm text-gray-600">Partner, VendorLaw LLC</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Right Side - AI Insights -->
-              <div class="space-y-4">
-                <h4 class="font-semibold text-gray-900 mb-4">AI analysis</h4>
-
-                <!-- High Risk Alert -->
-                <div class="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 mr-3">
-                      <div class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center">
-                        <span class="text-red-600 text-xs font-bold">!</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 class="text-sm font-semibold text-red-800">Competitor conflict</h5>
-                      <p class="text-sm text-red-700 mt-1">John Smith works for a direct competitor</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Medium Risk Alert -->
-                <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 mr-3">
-                      <div class="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center">
-                        <span class="text-orange-600 text-xs font-bold">?</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 class="text-sm font-semibold text-orange-800">Business relationship</h5>
-                      <p class="text-sm text-orange-700 mt-1">Robert's firm provides legal services</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Clean Status -->
-                <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 mr-3">
-                      <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                        <span class="text-green-600 text-xs font-bold">✓</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 class="text-sm font-semibold text-green-800">No conflicts</h5>
-                      <p class="text-sm text-green-700 mt-1">Maria has no identified conflicts</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature Highlights -->
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Automatic screening</h3>
-            <p class="mt-2 text-gray-600">AI scans board member backgrounds, business relationships, and cross-board positions to identify potential conflicts</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Smart alerts & recommendations</h3>
-            <p class="mt-2 text-gray-600">Get proactive alerts about potential conflicts and actionable recommendations for agenda recusals</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Cross-board intelligence</h3>
-            <p class="mt-2 text-gray-600">Leverage insights across all your board positions to maintain the highest governance standards</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Security Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Secured. EU hosted. Always yours.
-          </h2>
-          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
-            Your data never leaves Europe. Govrn One is fully EU hosted, compliant with the highest standards of privacy and security, and ready for GDPR.
-          </p>
-        </div>
-
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Enterprise-grade encryption</h3>
-            <p class="mt-2 text-gray-600">Your data is protected with the highest security standards</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Data stored exclusively in the EU</h3>
-            <p class="mt-2 text-gray-600">Complete European data sovereignty and compliance</p>
-          </div>
-
-          <div class="text-center">
-            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-primary/10 rounded-lg">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <h3 class="mt-6 text-lg font-semibold text-gray-900">Privacy-first architecture</h3>
-            <p class="mt-2 text-gray-600">Built from the ground up with privacy and security in mind</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Call to Action Section - Optimized for Conversion -->
-    <section class="py-20 bg-gradient-to-br from-blue-50 to-indigo-50 relative overflow-hidden">
-      <!-- Background Pattern -->
-      <div class="absolute inset-0 opacity-5">
-        <svg class="w-full h-full" fill="currentColor" viewBox="0 0 400 400">
-          <defs>
-            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-              <circle cx="10" cy="10" r="1" fill="currentColor"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)"/>
-        </svg>
-      </div>
-
-      <div id="board-member-software-form" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <!-- Social Proof & Urgency -->
-        <div class="text-center mb-8">
-          <div class="inline-flex items-center bg-green-50 border border-green-200 rounded-full px-4 py-2 mb-6">
-            <div class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-            <span class="text-sm font-medium text-green-800">Limited Early Access - 500 spots available</span>
-          </div>
-
-          <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl mb-4">
-            Get early access to Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">One</span>
-          </h2>
-
-          <p class="text-xl text-gray-600 mb-6 max-w-3xl mx-auto">
-            Join board members from leading companies who are already transforming how they manage their governance responsibilities.
-          </p>
-
-          <!-- Benefits List -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div class="flex items-center justify-center space-x-3">
-              <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                </svg>
-              </div>
-              <span class="font-medium text-gray-700">Free early access</span>
-            </div>
-            <div class="flex items-center justify-center space-x-3">
-              <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                </svg>
-              </div>
-              <span class="font-medium text-gray-700">EU hosted & secured</span>
-            </div>
-            <div class="flex items-center justify-center space-x-3">
-              <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                </svg>
-              </div>
-              <span class="font-medium text-gray-700">AI-powered insights</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Main Form -->
-        <div class="bg-white rounded-2xl p-8 shadow-2xl border border-white/50">
-          <!-- Form Header -->
-          <div class="text-center mb-6">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Secure your spot today</h3>
-            <p class="text-gray-600">Takes less than 2 minutes • No spam, ever • Unsubscribe anytime</p>
-          </div>
-
-          <form id="govrnOneForm" class="space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">
-                  First name *
-                </label>
-                <input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                  required
-                />
-              </div>
-              <div>
-                <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">
-                  Last name *
-                </label>
-                <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                  required
-                />
-              </div>
-            </div>
-
-            <div>
-              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                Professional email *
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                placeholder="your.email@company.com"
-                required
-              />
-            </div>
-
-            <div>
-              <label for="boardCount" class="block text-sm font-medium text-gray-700 mb-2">
-                How many boards do you currently serve on? *
-              </label>
-              <select
-                id="boardCount"
-                name="boardCount"
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                required
-              >
-                <option value="">Select number of boards</option>
-                <option value="1">1 Board</option>
-                <option value="2">2 Boards</option>
-                <option value="3">3 Boards</option>
-                <option value="4">4 Boards</option>
-                <option value="5+">5+ Boards</option>
-              </select>
-            </div>
-
-            <!-- Trust Signals -->
-            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <div class="flex items-center justify-center space-x-8 text-sm text-gray-600">
-                <div class="flex items-center space-x-2">
-                  <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                  </svg>
-                  <span>GDPR Compliant</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                  <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                  </svg>
-                  <span>256-bit Encryption</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                  <svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
-                  <span>EU data centers</span>
-                </div>
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              class="w-full px-6 py-4 bg-gradient-to-r from-primary to-blue-600 text-white rounded-lg hover:from-primary/90 hover:to-blue-600/90 transition-all duration-200 font-semibold text-lg flex items-center justify-center space-x-3 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
-            >
-              <span>Get free early access</span>
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </button>
-
-            <p class="text-xs text-gray-500 text-center">
-              By signing up, you agree to our privacy policy. No spam, unsubscribe anytime.
-            </p>
-          </form>
-
-          <!-- Success Message -->
-          <div id="formSuccess" class="hidden text-center py-8">
-            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <h3 class="text-3xl font-bold text-gray-900 mb-4">🎉 You're In!</h3>
-            <p class="text-lg text-gray-600 mb-4">
-              Welcome to the exclusive Govrn <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent font-semibold">One</span> early adopters list.
-            </p>
-            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <p class="text-blue-800 font-medium">What happens next?</p>
-              <ul class="text-blue-700 text-sm mt-2 space-y-1">
-                <li>• You'll receive an email confirmation within 5 minutes</li>
-                <li>• Get exclusive updates on our development progress</li>
-                <li>• Be notified first when early access opens</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Social Proof -->
-        <div class="text-center mt-8">
-          <p class="text-sm text-gray-500 mb-4">Trusted by board members from leading organizations</p>
-          <div class="flex items-center justify-center space-x-6 opacity-70">
-            <span class="text-gray-600 font-semibold text-sm">Van de Velde</span>
-            <span class="text-gray-400">•</span>
-            <span class="text-gray-600 font-semibold text-sm">Finance & Invest Brussels</span>
-            <span class="text-gray-400">•</span>
-            <span class="text-gray-600 font-semibold text-sm">Care Property Invest</span>
-            <span class="text-gray-400">•</span>
-            <span class="text-gray-600 font-semibold text-sm">Toolbox</span>
-          </div>
-          <div class="mt-2 text-xs text-gray-400">
-            and 50+ other organizations
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <FAQ
-      texts={{
-        title: "Frequently asked questions",
-        subtitle: "Learn more about Govrn One personal board member software",
-        inLanguage: "en",
-        faqs: boardMemberFaqs
-      }}
-    />
+  <main>
+    <BoardMemberSoftware t={t} formAnchor="board-member-software-form" privacyHref="/privacy" />
   </main>
 </Layout>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('govrnOneForm');
-    const success = document.getElementById('formSuccess');
-
-    if (form && success) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(form);
-        const data = {
-          firstName: formData.get('firstName'),
-          lastName: formData.get('lastName'),
-          email: formData.get('email'),
-          boardCount: formData.get('boardCount')
-        };
-
-        // Track form submission
-        if (typeof window !== 'undefined' && window.dataLayer) {
-          window.dataLayer.push({
-            event: 'govrn_one_signup',
-            email: data.email,
-            board_count: data.boardCount
-          });
-        }
-
-        // Hide form and show success message
-        form.classList.add('hidden');
-        success.classList.remove('hidden');
-
-        // Here you would typically send the data to your backend
-        console.log('Govrn One signup:', data);
-      });
-    }
-  });
-</script>

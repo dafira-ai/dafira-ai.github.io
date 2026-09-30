@@ -1,5 +1,7 @@
 ---
-import { Image } from 'astro:assets';
+import Section from './ui/Section.astro';
+import SectionHeader from './ui/SectionHeader.astro';
+import Button from './ui/Button.astro';
 import beforeMeetingImg from '../assets/images/before-meeting.jpg';
 import duringMeetingImg from '../assets/images/during-meeting.jpg';
 import afterMeetingImg from '../assets/images/after-meeting.jpg';
@@ -27,9 +29,9 @@ interface Props {
 
 const {
   texts = {
-    title: "The Complete Board Meeting Lifecycle",
-    subtitle: "Experience seamless board management at every stage",
-    cta: "Start Your Journey",
+    title: "Before, during and after the meeting",
+    subtitle: "One workspace follows the meeting from the first agenda draft to the last signature.",
+    cta: "Try Dafira",
     ctaLink: "/try"
   },
   timelineSteps = [
@@ -51,8 +53,8 @@ const {
           icon: "📁"
         },
         {
-          title: "AI Insights",
-          description: "Support board members with data-driven insights and prep materials ahead of time.",
+          title: "AI assistant",
+          description: "Directors ask questions about the board pack and get summaries of long documents before the meeting.",
           icon: "🤖"
         }
       ]
@@ -67,10 +69,10 @@ const {
         {
           title: "Live Collaboration",
           description: "Enable board members to annotate documents and engage in discussions during meetings, all in one secure place.",
-          icon: "✏️"
+          icon: "✏"
         },
         {
-          title: "Smart Resolutions",
+          title: "Resolutions",
           description: "Capture real-time decisions and track action items efficiently.",
           icon: "📝"
         }
@@ -84,8 +86,8 @@ const {
       image: afterMeetingImg,
       features: [
         {
-          title: "Minutes Automation",
-          description: "Generate meeting minutes instantly, with automatic integration of action items and resolutions.",
+          title: "Minutes",
+          description: "Draft the minutes with the AI minute builder, with action items and resolutions carried over.",
           icon: "⚡"
         },
         {
@@ -104,91 +106,28 @@ const {
 } = Astro.props;
 ---
 
-<section class="py-20 bg-white relative overflow-hidden">
-  <!-- Background Pattern -->
-  <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50"></div>
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-    <div class="text-center">
-      <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl">
-        {texts.title}
-      </h2>
-      <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-        {texts.subtitle}
-      </p>
-    </div>
-
-    <div class="mt-24 relative">
-      <!-- Timeline Line -->
-      <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary/20 via-primary to-primary/20"></div>
-
-      <div class="space-y-24">
-        {timelineSteps.map((step, index) => (
-          <div class={`relative ${index % 2 === 0 ? 'lg:flex-row-reverse' : ''} lg:flex lg:items-center group`}>
-            <!-- Timeline Dot -->
-            <div class="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-gradient-to-r from-primary to-blue-600 text-white items-center justify-center shadow-lg z-10 group-hover:scale-110 transition-transform duration-300">
-              <span class="text-xl">{step.icon}</span>
+<Section>
+  <SectionHeader title={texts.title} lead={texts.subtitle} />
+  <ol class="grid lg:grid-cols-3 gap-px bg-line border border-line rounded-md overflow-hidden" data-play>
+    {timelineSteps.map((step, index) => (
+      <li class="bg-white p-8 lg:p-10" data-step style={`--d:${index * 100}`}>
+        <div class="flex items-center gap-3">
+          <span class="font-mono text-xs text-gray-400 tabular-nums">{String(index + 1).padStart(2, '0')}</span>
+          <span class="font-mono text-xs uppercase tracking-[0.08em] text-primary">{step.phase}</span>
+        </div>
+        <h3 class="mt-4 text-xl font-semibold text-navy">{step.title}</h3>
+        <dl class="mt-8 space-y-6">
+          {step.features.map((feature) => (
+            <div class="border-t border-line pt-4">
+              <dt class="font-medium text-ink">{feature.title}</dt>
+              <dd class="mt-1 text-[15px] text-gray-600 leading-relaxed">{feature.description}</dd>
             </div>
-
-            <!-- Content -->
-            <div class="lg:w-1/2 lg:px-16">
-              <div class={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 relative ${index % 2 === 0 ? 'lg:ml-auto' : ''}`}>
-                <!-- Decorative Element -->
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${step.color} rounded-t-2xl"></div>
-
-                <div class="relative">
-                  <div class="flex items-center mb-6">
-                    <span class="text-3xl mr-4">{step.icon}</span>
-                    <div>
-                      <h3 class="text-lg font-semibold text-primary uppercase tracking-wider">{step.phase}</h3>
-                      <h4 class="text-2xl font-bold text-gray-900 mt-1">{step.title}</h4>
-                    </div>
-                  </div>
-
-                  <div class="space-y-6">
-                    {step.features.map(feature => (
-                      <div class="flex items-start space-x-4 p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors duration-200">
-                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
-                          <span class="text-lg">{feature.icon}</span>
-                        </div>
-                        <div>
-                          <h5 class="font-semibold text-gray-900 mb-1">{feature.title}</h5>
-                          <p class="text-gray-600 leading-relaxed">{feature.description}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Image -->
-            <div class="hidden lg:block lg:w-1/2 lg:px-12">
-              <div class={`aspect-[4/3] rounded-2xl overflow-hidden shadow-lg ${index % 2 === 0 ? 'lg:mr-auto' : 'lg:ml-auto'}`}>
-                <Image 
-                  loading="lazy" 
-                  src={step.image} 
-                  alt={step.title}
-                  class="w-full h-full object-cover brightness-105 contrast-[0.95] saturate-[0.9] hue-rotate-[355deg] opacity-90"
-                  width={600}
-                  height={400}
-                  quality={85}
-                />
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <!-- Bottom CTA -->
-      <div class="mt-20 text-center">
-        <a href={texts.ctaLink} class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 group">
-          {texts.cta}
-          <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
-        </a>
-      </div>
-    </div>
+          ))}
+        </dl>
+      </li>
+    ))}
+  </ol>
+  <div class="mt-10">
+    <Button variant="link" href={texts.ctaLink}>{texts.cta}</Button>
   </div>
-</section>
+</Section>

@@ -1,4 +1,7 @@
 ---
+// Why the answers can be trusted: quoted responses, secure environment, sources. Cell grid.
+import { Section, SectionHeader, CellGrid, Icon } from '../ui';
+
 interface Props {
   texts?: {
     title: string;
@@ -7,110 +10,45 @@ interface Props {
       icon: string;
       title: string;
       description: string;
-      animation: string;
+      /** @deprecated no longer animated */
+      animation?: string;
     }[];
-  }
+  };
+  tone?: 'white' | 'surface';
 }
 
-const { texts = {
-  title: "Secure and Transparent AI",
-  description: "Experience AI-powered insights with enterprise-grade security and full transparency",
+const { tone = 'surface', texts = {
+  title: "Answers you can check",
+  description: "The assistant quotes your documents rather than paraphrasing from memory, so every answer can be verified.",
   highlights: [
     {
-      icon: "📝",
-      title: "Quoted Responses",
-      description: "All responses are directly quoted from your board documents, ensuring accuracy and traceability",
-      animation: "document-flow"
+      icon: "document",
+      title: "Quoted responses",
+      description: "Answers quote the relevant passages of your board documents, so you read the original wording."
     },
     {
-      icon: "🔒", 
-      title: "Secure Environment",
-      description: "Your data never leaves your secure environment, maintaining complete privacy and control",
-      animation: "shield-pulse"
+      icon: "lock",
+      title: "Inside the platform",
+      description: "Questions are asked inside Dafira. Directors do not need to copy board papers into outside tools."
     },
     {
-      icon: "📚",
-      title: "Source Attribution", 
-      description: "Every response includes clear references to source documents for full transparency",
-      animation: "citation-appear"
+      icon: "book",
+      title: "Source attribution",
+      description: "Every answer names the document and the section it comes from."
     }
   ]
 }} = Astro.props;
 ---
 
-<section class="py-20 bg-white relative overflow-hidden">
-  <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50"></div>
-  
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="text-3xl font-bold text-gray-900 mb-4">
-        {texts.title}
-      </h2>
-      <p class="text-xl text-gray-600">
-        {texts.description}
-      </p>
-    </div>
-
-    <div class="grid lg:grid-cols-3 gap-8">
-      {texts.highlights.map(highlight => (
-        <div class="relative group">
-          <div class="absolute inset-0 bg-gradient-to-br from-primary to-blue-600 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
-          
-          <div class="relative bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-            <!-- Animated Icon Container -->
-            <div class={`w-16 h-16 mb-6 relative ${highlight.animation}`}>
-              <div class="absolute inset-0 bg-primary/10 rounded-xl"></div>
-              <div class="absolute inset-0 flex items-center justify-center text-3xl">
-                {highlight.icon}
-              </div>
-              
-              {highlight.animation === 'document-flow' && (
-                <div class="absolute inset-[-8px] border-2 border-primary/20 rounded-xl animate-quote-pulse"></div>
-              )}
-              
-              {highlight.animation === 'shield-pulse' && (
-                <div class="absolute inset-[-4px] bg-primary/10 rounded-xl animate-shield-pulse"></div>
-              )}
-              
-              {highlight.animation === 'citation-appear' && (
-                <div class="absolute right-0 bottom-0 w-6 h-6 bg-primary/20 rounded-full animate-citation-pop"></div>
-              )}
-            </div>
-
-            <h3 class="text-xl font-bold text-gray-900 mb-4">{highlight.title}</h3>
-            <p class="text-gray-600">{highlight.description}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<style>
-  @keyframes quotePulse {
-    0%, 100% { transform: scale(1); opacity: 0.2; }
-    50% { transform: scale(1.1); opacity: 0.4; }
-  }
-
-  @keyframes shieldPulse {
-    0%, 100% { transform: scale(1); opacity: 0.1; }
-    50% { transform: scale(1.2); opacity: 0.3; }
-  }
-
-  @keyframes citationPop {
-    0%, 100% { transform: scale(0); opacity: 0; }
-    50% { transform: scale(1); opacity: 1; }
-  }
-
-  .animate-quote-pulse {
-    animation: quotePulse 3s ease-in-out infinite;
-  }
-
-  .animate-shield-pulse {
-    animation: shieldPulse 2s ease-in-out infinite;
-  }
-
-  .animate-citation-pop {
-    animation: citationPop 2s ease-in-out infinite;
-  }
-</style>
+<Section tone={tone} border={tone === 'surface' ? 'both' : 'none'}>
+  <SectionHeader title={texts.title} lead={texts.description} />
+  <CellGrid columns={3}>
+    {texts.highlights.map((highlight) => (
+      <div class="bg-white p-6 lg:p-8">
+        <Icon name={highlight.icon} class="w-6 h-6 text-navy" />
+        <h3 class="mt-5 text-lg font-semibold text-navy">{highlight.title}</h3>
+        <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{highlight.description}</p>
+      </div>
+    ))}
+  </CellGrid>
+</Section>

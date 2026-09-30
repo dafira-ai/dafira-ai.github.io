@@ -1,242 +1,100 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { PageHero, Section, SectionHeader, FeatureColumns } from '../../components/ui';
 import MissionVision from '../../components/about/MissionVision.astro';
 import FounderStory from '../../components/about/FounderStory.astro';
 import TeamMembers from '../../components/about/TeamMembers.astro';
 import OfficeCard from '../../components/OfficeCard.astro';
+import LocalizedCTA from '../../components/case-studies/LocalizedCTA.astro';
 
-const values = [
-  {
-    icon: "🎯",
-    title: "Innovation",
-    description: "Nous repoussons sans cesse les limites de la technologie de gestion des conseils"
-  },
-  {
-    icon: "🔒", 
-    title: "Sécurité absolue",
-    description: "La protection des données sensibles de nos clients est notre priorité absolue"
-  },
-  {
-    icon: "🤝",
-    title: "Partenariat client",
-    description: "Votre succès est le nôtre - nous vous accompagnons à chaque étape"
-  },
-  {
-    icon: "⚡",
-    title: "Performance",
-    description: "Optimisation des processus pour une gestion plus fluide et efficace"
-  }
+const facts = [
+  { label: 'Produit', value: 'Portail du conseil Dafira' },
+  { label: 'Bureau', value: 'Bruxelles' },
 ];
 
-const aiCapabilities = [
-  {
-    icon: "🔍",
-    title: "Analyse des données",
-    description: "Des insights stratégiques précis pour une prise de décision éclairée"
-  },
-  {
-    icon: "🎯",
-    title: "Décisions éclairées",
-    description: "Une analyse intelligente au service de votre stratégie"
-  },
-  {
-    icon: "⚡",
-    title: "Automatisation avancée",
-    description: "Libérez-vous des tâches répétitives grâce à l'automatisation"
-  },
-  {
-    icon: "⚖️",
-    title: "Gouvernance optimale",
-    description: "Une supervision intelligente pour une gouvernance irréprochable"
-  }
+const values = [
+  { icon: 'target', title: 'Innovation', text: 'Nous améliorons sans cesse ce qu’un logiciel de conseil apporte à ceux qui l’utilisent.' },
+  { icon: 'lock', title: 'Sécurité et confiance', text: 'La protection des données sensibles de nos clients passe en premier.' },
+  { icon: 'users', title: 'Partenariat client', text: 'Nous accompagnons les conseils que nous servons à chaque étape.' },
+  { icon: 'clock', title: 'Efficacité', text: 'Le travail du conseil doit demander moins de temps et moins de complexité.' },
 ];
 
 const missionVisionProps = {
-  className: "",
+  eyebrow: 'Notre raison d’être',
   mission: {
-    title: "Notre Mission",
-    description: "Nous développons des solutions intuitives qui transforment la gouvernance et la prise de décision, grâce à",
-    aiText: "l'intelligence artificielle"
+    title: 'Notre mission',
+    description: 'Nous développons un logiciel de gestion du conseil simple, qui améliore la gouvernance et la prise de décision, avec',
+    aiText: "l'IA comme assistant.",
   },
   vision: {
-    title: "Notre Vision",
-    description: "Créer la solution de gouvernance de référence pour permettre aux conseils",
-    highlightedText: "de façonner un avenir meilleur"
+    title: 'Notre vision',
+    description: 'Créer la solution de gouvernance qui permet aux conseils',
+    highlightedText: 'de façonner un avenir meilleur.',
   },
-  aiEraStatement: "Une nouvelle ère s'ouvre pour les conseils d'administration, où",
-  aiHighlight: "l'intelligence artificielle"
-}
-
-const offices = [
-{
-    city: "Brussels",
-    country: "Belgium",
-    image: "/bxl.jpg",
-    address: "Rue de l'Hôpital 31",
-    postalCode: "1000",
-    email: "info@govrn.com",
-  },
-  {
-    city: "La Hulpe",
-    country: "Belgium",
-    image: "/la-hulpe.png",
-    address: "92 Avenue Reine Astrid",
-    postalCode: "1310",
-    email: "info@govrn.com",
-  }
-];
+};
 
 const founderStoryProps = {
-  tagText: "Notre Histoire",
-  title: "La Genèse de Govrn",
+  tagText: 'Notre histoire',
+  title: 'La genèse de Dafira',
   story: [
     "Au fil de mes années d'expérience au sein de différents conseils d'administration, j'ai été confronté aux mêmes défis récurrents : une gestion documentaire complexe, des processus décisionnels lourds et la difficulté de maintenir des standards de gouvernance élevés.",
     "L'élément déclencheur fut une réunion cruciale où l'égarement de documents essentiels a entraîné des retards décisionnels majeurs, impactant directement la trajectoire de l'organisation. Cette situation m'a convaincu qu'une alternative était nécessaire.",
-    "C'est ainsi qu'est né Govrn. Notre ambition dépassait la simple création d'un portail : nous voulions concevoir une plateforme intelligente répondant aux enjeux complexes des conseils d'administration modernes.",
-    "Aujourd'hui, nous sommes fiers d'accompagner les conseils d'administration européens vers l'excellence, en leur permettant de prendre de meilleures décisions grâce à notre technologie d'intelligence artificielle de pointe."
+    "C'est ainsi qu'est né Dafira. Notre ambition dépassait la simple création d'un portail : nous voulions une plateforme qui réponde aux besoins réels des conseils d'administration.",
+    "Aujourd'hui, Dafira aide les conseils à préparer leurs réunions, à décider et à tenir un registre fiable, avec l'IA là où elle fait gagner du temps.",
   ],
-  founder: {
-    name: "Jean-Louis Van Houwe",
-    role: "Fondateur & CEO"
-  }
-}
+  founder: { name: 'Jean-Louis Van Houwe', role: 'Fondateur & CEO' },
+};
 
 const teamMembersProps = {
-  title: "Notre Équipe",
-  subtitle: "Découvrez les experts qui révolutionnent la gestion des conseils d'administration",
+  title: 'Direction',
+  subtitle: 'Qui dirige Dafira.',
   team: [
     {
-      name: "Jean-Louis Van Houwe",
-      role: "CEO & Fondateur",
-      image: "/jean-louis-van-houwe.jpeg", 
-      linkedin: "https://www.linkedin.com/in/jeanlouisvanhouwe/",
-      bio: "Visionnaire passionné par la transformation digitale de la gouvernance d'entreprise."
+      name: 'Jean-Louis Van Houwe',
+      role: 'CEO & Fondateur',
+      image: '/jean-louis-van-houwe.jpeg',
+      linkedin: 'https://www.linkedin.com/in/jeanlouisvanhouwe/',
+      bio: "Engagé dans l'amélioration de la gouvernance d'entreprise par la technologie.",
     },
-    {
-      name: "Ludovic Laffineur",
-      role: "CTO - Produit & Technologie",
-      image: "/ludovic-laffineur.jpg",
-      linkedin: "https://www.linkedin.com/in/llaffineur/",
-      bio: "Expert en innovation technologique dédié à l'excellence des solutions de gouvernance."
-    }
-  ]
-}
+  ],
+};
+
+const offices = [
+  { city: 'Bruxelles', country: 'Belgique', image: '/bxl.jpg', address: "Rue de l'Hôpital 31", postalCode: '1000', email: 'info@dafira.ai' },
+];
 ---
 
-<Layout title="À propos - Govrn, Solution Intelligente de Gouvernance" description="Ensemble, construisons une meilleure gouvernance pour un monde meilleur." image="/about.png">
-  <main class="pt-16">
-    <!-- Section héro -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Façonnons un
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Avenir Meilleur
-            </span>
-            Par une Gouvernance d'Excellence
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed mb-12">
-            Une nouvelle ère s'ouvre pour la gouvernance d'entreprise, où l'intelligence artificielle redéfinit les standards d'excellence.
-          </p>
+<Layout title="À propos - Dafira, Solution Intelligente de Gouvernance" description="Dafira est un portail du conseil développé en Belgique. Notre mission, l'histoire de notre fondateur, l'équipe de direction et notre bureau à Bruxelles." image="/about.png">
+  <PageHero
+    eyebrow="À propos de Dafira"
+    title="Une meilleure gouvernance, pensée pour ceux qui font vivre les conseils"
+    lead="Dafira est une plateforme de gestion du conseil développée en Belgique. Nous aidons les conseils à préparer leurs réunions, partager leurs documents, prendre leurs décisions et en garder une trace fiable."
+  >
+    <dl class="mt-10 pt-8 border-t border-line grid grid-cols-2 sm:grid-cols-4 gap-6">
+      {facts.map((f) => (
+        <div>
+          <dt class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">{f.label}</dt>
+          <dd class="mt-1 text-[15px] text-navy">{f.value}</dd>
         </div>
-      </div>
-    </section>
+      ))}
+    </dl>
+  </PageHero>
 
-    <MissionVision {...missionVisionProps} />
-    <FounderStory {...founderStoryProps} />
-    <TeamMembers {...teamMembersProps} />
+  <MissionVision {...missionVisionProps} />
+  <FounderStory {...founderStoryProps} />
+  <TeamMembers {...teamMembersProps} />
 
-    <!-- Section Capacités IA -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">L'IA au Service de la Performance</h2>
-          <p class="text-xl text-gray-600">
-            L'intelligence artificielle révolutionne la gouvernance. Découvrez comment Govrn ouvre la voie.
-          </p>
-        </div>
+  <Section tone="surface" space="lg" border="top">
+    <SectionHeader eyebrow="Valeurs" title="Ce qui guide notre travail" />
+    <FeatureColumns columns={4} items={values} />
+  </Section>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {aiCapabilities.map(capability => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <div class="text-4xl mb-6">{capability.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{capability.title}</h3>
-              <p class="text-gray-600">{capability.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+  <Section space="lg">
+    <SectionHeader eyebrow="Bureau" title="Où nous trouver" lead="Écrivez-nous à info@dafira.ai ou rendez-nous visite à Bruxelles." />
+    <div class="max-w-md">
+      {offices.map((office) => <OfficeCard {...office} />)}
+    </div>
+  </Section>
 
-    <!-- Section Valeurs -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Nos Valeurs</h2>
-          <p class="text-xl text-gray-600">
-            Les fondements de notre engagement quotidien
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {values.map(value => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <div class="text-4xl mb-6">{value.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
-              <p class="text-gray-600">{value.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section Bureaux -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Nos Bureaux</h2>
-          <p class="text-xl text-gray-600">
-            Au cœur de l'innovation
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {offices.map(office => (
-            <OfficeCard {...office} />
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section CTA -->
-    <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">
-          Participez à la Révolution de la Gouvernance
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Découvrez comment Govrn peut transformer votre conseil d'administration
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/fr/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-          >
-            Essayer Gratuitement
-          </a>
-          <a
-            href="/fr/contact"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200"
-          >
-            Nous Contacter
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
+  <LocalizedCTA />
 </Layout>

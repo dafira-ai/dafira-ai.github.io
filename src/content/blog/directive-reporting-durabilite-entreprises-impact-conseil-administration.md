@@ -2,8 +2,8 @@
 title: "La directive sur le reporting de durabilité des entreprises : un tournant pour les conseils d'administration"
 description: "Découvrez comment la directive sur le reporting de durabilité des entreprises (CSRD) transforme la dynamique des conseils d'administration, les obligeant à repenser leurs rôles, leur expertise et leur approche de la durabilité à long terme."
 pubDate: 2024-12-23
-author: "Ludovic Laffineur"
-authorRole: "CPTO chez Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/csrd-esg-leadership-substainability.jpg"
 category: "Regulatory"
 tags: ["CSRD", "Dynamique du conseil", "Reporting ESG", "Gouvernance d'entreprise", "Durabilité"]
@@ -23,8 +23,7 @@ Il ne s'agit pas simplement d'une nouvelle obligation réglementaire - la CSRD p
 
 La CSRD exige des entreprises qu'elles rendent compte de leur impact social et environnemental sur l'ensemble de leur chaîne de valeur - pas uniquement en interne, mais aussi en amont (fournisseurs) et en aval (utilisation et fin de vie des produits). C'est comme passer des rapports financiers, qui donnent un aperçu de la santé financière, à un film panoramique montrant comment l'entreprise interagit avec le monde.
 
-> "La CSRD demande aux entreprises d'identifier et de communiquer sur les enjeux ESG les plus pertinents pour leur activité et leurs parties prenantes." – Ludovic Laffineur
-
+La CSRD demande aux entreprises d'identifier et de communiquer sur les enjeux ESG les plus pertinents pour leur activité et leurs parties prenantes.
 Pour les conseils, cela implique de traiter des questions complexes comme :
 - Les chaînes d'approvisionnement mondiales
 - L'évaluation des risques climatiques
@@ -41,8 +40,7 @@ Pour les conseils, cela implique de traiter des questions complexes comme :
 
 Traditionnellement, la gouvernance se résumait souvent à cocher des cases. La CSRD change la donne. Elle pousse les conseils à dépasser la simple conformité pour intégrer la durabilité dans leur stratégie. Notre [suivi de conformité assisté par IA](/features/ai-board-compliance-monitoring) aide les conseils à anticiper les exigences réglementaires tout en se concentrant sur les initiatives stratégiques.
 
-> "La CSRD est plus qu'un simple rapport - elle pousse les conseils à repenser leurs rôles et responsabilités." – Ludovic Laffineur
-
+La CSRD est plus qu'un simple rapport - elle pousse les conseils à repenser leurs rôles et responsabilités.
 Pour gérer cette transition, les conseils doivent :
 - Développer une compréhension approfondie des facteurs environnementaux, sociaux et de gouvernance (ESG).
 - Apporter une expertise diversifiée et une intelligence émotionnelle élevée pour interpréter les données ESG et stimuler un débat constructif.

@@ -2,8 +2,8 @@
 title: "AI in the Boardroom: A Board GRC Platform"
 description: "Discover how AI-powered board portals are transforming governance, risk, and compliance (GRC), enabling boards to elevate oversight, mitigate risks, and enhance decision-making."
 pubDate: 2023-03-10
-author: "Govrn"
-authorRole: "Govrn Editorial Team"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/boardroom.webp"
 category: "Technology"
 tags: ["AI", "Board GRC Platform", "Governance", "Compliance", "Risk Management"]
@@ -16,7 +16,7 @@ In organizations large and small, governance, risk, and compliance (GRC) have be
 
 ## Traditional Boards and the Evolution of Board Portals  
 
-For years, traditional board portals served as foundational tools for good governance. These portals helped manage meeting cycles, acted as centralized repositories for board documents, and ensured information security. However, modern board portals, like **Govrn**, have embraced AI and integrated with GRC systems, transforming them into **sophisticated GRC platforms**. These AI-first platforms provide predictive insights, proactive risk management, and comprehensive compliance oversight, enabling boards to exceed traditional governance standards.  
+For years, traditional board portals served as foundational tools for good governance. These portals helped manage meeting cycles, acted as centralized repositories for board documents, and ensured information security. However, modern board portals, like **Dafira**, have embraced AI and integrated with GRC systems, transforming them into **sophisticated GRC platforms**. These AI-first platforms provide predictive insights, proactive risk management, and comprehensive compliance oversight, enabling boards to exceed traditional governance standards.  
 
 ---
 
@@ -88,4 +88,4 @@ The convergence of AI and GRC represents a transformative shift in governance pr
 
 In today’s interconnected and regulated global economy, embracing AI in the boardroom is not just a technological advancement—it’s a strategic necessity.  
 
-**Explore how AI-powered board portals can elevate your governance practices. Talk to Govrn to learn more.**
+**Explore how AI-powered board portals can elevate your governance practices. Talk to Dafira to learn more.**

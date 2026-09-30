@@ -1,0 +1,36 @@
+---
+// Two-column comparison (template vs Dafira) as a ruled table. Shared by the template landing pages.
+interface Props {
+  title: string;
+  lead?: string;
+  templateLabel: string;
+  dafiraLabel: string;
+  rows: { template: string; dafira: string }[];
+  class?: string;
+}
+const { title, lead, templateLabel, dafiraLabel, rows, class: className } = Astro.props;
+---
+
+<div class={className}>
+  <h3 class="text-2xl font-semibold text-navy">{title}</h3>
+  {lead && <p class="mt-2 text-gray-600">{lead}</p>}
+  <div class="mt-8 border border-line rounded-md overflow-x-auto">
+    <table class="w-full text-start text-[15px]">
+      <thead class="bg-surface">
+        <tr>
+          <th scope="col" class="px-5 py-3 text-start font-mono text-xs uppercase tracking-[0.08em] text-gray-500 font-normal w-1/2">{templateLabel}</th>
+          <th scope="col" class="px-5 py-3 text-start font-mono text-xs uppercase tracking-[0.08em] text-navy font-normal w-1/2 border-s border-line">{dafiraLabel}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row) => (
+          <tr class="border-t border-line">
+            <td class="px-5 py-4 text-gray-600 align-top">{row.template}</td>
+            <td class="px-5 py-4 text-navy align-top border-s border-line">{row.dafira}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <slot />
+</div>

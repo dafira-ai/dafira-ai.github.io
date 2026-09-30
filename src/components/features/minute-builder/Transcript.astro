@@ -1,0 +1,56 @@
+---
+// HTML mock-up of the meeting transcript: speakers, timestamps and a note from the minute builder. Plays once.
+import AppFrame from '../AppFrame.astro';
+import { langFromPath } from '../../../i18n/routes';
+import { featureLang } from '../common';
+
+const t = {
+  en: {
+    title: 'Transcript · Board of Directors, 15 March', meta: '3 speakers',
+    lines: [
+      ['Chair', '00:02:15', 'Good afternoon. I note that the quorum is met. Let us begin with the approval of the agenda.'],
+      ['CEO', '00:02:45', 'The agenda is complete. I propose we approve it as presented.'],
+      ['CFO', '00:08:30', 'I will present the Q1 results and the updated forecast for the year.'],
+    ],
+    note: 'Minute builder', noteText: 'Chapter “Financial review Q1” created from 00:08:30. The draft of item 2 has been updated.',
+  },
+  fr: {
+    title: 'Transcription · Conseil d’administration, 15 mars', meta: '3 intervenants',
+    lines: [
+      ['Président', '00:02:15', 'Bonjour à tous. Je constate que le quorum est atteint. Commençons par l’approbation de l’ordre du jour.'],
+      ['CEO', '00:02:45', 'L’ordre du jour est complet. Je propose de l’approuver tel quel.'],
+      ['CFO', '00:08:30', 'Je vais présenter les résultats du T1 et la prévision actualisée pour l’année.'],
+    ],
+    note: 'Rédaction du PV', noteText: 'Chapitre « Revue financière T1 » créé à partir de 00:08:30. Le projet du point 2 a été mis à jour.',
+  },
+  nl: {
+    title: 'Transcriptie · Raad van bestuur, 15 maart', meta: '3 sprekers',
+    lines: [
+      ['Voorzitter', '00:02:15', 'Goedemiddag. Ik stel vast dat het quorum bereikt is. We beginnen met de goedkeuring van de agenda.'],
+      ['CEO', '00:02:45', 'De agenda is volledig. Ik stel voor ze goed te keuren zoals voorgelegd.'],
+      ['CFO', '00:08:30', 'Ik presenteer de resultaten van Q1 en de bijgewerkte prognose voor het jaar.'],
+    ],
+    note: 'Notulenbouwer', noteText: 'Hoofdstuk “Financieel overzicht Q1” aangemaakt vanaf 00:08:30. Het ontwerp van punt 2 is bijgewerkt.',
+  },
+}[featureLang(langFromPath(Astro.url.pathname))];
+---
+
+<div data-play>
+  <AppFrame title={t.title} meta={t.meta}>
+    <ul class="px-5">
+      {t.lines.map(([speaker, time, text], i) => (
+        <li class="py-3.5 border-b border-line" data-step style={`--d:${100 + i * 200}`}>
+          <div class="flex items-baseline justify-between gap-3">
+            <span class="text-[13px] font-semibold text-navy">{speaker}</span>
+            <span class="font-mono text-[11px] text-gray-500">{time}</span>
+          </div>
+          <p class="mt-1 text-[13px] text-gray-700 leading-relaxed">{text}</p>
+        </li>
+      ))}
+    </ul>
+    <div class="m-5 border-s-2 border-primary bg-surface px-4 py-3" data-step style="--d:800">
+      <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-primary">{t.note}</p>
+      <p class="mt-1 text-[13px] text-gray-700">{t.noteText}</p>
+    </div>
+  </AppFrame>
+</div>

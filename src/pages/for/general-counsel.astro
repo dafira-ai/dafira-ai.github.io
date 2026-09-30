@@ -1,223 +1,43 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import CTA from '../../components/CTA.astro';
+import RoleLanding from '../../components/industries/RoleLanding.astro';
+import { customerQuote, readCaseLabel } from '../../components/industries/customerQuotes';
 
-const challenges = [
-  {
-    icon: "⚖️",
-    title: "Compliance Management",
-    description: "Stay ahead of regulatory requirements with automated compliance tracking and alerts"
-  },
-  {
-    icon: "📄",
-    title: "Document Control",
-    description: "Maintain version control and audit trails for all board documents"
-  },
-  {
-    icon: "🔒",
-    title: "Data Security",
-    description: "Enterprise-grade security with role-based access controls and encryption"
-  },
-  {
-    icon: "✍️",
-    title: "E-Signatures",
-    description: "Streamline document signing with legally-binding electronic signatures"
-  }
-];
-
-const features = [
-  {
-    title: "Compliance Dashboard",
-    description: "Real-time monitoring of compliance status and upcoming requirements",
-    icon: "📊",
-    benefits: [
-      "Automated compliance tracking",
-      "Regulatory updates",
-      "Risk monitoring",
-      "Audit trails"
-    ]
-  },
-  {
-    title: "Document Management",
-    description: "Secure, centralized storage for all board materials with version control",
-    icon: "📁",
-    benefits: [
-      "Version control",
-      "Access tracking",
-      "Document retention",
-      "Search capabilities"
-    ]
-  },
-  {
-    title: "Governance Tools",
-    description: "Comprehensive tools for maintaining governance excellence",
-    icon: "🛠️",
-    benefits: [
-      "Meeting management",
-      "Resolution tracking",
-      "Committee oversight",
-      "Policy management"
-    ]
-  }
-];
-
-const testimonial = {
-  quote: "Govrn has transformed how we manage our board operations, bringing efficiency and clarity to our governance processes.",
-  author: "Lore Werbrouck",
-  role: "General Counsel",
-  company: "Van de Velde",
-  image: "/vdv-lore-portrait.jpg"
+const hero = {
+  eyebrow: 'For general counsel',
+  title: 'Legal oversight of the board, in one record',
+  lead: 'Keep resolutions, signatures and the audit trail in order. Dafira holds board documents, minutes and decisions in one place, with access set by role.',
+  primary: { text: 'Book a demo', href: '/request-demo' },
+  secondary: { text: 'Contact sales', href: '/contact' },
+  screenshot: { src: '/onboarding-document-list.png', alt: 'Dafira document library for a board' },
 };
+
+const challenges = {
+  title: 'What general counsel need',
+  lead: 'The legal function answers for the board record: what was decided, by whom, on the basis of which documents.',
+  items: [
+    { icon: 'scale', title: 'Compliance', text: 'Follow the regulatory requirements that apply to the board and keep evidence of how they were met.' },
+    { icon: 'document', title: 'Document control', text: 'Version history and an audit trail for every board document.' },
+    { icon: 'lock', title: 'Data security', text: 'Role-based access and encryption for confidential board information.' },
+    { icon: 'signature', title: 'Electronic signatures', text: 'Sign minutes and resolutions electronically, without printing and chasing signatures.' },
+  ],
+};
+
+const features = {
+  title: 'Features for general counsel',
+  lead: 'The parts of Dafira legal teams rely on.',
+  items: [
+    { icon: 'shield', title: 'Compliance monitoring', text: 'Follow regulatory topics relevant to the board and keep the related documents together.', items: ['Regulatory topics', 'Audit trail', 'Decision log'] },
+    { icon: 'folder', title: 'Document management', text: 'Secure, central storage for board materials, with version history.', items: ['Version history', 'Access tracking', 'Document retention', 'Search'] },
+    { icon: 'gavel', title: 'Governance tools', text: 'The instruments of a well-run board, in one workspace.', items: ['Meeting management', 'Resolutions and voting', 'Committees', 'E-signature'] },
+  ],
+};
+
+const quote = { ...customerQuote('en', 'lore'), linkText: readCaseLabel.en };
 ---
 
-<Layout title="Board Management Software for General Counsel | Govrn" description="Empower your role as General Counsel with comprehensive tools for compliance management, document control, and governance excellence.">
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-              For General Counsel
-            </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Streamline Legal Oversight and
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                Board Governance
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-12">
-              Empower your role as General Counsel with comprehensive tools for compliance management, document control, and governance excellence.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/request-demo"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Request Demo
-              </a>
-              <a
-                href="/contact"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-              >
-                Contact Sales
-              </a>
-            </div>
-          </div>
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl transform rotate-3"></div>
-            <img 
-  loading="lazy"
-              src="/realestate.jpg"
-              alt="Govrn Platform Interface"
-              class="relative rounded-2xl shadow-2xl"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Challenges Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Challenges We Solve
-          </h2>
-          <p class="text-xl text-gray-600">
-            Address key challenges facing General Counsel with our comprehensive solution
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Features for General Counsel
-          </h2>
-          <p class="text-xl text-gray-600">
-            Purpose-built tools to support your legal and governance responsibilities
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600 mb-6">{feature.description}</p>
-              <ul class="space-y-3">
-                {feature.benefits.map(benefit => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonial Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-br from-primary to-blue-600 rounded-2xl overflow-hidden">
-          <div class="grid lg:grid-cols-2 gap-8 p-12">
-            <div class="text-white">
-              <blockquote class="text-2xl font-medium mb-8">
-                "{testimonial.quote}"
-              </blockquote>
-              <div class="flex items-center space-x-4">
-                <img 
-  loading="lazy"
-                  src={testimonial.image}
-                  alt={testimonial.author}
-                  class="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <div class="font-semibold">{testimonial.author}</div>
-                  <div class="text-white/80">{testimonial.role}</div>
-                  <div class="text-white/80">{testimonial.company}</div>
-                </div>
-              </div>
-            </div>
-            <div class="relative lg:text-right">
-              <a
-                href="/case-studies/van-de-velde"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-              >
-                Read Case Study
-                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Board Management Software for General Counsel | Dafira" description="Board portal for general counsel: document control, electronic signatures, resolutions and an audit trail for the board record.">
+  <main>
+    <RoleLanding hero={hero} challenges={challenges} features={features} quote={quote} />
   </main>
 </Layout>

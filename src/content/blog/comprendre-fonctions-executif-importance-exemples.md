@@ -2,8 +2,8 @@
 title: "Comprendre les fonctions de l'exécutif : importance et exemples"
 description: "Découvrez les rôles et responsabilités essentiels du pouvoir exécutif, notamment le chef d'État, le chef du gouvernement, le commandant en chef, le chef de la diplomatie, le législateur en chef et le dirigeant exécutif."
 pubDate: 2022-03-15
-author: "Govrn"
-authorRole: "Équipe éditoriale Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/suit.jpg"
 category: "Governance"
 tags: ["Fonctions exécutives", "Rôles gouvernementaux", "Administration publique"]
@@ -72,6 +72,6 @@ Ce rôle est essentiel pour transformer les mandats législatifs en programmes g
 
 En résumé, les fonctions multiples du pouvoir exécutif sont vitales pour le succès d'un gouvernement. Les dirigeants doivent faire preuve de leadership, de compétences managériales et d'aptitude à la prise de décision pour relever des défis complexes.
 
-Les outils modernes, comme le logiciel de gestion des conseils de Govrn, peuvent améliorer la performance exécutive en facilitant la collaboration, le partage sécurisé de documents et la gestion rationalisée des réunions. Notre [surveillance de la conformité assistée par IA](/features/ai-board-compliance-monitoring) aide à garantir le respect des réglementations, tandis que notre [assistant IA](/features/ai-assistant) fournit des analyses basées sur les données pour la prise de décision stratégique. En utilisant ces technologies, les dirigeants et les membres du conseil peuvent prendre des décisions éclairées et stimuler le succès organisationnel.
+Les outils modernes, comme le logiciel de gestion des conseils de Dafira, peuvent améliorer la performance exécutive en facilitant la collaboration, le partage sécurisé de documents et la gestion rationalisée des réunions. Notre [surveillance de la conformité assistée par IA](/features/ai-board-compliance-monitoring) aide à garantir le respect des réglementations, tandis que notre [assistant IA](/features/ai-assistant) fournit des analyses basées sur les données pour la prise de décision stratégique. En utilisant ces technologies, les dirigeants et les membres du conseil peuvent prendre des décisions éclairées et stimuler le succès organisationnel.
 
 La compréhension et l'exécution efficace de ces fonctions permettent aux gouvernements et aux organisations d'atteindre leurs objectifs et de prospérer dans un environnement dynamique.

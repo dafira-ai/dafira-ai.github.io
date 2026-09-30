@@ -2,8 +2,8 @@
 title: "What is an AI board portal and how it improves meeting management."
 description: "Discover how AI-powered board portals transform meeting management with smarter scheduling, real-time collaboration and better decision-making for modern boards."
 pubDate: 2024-05-01
-author: "Govrn"
-authorRole: "Govrn Editorial Team"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/meeting.jpg"
 category: "Technology"
 tags: ["AI", "Board Portal", "Meeting Management", "Governance", "Digital Transformation"]
@@ -49,7 +49,7 @@ AI-powered board portals aren't just a tool—they're a strategic advantage. By 
 
 ## Transform Your Boardroom with AI
 
-Organizations embracing AI-driven board portals, such as **Govrn**, are already reaping the rewards of streamlined governance and smarter meeting management. From reducing administrative burdens to enhancing decision-making, these platforms represent the future of boardroom operations.
+Organizations embracing AI-driven board portals, such as **Dafira**, are already reaping the rewards of streamlined governance and smarter meeting management. From reducing administrative burdens to enhancing decision-making, these platforms represent the future of boardroom operations.
 
 ---
 

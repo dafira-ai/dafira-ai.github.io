@@ -1,534 +1,129 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import FormSuccess from "../components/forms/FormSuccess.astro";
+import { PageHero, Section, SectionHeader, Button, Icon, FeatureColumns, Field } from "../components/ui";
 import governanceSummitImage from "../assets/governance_summit.png";
 
-const pageTitle = "Get AI-Powered Insights from Governance Summit 2025";
-const pageDescription = "Access comprehensive AI-generated summaries and insights from Belgium's premier governance event. Get expert analysis and key takeaways instantly.";
+const pageTitle = "Governance Summit 2025: Programme and AI Summaries | Dafira";
+const pageDescription = "Access the full programme and AI-generated session summaries from the Governance Summit 2025 in Antwerp, prepared with Dafira's AI minute builder.";
+
+const benefits = [
+  "Full programme with all sessions and speakers",
+  "AI-generated summaries of the sessions",
+  "Key takeaways on the governance topics discussed",
+  "Immediate access after submitting the form",
+];
+
+const facts = [
+  { term: "Date", value: "6 June 2025" },
+  { term: "Venue", value: "Vestar, Antwerp" },
+  { term: "Audience", value: "Board members, CEOs, secretaries-general, top managers, auditors, shareholders, sustainability experts" },
+  { term: "Theme", value: "Creating good vibes in the boardroom" },
+  { term: "Organiser", value: "De Bestuurder and network partners" },
+];
 ---
 
-<Layout 
+<Layout
   title={pageTitle}
   description={pageDescription}
 >
   <main>
-    <!-- Hero Section with Lead Capture Form -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 pt-20 pb-24">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
-        <!-- Governance Summit Logo -->
-        <div class="text-center mb-16">
-          <div class="inline-block bg-white rounded-2xl p-8 shadow-2xl border border-gray-100 mb-8">
-            <img 
-              src={governanceSummitImage.src} 
-              alt="Governance Summit 2025" 
-              class="max-w-lg w-full h-auto"
-            />
+    <PageHero
+      eyebrow="Governance Summit 2025 · Antwerp"
+      title="Missed the Governance Summit?"
+      lead="Access the complete programme and AI-generated summaries of the sessions of the first Governance Summit, prepared with Dafira."
+    >
+      <ul class="mt-8 space-y-3">
+        {benefits.map((b) => (
+          <li class="flex gap-3 text-gray-700"><Icon name="check" class="w-5 h-5 mt-0.5 shrink-0 text-primary" /><span>{b}</span></li>
+        ))}
+      </ul>
+
+      <div slot="aside" class="bg-white border border-line rounded-md p-6 lg:p-8">
+        <h2 class="text-xl font-semibold text-navy">Get the programme and summaries</h2>
+        <p class="mt-1 text-sm text-gray-500">Fill in the form to open the programme with the session summaries.</p>
+
+        <form id="summaryForm" class="mt-6 space-y-5" method="POST">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <Field id="firstName" label="First name" required autocomplete="given-name" />
+            <Field id="lastName" label="Last name" required autocomplete="family-name" />
           </div>
-          <div class="max-w-2xl mx-auto">
-            <p class="text-lg text-gray-600 mb-4">
-              <strong>Powered by Govrn</strong> - Your trusted AI partner in governance excellence
-            </p>
-            <p class="text-sm text-gray-500">
-              Get AI-powered insights from Belgium's premier governance event, delivered through Govrn's advanced analysis platform
-            </p>
-          </div>
-        </div>
-
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <!-- Left Column - Content -->
-          <div class="max-w-xl">
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-              <span class="mr-2">🎯</span>
-              Complete Program & AI-Powered Summit Analysis
-            </div>
-
-            <h1 class="text-5xl font-bold text-gray-900 leading-tight mb-6">
-              Missed the 
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                Governance Summit?
-              </span>
-            </h1>
-
-            <p class="text-xl text-gray-600 mb-8">
-              Don't worry - we've got you covered. Access the complete program and AI-generated insights from every session at Belgium's premier governance event.
-            </p>
-
-            <!-- Value Propositions -->
-            <div class="space-y-4 mb-8">
-              <div class="flex items-center gap-3">
-                <div class="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
-                  <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-                <span class="text-gray-700">Full program with all sessions and expert speakers</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <div class="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
-                  <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-                <span class="text-gray-700">AI-generated summaries of key sessions and insights</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <div class="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
-                  <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-                <span class="text-gray-700">Strategic takeaways and governance trends analysis</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <div class="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
-                  <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-                <span class="text-gray-700">Instant access - delivered to your inbox</span>
-              </div>
-            </div>
-
-            <!-- Social Proof -->
-            <div class="bg-white/80 rounded-lg p-4 border border-gray-100">
-              <div class="flex items-center gap-2 mb-2">
-                <div class="flex -space-x-2">
-                  <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-2 border-white"></div>
-                  <div class="w-8 h-8 bg-gradient-to-r from-green-500 to-blue-500 rounded-full border-2 border-white"></div>
-                  <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full border-2 border-white"></div>
-                </div>
-                <span class="text-sm text-gray-600">Join 500+ governance professionals using Govrn</span>
-              </div>
-              <div class="text-sm text-gray-500">
-                "The AI summaries saved me hours of catching up on key insights!" - Sarah M., Board Director
-              </div>
-            </div>
+          <Field id="email" type="email" label="Email address" required autocomplete="email" />
+          <Field id="company" label="Company" required autocomplete="organization" />
+          <div>
+            <Field id="phone" type="tel" label="Phone number" required autocomplete="tel" />
+            <span id="phone-error" class="hidden mt-1 block text-xs text-red-700">Please enter a valid phone number</span>
           </div>
 
-          <!-- Right Column - Lead Capture Form -->
-          <div class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 relative">
-            <div class="absolute -top-3 left-6 bg-primary text-white px-4 py-1 rounded-full text-sm font-medium">
-              Powered by Govrn AI
-            </div>
-            
-            <h2 class="text-2xl font-bold text-gray-900 mb-2 mt-4">
-              Get Your AI Summary Now
-            </h2>
-            <p class="text-gray-600 mb-6">
-              Instant access to complete program and AI-powered session insights
-            </p>
-
-            <form id="summaryForm" class="space-y-4" method="POST">
-              <div class="grid grid-cols-2 gap-4">
-                <div>
-                  <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">
-                    First Name
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    required
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                    placeholder="John"
-                  />
-                </div>
-                <div>
-                  <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    required
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                    placeholder="Smith"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                  placeholder="john@company.com"
-                />
-              </div>
-
-              <div>
-                <label for="company" class="block text-sm font-medium text-gray-700 mb-1">
-                  Company
-                </label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  required
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                  placeholder="Acme Inc."
-                />
-              </div>
-
-              <div class="w-full">
-                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
-                  Phone Number
-                </label>
-                <div class="phone-input-container w-full">
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                    required
-                  />
-                </div>
-                <span id="phone-error" class="hidden text-red-500 text-sm mt-1">Please enter a valid phone number</span>
-              </div>
-
-              <!-- Consent Checkbox -->
-              <div class="flex items-start gap-3">
-                <input
-                  type="checkbox"
-                  id="updates"
-                  name="updates"
-                  class="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary focus:ring-2"
-                />
-                <label for="updates" class="text-sm text-gray-600">
-                  I would like to receive updates from Govrn about governance insights and platform features
-                </label>
-              </div>
-
-              <!-- CTA Button -->
-              <button
-                type="submit"
-                class="w-full px-6 py-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all transform hover:scale-[1.02] font-medium flex items-center justify-center gap-2 group"
-              >
-                <span>Get My AI-Powered Summary</span>
-                <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                </svg>
-              </button>
-            </form>
-
-            <!-- Trust Indicators -->
-            <div class="mt-6 pt-6 border-t border-gray-100">
-              <div class="flex items-center justify-center gap-4 text-sm text-gray-500">
-                <div class="flex items-center gap-1">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Secure</span>
-                </div>
-                <div class="flex items-center gap-1">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                  </svg>
-                  <span>No spam</span>
-                </div>
-                <div class="flex items-center gap-1">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Instant delivery</span>
-                </div>
-              </div>
-            </div>
+          <div class="flex items-start gap-3">
+            <input type="checkbox" id="updates" name="updates" class="mt-1 w-4 h-4 rounded-sm border-line accent-navy" />
+            <label for="updates" class="text-sm text-gray-600">I would like to receive updates from Dafira about governance insights and platform features</label>
           </div>
-        </div>
+
+          <Button type="submit" class="w-full">Access the summaries</Button>
+          <p class="flex flex-wrap gap-x-5 gap-y-1 font-mono text-[11px] uppercase tracking-[0.08em] text-gray-500">
+            <span>Secure</span><span>No spam</span><span>Immediate access</span>
+          </p>
+        </form>
       </div>
-    </section>
+    </PageHero>
 
-    <!-- AI-Minute Builder Promotion Section -->
-    <section class="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div class="grid lg:grid-cols-2 gap-0">
-            <!-- Left Column - Content -->
-            <div class="p-8 lg:p-12">
-              <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-6">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7"></path>
-                </svg>
-                Powered by Govrn AI
-              </div>
-
-              <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                Perfect timing!
-              </h2>
-              
-              <p class="text-xl text-gray-600 mb-6">
-                Our <strong>AI-Minute Builder</strong> has already summarized all of this for you. The same technology can transform your own board meetings into actionable insights.
-              </p>
-
-              <div class="space-y-4 mb-8">
-                <div class="flex items-start gap-3">
-                  <div class="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900">Automatic Meeting Summaries</h3>
-                    <p class="text-gray-600">Transform your meetings into structured minutes instantly</p>
-                  </div>
-                </div>
-                
-                <div class="flex items-start gap-3">
-                  <div class="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900">Action Items Identified</h3>
-                    <p class="text-gray-600">AI automatically extracts decisions and follow-up tasks</p>
-                  </div>
-                </div>
-                
-                <div class="flex items-start gap-3">
-                  <div class="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900">Strategic Insights</h3>
-                    <p class="text-gray-600">Trend analysis and governance recommendations for your organization</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex flex-col sm:flex-row gap-4">
-                <a 
-                  href="/features/ai-minute-builder" 
-                  class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all transform hover:scale-[1.02] font-medium group"
-                >
-                  <span>Discover AI-Minute Builder</span>
-                  <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                  </svg>
-                </a>
-                
-                <a 
-                  href="/try" 
-                  class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-primary text-primary rounded-lg hover:bg-primary/5 transition-colors font-medium"
-                >
-                  <span>Try Free Demo</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Right Column - Visual -->
-            <div class="bg-gradient-to-br from-primary/5 to-blue-100 p-8 lg:p-12 flex items-center justify-center">
-              <div class="relative">
-                <!-- AI Brain Icon -->
-                <div class="w-32 h-32 bg-white rounded-2xl shadow-lg flex items-center justify-center mb-6 mx-auto ai-brain-subtle">
-                  <svg class="w-16 h-16 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                  </svg>
-                </div>
-
-                <!-- Floating Elements - Much more subtle -->
-                <div class="absolute -top-4 -left-4 w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center ai-subtle-1">
-                  <svg class="w-6 h-6 text-primary/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                  </svg>
-                </div>
-
-                <div class="absolute -top-2 -right-6 w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center ai-subtle-2">
-                  <svg class="w-5 h-5 text-blue-500/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                  </svg>
-                </div>
-
-                <div class="absolute -bottom-2 -left-2 w-11 h-11 bg-green-50 rounded-lg flex items-center justify-center ai-subtle-3">
-                  <svg class="w-5 h-5 text-green-500/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                  </svg>
-                </div>
-
-                <!-- Text overlay -->
-                <div class="text-center mt-8">
-                  <p class="text-sm text-gray-600 font-medium">
-                    The same AI that analyzes<br/>
-                    the Governance Summit
-                  </p>
-                </div>
-              </div>
-            </div>
+    <!-- About the summit -->
+    <Section>
+      <SectionHeader
+        eyebrow="About the event"
+        title="About the Governance Summit 2025"
+        lead="The first Governance Summit brought together governance professionals for a day of keynotes, panels and parallel sessions."
+      />
+      <div class="grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-5">
+          <div class="bg-white border border-line rounded-md p-6">
+            <img src={governanceSummitImage.src} alt="Governance Summit 2025" width="2224" height="500" class="w-full h-auto" loading="lazy" />
           </div>
+          <dl class="mt-8 border-t border-line">
+            {facts.map((f) => (
+              <div class="grid grid-cols-3 gap-4 py-4 border-b border-line">
+                <dt class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500 pt-0.5">{f.term}</dt>
+                <dd class="col-span-2 text-ink">{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <Button variant="link" href="https://www.governancesummit.be/summit/Home?lang=nl" target="_blank" rel="noopener noreferrer" class="mt-6">Visit GovernanceSummit.be</Button>
         </div>
-      </div>
-    </section>
-
-    <!-- Conference Context Section -->
-    <section class="py-16 bg-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            About the Governance Summit 2025
-          </h2>
-          <div class="w-24 h-1 bg-primary mx-auto mb-4"></div>
-          <p class="text-gray-600">
-            Belgium's premier governance event - <strong>analyzed by Govrn's AI platform</strong>
+        <div class="lg:col-span-6 lg:col-start-7 space-y-6 text-lg text-gray-700 leading-relaxed">
+          <p>
+            The event took place on 6 June 2025 at Vestar in Antwerp. The Governance Summit brought together board members, CEOs, secretaries-general, top managers, auditors, shareholders, sustainability experts and other professionals working on organisational governance.
+          </p>
+          <div class="border-s-2 border-primary ps-6">
+            <h3 class="font-semibold text-navy">Theme: "Creating good vibes in the boardroom"</h3>
+            <p class="mt-2 text-base text-gray-600">How boardrooms can function not only as places of decision-making, but also as drivers of innovation, sustainability and value creation.</p>
+          </div>
+          <p>
+            The programme included keynotes by Randall S. Peterson, Brontie Ansell and Marilieke Engbers, along with sessions on ESG, diversity, corporate culture and leadership.
+          </p>
+          <p class="text-base text-gray-600">
+            The summit was organised by De Bestuurder and its network partners. The session summaries on this page were prepared with Dafira's AI minute builder.
           </p>
         </div>
-        
-        <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-          <p class="text-xl text-gray-600 mb-8 text-center">
-            The inaugural Governance Summit brought together Belgium's top governance professionals for a day of insights and innovation.
-          </p>
-          
-          <div class="grid md:grid-cols-2 gap-8 items-start">
-            <div class="space-y-6">
-              <div class="bg-gray-50 rounded-lg p-6">
-                <div class="flex items-center gap-3 mb-4">
-                  <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900">Event Details</h3>
-                    <p class="text-sm text-gray-600">June 6, 2025 • Vestar Antwerp</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="bg-gray-50 rounded-lg p-6">
-                <div class="flex items-center gap-3 mb-4">
-                  <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900">Key Attendees</h3>
-                    <p class="text-sm text-gray-600">Board members, CEOs, secretaries-general, top managers, auditors, shareholders, sustainability experts</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Govrn AI Analysis Card -->
-              <div class="bg-primary/5 rounded-lg p-6 border border-primary/20">
-                <div class="flex items-center gap-3 mb-3">
-                  <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900">AI-Powered Analysis</h3>
-                    <p class="text-sm text-gray-600">Comprehensive insights generated by Govrn's advanced AI platform</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Link to Official Event -->
-              <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                <div class="flex items-center gap-3 mb-3">
-                  <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900">Official Event Website</h3>
-                  </div>
-                </div>
-                <a 
-                  href="https://www.governancesummit.be/summit/Home?lang=nl" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors"
-                >
-                  <span>Visit GovernanceSummit.be</span>
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            
-            <div class="space-y-6">
-              <p>
-                This groundbreaking event took place on <strong>June 6, 2025</strong> at the sustainable and centrally located <strong>Vestar Antwerp</strong>. The Governance Summit brought together board members, CEOs, secretaries-general, top managers, auditors, shareholders, sustainability experts and other professionals focused on organizational governance excellence.
-              </p>
-              
-              <div class="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">
-                <h3 class="font-semibold text-gray-900 mb-2">
-                  Theme: "Creating Good Vibes in the Boardroom"
-                </h3>
-                <p class="text-gray-700">
-                  Exploring how boardrooms can function not only as places of decision-making, but also as catalysts for innovation, sustainability and value creation.
-                </p>
-              </div>
-              
-              <p>
-                Participants gained <strong>valuable insights</strong> and <strong>unique inspiration</strong> to elevate their governing bodies. The summit featured inspiring keynotes from renowned experts like <strong>Randall S. Peterson</strong>, <strong>Brontie Ansell</strong> and <strong>Marilieke Engbers</strong>, along with interactive sessions covering current topics such as ESG, diversity, corporate culture and leadership.
-              </p>
-
-              <div class="bg-gradient-to-r from-primary/5 to-blue-50 rounded-lg p-6 border border-primary/10">
-                <div class="flex items-start gap-3 mb-3">
-                  <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-gray-900 mb-2">Why Govrn?</h4>
-                    <p class="text-sm text-gray-700">
-                      As a leading governance platform, Govrn leverages advanced AI to transform complex summit content into actionable insights. Our technology ensures you don't miss critical governance trends and strategies, even when you can't attend every session.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bg-gray-50 rounded-lg p-4">
-                <p class="text-sm text-gray-600 italic">
-                  This inaugural event set a new standard for governance excellence in Belgium, organized by De Bestuurder and collaborating network partners. <strong>Analysis powered by Govrn's AI platform.</strong>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-    </section>
+    </Section>
 
-    <!-- Success State (Hidden by default) -->
-    <div id="formSuccess" class="hidden">
-      <section class="py-24 bg-gradient-to-br from-green-50 to-blue-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <FormSuccess 
-            title="Success! Check Your Email"
-            message="Your AI-powered Governance Summit summary is on its way. Check your inbox in the next few minutes for comprehensive insights from all sessions."
-          />
-          
-          <!-- Additional CTA -->
-          <div class="mt-8">
-            <a 
-              href="/try" 
-              class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium"
-            >
-              <span>Explore Govrn Platform</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
-    </div>
+    <!-- AI minute builder -->
+    <Section tone="surface" border="both">
+      <SectionHeader
+        eyebrow="AI minute builder"
+        title="The same AI, for your own board meetings"
+        lead="The summaries of the summit were prepared with Dafira's AI minute builder. It drafts structured minutes of your board meetings, which your secretary reviews and publishes."
+      />
+      <FeatureColumns items={[
+        { icon: 'document', title: 'Meeting summaries', text: 'A structured draft of the minutes, shortly after the meeting.' },
+        { icon: 'tasks', title: 'Action items identified', text: 'Decisions and follow-up tasks extracted from the discussion.' },
+        { icon: 'chart', title: 'Key takeaways', text: 'The main points of each agenda item, ready for review.' },
+      ]} />
+      <div class="flex flex-col sm:flex-row gap-3">
+        <Button href="/features/ai-minute-builder">Discover the AI minute builder</Button>
+        <Button variant="secondary" href="/try">Try Dafira</Button>
+      </div>
+    </Section>
   </main>
 </Layout>
 
@@ -537,19 +132,28 @@ const pageDescription = "Access comprehensive AI-generated summaries and insight
   href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
 />
 <script
+  is:inline
   src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"
 ></script>
 <script
+  is:inline
   src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
 ></script>
 
+<style is:global>
+  /* intl-tel-input: full-width field; colours come from the Field control classes */
+  .iti { display: block; width: 100%; }
+</style>
+
 <script>
+  import { sendForm } from '../utils/sendForm';
   const form = document.getElementById('summaryForm');
 
   // Initialize phone input
-  let phoneInput;
-  if (typeof window !== 'undefined' && window.intlTelInput) {
-    phoneInput = window.intlTelInput(document.getElementById('phone'), {
+  let phoneInput: any;
+  const w = window as any;
+  if (typeof window !== 'undefined' && w.intlTelInput) {
+    phoneInput = w.intlTelInput(document.getElementById('phone'), {
       utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
       preferredCountries: ["be", "fr", "nl", "gb", "ch", "dk"],
       separateDialCode: true,
@@ -561,7 +165,7 @@ const pageDescription = "Access comprehensive AI-generated summaries and insight
     // Add phone validation
     const phoneElement = document.getElementById('phone');
     const phoneError = document.getElementById('phone-error');
-    
+
     phoneElement?.addEventListener('blur', () => {
       if (phoneInput && phoneInput.isValidNumber()) {
         phoneError?.classList.add('hidden');
@@ -573,14 +177,14 @@ const pageDescription = "Access comprehensive AI-generated summaries and insight
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     // Validate phone number if phoneInput is available
     if (phoneInput && !phoneInput.isValidNumber()) {
       const phoneError = document.getElementById('phone-error');
       phoneError?.classList.remove('hidden');
       return;
     }
-    
+
     const formData = new FormData(form as HTMLFormElement);
     const data = {
       firstName: formData.get('firstName'),
@@ -593,17 +197,17 @@ const pageDescription = "Access comprehensive AI-generated summaries and insight
     };
 
     // Get button reference and original text
-    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const submitButton = (form as HTMLFormElement).querySelector('button[type="submit"]') as HTMLButtonElement;
     const originalText = submitButton?.innerHTML;
 
     try {
       // Here you would typically send the form data to your backend/CRM
       console.log('Form submitted:', data);
-      
-      // Show loading state
+
+      // Show loading state (real loading spinner)
       if (submitButton) {
         submitButton.innerHTML = `
-          <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <svg class="animate-spin -ms-1 me-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
@@ -611,17 +215,19 @@ const pageDescription = "Access comprehensive AI-generated summaries and insight
         `;
         submitButton.disabled = true;
       }
-      
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
+      if (!(await sendForm(form as HTMLFormElement, 'Governance Summit summary request'))) {
+        if (submitButton) { submitButton.disabled = false; submitButton.innerHTML = originalText ?? submitButton.innerHTML; }
+        return;
+      }
+
       // Redirect to the program page with AI insights
       window.location.href = '/governance-summit-program';
-      
+
     } catch (error) {
       console.error('Form submission error:', error);
       alert('There was an error submitting the form. Please try again.');
-      
+
       // Reset button state
       if (submitButton && originalText) {
         submitButton.innerHTML = originalText;
@@ -630,101 +236,3 @@ const pageDescription = "Access comprehensive AI-generated summaries and insight
     }
   });
 </script>
-
-<style>
-  main {
-    width: 100%;
-  }
-
-  /* Phone input styles */
-  .iti {
-    display: block;
-    width: 100%;
-  }
-
-  .iti__tel-input,
-  .iti input {
-    width: 100% !important;
-    border-radius: 0.5rem !important;
-    border: 1px solid rgb(209, 213, 219) !important;
-    padding: 0.75rem 1rem !important;
-    padding-left: 90px !important;
-    font-size: 1rem !important;
-    line-height: 1.5 !important;
-  }
-
-  .iti input:focus {
-    outline: none !important;
-    border-color: rgb(99, 102, 241) !important;
-    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2) !important;
-  }
-
-  .iti__selected-flag {
-    border-radius: 0.5rem 0 0 0.5rem !important;
-    transition: all 0.2s ease !important;
-    background-color: rgb(249, 250, 251) !important;
-    height: 100% !important;
-  }
-
-  .iti__selected-flag:hover,
-  .iti__selected-flag:focus {
-    background-color: rgb(239, 246, 255) !important;
-    border-radius: 0.5rem 0 0 0.5rem !important;
-  }
-
-  .iti__country-list {
-    border-radius: 0.5rem !important;
-    border: 1px solid rgb(229, 231, 235) !important;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
-  }
-
-  .iti__country.iti__highlight,
-  .iti__country:hover,
-  .iti__country.iti__active {
-    background-color: rgb(239, 246, 255) !important;
-  }
-
-  /* Subtle AI animations - much more refined */
-  @keyframes subtleFloat {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-2px);
-    }
-  }
-
-  @keyframes subtleGlow {
-    0%, 100% {
-      opacity: 0.6;
-    }
-    50% {
-      opacity: 0.8;
-    }
-  }
-
-  @keyframes subtleBreathe {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.02);
-    }
-  }
-
-  .ai-brain-subtle {
-    animation: subtleFloat 6s ease-in-out infinite;
-  }
-
-  .ai-subtle-1 {
-    animation: subtleGlow 4s ease-in-out infinite;
-  }
-
-  .ai-subtle-2 {
-    animation: subtleFloat 5s ease-in-out infinite 1s;
-  }
-
-  .ai-subtle-3 {
-    animation: subtleBreathe 7s ease-in-out infinite 2s;
-  }
-</style> 

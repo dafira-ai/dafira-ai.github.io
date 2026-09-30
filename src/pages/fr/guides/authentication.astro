@@ -1,13 +1,15 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import GuideHeader from '../../../components/guides/GuideHeader.astro';
+import GuideArticle from '../../../components/guides/GuideArticle.astro';
+import { Button, Icon } from '../../../components/ui';
 import GuideStep from '../../../components/guides/GuideStep.astro';
 import GuideSubSection from '../../../components/guides/GuideSubSection.astro';
 import GuideStepList from '../../../components/guides/GuideStepList.astro';
 import ProTip from '../../../components/guides/ProTip.astro';
 
 const signUpSteps = [
-  "Ouvrez l'e-mail d'invitation Govrn",
+  "Ouvrez l'e-mail d'invitation Dafira",
   "Cliquez sur 'Accepter l'invitation'", 
   "Sélectionnez votre pays",
   "Renseignez votre numéro de mobile",
@@ -18,7 +20,7 @@ const signUpSteps = [
 ];
 
 const signInSteps = [
-  "Rendez-vous sur app.govrn.com",
+  "Ouvrez l'application Dafira dans votre navigateur",
   "Saisissez votre adresse e-mail",
   "Entrez votre mot de passe",
   "Cliquez sur 'Se connecter'",
@@ -45,7 +47,7 @@ const twoFactorTroubleshooting = [
 
 const resetPasswordTroubleshooting = [
   "Vérifiez vos courriers indésirables",
-  "Ajoutez support@govrn.com à vos contacts",
+  "Ajoutez info@dafira.ai à vos contacts",
   "Demandez un nouveau lien après 24h",
   "Videz le cache de votre navigateur"
 ];
@@ -58,18 +60,18 @@ const firewallTroubleshooting = [
 ];
 ---
 
-<Layout title="Guide d'authentification Govrn - Connexion sécurisée">
-  <main class="pt-24">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <GuideHeader
-        title="Accédez à votre espace Govrn en toute sécurité"
+<Layout title="Guide d'authentification Dafira - Connexion sécurisée">
+  <main>
+    <GuideHeader
+        title="Accédez à votre espace Dafira en toute sécurité"
         description="Guide complet pour créer votre compte, vous connecter et gérer vos paramètres d'authentification en toute sérénité."
       />
+    <GuideArticle>
 
       <GuideStep
         number={1}
         title="Création de votre compte"
-        description="Suivez ces étapes pour configurer votre accès Govrn suite à votre invitation :"
+        description="Suivez ces étapes pour configurer votre accès Dafira suite à votre invitation :"
       >
         <div class="mb-8">
           <GuideStepList items={signUpSteps} />
@@ -80,12 +82,12 @@ const firewallTroubleshooting = [
         />
 
         <GuideSubSection title="Critères de sécurité">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <ul class="space-y-2 text-gray-600">
-              <li>• Minimum 8 caractères</li>
-              <li>• Au moins une majuscule</li>
-              <li>• Au moins un chiffre</li>
-              <li>• Au moins un caractère spécial</li>
+              <li>Minimum 8 caractères</li>
+              <li>Au moins une majuscule</li>
+              <li>Au moins un chiffre</li>
+              <li>Au moins un caractère spécial</li>
             </ul>
           </div>
         </GuideSubSection>
@@ -94,7 +96,7 @@ const firewallTroubleshooting = [
       <GuideStep
         number={2}
         title="Connexion sécurisée"
-        description="Accédez à votre espace Govrn en suivant ces étapes :"
+        description="Accédez à votre espace Dafira en suivant ces étapes :"
       >
         <div class="mb-8">
           <GuideStepList items={signInSteps} />
@@ -106,19 +108,19 @@ const firewallTroubleshooting = [
 
         <GuideSubSection title="Double authentification (2FA)">
           <div class="grid md:grid-cols-2 gap-4">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">Pourquoi la 2FA ?</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">Pourquoi la 2FA ?</h4>
               <ul class="text-sm text-gray-600 space-y-1">
-                <li>• Protection renforcée</li>
-                <li>• Accès sécurisé garanti</li>
-                <li>• Confidentialité assurée</li>
+                <li>Protection renforcée</li>
+                <li>Accès sécurisé garanti</li>
+                <li>Confidentialité assurée</li>
               </ul>
             </div>
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">Dépannage</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">Dépannage</h4>
               <ul class="text-sm text-gray-600 space-y-1">
                 {twoFactorTroubleshooting.map(step => (
-                  <li>• {step}</li>
+                  <li>{step}</li>
                 ))}
               </ul>
             </div>
@@ -147,20 +149,20 @@ const firewallTroubleshooting = [
       >
         <div class="grid md:grid-cols-2 gap-6">
           <GuideSubSection title="Problèmes de réinitialisation">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
+            <div class="border border-line rounded-md p-5">
               <ul class="text-sm text-gray-600 space-y-2">
                 {resetPasswordTroubleshooting.map(step => (
-                  <li>• {step}</li>
+                  <li>{step}</li>
                 ))}
               </ul>
             </div>
           </GuideSubSection>
 
           <GuideSubSection title="Accès & Pare-feu">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
+            <div class="border border-line rounded-md p-5">
               <ul class="text-sm text-gray-600 space-y-2">
                 {firewallTroubleshooting.map(step => (
-                  <li>• {step}</li>
+                  <li>{step}</li>
                 ))}
               </ul>
             </div>
@@ -170,57 +172,47 @@ const firewallTroubleshooting = [
         <div class="mt-6">
           <p class="text-sm text-gray-600">
             Pour plus d'informations techniques, consultez notre
-            <a href="/fr/guides/domains-protocols" class="text-primary hover:text-primary/80 underline">
+            <a href="/fr/guides/domains-protocols" class="text-primary hover:text-navy underline">
               Guide des domaines & protocoles
             </a>.
           </p>
         </div>
       </GuideStep>
 
-      <div class="mt-16 bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Aide-mémoire</h2>
+      <div class="mt-16 rounded-md p-8 border border-line bg-surface">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Aide-mémoire</h2>
         <div class="grid md:grid-cols-2 gap-6">
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Problèmes fréquents</h3>
+            <h3 class="font-semibold text-navy mb-2">Problèmes fréquents</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• Invitation non reçue : vérifiez les spams</li>
-              <li>• Code 2FA manquant : contrôlez votre mobile</li>
-              <li>• Connexion impossible : videz le cache</li>
-              <li>• Session expirée : reconnectez-vous</li>
+              <li>Invitation non reçue : vérifiez les spams</li>
+              <li>Code 2FA manquant : contrôlez votre mobile</li>
+              <li>Connexion impossible : videz le cache</li>
+              <li>Session expirée : reconnectez-vous</li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Bonnes pratiques</h3>
+            <h3 class="font-semibold text-navy mb-2">Bonnes pratiques</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• Choisissez un mot de passe unique</li>
-              <li>• Protégez vos codes 2FA</li>
-              <li>• Déconnectez-vous des appareils partagés</li>
-              <li>• Actualisez régulièrement vos accès</li>
+              <li>Choisissez un mot de passe unique</li>
+              <li>Protégez vos codes 2FA</li>
+              <li>Déconnectez-vous des appareils partagés</li>
+              <li>Actualisez régulièrement vos accès</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <div class="mt-8 bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Besoin d'aide ?</h2>
+      <div class="mt-8 rounded-md p-8 border border-line">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Besoin d'aide ?</h2>
         <p class="text-gray-600 mb-6">
           Des difficultés pour vous connecter ? Notre équipe support est à votre disposition.
         </p>
-        <div class="flex space-x-4">
-          <a
-            href="/fr/contact"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors"
-          >
-            Contacter le support
-          </a>
-          <a
-            href="/fr/guides"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-gray-900 bg-white border border-gray-200 hover:bg-gray-50 transition-colors"
-          >
-            Tous les guides
-          </a>
+        <div class="flex flex-wrap gap-3 df-guide-actions">
+          <Button href="/fr/contact">Contacter le support</Button>
+          <Button href="/fr/guides" variant="secondary">Tous les guides</Button>
         </div>
       </div>
-    </article>
+    </GuideArticle>
   </main>
 </Layout>

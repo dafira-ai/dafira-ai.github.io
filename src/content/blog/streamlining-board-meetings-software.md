@@ -2,8 +2,8 @@
 title: "Streamlining Board Meetings with Board Meeting Software"
 description: "Discover how board meeting software enhances efficiency, collaboration, and organization, saving time and money while improving governance processes."
 pubDate: 2023-06-10
-author: "Govrn"
-authorRole: "Govrn Editorial Team"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/computer.jpg"
 category: "Technology"
 tags: ["Board Meeting Software", "Corporate Governance", "Efficiency", "Collaboration"]

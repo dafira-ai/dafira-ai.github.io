@@ -1,0 +1,23 @@
+---
+// Highlighted note inside long-form content (tip, note, warning).
+import Icon from './Icon.astro';
+interface Props {
+  tone?: 'note' | 'tip' | 'warning';
+  title?: string;
+  class?: string;
+}
+const { tone = 'note', title, class: className } = Astro.props;
+const styles = {
+  note: ['border-primary bg-blue-50/60', 'info'],
+  tip: ['border-emerald-600 bg-emerald-50/60', 'sparkle'],
+  warning: ['border-amber-500 bg-amber-50/70', 'warning'],
+}[tone];
+---
+
+<aside class:list={['border-s-2 rounded-e-md px-5 py-4 flex gap-3', styles[0], className]}>
+  <Icon name={styles[1]} class="w-5 h-5 text-navy mt-0.5" />
+  <div class="text-[15px] text-gray-700 leading-relaxed">
+    {title && <p class="font-medium text-navy mb-1">{title}</p>}
+    <slot />
+  </div>
+</aside>

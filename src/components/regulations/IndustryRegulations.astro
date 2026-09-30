@@ -1,125 +1,124 @@
 ---
+// Regulatory context for a sector (financial services, healthcare, real estate), EN/FR/NL.
+// Factual overview only: what the text is and what it implies for the board record. No compliance promises.
+import { Section, SectionHeader, Callout } from '../ui';
+import { langFromPath } from '../../i18n/routes';
+
 interface Props {
   industry: string;
+  tone?: 'white' | 'surface';
 }
 
-const { industry } = Astro.props;
+const { industry, tone = 'white' } = Astro.props;
+const raw = langFromPath(Astro.url.pathname);
+const lang = (raw === 'fr' || raw === 'nl' ? raw : 'en') as 'en' | 'fr' | 'nl';
 
-const regulations = {
-  "financial-services": [
-    {
-      name: "CSRD",
-      description: "Corporate Sustainability Reporting Directive requirements for ESG reporting and disclosure",
-      impact: "Mandatory ESG reporting",
-      deadline: "2024-2025",
-      solution: "Automated ESG reporting and tracking with real-time compliance monitoring"
-    },
-    {
-      name: "Basel IV",
-      description: "Enhanced capital requirements and risk management standards",
-      impact: "Capital allocation changes",
-      deadline: "2025",
-      solution: "Risk assessment tools and regulatory compliance tracking"
-    },
-    {
-      name: "GDPR",
-      description: "Data protection and privacy regulations for EU citizens",
-      impact: "Privacy compliance",
-      deadline: "Ongoing",
-      solution: "Built-in privacy controls and data protection features"
-    }
-  ],
-  "healthcare": [
-    {
-      name: "HIPAA",
-      description: "Health Insurance Portability and Accountability Act requirements",
-      impact: "Patient data protection",
-      deadline: "Ongoing",
-      solution: "End-to-end encryption and secure data handling"
-    },
-    {
-      name: "MDR",
-      description: "Medical Device Regulation compliance requirements",
-      impact: "Device documentation",
-      deadline: "Ongoing",
-      solution: "Document management and version control"
-    },
-    {
-      name: "GDPR Health",
-      description: "Special provisions for health data under GDPR",
-      impact: "Health data privacy",
-      deadline: "Ongoing",
-      solution: "Healthcare-specific privacy controls"
-    }
-  ],
-  "real-estate": [
-    {
-      name: "AIFMD",
-      description: "Alternative Investment Fund Managers Directive requirements",
-      impact: "Fund management",
-      deadline: "Ongoing",
-      solution: "Investment tracking and reporting tools"
-    },
-    {
-      name: "ESG Reporting",
-      description: "Environmental, Social, and Governance reporting requirements",
-      impact: "Sustainability reporting",
-      deadline: "2024",
-      solution: "ESG metrics tracking and reporting"
-    },
-    {
-      name: "SFDR",
-      description: "Sustainable Finance Disclosure Regulation",
-      impact: "Sustainability disclosure",
-      deadline: "2024",
-      solution: "Automated disclosure and reporting tools"
-    }
-  ]
+type Reg = { name: string; ref: string; what: string; board: string };
+
+const labels = {
+  en: {
+    eyebrow: 'Regulatory context',
+    title: 'Regulations that reach the boardroom',
+    lead: 'A short overview of texts that shape what the board discusses and must be able to document.',
+    what: 'What it is',
+    board: 'For the board',
+    note: 'This overview is for information only and is not legal advice. Check which texts apply to your organisation and when.',
+  },
+  fr: {
+    eyebrow: 'Contexte réglementaire',
+    title: 'Les réglementations qui concernent le conseil',
+    lead: 'Un bref aperçu des textes qui influencent ce dont le conseil discute et ce qu’il doit pouvoir documenter.',
+    what: 'De quoi il s’agit',
+    board: 'Pour le conseil',
+    note: 'Cet aperçu est donné à titre d’information et ne constitue pas un avis juridique. Vérifiez quels textes s’appliquent à votre organisation et à partir de quand.',
+  },
+  nl: {
+    eyebrow: 'Regelgevend kader',
+    title: 'Regelgeving die de bestuurskamer raakt',
+    lead: 'Een kort overzicht van teksten die bepalen wat het bestuur bespreekt en moet kunnen documenteren.',
+    what: 'Wat het is',
+    board: 'Voor het bestuur',
+    note: 'Dit overzicht dient enkel ter informatie en is geen juridisch advies. Ga na welke teksten op uw organisatie van toepassing zijn en vanaf wanneer.',
+  },
+}[lang];
+
+const regulations: Record<'en' | 'fr' | 'nl', Record<string, Reg[]>> = {
+  en: {
+    'financial-services': [
+      { name: 'DORA', ref: 'Regulation (EU) 2022/2554', what: 'Digital operational resilience for the financial sector, applicable since 17 January 2025.', board: 'The management body defines, approves and oversees the ICT risk management framework and remains responsible for it.' },
+      { name: 'CSRD', ref: 'Directive (EU) 2022/2464', what: 'Sustainability reporting by companies, phased in by company size; timelines were revised in 2025.', board: 'The board oversees the sustainability statement and the reporting process, often through the audit committee.' },
+      { name: 'GDPR', ref: 'Regulation (EU) 2016/679', what: 'Protection of personal data in the EU.', board: 'Board papers containing personal data must be shared with the right people only, and kept for a defined period.' },
+    ],
+    healthcare: [
+      { name: 'GDPR · health data', ref: 'Regulation (EU) 2016/679, art. 9', what: 'Health data is a special category of personal data, subject to stricter conditions.', board: 'Papers containing such data require restricted access and a record of who consulted them.' },
+      { name: 'NIS2', ref: 'Directive (EU) 2022/2555', what: 'Cybersecurity requirements for essential and important entities, including healthcare providers.', board: 'Management bodies approve cybersecurity risk-management measures, oversee their implementation and follow training.' },
+      { name: 'MDR', ref: 'Regulation (EU) 2017/745', what: 'Rules for medical devices placed on the EU market, relevant to manufacturers.', board: 'Boards of manufacturers follow compliance with the regulation and keep the related decisions documented.' },
+    ],
+    'real-estate': [
+      { name: 'AIFMD', ref: 'Directive 2011/61/EU, as amended', what: 'Framework for managers of alternative investment funds, including real estate funds.', board: 'Governance, risk management and conflicts of interest are subject to documented oversight.' },
+      { name: 'SFDR', ref: 'Regulation (EU) 2019/2088', what: 'Sustainability-related disclosures in the financial services sector.', board: 'The board approves the policies and disclosures that describe how sustainability risks are handled.' },
+      { name: 'CSRD', ref: 'Directive (EU) 2022/2464', what: 'Sustainability reporting by companies, phased in by company size; timelines were revised in 2025.', board: 'The board oversees the sustainability statement and the reporting process.' },
+    ],
+  },
+  fr: {
+    'financial-services': [
+      { name: 'DORA', ref: 'Règlement (UE) 2022/2554', what: 'Résilience opérationnelle numérique du secteur financier, applicable depuis le 17 janvier 2025.', board: 'L’organe de direction définit, approuve et supervise le cadre de gestion du risque informatique et en reste responsable.' },
+      { name: 'CSRD', ref: 'Directive (UE) 2022/2464', what: 'Publication d’informations en matière de durabilité, introduite par étapes selon la taille des entreprises ; le calendrier a été revu en 2025.', board: 'Le conseil supervise la déclaration de durabilité et le processus de reporting, souvent via le comité d’audit.' },
+      { name: 'RGPD', ref: 'Règlement (UE) 2016/679', what: 'Protection des données à caractère personnel dans l’UE.', board: 'Les documents du conseil contenant des données personnelles ne doivent être partagés qu’avec les bonnes personnes et conservés pendant une durée définie.' },
+    ],
+    healthcare: [
+      { name: 'RGPD · données de santé', ref: 'Règlement (UE) 2016/679, art. 9', what: 'Les données de santé sont une catégorie particulière de données personnelles, soumise à des conditions plus strictes.', board: 'Les documents qui en contiennent exigent un accès restreint et une trace de qui les a consultés.' },
+      { name: 'NIS2', ref: 'Directive (UE) 2022/2555', what: 'Exigences de cybersécurité pour les entités essentielles et importantes, dont les prestataires de soins de santé.', board: 'Les organes de direction approuvent les mesures de gestion des risques de cybersécurité, supervisent leur mise en œuvre et suivent une formation.' },
+      { name: 'MDR', ref: 'Règlement (UE) 2017/745', what: 'Règles applicables aux dispositifs médicaux mis sur le marché de l’UE, pertinentes pour les fabricants.', board: 'Les conseils des fabricants suivent la conformité au règlement et documentent les décisions qui s’y rapportent.' },
+    ],
+    'real-estate': [
+      { name: 'AIFMD', ref: 'Directive 2011/61/UE, telle que modifiée', what: 'Cadre applicable aux gestionnaires de fonds d’investissement alternatifs, y compris les fonds immobiliers.', board: 'La gouvernance, la gestion des risques et les conflits d’intérêts font l’objet d’une supervision documentée.' },
+      { name: 'SFDR', ref: 'Règlement (UE) 2019/2088', what: 'Publication d’informations en matière de durabilité dans le secteur des services financiers.', board: 'Le conseil approuve les politiques et publications qui décrivent la prise en compte des risques de durabilité.' },
+      { name: 'CSRD', ref: 'Directive (UE) 2022/2464', what: 'Publication d’informations en matière de durabilité, introduite par étapes selon la taille des entreprises ; le calendrier a été revu en 2025.', board: 'Le conseil supervise la déclaration de durabilité et le processus de reporting.' },
+    ],
+  },
+  nl: {
+    'financial-services': [
+      { name: 'DORA', ref: 'Verordening (EU) 2022/2554', what: 'Digitale operationele weerbaarheid van de financiële sector, van toepassing sinds 17 januari 2025.', board: 'Het leidinggevend orgaan bepaalt, keurt goed en ziet toe op het kader voor ICT-risicobeheer en blijft ervoor verantwoordelijk.' },
+      { name: 'CSRD', ref: 'Richtlijn (EU) 2022/2464', what: 'Duurzaamheidsrapportering door ondernemingen, gefaseerd ingevoerd naargelang de omvang; de timing werd in 2025 herzien.', board: 'Het bestuur houdt toezicht op de duurzaamheidsverklaring en het rapporteringsproces, vaak via het auditcomité.' },
+      { name: 'AVG', ref: 'Verordening (EU) 2016/679', what: 'Bescherming van persoonsgegevens in de EU.', board: 'Bestuursstukken met persoonsgegevens mogen alleen met de juiste personen gedeeld worden en worden gedurende een bepaalde termijn bewaard.' },
+    ],
+    healthcare: [
+      { name: 'AVG · gezondheidsgegevens', ref: 'Verordening (EU) 2016/679, art. 9', what: 'Gezondheidsgegevens zijn een bijzondere categorie persoonsgegevens, met strengere voorwaarden.', board: 'Stukken met zulke gegevens vragen beperkte toegang en een spoor van wie ze raadpleegde.' },
+      { name: 'NIS2', ref: 'Richtlijn (EU) 2022/2555', what: 'Cyberbeveiligingseisen voor essentiële en belangrijke entiteiten, waaronder zorgaanbieders.', board: 'Bestuursorganen keuren de maatregelen voor cyberbeveiligingsrisicobeheer goed, zien toe op de uitvoering en volgen een opleiding.' },
+      { name: 'MDR', ref: 'Verordening (EU) 2017/745', what: 'Regels voor medische hulpmiddelen op de EU-markt, relevant voor fabrikanten.', board: 'Besturen van fabrikanten volgen de naleving van de verordening op en documenteren de bijbehorende besluiten.' },
+    ],
+    'real-estate': [
+      { name: 'AIFMD', ref: 'Richtlijn 2011/61/EU, zoals gewijzigd', what: 'Kader voor beheerders van alternatieve beleggingsinstellingen, waaronder vastgoedfondsen.', board: 'Governance, risicobeheer en belangenconflicten zijn onderworpen aan gedocumenteerd toezicht.' },
+      { name: 'SFDR', ref: 'Verordening (EU) 2019/2088', what: 'Duurzaamheidsinformatie in de financiëledienstensector.', board: 'Het bestuur keurt het beleid en de publicaties goed die beschrijven hoe met duurzaamheidsrisico’s wordt omgegaan.' },
+      { name: 'CSRD', ref: 'Richtlijn (EU) 2022/2464', what: 'Duurzaamheidsrapportering door ondernemingen, gefaseerd ingevoerd naargelang de omvang; de timing werd in 2025 herzien.', board: 'Het bestuur houdt toezicht op de duurzaamheidsverklaring en het rapporteringsproces.' },
+    ],
+  },
 };
+
+const items = regulations[lang][industry] ?? [];
 ---
 
-<div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 mb-8">
-  <div class="text-center max-w-2xl mx-auto mb-8">
-    <h2 class="text-2xl font-bold text-gray-900 mb-3">Industry-Specific Regulations</h3>
-    <p class="text-gray-600">See how Govrn helps you stay compliant with key regulations</p>
-  </div>
-
-  <div class="grid gap-6">
-    {regulations[industry]?.map(reg => (
-      <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-6 border border-primary/10 transform transition-all duration-300 hover:shadow-md hover:-translate-y-1">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-              <span class="text-primary font-semibold">{reg.name.slice(0, 2)}</span>
-            </div>
-            <h3 class="text-lg font-semibold text-primary">{reg.name}</h4>
-          </div>
-          <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-primary/10 text-primary">
-            Deadline: {reg.deadline}
-          </span>
-        </div>
-        <p class="text-gray-600 mb-6">{reg.description}</p>
-        <div class="grid sm:grid-cols-2 gap-6">
-          <div class="bg-white/50 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-              <span class="font-medium text-gray-900">Impact</span>
-            </div>
-            <p class="text-gray-600">{reg.impact}</p>
-          </div>
-          <div class="bg-white/50 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              <span class="font-medium text-gray-900">Govrn Solution</span>
-            </div>
-            <p class="text-gray-600">{reg.solution}</p>
-          </div>
-        </div>
+{items.length > 0 && (
+  <Section tone={tone} border="bottom">
+    <SectionHeader eyebrow={labels.eyebrow} title={labels.title} lead={labels.lead} />
+    <div class="border-t border-line">
+      <div class="hidden lg:grid grid-cols-12 gap-8 py-4 border-b border-line font-mono text-xs uppercase tracking-[0.08em] text-gray-500">
+        <div class="col-span-3"></div>
+        <div class="col-span-4">{labels.what}</div>
+        <div class="col-span-5">{labels.board}</div>
       </div>
-    ))}
-  </div>
-</div>
+      {items.map((reg) => (
+        <div class="grid lg:grid-cols-12 gap-3 lg:gap-8 py-6 border-b border-line">
+          <div class="lg:col-span-3">
+            <h3 class="text-lg font-semibold text-navy">{reg.name}</h3>
+            <p class="mt-1 font-mono text-xs text-gray-500">{reg.ref}</p>
+          </div>
+          <p class="lg:col-span-4 text-[15px] text-gray-600 leading-relaxed">{reg.what}</p>
+          <p class="lg:col-span-5 text-[15px] text-ink leading-relaxed">{reg.board}</p>
+        </div>
+      ))}
+    </div>
+    <Callout class="mt-10 max-w-3xl">{labels.note}</Callout>
+  </Section>
+)}

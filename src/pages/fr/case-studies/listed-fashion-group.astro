@@ -1,0 +1,43 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CaseStudy from '../../../components/case-studies/CaseStudy.astro';
+---
+
+<Layout
+  title="Groupe de mode coté en bourse : la gouvernance du conseil avec Dafira"
+  description="Comment un groupe de mode coté en bourse gère son conseil avec Dafira : intégration des administrateurs externes, accès sécurisé aux documents et signature électronique. Lisez l'étude de cas."
+>
+  <CaseStudy
+    company="Groupe de mode coté en bourse"
+    facts={[{ label: "Secteur", value: "Groupe de mode coté en bourse" }]}
+    title="Groupe de mode coté en bourse : la gouvernance du conseil réunie en un lieu sécurisé"
+    lead="Comment la directrice juridique et secrétaire du conseil du groupe a centralisé documents, signatures et collaboration du conseil avec Dafira."
+    quote={{ quote: "Dafira a transformé notre gestion du conseil d'administration, apportant efficacité et clarté à nos processus de gouvernance.", author: "Directrice juridique" }}
+    context={{
+      title: "Une entreprise fondée sur la qualité",
+      paragraphs: [
+        "Le groupe est fier de son héritage de qualité et d'innovation. Sa directrice juridique assume plusieurs responsabilités : conseil juridique, conformité, gestion des politiques et secrétariat du conseil d'administration.",
+        "L'entreprise est guidée par des valeurs fondamentales qui mettent l'accent sur la qualité des produits et des processus, les relations durables avec les parties prenantes et les solutions pérennes plutôt que les gains rapides.",
+      ],
+      quote: "Chez [notre organisation], nous nous engageons non seulement à maintenir mais aussi à élever la qualité de nos gammes de produits et de nos processus opérationnels.",
+    }}
+    challenges={[
+      { title: "Intégration au conseil", text: "Intégrer des administrateurs externes, qui doivent comprendre en profondeur les opérations et la stratégie." },
+      { title: "Complexité numérique", text: "Des sujets de plus en plus variés à maîtriser et à appliquer dans un environnement d'entreprise de plus en plus numérique." },
+      { title: "Sécurité des informations", text: "Un accès sécurisé aux documents confidentiels du conseil, sans les rendre difficiles à consulter." },
+    ]}
+    solutions={[
+      { title: "Une plateforme sans manuel", text: "Une interface que les administrateurs utilisent sans documentation de formation." },
+      { title: "Documents et signatures numériques", text: "Documents du conseil et processus de signature entièrement gérés en ligne." },
+      { title: "Un espace de travail commun", text: "Un seul lieu pour partager les documents et y travailler ensemble." },
+    ]}
+    outcome={{
+      title: "Une plateforme centrale pour le conseil",
+      paragraphs: [
+        "Alors que le monde de l'entreprise devient plus numérique et la réglementation plus complexe, les administrateurs du groupe doivent maîtriser un large éventail de sujets et les appliquer à la stratégie de l'entreprise.",
+        "Dafira les accompagne avec une plateforme centrale qui simplifie la gestion documentaire tout en protégeant les documents du conseil.",
+      ],
+      quote: "Dafira a révolutionné notre gestion du conseil d'administration, apportant efficacité et clarté à nos processus de gouvernance.",
+    }}
+  />
+</Layout>

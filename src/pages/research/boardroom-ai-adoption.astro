@@ -1,75 +1,29 @@
 ---
+import { getEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import ExecutiveSummary from '../../components/research/ExecutiveSummary.astro';
-import ResearchStats from '../../components/research/ResearchStats.astro';
-import KeyFindings from '../../components/research/KeyFindings.astro';
-import Solutions from '../../components/research/Solutions.astro';
-import Methodology from '../../components/research/Methodology.astro';
-import FutureOutlook from '../../components/research/FutureOutlook.astro';
-import CTA from '../../components/CTA.astro';
-import SharingButtons from '../../components/socials/SharingButtons.astro';
+import ResearchPaper from '../../components/ResearchPaper.astro';
+
+// The paper itself (src/content/research/boardroom-ai-adoption.md) is the single source of truth for this page.
+const entry = await getEntry('research', 'boardroom-ai-adoption');
+if (!entry) throw new Error('Missing research entry: boardroom-ai-adoption');
+const { Content, headings } = await entry.render();
+const toc = headings.filter((h) => h.depth === 2).map((h) => ({ id: h.slug, text: h.text }));
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": entry.data.title,
+  "abstract": entry.data.abstract,
+  "author": { "@type": "Person", "name": entry.data.authors },
+  "datePublished": entry.data.date,
+  "publisher": { "@type": "Organization", "name": "Dafira" }
+};
 ---
 
-<Layout title="The Future of AI in the Boardroom | Govrn Research" description="A comprehensive study examining how artificial intelligence is transforming board management and governance in the digital age.">
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-20">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Groundbreaking Research
-          </div>
-          <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 leading-tight">
-            The Future of AI in the Boardroom:
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Challenges and Opportunities
-            </span>
-          </h1>
-          <div class="flex flex-wrap justify-center gap-4 text-gray-600 mb-8">
-            <p class="font-medium">Dr. Weifeng Chen</p>
-            <span class="hidden sm:inline">•</span>
-            <p>Brunel Business School & Govrn</p>
-            <span class="hidden sm:inline">•</span>
-            <p>2024</p>
-          </div>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            A comprehensive study examining how artificial intelligence is transforming board management and governance in the digital age.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <ResearchStats />
-    <ExecutiveSummary />
-    <KeyFindings />
-    <Solutions />
-    <Methodology />
-    <FutureOutlook />
-    
-    <!-- Author Info -->
-    <SharingButtons title="The Future of AI in the Boardroom | Govrn Research" message="A comprehensive study examining how artificial intelligence is transforming board management and governance in the digital age." href={Astro.url.href} />
-    <section class="py-16 bg-gray-50">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid sm:grid-cols-2 gap-8">
-          <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="font-semibold text-gray-900 mb-2">About the Authors</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">
-              Dr. Weifeng Chen is a Reader in Innovation Management and Strategy at Brunel Business School, specializing in AI adoption and digital transformation.
-            </p>
-          </div>
-          <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="font-semibold text-gray-900 mb-2">Get Involved</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">
-              Interested in participating in future research or learning about Govrn's AI-Engine? Contact us at info@govrn.com
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <CTA />
+<Layout title="The Future of AI in the Boardroom | Dafira Research" description="A study with a UK business school on how boards approach AI in board management: barriers, needs and implementation recommendations." structuredData={structuredData}>
+  <main>
+    <ResearchPaper title={entry.data.title} authors={entry.data.authors} institution={entry.data.institution} date={entry.data.date} abstract={entry.data.abstract} toc={toc}>
+      <Content />
+    </ResearchPaper>
   </main>
 </Layout>

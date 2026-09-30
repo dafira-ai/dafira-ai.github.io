@@ -2,8 +2,8 @@
 title: "The Benefits of Using Decision Logs for Businesses and Organizations"
 description: "Learn how decision logs improve accountability, enhance decision-making, and provide valuable insights for businesses to track and optimize their decision-making processes."
 pubDate: 2023-03-20
-author: "Govrn"
-authorRole: "Govrn Editorial Team"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/notes.jpg"
 category: "Best Practices"
 tags: ["Decision Logs", "Business Efficiency", "Accountability", "Decision-Making"]

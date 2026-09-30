@@ -1,4 +1,8 @@
 ---
+import Section from '../ui/Section.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import FeatureList from '../ui/FeatureList.astro';
+import Button from '../ui/Button.astro';
 import DocumentFlow from '../animations/DocumentFlow.astro';
 import TaskTimeline, { type TaskTimelineProps } from '../animations/TaskTimeline.astro';
 import FeatureHighlight from '../animations/FeatureHighlight.astro';
@@ -15,7 +19,8 @@ interface Props {
     description: string;
     component: any;
     componentProps?: any;
-    stats: {
+    /** @deprecated statistics are no longer displayed */
+    stats?: {
       value: string;
       label: string;
     }[];
@@ -29,61 +34,49 @@ interface Props {
 
 const {
   texts = {
-    badge: "Measurable Results",
-    title: "Transform Your Board's Performance", 
-    subtitle: "See the real impact Govrn brings to your board operations with measurable improvements in efficiency, insight, and governance.",
+    badge: "How it works",
+    title: "Built around how boards actually work",
+    subtitle: "Documents, decisions and compliance live in one place, with access set by role and a record of every change.",
     keyBenefits: "Key Benefits:"
   },
   outcomes= [
     {
-      title: "Document Centralization",
+      title: "Board packs, assembled once",
       description:
-        "A secure platform for all your documents, accessible anywhere and anytime - regardless of your technical skills.",
+        "Agenda, reports and supporting papers go into one board pack. Directors get it on any device, with access set by their role.",
       component: DocumentFlow,
-      stats: [
-        { value: "100%", label: "Centralized documents" },
-        { value: "24/7", label: "Secure access" },
-      ],
       benefits: [
-        "Central information source",
-        "Intelligent classification",
-        "Version control",
-        "Flexible access control",
+        "One source for every board document",
+        "Version history",
+        "Access rights by role",
+        "Private annotations",
       ],
     },
     {
-      title: "Data-driven Decision Making",
+      title: "Ask the board papers",
       description:
-        "Transform your documents into actionable insights with our advanced AI, for faster and better-informed strategic decisions.",
+        "The AI assistant answers questions about the board pack and summarises long documents, so directors arrive prepared.",
       component: TaskTimeline,
-      stats: [
-        { value: "45%", label: "Decision quality" },
-        { value: "24/7", label: "AI analysis" },
-      ],
       benefits: [
-        "Predictive analytics",
-        "Strategic recommendations",
-        "Market monitoring",
-        "Performance monitoring",
+        "Questions on the board pack",
+        "Summaries of long documents",
+        "AI minute builder",
+        "Secure board chat",
       ],
       link: {
-        text: "Discover our AI",
+        text: "About the AI assistant",
         url: "/features/ai-assistant",
       },
     },
     {
-      title: "Compliance & Governance",
+      title: "Decisions that are recorded",
       description:
-        "Govern your board with customized governance tools, including electronic signature and automated compliance checks.",
+        "Action items are followed up after the meeting and the minutes are signed electronically, with a full audit trail.",
       component: FeatureHighlight,
-      stats: [
-        { value: "100%", label: "Compliance" },
-        { value: "40%", label: "Administrative time savings" },
-      ],
       benefits: [
-        "Automated checks",
+        "Action item follow-up",
         "Electronic signature",
-        "Rights management",
+        "Access rights by role",
         "Audit trail",
       ],
     },
@@ -91,80 +84,23 @@ const {
 } = Astro.props;
 ---
 
-<section class="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-  <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
-  
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-    <div class="text-center max-w-3xl mx-auto mb-20">
-      <div class="inline-flex items-center rounded-full px-6 py-2 text-sm font-medium bg-primary/10 text-primary mb-6">
-        {texts.badge}
-      </div>
-      <h2 class="text-4xl font-bold text-gray-900 mb-6">{texts.title}</h2>
-      <p class="text-xl text-gray-600">
-        {texts.subtitle}
-      </p>
-    </div>
-
-    <div class="space-y-32">
-      {outcomes.map((outcome, index) => (
-        <div class={`grid lg:grid-cols-2 gap-16 items-center ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
-          <div class={index % 2 === 1 ? 'lg:col-start-2' : ''}>
-            <h3 class="text-3xl font-bold text-gray-900 mb-6">{outcome.title}</h3>
-            <p class="text-xl text-gray-600 mb-8 leading-relaxed">{outcome.description}</p>
-            
-            <div class="grid grid-cols-2 gap-8 mb-8">
-              {outcome.stats.map(stat => (
-                <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                  <div class="text-3xl font-bold text-primary mb-2">{stat.value}</div>
-                  <div class="text-gray-600">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
-              <h4 class="font-semibold text-gray-900 mb-4">{texts.keyBenefits}</h4>
-              <ul class="grid grid-cols-2 gap-4">
-                {outcome.benefits.map(benefit => (
-                  <li class="flex items-center">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span class="text-gray-600">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {outcome.link && (
-              <div class="mt-8">
-                <a
-                  href={outcome.link.url}
-                  class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 group"
-                >
-                  {outcome.link.text}
-                  <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </a>
-              </div>
-            )}
-          </div>
-
-          <div class={index % 2 === 1 ? 'lg:col-start-1' : ''}>
-            <div class="relative group">
-              <!-- Background gradients -->
-              <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-white rounded-2xl"></div>
-              <div class="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 opacity-10 group-hover:opacity-20 transition-opacity duration-300 rounded-2xl"></div>
-              
-              <!-- Animation container -->
-              <div class="relative rounded-2xl p-8 backdrop-blur-sm h-[400px]">
-                <outcome.component {...outcome.componentProps} />
-              </div>
-              <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-30"></div>
-            </div>
+<Section tone="surface" border="both">
+  <SectionHeader layout="stacked" eyebrow={texts.badge} title={texts.title} lead={texts.subtitle} class="!mb-16" />
+  <div class="space-y-20 lg:space-y-28">
+    {outcomes.map((outcome, index) => (
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <div class:list={["lg:col-span-5", index % 2 === 1 && "lg:order-2"]} data-play>
+          <h3 class="text-2xl font-semibold text-navy" data-step>{outcome.title}</h3>
+          <p class="mt-4 text-gray-600 leading-relaxed" data-step style="--d:80">{outcome.description}</p>
+          <FeatureList items={outcome.benefits} columns={2} class="mt-8 border-t border-line pt-6" />
+          {outcome.link && <Button variant="link" href={outcome.link.url} class="mt-8">{outcome.link.text}</Button>}
+        </div>
+        <div class:list={["lg:col-span-7", index % 2 === 1 && "lg:order-1"]}>
+          <div class="relative bg-white border border-line rounded-md p-4 sm:p-8 min-h-[400px] flex items-center">
+            <outcome.component {...outcome.componentProps} />
           </div>
         </div>
-      ))}
-    </div>
+      </div>
+    ))}
   </div>
-</section>
+</Section>

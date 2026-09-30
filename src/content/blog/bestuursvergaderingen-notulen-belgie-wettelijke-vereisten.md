@@ -1,10 +1,10 @@
 ---
 title: "Bestuursvergaderingen Notulen in België: Wettelijke Vereisten en Compliance"
 slug: "bestuursvergaderingen-notulen-belgie-wettelijke-vereisten"
-description: "Ontdek de wettelijke vereisten voor bestuursvergaderingen notulen in België onder het Wetboek van Vennootschappen en Verenigingen (WVV) en hoe Govrn compliance automatiseert met AI, e-handtekeningen en veilige archivering."
+description: "Ontdek de wettelijke vereisten voor bestuursvergaderingen notulen in België onder het Wetboek van Vennootschappen en Verenigingen (WVV) en hoe Dafira compliance automatiseert met AI, e-handtekeningen en veilige archivering."
 pubDate: 2025-09-15
-author: "Ludovic Laffineur"
-authorRole: "CPTO bij Govrn"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/board-minutes-belgium-legal-requirements.jpg"
 category: "Governance"
 tags: ["Bestuursvergaderingen Notulen", "België", "Compliance", "Governance", "AI"]
@@ -14,7 +14,7 @@ lang: "nl"
 
 Bestuurssecretarissen en CEO's in België staan voor een delicate balans: ervoor zorgen dat **bestuursvergaderingen notulen (procès-verbaux)** niet alleen accuraat zijn, maar ook **compliant met de Belgische wetgeving**. Onder het **Wetboek van Vennootschappen en Verenigingen (WVV)**, moeten besturen beslissingen zorgvuldig registreren, veilig bewaren voor inspectie, en ervoor zorgen dat ze correct ondertekend en gearchiveerd worden.
 
-Toch vertrouwen veel besturen nog steeds op verouderde handmatige processen, wat onnodige risico's en vertragingen creëert. Laten we de belangrijkste wettelijke vereisten voor bestuursvergaderingen notulen in België verkennen — en hoe **Govrn** compliance moeiteloos maakt.
+Toch vertrouwen veel besturen nog steeds op verouderde handmatige processen, wat onnodige risico's en vertragingen creëert. Laten we de belangrijkste wettelijke vereisten voor bestuursvergaderingen notulen in België verkennen — en hoe **Dafira** compliance moeiteloos maakt.
 
 
 ## 1. Zijn bestuursvergaderingen notulen verplicht?
@@ -30,8 +30,8 @@ Notulen dienen als **prima facie bewijs** in rechtszaken of aandeelhoudersdisput
 ### Het pijnpunt:
 Bestuurssecretarissen besteden vaak **4–6 uur per vergadering** aan het handmatig opstellen van notulen, wat het risico van fouten of weglatingen verhoogt. Ze jagen duidelijkheid na, kruisverwijzen discussies en worstelen met complexe kwesties zonder de juiste context.
 
-### De Govrn oplossing:
-Govrn gebruikt **AI-gestuurde opstelling** om automatisch gestructureerde notulen te genereren, waarbij volledigheid en consistentie wordt gegarandeerd. Ontdek onze [AI Minute Builder](/features/ai-minute-builder).
+### De Dafira oplossing:
+Dafira gebruikt **AI-gestuurde opstelling** om automatisch gestructureerde notulen te genereren, waarbij volledigheid en consistentie wordt gegarandeerd. Ontdek onze [AI Minute Builder](/features/ai-minute-builder).
 
 ---
 
@@ -69,8 +69,8 @@ Slechte archiveringspraktijken kunnen resulteren in non-compliance, geschillen c
 ### Het pijnpunt:
 Veel besturen vertrouwen nog steeds op **verspreide e-mails of gedeelde drives**, wat versiecontroleproblemen en beveiligingsrisico's creëert. Bestuurssecretarissen worstelen met **documentdistributie** over meerdere algemene tools, wat vaak leidt tot vertrouwelijke informatielekken.
 
-### De Govrn oplossing:
-Govrn biedt een **veilige, GDPR-conforme repository**, met encryptie, rol-gebaseerde toegang en audittrails. Documenten blijven alleen toegankelijk voor geautoriseerde belanghebbenden. Meer info over onze [veilige documentcollaboratie](/features/document-collaboration).
+### De Dafira oplossing:
+Dafira biedt een **veilige, GDPR-conforme repository**, met encryptie, rol-gebaseerde toegang en audittrails. Documenten blijven alleen toegankelijk voor geautoriseerde belanghebbenden. Meer info over onze [veilige documentcollaboratie](/features/document-collaboration).
 
 ---
 
@@ -107,8 +107,8 @@ België's taalregime geldt voor officiële vennootschapsdocumenten:
 ### Waarom het belangrijk is:
 Notulen ingediend in de verkeerde taal riskeren afwijzing door de griffie of rechtbankregister.
 
-### De Govrn oplossing:
-Govrn staat **meertalige sjablonen** toe, zodat besturen notulen intern in het Engels kunnen opstellen en ze vervolgens exporteren in de wettelijk vereiste taal voor compliance.
+### De Dafira oplossing:
+Dafira staat **meertalige sjablonen** toe, zodat besturen notulen intern in het Engels kunnen opstellen en ze vervolgens exporteren in de wettelijk vereiste taal voor compliance.
 
 
 ## 4. Kunnen bestuursvergaderingen notulen elektronisch worden ondertekend?
@@ -123,8 +123,8 @@ Het gebruik van het verkeerde type handtekening kan aangifte vertragen of record
 ### Het pijnpunt:
 Besturen verliezen vaak tijd met het achtervolgen van bestuurders voor "natte inkt" handtekeningen na vergaderingen. Bestuurssecretarissen worstelen om **tijdige ondertekening van vergadernotulen en documenten** te waarborgen, wat vertragingen creëert in het finaliseren van beslissingen en governance compliance.
 
-### De Govrn oplossing:
-Govrn integreert met **geavanceerde en gekwalificeerde e-handtekeningproviders**, waarbij handtekeningen wettelijk bindend zijn in België en in de hele EU. Ons platform volgt automatisch lopende handtekeningen en biedt duidelijke zichtbaarheid van het goedkeuringsproces.
+### De Dafira oplossing:
+Dafira integreert met **geavanceerde en gekwalificeerde e-handtekeningproviders**, waarbij handtekeningen wettelijk bindend zijn in België en in de hele EU. Ons platform volgt automatisch lopende handtekeningen en biedt duidelijke zichtbaarheid van het goedkeuringsproces.
 
 ---
 
@@ -161,8 +161,8 @@ Het WVV staat toe:
 ### Waarom het belangrijk is:
 Besturen moeten duidelijk de methode van besluitvorming (fysiek, elektronisch, of schriftelijk) documenteren in de notulen.
 
-### De Govrn oplossing:
-Govrn volgt automatisch of een resolutie werd aangenomen tijdens een vergadering, elektronisch, of schriftelijk — en reflecteert dit in het officiële record. Ons platform biedt uitgebreide [vergaderbeheer](/features/) gedurende de hele levenscyclus.
+### De Dafira oplossing:
+Dafira volgt automatisch of een resolutie werd aangenomen tijdens een vergadering, elektronisch, of schriftelijk — en reflecteert dit in het officiële record. Ons platform biedt uitgebreide [vergaderbeheer](/features/) gedurende de hele levenscyclus.
 
 
 ---
@@ -267,16 +267,16 @@ Neem een weloverwogen beslissing met onze uitgebreide buyer's guide die omvat:
 [Download Gratis Guide →](/landing/buyer-guide-2025)
 </div>
 
-![Board Software Buyer's Guide](/govrn-buyer-guide-preview-1.png)
+![Board Software Buyer's Guide](/buyer-guide-preview-1.png)
 </div>
 
 ---
 
-## Versterk de compliance van uw bestuur met Govrn
+## Versterk de compliance van uw bestuur met Dafira
 
 Belgische besturen staan voor echte uitdagingen: **4–6 uur per vergadering** notulen handmatig opstellen, verspreide documentdistributie via e-mail, bestuurders achtervolgen voor handtekeningen, en WVV compliance waarborgen. Deze pijnpunten creëren onnodige risico's en vertragingen.
 
-**Govrn elimineert deze uitdagingen** met speciaal gebouwde tools:
+**Dafira elimineert deze uitdagingen** met speciaal gebouwde tools:
 
 - **AI-gestuurde notulen opstelling** die opstelling tijd met 50% verlaagt terwijl WVV Artikel 7:104 compliance wordt gewaarborgd
 - **Veilige, GDPR-conforme documentrepository** die e-mailstormen en SSO-inlogpijn elimineert
@@ -284,7 +284,7 @@ Belgische besturen staan voor echte uitdagingen: **4–6 uur per vergadering** n
 - **Meertalige sjablonen** die België's taalvereisten ondersteunen
 - **Geautomatiseerde resolutietracking** voor elektronische, schriftelijke en persoonlijke beslissingen
 
-Door compliance te automatiseren en administratieve lasten te elimineren, stelt Govrn Belgische besturen in staat zich te concentreren op wat echt belangrijk is: **strategische governance en geïnformeerde besluitvorming**.
+Door compliance te automatiseren en administratieve lasten te elimineren, stelt Dafira Belgische besturen in staat zich te concentreren op wat echt belangrijk is: **strategische governance en geïnformeerde besluitvorming**.
 
 
 ---
@@ -293,7 +293,7 @@ Door compliance te automatiseren en administratieve lasten te elimineren, stelt 
 
 <div class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl p-8 my-8 border border-indigo-100 text-center">
   <h3 class="text-xl font-bold text-gray-900 mb-4">Transformeer Uw Bestuursvergaderingen Notulen Proces</h3>
-  <p class="text-gray-700 mb-6">Zie hoe Govrn Belgische besturen helpt notulen opstelling tijd met 50% te verlagen terwijl volledige WVV compliance wordt gewaarborgd.</p>
+  <p class="text-gray-700 mb-6">Zie hoe Dafira Belgische besturen helpt notulen opstelling tijd met 50% te verlagen terwijl volledige WVV compliance wordt gewaarborgd.</p>
   <div class="space-y-3">
     <p class="text-sm text-gray-600">✅ Belgische wettelijke vereisten ingebouwd</p>
     <p class="text-sm text-gray-600">✅ GDPR-conform documentbeheer</p>
@@ -301,6 +301,6 @@ Door compliance te automatiseren en administratieve lasten te elimineren, stelt 
   </div>
 </div>
 
-👉 **[Ontdek alle Govrn features](/features)** en zie hoe we besturen helpen compliant en efficiënt te blijven.
+👉 **[Ontdek alle Dafira features](/features)** en zie hoe we besturen helpen compliant en efficiënt te blijven.
 
 ---

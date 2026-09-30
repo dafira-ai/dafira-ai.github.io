@@ -2,8 +2,8 @@
 title: "Member of the Board of Management: Role & Responsibilities"
 description: "Learn what a member of the board of management does, including their strategic role, oversight duties, governance responsibilities and approach to risk management."
 pubDate: 2024-01-03
-author: "Govrn"
-authorRole: "Govrn Editorial Team"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/puzzle.jpg"
 category: "Governance"
 tags: ["Board of Management", "Corporate Governance", "Leadership", "Strategic Planning"]

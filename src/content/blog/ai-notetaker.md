@@ -2,9 +2,9 @@
 title: "AI Notetaker: The Complete Guide to Intelligent Meeting Notes"
 description: "Discover the best AI notetaker apps for meetings, Google Meet, Zoom, and Teams. Compare free AI note taker options and learn how to automate meeting notes."
 pubDate: 2026-02-01
-author: "Govrn"
-authorRole: "Govrn Editorial Team"
-image: "/govrn-ai-minute-builder-and-assist.jpg"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
+image: "/dafira-ai-minute-builder-and-assist.jpg"
 category: "Technology"
 tags: ["AI Notetaker", "Meeting Notes", "Meeting Assistant", "AI Technology", "Productivity", "Board Meetings"]
 featured: false
@@ -65,7 +65,7 @@ Several popular tools target individual professionals and small teams:
 
 ### Enterprise and Governance Solutions
 
-For board meetings, committee sessions, and formal business discussions, specialized solutions like Govrn provide governance-focused AI note-taking with compliance features, legal-grade accuracy, and integration with [board management platforms](/blog/what-is-board-management-software).
+For board meetings, committee sessions, and formal business discussions, specialized solutions like Dafira provide governance-focused AI note-taking with compliance features, legal-grade accuracy, and integration with [board management platforms](/blog/what-is-board-management-software).
 
 ---
 
@@ -320,13 +320,13 @@ Board meeting notes carry legal significance. They serve as official records of 
 
 ---
 
-## How Govrn Transforms Board Meeting Documentation
+## How Dafira Transforms Board Meeting Documentation
 
-Govrn's [AI Minute Builder](/features/ai-minute-builder) is purpose-built for the demanding requirements of board and committee meetings:
+Dafira's [AI Minute Builder](/features/ai-minute-builder) is purpose-built for the demanding requirements of board and committee meetings:
 
 ### Governance-First Design
 
-Unlike generic AI notetakers, Govrn understands the formal nature of board proceedings:
+Unlike generic AI notetakers, Dafira understands the formal nature of board proceedings:
 
 - Automatically structures minutes according to governance best practices
 - Maps discussions to formal agenda items
@@ -335,7 +335,7 @@ Unlike generic AI notetakers, Govrn understands the formal nature of board proce
 
 ### Seamless Board Workflow Integration
 
-Govrn's AI note-taking operates within a complete [board management ecosystem](/blog/what-is-board-management-software):
+Dafira's AI note-taking operates within a complete [board management ecosystem](/blog/what-is-board-management-software):
 
 - Pre-meeting agenda creation and board pack distribution
 - Real-time transcription during meetings
@@ -344,7 +344,7 @@ Govrn's AI note-taking operates within a complete [board management ecosystem](/
 
 ### AI-Powered Board Intelligence
 
-Beyond note-taking, Govrn's [AI Assistant](/features/ai-assistant) enables board members to:
+Beyond note-taking, Dafira's [AI Assistant](/features/ai-assistant) enables board members to:
 
 - Query historical meeting records instantly
 - Surface relevant context for current decisions
@@ -353,7 +353,7 @@ Beyond note-taking, Govrn's [AI Assistant](/features/ai-assistant) enables board
 
 ### Enterprise Security for Sensitive Discussions
 
-Board conversations are highly confidential. Govrn provides:
+Board conversations are highly confidential. Dafira provides:
 
 - End-to-end encryption for all recordings and documents
 - Role-based access controls
@@ -376,7 +376,7 @@ See how boards save 50% of minute-drafting time while improving accuracy and com
 
 </div>
 
-![Govrn AI Minute Builder](/govrn-ai-minute-builder-and-assist.jpg)
+![Dafira AI Minute Builder](/dafira-ai-minute-builder-and-assist.jpg)
 </div>
 
 ---
@@ -446,7 +446,7 @@ Ready to transform how your organization captures meeting knowledge? Here's how 
 
 **5. Measure Results**: Track time savings, documentation quality, and user adoption to demonstrate ROI.
 
-For board and committee meetings specifically, see how Govrn can streamline your documentation while maintaining governance rigor.
+For board and committee meetings specifically, see how Dafira can streamline your documentation while maintaining governance rigor.
 
 [**Start Your Free Trial →**](/try)
 
@@ -456,7 +456,7 @@ For board and committee meetings specifically, see how Govrn can streamline your
 
 An AI notetaker represents a fundamental shift in how organizations capture and utilize meeting knowledge. From basic transcription to sophisticated meeting assistants that track decisions and drive follow-up, these tools are transforming workplace productivity.
 
-Whether you need an AI notetaker for Zoom calls, Google Meet sessions, Microsoft Teams meetings, or in-person discussions, the right solution exists for your needs. For everyday business meetings, general-purpose tools provide excellent value. For board and committee sessions where accuracy, compliance, and security matter most, governance-focused solutions like Govrn deliver the specialized capabilities required.
+Whether you need an AI notetaker for Zoom calls, Google Meet sessions, Microsoft Teams meetings, or in-person discussions, the right solution exists for your needs. For everyday business meetings, general-purpose tools provide excellent value. For board and committee sessions where accuracy, compliance, and security matter most, governance-focused solutions like Dafira deliver the specialized capabilities required.
 
 The organizations that master meeting documentation today build the institutional knowledge that drives better decisions tomorrow.
 
@@ -465,7 +465,7 @@ The organizations that master meeting documentation today build the institutiona
 **Related Reading:**
 
 - [AI Meeting Minutes: Complete Guide to Automated Documentation](/blog/ai-meeting-minutes)
-- [How Govrn's AI Features Solve Real Boardroom Pain Points](/blog/govrn-ai-minute-builder-and-assist)
+- [How Dafira's AI Features Solve Real Boardroom Pain Points](/blog/dafira-ai-minute-builder-and-assist)
 - [Audio Setup Guide for High-Quality Meeting Recordings](/templates/audio-set-up-guide)
 - [What is Board Management Software?](/blog/what-is-board-management-software)
 - [Best Board Management Software in 2025](/blog/best-board-management-software)

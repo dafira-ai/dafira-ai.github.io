@@ -2,8 +2,8 @@
 title: "AI in the Boardroom: Revolutionizing Meetings and Governance"
 description: "Discover how AI-powered tools are transforming board meetings and governance by automating tasks, improving decision-making, and enhancing compliance. Learn how AI can save time, reduce costs, and drive efficiency in the boardroom."
 pubDate: 2023-09-25
-author: "Govrn"
-authorRole: "Govrn Editorial Team"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/meeting_3.jpg"
 category: "Technology"
 tags: ["Artificial Intelligence", "Board Meetings", "Board Management Software", "Corporate Governance"]

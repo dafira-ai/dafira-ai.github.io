@@ -1,6 +1,8 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import GuideHeader from '../../../components/guides/GuideHeader.astro';
+import GuideArticle from '../../../components/guides/GuideArticle.astro';
+import { Button, Icon } from '../../../components/ui';
 import GuideStep from '../../../components/guides/GuideStep.astro';
 import GuideSubSection from '../../../components/guides/GuideSubSection.astro';
 import GuideStepList from '../../../components/guides/GuideStepList.astro';
@@ -8,7 +10,7 @@ import ProTip from '../../../components/guides/ProTip.astro';
 
 const netwerkVereisten = [
   "HTTPS-verkeer (poort 443) toestaan voor alle domeinen",
-  "WSS-verkeer (poort 443) toestaan voor api.govrn.com",
+  "WSS-verkeer (poort 443) toestaan voor api.dafira.ai",
   "Firewallregels configureren voor toegang",
   "DNS-resolutie verzekeren voor alle domeinen",
   "Connectiviteit testen met alle vereiste domeinen"
@@ -23,79 +25,59 @@ const probleemoplossingsStappen = [
 ];
 ---
 
-<Layout title="Domeinen en Protocollen Gids - Govrn">
-  <main class="pt-24">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <GuideHeader
-        title="Inzicht in Govrn's Domeinen en Protocollen"
-        description="Complete handleiding over de domeinen en protocollen die Govrn gebruikt, inclusief netwerkvereisten en probleemoplossingstips."
+<Layout title="Domeinen en Protocollen Gids - Dafira">
+  <main>
+    <GuideHeader
+        title="Inzicht in Dafira's Domeinen en Protocollen"
+        description="Complete handleiding over de domeinen en protocollen die Dafira gebruikt, inclusief netwerkvereisten en probleemoplossingstips."
       />
+    <GuideArticle>
 
       <GuideStep
         number={1}
         title="Overzicht Kerndomeinen"
-        description="Leer meer over de essentiële domeinen die Govrn's functionaliteit mogelijk maken:"
+        description="Leer meer over de essentiële domeinen die Dafira's functionaliteit mogelijk maken:"
       >
         <div class="space-y-6">
-          <div class="bg-white rounded-lg p-6 border border-gray-200">
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-xl">
-                🖥️
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Frontend Domein</h4>
-                <p class="text-gray-600 mb-2">app.govrn.com</p>
-                <p class="text-sm text-gray-500">Hoofdgebruikersinterface voor toegang tot het Govrn platform</p>
-              </div>
-            </div>
-          </div>
 
-          <div class="bg-white rounded-lg p-6 border border-gray-200">
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-xl">
-                🗄️
-              </div>
+          <div class="border border-line rounded-md p-6">
+            <div class="flex items-start gap-4">
+              <Icon name="folder" class="w-5 h-5 text-navy mt-1" />
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Opslagdomein</h4>
+                <h4 class="font-semibold text-navy mb-2">Opslagdomein</h4>
                 <p class="text-gray-600 mb-2">stgovrnprodfr001.blob.core.windows.net</p>
                 <p class="text-sm text-gray-500">Beveiligde opslag voor statische bestanden en documenten</p>
               </div>
             </div>
           </div>
 
-          <div class="bg-white rounded-lg p-6 border border-gray-200">
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-xl">
-                🔗
-              </div>
+          <div class="border border-line rounded-md p-6">
+            <div class="flex items-start gap-4">
+              <Icon name="link" class="w-5 h-5 text-navy mt-1" />
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">API Domein</h4>
+                <h4 class="font-semibold text-navy mb-2">API Domein</h4>
                 <p class="text-gray-600 mb-2">prod.api.ongovrn.com</p>
                 <p class="text-sm text-gray-500">Backend diensten en gegevensverwerking</p>
               </div>
             </div>
           </div>
 
-          <div class="bg-white rounded-lg p-6 border border-gray-200">
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-xl">
-                🔄
-              </div>
+          <div class="border border-line rounded-md p-6">
+            <div class="flex items-start gap-4">
+              <Icon name="refresh" class="w-5 h-5 text-navy mt-1" />
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">WebSocket Domein</h4>
-                <p class="text-gray-600 mb-2">api.govrn.com</p>
+                <h4 class="font-semibold text-navy mb-2">WebSocket Domein</h4>
+                <p class="text-gray-600 mb-2">api.dafira.ai</p>
                 <p class="text-sm text-gray-500">Realtime updates en notificaties</p>
               </div>
             </div>
           </div>
 
-          <div class="bg-white rounded-lg p-6 border border-gray-200">
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-xl">
-                📝
-              </div>
+          <div class="border border-line rounded-md p-6">
+            <div class="flex items-start gap-4">
+              <Icon name="pen" class="w-5 h-5 text-navy mt-1" />
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Handtekeningdomein</h4>
+                <h4 class="font-semibold text-navy mb-2">Handtekeningdomein</h4>
                 <p class="text-gray-600 mb-2">apps.universign.com</p>
                 <p class="text-sm text-gray-500">Integratie van elektronische handtekeningen</p>
               </div>
@@ -104,14 +86,14 @@ const probleemoplossingsStappen = [
         </div>
 
         <ProTip
-          tip="Voeg deze domeinen toe aan de allowlist van uw IT-team om ononderbroken toegang tot Govrn te garanderen."
+          tip="Voeg deze domeinen toe aan de allowlist van uw IT-team om ononderbroken toegang tot Dafira te garanderen."
         />
       </GuideStep>
 
       <GuideStep
         number={2}
         title="Netwerkvereisten"
-        description="Zorg ervoor dat uw netwerk correct is geconfigureerd voor het gebruik van Govrn:"
+        description="Zorg ervoor dat uw netwerk correct is geconfigureerd voor het gebruik van Dafira:"
       >
         <div class="mb-8">
           <GuideStepList items={netwerkVereisten} />
@@ -119,20 +101,20 @@ const probleemoplossingsStappen = [
 
         <GuideSubSection title="Protocol Details">
           <div class="grid md:grid-cols-2 gap-4">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">HTTPS (Poort 443)</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">HTTPS (Poort 443)</h4>
               <ul class="text-sm text-gray-600 space-y-1">
-                <li>• Beveiligd webverkeer</li>
-                <li>• Versleutelde gegevensoverdracht</li>
-                <li>• Vereist voor alle domeinen</li>
+                <li>Beveiligd webverkeer</li>
+                <li>Versleutelde gegevensoverdracht</li>
+                <li>Vereist voor alle domeinen</li>
               </ul>
             </div>
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">WSS (Poort 443)</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">WSS (Poort 443)</h4>
               <ul class="text-sm text-gray-600 space-y-1">
-                <li>• Realtime communicatie</li>
-                <li>• Live updates</li>
-                <li>• Vereist voor api.govrn.com</li>
+                <li>Realtime communicatie</li>
+                <li>Live updates</li>
+                <li>Vereist voor api.dafira.ai</li>
               </ul>
             </div>
           </div>
@@ -154,16 +136,16 @@ const probleemoplossingsStappen = [
 
         <GuideSubSection title="Veelvoorkomende Problemen">
           <div class="space-y-4">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">Verbinding Time-out</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">Verbinding Time-out</h4>
               <p class="text-sm text-gray-600">Duidt meestal op een firewall-probleem of netwerkbeperking. Neem contact op met uw IT-team om domeintoegang te verifiëren.</p>
             </div>
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">WebSocket Fout</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">WebSocket Fout</h4>
               <p class="text-sm text-gray-600">Controleer of uw netwerk WebSocket-verbindingen toestaat. Sommige bedrijfsnetwerken kunnen deze blokkeren.</p>
             </div>
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">SSL-certificaat Fout</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">SSL-certificaat Fout</h4>
               <p class="text-sm text-gray-600">Controleer of de datum en tijd van uw systeem correct zijn en of uw browser up-to-date is.</p>
             </div>
           </div>
@@ -171,50 +153,39 @@ const probleemoplossingsStappen = [
       </GuideStep>
 
       <!-- Snelle Referentie -->
-      <div class="mt-16 bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Snelle Referentie</h2>
+      <div class="mt-16 rounded-md p-8 border border-line bg-surface">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Snelle Referentie</h2>
         <div class="grid md:grid-cols-2 gap-6">
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Vereiste Domeinen</h3>
+            <h3 class="font-semibold text-navy mb-2">Vereiste Domeinen</h3>
             <ul class="space-y-2 text-gray-600 text-sm">
-              <li>• app.govrn.com</li>
-              <li>• stgovrnprodfr001.blob.core.windows.net</li>
-              <li>• prod.api.ongovrn.com</li>
-              <li>• api.govrn.com</li>
-              <li>• apps.universign.com</li>
+              <li>stgovrnprodfr001.blob.core.windows.net</li>
+              <li>prod.api.ongovrn.com</li>
+              <li>api.dafira.ai</li>
+              <li>apps.universign.com</li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Vereiste Poorten</h3>
+            <h3 class="font-semibold text-navy mb-2">Vereiste Poorten</h3>
             <ul class="space-y-2 text-gray-600 text-sm">
-              <li>• HTTPS: 443 (TCP)</li>
-              <li>• WSS: 443 (TCP)</li>
+              <li>HTTPS: 443 (TCP)</li>
+              <li>WSS: 443 (TCP)</li>
             </ul>
           </div>
         </div>
       </div>
 
       <!-- Hulp Sectie -->
-      <div class="mt-8 bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Hulp Nodig?</h2>
+      <div class="mt-8 rounded-md p-8 border border-line">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Hulp Nodig?</h2>
         <p class="text-gray-600 mb-6">
-          Heeft u problemen met de verbinding met Govrn? Ons technische supportteam staat voor u klaar.
+          Heeft u problemen met de verbinding met Dafira? Ons technische supportteam staat voor u klaar.
         </p>
-        <div class="flex space-x-4">
-          <a
-            href="/nl/contact"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors"
-          >
-            Contact Support
-          </a>
-          <a
-            href="/nl/guides"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-gray-900 bg-white border border-gray-200 hover:bg-gray-50 transition-colors"
-          >
-            Bekijk Alle Handleidingen
-          </a>
+        <div class="flex flex-wrap gap-3 df-guide-actions">
+          <Button href="/nl/contact">Contact Support</Button>
+          <Button href="/nl/guides" variant="secondary">Bekijk Alle Handleidingen</Button>
         </div>
       </div>
-    </article>
+    </GuideArticle>
   </main>
 </Layout>

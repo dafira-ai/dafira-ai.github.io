@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { PageHero, Section, Prose } from '../../components/ui';
 
 const sections = [
   {
@@ -19,7 +20,7 @@ const sections = [
       },
       {
         subtitle: "Klantendatabases",
-        content: "De informatie in uw Govrn-database blijft onder uw controle en exclusieve eigendom. Wij verwerken deze gegevens alleen volgens uw instructies."
+        content: "De informatie in uw Dafira database blijft onder uw controle en exclusieve eigendom. Wij verwerken deze gegevens alleen volgens uw instructies."
       }
     ]
   },
@@ -68,91 +69,47 @@ const sections = [
 ];
 
 const contactInfo = {
-  email: "privacy@govrn.com",
-  address: "GOVRN NV - Gegevensbescherming\n18 Roger Vandendriesschelaan\n1150 Brussel, België",
-  vat: "BE0761625687"
+  email: "info@dafira.ai",
+  address: "Dafira - Gegevensbescherming\nGasthuisstraat 31\n1000 Brussel, België"
 };
 ---
+<Layout title="Privacybeleid - Dafira Bestuurssoftware" description="Wij zetten ons in voor de bescherming van uw privacy en de beveiliging van uw gegevens. Ontdek hoe wij uw informatie verzamelen, gebruiken en beschermen.">
+  <main>
+    <PageHero eyebrow="Juridisch" title="Privacybeleid" lead="Wij zetten ons in voor de bescherming van uw privacy en de beveiliging van uw gegevens. Ontdek hoe wij uw informatie verzamelen, gebruiken en beschermen." />
 
-<Layout title="Privacybeleid - Govrn Bestuurssoftware" description="Wij zetten ons in voor de bescherming van uw privacy en de beveiliging van uw gegevens. Ontdek hoe wij uw informatie verzamelen, gebruiken en beschermen.">
-  <main class="pt-16">
-    <!-- Hero sectie -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
+    <Section size="prose" space="md">
+      <Prose>
+        <p class="text-lg">Dafira en haar dochterondernemingen bieden diverse diensten aan om u te helpen bij het beheren van uw organisatie, waaronder een platform voor het hosten van uw Dafira database. Dit beleid legt uit welke informatie we verzamelen, waarom we deze verzamelen en hoe we deze gebruiken.</p>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Privacybeleid
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Uw privacy is onze
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              prioriteit
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            Wij zetten ons in voor de bescherming van uw privacy en de beveiliging van uw gegevens. Ontdek hoe wij uw informatie verzamelen, gebruiken en beschermen.
-          </p>
-        </div>
-      </div>
-    </section>
+        {sections.map((section) => (
+          <Fragment>
+            <h2>{section.title}</h2>
+            {section.items.map((item) => (
+              <Fragment>
+                <h3>{item.subtitle}</h3>
+                <p>{item.content}</p>
+              </Fragment>
+            ))}
+          </Fragment>
+        ))}
 
-    <!-- Hoofdinhoud -->
-    <section class="py-20 bg-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="prose prose-lg max-w-none">
-          <p class="text-xl text-gray-600 mb-12">
-            GOVRN NV en haar dochterondernemingen bieden diverse diensten aan om u te helpen bij het beheren van uw organisatie, waaronder een platform voor het hosten van uw Govrn-database. Dit beleid legt uit welke informatie we verzamelen, waarom we deze verzamelen en hoe we deze gebruiken.
-          </p>
+        <h2>Cookies</h2>
+        <p>Cookies zijn kleine tekstbestanden die door onze servers naar uw computer worden gestuurd wanneer u onze diensten gebruikt. We gebruiken ze om uw navigatie te vergemakkelijken, uw voorkeuren te begrijpen en onze diensten te verbeteren. Diensten van derden zoals Google Analytics kunnen ook cookies gebruiken voor hun eigen doeleinden.</p>
+      </Prose>
 
-          {sections.map(section => (
-            <div class="mb-16">
-              <h2 class="text-3xl font-bold text-gray-900 mb-8">{section.title}</h2>
-              <div class="space-y-12">
-                {section.items.map(item => (
-                  <div class="bg-gray-50 rounded-xl p-8">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">{item.subtitle}</h3>
-                    <p class="text-gray-600">{item.content}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-
-          <!-- Cookies sectie -->
-          <div class="mb-16">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8">Cookies</h2>
-            <div class="bg-gray-50 rounded-xl p-8">
-              <p class="text-gray-600">
-                Cookies zijn kleine tekstbestanden die door onze servers naar uw computer worden gestuurd wanneer u onze diensten gebruikt. We gebruiken ze om uw navigatie te vergemakkelijken, uw voorkeuren te begrijpen en onze diensten te verbeteren. Diensten van derden zoals Google Analytics kunnen ook cookies gebruiken voor hun eigen doeleinden.
-              </p>
-            </div>
-          </div>
-
-          <!-- Contactgegevens -->
-          <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">Contact opnemen</h2>
-            <p class="text-gray-600 mb-4">
-              Als u vragen heeft over dit privacybeleid of uw persoonsgegevens, aarzel dan niet om contact met ons op te nemen:
-            </p>
-            <div class="space-y-2">
-              <p class="text-gray-600">
+      <div class="mt-16 border border-line rounded-md bg-surface p-6 lg:p-8 max-w-[68ch]">
+        <h2 class="text-2xl font-semibold text-navy">Contact opnemen</h2>
+        <p class="mt-3 text-gray-700">Als u vragen heeft over dit privacybeleid of uw persoonsgegevens, aarzel dan niet om contact met ons op te nemen:</p>
+        <div class="mt-4 space-y-2 text-gray-700">
+              <p>
                 <strong>E-mail:</strong> {contactInfo.email}
               </p>
-              <p class="text-gray-600 whitespace-pre-line">
+              <p class="whitespace-pre-line">
                 <strong>Adres:</strong>
                 {contactInfo.address}
               </p>
-              <p class="text-gray-600">
-                <strong>BTW:</strong> {contactInfo.vat}
-              </p>
-            </div>
-          </div>
         </div>
       </div>
-    </section>
+    </Section>
   </main>
 </Layout>

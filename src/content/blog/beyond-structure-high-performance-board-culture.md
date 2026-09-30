@@ -2,8 +2,8 @@
 title: "High-Performance Board Culture Beyond Structure"
 description: "Discover how strong board culture drives better governance and how fair process leadership can transform decision-making, alignment, and overall effectiveness."
 pubDate: 2025-02-18
-author: "Ludovic Laffineur"
-authorRole: "CTO at Govrn"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/blog-building-high-performing-board.jpg"
 category: "Governance"
 tags: ["Board Culture", "Fair Process Leadership", "Corporate Governance", "Leadership"]

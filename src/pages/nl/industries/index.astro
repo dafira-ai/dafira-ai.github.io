@@ -1,104 +1,63 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import { PageHero, Section, Icon, CellGrid, FeatureList, CTA } from '../../../components/ui';
+import { ctaProps } from '../../../components/industries/i18n';
 
 const industries = [
   {
-    name: "Financiële dienstverlening",
-    icon: "🏦",
-    description: "Veilige en compliant bestuursondersteuning voor banken, verzekeraars en investeringsmaatschappijen",
-    link: "/nl/industries/financial-services",
-    features: [
-      "Automatische compliance monitoring",
-      "Beveiligd documentbeheer",
-      "Risicobewaking"
-    ]
+    name: 'Financiële dienstverlening',
+    icon: 'bank',
+    description: 'Beveiligd, gedocumenteerd bestuurswerk voor banken, verzekeraars en beleggingsondernemingen.',
+    link: '/nl/industries/financial-services',
+    features: ['Regelgevend kader voor het bestuur', 'Beveiligd documentbeheer', 'Vergaderingen van bestuur en comités'],
   },
   {
-    name: "Gezondheidszorg",
-    icon: "🏥",
-    description: "Privacy-compliant bestuurssoftware voor zorginstellingen",
-    link: "/nl/industries/healthcare",
-    features: [
-      "Bescherming medische gegevens",
-      "Klinische governance",
-      "Kwaliteitsborging"
-    ]
+    name: 'Zorg',
+    icon: 'health',
+    description: 'Bestuursbeheer voor ziekenhuizen, zorgaanbieders en life-sciencesbedrijven.',
+    link: '/nl/industries/healthcare',
+    features: ['Vertrouwelijke bestuursstukken', 'Klinische governance op de agenda', 'Comités'],
   },
   {
-    name: "Vastgoed",
-    icon: "🏢",
-    description: "Geoptimaliseerde bestuursondersteuning voor vastgoedinvestering en -beheer",
-    link: "/nl/industries/real-estate",
-    features: [
-      "Portefeuillebeheer",
-      "Investeringsmonitoring",
-      "Asset management"
-    ]
+    name: 'Vastgoed',
+    icon: 'building',
+    description: 'Bestuursbeheer voor vastgoedbeleggings- en beheerondernemingen.',
+    link: '/nl/industries/real-estate',
+    features: ['Investeringsdossiers', 'Portefeuilletoezicht', 'Besluitenregister'],
   },
   {
-    name: "Familiebedrijf",
-    icon: "👨‍👩‍👧‍👦",
-    description: "Bestuur en familieraad management voor multi-entiteit familiebedrijven",
-    link: "/nl/industries/family-business",
-    features: [
-      "Multi-entiteit governance",
-      "Beveiligde toegangscontrole",
-      "Generationele continuïteit"
-    ]
-  }
+    name: 'Familiebedrijf',
+    icon: 'family',
+    description: 'Beheer van bestuur en familieraad voor familiebedrijven met meerdere entiteiten.',
+    link: '/nl/industries/family-business',
+    features: ['Meerdere bestuursorganen', 'Toegang per rol', 'Continuïteit over generaties heen'],
+  },
 ];
 ---
 
-<Layout title="Sectoroplossingen | Govrn Bestuurssoftware" description="Ontdek onze op maat gemaakte oplossingen voor uw sector, waaronder financiële dienstverlening, gezondheidszorg en vastgoed, ontworpen om uw bestuursprocessen te optimaliseren.">
-  <main class="pt-16">
-    <!-- Hero sectie -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
+<Layout title="Sectoroplossingen | Dafira Bestuurssoftware" description="Dafira per sector: bestuursbeheer voor financiële dienstverlening, zorg, vastgoed en familiebedrijven.">
+  <main>
+    <PageHero eyebrow="Sectoren" title="Bestuursbeheer per sector" lead="De bestuurscyclus is overal dezelfde, de context niet. Bekijk hoe Dafira besturen ondersteunt in gereglementeerde organisaties en familiebedrijven." />
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Oplossingen op maat voor
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              uw sector
+    <Section>
+      <CellGrid columns={2}>
+        {industries.map((industry) => (
+          <a href={industry.link} class="group bg-white p-8 lg:p-10 hover:bg-surface transition-colors flex flex-col">
+            <Icon name={industry.icon} class="w-6 h-6 text-navy" />
+            <h2 class="mt-5 text-xl font-semibold text-navy">{industry.name}</h2>
+            <p class="mt-3 text-gray-600 leading-relaxed">{industry.description}</p>
+            <FeatureList items={industry.features} class="mt-6" />
+            <span class="mt-auto pt-8 inline-flex items-center gap-2 text-[15px] font-medium text-primary group-hover:text-navy transition-colors">
+              Bekijk de sectorpagina
+              <svg class="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 5l7 7-7 7" />
+              </svg>
             </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            Ontdek hoe Govrn zich aanpast aan de specifieke eisen van uw branche met op maat gemaakte functionaliteiten en compliance-standaarden.
-          </p>
-        </div>
-      </div>
-    </section>
+          </a>
+        ))}
+      </CellGrid>
+    </Section>
 
-    <!-- Sector grid -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {industries.map(industry => (
-            <a href={industry.link} class="group">
-              <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 h-full hover:shadow-xl transition-all duration-300">
-                <div class="text-4xl mb-6">{industry.icon}</div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors">
-                  {industry.name}
-                </h2>
-                <p class="text-gray-600 mb-6">{industry.description}</p>
-                <ul class="space-y-3">
-                  {industry.features.map(feature => (
-                    <li class="flex items-center text-gray-600">
-                      <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
+    <CTA {...ctaProps.nl} />
   </main>
 </Layout>

@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import WhyWeBuildVideo from "../components/WhyWeBuildVideo.astro";
 import Features from "../components/Features.astro";
-import Stats from "../components/Stats.astro";
 import Timeline from "../components/Timeline.astro";
 import Personas from "../components/Personas.astro";
 import Testimonials from "../components/Testimonials.astro";
@@ -16,7 +15,7 @@ import { faqs } from "../data/faq-data";
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "name": "Govrn - Frequently Asked Questions",
+  "name": "Dafira - Frequently Asked Questions",
   mainEntity: faqs.map((faq) => ({
     "@type": "Question",
     name: faq.question,
@@ -29,14 +28,13 @@ const structuredData = {
 ---
 
 <Layout
-  title="Govrn - Power your Board decisions with AI"
-  description="Transform your board management with Govrn, the AI-first platform that streamlines operations, enhances collaboration, and drives innovation."
+  title="Dafira | ضفيرة · Board portal for serious governance"
+  description="Transform your board management with Dafira, the AI-first platform that streamlines operations, enhances collaboration, and drives innovation."
   structuredData={structuredData}
 >
   <main class="overflow-hidden">
     <Hero />
     <!-- <WhyWeBuildVideo /> -->
-    <Stats />
     <Features />
     <FeatureShowcase />
     <Timeline />

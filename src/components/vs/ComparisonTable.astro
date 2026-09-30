@@ -1,0 +1,57 @@
+---
+// Two-product comparison table. Cell values: true → check mark, false → dash, string → text.
+// Use a string such as "To confirm" when a point has not been verified for a product; never guess.
+import { Icon } from '../ui';
+
+export type Cell = boolean | string;
+
+export interface ComparisonRow {
+  label: string;
+  dafira: Cell;
+  competitor: Cell;
+}
+
+interface Props {
+  rows: ComparisonRow[];
+  criterionLabel: string;
+  competitor: string;
+  /** screen-reader text for true / false cells */
+  includedLabel: string;
+  notIncludedLabel: string;
+  legend?: string;
+  class?: string;
+}
+
+const { rows, criterionLabel, competitor, includedLabel, notIncludedLabel, legend, class: className } = Astro.props;
+---
+
+<div class:list={['border border-line rounded-md overflow-x-auto bg-white', className]}>
+  <table class="w-full text-start border-collapse min-w-[32rem]">
+    <thead>
+      <tr class="bg-surface border-b border-line">
+        <th scope="col" class="px-5 py-4 text-start font-mono text-xs uppercase tracking-[0.08em] text-gray-500 font-normal">{criterionLabel}</th>
+        <th scope="col" class="px-5 py-4 text-start text-sm font-semibold text-navy w-40">Dafira</th>
+        <th scope="col" class="px-5 py-4 text-start text-sm font-semibold text-navy w-40">{competitor}</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-line">
+      {rows.map((row) => (
+        <tr>
+          <th scope="row" class="px-5 py-3.5 text-start text-[15px] font-normal text-gray-700">{row.label}</th>
+          {[row.dafira, row.competitor].map((cell) => (
+            <td class="px-5 py-3.5 text-[15px]">
+              {cell === true ? (
+                <Icon name="check" class="w-5 h-5 text-navy" label={includedLabel} />
+              ) : cell === false ? (
+                <span class="text-gray-400"><span aria-hidden="true">—</span><span class="sr-only">{notIncludedLabel}</span></span>
+              ) : (
+                <span class="text-sm text-gray-500">{cell}</span>
+              )}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  {legend && <p class="px-5 py-3 border-t border-line text-xs text-gray-500">{legend}</p>}
+</div>

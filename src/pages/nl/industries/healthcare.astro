@@ -1,172 +1,43 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import CTA from '../../../components/CTA.astro';
+import IndustryLanding from '../../../components/industries/IndustryLanding.astro';
 
-const challenges = [
-  {
-    title: "Bescherming van gezondheidsgegevens",
-    description: "Waarborg volledige naleving van privacyregels voor medische data",
-    icon: "🔐"
-  },
-  {
-    title: "Klinisch bestuur",
-    description: "Optimaliseer het toezicht op zorgkwaliteit en patiëntveiligheid",
-    icon: "⚕️"
-  },
-  {
-    title: "Stakeholdersamenwerking", 
-    description: "Verbind bestuurders, medisch personeel en management",
-    icon: "🤝"
-  }
-];
+const hero = {
+  eyebrow: 'Zorg',
+  title: 'Bestuurssoftware voor zorgorganisaties',
+  lead: 'Voor besturen van ziekenhuizen, zorgaanbieders en life-sciencesbedrijven. Bereid besprekingen over kwaliteit, veiligheid en financiën voor en houd vertrouwelijke stukken onder controle.',
+};
 
-const features = [
-  {
-    title: "Beveiligd platform",
-    description: "Veilige verwerking van beschermde medische informatie",
-    icon: "🏥"
-  },
-  {
-    title: "Kwaliteitsdashboard",
-    description: "Real-time monitoring van klinische prestatie-indicatoren",
-    icon: "📊"
-  },
-  {
-    title: "Accreditatiebeheer",
-    description: "Eenvoudig toezicht op medische kwalificaties",
-    icon: "📋"
-  }
-];
+const challenges = {
+  title: 'Waar besturen in de zorg mee te maken hebben',
+  lead: 'Klinische, financiële en regelgevende vragen aan dezelfde tafel.',
+  items: [
+    { icon: 'lock', title: 'Gevoelige informatie', text: 'Bestuursstukken kunnen gezondheidsgegevens bevatten, die de AVG als bijzondere categorie behandelt.' },
+    { icon: 'health', title: 'Klinische governance', text: 'Kwaliteit en veiligheid komen op elke vergadering terug en vragen een consequent register.' },
+    { icon: 'users', title: 'Veel belanghebbenden', text: 'Bestuursleden, medische staf en directie hebben elk het juiste toegangsniveau nodig.' },
+  ],
+};
 
-const caseStudies = [
-  {
-    company: "Toonaangevende zorggroep",
-    quote: "Govrn heeft ons bestuursproces getransformeerd met volledige waarborging van medische databeveiliging.",
-    author: "Dr. Jan de Vries",
-    role: "Medisch Directeur",
-    link: "#demo"
-  }
-];
+const features = {
+  title: 'Wat Dafira biedt',
+  lead: 'Bestuurstools die zorgorganisaties gebruiken.',
+  items: [
+    { icon: 'shield', title: 'Beschermde bestuursstukken', text: 'Toegang per rol, versleuteling en een audittrail, met praktijken voor gegevensbescherming in lijn met de AVG.' },
+    { icon: 'layers', title: 'Comités', text: 'Aparte ruimtes voor kwaliteits-, audit- en andere comités, elk met eigen leden.' },
+    { icon: 'clipboard', title: 'Terugkerende agendapunten', text: 'Agendasjablonen voor vaste punten zoals kwaliteits- en veiligheidsrapporten.' },
+  ],
+};
 ---
 
-<Layout title="Bestuurssoftware voor de zorgsector | Govrn" description="Waarborg compliance met privacyregels voor medische data en optimaliseer het toezicht op zorgkwaliteit.">
-  <main class="pt-16">
-    <!-- Hero sectie -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Gezondheidszorg
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Bestuurssoftware voor
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              zorginstellingen
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed mb-12">
-            Veilige bestuurssoftware speciaal ontwikkeld voor de complexe eisen van de zorgsector.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/nl/try"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Gratis proefperiode
-            </a>
-            <a
-              href="/nl/request-demo"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-            >
-              Demo aanvragen
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Uitdagingen sectie -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            De uitdagingen die wij aanpakken
-          </h2>
-          <p class="text-xl text-gray-600">
-            Ga de belangrijkste bestuursuitdagingen in de zorgsector aan met onze complete oplossing.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Functionaliteiten sectie -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Specifieke functies voor de zorgsector
-          </h2>
-          <p class="text-xl text-gray-600">
-            Functionaliteiten op maat voor bestuur in de gezondheidszorg.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Referenties sectie -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Ervaringen uit de zorgsector
-          </h2>
-          <p class="text-xl text-gray-600">
-            Ontdek hoe toonaangevende zorginstellingen hun bestuur transformeren met Govrn.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {caseStudies.map(study => (
-            <a href={study.link} class="group">
-              <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 h-full flex flex-col">
-                <blockquote class="flex-grow">
-                  <p class="text-gray-600 mb-6">"{study.quote}"</p>
-                </blockquote>
-                <div>
-                  <p class="font-medium text-gray-900">{study.author}</p>
-                  <p class="text-gray-500">{study.role}</p>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Bestuurssoftware voor de zorgsector | Dafira" description="Bestuursportaal voor ziekenhuizen en zorgorganisaties: vertrouwelijke bestuursstukken onder toegangscontrole, comitévergaderingen en gedocumenteerde besluiten.">
+  <main>
+    <IndustryLanding
+      industry="healthcare"
+      hero={hero}
+      screenshot={{ src: '/onboarding-event-detail.png', alt: 'Vergaderpagina in Dafira met de agenda, aanwezigheden en een stemming' }}
+      challenges={challenges}
+      features={features}
+      secondary="trial"
+    />
   </main>
 </Layout>

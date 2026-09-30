@@ -3,7 +3,7 @@ title: "What Does Abstained Mean? Understanding the Meaning and Implications"
 description: "A deep dive into the concept of abstention in voting and decision-making, exploring its significance, implications, and strategic uses."
 pubDate: 2024-12-03
 author: "Jean-Louis Van Houwe"
-authorRole: "CEO & Founder at Govrn"
+authorRole: "CEO & Founder at Dafira"
 image: "/abstain-vote.jpg"
 category: "Governance"
 tags: ["Voting", "Decision-Making", "Corporate Governance", "Ethics"]

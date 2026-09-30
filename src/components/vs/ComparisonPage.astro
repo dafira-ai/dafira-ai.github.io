@@ -1,0 +1,88 @@
+---
+// Body of a competitor comparison page (/vs/*, /fr/vs/*, /nl/vs/*).
+// Each page passes its own competitor, heading, criteria (with the questions to ask the competitor) and quotes;
+// shared wording lives in ./copy.ts.
+import { Section, SectionHeader, CTA } from '../ui';
+import Testimonials from '../Testimonials.astro';
+import ComparisonHero from './ComparisonHero.astro';
+import DifferenceColumns from './DifferenceColumns.astro';
+import ComparisonTable from './ComparisonTable.astro';
+import SwitchCTA from './SwitchCTA.astro';
+import { COPY, type CriterionKey, type Testimonial, type VsLang } from './copy';
+import { localizePath } from '../../i18n/routes';
+
+interface Props {
+  lang: VsLang;
+  competitor: string;
+  title: string;
+  lead: string;
+  criteria: { key: CriterionKey; label: string; questions: string[] }[];
+  quotes: Testimonial[];
+}
+
+const { lang, competitor, title, lead, criteria, quotes } = Astro.props;
+const t = COPY[lang];
+const href = (path: string) => localizePath(lang, path);
+
+const rows = criteria.map((c) => {
+  const side = t.criteria[c.key];
+  return { icon: side.icon, criterion: c.label, dafira: { title: side.title, text: side.text, points: side.points }, questions: c.questions };
+});
+
+const tableRows = t.table.rows.map((label) => ({ label, dafira: true, competitor: t.table.toConfirm }));
+
+const switchItems = [
+  { icon: 'calendar', title: t.switching.trial.title, text: t.switching.trial.text, link: { text: t.switching.trial.link, href: href('/try') } },
+  { icon: 'refresh', title: t.switching.move.title, text: t.switching.move.text, link: { text: t.switching.move.link, href: href('/contact') } },
+  { icon: 'clipboard', title: t.switching.pricing.title, text: t.switching.pricing.text, link: { text: t.switching.pricing.link, href: href('/pricing') } },
+];
+
+const testimonials = quotes;
+---
+
+<main>
+  <ComparisonHero
+    eyebrow={t.eyebrow}
+    title={title}
+    lead={lead}
+    primary={{ text: t.heroActions.trial, href: href('/try') }}
+    secondary={{ text: t.heroActions.demo, href: href('/request-demo') }}
+    glance={t.glance}
+  />
+
+  <Section>
+    <SectionHeader eyebrow={t.differences.eyebrow} title={t.differences.title(competitor)} lead={t.differences.lead(competitor)} />
+    <DifferenceColumns rows={rows} dafiraLabel={t.differences.dafira} competitorLabel={t.differences.competitor(competitor)} />
+  </Section>
+
+  <Section tone="surface" border="top">
+    <div class="grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-4">
+        <SectionHeader layout="stacked" eyebrow={t.table.eyebrow} title={t.table.title} lead={t.table.lead(competitor)} class="mb-0" />
+      </div>
+      <div class="lg:col-span-8">
+        <ComparisonTable
+          rows={tableRows}
+          criterionLabel={t.table.criterion}
+          competitor={competitor}
+          includedLabel={t.table.included}
+          notIncludedLabel={t.table.notIncluded}
+          legend={t.table.legend(competitor)}
+        />
+      </div>
+    </div>
+  </Section>
+
+  <Testimonials texts={t.testimonials} testimonials={testimonials as any} />
+
+  <SwitchCTA
+    tone="surface"
+    eyebrow={t.switching.eyebrow}
+    title={t.switching.title(competitor)}
+    lead={t.switching.lead}
+    items={switchItems}
+    note={t.switching.note}
+  />
+
+  <CTA texts={t.cta} links={{ cta1: href('/request-demo'), cta2: href('/contact') }} />
+</main>

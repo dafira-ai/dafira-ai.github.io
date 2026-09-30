@@ -2,8 +2,8 @@
 title: "The Ultimate Guide to Non-Profit Board of Directors: Roles, Responsibilities, and Best Practices"
 description: "Discover the essential roles, responsibilities, and best practices for non-profit boards of directors to effectively guide organizations toward achieving their missions."
 pubDate: 2024-02-15
-author: "Govrn"
-authorRole: "Govrn Editorial Team"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/ngo.jpg"
 category: "Governance"
 tags: ["Non-Profit Governance", "Board Responsibilities", "Best Practices", "Strategic Planning"]
@@ -54,7 +54,7 @@ A non-profit board of directors serves as the organization’s guiding force, re
 
 An effective non-profit board doesn’t just oversee—it inspires, leads, and drives impact. Boards that embrace their responsibilities and adopt best practices are better equipped to navigate challenges, sustain growth, and fulfill the organization’s mission.
 
-Modern governance tools, like Govrn’s board management solutions, further enhance a board’s effectiveness by streamlining collaboration, secure communication, and document sharing. By leveraging these technologies, boards can focus more on strategy and less on logistics.
+Modern governance tools, like Dafira’s board management solutions, further enhance a board’s effectiveness by streamlining collaboration, secure communication, and document sharing. By leveraging these technologies, boards can focus more on strategy and less on logistics.
 
 ---
 

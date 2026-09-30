@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import whyGovrnImg from '../assets/why-govrn.png';
-import govrnLogoBg from '../assets/images/govrn-logo-blue.png';
+import whyDafiraImg from '../assets/why-dafira.png';
 
 interface WhyWeBuildVideoProps {
   title?: string;
@@ -12,71 +11,55 @@ interface WhyWeBuildVideoProps {
 }
 
 const {
-  title = "Why We Build Govrn",
-  subtitle = "Our Mission",
+  title = "Why we build Dafira",
+  subtitle = "Our mission",
   videoId = "D6vubHkS_is",
-  description = "Discover the story behind Govrn and why we're passionate about transforming board management with AI-powered solutions.",
+  description = "The story behind Dafira, and why we build software for boards.",
   language = "en"
 } = Astro.props;
 ---
 
-<section class="relative py-24 bg-white logo-texture">
+<section class="py-20 lg:py-28 bg-white border-t border-line">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
-      <p class="text-primary font-semibold text-lg tracking-wide uppercase mb-4">
-        {subtitle}
-      </p>
-      <h2 class="text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight mb-6">
-        {title}
-      </h2>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-        {description}
-      </p>
+    <div class="grid lg:grid-cols-12 gap-6 mb-14">
+      <div class="lg:col-span-6">
+        <p class="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.08em] text-gray-500 mb-4">
+          <span class="w-5 h-px shrink-0 bg-primary" aria-hidden="true"></span>{subtitle}
+        </p>
+        <h2 class="text-3xl lg:text-4xl font-semibold text-navy leading-tight">{title}</h2>
+      </div>
+      <p class="lg:col-span-5 lg:col-start-8 text-lg text-gray-600 leading-relaxed self-end">{description}</p>
     </div>
 
-    <div class="relative max-w-5xl mx-auto">
-      <div class="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gray-900">
-        <!-- Video thumbnail -->
+    <div class="bg-surface border border-line rounded-md p-2 sm:p-3 max-w-5xl">
+      <div class="relative aspect-video rounded-sm overflow-hidden border border-line bg-navy">
         <div id="videoThumbnail" class="absolute inset-0">
           <Image
-            src={whyGovrnImg}
-            alt="Why We Build Govrn Video Thumbnail"
+            src={whyDafiraImg}
+            alt="Why We Build Dafira video thumbnail"
             class="w-full h-full object-cover"
             widths={[400, 800, 1280]}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1280px"
           />
-
-          <!-- Play button overlay -->
-          <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+          <div class="absolute inset-0 flex items-center justify-center">
             <button
               id="playButton"
-              class="group relative flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+              class="flex items-center justify-center w-16 h-16 bg-white text-navy rounded-full border border-line hover:bg-navy hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               aria-label="Play video"
             >
-              <svg class="w-8 h-8 text-primary ml-1 group-hover:text-primary/80 transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-              <div class="absolute inset-0 rounded-full bg-primary/10 animate-ping"></div>
+              <svg class="w-6 h-6 ms-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
             </button>
           </div>
         </div>
-
-        <!-- YouTube iframe (hidden initially) -->
         <iframe
           id="youtubeIframe"
           class="absolute inset-0 w-full h-full hidden"
-          title="Why We Build Govrn"
-          frameborder="0"
+          title={title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></iframe>
       </div>
-
-      <!-- Floating elements for visual appeal -->
-      <div class="absolute -top-6 -left-6 w-12 h-12 bg-primary/10 rounded-full blur-xl"></div>
-      <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-primary/5 rounded-full blur-xl"></div>
     </div>
-
   </div>
 </section>
 

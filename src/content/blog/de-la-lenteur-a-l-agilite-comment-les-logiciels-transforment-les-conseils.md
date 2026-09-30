@@ -2,8 +2,8 @@
 title: "De la lenteur à l'agilité : comment les logiciels de gestion transforment la prise de décision des conseils"
 description: "Découvrez comment les solutions modernes de gestion de conseil renforcent l'agilité, l'inclusivité et l'efficacité dans les processus décisionnels."
 pubDate: 2023-05-01
-author: "Govrn"
-authorRole: "Équipe éditoriale Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/fast_bike.jpg"
 category: "Technology" 
 tags: ["Logiciel de gestion", "Prise de décision", "Gouvernance d'entreprise", "Agilité"]

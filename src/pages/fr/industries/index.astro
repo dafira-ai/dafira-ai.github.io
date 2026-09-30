@@ -1,104 +1,63 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import { PageHero, Section, Icon, CellGrid, FeatureList, CTA } from '../../../components/ui';
+import { ctaProps } from '../../../components/industries/i18n';
 
 const industries = [
   {
-    name: "Services financiers",
-    icon: "🏦",
-    description: "Gestion de conseil sécurisée et conforme pour les banques, assurances et sociétés d'investissement",
-    link: "/fr/industries/financial-services",
-    features: [
-      "Automatisation de la conformité réglementaire",
-      "Gestion documentaire sécurisée",
-      "Surveillance des risques"
-    ]
+    name: 'Services financiers',
+    icon: 'bank',
+    description: 'Un travail de conseil sécurisé et documenté pour les banques, assureurs et sociétés d’investissement.',
+    link: '/fr/industries/financial-services',
+    features: ['Contexte réglementaire pour le conseil', 'Gestion documentaire sécurisée', 'Réunions du conseil et des comités'],
   },
   {
-    name: "Santé",
-    icon: "🏥",
-    description: "Solutions conformes aux normes de confidentialité pour les établissements de santé",
-    link: "/fr/industries/healthcare",
-    features: [
-      "Protection des données de santé",
-      "Gouvernance clinique",
-      "Assurance qualité"
-    ]
+    name: 'Santé',
+    icon: 'health',
+    description: 'La gestion du conseil pour les hôpitaux, prestataires de soins et entreprises des sciences de la vie.',
+    link: '/fr/industries/healthcare',
+    features: ['Documents du conseil confidentiels', 'Gouvernance clinique à l’ordre du jour', 'Comités'],
   },
   {
-    name: "Immobilier",
-    icon: "🏢",
-    description: "Gestion optimisée des conseils pour l'investissement et la gestion immobilière",
-    link: "/fr/industries/real-estate",
-    features: [
-      "Supervision du portefeuille",
-      "Suivi des investissements",
-      "Gestion des actifs"
-    ]
+    name: 'Immobilier',
+    icon: 'building',
+    description: 'La gestion du conseil pour les sociétés d’investissement et de gestion immobilière.',
+    link: '/fr/industries/real-estate',
+    features: ['Dossiers d’investissement', 'Suivi du portefeuille', 'Registre des décisions'],
   },
   {
-    name: "Entreprise familiale",
-    icon: "👨‍👩‍👧‍👦",
-    description: "Gestion du conseil et du conseil de famille pour entreprises familiales multi-entités",
-    link: "/fr/industries/family-business",
-    features: [
-      "Gouvernance multi-entités",
-      "Contrôle d'accès sécurisé",
-      "Continuité générationnelle"
-    ]
-  }
+    name: 'Entreprise familiale',
+    icon: 'family',
+    description: 'La gestion du conseil et du conseil de famille pour les entreprises familiales multi-entités.',
+    link: '/fr/industries/family-business',
+    features: ['Plusieurs organes de gouvernance', 'Accès par rôle', 'Continuité entre générations'],
+  },
 ];
 ---
 
-<Layout title="Solutions sectorielles | Logiciel de gestion de conseil Govrn" description="Découvrez nos solutions sur mesure pour votre secteur d'activité, incluant les services financiers, la santé et l'immobilier, conçues pour optimiser vos opérations de conseil.">
-  <main class="pt-16">
-    <!-- Section héro -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
+<Layout title="Solutions sectorielles | Logiciel de gestion de conseil Dafira" description="Dafira par secteur : gestion du conseil pour les services financiers, la santé, l’immobilier et les entreprises familiales.">
+  <main>
+    <PageHero eyebrow="Secteurs" title="La gestion du conseil, par secteur" lead="Le cycle du conseil est partout le même ; le contexte, non. Découvrez comment Dafira accompagne les conseils des organisations réglementées et familiales." />
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Solutions adaptées à
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              votre secteur
+    <Section>
+      <CellGrid columns={2}>
+        {industries.map((industry) => (
+          <a href={industry.link} class="group bg-white p-8 lg:p-10 hover:bg-surface transition-colors flex flex-col">
+            <Icon name={industry.icon} class="w-6 h-6 text-navy" />
+            <h2 class="mt-5 text-xl font-semibold text-navy">{industry.name}</h2>
+            <p class="mt-3 text-gray-600 leading-relaxed">{industry.description}</p>
+            <FeatureList items={industry.features} class="mt-6" />
+            <span class="mt-auto pt-8 inline-flex items-center gap-2 text-[15px] font-medium text-primary group-hover:text-navy transition-colors">
+              Voir la page sectorielle
+              <svg class="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 5l7 7-7 7" />
+              </svg>
             </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            Découvrez comment Govrn s'adapte aux exigences spécifiques de votre industrie avec des fonctionnalités et des normes de conformité sur mesure.
-          </p>
-        </div>
-      </div>
-    </section>
+          </a>
+        ))}
+      </CellGrid>
+    </Section>
 
-    <!-- Grille des secteurs -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {industries.map(industry => (
-            <a href={industry.link} class="group">
-              <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 h-full hover:shadow-xl transition-all duration-300">
-                <div class="text-4xl mb-6">{industry.icon}</div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors">
-                  {industry.name}
-                </h2>
-                <p class="text-gray-600 mb-6">{industry.description}</p>
-                <ul class="space-y-3">
-                  {industry.features.map(feature => (
-                    <li class="flex items-center text-gray-600">
-                      <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
+    <CTA {...ctaProps.fr} />
   </main>
 </Layout>

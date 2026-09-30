@@ -2,8 +2,8 @@
 title: "Comprendre les risques du management stratégique : ce qu'il faut savoir"
 description: "Le management stratégique est essentiel au succès des organisations, mais comporte des risques. Découvrez les défis, de l'incertitude à la résistance au changement, et apprenez à les gérer efficacement."
 pubDate: 2023-05-15
-author: "Govrn"
-authorRole: "Équipe éditoriale Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/jump.jpg"
 category: "Best Practices"
 tags: ["Management stratégique", "Gestion des risques", "Gouvernance d'entreprise", "Leadership"]

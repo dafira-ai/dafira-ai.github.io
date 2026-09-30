@@ -8,10 +8,10 @@ image: "/podcast-S1E5.png"
 featured: true
 podcastAudioUrl: "/podcast-S1E5.m4a"
 guests:
-  - name: "Govrn Expert Panel"
+  - name: "Dafira Expert Panel"
     role: "Governance and Leadership Specialists"
-    company: "Govrn"
-    bio: "Our experts from Govrn specialize in board governance and leadership frameworks, helping organizations achieve better outcomes through innovative practices."
+    company: "Dafira"
+    bio: "Our experts from Dafira specialize in board governance and leadership frameworks, helping organizations achieve better outcomes through innovative practices."
     image: "/logo-square.png"
 topics:
   - "CSRD and ESG"
@@ -52,7 +52,7 @@ In this episode of **Governance Matters**, we dive into the **Corporate Sustaina
 
 ## Leveraging Technology for CSRD Compliance
 
-As boards navigate the complexities of CSRD and ESG requirements, technology plays a crucial role in enabling effective compliance and reporting. Govrn offers two key solutions to support boards in this journey:
+As boards navigate the complexities of CSRD and ESG requirements, technology plays a crucial role in enabling effective compliance and reporting. Dafira offers two key solutions to support boards in this journey:
 
 ### AI-Powered Compliance Monitoring
 
@@ -64,7 +64,7 @@ Our [AI-powered compliance monitoring](/features/ai-board-compliance-monitoring)
 
 ### AI Assistant for Board Members
 
-The Govrn [AI assistant](/features/ai-assistant) empowers board members to make informed decisions by:
+The Dafira [AI assistant](/features/ai-assistant) empowers board members to make informed decisions by:
 
 - Analyzing ESG data and trends
 - Providing insights on sustainability metrics

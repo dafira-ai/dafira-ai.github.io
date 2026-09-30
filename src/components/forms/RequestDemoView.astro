@@ -1,0 +1,357 @@
+---
+// Request-demo page body, shared by EN / FR / NL. Copy comes in through `t`.
+// The pre-qualification form (demoGateForm) and the Calendly hand-off keep their original
+// ids, field names, validation and submit logic.
+import { PageHero, Section, SectionHeader, Field, Button, Icon } from '../ui';
+
+export interface RequestDemoTexts {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  trial: { title: string; before: string; strong: string; after: string };
+  expert: { alt: string; name: string; role: string; note: string };
+  form: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    emailPlaceholder: string;
+    emailError: string;
+    company: string;
+    companyUrl: string;
+    companyUrlPlaceholder: string;
+    urlError: string;
+    submit: string;
+    confirmed: string;
+  };
+  facts: { value: string; label: string }[];
+  outcomes: { eyebrow: string; title: string; items: { icon: string; title: string; text: string }[] };
+  why: { eyebrow: string; title: string; lead: string; items: { icon: string; title: string; text: string }[] };
+}
+
+interface Props {
+  t: RequestDemoTexts;
+}
+const { t } = Astro.props;
+
+const control =
+  'block w-full rounded-md border border-line bg-white px-3 py-2.5 text-[15px] text-ink placeholder:text-gray-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors';
+---
+
+<main>
+  <PageHero eyebrow={t.eyebrow} title={t.title} lead={t.lead}>
+    <!-- Trial notification (shown when arriving from /try) -->
+    <div id="trialNotification" class="hidden mt-8 border-s-2 border-primary bg-blue-50/60 rounded-e-md px-5 py-4" role="status">
+      <div class="flex gap-3">
+        <Icon name="info" class="w-5 h-5 text-navy mt-0.5" />
+        <div>
+          <p class="font-medium text-navy">{t.trial.title}</p>
+          <p class="mt-1 text-[15px] text-gray-700 leading-relaxed">
+            {t.trial.before} <strong class="font-medium text-navy">{t.trial.strong}</strong>{t.trial.after}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <dl class="mt-10 grid grid-cols-3 border-t border-line max-w-xl">
+      {t.facts.map((f) => (
+        <div class="pt-4 pe-4">
+          <dt class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">{f.label}</dt>
+          <dd class="mt-1 text-navy font-medium">{f.value}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <div slot="aside" class="border border-line rounded-md bg-white p-6 lg:p-8">
+      <!-- Expert profile -->
+      <div class="flex items-center gap-4 pb-6 mb-6 border-b border-line">
+        <span class="w-14 h-14 rounded-full border border-line bg-surface grid place-items-center text-navy shrink-0" aria-hidden="true"><Icon name="users" class="w-6 h-6" /></span>
+        <div>
+          <p class="font-semibold text-navy">{t.expert.name}</p>
+          <p class="text-sm text-gray-600">{t.expert.role}</p>
+          <p class="text-xs text-gray-500 mt-0.5">{t.expert.note}</p>
+        </div>
+      </div>
+
+      <!-- Pre-qualification form -->
+      <form id="demoGateForm" class="space-y-5">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <Field id="firstName" label={t.form.firstName} required autocomplete="given-name" />
+          <Field id="lastName" label={t.form.lastName} required autocomplete="family-name" />
+        </div>
+
+        <div class="space-y-1.5">
+          <label for="email" class="block text-sm font-medium text-navy">
+            {t.form.email}<span class="text-gray-400" aria-hidden="true"> *</span>
+          </label>
+          <input type="email" id="email" name="email" class={control} placeholder={t.form.emailPlaceholder} autocomplete="email" dir="ltr" aria-describedby="emailError" required />
+          <p id="emailError" class="hidden text-xs text-red-700" aria-live="polite">{t.form.emailError}</p>
+        </div>
+
+        <Field id="company" label={t.form.company} required autocomplete="organization" />
+
+        <div class="space-y-1.5">
+          <label for="companyUrl" class="block text-sm font-medium text-navy">
+            {t.form.companyUrl}<span class="text-gray-400" aria-hidden="true"> *</span>
+          </label>
+          <input type="url" id="companyUrl" name="companyUrl" class={control} placeholder={t.form.companyUrlPlaceholder} autocomplete="url" dir="ltr" aria-describedby="urlError" required />
+          <p id="urlError" class="hidden text-xs text-red-700" aria-live="polite">{t.form.urlError}</p>
+        </div>
+
+        <Button type="submit" class="w-full">{t.form.submit}</Button>
+      </form>
+
+      <!-- Calendly inline widget (hidden until the form is valid) -->
+      <div id="calendlyContainer" class="hidden">
+        <div class="mb-4 flex items-center gap-2 border-s-2 border-emerald-600 bg-emerald-50/60 rounded-e-md px-4 py-3" role="status">
+          <Icon name="check" class="w-5 h-5 text-emerald-800" />
+          <span class="text-[15px] text-emerald-900">{t.form.confirmed}</span>
+        </div>
+        <div id="calendlyWidget" style="min-width:320px;height:700px;"></div>
+      </div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    </div>
+  </PageHero>
+
+  <!-- What the demo covers -->
+  <Section>
+    <SectionHeader eyebrow={t.outcomes.eyebrow} title={t.outcomes.title} />
+    <div class="grid gap-px bg-line border border-line rounded-md overflow-hidden sm:grid-cols-2 lg:grid-cols-4" data-play>
+      {t.outcomes.items.map((o, i) => (
+        <div class="bg-white p-6 lg:p-8" data-step style={`--d:${i * 80}`}>
+          <Icon name={o.icon} class="w-6 h-6 text-navy" />
+          <h3 class="mt-5 text-lg font-semibold text-navy">{o.title}</h3>
+          <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{o.text}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Why Dafira -->
+  <Section tone="surface" border="top">
+    <div class="grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-4">
+        <SectionHeader eyebrow={t.why.eyebrow} title={t.why.title} lead={t.why.lead} layout="stacked" class="mb-0" />
+      </div>
+      <dl class="lg:col-span-7 lg:col-start-6 border-t border-line">
+        {t.why.items.map((w) => (
+          <div class="py-6 border-b border-line flex gap-4">
+            <Icon name={w.icon} class="w-5 h-5 text-navy mt-1" />
+            <div>
+              <dt class="text-lg font-medium text-navy">{w.title}</dt>
+              <dd class="mt-1 text-gray-600 leading-relaxed">{w.text}</dd>
+            </div>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </Section>
+
+</main>
+
+<style is:global>
+  #demoGateForm input[aria-invalid='true'] {
+    border-color: rgb(185 28 28);
+  }
+</style>
+
+<script>
+  import { sendForm } from '../../utils/sendForm';
+  // List of personal email domains to block
+  const personalEmailDomains = [
+    'gmail.com',
+    'googlemail.com',
+    'hotmail.com',
+    'hotmail.co.uk',
+    'hotmail.fr',
+    'hotmail.de',
+    'hotmail.it',
+    'hotmail.es',
+    'outlook.com',
+    'outlook.fr',
+    'outlook.de',
+    'outlook.co.uk',
+    'live.com',
+    'live.co.uk',
+    'live.fr',
+    'live.nl',
+    'msn.com',
+    'yahoo.com',
+    'yahoo.co.uk',
+    'yahoo.fr',
+    'yahoo.de',
+    'yahoo.it',
+    'yahoo.es',
+    'ymail.com',
+    'aol.com',
+    'aol.co.uk',
+    'icloud.com',
+    'me.com',
+    'mac.com',
+    'protonmail.com',
+    'proton.me',
+    'mail.com',
+    'gmx.com',
+    'gmx.de',
+    'gmx.net',
+    'web.de',
+    'zoho.com',
+    'yandex.com',
+    'yandex.ru',
+    'inbox.com',
+    'fastmail.com',
+    'tutanota.com',
+    'mailinator.com',
+    'guerrillamail.com',
+    'tempmail.com',
+    'sharklasers.com',
+    'rediffmail.com',
+    'libero.it',
+    'virgilio.it',
+    'laposte.net',
+    'orange.fr',
+    'free.fr',
+    'wanadoo.fr',
+    'sfr.fr',
+    'bbox.fr',
+    't-online.de',
+    'bluewin.ch',
+    'telenet.be',
+    'skynet.be',
+    'proximus.be',
+    'ziggo.nl',
+    'kpnmail.nl',
+    'planet.nl',
+    'hetnet.nl',
+    'xs4all.nl'
+  ];
+
+  function isPersonalEmail(email) {
+    const domain = email.split('@')[1]?.toLowerCase();
+    return personalEmailDomains.includes(domain);
+  }
+
+  function isValidUrl(string) {
+    try {
+      const url = new URL(string);
+      return url.protocol === 'http:' || url.protocol === 'https:';
+    } catch (_) {
+      return false;
+    }
+  }
+
+  // Show / hide a field error (visual state + aria-invalid)
+  function setInvalid(input, error, invalid) {
+    if (invalid) {
+      error?.classList.remove('hidden');
+      input?.setAttribute('aria-invalid', 'true');
+    } else {
+      error?.classList.add('hidden');
+      input?.removeAttribute('aria-invalid');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Show trial notification if user came from trial form
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('from') === 'trial') {
+      const notification = document.getElementById('trialNotification');
+      if (notification) {
+        notification.classList.remove('hidden');
+        notification.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    // Form handling
+    const form = document.getElementById('demoGateForm');
+    const emailInput = document.getElementById('email');
+    const emailError = document.getElementById('emailError');
+    const urlInput = document.getElementById('companyUrl');
+    const urlError = document.getElementById('urlError');
+    const calendlyContainer = document.getElementById('calendlyContainer');
+    const calendlyWidget = document.getElementById('calendlyWidget');
+
+    // Real-time email validation
+    emailInput?.addEventListener('blur', () => {
+      const email = emailInput.value;
+      setInvalid(emailInput, emailError, !!(email && isPersonalEmail(email)));
+    });
+
+    // Real-time URL validation
+    urlInput?.addEventListener('blur', () => {
+      const url = urlInput.value;
+      setInvalid(urlInput, urlError, !!(url && !isValidUrl(url)));
+    });
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const email = formData.get('email')?.toString() || '';
+      const companyUrl = formData.get('companyUrl')?.toString() || '';
+      const firstName = formData.get('firstName')?.toString() || '';
+      const lastName = formData.get('lastName')?.toString() || '';
+      const company = formData.get('company')?.toString() || '';
+
+      // Validate email
+      if (isPersonalEmail(email)) {
+        setInvalid(emailInput, emailError, true);
+        emailInput?.focus();
+        return;
+      }
+
+      // Validate URL
+      if (!isValidUrl(companyUrl)) {
+        setInvalid(urlInput, urlError, true);
+        urlInput?.focus();
+        return;
+      }
+
+      // Push to dataLayer for tracking
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'demo_form_submit',
+        'email': email,
+        'company': company,
+        'companyUrl': companyUrl
+      });
+
+      // Send the request to the inbox without blocking the Calendly step
+      sendForm(form as HTMLFormElement, 'Demo request', { silent: true });
+
+      // Hide form and show Calendly widget
+      form.classList.add('hidden');
+      calendlyContainer?.classList.remove('hidden');
+
+      // Build Calendly URL with prefilled data
+      const calendlyBaseUrl = 'https://calendly.com/marketing-lech/30min-1';
+      const calendlyParams = new URLSearchParams({
+        'primary_color': '1d5fa6',
+        'name': `${firstName} ${lastName}`,
+        'email': email,
+        'a1': company,
+        'a2': companyUrl
+      });
+
+      // Initialize Calendly widget
+      if (calendlyWidget) {
+        const calendlyUrl = `${calendlyBaseUrl}?${calendlyParams.toString()}`;
+
+        // Wait for Calendly to be available then initialize
+        const initCalendly = () => {
+          const Calendly = (window as any).Calendly;
+          if (Calendly) {
+            Calendly.initInlineWidget({
+              url: calendlyUrl,
+              parentElement: calendlyWidget
+            });
+          } else {
+            // Retry after 100ms if Calendly not ready yet
+            setTimeout(initCalendly, 100);
+          }
+        };
+
+        initCalendly();
+      }
+    });
+  });
+</script>

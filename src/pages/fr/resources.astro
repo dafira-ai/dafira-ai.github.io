@@ -1,288 +1,57 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import BlogCard from '../../components/blog/BlogCard.astro';
 import { getCollection } from 'astro:content';
-import EpisodeCard from '../../components/EpisodeCard.astro';
+import ResourceHub from '../../components/resources/ResourceHub.astro';
+
+const copy = {
+  eyebrow: 'Ressources',
+  title: 'Guides, études et échanges sur la gouvernance des conseils',
+  lead: "Guides d'utilisation de Dafira, étude sur l'IA dans la salle du conseil, articles et épisodes de podcast pour les secrétaires de conseil, administrateurs et professionnels de la gouvernance.",
+  overview: [
+    { icon: 'mic', title: 'Podcasts', text: "Conversations d'experts sur la gouvernance moderne.", href: '/fr/podcast', linkText: 'Écouter les épisodes' },
+    { icon: 'document', title: 'Articles', text: 'Actualités et analyses sur la gouvernance.', href: '/fr/blog', linkText: 'Lire les articles' },
+    { icon: 'chart', title: 'Études', text: 'Analyses approfondies et livres blancs.', href: '/fr/research/boardroom-ai-adoption', linkText: 'Consulter les études' },
+    { icon: 'book', title: 'Guides', text: 'Tutoriels et guides pratiques.', href: '/fr/guides', linkText: 'Explorer les guides' },
+  ],
+  podcasts: { title: 'Derniers épisodes', link: '/fr/podcast', linkText: 'Tous les podcasts' },
+  articles: { title: 'Derniers articles', link: '/fr/blog', linkText: 'Tous les articles' },
+  readMore: 'Lire',
+};
 
 const categories = [
   {
-    title: "Guides & Tutoriels",
-    icon: "📚",
-    description: "Des guides détaillés pour maîtriser toutes les fonctionnalités de Govrn",
-    link: "/fr/guides",
+    eyebrow: 'Guides',
+    title: 'Guides et tutoriels',
+    description: 'Des guides détaillés pour utiliser toutes les fonctionnalités de Dafira.',
+    link: '/fr/guides',
+    linkText: 'Tous les guides',
     resources: [
-      {
-        title: "Débuter avec Govrn",
-        description: "Guide complet pour configurer et optimiser Govrn pour votre conseil d'administration",
-        type: "Guide",
-        readTime: "10 min de lecture",
-        image: "/applications-picture-meeting.png",
-        link: "/fr/guides/getting-started"
-      }
-      ,
-      {
-        title: "Guide d'authentification",
-        description: "Créez votre compte, connectez-vous et gérez vos accès en toute sécurité",
-        type: "Guide",
-        readTime: "5 min de lecture",
-        image: "/fr-authentication.png",
-        link: "/fr/guides/authentication"
-      },
-      {
-        title: "Gestion du profil",
-        description: "Mettez à jour vos informations personnelles et vos préférences",
-        type: "Guide", 
-        readTime: "5 min de lecture",
-        image: "/fr-gestion-du-profile.png",
-        link: "/fr/guides/profile-management"
-      },
-    ]
+      { title: 'Débuter avec Dafira', description: "Configurer et utiliser Dafira pour votre conseil d'administration.", type: 'Guide', readTime: '10 min de lecture', image: '/applications-picture-meeting.png', link: '/fr/guides/getting-started' },
+      { title: "Guide d'authentification", description: 'Créez votre compte, connectez-vous et gérez vos accès en toute sécurité.', type: 'Guide', readTime: '5 min de lecture', image: '/fr-authentication.png', link: '/fr/guides/authentication' },
+      { title: 'Gestion du profil', description: 'Mettez à jour vos informations personnelles et vos préférences.', type: 'Guide', readTime: '5 min de lecture', image: '/fr-gestion-du-profile.png', link: '/fr/guides/profile-management' },
+    ],
   },
   {
-    title: "Livres Blancs & Études",
-    icon: "📊",
-    description: "Analyses approfondies des tendances en gouvernance d'entreprise",
+    eyebrow: 'Études',
+    title: 'Livres blancs et études',
+    description: "Analyses approfondies des tendances en gouvernance d'entreprise.",
     resources: [
-      {
-        title: "L'IA dans la Salle du Conseil",
-        description: "Étude sur les enjeux et opportunités de l'IA pour la gouvernance moderne",
-        type: "Étude",
-        readTime: "10 min de lecture",
-        image: "/research_brunel.jpg",
-        link: "/fr/research/boardroom-ai-adoption"
-      },
-      // {
-      //   title: "Choisir son Logiciel de Gouvernance",
-      //   description: "Guide complet pour évaluer et sélectionner la solution adaptée à vos besoins",
-      //   type: "Guide",
-      //   readTime: "15 min de lecture",
-      //   image: "/buyer-guide.png",
-      //   link: "/fr/landing/buyer-guide-2025"
-      // }
-    ]
-  }
+      { title: "L'IA dans la salle du conseil", description: "Étude sur les enjeux et opportunités de l'IA pour la gouvernance.", type: 'Étude', readTime: '10 min de lecture', image: '/resources.png', link: '/fr/research/boardroom-ai-adoption' },
+    ],
+  },
 ];
 
-const posts = await getCollection('blog');
-const publishedPosts = posts.filter(post => post.data.pubDate.getTime() <= new Date().getTime() && post.data.lang === 'fr');
-const sortedPosts = publishedPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-const latestPosts = sortedPosts.slice(0, 3);
-
-const podcasts = await getCollection('podcast');
-const publishedPodcasts = podcasts.filter(podcast => podcast.data.pubDate.getTime() <= new Date().getTime());
-const sortedPodcasts = publishedPodcasts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-const latestPodcasts = sortedPodcasts.slice(0, 3);
-
+const now = Date.now();
+const posts = (await getCollection('blog'))
+  .filter((p) => p.data.pubDate.getTime() <= now && p.data.lang === 'fr')
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+const podcasts = (await getCollection('podcast'))
+  .filter((p) => p.data.pubDate.getTime() <= now)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
 ---
 
-<Layout title="Ressources - Logiciel de Gouvernance Govrn" description="Explorez notre collection de guides, études et bonnes pratiques pour optimiser la gestion de votre conseil d'administration." image="/resources.png">
-  <main class="pt-24">
-    <!-- Vue d'ensemble des ressources -->
-    <section class="bg-white py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-6 py-2 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Centre de Connaissances
-          </div>
-
-          <h1 class="text-6xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Optimisez votre Gouvernance
-            <span class="block mt-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              grâce à nos Ressources
-            </span>
-          </h1>
-
-          <p class="text-xl text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto">
-            Explorez notre collection de ressources essentielles : guides pratiques, études de cas, podcasts et articles pour une gouvernance efficace.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          <!-- Section Podcasts -->
-          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl">
-            <span class="text-3xl mb-4 block">🎙️</span>
-            <h2 class="text-xl font-bold text-gray-900 mb-2">Podcasts</h2>
-            <p class="text-gray-600 mb-4">Conversations d'experts sur la gouvernance moderne</p>
-            <a href="/fr/podcast" class="text-primary hover:text-primary/90 font-medium inline-flex items-center">
-              Écouter les Épisodes
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-
-          <!-- Section Blog -->
-          <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl">
-            <span class="text-3xl mb-4 block">📝</span>
-            <h2 class="text-xl font-bold text-gray-900 mb-2">Articles</h2>
-            <p class="text-gray-600 mb-4">Dernières actualités et analyses</p>
-            <a href="/fr/blog" class="text-primary hover:text-primary/90 font-medium inline-flex items-center">
-              Lire les Articles
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-
-          <!-- Section Études -->
-          <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl">
-            <span class="text-3xl mb-4 block">📊</span>
-            <h2 class="text-xl font-bold text-gray-900 mb-2">Études</h2>
-            <p class="text-gray-600 mb-4">Analyses approfondies et livres blancs</p>
-            <a href="/fr/research/boardroom-ai-adoption" class="text-primary hover:text-primary/90 font-medium inline-flex items-center">
-              Consulter les Études
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-
-          <!-- Section Guides -->
-          <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl">
-            <span class="text-3xl mb-4 block">📚</span>
-            <h2 class="text-xl font-bold text-gray-900 mb-2">Guides</h2>
-            <p class="text-gray-600 mb-4">Tutoriels et guides pratiques</p>
-            <a href="/fr/guides" class="text-primary hover:text-primary/90 font-medium inline-flex items-center">
-              Explorer les Guides
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Derniers Podcasts -->
-    <section class="py-16 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between mb-12">
-          <h2 class="text-3xl font-bold text-gray-900">Derniers Podcasts</h2>
-          <a href="/fr/podcast" class="inline-flex items-center text-primary hover:text-primary/90 font-medium group">
-            Tous les Podcasts
-            <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </a>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {latestPodcasts.map(podcast => (
-            <EpisodeCard episode={podcast} />
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Derniers Articles -->
-    <section class="py-16 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between mb-12">
-          <h2 class="text-3xl font-bold text-gray-900">Derniers Articles</h2>
-          <a href="/fr/blog" class="inline-flex items-center text-primary hover:text-primary/90 font-medium group">
-            Tous les Articles
-            <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </a>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {latestPosts.map(post => (
-            <BlogCard post={post} lang="fr" />
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Catégories de Ressources -->
-    {categories.map((category, index) => (
-      <section class={`py-16 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between mb-12">
-            <div class="flex items-center space-x-4">
-              <span class="text-4xl">{category.icon}</span>
-              <div>
-                <h2 class="text-3xl font-bold text-gray-900">{category.title}</h2>
-                <p class="text-gray-600 mt-2">{category.description}</p>
-              </div>
-            </div>
-            {category.link && (
-              <a href={`${category.link}`} class="inline-flex items-center text-primary hover:text-primary/90 font-medium group">
-                Voir tout
-                <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                </svg>
-              </a>
-            )}
-          </div>
-
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {category.resources.map(resource => (
-              <a href={resource.link || "#"} class="block">
-                <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                  <img 
-  loading="lazy"
-                    src={resource.image}
-                    alt={resource.title}
-                    class="w-full h-48 object-cover"
-                  />
-                  <div class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                      <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                        {resource.type}
-                      </span>
-                      {resource.readTime && (
-                        <span class="text-sm text-gray-500">{resource.readTime}</span>
-                      )}
-                      {resource.date && (
-                        <span class="text-sm text-gray-500">{resource.date}</span>
-                      )}
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                      {resource.title}
-                    </h3>
-                    <p class="text-gray-600 mb-4">{resource.description}</p>
-                    <span class="text-primary hover:text-primary/90 font-medium inline-flex items-center group">
-                      En savoir plus
-                      <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-    ))}
-
-    <!-- Section Newsletter -->
-    <section class="py-16 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-2xl p-12 shadow-sm">
-          <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">
-              Restez informé avec Govrn
-            </h2>
-            <p class="text-gray-600 mb-8">
-              Abonnez-vous à notre newsletter pour recevoir nos dernières ressources, tendances du secteur et meilleures pratiques en gouvernance.
-            </p>
-            <form class="flex gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Votre adresse email"
-                class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
-              />
-              <button
-                type="submit"
-                class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200"
-              >
-                S'abonner
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+<Layout title="Ressources - Logiciel de Gouvernance Dafira" description="Guides, études, articles et podcasts sur la gestion du conseil d'administration et la gouvernance, par l'équipe Dafira." image="/resources.png">
+  <ResourceHub lang="fr" copy={copy} categories={categories} posts={posts} podcasts={podcasts} />
 </Layout>

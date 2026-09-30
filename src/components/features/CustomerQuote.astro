@@ -1,0 +1,28 @@
+---
+// A customer quote with a link to the case study, in the page language. Quotes are verbatim (see common.ts).
+import { Section, Quote } from '../ui';
+import { langFromPath, localizePath } from '../../i18n/routes';
+import { common, customerQuotes, featureLang } from './common';
+
+interface Props {
+  customer: keyof typeof customerQuotes;
+  tone?: 'white' | 'surface';
+}
+const { customer, tone = 'white' } = Astro.props;
+const lang = featureLang(langFromPath(Astro.url.pathname));
+const q = customerQuotes[customer];
+---
+
+<Section tone={tone} border={tone === 'surface' ? 'both' : 'none'} space="md">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+    <Quote
+      class="lg:col-span-9"
+      size="lg"
+      quote={q[lang].quote}
+      author={q.author[lang]}
+      company={q.company[lang]}
+      href={localizePath(lang, q.href)}
+      linkText={common[lang].caseStudy}
+    />
+  </div>
+</Section>

@@ -2,8 +2,8 @@
 title: "Best Board Management Software in 2025: Complete Guide"
 description: "A detailed guide to the top board management software of 2025, comparing features, security, and AI capabilities to help organizations make informed decisions."
 pubDate: 2025-01-28
-author: "Ludovic Laffineur"
-authorRole: "CTO at Govrn"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/best-board-management-software.jpg"
 category: "Technology"
 tags: ["Board Management Software", "AI", "Governance", "Security", "Collaboration"]
@@ -47,7 +47,7 @@ Make an informed decision with our comprehensive buyer's guide covering:
 [Download Free Guide →](/landing/buyer-guide-2025)
 </div>
 
-![Board Software Buyer's Guide](/govrn-buyer-guide-preview-1.png)
+![Board Software Buyer's Guide](/buyer-guide-preview-1.png)
 </div>
 
 ---
@@ -94,8 +94,8 @@ When evaluating board management software, consider these critical factors:
 
 ### Modern AI-First Platforms
 
-**Govrn**  
-Govrn leads the market with AI-powered features that transform how boards work:  
+**Dafira**  
+Dafira leads the market with AI-powered features that transform how boards work:  
 - Intelligent document analysis and insights  
 - Automated meeting minutes with smart summaries  
 - Predictive analytics for better decision-making  

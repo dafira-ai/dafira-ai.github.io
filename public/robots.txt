@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://govrn.com/sitemap-index.xml
+Sitemap: https://dafira.ai/sitemap-index.xml

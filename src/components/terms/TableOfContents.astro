@@ -1,25 +1,27 @@
 ---
-import { termsSections } from '../../data/terms-sections';
+// Contents list for legal pages.
+import { termsSections as defaultSections } from '../../data/terms-sections';
+import { langFromPath } from '../../i18n/routes';
 
 interface Props {
   className?: string;
+  sections?: { key: string; title: string }[];
+  label?: string;
 }
 
-const { className = "" } = Astro.props;
+const lang = langFromPath(Astro.url.pathname);
+const { className = '', sections = defaultSections, label = { en: 'Contents', fr: 'Sommaire', nl: 'Inhoud', ar: 'Contents' }[lang] } = Astro.props;
 ---
 
-<nav class={`space-y-1 ${className} sticky top-24`}>
-  <h3 class="font-semibold text-gray-900 mb-4 px-4">Quick Navigation</h3>
-  <ul class="space-y-1">
-    {termsSections.map(section => (
+<nav class:list={['sticky top-24', className]} aria-label={label}>
+  <p class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">{label}</p>
+  <ol class="mt-4 border-s border-line">
+    {sections.map((section) => (
       <li>
-        <a 
-          href={`#${section.key}`} 
-          class="block px-4 py-2 text-gray-600 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
-        >
+        <a href={`#${section.key}`} class="block -ms-px border-s border-transparent ps-4 py-1.5 text-sm text-gray-600 hover:text-navy hover:border-navy transition-colors">
           {section.title}
         </a>
       </li>
     ))}
-  </ul>
+  </ol>
 </nav>

@@ -1,0 +1,48 @@
+---
+// Ruled rows, one per criterion: criterion name | what Dafira offers | what to check with the competitor.
+// The competitor side holds questions, not claims.
+import { Icon, FeatureList } from '../ui';
+
+export interface DifferenceRow {
+  icon?: string;
+  criterion: string;
+  dafira: { title: string; text: string; points: string[] };
+  questions: string[];
+}
+
+interface Props {
+  rows: DifferenceRow[];
+  dafiraLabel: string;
+  competitorLabel: string;
+}
+
+const { rows, dafiraLabel, competitorLabel } = Astro.props;
+---
+
+<div class="border-b border-line" data-play>
+  {rows.map((row, i) => (
+    <article class="grid lg:grid-cols-12 gap-6 lg:gap-10 border-t border-line py-10" data-step style={`--d:${i * 80}`}>
+      <div class="lg:col-span-3 flex items-start gap-3">
+        {row.icon && <Icon name={row.icon} class="w-6 h-6 text-navy mt-0.5" />}
+        <h3 class="text-xl font-semibold text-navy leading-snug">{row.criterion}</h3>
+      </div>
+      <div class="lg:col-span-5">
+        <p class="font-mono text-xs uppercase tracking-[0.08em] text-primary">{dafiraLabel}</p>
+        <p class="mt-3 text-lg font-medium text-navy">{row.dafira.title}</p>
+        <p class="mt-2 text-gray-600 leading-relaxed">{row.dafira.text}</p>
+        <FeatureList items={row.dafira.points} class="mt-5" />
+      </div>
+      <div class="lg:col-span-4 lg:border-s lg:border-line lg:ps-10">
+        <p class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">{competitorLabel}</p>
+        <ul class="mt-4 space-y-3">
+          {row.questions.map((q) => (
+            <li class="flex items-start gap-3 text-[15px] text-gray-700 leading-relaxed">
+              <Icon name="search" class="w-4 h-4 text-gray-400 mt-1" />
+              <span>{q}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </article>
+  ))}
+</div>

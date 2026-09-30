@@ -1,624 +1,118 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import backgroundImage from '../../assets/images/background-image.jpg';
-import FAQ from '../../components/FAQ.astro';
+import BoardAccountability from '../../components/campaigns/BoardAccountability.astro';
 
-const testimonials = [
-  {
-    quote: "Des décisions aux résultats. Plus de résolutions perdues ou de points d'action oubliés. Tout est automatiquement suivi et relancé.",
-    author: "Maria L.",
-    title: "Secrétaire du conseil",
-    company: "Tech Scale-up"
+const t = {
+  hero: {
+    eyebrow: 'Responsabilisation du conseil',
+    title: 'Des procès-verbaux aux actions : une IA au service de la responsabilisation du conseil',
+    lead: 'Ne vous contentez plus de prendre des notes. Transformez chaque décision en tâches traçables, avec responsables, échéances, signatures et statut de résolution, dans un flux sécurisé et conforme au RGPD.',
+    primary: { text: 'Commencer l’essai gratuit', href: '/fr/try' },
+    secondary: { text: 'Demander une démo', href: '/fr/request-demo' },
+    note: 'Sans carte de crédit · Hébergé dans l’UE · Conforme au RGPD',
   },
-  {
-    quote: "Enfin une responsabilisation du conseil qui fonctionne vraiment. Les propriétaires savent exactement ce qui est attendu et quand. Plus d'excuses.",
-    author: "Jean-Pierre K.",
-    title: "PDG",
-    company: "Groupe Industriel"
-  }
-];
-
-const accountabilityPromises = [
-  {
-    title: "Décisions → Actions",
-    description: "Les points de décision et résolutions sont détectés dans vos minutes, convertis en tâches avec propriétaires, dates d'échéance et dépendances.",
-    icon: "🎯",
-    benefit: "Aucune décision ne passe entre les mailles"
+  card: {
+    title: 'Décision → action → clôture',
+    meta: 'Registre des résolutions',
+    rows: [
+      { label: 'R-2026-11', text: 'Approbation du budget', tone: 'ok' as const, status: 'Clôturée' },
+      { label: 'R-2026-12', text: 'Audit de sécurité', tone: 'pending' as const, status: 'En cours' },
+      { label: 'R-2026-13', text: 'Élargissement du conseil', tone: 'info' as const, status: 'Proposée' },
+    ],
+    footer: 'Chaque résolution a un responsable et une échéance',
+    footerMeta: 'Signatures eIDAS',
+    caption: 'Exemple de registre',
   },
-  {
-    title: "Responsabilisation sans friction",
-    description: "Rappels automatiques, relances intelligentes, journal d'activité et traçabilité complète jusqu'à la clôture.",
-    icon: "📊",
-    benefit: "Les propriétaires restent sur la bonne voie sans micro-management"
+  promise: {
+    eyebrow: 'La promesse',
+    title: 'Des décisions dispersées à une responsabilisation systématique',
+    lead: 'Chaque décision du conseil devient une action suivie, avec un responsable clair, des échéances et une preuve d’exécution.',
+    items: [
+      { icon: 'target', title: 'Décisions → actions', text: 'Les points de décision et résolutions sont détectés dans vos procès-verbaux et convertis en tâches avec responsables, échéances et dépendances.', benefit: 'Aucune décision ne passe entre les mailles' },
+      { icon: 'bell', title: 'Responsabilisation sans friction', text: 'Rappels automatiques, relances, journal d’activité et traçabilité jusqu’à la clôture.', benefit: 'Les responsables avancent sans micro-management' },
+      { icon: 'signature', title: 'Signatures intégrées', text: 'Validez procès-verbaux et résolutions par signature électronique conforme eIDAS et archivage probant.', benefit: 'Conformité juridique intégrée' },
+      { icon: 'list', title: 'Suivi des résolutions', text: 'Statut clair (Proposée, Approuvée, En cours, Bloquée, Clôturée), preuves jointes et horodatage pour l’audit.', benefit: 'Documentation prête pour l’audit' },
+    ],
   },
-  {
-    title: "Signatures intégrées",
-    description: "Validez les minutes et résolutions avec signature électronique conforme eIDAS et archivage probant.",
-    icon: "✍️",
-    benefit: "Conformité juridique intégrée"
+  roles: {
+    eyebrow: 'Pour les dirigeants',
+    title: 'Conçu pour les CEO et les secrétaires de conseil',
+    lead: 'Des rôles différents, un besoin commun : des décisions qui s’exécutent.',
+    items: [
+      { icon: 'user', role: 'CEO', benefits: [
+        'Visibilité en temps réel sur qui fait quoi, et pour quand',
+        'Moins de relances, plus de décisions exécutées, une responsabilité plus claire',
+        'Un reporting clair au conseil, sans tableur parallèle',
+      ] },
+      { icon: 'pen', role: 'Secrétaire du conseil', benefits: [
+        'Fini le chaos après la réunion : procès-verbal généré, décisions extraites, tâches créées automatiquement',
+        'Circuit de signature (procès-verbaux, résolutions) et diffusion sécurisée aux administrateurs',
+        'Un dossier de preuve complet pour l’audit et la conformité',
+      ] },
+    ],
   },
-  {
-    title: "Suivi des résolutions",
-    description: "Statut clair (Proposée, Approuvée, En cours, Bloquée, Clôturée), preuves attachées, et horodatage pour l'audit.",
-    icon: "📋",
-    benefit: "Documentation prête pour l'audit"
-  }
-];
-
-const workflow = [
-  {
-    step: "1",
-    title: "Captez & Générez",
-    description: "Import audio / notes / documents ➜ génération du projet de minutes structuré par l'IA (ordre du jour, décisions, actions, résolutions).",
-    icon: "🎤"
+  workflow: {
+    eyebrow: 'Flux de travail',
+    title: 'Comment ça marche : de la réunion à la responsabilisation',
+    steps: [
+      { title: 'Capter et générer', text: 'Import d’audio, de notes ou de documents ; l’IA génère un projet de procès-verbal structuré (ordre du jour, décisions, actions, résolutions).' },
+      { title: 'Transformer', text: 'Les décisions et résolutions sont détectées et converties en tâches (responsable, échéance, étiquettes, pièces jointes).' },
+      { title: 'Valider et signer', text: 'Circuit de signature électronique des procès-verbaux et résolutions. Verrouillage, versionnage et horodatage.' },
+      { title: 'Suivre et relancer', text: 'Rappels, notifications, délais personnalisés, relances aux responsables, commentaires et preuves d’exécution.' },
+      { title: 'Rendre compte', text: 'Tableaux de bord et exports : statut des résolutions, avancement, retards et risques, et un point « suivi des actions » préparé pour l’ordre du jour suivant.' },
+    ],
   },
-  {
-    step: "2",
-    title: "Transformez",
-    description: "Détections automatiques des décisions & résolutions ➜ création de tâches (owner, due date, tags, pièces jointes).",
-    icon: "⚡"
+  modules: {
+    eyebrow: 'Modules clés',
+    title: 'Tout ce qu’il faut pour une responsabilisation complète',
+    lead: 'Des modules conçus pour fonctionner ensemble.',
+    items: [
+      { icon: 'tasks', title: 'Suivi des actions', text: 'Vues Kanban et liste, filtres (responsable, comité, priorité, échéance), mentions et assignation.', features: ['Tableaux Kanban', 'Filtres', 'Mentions d’équipe', 'Gestion des priorités'] },
+      { icon: 'book', title: 'Registre des résolutions', text: 'Registre des résolutions avec statut, base légale, documents associés et votes.', features: ['Conformité juridique', 'Liaison de documents', 'Enregistrement des votes', 'Suivi de statut'] },
+      { icon: 'signature', title: 'Signature électronique et approbations', text: 'Signature qualifiée, cachets, certificat de complétion et circuit d’approbation configurable.', features: ['Conformité eIDAS', 'Circuits d’approbation', 'Certificats numériques', 'Pistes d’audit'] },
+      { icon: 'shield', title: 'Audit et conformité', text: 'Journal d’activité, pistes d’audit, hébergement UE et conformité RGPD.', features: ['Pistes d’audit complètes', 'Données hébergées dans l’UE', 'Conformité RGPD', 'Journal d’activité'] },
+    ],
+    links: [
+      { text: 'En savoir plus sur la sécurité et les signatures', href: '/fr/security' },
+      { text: 'Voir toutes les fonctionnalités', href: '/fr/features' },
+    ],
   },
-  {
-    step: "3",
-    title: "Validez & Signez",
-    description: "Parcours de signature électronique des minutes/résolutions. Verrouillage du document approuvé, versionnage et horodatage.",
-    icon: "✍️"
+  europe: {
+    eyebrow: 'L’Europe d’abord',
+    title: 'De la décision à l’exécution, avec des garanties européennes',
+    lead: 'Moins de frictions entre la réunion et le suivi, dans une plateforme conçue pour les exigences de gouvernance européennes.',
+    callout: 'Hébergement UE, RGPD dès la conception et signatures conformes eIDAS : les données de votre conseil restent en Europe.',
+    primary: { text: 'Tester sur votre prochaine réunion', href: '/fr/try' },
+    secondary: { text: 'Besoin d’un registre des résolutions prêt pour l’audit ?', href: '/fr/request-demo' },
   },
-  {
-    step: "4",
-    title: "Suivez & Relancez",
-    description: "Rappels, notifications, SLA personnalisés, relances aux owners, commentaires et preuves d'exécution.",
-    icon: "📈"
+  faq: {
+    title: 'Questions fréquentes',
+    subtitle: 'À propos de la responsabilisation du conseil assistée par IA',
+    inLanguage: 'fr',
+    faqs: [
+      { question: 'L’IA peut-elle suivre les décisions et actions issues des procès-verbaux ?', answer: 'Oui. Les décisions et résolutions détectées sont converties en tâches avec responsables et échéances, puis suivies jusqu’à la clôture (rappels, statuts, piste d’audit).' },
+      { question: 'Comment assurer le suivi des résolutions du conseil ?', answer: 'Via le registre des résolutions : statut (Proposée, Approuvée, En cours, Bloquée, Clôturée), responsables, échéances, preuves jointes. Les rappels automatiques et tableaux de bord structurent le suivi entre deux réunions.' },
+      { question: 'Les signatures électroniques sont-elles juridiquement contraignantes ?', answer: 'Oui. Dafira utilise UniverSign, qui fournit des signatures électroniques qualifiées conformes eIDAS. Elles ont le même statut juridique que les signatures manuscrites dans l’UE et fournissent des pistes d’audit complètes pour la conformité.' },
+      { question: 'Comment le suivi des actions évite-t-il les oublis ?', answer: 'Chaque décision devient une action suivie avec responsable, échéance et statut. Les rappels, les circuits d’escalade et la visibilité du tableau de bord évitent qu’un point soit oublié ou retardé sans que l’on s’en aperçoive.' },
+    ],
   },
-  {
-    step: "5",
-    title: "Rendez compte",
-    description: "Dashboards & exports : statut des résolutions, taux d'achèvement, éléments en retard, risques, et préparation automatique du point 'suivi des actions' pour l'ordre du jour suivant.",
-    icon: "📊"
-  }
-];
-
-const keyModules = [
-  {
-    title: "Action Tracker",
-    description: "Vue Kanban/Liste, filtres (owner, comité, priorité, échéance), mentions & @assign.",
-    icon: "📋",
-    features: ["Tableaux Kanban", "Filtres intelligents", "Mentions d'équipe", "Gestion des priorités"]
-  },
-  {
-    title: "Resolution Register",
-    description: "Registre des résolutions avec statut, base légale, documents associés, votes.",
-    icon: "📚",
-    features: ["Conformité juridique", "Liaison de documents", "Enregistrements de vote", "Suivi de statut"]
-  },
-  {
-    title: "e-Signature & Approbations",
-    description: "Signature qualifiée, scellés, certificat de complétion ; circuit d'approbation configurable.",
-    icon: "🔐",
-    features: ["Conformité eIDAS", "Circuits d'approbation", "Certificats numériques", "Pistes d'audit"]
-  },
-  {
-    title: "Audit & Conformité",
-    description: "Journal d'activité, pistes d'audit, hébergement UE et conformité RGPD.",
-    icon: "🛡️",
-    features: ["Pistes d'audit complètes", "Souveraineté des données UE", "Conformité RGPD", "Journal d'activité"]
-  }
-];
-
-const rolesPersonas = [
-  {
-    role: "PDG",
-    icon: "👔",
-    benefits: [
-      "Visibilité en temps réel sur qui fait quoi, pour quand",
-      "Moins de micro-relances, plus de décisions tenues, accountability renforcée",
-      "Un reporting clair au conseil, sans spreadsheet parallèle"
-    ]
-  },
-  {
-    role: "Secrétaire du conseil",
-    icon: "📝",
-    benefits: [
-      "Fini le 'post-meeting chaos' : minutes générées, décisions extraites, tâches créées automatiquement",
-      "Workflow de signatures (minutes, résolutions) + diffusion sécurisée aux administrateurs",
-      "Dossier de preuve complet pour l'audit et la conformité"
-    ]
-  }
-];
-
-const proofPoints = [
-  {
-    metric: "70%",
-    description: "de temps gagné sur la préparation & la diffusion des minutes"
-  },
-  {
-    metric: "100%",
-    description: "des décisions suivies de l'approbation à l'achèvement"
-  },
-  {
-    metric: "90%",
-    description: "de réduction des emails de relance"
-  }
-];
-
-const faqData = {
-  title: "Questions fréquemment posées",
-  subtitle: "Tout ce que vous devez savoir sur la responsabilisation du conseil alimentée par l'IA",
-  inLanguage: "fr",
-  faqs: [
-    {
-      question: "L'IA peut-elle suivre décisions et actions issues des minutes ?",
-      answer: "Oui. Les décisions et résolutions détectées sont converties en tâches avec responsables et échéances, puis suivies jusqu'à clôture (rappels, statuts, piste d'audit)."
+  cta: {
+    texts: {
+      title: 'Faites de chaque décision du conseil une action suivie',
+      subtitle: 'Voyez comment une décision devient une action suivie et exécutée. Sans carte de crédit.',
+      cta1: 'Demander une démo',
+      cta2: 'Commencer l’essai gratuit',
     },
-    {
-      question: "Comment assurer le suivi des résolutions du conseil ?",
-      answer: "Via le Registre des résolutions : statut (Proposée, Approuvée, En cours, Bloquée, Clôturée), owners, deadlines, preuves jointes. Les rappels automatiques et dashboards industrialisent le suivi entre deux réunions."
-    },
-    {
-      question: "Les signatures électroniques sont-elles juridiquement contraignantes ?",
-      answer: "Oui. Govrn utilise UniverSign, qui fournit des signatures électroniques qualifiées conformes eIDAS. Elles ont le même statut juridique que les signatures manuscrites dans l'UE et fournissent des pistes d'audit complètes pour la conformité."
-    },
-    {
-      question: "Comment le suivi d'actions empêche-t-il que les choses passent entre les mailles ?",
-      answer: "Chaque décision devient automatiquement une action suivie avec propriétaire, échéance et statut. Les rappels intelligents, les workflows d'escalade et la visibilité du tableau de bord garantissent que rien n'est oublié ou retardé sans préavis."
-    }
-  ]
+    links: { cta1: '/fr/request-demo', cta2: '/fr/try' },
+  },
 };
 ---
 
 <Layout
-  title="Des minutes aux actions – Responsabilisation IA du conseil | Govrn"
-  description="Transformez les minutes de conseil en actions traçables avec propriétaires, échéances, e-signatures et suivi des résolutions. Système de responsabilisation hébergé en UE, conforme RGPD."
+  title="Des procès-verbaux aux actions – Responsabilisation du conseil par l'IA | Dafira"
+  description="Transformez les procès-verbaux du conseil en actions traçables avec responsables, échéances, signatures électroniques et suivi des résolutions. Hébergé dans l'UE, conforme au RGPD."
 >
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative min-h-[90vh] flex items-center overflow-hidden">
-      <!-- Background Image -->
-      <div class="absolute inset-0 z-0">
-        <Image
-          src={backgroundImage}
-          alt="Arrière-plan responsabilisation IA du conseil"
-          class="w-full h-full object-cover"
-          quality={80}
-        />
-        <div class="absolute inset-0 bg-gradient-to-br from-primary/95 via-slate-900/90 to-slate-900/95"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(57,153,222,0.1),transparent_50%)]"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(57,153,222,0.05),transparent_60%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="flex flex-col lg:flex-row items-center gap-12">
-          <!-- Content -->
-          <div class="flex-1 text-center lg:text-left">
-            <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-white/20 text-white backdrop-blur-sm mb-8 hover:bg-white/30 transition-colors">
-              🎯 Responsabilisation IA du Conseil
-            </div>
-
-            <h1 class="text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6 leading-tight">
-              Des minutes aux actions : <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">l'IA qui stimule la responsabilisation du conseil</span>
-            </h1>
-            <p class="text-xl text-white/90 leading-relaxed mb-8">
-              Ne vous contentez plus de "prendre des notes". Transformez chaque décision en tâches traçables, avec responsables, échéances, signatures et statut de résolution — le tout dans un flux sécurisé et conforme au RGPD.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 lg:justify-start justify-center">
-              <a href="/fr/try" class="px-8 py-4 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
-                Voir la démo 3 minutes
-              </a>
-              <a href="/fr/request-demo" class="px-8 py-4 bg-white text-primary border-2 border-primary/20 rounded-xl font-medium hover:bg-primary/5 transition-colors">
-                Demander une démo
-              </a>
-            </div>
-            <p class="text-sm text-white/70 mt-4">
-              Aucune carte de crédit requise • Hébergé en UE & conforme RGPD • Configuration en minutes
-            </p>
-          </div>
-
-          <!-- Accountability Visual -->
-          <div class="flex-1 lg:max-w-lg">
-            <div class="relative">
-              <div class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 shadow-xl border border-primary/20">
-                <div class="text-center">
-                  <div class="text-6xl mb-4">🎯</div>
-                  <div class="bg-white rounded-lg p-6 shadow-lg mb-4">
-                    <div class="text-center mb-4">
-                      <div class="text-2xl font-bold text-gray-900 mb-2">Décision → Action → Fait</div>
-                      <div class="text-primary font-semibold">Chaque résolution suivie</div>
-                    </div>
-                    <div class="space-y-2 text-sm">
-                      <div class="flex items-center justify-between p-2 bg-green-50 rounded border-l-4 border-green-400">
-                        <span>Approbation budget</span>
-                        <span class="text-green-600 font-medium">✓ Terminé</span>
-                      </div>
-                      <div class="flex items-center justify-between p-2 bg-yellow-50 rounded border-l-4 border-yellow-400">
-                        <span>Audit sécurité</span>
-                        <span class="text-yellow-600 font-medium">⏳ En cours</span>
-                      </div>
-                      <div class="flex items-center justify-between p-2 bg-blue-50 rounded border-l-4 border-blue-400">
-                        <span>Extension conseil</span>
-                        <span class="text-blue-600 font-medium">📝 Proposé</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="text-sm font-medium text-primary/90 italic bg-white/95 px-3 py-2 rounded-lg shadow-sm">
-                    "Enfin, des décisions qui aboutissent"
-                  </div>
-                </div>
-              </div>
-
-              <!-- Accountability indicators -->
-              <div class="absolute -top-4 -right-4 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold shadow-lg animate-bounce-slow">
-                100% suivi
-              </div>
-              <div class="absolute -bottom-4 -left-4 bg-white text-primary px-3 py-1 rounded-full text-sm font-semibold shadow-lg border border-primary/20">
-                eIDAS conforme
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- The Promise Section -->
-    <section class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary mb-8">
-            La Promesse
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Des décisions dispersées vers une responsabilisation systématique
-          </h2>
-          <p class="text-xl text-gray-600 mb-8">
-            Chaque décision du conseil devient une action suivie avec propriété claire, échéances et preuve d'achèvement.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {accountabilityPromises.map((promise) => (
-            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div class="text-3xl mb-4 text-center">{promise.icon}</div>
-              <h3 class="font-bold text-gray-900 mb-3 text-center">{promise.title}</h3>
-              <p class="text-gray-600 text-sm mb-3">{promise.description}</p>
-              <div class="text-primary font-semibold text-sm text-center bg-primary/5 px-3 py-2 rounded-lg">
-                → {promise.benefit}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div class="text-center">
-          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-            <a href="/fr/try" class="inline-flex items-center px-8 py-4 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 transition-colors shadow-lg">
-              Voir comment ça marche
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-            <a href="/fr/request-demo" class="inline-flex items-center px-8 py-4 bg-white text-primary border-2 border-primary rounded-xl font-medium hover:bg-primary/5 transition-colors shadow-lg">
-              Demander une démo
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Who It's For Section -->
-    <section class="py-24 bg-gradient-to-br from-primary/5 to-primary/10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Pour les Dirigeants
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Conçu pour les PDG et Secrétaires de conseil
-          </h2>
-          <p class="text-xl text-gray-600">
-            Rôles différents, besoin partagé : des décisions qui s'exécutent vraiment.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-          {rolesPersonas.map((persona) => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-primary/20 hover:shadow-xl transition-all duration-300">
-              <div class="text-4xl mb-4 text-center">{persona.icon}</div>
-              <h3 class="font-bold text-gray-900 mb-6 text-center text-2xl">{persona.role}</h3>
-              <ul class="space-y-4">
-                {persona.benefits.map((benefit) => (
-                  <li class="flex items-start">
-                    <svg class="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span class="text-gray-600">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-gray-100 text-gray-700 mb-8">
-            Flux de travail
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Comment ça marche : de la réunion à la responsabilisation
-          </h2>
-        </div>
-
-        <div class="space-y-8">
-          {workflow.map((step, index) => (
-            <div class={`flex flex-col lg:flex-row items-center gap-8 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-              <div class="flex-1 max-w-md">
-                <div class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 text-center border border-primary/20">
-                  <div class="text-6xl mb-4">{step.icon}</div>
-                  <div class="inline-flex items-center justify-center w-12 h-12 bg-primary text-white rounded-full text-xl font-bold mb-4">
-                    {step.step}
-                  </div>
-                </div>
-              </div>
-              <div class="flex-1">
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">{step.title}</h3>
-                <p class="text-gray-600 text-lg leading-relaxed">{step.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Key Modules Section -->
-    <section class="py-24 bg-gradient-to-br from-gray-50 to-primary/5">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Modules Clés
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Tout ce dont vous avez besoin pour une responsabilisation complète
-          </h2>
-          <p class="text-xl text-gray-600">
-            Modules sur mesure qui fonctionnent ensemble de manière transparente.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          {keyModules.map((module) => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div class="text-4xl mb-4">{module.icon}</div>
-              <h3 class="font-bold text-gray-900 mb-3 text-xl">{module.title}</h3>
-              <p class="text-gray-600 mb-6">{module.description}</p>
-              <div class="space-y-2">
-                {module.features.map((feature) => (
-                  <div class="flex items-center">
-                    <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span class="text-sm text-gray-600">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div class="text-center mt-12">
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/fr/security" class="inline-flex items-center px-6 py-3 bg-white text-primary border border-primary rounded-lg font-medium hover:bg-primary/5 transition-colors">
-              En savoir plus sur la sécurité & e-signatures
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-            <a href="/fr/features" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
-              Explorer toutes les fonctionnalités
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Proof & Differentiation Section -->
-    <section class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <div class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-green-100 text-green-700 mb-8">
-            Résultats Prouvés
-          </div>
-          <h2 class="text-4xl font-bold text-gray-900 mt-2 mb-6">
-            Preuve et différenciation
-          </h2>
-          <p class="text-xl text-gray-600 mb-8">
-            De la décision à l'exécution : moins de frictions, plus de résultats. Approche Europe-first.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8 mb-12">
-          {proofPoints.map((point) => (
-            <div class="text-center bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-8 border border-primary/20">
-              <div class="text-4xl font-bold text-primary mb-2">{point.metric}</div>
-              <p class="text-gray-600">{point.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="bg-gradient-to-r from-primary/5 to-primary/10 rounded-2xl p-8 text-center border border-primary/20">
-          <div class="max-w-2xl mx-auto">
-            <div class="text-2xl font-bold text-gray-900 mb-4">
-              🇪🇺 Europe-first : hébergement UE, RGPD by design, signatures conformes eIDAS
-            </div>
-            <p class="text-gray-600 mb-6">
-              Contrairement aux concurrents américains, les données de votre conseil ne quittent jamais l'Europe. Conçu pour les exigences de gouvernance européennes dès le premier jour.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/fr/try" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
-                Tester sur votre prochaine réunion
-              </a>
-              <a href="/fr/request-demo" class="inline-flex items-center px-6 py-3 bg-white text-primary border border-primary rounded-lg font-medium hover:bg-primary/5 transition-colors">
-                Besoin d'un registre des résolutions prêt pour l'audit ?
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="py-24 bg-gradient-to-br from-primary/5 to-primary/10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Ce que disent les dirigeants
-          </h2>
-          <p class="text-xl text-gray-600">
-            Des résultats réels de vrais conseils
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          {testimonials.map((testimonial) => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-primary/20">
-              <div class="mb-6">
-                <svg class="w-8 h-8 text-primary/30 mb-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
-                </svg>
-                <p class="text-gray-700 text-lg italic mb-6">"{testimonial.quote}"</p>
-              </div>
-              <div>
-                <div class="font-semibold text-gray-900">{testimonial.author}</div>
-                <div class="text-gray-600">{testimonial.title}</div>
-                <div class="text-sm text-primary font-medium">{testimonial.company}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <FAQ texts={faqData} />
-
-    <!-- Final CTA Section -->
-    <section class="bg-gradient-to-br from-primary to-primary/80 py-32">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-        <h2 class="text-4xl font-bold text-white mb-8">
-          Prêt à transformer chaque décision du conseil en action suivie ?
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Voyez comment une décision devient une action suivie et exécutée en seulement 3 minutes.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/fr/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
-          >
-            Voir la démo 3 minutes
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-7 4h12l-2 2H7l-2-2z" />
-            </svg>
-          </a>
-          <a
-            href="/fr/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-all duration-200 hover:-translate-y-1"
-          >
-            Demander une démo
-          </a>
-        </div>
-        <p class="text-white/80 mt-6">
-          Aucune carte de crédit requise • Hébergé en UE & conforme RGPD • Configuration en 5 minutes
-        </p>
-        <p class="text-sm text-white/60 mt-2">
-          Rejoignez 200+ conseils européens qui atteignent déjà 100% de responsabilisation des décisions
-        </p>
-      </div>
-    </section>
+  <main>
+    <BoardAccountability t={t} />
   </main>
 </Layout>
-
-<style>
-  /* Custom animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  @keyframes bounceSlow {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-10px);
-    }
-    60% {
-      transform: translateY(-5px);
-    }
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 1s ease-out;
-  }
-
-  .animate-slide-in-right {
-    animation: slideInRight 1s ease-out 0.3s both;
-  }
-
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  .animate-bounce-slow {
-    animation: bounceSlow 3s ease-in-out infinite;
-  }
-
-  /* FAQ Smooth Transitions */
-  .faq-content {
-    transition: all 0.3s ease-in-out;
-  }
-
-  .faq-icon {
-    transition: transform 0.3s ease-in-out;
-  }
-
-  /* Enhanced responsive tables */
-  @media (max-width: 768px) {
-    .overflow-x-auto table {
-      font-size: 0.875rem;
-    }
-
-    .overflow-x-auto td,
-    .overflow-x-auto th {
-      padding: 0.75rem 0.5rem;
-    }
-  }
-</style>

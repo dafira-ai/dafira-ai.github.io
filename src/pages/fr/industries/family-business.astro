@@ -1,447 +1,95 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import CTA from '../../../components/CTA.astro';
+import FamilyBusinessLanding, { type FamilyBusinessContent } from '../../../components/industries/FamilyBusinessLanding.astro';
 
-const challenges = [
-  {
-    title: "Plusieurs conseils dans les holdings et sociétés opérationnelles",
-    description: "Gérez la gouvernance de structures de groupe complexes avec facilité",
-    icon: "🏢"
+const content: FamilyBusinessContent = {
+  hero: {
+    eyebrow: 'Entreprise familiale',
+    title: 'Logiciel de gouvernance pour entreprises familiales',
+    lead: 'Gestion du conseil et du conseil de famille pour les entreprises familiales multi-entités.',
+    screenshotAlt: 'Bibliothèque de documents Dafira, classés par réunion',
   },
-  {
-    title: "Conseils de famille aux côtés des conseils formels",
-    description: "Coordonnez plusieurs organes de gouvernance sur une seule plateforme",
-    icon: "👥"
+  intro: {
+    title: 'La gouvernance grandit avec la famille et le groupe',
+    paragraphs: [
+      'Les entreprises familiales opèrent souvent à travers plusieurs entités, générations et organes de gouvernance. À mesure que les structures se développent, la gouvernance devient plus difficile à gérer avec des e-mails, des lecteurs partagés et des processus informels.',
+      'Dafira est une plateforme de gestion du conseil et de la gouvernance qui accompagne les entreprises familiales avec une structure claire, une collaboration sécurisée et une prise de décision documentée, sans complexité inutile.',
+    ],
   },
-  {
-    title: "Rôles superposés et informations sensibles",
-    description: "Contrôlez l'accès avec des autorisations strictes et des pistes d'audit",
-    icon: "🔒"
-  }
-];
-
-const features = [
-  {
-    title: "Gouvernance Multi-Entités",
-    description: "Gérez conseils, conseils de famille et comités indépendamment avec leurs propres membres, agendas et autorisations",
-    icon: "📊"
+  challenges: {
+    title: 'Les défis de gouvernance des entreprises familiales',
+    lead: 'Les entreprises familiales font face à des défis de gouvernance différents de ceux des autres sociétés.',
+    items: [
+      { icon: 'building', title: 'Plusieurs conseils entre holding et sociétés opérationnelles', text: 'Gérer la gouvernance à l’échelle du groupe.' },
+      { icon: 'users', title: 'Des conseils de famille à côté des conseils d’administration', text: 'Coordonner plusieurs organes de gouvernance sur une seule plateforme.' },
+      { icon: 'lock', title: 'Rôles qui se recoupent et informations sensibles', text: 'Contrôler les accès avec des autorisations strictes et des pistes d’audit.' },
+    ],
+    consequencesIntro: 'Sans système de gouvernance structuré, cela conduit souvent à :',
+    consequences: ['Une visibilité et une traçabilité limitées', 'Une perte de connaissances entre générations', 'Une documentation incohérente', 'Un risque juridique et opérationnel accru'],
   },
-  {
-    title: "Contrôle d'Accès Sécurisé",
-    description: "Autorisations basées sur les rôles, sécurité au niveau des documents et pistes d'audit complètes pour la gouvernance familiale confidentielle",
-    icon: "🔐"
+  bodies: {
+    title: 'Une plateforme pour tous les organes de gouvernance familiale',
+    lead: 'Dafira réunit la gouvernance de l’entreprise familiale dans un environnement unique et sécurisé.',
+    intro: 'Vous pouvez gérer :',
+    items: ['Les conseils d’administration (holding et filiales)', 'Les conseils de famille', 'Les conseils consultatifs', 'Les comités d’investissement, d’audit ou de rémunération'],
+    outro: [
+      'Chaque organe de gouvernance fonctionne de manière indépendante, avec ses propres membres et rôles, ordres du jour et calendriers de réunion, documents et dossiers du conseil, et paramètres d’accès et d’autorisation.',
+      'Les entreprises familiales peuvent ainsi étendre leur gouvernance sans la fragmenter.',
+    ],
+    features: [
+      { icon: 'layers', title: 'Gouvernance multi-entités', text: 'Gérer indépendamment conseils, conseils de famille et comités, chacun avec ses membres, ordres du jour et autorisations.' },
+      { icon: 'lock', title: 'Contrôle des accès sécurisé', text: 'Autorisations par rôle, sécurité au niveau des documents et pistes d’audit complètes pour une gouvernance familiale confidentielle.' },
+      { icon: 'document', title: 'Prise de décision structurée', text: 'Procès-verbaux rédigés avec l’IA, suivi des actions et historique de gouvernance consultable, pour la continuité à long terme.' },
+    ],
   },
-  {
-    title: "Prise de Décision Structurée",
-    description: "Procès-verbaux générés par IA, suivi des actions et historique de gouvernance consultable pour une continuité à long terme",
-    icon: "📝"
-  }
-];
-
-const benefits = [
-  {
-    title: "Continuité Générationnelle",
-    description: "Préservez l'historique de gouvernance et réduisez la dépendance aux connaissances informelles",
-    icon: "🔄"
+  access: {
+    title: 'Un accès sécurisé pour les membres de la famille et les administrateurs externes',
+    lead: 'Les entreprises familiales associent souvent des membres de la famille à des administrateurs indépendants et à des conseillers.',
+    intro: 'Dafira fournit :',
+    items: ['Un accès par rôle pour chaque conseil ou comité', 'Des autorisations au niveau des documents', 'Des pistes d’audit complètes et l’historique des versions', 'Une collaboration sécurisée, sans lecteurs partagés ni pièces jointes par e-mail'],
+    outro: 'La confidentialité est ainsi préservée, tout en maintenant la transparence là où elle est requise.',
   },
-  {
-    title: "Opérations Professionnelles",
-    description: "Agendas centralisés, dossiers de conseil et décisions documentées sans complexité",
-    icon: "✅"
+  meetings: {
+    title: 'Des réunions structurées et des décisions documentées',
+    lead: 'Dafira aide les entreprises familiales à professionnaliser le fonctionnement du conseil, tout en restant pratique et léger.',
+    intro: 'Les principales fonctionnalités :',
+    items: ['Ordres du jour et dossiers du conseil centralisés', 'Suivi des décisions et des actions', 'Conservation sécurisée des archives de gouvernance', 'Procès-verbaux rédigés avec l’IA pour réduire la charge administrative'],
+    outro: 'Toute l’activité de gouvernance est documentée, consultable et accessible aux utilisateurs autorisés.',
   },
-  {
-    title: "Conçu pour les Entreprises Familiales",
-    description: "Support des structures complexes, de plusieurs conseils et de la résilience de gouvernance à long terme",
-    icon: "🏛️"
-  }
-];
+  continuity: {
+    title: 'Assurer la continuité entre les générations',
+    lead: 'Lorsque l’entreprise familiale passe d’une génération à l’autre, la continuité devient essentielle.',
+    items: [
+      { icon: 'refresh', title: 'Continuité entre générations', text: 'Préserver l’historique de gouvernance et réduire la dépendance aux connaissances informelles.' },
+      { icon: 'checkCircle', title: 'Un fonctionnement professionnel', text: 'Ordres du jour, dossiers du conseil et décisions documentées centralisés, sans complexité.' },
+      { icon: 'family', title: 'Conçu pour les entreprises familiales', text: 'La prise en charge des structures de groupe, de plusieurs conseils et d’une gouvernance à long terme.' },
+    ],
+    intro: 'Dafira y contribue en :',
+    list: ['Préservant l’historique de gouvernance et les décisions dans le temps', 'Clarifiant les rôles et les responsabilités', 'Réduisant la dépendance aux détenteurs de connaissances informelles', 'Offrant un cadre de gouvernance cohérent entre les entités'],
+    outro: 'La gouvernance devient ainsi plus résiliente, quels que soient les changements à la direction.',
+  },
+  why: {
+    title: 'Conçu pour les structures d’entreprises familiales multi-entités',
+    lead: 'Contrairement aux outils de collaboration génériques, Dafira est conçu pour la gouvernance.',
+    intro: 'Les entreprises familiales choisissent Dafira car il prend en charge :',
+    items: ['Les structures de groupe', 'Plusieurs conseils au sein d’une même organisation', 'La continuité de la gouvernance à long terme', 'Un fonctionnement du conseil sécurisé'],
+    outro: 'Dafira s’adapte aux structures de gouvernance existantes plutôt que d’imposer un modèle prédéfini.',
+  },
+  users: {
+    title: 'Qui utilise Dafira dans les entreprises familiales ?',
+    intro: 'Dafira est utilisé par :',
+    items: ['Les actionnaires familiaux', 'Les présidents et membres du conseil', 'Les membres du conseil de famille', 'Les dirigeants et équipes de direction', 'Les administrateurs externes et conseillers', 'Les secrétaires généraux et secrétaires du conseil'],
+    outro: 'Chaque utilisateur ne voit que ce qui concerne son rôle.',
+  },
+  cta: {
+    title: 'La gouvernance d’entreprise familiale, en pratique',
+    subtitle: 'Dafira aide les entreprises familiales à gérer leur gouvernance avec clarté, structure et sécurité, sans en faire un projet de conseil.',
+  },
+};
 ---
 
-<Layout title="Logiciel de Gouvernance d'Entreprise Familiale | Govrn" description="Gestion de conseil et de conseil de famille pour les entreprises familiales multi-entités. Gouvernance professionnelle sans complexité.">
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Entreprise Familiale
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Logiciel de Gouvernance pour
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Entreprises Familiales
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed mb-4">
-            Gestion de conseil et de conseil de famille pour les entreprises familiales multi-entités
-          </p>
-          <p class="text-lg text-gray-600 leading-relaxed mb-12">
-            Les entreprises familiales opèrent souvent à travers plusieurs entités, générations et organes de gouvernance. À mesure que les structures se développent, la gouvernance devient plus difficile à gérer avec des e-mails, des lecteurs partagés et des processus informels.
-          </p>
-          <p class="text-lg text-gray-600 leading-relaxed mb-12">
-            Govrn est une plateforme de gestion de conseil et de gouvernance conçue pour soutenir les entreprises familiales avec une structure claire, une collaboration sécurisée et une prise de décision documentée — sans ajouter de complexité inutile.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/fr/request-demo"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Demander une démo
-            </a>
-            <a
-              href="/fr/try"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-            >
-              Essai gratuit
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Challenges Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Défis de gouvernance dans les entreprises familiales
-          </h2>
-          <p class="text-xl text-gray-600">
-            Les entreprises familiales font face à des défis de gouvernance qui diffèrent des entreprises traditionnelles
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="mt-12 max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Sans système de gouvernance structuré, cela conduit souvent à :</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Visibilité et traçabilité limitées</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Perte de connaissances entre générations</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Documentation incohérente</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Risque juridique et opérationnel accru</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Une plateforme pour tous les organes de gouvernance familiale
-          </h2>
-          <p class="text-xl text-gray-600">
-            Govrn centralise la gouvernance des entreprises familiales dans un environnement unique et sécurisé
-          </p>
-        </div>
-
-        <div class="mb-12 max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Vous pouvez gérer :</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Conseils d'administration (holding et filiales)</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Conseils de famille</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Conseils consultatifs</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Comités d'investissement, d'audit ou de rémunération</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            Chaque organe de gouvernance fonctionne indépendamment, avec ses propres membres et rôles, agendas et calendriers de réunion, documents et dossiers de conseil, et paramètres d'accès et d'autorisations.
-          </p>
-          <p class="text-gray-600 mt-4">
-            Cela permet aux entreprises familiales de faire évoluer la gouvernance sans fragmentation.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Secure Access Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Accès sécurisé pour les membres de la famille et les administrateurs externes
-          </h2>
-          <p class="text-xl text-gray-600">
-            Les entreprises familiales combinent souvent des parties prenantes familiales avec des membres du conseil indépendants et des conseillers
-          </p>
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Govrn fournit :</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Accès basé sur les rôles par conseil ou comité</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Autorisations au niveau des documents</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Pistes d'audit complètes et historique des versions</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Collaboration sécurisée sans lecteurs partagés ou pièces jointes par e-mail</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            Cela garantit la confidentialité tout en maintenant la transparence là où elle est requise.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Structured Meetings Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Réunions structurées et décisions documentées
-          </h2>
-          <p class="text-xl text-gray-600">
-            Govrn aide les entreprises familiales à professionnaliser les opérations du conseil tout en restant pratique et léger
-          </p>
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Les capacités clés incluent :</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Agendas centralisés et dossiers de conseil</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Suivi des décisions et des actions</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Stockage sécurisé des dossiers de gouvernance historiques</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Procès-verbaux générés par IA pour réduire les efforts administratifs</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            Toute l'activité de gouvernance est documentée, consultable et accessible aux utilisateurs autorisés.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Soutenir la continuité entre les générations
-          </h2>
-          <p class="text-xl text-gray-600">
-            À mesure que les entreprises familiales transitent entre générations, la continuité devient critique
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8 mb-12">
-          {benefits.map(benefit => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{benefit.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{benefit.title}</h3>
-              <p class="text-gray-600">{benefit.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Govrn soutient cela en :</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Préservant l'historique de gouvernance et les décisions au fil du temps</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Créant de la clarté autour des rôles et responsabilités</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Réduisant la dépendance aux détenteurs de connaissances informelles</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Fournissant un cadre de gouvernance cohérent entre les entités</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            Cela rend la gouvernance plus résiliente — quels que soient les changements de direction.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Why Choose Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Conçu pour les structures d'entreprises familiales multi-entités
-          </h2>
-          <p class="text-xl text-gray-600">
-            Contrairement aux outils de collaboration génériques, Govrn est spécifiquement conçu pour la gouvernance
-          </p>
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Les entreprises familiales choisissent Govrn car il prend en charge :</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Structures de groupe complexes</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Plusieurs conseils au sein d'une même organisation</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Continuité de gouvernance à long terme</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Opérations de conseil sécurisées et conformes</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            Govrn s'adapte aux structures de gouvernance existantes plutôt que d'imposer un modèle prédéfini.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Who Uses Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Qui utilise Govrn dans les entreprises familiales ?
-          </h2>
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Govrn est utilisé par :</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Actionnaires familiaux</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Présidents et membres du conseil</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Membres du conseil de famille</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>PDG et équipes de direction</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Administrateurs externes et conseillers</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Secrétaires d'entreprise et de conseil</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            Chaque utilisateur ne voit que ce qui est pertinent pour son rôle.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Final CTA Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Gouvernance d'entreprise familiale, rendue pratique
-          </h2>
-          <p class="text-xl text-gray-600 mb-8">
-            Govrn aide les entreprises familiales à gérer la gouvernance avec clarté, structure et sécurité — sans transformer la gouvernance en projet de conseil.
-          </p>
-          <p class="text-lg text-gray-600 mb-8">
-            Une plateforme. Tous les organes de gouvernance. Continuité à long terme.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Logiciel de gouvernance d'entreprise familiale | Dafira" description="Gestion du conseil et du conseil de famille pour les entreprises familiales multi-entités. Une gouvernance structurée, sans complexité.">
+  <main>
+    <FamilyBusinessLanding content={content} />
   </main>
 </Layout>

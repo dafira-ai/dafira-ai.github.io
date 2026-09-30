@@ -2,8 +2,8 @@
 title: "Digital Signatures: A Best Practice for Modern Board Governance"
 description: "Discover why digital signatures are essential for board governance, enhancing security, compliance, and efficiency in board management and decision-making processes."
 pubDate: 2025-12-15
-author: "Hanne Gellynck"
-authorRole: "Head of Commercial"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/notes.jpg"
 category: "Best Practices"
 tags: ["Digital Signatures", "Board Governance", "Compliance", "Board Management", "Electronic Signatures"]

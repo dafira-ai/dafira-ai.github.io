@@ -1,242 +1,100 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { PageHero, Section, SectionHeader, FeatureColumns } from '../../components/ui';
 import MissionVision from '../../components/about/MissionVision.astro';
 import FounderStory from '../../components/about/FounderStory.astro';
 import TeamMembers from '../../components/about/TeamMembers.astro';
 import OfficeCard from '../../components/OfficeCard.astro';
+import LocalizedCTA from '../../components/case-studies/LocalizedCTA.astro';
 
-const values = [
-  {
-    icon: "🎯",
-    title: "Innovatie",
-    description: "We verleggen voortdurend de grenzen van bestuurstechnologie"
-  },
-  {
-    icon: "🔒", 
-    title: "Absolute veiligheid",
-    description: "De bescherming van gevoelige gegevens van onze klanten staat voorop"
-  },
-  {
-    icon: "🤝",
-    title: "Partnerschap",
-    description: "Uw succes is ons succes - we staan voor u klaar bij elke stap"
-  },
-  {
-    icon: "⚡",
-    title: "Prestatie",
-    description: "Gestroomlijnde processen voor effectiever bestuur"
-  }
+const facts = [
+  { label: 'Product', value: 'Dafira bestuursportaal' },
+  { label: 'Kantoor', value: 'Brussel' },
 ];
 
-const aiCapabilities = [
-  {
-    icon: "🔍",
-    title: "Data-analyse",
-    description: "Nauwkeurige strategische inzichten voor weloverwogen besluitvorming"
-  },
-  {
-    icon: "🎯",
-    title: "Onderbouwde besluiten",
-    description: "Intelligente analyse die uw strategie versterkt"
-  },
-  {
-    icon: "⚡",
-    title: "Geavanceerde automatisering",
-    description: "Bevrijding van repetitieve taken door slimme automatisering"
-  },
-  {
-    icon: "⚖️",
-    title: "Optimaal bestuur",
-    description: "Intelligent toezicht voor onberispelijke governance"
-  }
+const values = [
+  { icon: 'target', title: 'Innovatie', text: 'We verbeteren voortdurend wat bestuurssoftware betekent voor wie ermee werkt.' },
+  { icon: 'lock', title: 'Veiligheid en vertrouwen', text: 'De bescherming van gevoelige gegevens van onze klanten staat voorop.' },
+  { icon: 'users', title: 'Partnerschap', text: 'We staan de besturen die we bedienen bij, bij elke stap.' },
+  { icon: 'clock', title: 'Efficiëntie', text: 'Bestuurswerk hoort minder tijd en minder complexiteit te vragen.' },
 ];
 
 const missionVisionProps = {
-  className: "",
+  eyebrow: 'Waarom we bestaan',
   mission: {
-    title: "Onze Missie",
-    description: "Wij ontwikkelen intuïtieve oplossingen die bestuur en besluitvorming transformeren met behulp van",
-    aiText: "kunstmatige intelligentie"
+    title: 'Onze missie',
+    description: 'Wij ontwikkelen eenvoudige bestuurssoftware die governance en besluitvorming verbetert, met',
+    aiText: 'AI als assistent.',
   },
   vision: {
-    title: "Onze Visie",
-    description: "De toonaangevende governance-oplossing creëren die besturen in staat stelt",
-    highlightedText: "een betere toekomst vorm te geven"
+    title: 'Onze visie',
+    description: 'De governance-oplossing creëren die besturen in staat stelt',
+    highlightedText: 'een betere toekomst vorm te geven.',
   },
-  aiEraStatement: "Een nieuw tijdperk breekt aan voor besturen, waarin",
-  aiHighlight: "kunstmatige intelligentie"
-}
-
-const offices = [
-{
-    city: "Brussels",
-    country: "Belgium",
-    image: "/bxl.jpg",
-    address: "Rue de l'Hôpital 31",
-    postalCode: "1000",
-    email: "info@govrn.com",
-  },
-  {
-    city: "La Hulpe",
-    country: "Belgium",
-    image: "/la-hulpe.png",
-    address: "92 Avenue Reine Astrid",
-    postalCode: "1310",
-    email: "info@govrn.com",
-  }
-];
+};
 
 const founderStoryProps = {
-  tagText: "Ons Verhaal",
-  title: "Het Ontstaan van Govrn",
+  tagText: 'Ons verhaal',
+  title: 'Het ontstaan van Dafira',
   story: [
-    "Tijdens mijn jarenlange ervaring in verschillende raden van bestuur kwam ik steeds dezelfde uitdagingen tegen: complexe documentbeheer, omslachtige besluitvormingsprocessen en de uitdaging om hoge bestuursnormen te handhaven.",
-    "Het kantelpunt was een cruciale vergadering waar het kwijtraken van essentiële documenten leidde tot grote vertragingen in de besluitvorming, met directe gevolgen voor de koers van de organisatie. Deze situatie overtuigde mij dat er een beter alternatief moest komen.",
-    "Zo ontstond Govrn. Onze ambitie reikte verder dan alleen een portaal: we wilden een intelligent platform ontwikkelen dat de complexe uitdagingen van moderne besturen aanpakt.",
-    "Vandaag zijn we trots dat we Europese besturen begeleiden naar uitmuntendheid, door hen in staat te stellen betere beslissingen te nemen met onze geavanceerde AI-technologie."
+    'Tijdens mijn jarenlange ervaring in verschillende raden van bestuur kwam ik steeds dezelfde uitdagingen tegen: complex documentbeheer, omslachtige besluitvormingsprocessen en de uitdaging om hoge bestuursnormen te handhaven.',
+    'Het kantelpunt was een cruciale vergadering waar het kwijtraken van essentiële documenten leidde tot grote vertragingen in de besluitvorming, met directe gevolgen voor de koers van de organisatie. Deze situatie overtuigde mij dat er een beter alternatief moest komen.',
+    'Zo ontstond Dafira. Onze ambitie reikte verder dan alleen een portaal: we wilden een platform dat inspeelt op de echte noden van besturen.',
+    'Vandaag helpt Dafira besturen om vergaderingen voor te bereiden, te beslissen en een betrouwbaar verslag bij te houden, met AI waar het tijd bespaart.',
   ],
-  founder: {
-    name: "Jean-Louis Van Houwe",
-    role: "Oprichter & CEO"
-  }
-}
+  founder: { name: 'Jean-Louis Van Houwe', role: 'Oprichter & CEO' },
+};
 
 const teamMembersProps = {
-  title: "Ons Team",
-  subtitle: "Maak kennis met de experts die bestuursbeheer revolutionair veranderen",
+  title: 'Directie',
+  subtitle: 'Wie Dafira leidt.',
   team: [
     {
-      name: "Jean-Louis Van Houwe",
-      role: "CEO & Oprichter",
-      image: "/jean-louis-van-houwe.jpeg", 
-      linkedin: "https://www.linkedin.com/in/jeanlouisvanhouwe/",
-      bio: "Visionair gedreven door de digitale transformatie van corporate governance."
+      name: 'Jean-Louis Van Houwe',
+      role: 'CEO & Oprichter',
+      image: '/jean-louis-van-houwe.jpeg',
+      linkedin: 'https://www.linkedin.com/in/jeanlouisvanhouwe/',
+      bio: 'Zet zich in om corporate governance te verbeteren met technologie.',
     },
-    {
-      name: "Ludovic Laffineur",
-      role: "CTO - Product & Technologie",
-      image: "/ludovic-laffineur.jpg",
-      linkedin: "https://www.linkedin.com/in/llaffineur/",
-      bio: "Technologie-expert toegewijd aan excellente governance-oplossingen."
-    }
-  ]
-}
+  ],
+};
+
+const offices = [
+  { city: 'Brussel', country: 'België', image: '/bxl.jpg', address: "Gasthuisstraat 31", postalCode: '1000', email: 'info@dafira.ai' },
+];
 ---
 
-<Layout title="Over Ons - Govrn, Intelligente Governance Oplossing" description="Samen bouwen we aan beter bestuur voor een betere wereld." image="/about.png">
-  <main class="pt-16">
-    <!-- Hero sectie -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Samen Bouwen aan een
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Betere Toekomst
-            </span>
-            Door Uitstekend Bestuur
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed mb-12">
-            Een nieuw tijdperk breekt aan voor corporate governance, waarin kunstmatige intelligentie de standaarden voor uitmuntendheid opnieuw definieert.
-          </p>
+<Layout title="Over Ons - Dafira, Intelligente Governance Oplossing" description="Dafira is een bestuursportaal ontwikkeld in België. Onze missie, het verhaal van onze oprichter, het directieteam en ons kantoor in Brussel." image="/about.png">
+  <PageHero
+    eyebrow="Over Dafira"
+    title="Beter bestuur, gebouwd voor wie besturen draaiende houdt"
+    lead="Dafira is een platform voor bestuursbeheer, ontwikkeld in België. We helpen besturen om vergaderingen voor te bereiden, documenten te delen, beslissingen te nemen en er een betrouwbaar verslag van bij te houden."
+  >
+    <dl class="mt-10 pt-8 border-t border-line grid grid-cols-2 sm:grid-cols-4 gap-6">
+      {facts.map((f) => (
+        <div>
+          <dt class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">{f.label}</dt>
+          <dd class="mt-1 text-[15px] text-navy">{f.value}</dd>
         </div>
-      </div>
-    </section>
+      ))}
+    </dl>
+  </PageHero>
 
-    <MissionVision {...missionVisionProps} />
-    <FounderStory {...founderStoryProps} />
-    <TeamMembers {...teamMembersProps} />
+  <MissionVision {...missionVisionProps} />
+  <FounderStory {...founderStoryProps} />
+  <TeamMembers {...teamMembersProps} />
 
-    <!-- AI Mogelijkheden sectie -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">AI voor Betere Prestaties</h2>
-          <p class="text-xl text-gray-600">
-            Kunstmatige intelligentie revolutioneert bestuur. Ontdek hoe Govrn de weg wijst.
-          </p>
-        </div>
+  <Section tone="surface" space="lg" border="top">
+    <SectionHeader eyebrow="Waarden" title="Wat ons werk stuurt" />
+    <FeatureColumns columns={4} items={values} />
+  </Section>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {aiCapabilities.map(capability => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <div class="text-4xl mb-6">{capability.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{capability.title}</h3>
-              <p class="text-gray-600">{capability.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+  <Section space="lg">
+    <SectionHeader eyebrow="Kantoor" title="Waar u ons vindt" lead="Schrijf naar info@dafira.ai of bezoek ons kantoor in Brussel." />
+    <div class="max-w-md">
+      {offices.map((office) => <OfficeCard {...office} />)}
+    </div>
+  </Section>
 
-    <!-- Waarden sectie -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Onze Waarden</h2>
-          <p class="text-xl text-gray-600">
-            De fundamenten van ons dagelijks engagement
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {values.map(value => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <div class="text-4xl mb-6">{value.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
-              <p class="text-gray-600">{value.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Kantoren sectie -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Onze Kantoren</h2>
-          <p class="text-xl text-gray-600">
-            In het hart van innovatie
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {offices.map(office => (
-            <OfficeCard {...office} />
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA sectie -->
-    <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">
-          Doe Mee aan de Bestuursrevolutie
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Ontdek hoe Govrn uw bestuur kan transformeren
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/nl/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-          >
-            Gratis Uitproberen
-          </a>
-          <a
-            href="/nl/contact"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200"
-          >
-            Contact Opnemen
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
+  <LocalizedCTA />
 </Layout>

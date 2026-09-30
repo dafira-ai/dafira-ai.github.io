@@ -1,0 +1,19 @@
+---
+// Closing call to action for the feature pages, in the page language.
+import { CTA } from '../ui';
+import { langFromPath, localizePath } from '../../i18n/routes';
+import { common, featureLang } from './common';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+const lang = featureLang(langFromPath(Astro.url.pathname));
+const t = common[lang];
+const { title = t.cta.title, subtitle = t.cta.subtitle } = Astro.props;
+---
+
+<CTA
+  texts={{ title, subtitle, cta1: t.demo, cta2: t.contact }}
+  links={{ cta1: localizePath(lang, '/request-demo'), cta2: localizePath(lang, '/contact') }}
+/>

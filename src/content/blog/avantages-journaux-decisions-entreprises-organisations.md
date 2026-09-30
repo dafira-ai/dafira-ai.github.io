@@ -2,8 +2,8 @@
 title: "Les avantages des journaux de décisions pour les entreprises et organisations"
 description: "Découvrez comment les journaux de décisions améliorent la responsabilisation, optimisent la prise de décision et fournissent des informations précieuses pour suivre et améliorer les processus décisionnels."
 pubDate: 2023-03-20
-author: "Govrn"
-authorRole: "Équipe éditoriale Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/notes.jpg"
 category: "Best Practices"
 tags: ["Journaux de décisions", "Efficacité", "Responsabilisation", "Prise de décision"]

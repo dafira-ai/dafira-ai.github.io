@@ -1,15 +1,15 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import GuideHeader from '../../components/guides/GuideHeader.astro';
+import GuideArticle from '../../components/guides/GuideArticle.astro';
+import { Button, Icon, Screenshot } from '../../components/ui';
 import GuideStep from '../../components/guides/GuideStep.astro';
 import GuideSubSection from '../../components/guides/GuideSubSection.astro';
 import GuideStepList from '../../components/guides/GuideStepList.astro';
 import ProTip from '../../components/guides/ProTip.astro';
-import { Image } from 'astro:assets';
-import applicationHomePage from '../../assets/application-home-page.png';
 
 const invitationSteps = [
-  "Check your email inbox for an invitation from support@govrn.com",
+  "Check your email inbox for an invitation from info@dafira.ai",
   "Click on the invitation link in the email",
   "Insert your phone number when prompted",
   "Create your profile by filling in the required information",
@@ -18,9 +18,8 @@ const invitationSteps = [
 ];
 
 const connectivityTips = [
-  "Visit app.govrn.com to test connectivity to our services",
   "Check your internet connection",
-  "Ensure your firewall allows access to Govrn domains",
+  "Ensure your firewall allows access to Dafira domains",
   "Contact your IT department if issues persist"
 ];
 
@@ -47,7 +46,7 @@ const eventTabFeatures = [
 
 const eventPreparationSteps = [
   "Mark your presence by clicking the attendance button",
-  "Alternatively, respond to the email invitation from Govrn",
+  "Alternatively, respond to the email invitation from Dafira",
   "Review tasks assigned for this board meeting",
   "Read and annotate documents in the board pack",
   "Complete any required actions (read, sign, vote)",
@@ -80,28 +79,21 @@ const annotationFeatures = [
 ];
 ---
 
-<Layout title="Board Member Getting Started Guide - Govrn">
-  <main class="pt-24">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <GuideHeader
+<Layout title="Board Member Getting Started Guide - Dafira">
+  <main>
+    <GuideHeader
         title="Board Member Getting Started Guide"
-        description="Complete guide to setting up your Govrn account and navigating the platform as a board member."
+        description="Complete guide to setting up your Dafira account and navigating the platform as a board member."
       />
+    <GuideArticle>
 
       <GuideStep
         number={1}
         title="Receiving Your Invitation"
-        description="Your board journey begins with an email invitation from Govrn:"
+        description="Your board journey begins with an email invitation from Dafira:"
       >
         <div class="mb-8">
-          <Image 
-            src="/onboarding-invitation.png"
-            alt="Example of Govrn invitation email interface"
-            width={300}
-            height={500}
-            class="rounded-lg shadow-lg border border-gray-200 mb-6 w-full"
-            loading="lazy"
-          />
+          <Screenshot src="/onboarding-invitation.png" alt="Example of Dafira invitation email interface" class="my-6 max-w-sm" />
           <GuideStepList items={invitationSteps} />
         </div>
 
@@ -111,20 +103,20 @@ const annotationFeatures = [
 
         <div class="grid md:grid-cols-2 gap-6 mt-6">
           <GuideSubSection title="Connectivity Issues?">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
+            <div class="border border-line rounded-md p-5">
               <ul class="text-sm text-gray-600 space-y-2">
                 {connectivityTips.map(tip => (
-                  <li>• {tip}</li>
+                  <li>{tip}</li>
                 ))}
               </ul>
             </div>
           </GuideSubSection>
 
           <GuideSubSection title="Phone Number Already Used?">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
+            <div class="border border-line rounded-md p-5">
               <ul class="text-sm text-gray-600 space-y-2">
                 {phoneNumberTips.map(tip => (
-                  <li>• {tip}</li>
+                  <li>{tip}</li>
                 ))}
               </ul>
             </div>
@@ -140,24 +132,24 @@ const annotationFeatures = [
      
 
         <GuideSubSection title="Password Requirements">
-          <div class="bg-white rounded-lg p-4 border border-gray-200 mb-6">
+          <div class="border border-line rounded-md p-5 mb-6">
             <ul class="space-y-2 text-gray-600">
-              <li>• Minimum 8 characters long</li>
-              <li>• At least one uppercase letter</li>
-              <li>• At least one number</li>
-              <li>• At least one special character</li>
+              <li>Minimum 8 characters long</li>
+              <li>At least one uppercase letter</li>
+              <li>At least one number</li>
+              <li>At least one special character</li>
             </ul>
           </div>
         </GuideSubSection>
 
         <GuideSubSection title="Profile Information">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <p class="text-sm text-gray-600 mb-3">Complete your profile with:</p>
             <ul class="space-y-2 text-gray-600">
-              <li>• Full name and professional title</li>
-              <li>• Contact preferences for notifications</li>
-              <li>• Profile photo (optional but recommended)</li>
-              <li>• Time zone for meeting scheduling</li>
+              <li>Full name and professional title</li>
+              <li>Contact preferences for notifications</li>
+              <li>Profile photo (optional but recommended)</li>
+              <li>Time zone for meeting scheduling</li>
             </ul>
           </div>
         </GuideSubSection>
@@ -173,25 +165,18 @@ const annotationFeatures = [
         description="After logging in, you'll see your personalized board member dashboard:"
       >
         <div class="mb-8">
-          <Image 
-            src="/onboarding-homepage.png"
-            alt="Govrn board member dashboard home page interface"
-            width={800}
-            height={600}
-            class="rounded-lg shadow-lg border border-gray-200 mb-6 w-full"
-            loading="lazy"
-          />
+          <Screenshot src="/onboarding-homepage.png" alt="Dafira board member dashboard home page interface" class="my-6" />
           <GuideStepList items={homePageFeatures} />
         </div>
 
         <GuideSubSection title="Dashboard Sections">
           <div class="grid md:grid-cols-2 gap-4">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">Upcoming Events</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">Upcoming Events</h4>
               <p class="text-sm text-gray-600">See meetings you're invited to with dates, times, and preparation status.</p>
             </div>
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 class="font-semibold text-gray-900 mb-2">Assigned Tasks</h4>
+            <div class="border border-line rounded-md p-5">
+              <h4 class="font-semibold text-navy mb-2">Assigned Tasks</h4>
               <p class="text-sm text-gray-600">Track documents to read, items to sign, and votes to cast before meetings.</p>
             </div>
           </div>
@@ -204,34 +189,27 @@ const annotationFeatures = [
         description="Manage your board meetings and access event-related materials:"
       >
         <div class="mb-8">
-          <Image 
-            src="/onboarding-events.png"
-            alt="Govrn events tab showing upcoming and past board meetings"
-            width={800}
-            height={600}
-            class="rounded-lg shadow-lg border border-gray-200 mb-6 w-full"
-            loading="lazy"
-          />
+          <Screenshot src="/onboarding-events.png" alt="Dafira events tab showing upcoming and past board meetings" class="my-6" />
           <GuideStepList items={eventTabFeatures} />
         </div>
 
         <GuideSubSection title="Event Organization">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <div class="grid md:grid-cols-2 gap-4">
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Future Events</h4>
+                <h4 class="font-semibold text-navy mb-2">Future Events</h4>
                 <ul class="text-sm text-gray-600 space-y-1">
-                  <li>• Upcoming board meetings</li>
-                  <li>• Committee sessions</li>
-                  <li>• Special events and AGMs</li>
+                  <li>Upcoming board meetings</li>
+                  <li>Committee sessions</li>
+                  <li>Special events and AGMs</li>
                 </ul>
               </div>
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Past Events</h4>
+                <h4 class="font-semibold text-navy mb-2">Past Events</h4>
                 <ul class="text-sm text-gray-600 space-y-1">
-                  <li>• Meeting minutes and records</li>
-                  <li>• Historical documents</li>
-                  <li>• Decision archives</li>
+                  <li>Meeting minutes and records</li>
+                  <li>Historical documents</li>
+                  <li>Decision archives</li>
                 </ul>
               </div>
             </div>
@@ -245,14 +223,7 @@ const annotationFeatures = [
         description="Use event details to prepare effectively for each board meeting:"
       >
         <div class="mb-8">
-          <Image 
-            src="/onboarding-event-detail.png"
-            alt="Govrn meeting preparation screen with attendance, tasks and board pack"
-            width={800}
-            height={600}
-            class="rounded-lg shadow-lg border border-gray-200 mb-6 w-full"
-            loading="lazy"
-          />
+          <Screenshot src="/onboarding-event-detail.png" alt="Dafira meeting preparation screen with attendance, tasks and board pack" class="my-6" />
           <GuideStepList items={eventPreparationSteps} />
         </div>
 
@@ -261,24 +232,24 @@ const annotationFeatures = [
         />
 
         <GuideSubSection title="Meeting Preparation Checklist">
-          <div class="bg-white rounded-lg p-4 border border-gray-200">
+          <div class="border border-line rounded-md p-5">
             <div class="grid md:grid-cols-2 gap-4">
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Before the Meeting</h4>
+                <h4 class="font-semibold text-navy mb-2">Before the Meeting</h4>
                 <ul class="text-sm text-gray-600 space-y-1">
-                  <li>✓ Confirm attendance</li>
-                  <li>✓ Read all board pack materials</li>
-                  <li>✓ Complete required tasks</li>
-                  <li>✓ Prepare questions and notes</li>
+                  <li>Confirm attendance</li>
+                  <li>Read all board pack materials</li>
+                  <li>Complete required tasks</li>
+                  <li>Prepare questions and notes</li>
                 </ul>
               </div>
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Document Actions</h4>
+                <h4 class="font-semibold text-navy mb-2">Document Actions</h4>
                 <ul class="text-sm text-gray-600 space-y-1">
-                  <li>• Read: Review and understand</li>
-                  <li>• Sign: Digital signature required</li>
-                  <li>• Vote: Cast your board vote</li>
-                  <li>• Annotate: Add private notes</li>
+                  <li>Read: Review and understand</li>
+                  <li>Sign: Digital signature required</li>
+                  <li>Vote: Cast your board vote</li>
+                  <li>Annotate: Add private notes</li>
                 </ul>
               </div>
             </div>
@@ -292,14 +263,7 @@ const annotationFeatures = [
         description="Read documents efficiently and make private annotations to prepare for meetings:"
       >
         <div class="mb-8">
-          <Image 
-            src="/onboarding-boardpack.png"
-            alt="Govrn board pack and annotations interface"
-            width={800}
-            height={600}
-            class="rounded-lg shadow-lg border border-gray-200 mb-6 w-full"
-            loading="lazy"
-          />
+          <Screenshot src="/onboarding-boardpack.png" alt="Dafira board pack and annotations interface" class="my-6" />
           <GuideStepList items={boardPackSteps} />
         </div>
 
@@ -308,25 +272,25 @@ const annotationFeatures = [
         />
 
         <GuideSubSection title="Annotation Tools">
-          <div class="bg-white rounded-lg p-4 border border-gray-200 mb-6">
+          <div class="border border-line rounded-md p-5 mb-6">
             <div class="grid md:grid-cols-2 gap-6">
               <div>
-                <h4 class="font-semibold text-gray-900 mb-3">Available Features</h4>
+                <h4 class="font-semibold text-navy mb-3">Available Features</h4>
                 <ul class="space-y-2 text-gray-600">
                   {annotationFeatures.map(feature => (
-                    <li>• {feature}</li>
+                    <li>{feature}</li>
                   ))}
                 </ul>
               </div>
               <div>
-                <h4 class="font-semibold text-gray-900 mb-3">Best Practices</h4>
+                <h4 class="font-semibold text-navy mb-3">Best Practices</h4>
                 <ul class="space-y-2 text-gray-600">
-                  <li>• Use different colors for different topics</li>
-                  <li>• Add questions directly to relevant sections</li>
-                  <li>• Highlight key financial figures</li>
-                  <li>• Note potential concerns or risks</li>
-                  <li>• Reference related documents in notes</li>
-                  <li>• Review annotations before meetings</li>
+                  <li>Use different colors for different topics</li>
+                  <li>Add questions directly to relevant sections</li>
+                  <li>Highlight key financial figures</li>
+                  <li>Note potential concerns or risks</li>
+                  <li>Reference related documents in notes</li>
+                  <li>Review annotations before meetings</li>
                 </ul>
               </div>
             </div>
@@ -342,39 +306,32 @@ const annotationFeatures = [
         description="Access and organize all your board-related documents:"
       >
         <div class="mb-8">
-          <Image 
-            src="/onboarding-document-list.png"
-            alt="Govrn documents section with search, filters and document categories"
-            width={800}
-            height={600}
-            class="rounded-lg shadow-lg border border-gray-200 mb-6 w-full"
-            loading="lazy"
-          />
+          <Screenshot src="/onboarding-document-list.png" alt="Dafira documents section with search, filters and document categories" class="my-6" />
           <GuideStepList items={documentCategories} />
         </div>
 
         <GuideSubSection title="Document Organization">
-          <div class="bg-white rounded-lg p-4 border border-gray-200 mb-6">
-            <h4 class="font-semibold text-gray-900 mb-3">Search and Filter</h4>
+          <div class="border border-line rounded-md p-5 mb-6">
+            <h4 class="font-semibold text-navy mb-3">Search and Filter</h4>
             <p class="text-sm text-gray-600 mb-2">Use the search bar to quickly find documents:</p>
             <ul class="space-y-1 text-gray-600">
-              <li>• Type "minutes" to see all meeting minutes</li>
-              <li>• Search by document name or content</li>
-              <li>• Filter by document type or date</li>
-              <li>• Sort by relevance or creation date</li>
+              <li>Type "minutes" to see all meeting minutes</li>
+              <li>Search by document name or content</li>
+              <li>Filter by document type or date</li>
+              <li>Sort by relevance or creation date</li>
             </ul>
           </div>
         </GuideSubSection>
 
         <div class="grid md:grid-cols-2 gap-6">
           <GuideSubSection title="Event Documents">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
+            <div class="border border-line rounded-md p-5">
               <p class="text-sm text-gray-600">Documents organized by meeting, including agendas, reports, and presentations.</p>
             </div>
           </GuideSubSection>
 
           <GuideSubSection title="General Documents">
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
+            <div class="border border-line rounded-md p-5">
               <p class="text-sm text-gray-600">Permanent documents like bylaws, shareholder agreements, and governance policies.</p>
             </div>
           </GuideSubSection>
@@ -387,29 +344,22 @@ const annotationFeatures = [
         description="Communicate securely with fellow board members:"
       >
         <div class="mb-8">
-          <Image 
-            src="/onboarding-private-chat.png"
-            alt="Govrn private chat and group collaboration features"
-            width={800}
-            height={600}
-            class="rounded-lg shadow-lg border border-gray-200 mb-6 w-full"
-            loading="lazy"
-          />
+          <Screenshot src="/onboarding-private-chat.png" alt="Dafira private chat and group collaboration features" class="my-6" />
         </div>
 
         <GuideSubSection title="Chat Features">
-          <div class="bg-white rounded-lg p-4 border border-gray-200 mb-6">
+          <div class="border border-line rounded-md p-5 mb-6">
             <ul class="space-y-3 text-gray-600">
               <li>
-                <strong class="text-gray-900">Private Discussions:</strong>
+                <strong class="text-navy">Private Discussions:</strong>
                 Start confidential conversations with individual board members without leaving the platform.
               </li>
               <li>
-                <strong class="text-gray-900">Group Chats:</strong>
+                <strong class="text-navy">Group Chats:</strong>
                 Create focused discussion groups for committee work or specific topics.
               </li>
               <li>
-                <strong class="text-gray-900">Secure Messaging:</strong>
+                <strong class="text-navy">Secure Messaging:</strong>
                 All communications are encrypted and remain within your board's secure environment.
               </li>
             </ul>
@@ -422,51 +372,41 @@ const annotationFeatures = [
       </GuideStep>
 
       <!-- Quick Reference -->
-      <div class="mt-16 bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 border border-primary/10">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Quick Reference</h2>
+      <div class="mt-16 rounded-md p-8 border border-line bg-surface">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Quick Reference</h2>
         <div class="grid md:grid-cols-2 gap-6">
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Key Actions</h3>
+            <h3 class="font-semibold text-navy mb-2">Key Actions</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• Confirm meeting attendance early</li>
-              <li>• Read board packs before meetings</li>
-              <li>• Complete assigned tasks on time</li>
-              <li>• Use private annotations for notes</li>
+              <li>Confirm meeting attendance early</li>
+              <li>Read board packs before meetings</li>
+              <li>Complete assigned tasks on time</li>
+              <li>Use private annotations for notes</li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900 mb-2">Best Practices</h3>
+            <h3 class="font-semibold text-navy mb-2">Best Practices</h3>
             <ul class="space-y-2 text-gray-600">
-              <li>• Keep your profile information updated</li>
-              <li>• Use search filters to find documents</li>
-              <li>• Engage in board discussions via chat</li>
-              <li>• Review past meeting materials</li>
+              <li>Keep your profile information updated</li>
+              <li>Use search filters to find documents</li>
+              <li>Engage in board discussions via chat</li>
+              <li>Review past meeting materials</li>
             </ul>
           </div>
         </div>
       </div>
 
       <!-- Help Section -->
-      <div class="mt-8 bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Ready to Get Started?</h2>
+      <div class="mt-8 rounded-md p-8 border border-line">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Ready to Get Started?</h2>
         <p class="text-gray-600 mb-6">
-          You now have everything you need to effectively use Govrn as a board member. If you need additional help or have questions about specific features, our support team is ready to assist.
+          You now have everything you need to effectively use Dafira as a board member. If you need additional help or have questions about specific features, our support team is ready to assist.
         </p>
-        <div class="flex space-x-4">
-          <a
-            href="/contact"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors"
-          >
-            Contact Support
-          </a>
-          <a
-            href="/guides"
-            class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-gray-900 bg-white border border-gray-200 hover:bg-gray-50 transition-colors"
-          >
-            View All Guides
-          </a>
+        <div class="flex flex-wrap gap-3 df-guide-actions">
+          <Button href="/contact">Contact Support</Button>
+          <Button href="/guides" variant="secondary">View All Guides</Button>
         </div>
       </div>
-    </article>
+    </GuideArticle>
   </main>
 </Layout>

@@ -2,8 +2,8 @@
 title: "Van Traag naar Snel: Hoe Bestuurssoftware de Besluitvorming Revolutioneert"
 description: "Ontdek hoe moderne bestuurssoftware de wendbaarheid, inclusiviteit en efficiëntie van besluitvorming in bestuurskamers verbetert."
 pubDate: 2023-05-01
-author: "Govrn"
-authorRole: "Govrn Redactieteam"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/fast_bike.jpg"
 category: "Technology"
 tags: ["Bestuurssoftware", "Besluitvorming", "Corporate Governance", "Wendbaarheid"]

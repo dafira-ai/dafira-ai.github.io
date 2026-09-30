@@ -1,0 +1,24 @@
+---
+// Dafira wordmark: Latin and Arabic names side by side, separated by a hairline.
+// In RTL pages the flex order mirrors, so the Arabic name leads.
+interface Props {
+  tone?: "dark" | "light";
+  size?: "sm" | "md" | "lg";
+  class?: string;
+}
+const { tone = "dark", size = "md", class: className } = Astro.props;
+const scale = { sm: "text-[17px] gap-2", md: "text-[20px] gap-2.5", lg: "text-[28px] gap-3.5" }[size];
+---
+
+<span
+  class:list={[
+    "inline-flex items-center leading-none select-none",
+    scale,
+    tone === "light" ? "text-white" : "text-navy",
+    className,
+  ]}
+>
+  <span lang="en" dir="ltr" class="font-semibold tracking-[-0.02em]">Dafira</span>
+  <span aria-hidden="true" class:list={["w-px h-[0.9em]", tone === "light" ? "bg-white/40" : "bg-navy/25"]}></span>
+  <span lang="ar" dir="rtl" class="font-medium" style="font-size:0.94em">ضفيرة</span>
+</span>

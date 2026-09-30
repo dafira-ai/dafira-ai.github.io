@@ -1,246 +1,46 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import CTA from '../../components/CTA.astro';
+import IndustryLanding from '../../components/industries/IndustryLanding.astro';
 
-const regulations = [
-  {
-    name: "CSRD",
-    description: "Corporate Sustainability Reporting Directive requirements for ESG reporting and disclosure",
-    impact: "Mandatory ESG reporting",
-    deadline: "2024-2025"
-  },
-  {
-    name: "Basel IV",
-    description: "Enhanced capital requirements and risk management standards",
-    impact: "Capital allocation changes",
-    deadline: "2025"
-  },
-  {
-    name: "GDPR",
-    description: "Data protection and privacy regulations for EU citizens",
-    impact: "Privacy compliance",
-    deadline: "Ongoing"
-  }
-];
+const hero = {
+  eyebrow: 'Financial services',
+  title: 'Board management software for financial services',
+  lead: 'Secure, documented board work for banks, insurers and investment firms. Board and committee papers, decisions and signatures in one place, with access set by role.',
+};
 
-const challenges = [
-  {
-    title: "Regulatory Compliance",
-    description: "Navigate complex regulatory requirements including CSRD, Basel IV, and GDPR with AI-powered compliance monitoring",
-    icon: "⚖️"
-  },
-  {
-    title: "Risk Management",
-    description: "Real-time risk assessment and mitigation strategies with automated regulatory updates",
-    icon: "🛡️"
-  },
-  {
-    title: "ESG Reporting",
-    description: "Comprehensive ESG oversight and reporting capabilities for CSRD compliance",
-    icon: "🌱"
-  },
-  {
-    title: "Data Security",
-    description: "Bank-grade security for sensitive board communications and regulatory documentation",
-    icon: "🔒"
-  }
-];
+const challenges = {
+  title: 'What financial services boards deal with',
+  lead: 'Regulation shapes the agenda, and supervisors expect a clear record.',
+  items: [
+    { icon: 'scale', title: 'Regulatory requirements', text: 'Texts such as DORA, CSRD and the GDPR put specific responsibilities on the board.' },
+    { icon: 'shield', title: 'Risk oversight', text: 'Risk and audit committees need complete, current information before each meeting.' },
+    { icon: 'leaf', title: 'Sustainability reporting', text: 'The board oversees the sustainability statement and how it is prepared.' },
+    { icon: 'lock', title: 'Confidential information', text: 'Board papers must reach only the intended people, through a secure channel.' },
+  ],
+};
 
-const features = [
-  {
-    title: "Regulatory Intelligence",
-    description: "AI-powered monitoring of regulatory changes with automated impact analysis",
-    icon: "🤖"
-  },
-  {
-    title: "ESG Dashboard",
-    description: "Real-time tracking of sustainability metrics and CSRD compliance",
-    icon: "📊"
-  },
-  {
-    title: "Compliance Automation",
-    description: "Automated tracking of regulatory requirements and deadlines",
-    icon: "⚡"
-  },
-  {
-    title: "Secure Document Management",
-    description: "End-to-end encrypted storage and sharing of sensitive materials",
-    icon: "📑"
-  },
-  {
-    title: "Audit Trail",
-    description: "Comprehensive logging of all board activities and decisions",
-    icon: "📋"
-  }
-];
-
-const caseStudies = [
-  {
-    company: "Finance & Invest Brussels",
-    logo: "/fib-logo.png",
-    quote: "Govrn has simplified our document management tremendously, making our meeting preparations more efficient and helping us stay ahead of regulatory changes.",
-    author: "Pierre Hermant",
-    role: "CEO",
-    link: "/case-studies/finance-invest-brussels"
-  }
-];
+const features = {
+  title: 'What Dafira provides',
+  lead: 'Board tools used by financial institutions.',
+  items: [
+    { icon: 'shield', title: 'Compliance monitoring', text: 'Follow the regulatory topics that concern the board, with the related documents.' },
+    { icon: 'sparkle', title: 'AI assistant', text: 'Ask questions about long board papers and get summaries before the meeting.' },
+    { icon: 'folder', title: 'Secure document management', text: 'Encrypted storage and sharing of board and committee papers, with access by role.' },
+    { icon: 'clipboard', title: 'Audit trail', text: 'A record of access to documents and of the decisions taken.' },
+  ],
+};
 ---
 
-<Layout title="Financial Services Board Management Software | Govrn" description="Navigate complex regulatory requirements including CSRD, Basel IV, and GDPR with AI-powered compliance monitoring.">
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Financial Services
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Board Management Software for
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Financial Services
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed mb-12">
-            Empower your board with secure, compliant, and efficient tools designed specifically for financial institutions. Stay ahead of evolving regulations like CSRD and Basel IV.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/try"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Start Free Trial
-            </a>
-            <a
-              href="/request-demo"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-            >
-              Request Demo
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Regulatory Landscape Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Stay Ahead of Regulatory Changes
-          </h2>
-          <p class="text-xl text-gray-600">
-            Navigate the evolving regulatory landscape with AI-powered insights and automated compliance monitoring.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {regulations.map(reg => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="flex justify-between items-start mb-4">
-                <h3 class="text-xl font-bold text-primary">{reg.name}</h3>
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
-                  {reg.deadline}
-                </span>
-              </div>
-              <p class="text-gray-600 mb-4">{reg.description}</p>
-              <div class="text-sm font-medium text-gray-500">Impact: {reg.impact}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Challenges Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Challenges We Solve
-          </h2>
-          <p class="text-xl text-gray-600">
-            Address key challenges facing financial services boards with our comprehensive solution.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Industry-Specific Features
-          </h2>
-          <p class="text-xl text-gray-600">
-            Purpose-built features for financial services board management.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Case Studies Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Success Stories
-          </h2>
-          <p class="text-xl text-gray-600">
-            See how leading financial institutions transform their board operations with Govrn.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {caseStudies.map(study => (
-            <a href={study.link} class="group">
-              <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 h-full flex flex-col">
-                <div class="flex items-center justify-center h-16 mb-8">
-                  <img 
-  loading="lazy"
-                    src={study.logo}
-                    alt={`${study.company} logo`}
-                    class="h-full object-contain"
-                  />
-                </div>
-                <blockquote class="flex-grow">
-                  <p class="text-gray-600 mb-6">"{study.quote}"</p>
-                </blockquote>
-                <div>
-                  <p class="font-medium text-gray-900">{study.author}</p>
-                  <p class="text-gray-500">{study.role}</p>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Financial Services Board Management Software | Dafira" description="Board portal for banks, insurers and investment firms: board and committee papers, decisions and signatures in one secure place, with the regulatory context in view.">
+  <main>
+    <IndustryLanding
+      industry="financial-services"
+      hero={hero}
+      screenshot={{ src: '/onboarding-document-list.png', alt: 'Dafira document library, with board papers grouped by meeting' }}
+      challenges={challenges}
+      features={features}
+      quoteKey="pierre"
+      secondary="trial"
+    />
   </main>
 </Layout>

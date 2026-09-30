@@ -1,251 +1,54 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { PageHero, Section } from '../../components/ui';
+import CustomerQuotes from '../../components/case-studies/CustomerQuotes.astro';
+import LocalizedCTA from '../../components/case-studies/LocalizedCTA.astro';
 
 const testimonials = [
   {
-    company: "Van de Velde",
-    title: "Van de Velde moderniseert bestuur met Govrn",
-    logo: "/vdv-logo.png",
-    image: "/vdv-lore-portrait.jpg", 
-    videoUrl: "https://www.youtube.com/embed/sabn6q1gsBw",
-    quote: "Govrn heeft ons bestuursbeheer getransformeerd door efficiëntie en duidelijkheid te brengen in onze governanceprocessen.",
-    content: `Van de Velde, internationaal lingeriebedrijf bekend om zijn merken Marie Jo, PrimaDonna en Sarda, heeft zijn bestuursprocessen gerevolutioneerd met Govrn. Deze implementatie heeft hun besluitvormingsprocessen vereenvoudigd en de samenwerking tussen bestuursleden verbeterd, waardoor hun honderdjarige erfgoed van uitmuntendheid wordt ondersteund.`,
-    results: [
-      "Voorbereidingstijd vergaderingen met 50% verminderd",
-      "Verbeterde documentbeveiliging en toegankelijkheid",
-      "Verhoogde betrokkenheid van bestuursleden",
-      "Geoptimaliseerd besluitvormingsproces"
-    ],
-    articleUrl: "/nl/case-studies/van-de-velde",
-    industry: "Mode en retail",
-    location: "België",
-    yearFounded: "1919",
-    testimonialBy: "Lore Werbrouck",
-    testimonialRole: "Juridisch Directeur"
+    industry: "Vzw ter ondersteuning van de non-profitsector",
+    title: "Bestuursgovernance met Dafira",
+    quote: "Ik ben ervan overtuigd dat een platform als Dafira betere besluitvorming op bestuursniveau mogelijk maakt.",
+    author: "Voorzitter",
+    href: "/nl/case-studies/non-profit-organisation",
   },
   {
-    company: "Finance & Invest Brussels",
-    title: "Finance & Invest Brussels moderniseert bestuur met Govrn",
-    logo: "/fib-logo.png",
-    image: "/fib-offices.webp",
-    videoUrl: "https://www.youtube.com/embed/f4WxKjenVK4",
-    quote: "Govrn heeft een essentiële rol gespeeld bij het moderniseren van onze bestuursstructuur en het verbeteren van onze operationele efficiëntie.",
-    content: `Finance & Invest Brussels koos voor Govrn om hun bestuursbeheer te verbeteren. De uitgebreide functionaliteiten van het platform hebben hen in staat gesteld meer transparantie en efficiëntie te bereiken in hun activiteiten, ter ondersteuning van hun missie voor de economische ontwikkeling van het Brussels Gewest.`,
-    results: [
-      "Verbeterde compliance monitoring",
-      "Versterkte samenwerking tussen stakeholders",
-      "Vermindering van administratieve taken",
-      "Verbeterde strategische besluitvorming"
-    ],
-    additionalImage: "/fib-pierre.webp",
-    articleUrl: "/nl/case-studies/finance-invest-brussels",
-    industry: "Financiële dienstverlening",
-    location: "Brussel",
-    yearFounded: "2003",
-    testimonialBy: "Pierre Hermant",
-    testimonialRole: "CEO"
+    industry: "Beursgenoteerde modegroep",
+    title: "Bestuurswerk op één beveiligde plek",
+    quote: "Dafira heeft ons bestuursbeheer getransformeerd door efficiëntie en duidelijkheid te brengen in onze governanceprocessen.",
+    author: "General Counsel",
+    href: "/nl/case-studies/listed-fashion-group",
   },
   {
-    company: "Care Property Invest",
-    title: "Care Property Invest omarmt de nieuwe generatie bestuursbeheer met Govrn",
-    logo: "/careproperty-logo.png",
-    image: "/careproperty-logo-picture.jpeg",
-    quote: "Govrn vertegenwoordigt de nieuwe generatie bestuursbeheersoftware, gebruiksvriendelijk en met AI-integratie.",
-    content: `Care Property Invest maakte de strategische keuze om over te stappen naar Govrn, gedreven door de behoefte aan meer flexibiliteit en betrouwbaarheid in hun bestuursprocessen. Deze transitie heeft gezorgd voor verbeterde aanpassingsmogelijkheden, documentbeheer en meertalige ondersteuning voor hun diverse raad van bestuur.`,
-    results: [
-      "Verbeterde sjabloonautomatisering",
-      "Betere aanwezigheidsregistratie",
-      "Kosteneffectieve oplossing",
-      "Meertalige ondersteuning"
-    ],
-    images: [
-      "/careproperty-building-1.webp",
-      "/careproperty-building-2.webp"
-    ],
-    articleUrl: "/nl/case-studies/care-property-invest",
-    industry: "Vastgoedinvestering",
-    location: "België",
-    yearFounded: "1995",
-    testimonialBy: "Nathalie Byl",
-    testimonialRole: "Hoofd Juridische Zaken en Compliance"
-  }
+    industry: "Regionaal publiek investeringsfonds",
+    title: "Één governanceplatform voor publieke en private bestuurders",
+    quote: "Dafira heeft een essentiële rol gespeeld bij het moderniseren van onze bestuursstructuur en het verbeteren van onze operationele efficiëntie.",
+    author: "CEO",
+    href: "/nl/case-studies/public-investment-fund",
+  },
+  {
+    industry: "Beursgenoteerde zorgvastgoedvennootschap",
+    title: "Een bestuursportaal dat past bij haar sjablonen, aanwezigheidsregels en talen",
+    quote: "Dafira vertegenwoordigt de nieuwe generatie bestuursbeheersoftware, gebruiksvriendelijk en met AI-integratie.",
+    author: "Paralegal en compliance officer",
+    href: "/nl/case-studies/healthcare-real-estate",
+  },
 ];
 ---
 
-<Layout title="Klantgetuigenissen - Govrn" description="Ontdek hoe toonaangevende organisaties hun bestuursbeheer revolutioneren met Govrn's innovatieve oplossingen." image="/testimonials.png">
-  <!-- Hero sectie -->
-  <section class="relative pt-32 pb-24 overflow-hidden bg-gradient-to-br from-white to-gray-50">
-    <div class="absolute inset-0 z-0">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-    </div>
+<Layout
+  title="Klantgetuigenissen - Dafira"
+  description="Hoe een beursgenoteerde modegroep, een regionaal publiek investeringsfonds, een beursgenoteerde zorgvastgoedvennootschap en een vzw ter ondersteuning van de non-profitsector hun bestuur organiseren met Dafira."
+>
+  <PageHero
+    eyebrow="Klantverhalen"
+    title="Hoe besturen werken met Dafira"
+    lead="Voorzitters, juristen, compliance officers en CEO's vertellen in hun eigen woorden hoe zij hun bestuur organiseren met Dafira."
+  />
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="text-center max-w-4xl mx-auto">
-        <div class="inline-flex items-center rounded-full px-6 py-2 text-sm font-medium bg-primary/10 text-primary mb-8">
-          Klantgetuigenissen
-        </div>
+  <Section space="lg">
+    <CustomerQuotes items={testimonials} linkText="Lees het klantverhaal" />
+  </Section>
 
-        <h1 class="text-6xl font-extrabold text-gray-900 tracking-tight mb-8">
-          Ontdek hoe organisaties
-          <span class="block mt-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-            transformeren met Govrn
-          </span>
-        </h1>
-
-        <p class="text-xl text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto">
-          Ontdek hoe organisaties uit verschillende sectoren hun bestuursbeheer moderniseren met Govrn's innovatieve oplossingen.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Success stories grid -->
-  <section class="py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="space-y-32">
-        {testimonials.map((testimonial, index) => (
-          <div class="group">
-            <div class={`grid lg:grid-cols-2 gap-16 items-center ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
-              <div class={`space-y-8 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                <div class="flex items-center space-x-6">
-                  <img 
-  loading="lazy"
-                    src={testimonial.logo}
-                    alt={`Logo ${testimonial.company}`}
-                    class="h-16 w-auto"
-                  />
-                  <div class="flex flex-col">
-                    <div class="text-sm text-gray-500">{testimonial.industry}</div>
-                    <div class="text-sm text-gray-500">{testimonial.location} • Opgericht in {testimonial.yearFounded}</div>
-                  </div>
-                </div>
-
-                <h2 class="text-4xl font-bold text-gray-900 group-hover:text-primary transition-colors duration-300">
-                  {testimonial.title}
-                </h2>
-
-                <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 border border-primary/10 rounded-xl p-8">
-                  <blockquote class="text-xl text-gray-700 italic">
-                    "{testimonial.quote}"
-                    <footer class="mt-4 text-sm text-gray-500 non-italic">
-                      - {testimonial.testimonialBy}, {testimonial.testimonialRole}
-                    </footer>
-                  </blockquote>
-                </div>
-
-                <p class="text-gray-600 leading-relaxed">
-                  {testimonial.content}
-                </p>
-
-                <div class="bg-white rounded-xl border border-gray-200 p-8">
-                  <h3 class="text-lg font-semibold text-gray-900 mb-6">Belangrijkste resultaten en impact:</h3>
-                  <ul class="space-y-4">
-                    {testimonial.results.map(result => (
-                      <li class="flex items-start">
-                        <div class="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-1">
-                          <svg class="h-4 w-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
-                        <span class="ml-3 text-gray-600">{result}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div class="flex items-center justify-start pt-4">
-                  <a
-                    href={testimonial.articleUrl}
-                    class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-all duration-300 group"
-                  >
-                    Lees de volledige case study
-                    <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-
-              <div class={`space-y-8 ${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
-                {testimonial.videoUrl ? (
-                  <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl relative group">
-                    <iframe
-                      class="w-full h-full"
-                      src={testimonial.videoUrl}
-                      title={`Case study video ${testimonial.company}`}
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen
-                    ></iframe>
-                  </div>
-                ) : null}
-                <div class="grid gap-4">
-                  <div class="relative group">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-                    <img 
-  loading="lazy"
-                      src={testimonial.image}
-                      alt={`Case study ${testimonial.company}`}
-                      class="rounded-2xl shadow-lg w-full object-cover h-64 transform group-hover:scale-[1.02] transition-transform duration-300"
-                    />
-                  </div>
-                  {testimonial.additionalImage && (
-                    <div class="relative group">
-                      <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-                      <img 
-  loading="lazy"
-                        src={testimonial.additionalImage}
-                        alt={`Extra afbeelding ${testimonial.company}`}
-                        class="rounded-2xl shadow-lg w-full object-cover h-64 transform group-hover:scale-[1.02] transition-transform duration-300"
-                      />
-                    </div>
-                  )}
-                  {testimonial.images && testimonial.images.map(image => (
-                    <div class="relative group">
-                      <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-                      <img 
-  loading="lazy"
-                        src={image}
-                        alt={`Extra afbeelding ${testimonial.company}`}
-                        class="rounded-2xl shadow-lg w-full object-cover h-64 transform group-hover:scale-[1.02] transition-transform duration-300"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            {index !== testimonials.length - 1 && (
-              <div class="mt-16 border-b border-gray-100"></div>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA sectie -->
-  <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-white mb-8">
-        Klaar om uw bestuursbeheer te transformeren?
-      </h2>
-      <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-        Sluit u aan bij deze toonaangevende organisaties en revolutioneer uw bestuursactiviteiten met Govrn
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="/nl"
-          class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-        >
-          Demo aanvragen
-        </a>
-        <a
-          href="/nl"
-          class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200"
-        >
-          Contact sales team
-        </a>
-      </div>
-    </div>
-  </section>
+  <LocalizedCTA />
 </Layout>

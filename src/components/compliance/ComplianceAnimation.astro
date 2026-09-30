@@ -3,13 +3,18 @@ import CSRDCategoryCard from './csrd/CSRDCategoryCard.astro';
 import ActivityLog from './dashboard/ActivityLog.astro';
 import MetricCard from './dashboard/MetricCard.astro';
 import CSRDCategoryDetails from './csrd/CSRDCategoryDetails.astro';
+import { langFromPath } from '../../i18n/routes';
+import { complianceLabels } from './labels';
+// HTML mock-up of the compliance dashboard: indicators, CSRD categories, recent activity and the detail of one category. Plays once.
 
 interface Props {
   texts?: {
     title: string;
-    lastUpdated: string;
-    liveUpdates: string;
-    csrdDashboard: string;
+    /** @deprecated no longer shown */
+    lastUpdated?: string;
+    /** @deprecated no longer shown */
+    liveUpdates?: string;
+    csrdDashboard?: string;
   };
   csrdCategories?: Array<{
     title: string;
@@ -231,13 +236,13 @@ const {
       title: "CSRD Readiness",
       value: "78%",
       change: "+12%",
-      icon: "🌱"
+      icon: "leaf"
     },
     {
       title: "ESG Score",
       value: "A-",
       change: "Improved",
-      icon: "📈"
+      icon: "trend"
     }
   ],
   selectedCategory = {
@@ -285,89 +290,33 @@ const {
     ]
   }
 } = Astro.props;
+const l = complianceLabels(langFromPath(Astro.url.pathname));
 ---
 
-<div class="relative w-full min-h-[600px] bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-  <!-- Dashboard Header -->
-  <div class="p-6 border-b border-gray-100 bg-gradient-to-r from-primary/5 to-transparent">
-    <div class="flex items-center justify-between">
-      <div>
-        <h2 class="text-xl font-semibold text-gray-900">{texts.title}</h2>
-        <p class="text-sm text-gray-600">{texts.lastUpdated}: {new Date().toLocaleDateString()}</p>
-      </div>
-      <div class="flex items-center space-x-2">
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">{texts.liveUpdates}</span>
-      </div>
-    </div>
+<div class="bg-white border border-line rounded-md text-sm overflow-hidden" aria-hidden="true" data-play>
+  <div class="flex items-baseline justify-between gap-4 px-5 py-3.5 border-b border-line">
+    <span class="font-semibold text-navy">{texts.title}</span>
+    <span class="font-mono text-xs text-gray-500">{l.example}</span>
   </div>
-  
-  <!-- Dashboard Content -->
-  <div class="p-8">
-    <!-- Top Metrics -->
-    <div class="grid grid-cols-2 gap-6 mb-8">
-      {metrics.map(metric => (
-        <MetricCard {...metric} />
-      ))}
+
+  <div class="p-5 bg-surface space-y-5">
+    <div class="grid grid-cols-2 gap-3">
+      {metrics.map((metric) => <MetricCard {...metric} />)}
     </div>
 
-    <!-- Main Content Grid -->
-    <div class="grid lg:grid-cols-3 gap-8">
-      <!-- CSRD Categories -->
-      <div class="lg:col-span-2 space-y-4">
+    <div class="grid lg:grid-cols-3 gap-5">
+      <div class="lg:col-span-2 space-y-3">
         {csrdCategories.map((category, index) => (
-          <button 
-            class="w-full text-left"
-            onclick={`window.innerWidth > 768 && document.getElementById('categoryDetails').classList.toggle('hidden')`}
-          >
-            <CSRDCategoryCard {...category} index={index} />
-          </button>
+          <CSRDCategoryCard {...(category as any)} index={index} />
         ))}
-      <!-- Blurred Category Preview -->
-      <div class="lg:col-span-2">
-        <div class="w-full p-6 bg-white/50 rounded-xl border border-gray-100 backdrop-blur-sm relative">
-          <div class="flex items-center justify-between mb-4">
-            <div class="w-1/3 h-6 bg-gray-200/50 rounded animate-pulse"></div>
-            <div class="w-16 h-6 bg-gray-200/50 rounded animate-pulse"></div>
-          </div>
-          <div class="space-y-3">
-            <div class="w-full h-4 bg-gray-200/50 rounded animate-pulse"></div>
-            <div class="w-3/4 h-4 bg-gray-200/50 rounded animate-pulse"></div>
-          </div>
-          <div class="absolute inset-0 flex items-center justify-center">
-            <span class="text-gray-400 text-sm">.</span>
-          </div>
-        </div>
+      </div>
+      <div>
+        <ActivityLog activities={recentActivities as any} />
       </div>
     </div>
 
-      <!-- Details Modal/Popup -->
-      <div 
-        id="categoryDetails" 
-        class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 transition-opacity duration-300 ease-in-out animate-fadeIn flex"
-        onclick={`document.getElementById('categoryDetails').classList.toggle('hidden')`}
-      >
-        <div 
-          class="bg-white rounded-xl p-6 max-w-2xl w-full mx-4 relative"
-          onclick="event.stopPropagation()"
-        >
-          <button
-            onclick={`document.getElementById('categoryDetails').classList.toggle('hidden')`}
-            class="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
-          >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-          <div id="detailsContent">
-            <CSRDCategoryDetails {...selectedCategory} />
-          </div>
-        </div>
-      </div>
-
-      <!-- Activity Log -->
-      <div class="lg:col-span-1">
-        <ActivityLog activities={recentActivities} />
-      </div>
+    <div data-step style="--d:700">
+      <CSRDCategoryDetails {...(selectedCategory as any)} />
     </div>
   </div>
 </div>

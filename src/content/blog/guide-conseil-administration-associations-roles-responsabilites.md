@@ -2,8 +2,8 @@
 title: "Guide complet du conseil d'administration des associations : rôles, responsabilités et bonnes pratiques"
 description: "Découvrez les rôles essentiels, les responsabilités et les bonnes pratiques permettant aux conseils d'administration des associations de guider efficacement leurs organisations vers leurs objectifs."
 pubDate: 2024-02-15
-author: "Govrn"
-authorRole: "Équipe éditoriale Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/ngo.jpg"
 category: "Governance"
 tags: ["Gouvernance associative", "Responsabilités du conseil", "Bonnes pratiques", "Planification stratégique"]
@@ -55,7 +55,7 @@ Le conseil d'administration est la force motrice de l'association, responsable d
 
 Un conseil d'administration performant ne se contente pas de superviser - il inspire, guide et génère de l'impact. Les conseils qui assument pleinement leurs responsabilités et adoptent les meilleures pratiques sont mieux armés pour surmonter les défis, assurer la croissance et réaliser la mission de l'association.
 
-Les outils modernes de gouvernance, comme les solutions de gestion de conseil Govrn, renforcent cette efficacité en simplifiant la collaboration, la communication sécurisée et le partage de documents. Ces technologies permettent aux conseils de se concentrer davantage sur la stratégie et moins sur la logistique.
+Les outils modernes de gouvernance, comme les solutions de gestion de conseil Dafira, renforcent cette efficacité en simplifiant la collaboration, la communication sécurisée et le partage de documents. Ces technologies permettent aux conseils de se concentrer davantage sur la stratégie et moins sur la logistique.
 
 ---
 

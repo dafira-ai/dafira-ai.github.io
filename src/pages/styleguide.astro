@@ -1,0 +1,214 @@
+---
+// Internal reference for the Dafira UI kit. Not indexed.
+import Layout from '../layouts/Layout.astro';
+import {
+  Section, SectionHeader, PageHero, Eyebrow, Button, Badge, Icon, FeatureList, FeatureColumns,
+  CellGrid, Card, Quote, KeyFigure, Callout, Steps, Screenshot, Prose, Field, Reveal, Logo, ICONS,
+} from '../components/ui';
+import DocumentFlow from '../components/animations/DocumentFlow.astro';
+import FeatureHighlight from '../components/animations/FeatureHighlight.astro';
+
+const colors = [
+  ['navy', '#0E2238', 'Headings, primary buttons, one strong section per page'],
+  ['primary', '#1D5FA6', 'Links, hover, focus, accent rules'],
+  ['ink', '#131A24', 'Body text'],
+  ['secondary', '#4B5565', 'Secondary text'],
+  ['line', '#D9DEE5', 'Borders and dividers'],
+  ['surface', '#F6F7F9', 'Alternating section background'],
+];
+const scale = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+const brand = ['#F1F5FA', '#E2EAF4', '#C5D5E9', '#9DB8DA', '#6592C4', '#3A72B2', '#1D5FA6', '#184E8A', '#133D6C', '#0E2238'];
+
+const toc = [
+  ['foundations', 'Foundations'], ['layout', 'Layout'], ['actions', 'Actions'], ['content', 'Content'],
+  ['motion', 'Motion'], ['forms', 'Forms'], ['longform', 'Long-form'], ['rules', 'Rules'],
+];
+---
+
+<Layout title="Styleguide · Dafira" noindex>
+  <PageHero eyebrow="Internal · UI kit" title="Dafira components" lead="Every block used to build pages. Import them from src/components/ui and keep to these patterns; new visual patterns start here first.">
+    <Fragment slot="actions">
+      <Button href="#foundations">Foundations</Button>
+      <Button variant="secondary" href="#rules">Rules</Button>
+    </Fragment>
+  </PageHero>
+
+  <nav class="sticky top-16 z-30 bg-white/95 backdrop-blur border-b border-line">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-5 overflow-x-auto py-3 text-sm">
+      {toc.map(([id, label]) => <a href={`#${id}`} class="text-gray-600 hover:text-navy whitespace-nowrap">{label}</a>)}
+    </div>
+  </nav>
+
+  <!-- Foundations -->
+  <Section id="foundations">
+    <SectionHeader eyebrow="Foundations" title="Colour, type and icons" lead="Tailwind tokens: bg-navy, text-primary, border-line, bg-surface. The blue-50…900 scale is the brand scale (indigo, violet, purple, sky and cyan map to it too)." />
+    <div class="grid md:grid-cols-3 gap-6">
+      {colors.map(([name, hex, use]) => (
+        <div class="border-t border-line pt-4 flex gap-4">
+          <span class="w-12 h-12 rounded-md border border-line shrink-0" style={`background:${hex}`}></span>
+          <div class="text-sm">
+            <div class="font-medium text-navy">{name} <span class="font-mono text-gray-400 ms-1">{hex}</span></div>
+            <div class="text-gray-600 mt-1">{use}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="mt-10 grid grid-cols-5 md:grid-cols-10 border border-line rounded-md overflow-hidden">
+      {scale.map((s, i) => (
+        <div class="h-16 flex items-end p-2 font-mono text-[10px]" style={`background:${brand[i]};color:${i > 4 ? '#fff' : '#0E2238'}`}>blue-{s}</div>
+      ))}
+    </div>
+
+    <div class="mt-16 grid lg:grid-cols-2 gap-10">
+      <div class="space-y-5">
+        <p class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">Type scale · IBM Plex Sans / Arabic / Mono</p>
+        <p class="text-5xl font-semibold text-navy leading-tight">Display 48 / 600</p>
+        <p class="text-4xl font-semibold text-navy">Heading 36 / 600</p>
+        <p class="text-xl font-semibold text-navy">Title 20 / 600</p>
+        <p class="text-lg text-gray-600">Lead 18 / 400 — one or two sentences under a heading.</p>
+        <p class="text-[15px] text-gray-700">Body 15–17 / 400 — running text, 65 characters per line.</p>
+        <p class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">Mono label 12</p>
+        <p lang="ar" dir="rtl" class="text-2xl font-medium text-navy">ضفيرة · منصة لإدارة مجالس الإدارة</p>
+      </div>
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500 mb-5">Icons · &lt;Icon name="lock" /&gt; — legacy emoji are mapped (&lt;Icon name="🔒" /&gt;)</p>
+        <div class="grid grid-cols-6 sm:grid-cols-8 gap-px bg-line border border-line rounded-md overflow-hidden">
+          {Object.keys(ICONS).map((name) => (
+            <div class="bg-white p-3 flex flex-col items-center gap-2" title={name}>
+              <Icon name={name} class="w-5 h-5 text-navy" />
+              <span class="font-mono text-[9px] text-gray-400 truncate max-w-full">{name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+    <div class="mt-12 flex flex-wrap items-center gap-10">
+      <Logo size="lg" />
+      <div class="bg-navy px-6 py-4 rounded-md"><Logo tone="light" /></div>
+      <Logo size="sm" />
+    </div>
+  </Section>
+
+  <!-- Layout -->
+  <Section id="layout" tone="surface" border="both">
+    <SectionHeader eyebrow="Layout" title="Section and SectionHeader" lead="Section sets background (white, surface, navy), spacing and borders. SectionHeader is split (title left, lead right) or stacked." />
+    <Card>
+      <pre class="font-mono text-xs text-gray-700 overflow-x-auto">{`<Section tone="surface" border="both">
+  <SectionHeader eyebrow="Security" title="Board papers stay confidential" lead="…" />
+  <FeatureColumns items={[…]} />
+</Section>
+
+<PageHero eyebrow="Features" title="…" lead="…">
+  <Fragment slot="actions"><Button href="/request-demo">Book a demo</Button></Fragment>
+  <Screenshot slot="aside" src={img} alt="…" />
+</PageHero>`}</pre>
+    </Card>
+    <SectionHeader layout="stacked" eyebrow="Stacked" title="A stacked header for narrower sections" lead="Use it when the section content is a single column." class="mt-16" />
+  </Section>
+
+  <!-- Actions -->
+  <Section id="actions">
+    <SectionHeader eyebrow="Actions" title="Buttons and links" lead="One primary action per view. Links use variant='link' with a chevron that mirrors in Arabic." />
+    <div class="flex flex-wrap gap-3 items-center">
+      <Button href="#">Book a demo</Button>
+      <Button variant="secondary" href="#">See how it works</Button>
+      <Button variant="ghost" href="#">Sign in</Button>
+      <Button variant="link" href="#">Read the case study</Button>
+      <Button size="sm">Small</Button>
+      <Button size="lg">Large</Button>
+    </div>
+    <div class="mt-8 bg-navy rounded-md p-8 flex flex-wrap gap-3">
+      <Button variant="inverse" href="#">Book a demo</Button>
+      <Button variant="inverse-outline" href="#">Contact sales</Button>
+    </div>
+    <div class="mt-8 flex flex-wrap gap-2">
+      <Badge>Draft</Badge><Badge tone="info">Vote open</Badge><Badge tone="success">Approved</Badge><Badge tone="warning">Pending</Badge><Badge tone="danger">Rejected</Badge>
+    </div>
+  </Section>
+
+  <!-- Content -->
+  <Section id="content" tone="surface" border="both">
+    <SectionHeader eyebrow="Content" title="FeatureColumns, CellGrid, Card" lead="Ruled columns replace rows of identical cards. CellGrid is for dense lists of short items." />
+    <FeatureColumns items={[
+      { icon: 'document', title: 'Prepare the meeting', text: 'Build the agenda and share the board pack.', items: ['Agenda builder', 'Private annotations'] },
+      { icon: 'sparkle', title: 'Understand the papers', text: 'Ask the AI assistant about the board pack.', items: ['AI assistant', 'AI minute builder'] },
+      { icon: 'shield', title: 'Decide and record', text: 'Votes, e-signature and a decision log.', link: { text: 'Learn more', href: '#' } },
+    ]} />
+    <CellGrid columns={3} class="mt-12">
+      {['lock', 'key', 'users'].map((name) => (
+        <div class="bg-white p-6">
+          <Icon name={name} class="w-6 h-6 text-navy" />
+          <h3 class="mt-4 font-semibold text-navy">CellGrid cell</h3>
+          <p class="mt-1 text-[15px] text-gray-600">Short text, one or two lines.</p>
+        </div>
+      ))}
+    </CellGrid>
+    <div class="mt-12 grid md:grid-cols-2 gap-6">
+      <Card href="#"><h3 class="font-semibold text-navy group-hover:text-primary">Card with a link</h3><p class="mt-2 text-gray-600">Use for navigation tiles: case studies, guides, articles.</p></Card>
+      <Card tone="surface"><FeatureList columns={2} items={['Agenda builder', 'Document library', 'Voting', 'E-signature']} /></Card>
+    </div>
+    <div class="mt-12 grid lg:grid-cols-3 gap-10">
+      <Quote class="lg:col-span-2" size="lg" quote="Our board packs used to live in five different inboxes. Now there is one place, and directors read them before the meeting." author="Name Surname" role="General Counsel" company="Company" />
+      <KeyFigure value="72%" label="of directors read the board pack on a tablet" source="Example — every figure needs a source" />
+    </div>
+    <Steps class="mt-12" items={[
+      { title: 'Invite the board', text: 'Directors receive an invitation and set up two-factor authentication.' },
+      { title: 'Upload the board pack', text: 'Drop the documents into the meeting; order follows the agenda.' },
+      { title: 'Hold the meeting', text: 'Votes and minutes are recorded in the same place.' },
+    ]} />
+  </Section>
+
+  <!-- Motion -->
+  <Section id="motion">
+    <SectionHeader eyebrow="Motion" title="Play-once vignettes and Reveal" lead="Animations run once when 35% visible, 240 ms / 8 px, no loops. Without JS or with reduced motion the final state shows. Mark a container with data-play and its children with data-step (fade, grow, draw, out) and --d for the delay." />
+    <div class="grid lg:grid-cols-2 gap-6">
+      <div class="relative bg-white border border-line rounded-md p-4 sm:p-8 min-h-[400px] flex items-center"><DocumentFlow /></div>
+      <div class="relative bg-white border border-line rounded-md p-4 sm:p-8 min-h-[400px] flex items-center"><FeatureHighlight /></div>
+    </div>
+    <Reveal class="mt-10"><Card tone="surface"><p class="text-gray-700">&lt;Reveal&gt; wraps any block in a single discreet entrance.</p></Card></Reveal>
+  </Section>
+
+  <!-- Forms -->
+  <Section id="forms" tone="surface" border="both">
+    <SectionHeader eyebrow="Forms" title="Field" lead="Label always visible, hint and error text linked with aria-describedby. Email, phone and URL stay left-to-right in Arabic." />
+    <Card class="max-w-xl">
+      <form class="space-y-5" onsubmit="event.preventDefault()">
+        <Field id="sg-name" label="Full name" required autocomplete="name" />
+        <Field id="sg-email" label="Work email" type="email" required hint="We only use it to schedule the demo." autocomplete="email" />
+        <Field id="sg-size" label="Board size" as="select" options={[{ value: '5', label: '5 or fewer' }, { value: '10', label: '6 to 10' }, { value: '11', label: 'More than 10' }]} />
+        <Field id="sg-msg" label="Message" as="textarea" error="Example of an error message." />
+        <Button type="submit">Send</Button>
+      </form>
+    </Card>
+  </Section>
+
+  <!-- Long-form -->
+  <Section id="longform" size="prose">
+    <SectionHeader layout="stacked" eyebrow="Long-form" title="Prose and Callout" />
+    <Prose>
+      <p>Prose styles rendered markdown for blog posts, guides and legal pages. Headings, <a href="#">links</a>, <strong>bold</strong>, lists and tables follow the tokens.</p>
+      <h2>A second-level heading</h2>
+      <ul><li>Board pack distributed seven days before the meeting</li><li>Minutes approved at the next meeting</li></ul>
+      <table><thead><tr><th>Item</th><th>Owner</th></tr></thead><tbody><tr><td>Approve Q2 minutes</td><td>Chair</td></tr></tbody></table>
+    </Prose>
+    <Callout tone="tip" title="Tip" class="mt-8">Share the board pack seven days ahead so directors can annotate it.</Callout>
+    <Callout tone="warning" class="mt-4">Warning callout for legal or security caveats.</Callout>
+  </Section>
+
+  <!-- Rules -->
+  <Section id="rules" tone="surface" border="top">
+    <SectionHeader eyebrow="Rules" title="What keeps the site consistent" />
+    <CellGrid columns={2}>
+      {[
+        ['No emoji as icons', 'Use <Icon>. Legacy data can pass the emoji; it is mapped to a line icon.'],
+        ['No unsourced numbers', 'Use <KeyFigure source="…">. If there is no source, write a sentence instead.'],
+        ['No gradients, glows or zoom on hover', 'Colour and border changes only, 160 ms.'],
+        ['Left-aligned by default', 'Centred text only for very short, single-purpose blocks.'],
+        ['Logical properties only', 'ms/me/ps/pe/start/end, text-start/end, border-s/e — the site also runs right-to-left.'],
+        ['Real screenshots, no stock photos', 'Product images in <Screenshot>. People only when they are real customers.'],
+      ].map(([title, text]) => (
+        <div class="bg-white p-6"><h3 class="font-semibold text-navy">{title}</h3><p class="mt-1 text-[15px] text-gray-600">{text}</p></div>
+      ))}
+    </CellGrid>
+  </Section>
+</Layout>

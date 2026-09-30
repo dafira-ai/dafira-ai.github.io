@@ -1,223 +1,43 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import CTA from '../../../components/CTA.astro';
+import RoleLanding from '../../../components/industries/RoleLanding.astro';
+import { customerQuote, readCaseLabel } from '../../../components/industries/customerQuotes';
 
-const challenges = [
-  {
-    icon: "⚖️",
-    title: "Gestion de la conformité",
-    description: "Anticipez les exigences réglementaires grâce au suivi automatisé et aux alertes de conformité"
-  },
-  {
-    icon: "📄", 
-    title: "Contrôle documentaire",
-    description: "Maîtrisez les versions et l'historique de tous vos documents du conseil"
-  },
-  {
-    icon: "🔒",
-    title: "Sécurité des données",
-    description: "Protection de niveau entreprise avec contrôle d'accès par rôle et chiffrement"
-  },
-  {
-    icon: "✍️",
-    title: "Signatures électroniques",
-    description: "Simplifiez la signature des documents avec des signatures électroniques légalement valides"
-  }
-];
-
-const features = [
-  {
-    title: "Tableau de bord conformité",
-    description: "Suivi en temps réel du statut de conformité et des exigences à venir",
-    icon: "📊",
-    benefits: [
-      "Suivi automatisé",
-      "Mises à jour réglementaires",
-      "Surveillance des risques",
-      "Pistes d'audit"
-    ]
-  },
-  {
-    title: "Gestion documentaire",
-    description: "Stockage centralisé et sécurisé de tous les documents avec contrôle des versions",
-    icon: "📁",
-    benefits: [
-      "Contrôle des versions",
-      "Suivi des accès",
-      "Conservation des documents",
-      "Recherche avancée"
-    ]
-  },
-  {
-    title: "Outils de gouvernance",
-    description: "Suite complète d'outils pour une gouvernance d'excellence",
-    icon: "🛠️",
-    benefits: [
-      "Gestion des réunions",
-      "Suivi des résolutions",
-      "Supervision des comités",
-      "Gestion des politiques"
-    ]
-  }
-];
-
-const testimonial = {
-  quote: "Govrn a transformé notre façon de gérer les opérations du conseil, apportant efficacité et clarté à nos processus de gouvernance.",
-  author: "Lore Werbrouck",
-  role: "Directrice juridique",
-  company: "Van de Velde",
-  image: "/vdv-lore-portrait.jpg"
+const hero = {
+  eyebrow: 'Pour les directeurs juridiques',
+  title: 'Le suivi juridique du conseil, dans un registre unique',
+  lead: 'Gardez en ordre les résolutions, les signatures et la piste d’audit. Dafira réunit les documents, procès-verbaux et décisions du conseil en un seul endroit, avec des accès définis par rôle.',
+  primary: { text: 'Demander une démo', href: '/fr/request-demo' },
+  secondary: { text: 'Nous contacter', href: '/fr/contact' },
+  screenshot: { src: '/onboarding-document-list.png', alt: 'Bibliothèque de documents d’un conseil dans Dafira' },
 };
+
+const challenges = {
+  title: 'Ce dont les directeurs juridiques ont besoin',
+  lead: 'La fonction juridique répond du registre du conseil : ce qui a été décidé, par qui, et sur la base de quels documents.',
+  items: [
+    { icon: 'scale', title: 'Conformité', text: 'Suivre les exigences réglementaires qui s’appliquent au conseil et conserver la preuve de leur respect.' },
+    { icon: 'document', title: 'Maîtrise documentaire', text: 'Historique des versions et piste d’audit pour chaque document du conseil.' },
+    { icon: 'lock', title: 'Sécurité des données', text: 'Accès par rôle et chiffrement pour les informations confidentielles du conseil.' },
+    { icon: 'signature', title: 'Signatures électroniques', text: 'Signer procès-verbaux et résolutions électroniquement, sans impression ni relances.' },
+  ],
+};
+
+const features = {
+  title: 'Fonctionnalités pour les directeurs juridiques',
+  lead: 'Les fonctions de Dafira sur lesquelles s’appuient les équipes juridiques.',
+  items: [
+    { icon: 'shield', title: 'Suivi de la conformité', text: 'Suivre les sujets réglementaires qui concernent le conseil et regrouper les documents associés.', items: ['Sujets réglementaires', 'Piste d’audit', 'Registre des décisions'] },
+    { icon: 'folder', title: 'Gestion documentaire', text: 'Un stockage central et sécurisé des documents du conseil, avec historique des versions.', items: ['Historique des versions', 'Suivi des accès', 'Conservation des documents', 'Recherche'] },
+    { icon: 'gavel', title: 'Outils de gouvernance', text: 'Les instruments d’un conseil bien tenu, dans un seul espace de travail.', items: ['Gestion des réunions', 'Résolutions et votes', 'Comités', 'Signature électronique'] },
+  ],
+};
+
+const quote = { ...customerQuote('fr', 'lore'), linkText: readCaseLabel.fr };
 ---
 
-<Layout title="Logiciel de gestion du conseil pour directeurs juridiques | Govrn" description="Optimisez votre rôle de directeur juridique avec des outils complets pour la gestion de la conformité, le contrôle documentaire et l'excellence en gouvernance.">
-  <main class="pt-16">
-    <!-- Section héro -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-              Pour les directeurs juridiques
-            </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Simplifiez la supervision juridique et la
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                gouvernance du conseil
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-12">
-              Renforcez votre rôle de directeur juridique avec des outils complets pour la gestion de la conformité, le contrôle documentaire et l'excellence en gouvernance.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/fr/request-demo"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Demander une démo
-              </a>
-              <a
-                href="/fr/contact"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-              >
-                Contacter l'équipe
-              </a>
-            </div>
-          </div>
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl transform rotate-3"></div>
-            <img 
-  loading="lazy"
-              src="/realestate.jpg"
-              alt="Interface Govrn"
-              class="relative rounded-2xl shadow-2xl"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section défis -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Les défis que nous résolvons
-          </h2>
-          <p class="text-xl text-gray-600">
-            Répondez aux enjeux clés des directeurs juridiques avec notre solution complète
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section fonctionnalités -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Fonctionnalités pour directeurs juridiques
-          </h2>
-          <p class="text-xl text-gray-600">
-            Des outils sur mesure pour soutenir vos responsabilités juridiques et de gouvernance
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600 mb-6">{feature.description}</p>
-              <ul class="space-y-3">
-                {feature.benefits.map(benefit => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Section témoignage -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-br from-primary to-blue-600 rounded-2xl overflow-hidden">
-          <div class="grid lg:grid-cols-2 gap-8 p-12">
-            <div class="text-white">
-              <blockquote class="text-2xl font-medium mb-8">
-                "{testimonial.quote}"
-              </blockquote>
-              <div class="flex items-center space-x-4">
-                <img 
-  loading="lazy"
-                  src={testimonial.image}
-                  alt={testimonial.author}
-                  class="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <div class="font-semibold">{testimonial.author}</div>
-                  <div class="text-white/80">{testimonial.role}</div>
-                  <div class="text-white/80">{testimonial.company}</div>
-                </div>
-              </div>
-            </div>
-            <div class="relative lg:text-right">
-              <a
-                href="/fr/case-studies/van-de-velde"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-              >
-                Lire l'étude de cas
-                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Logiciel de gestion du conseil pour directeurs juridiques | Dafira" description="Portail du conseil pour les directeurs juridiques : maîtrise documentaire, signatures électroniques, résolutions et piste d’audit pour le registre du conseil.">
+  <main>
+    <RoleLanding hero={hero} challenges={challenges} features={features} quote={quote} />
   </main>
 </Layout>

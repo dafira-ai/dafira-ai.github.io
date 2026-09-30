@@ -2,8 +2,8 @@
 title: "Le portail de conseil à l'ère de l'IA : révolutionner la gestion des réunions"
 description: "Découvrez comment les portails de conseil propulsés par l'IA transforment la gestion des réunions avec une planification intelligente, une collaboration en temps réel et une prise de décision améliorée."
 pubDate: 2024-05-01
-author: "Govrn"
-authorRole: "Équipe éditoriale Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/meeting.jpg"
 category: "Technology"
 tags: ["IA", "Portail de conseil", "Gestion des réunions", "Gouvernance", "Transformation numérique"]
@@ -50,7 +50,7 @@ Les portails de conseil propulsés par l'IA ne sont pas qu'un simple outil - ils
 
 ## Transformez votre conseil avec l'IA
 
-Les organisations qui adoptent des portails de conseil alimentés par l'IA, comme **Govrn**, récoltent déjà les bénéfices d'une gouvernance optimisée et d'une gestion des réunions plus intelligente. De la réduction des tâches administratives à l'amélioration de la prise de décision, ces plateformes représentent l'avenir des opérations des conseils d'administration.
+Les organisations qui adoptent des portails de conseil alimentés par l'IA, comme **Dafira**, récoltent déjà les bénéfices d'une gouvernance optimisée et d'une gestion des réunions plus intelligente. De la réduction des tâches administratives à l'amélioration de la prise de décision, ces plateformes représentent l'avenir des opérations des conseils d'administration.
 
 ---
 

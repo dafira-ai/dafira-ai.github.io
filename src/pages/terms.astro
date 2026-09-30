@@ -9,23 +9,22 @@ import TermsContent from '../components/terms/TermsContent.astro';
 const lastUpdate = "April 2021";
 ---
 
-<Layout title="Terms and Conditions - Govrn" description="Please read these terms and conditions carefully before using our services.">
-  <main class="pt-16">
+<Layout title="Terms and Conditions - Dafira (Dafira)" description="Please read these terms and conditions carefully before using our services.">
+  <main>
+    <TermsHeader eyebrow="Legal" lastUpdate={lastUpdate} />
     <TermsLayout title="Terms and Conditions">
-      <TableOfContents slot="sidebar" className="hidden lg:block sticky top-24" />
-      
+      <TableOfContents slot="sidebar" sections={termsSections} />
       <div>
-        <TermsHeader lastUpdate={lastUpdate} />
         {termsSections.map((section) => (
           <TermsContent key={section.key} title={section.title} sections={section.sections} />
         ))}
         
       </div>
     </TermsLayout>
-    <div class="text-xs text-gray-500 text-center py-8 px-4">
+    <div class="text-xs text-gray-500 text-center pb-12 px-4">
       This site is protected by reCAPTCHA and the Google
-      <a href="https://policies.google.com/privacy" class="text-primary hover:text-primary/90 underline">Privacy Policy</a> and
-      <a href="https://policies.google.com/terms" class="text-primary hover:text-primary/90 underline">Terms of Service</a> apply.
+      <a href="https://policies.google.com/privacy" class="underline underline-offset-2 hover:text-navy">Privacy Policy</a> and
+      <a href="https://policies.google.com/terms" class="underline underline-offset-2 hover:text-navy">Terms of Service</a> apply.
     </div>
   </main>
 </Layout>

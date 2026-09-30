@@ -1,191 +1,60 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { PageHero, Section, SectionHeader, FeatureColumns } from '../components/ui';
 import MissionVision from '../components/about/MissionVision.astro';
 import FounderStory from '../components/about/FounderStory.astro';
 import TeamMembers from '../components/about/TeamMembers.astro';
 import OfficeCard from '../components/OfficeCard.astro';
+import LocalizedCTA from '../components/case-studies/LocalizedCTA.astro';
 
-const values = [
-  {
-    icon: "🎯",
-    title: "Innovation First",
-    description: "We constantly push the boundaries of what's possible in board management technology"
-  },
-  {
-    icon: "🔒",
-    title: "Security & Trust",
-    description: "Unwavering commitment to protecting our clients' sensitive information"
-  },
-  {
-    icon: "🤝",
-    title: "Client Success",
-    description: "Our clients' success is our success - we're partners in their journey"
-  },
-  {
-    icon: "⚡",
-    title: "Efficiency",
-    description: "Streamlining board operations to save time and reduce complexity"
-  }
+const facts = [
+  { label: 'Product', value: 'Dafira board portal' },
+  { label: 'Office', value: 'Brussels' },
 ];
 
-const aiCapabilities = [
-  {
-    icon: "🔍",
-    title: "Unlock Board Data",
-    description: "Transform raw board data into actionable insights that drive strategic decision-making"
-  },
-  {
-    icon: "🎯",
-    title: "Enhanced Decision-Making",
-    description: "Leverage AI-powered analytics to make more informed and timely decisions"
-  },
-  {
-    icon: "⚡",
-    title: "Process Automation",
-    description: "Streamline board operations through intelligent automation of routine tasks"
-  },
-  {
-    icon: "⚖️",
-    title: "Governance Excellence",
-    description: "Elevate governance standards and ensure compliance through AI-driven oversight"
-  }
+const values = [
+  { icon: 'target', title: 'Innovation', text: 'We keep improving what board software can do for the people who use it.' },
+  { icon: 'lock', title: 'Security and trust', text: 'Protecting our clients’ sensitive information comes first.' },
+  { icon: 'users', title: 'Client success', text: 'We work as partners to the boards we serve, at every step.' },
+  { icon: 'clock', title: 'Efficiency', text: 'Board work should take less time and involve less complexity.' },
 ];
 
 const offices = [
-  {
-    city: "Brussels",
-    country: "Belgium",
-    image: "/bxl.jpg",
-    address: "Rue de l'Hôpital 31",
-    postalCode: "1000",
-    email: "info@govrn.com",
-  },
-  {
-    city: "La Hulpe",
-    country: "Belgium",
-    image: "/la-hulpe.png",
-    address: "92 Avenue Reine Astrid",
-    postalCode: "1310",
-    email: "info@govrn.com",
-  }
+  { city: 'Brussels', country: 'Belgium', image: '/bxl.jpg', address: "Rue de l'Hôpital 31", postalCode: '1000', email: 'info@dafira.ai' },
 ];
 ---
 
-<Layout title="About Us - Govrn Board Management Software" description="We're building a better world through better governance." image="/about.png">
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Building a
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Better World
-            </span>
-            Through Better Governance
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed mb-12">
-            We're entering a new era for the boardroom, where artificial intelligence transforms how boards work and make decisions.
-          </p>
+<Layout title="About Us - Dafira Board Management Software" description="Dafira is a board portal built in Belgium. Our mission, our founder's story, the leadership team and our office in Brussels." image="/about.png">
+  <PageHero
+    eyebrow="About Dafira"
+    title="Better governance, built for the people who run boards"
+    lead="Dafira is a board management platform developed in Belgium. We help boards prepare meetings, share documents, take decisions and keep a proper record."
+  >
+    <dl class="mt-10 pt-8 border-t border-line grid grid-cols-2 sm:grid-cols-4 gap-6">
+      {facts.map((f) => (
+        <div>
+          <dt class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">{f.label}</dt>
+          <dd class="mt-1 text-[15px] text-navy">{f.value}</dd>
         </div>
-      </div>
-    </section>
+      ))}
+    </dl>
+  </PageHero>
 
-    <MissionVision />
-    <FounderStory />
-    <TeamMembers />
+  <MissionVision />
+  <FounderStory />
+  <TeamMembers />
 
-    <!-- AI Capabilities Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">AI-Powered Innovation</h2>
-          <p class="text-xl text-gray-600">
-            Artificial Intelligence is transforming how boards work. Discover how Govrn leads this revolution.
-          </p>
-        </div>
+  <Section tone="surface" space="lg" border="top">
+    <SectionHeader eyebrow="Values" title="What guides our work" />
+    <FeatureColumns columns={4} items={values} />
+  </Section>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {aiCapabilities.map(capability => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <div class="text-4xl mb-6">{capability.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{capability.title}</h3>
-              <p class="text-gray-600">{capability.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+  <Section space="lg">
+    <SectionHeader eyebrow="Office" title="Where to find us" lead="Write to info@dafira.ai or visit our office in Brussels." />
+    <div class="max-w-md">
+      {offices.map((office) => <OfficeCard {...office} />)}
+    </div>
+  </Section>
 
-    <!-- Values Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Values</h2>
-          <p class="text-xl text-gray-600">
-            The principles that guide everything we do at Govrn
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {values.map(value => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <div class="text-4xl mb-6">{value.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
-              <p class="text-gray-600">{value.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Offices Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Offices</h2>
-          <p class="text-xl text-gray-600">
-            Where innovation happens
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {offices.map(office => (
-            <OfficeCard {...office} />
-                
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">
-          Join Us in Transforming Board Management
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Experience how Govrn can revolutionize your board operations
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-          >
-            Start Free Trial
-          </a>
-          <a
-            href="/contact"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200"
-          >
-            Contact Us
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
+  <LocalizedCTA />
 </Layout>

@@ -1,0 +1,43 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CaseStudy from '../../../components/case-studies/CaseStudy.astro';
+---
+
+<Layout
+  title="Fonds public d'investissement régional : la gouvernance du conseil avec Dafira"
+  description="Comment un fonds public d'investissement régional est passé de SharePoint à Dafira pour ses organes de gouvernance et un conseil issu des secteurs public et privé. Lisez l'étude de cas."
+>
+  <CaseStudy
+    company="Fonds public d'investissement régional"
+    facts={[{ label: "Secteur", value: "Fonds public d'investissement régional" }]}
+    title="Fonds public d'investissement régional : une plateforme de gouvernance pour des administrateurs publics et privés"
+    lead="Comment le fonds a transféré la documentation de ses organes de gouvernance et filiales de SharePoint vers Dafira."
+    quote={{ quote: "Dafira a considérablement simplifié notre gestion documentaire, rendant nos préparations de réunions plus efficaces et permettant à notre conseil de se concentrer sur la prise de décision plutôt que sur la gestion des documents.", author: "CEO" }}
+    context={{
+      title: "Financer les entreprises de sa région",
+      paragraphs: [
+        "Le fonds finance les entreprises de sa région. Il soutient les start-ups, scale-ups et PME au moyen de divers instruments financiers.",
+        "Son approche comprend le capital-risque via des prises de participation, des prêts subordonnés et des prêts convertibles, ainsi qu’une politique de fonds de fonds.",
+      ],
+      quote: "Notre actionnariat hybride composé de partenaires privés et publics nous permet d'investir efficacement. Nous avons plusieurs organes de gouvernance et filiales générant de nombreux documents à préparer pour nos réunions, notamment des rapports d'analyse sur les entreprises dans lesquelles nous investissons.",
+    }}
+    challenges={[
+      { title: "Volume documentaire", text: "Plusieurs organes de gouvernance et filiales produisant une documentation importante, qui doit rester organisée et accessible." },
+      { title: "Collaboration entre organisations", text: "Des administrateurs des secteurs public et privé sur des messageries différentes, ce qui compliquait le partage et la gestion des accès." },
+      { title: "Exigences de conformité", text: "Des normes de gouvernance européennes à respecter sans ralentir les opérations." },
+    ]}
+    solutions={[
+      { title: "Une seule plateforme", text: "Tous les documents de gouvernance au même endroit, avec un accès sécurisé pour chaque administrateur." },
+      { title: "Outils de collaboration", text: "Communication, annotation des documents et prise de décision dans la même plateforme." },
+      { title: "Piste d'audit", text: "Un historique complet des documents et des décisions, à l’appui des exigences européennes de gouvernance." },
+    ]}
+    outcome={{
+      title: "De SharePoint à Dafira",
+      paragraphs: [
+        "Le passage de SharePoint à Dafira a changé la façon dont le fonds gère la documentation et la collaboration du conseil, un point important pour un conseil composé de représentants des secteurs public et privé.",
+        "Avec Dafira, le fonds a gagné en transparence et en efficacité dans le fonctionnement de son conseil, au service de sa mission de soutien à la croissance économique de sa région.",
+      ],
+      quote: "Nous recommandons Dafira car c'est un outil simple et efficace qui facilite le travail des administrateurs et leur collaboration. Il aide à la transparence, à l'échange d'informations précises et quand on a la bonne information, on peut prendre la bonne décision et surtout, avoir les bons débats.",
+    }}
+  />
+</Layout>

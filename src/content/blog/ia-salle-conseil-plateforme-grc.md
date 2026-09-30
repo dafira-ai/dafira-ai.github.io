@@ -2,8 +2,8 @@
 title: "L'IA dans la salle du conseil : une plateforme GRC nouvelle génération"
 description: "Découvrez comment les portails de conseil propulsés par l'IA transforment la gouvernance, la gestion des risques et la conformité (GRC), permettant aux conseils d'améliorer leur supervision et leur prise de décision."
 pubDate: 2023-03-10
-author: "Govrn"
-authorRole: "Équipe éditoriale Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/boardroom.webp"
 category: "Technology" 
 tags: ["IA", "Plateforme GRC", "Gouvernance", "Conformité", "Gestion des risques"]
@@ -17,7 +17,7 @@ Dans toutes les organisations, la gouvernance, la gestion des risques et la conf
 
 ## Des conseils traditionnels aux portails nouvelle génération
 
-Pendant longtemps, les portails de conseil classiques ont servi d'outils essentiels pour une bonne gouvernance. Ils permettaient de gérer les cycles de réunions, centraliser les documents et garantir la sécurité des informations. Aujourd'hui, les portails modernes comme **Govrn** ont franchi un cap en intégrant l'IA et en se connectant aux systèmes GRC. Ces plateformes nouvelle génération offrent des analyses prédictives, une gestion proactive des risques et un suivi complet de la conformité, permettant aux conseils d'aller au-delà des standards traditionnels.
+Pendant longtemps, les portails de conseil classiques ont servi d'outils essentiels pour une bonne gouvernance. Ils permettaient de gérer les cycles de réunions, centraliser les documents et garantir la sécurité des informations. Aujourd'hui, les portails modernes comme **Dafira** ont franchi un cap en intégrant l'IA et en se connectant aux systèmes GRC. Ces plateformes nouvelle génération offrent des analyses prédictives, une gestion proactive des risques et un suivi complet de la conformité, permettant aux conseils d'aller au-delà des standards traditionnels.
 
 ---
 
@@ -89,4 +89,4 @@ La convergence de l'IA et de la GRC représente un changement majeur dans les pr
 
 Dans notre économie mondialisée et réglementée, adopter l'IA en salle de conseil n'est plus une simple avancée technologique, c'est une nécessité stratégique.
 
-**Découvrez comment les portails de conseil intelligents peuvent améliorer votre gouvernance. Contactez Govrn pour en savoir plus.**
+**Découvrez comment les portails de conseil intelligents peuvent améliorer votre gouvernance. Contactez Dafira pour en savoir plus.**

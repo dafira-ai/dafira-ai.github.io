@@ -1,5 +1,8 @@
 ---
-import { getSlug } from "../utils/slugify";
+// Podcast episode tile (Card).
+import { getSlug } from '../utils/slugify';
+import { Card } from './ui';
+import { episodeHref, formatEpisodeDate, podcastLang, PODCAST_UI } from './podcast/podcast-i18n';
 
 interface Guest {
   name: string;
@@ -22,104 +25,27 @@ interface Props {
 }
 
 const { episode } = Astro.props;
+const lang = podcastLang(Astro.url.pathname);
+const t = PODCAST_UI[lang];
 ---
 
-<div
-  class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden"
->
-  <div class="relative aspect-video">
-    <img
-      loading="lazy"
-      src={episode.data.image}
-      alt={episode.data.title}
-      class="w-full h-full object-cover"
-    />
-    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent">
-    </div>
-    <div class="absolute bottom-4 left-4 right-4">
-      <div class="flex items-center justify-between text-white">
-        <div class="text-sm">
-          {episode.data.duration}
-        </div>
-      </div>
-    </div>
+<Card href={episodeHref(lang, getSlug(episode.data.title))} padding="sm" class="flex flex-col sm:flex-row gap-5 h-full">
+  <img
+    loading="lazy"
+    src={episode.data.image}
+    alt=""
+    class="w-full sm:w-32 aspect-square object-cover rounded-sm border border-line shrink-0"
+  />
+  <div class="flex flex-col min-w-0">
+    <p class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">
+      <time datetime={episode.data.pubDate.toISOString()}>{formatEpisodeDate(lang, episode.data.pubDate)}</time> · {episode.data.duration}
+    </p>
+    <h3 class="mt-2 text-lg font-semibold text-navy leading-snug group-hover:text-primary transition-colors">{episode.data.title}</h3>
+    <p class="mt-2 text-[15px] text-gray-600 leading-relaxed line-clamp-3">{episode.data.description}</p>
+    {episode.data.guests && episode.data.guests.length > 0 && (
+      <p class="mt-4 text-sm text-gray-500">
+        {t.guests}: {episode.data.guests.map((g) => g.name).join(', ')}
+      </p>
+    )}
   </div>
-  <div class="p-6">
-    <div class="text-sm text-gray-500 mb-2">
-      {
-        episode.data.pubDate.toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })
-      }
-    </div>
-    <h3 class="text-xl font-semibold text-gray-900 mb-3">
-      {episode.data.title}
-    </h3>
-    <p class="text-gray-600 mb-6">{episode.data.description}</p>
-
-    {
-      episode.data.guests && (
-        <div class="mb-6">
-          <h4 class="text-sm font-medium text-gray-900 mb-3">
-            Featured Guests:
-          </h4>
-          <div class="flex flex-wrap gap-4">
-            {episode.data.guests.map((guest) => (
-              <div class="flex items-center space-x-3">
-                {guest.image && (
-                  <img
-                    loading="lazy"
-                    src={guest.image}
-                    alt={guest.name}
-                    class="w-8 h-8 rounded-full object-cover"
-                  />
-                )}
-                <div>
-                  <p class="font-medium text-gray-900">{guest.name}</p>
-                  <p class="text-sm text-gray-500">{guest.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )
-    }
-
-    <div class="flex items-center justify-between">
-      <a
-        href={`/podcast/${getSlug(episode.data.title)}`}
-        class="text-primary hover:text-primary/90 font-medium inline-flex items-center group"
-      >
-        View Episode Details
-        <svg
-          class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-      <a
-        href={episode.data.spotifyUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg text-white bg-[#1DB954] hover:bg-[#1DB954]/90 transition-colors duration-200"
-      >
-        <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"
-          ></path>
-        </svg>
-        Listen
-      </a>
-    </div>
-  </div>
-</div>
-
+</Card>

@@ -2,8 +2,8 @@
 title: "Corporate Secretary: Role, Responsibilities & Tools"
 description: "Explore the corporate secretary role, key responsibilities, qualifications, salary expectations, and essential tools that support corporate governance and board directors."
 pubDate: 2024-12-08
-author: "Hanne Gellynck"
-authorRole: "Content Specialist"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/corporate-governance.jpg"
 category: "Governance"
 tags: ["Corporate Secretary", "Board Directors", "Corporate Governance", "Board Management", "Company Secretary"]
@@ -137,7 +137,7 @@ Modern corporate secretaries rely on a range of digital tools and platforms to m
 
 ### Board Management Software
 
-Comprehensive board management platforms, such as Govrn, provide centralized solutions for:
+Comprehensive board management platforms, such as Dafira, provide centralized solutions for:
 
 - Meeting scheduling and coordination
 - Secure document distribution and storage
@@ -256,7 +256,7 @@ The governance profession offers rewarding career opportunities for individuals 
 
 ## Choosing the Right Tools to Support Corporate Secretary Excellence
 
-The effectiveness of a corporate secretary depends not only on their qualifications and experience but also on the tools and systems that support their work. Modern board management platforms like **Govrn** provide corporate secretaries with comprehensive solutions that streamline governance processes, enhance collaboration, and ensure compliance.
+The effectiveness of a corporate secretary depends not only on their qualifications and experience but also on the tools and systems that support their work. Modern board management platforms like **Dafira** provide corporate secretaries with comprehensive solutions that streamline governance processes, enhance collaboration, and ensure compliance.
 
 When evaluating governance technology, corporate secretaries should consider:
 

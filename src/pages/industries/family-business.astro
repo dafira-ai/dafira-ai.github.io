@@ -1,447 +1,95 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import CTA from '../../components/CTA.astro';
+import FamilyBusinessLanding, { type FamilyBusinessContent } from '../../components/industries/FamilyBusinessLanding.astro';
 
-const challenges = [
-  {
-    title: "Multiple boards across holding and operating companies",
-    description: "Manage governance across complex group structures with ease",
-    icon: "🏢"
+const content: FamilyBusinessContent = {
+  hero: {
+    eyebrow: 'Family business',
+    title: 'Family business governance software',
+    lead: 'Board and family council management for multi-entity family businesses.',
+    screenshotAlt: 'Dafira document library, with board papers grouped by meeting',
   },
-  {
-    title: "Family councils alongside formal boards",
-    description: "Coordinate multiple governance bodies in one platform",
-    icon: "👥"
+  intro: {
+    title: 'Governance grows with the family and the group',
+    paragraphs: [
+      'Family businesses often operate across multiple entities, generations and governance bodies. As structures grow, governance becomes harder to manage with email, shared drives and informal processes.',
+      'Dafira is a board and governance management platform that supports family businesses with clear structure, secure collaboration and documented decision-making, without adding unnecessary complexity.',
+    ],
   },
-  {
-    title: "Overlapping roles and sensitive information",
-    description: "Control access with strict permissions and audit trails",
-    icon: "🔒"
-  }
-];
-
-const features = [
-  {
-    title: "Multi-Entity Governance",
-    description: "Manage boards, family councils, and committees independently with their own members, agendas, and permissions",
-    icon: "📊"
+  challenges: {
+    title: 'Governance challenges in family businesses',
+    lead: 'Family businesses face governance challenges that differ from those of other companies.',
+    items: [
+      { icon: 'building', title: 'Multiple boards across holding and operating companies', text: 'Manage governance across group structures.' },
+      { icon: 'users', title: 'Family councils alongside formal boards', text: 'Coordinate several governance bodies in one platform.' },
+      { icon: 'lock', title: 'Overlapping roles and sensitive information', text: 'Control access with strict permissions and audit trails.' },
+    ],
+    consequencesIntro: 'Without a structured governance system, this often leads to:',
+    consequences: ['Limited visibility and traceability', 'Knowledge loss between generations', 'Inconsistent documentation', 'Increased legal and operational risk'],
   },
-  {
-    title: "Secure Access Control",
-    description: "Role-based permissions, document-level security, and full audit trails for confidential family governance",
-    icon: "🔐"
+  bodies: {
+    title: 'One platform for all family governance bodies',
+    lead: 'Dafira brings family business governance together in a single, secure environment.',
+    intro: 'You can manage:',
+    items: ['Boards of directors (holding and subsidiaries)', 'Family councils', 'Advisory boards', 'Investment, audit or remuneration committees'],
+    outro: [
+      'Each governance body operates independently, with its own members and roles, agendas and meeting schedules, documents and board packs, and access and permission settings.',
+      'This allows family businesses to extend governance without fragmentation.',
+    ],
+    features: [
+      { icon: 'layers', title: 'Multi-entity governance', text: 'Manage boards, family councils and committees independently, each with its own members, agendas and permissions.' },
+      { icon: 'lock', title: 'Secure access control', text: 'Role-based permissions, document-level security and full audit trails for confidential family governance.' },
+      { icon: 'document', title: 'Structured decision-making', text: 'AI-drafted minutes, action tracking and a searchable governance history for long-term continuity.' },
+    ],
   },
-  {
-    title: "Structured Decision Making",
-    description: "AI-generated minutes, action tracking, and searchable governance history for long-term continuity",
-    icon: "📝"
-  }
-];
-
-const benefits = [
-  {
-    title: "Generational Continuity",
-    description: "Preserve governance history and reduce reliance on informal knowledge",
-    icon: "🔄"
+  access: {
+    title: 'Secure access for family members and external directors',
+    lead: 'Family businesses often combine family stakeholders with independent board members and advisers.',
+    intro: 'Dafira provides:',
+    items: ['Role-based access per board or committee', 'Document-level permissions', 'Full audit trails and version history', 'Secure collaboration without shared drives or email attachments'],
+    outro: 'This keeps information confidential while maintaining transparency where required.',
   },
-  {
-    title: "Professional Operations",
-    description: "Centralized agendas, board packs, and documented decisions without complexity",
-    icon: "✅"
+  meetings: {
+    title: 'Structured meetings and documented decisions',
+    lead: 'Dafira helps family businesses professionalise board operations while remaining practical and lightweight.',
+    intro: 'Key capabilities include:',
+    items: ['Central agendas and board packs', 'Decision and action tracking', 'Secure storage of historical governance records', 'AI-drafted meeting minutes to reduce administrative effort'],
+    outro: 'All governance activity is documented, searchable and accessible to authorised users.',
   },
-  {
-    title: "Built for Family Business",
-    description: "Support for complex structures, multiple boards, and long-term governance resilience",
-    icon: "🏛️"
-  }
-];
+  continuity: {
+    title: 'Supporting continuity across generations',
+    lead: 'As family businesses pass from one generation to the next, continuity becomes critical.',
+    items: [
+      { icon: 'refresh', title: 'Generational continuity', text: 'Preserve governance history and reduce reliance on informal knowledge.' },
+      { icon: 'checkCircle', title: 'Professional operations', text: 'Central agendas, board packs and documented decisions, without complexity.' },
+      { icon: 'family', title: 'Built for family business', text: 'Support for group structures, several boards and long-term governance.' },
+    ],
+    intro: 'Dafira supports this by:',
+    list: ['Preserving governance history and decisions over time', 'Clarifying roles and responsibilities', 'Reducing reliance on informal knowledge holders', 'Providing a consistent governance framework across entities'],
+    outro: 'This makes governance more resilient, whatever the changes in leadership.',
+  },
+  why: {
+    title: 'Built for multi-entity family business structures',
+    lead: 'Unlike generic collaboration tools, Dafira is built for governance.',
+    intro: 'Family businesses choose Dafira because it supports:',
+    items: ['Group structures', 'Multiple boards within one organisation', 'Long-term governance continuity', 'Secure board operations'],
+    outro: 'Dafira adapts to existing governance structures rather than imposing a predefined model.',
+  },
+  users: {
+    title: 'Who uses Dafira in family businesses?',
+    intro: 'Dafira is used by:',
+    items: ['Family shareholders', 'Chairs and board members', 'Family council members', 'CEOs and executive teams', 'External directors and advisers', 'Corporate and board secretaries'],
+    outro: 'Each user sees only what is relevant to their role.',
+  },
+  cta: {
+    title: 'Family business governance, made practical',
+    subtitle: 'Dafira helps family businesses manage governance with clarity, structure and security, without turning governance into a consulting project.',
+  },
+};
 ---
 
-<Layout title="Family Business Governance Software | Govrn" description="Board and family council management for multi-entity family businesses. Professional governance without complexity.">
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            Family Business
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Family Business
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Governance Software
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed mb-4">
-            Board and family council management for multi-entity family businesses
-          </p>
-          <p class="text-lg text-gray-600 leading-relaxed mb-12">
-            Family businesses often operate across multiple entities, generations, and governance bodies. As structures grow, governance becomes harder to manage with email, shared drives, and informal processes.
-          </p>
-          <p class="text-lg text-gray-600 leading-relaxed mb-12">
-            Govrn is a board and governance management platform designed to support family businesses with clear structure, secure collaboration, and documented decision-making — without adding unnecessary complexity.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/request-demo"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Request a demo
-            </a>
-            <a
-              href="/try"
-              class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-            >
-              Start Free Trial
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Challenges Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Governance challenges in family businesses
-          </h2>
-          <p class="text-xl text-gray-600">
-            Family businesses face governance challenges that differ from traditional corporations
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {challenges.map(challenge => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{challenge.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{challenge.title}</h3>
-              <p class="text-gray-600">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="mt-12 max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Without a structured governance system, this often leads to:</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Limited visibility and traceability</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Knowledge loss between generations</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Inconsistent documentation</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Increased legal and operational risk</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            One platform for all family governance bodies
-          </h2>
-          <p class="text-xl text-gray-600">
-            Govrn centralises family business governance in a single, secure environment
-          </p>
-        </div>
-
-        <div class="mb-12 max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>You can manage:</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Boards of directors (holding and subsidiaries)</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Family councils</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Advisory boards</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Investment, audit, or remuneration committees</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            Each governance body operates independently, with its own members and roles, agendas and meeting schedules, documents and board packs, and access and permission settings.
-          </p>
-          <p class="text-gray-600 mt-4">
-            This allows family businesses to scale governance without fragmentation.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Secure Access Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Secure access for family members and external directors
-          </h2>
-          <p class="text-xl text-gray-600">
-            Family businesses often combine family stakeholders with independent board members and advisors
-          </p>
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Govrn provides:</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Role-based access per board or committee</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Document-level permissions</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Full audit trails and version history</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Secure collaboration without shared drives or email attachments</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            This ensures confidentiality while maintaining transparency where required.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Structured Meetings Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Structured meetings and documented decisions
-          </h2>
-          <p class="text-xl text-gray-600">
-            Govrn helps family businesses professionalise board operations while remaining practical and lightweight
-          </p>
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Key capabilities include:</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Centralised agendas and board packs</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Decision and action tracking</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Secure storage of historical governance records</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>AI-generated meeting minutes to reduce administrative effort</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            All governance activity is documented, searchable, and accessible to authorised users.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Supporting continuity across generations
-          </h2>
-          <p class="text-xl text-gray-600">
-            As family businesses transition between generations, continuity becomes critical
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8 mb-12">
-          {benefits.map(benefit => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{benefit.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{benefit.title}</h3>
-              <p class="text-gray-600">{benefit.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Govrn supports this by:</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Preserving governance history and decisions over time</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Creating clarity around roles and responsibilities</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Reducing reliance on informal knowledge holders</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Providing a consistent governance framework across entities</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            This makes governance more resilient — regardless of leadership changes.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Why Choose Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Built for multi-entity family business structures
-          </h2>
-          <p class="text-xl text-gray-600">
-            Unlike generic collaboration tools, Govrn is built specifically for governance
-          </p>
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Family businesses choose Govrn because it supports:</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Complex group structures</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Multiple boards within one organisation</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Long-term governance continuity</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Secure, compliant board operations</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            Govrn adapts to existing governance structures rather than forcing a predefined model.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Who Uses Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Who uses Govrn in family businesses?
-          </h2>
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <p class="text-gray-600 mb-4">
-            <strong>Govrn is used by:</strong>
-          </p>
-          <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Family shareholders</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Chairs and board members</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Family council members</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>CEOs and executive teams</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>External directors and advisors</span>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-2">•</span>
-              <span>Corporate and board secretaries</span>
-            </li>
-          </ul>
-          <p class="text-gray-600 mt-6">
-            Each user sees only what is relevant to their role.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Final CTA Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Family business governance, made practical
-          </h2>
-          <p class="text-xl text-gray-600 mb-8">
-            Govrn helps family businesses manage governance with clarity, structure, and security — without turning governance into a consulting project.
-          </p>
-          <p class="text-lg text-gray-600 mb-8">
-            One platform. All governance bodies. Long-term continuity.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <CTA />
+<Layout title="Family Business Governance Software | Dafira" description="Board and family council management for multi-entity family businesses. Structured governance without complexity.">
+  <main>
+    <FamilyBusinessLanding content={content} />
   </main>
 </Layout>

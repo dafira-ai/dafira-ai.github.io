@@ -2,8 +2,8 @@
 title: "AI Meeting Minutes: The Complete Guide to Automated Meeting Documentation"
 description: "Learn how AI meeting minutes automate transcription, extract action items, and generate summaries. Complete guide to AI meeting minutes generators for boards."
 pubDate: 2025-01-28
-author: "Govrn"
-authorRole: "Govrn Editorial Team"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/meeting.jpg"
 category: "Technology"
 tags: ["AI Meeting Minutes", "Meeting Notes", "Board Meetings", "AI Technology", "Productivity"]
@@ -153,17 +153,17 @@ The evolution of meeting documentation technology continues rapidly. Emerging ca
 
 ---
 
-## How Govrn Supports Boards in Creating Official Meeting Minutes
+## How Dafira Supports Boards in Creating Official Meeting Minutes
 
-For boards and committees, meeting documentation carries special legal and compliance significance. Unlike general meeting tools, board minutes must meet specific regulatory requirements and serve as official records of fiduciary decisions. Govrn's [AI Minute Builder](/features/ai-minute-builder) is purpose-built for this demanding environment.
+For boards and committees, meeting documentation carries special legal and compliance significance. Unlike general meeting tools, board minutes must meet specific regulatory requirements and serve as official records of fiduciary decisions. Dafira's [AI Minute Builder](/features/ai-minute-builder) is purpose-built for this demanding environment.
 
 ### The Board Minutes Challenge
 
 Board secretaries typically spend 4-6 hours per meeting compiling, reviewing, and finalizing official minutes. They must ensure accuracy, capture formal resolutions, track voting records, and maintain compliance with [legal requirements for board minutes](/blog/board-minutes-belgium-legal-requirements). Traditional AI transcription tools fall short because they lack governance context.
 
-### How Govrn's AI Minute Builder Works
+### How Dafira's AI Minute Builder Works
 
-Govrn's approach is specifically designed for board governance:
+Dafira's approach is specifically designed for board governance:
 
 1. **Records and Transcribes**: Captures the full meeting with speaker identification
 2. **Aligns with Agenda**: Automatically maps discussions to formal agenda items
@@ -171,11 +171,11 @@ Govrn's approach is specifically designed for board governance:
 4. **Generates Structured Minutes**: Produces governance-compliant draft minutes ready for review
 5. **Flags Inconsistencies**: Highlights missing approvals or unclear decisions
 
-> Board secretaries using Govrn's AI Minute Builder report cutting minute drafting time by 50%—from hours to minutes.
+> Board secretaries using Dafira's AI Minute Builder report cutting minute drafting time by 50%—from hours to minutes.
 
 ### Beyond Minutes: AI-Powered Board Intelligence
 
-Govrn's [AI Assistant](/features/ai-assistant) extends AI capabilities beyond minute-taking:
+Dafira's [AI Assistant](/features/ai-assistant) extends AI capabilities beyond minute-taking:
 
 - **Query Board History**: Ask "What did we decide about this topic last quarter?" and get instant answers from your board materials
 - **Prepare for Meetings**: Directors can quickly catch up on relevant context before meetings
@@ -183,7 +183,7 @@ Govrn's [AI Assistant](/features/ai-assistant) extends AI capabilities beyond mi
 
 ### Enterprise-Grade Security
 
-Board discussions are highly confidential. Govrn operates within a secure governance environment:
+Board discussions are highly confidential. Dafira operates within a secure governance environment:
 
 - End-to-end encryption for all recordings and documents
 - Role-based access controls
@@ -192,7 +192,7 @@ Board discussions are highly confidential. Govrn operates within a secure govern
 
 ### Ready to Transform Your Board Minutes?
 
-See how Govrn can streamline your board documentation while maintaining the rigor your governance requires.
+See how Dafira can streamline your board documentation while maintaining the rigor your governance requires.
 
 [**Talk to an Expert →**](/request-demo)
 
@@ -207,7 +207,7 @@ Whether you're looking for a free solution to get started or an enterprise-grade
 The question is no longer whether to adopt AI for meeting documentation, but how quickly you can implement it to stay competitive.
 
 **Related Reading:**
-- [How Govrn's AI Features Solve Real Boardroom Pain Points](/blog/govrn-ai-minute-builder-and-assist)
+- [How Dafira's AI Features Solve Real Boardroom Pain Points](/blog/dafira-ai-minute-builder-and-assist)
 - [Audio Setup Guide for High-Quality Board Meeting Minutes](/templates/audio-set-up-guide)
 - [Board Minutes in Belgium: Legal Requirements](/blog/board-minutes-belgium-legal-requirements)
 - [Corporate Secretary: Role, Responsibilities, and Tools](/blog/corporate-secretary-role-responsibilities-tools)

@@ -1,143 +1,80 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+import { PageHero, Button, Icon } from '../components/ui';
+import { localizePath } from '../i18n/routes';
 
 const benefits = [
   {
-    icon: "⚡",
-    title: "Instant Access",
-    description: "Get started immediately with our fully-featured platform"
+    "icon": "bolt",
+    "title": "Full access",
+    "description": "All features of the platform from the first day"
   },
   {
-    icon: "🎯",
-    title: "No Credit Card Required",
-    description: "Try all features risk-free for 14 days"
+    "icon": "target",
+    "title": "No credit card required",
+    "description": "Try all features for 14 days without payment details"
   },
   {
-    icon: "👥",
-    title: "Full Team Access",
-    description: "Invite your entire board to experience Govrn"
+    "icon": "users",
+    "title": "Full team access",
+    "description": "Invite your entire board to try Dafira"
   },
   {
-    icon: "🔒",
-    title: "Enterprise Security",
-    description: "Bank-grade encryption and security from day one"
+    "icon": "lock",
+    "title": "Enterprise security",
+    "description": "Encryption and security from day one"
   }
 ];
+
+const faqData = {
+  "title": "Frequently asked questions",
+  "subtitle": "About the free trial.",
+  "inLanguage": "en",
+  "faqs": [
+    {
+      "question": "What's included in the free trial?",
+      "answer": "You get full access to all Dafira features for 14 days, including document management, meeting tools, and collaboration features."
+    },
+    {
+      "question": "Do I need a credit card to start?",
+      "answer": "No, you can start your free trial without entering any payment information. We'll notify you before the trial ends."
+    },
+    {
+      "question": "What happens after the trial?",
+      "answer": "After 14 days, you can choose to upgrade to one of our paid plans. We'll help you select the best option for your needs."
+    }
+  ]
+};
+
+const trialHref = `${localizePath('en', '/request-demo')}?from=trial`;
 ---
 
-<Layout title="Try Govrn Free - Transform Your Board Management" description="Experience how Govrn can transform your board management with our 14-day free trial. No credit card required.">
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <!-- Left Column - Content -->
-          <div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Start Your Free Trial of
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                Govrn Today
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-12">
-              Experience how Govrn can transform your board management with our 14-day free trial. No credit card required.
-            </p>
-
-            <div class="grid sm:grid-cols-2 gap-6">
-              {benefits.map(benefit => (
-                <div class="flex items-start space-x-4">
-                  <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-2xl">
-                    {benefit.icon}
-                  </div>
-                  <div>
-                    <h2 class="font-semibold text-gray-900">{benefit.title}</h3>
-                    <p class="text-sm text-gray-600">{benefit.description}</p>
-                  </div>
-                </div>
-              ))}
+<Layout title="Try Dafira Free - 14-Day Board Portal Trial" description="Try Dafira free for 14 days, with guidance from our team. No credit card required.">
+  <main>
+    <PageHero eyebrow="Free trial · 14 days" title="Start your free trial of Dafira" lead="Try Dafira for 14 days with your own board. No credit card required.">
+      <dl class="mt-10 grid sm:grid-cols-2 gap-x-8 border-t border-line">
+        {benefits.map((b) => (
+          <div class="py-5 border-b border-line flex gap-3">
+            <Icon name={b.icon} class="w-5 h-5 text-navy mt-0.5" />
+            <div>
+              <dt class="font-medium text-navy">{b.title}</dt>
+              <dd class="mt-1 text-sm text-gray-600 leading-relaxed">{b.description}</dd>
             </div>
           </div>
+        ))}
+      </dl>
 
-          <!-- Right Column - CTA -->
-          <div class="bg-white rounded-2xl p-10 shadow-xl border border-gray-100 text-center">
-            <div class="mb-8">
-              <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                </svg>
-              </div>
-              <h2 class="text-2xl font-bold text-gray-900 mb-4">Get Started with Expert Guidance</h2>
-              <p class="text-lg text-gray-600 leading-relaxed">
-                Our expert will personally help you set up your free trial and ensure you get the most out of Govrn from day one.
-              </p>
-            </div>
-            <a
-              href="/request-demo?from=trial"
-              class="inline-flex items-center justify-center w-full px-8 py-4 text-lg font-semibold text-white bg-primary hover:bg-primary/90 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
-            >
-              Start Now
-              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-              </svg>
-            </a>
-            <p class="mt-4 text-sm text-gray-500">No commitment required</p>
-          </div>
-        </div>
+      <div slot="aside" class="border border-line rounded-md bg-white p-6 lg:p-10">
+        <Icon name="users" class="w-6 h-6 text-navy" />
+        <h2 class="mt-5 text-2xl font-semibold text-navy">Get started with expert guidance</h2>
+        <p class="mt-3 text-gray-600 leading-relaxed">Our expert will help you set up your free trial so your board can use Dafira from day one.</p>
+        <Button href={trialHref} size="lg" class="mt-8 w-full">Start now</Button>
+        <p class="mt-3 text-sm text-gray-500">No commitment required</p>
       </div>
-    </section>
+    </PageHero>
 
-    <!-- Social Proof Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-bold text-gray-900 mb-8">Trusted by Leading Organizations</h2>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-8 items-center opacity-70">
-            <img 
-  loading="lazy"
-              src="/vdv-logo.png"
-              alt="Van de Velde"
-              class="h-24 object-contain mx-auto"
-            />
-            <img 
-  loading="lazy"
-              src="/fib-logo.png"
-              alt="Finance & Invest Brussels"
-              class="h-24 object-contain mx-auto"
-            />
-            <img 
-  loading="lazy"
-              src="/careproperty-logo.png"
-              alt="Care Property Invest"
-              class="h-24 object-contain mx-auto"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- FAQ Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">Frequently Asked Questions</h2>
-        <div class="space-y-8">
-          <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">What's included in the free trial?</h3>
-            <p class="text-gray-600">You get full access to all Govrn features for 14 days, including document management, meeting tools, and collaboration features.</p>
-          </div>
-          <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">Do I need a credit card to start?</h3>
-            <p class="text-gray-600">No, you can start your free trial without entering any payment information. We'll notify you before the trial ends.</p>
-          </div>
-          <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">What happens after the trial?</h3>
-            <p class="text-gray-600">After 14 days, you can choose to upgrade to one of our paid plans. We'll help you select the best option for your needs.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <FAQ texts={faqData} />
   </main>
 </Layout>

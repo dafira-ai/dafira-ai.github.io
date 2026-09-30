@@ -1,0 +1,242 @@
+---
+// /features/ai-minute-builder (EN / FR / NL)
+import { PageHero, Section, SectionHeader, Button, CellGrid, Icon, Steps, FeatureList, FeatureColumns } from '../../ui';
+import MinuteEditor from '../minute-builder/MinuteEditor.astro';
+import Transcript from '../minute-builder/Transcript.astro';
+import RelatedFeatures from '../RelatedFeatures.astro';
+import FeatureCTA from '../FeatureCTA.astro';
+import { langFromPath, localizePath } from '../../../i18n/routes';
+import { common, featureLang } from '../common';
+
+const lang = featureLang(langFromPath(Astro.url.pathname));
+const c = common[lang];
+
+// Same sample excerpt in three languages (illustration of the language setting).
+const samples = [
+  { lang: 'English', title: '2. Financial review Q1', text: 'The CFO presented the quarterly results. The board approved the financial statements unanimously.' },
+  { lang: 'Français', title: '2. Revue financière T1', text: 'Le directeur financier a présenté les résultats trimestriels. Le conseil a approuvé les états financiers à l’unanimité.' },
+  { lang: 'Nederlands', title: '2. Financieel overzicht Q1', text: 'De financieel directeur presenteerde de kwartaalresultaten. Het bestuur keurde de financiële staten unaniem goed.' },
+];
+
+const copy = {
+  en: {
+    eyebrow: 'AI minute builder',
+    title: 'Board minutes drafted from the meeting, finalised by the secretary',
+    lead: 'The AI minute builder records the meeting, aligns the transcript with the agenda and proposes a structured draft of the minutes. The board secretary reviews, completes and circulates it for approval.',
+    does: {
+      title: 'What the minute builder prepares',
+      lead: 'Everything the secretary would otherwise reconstruct from notes after the meeting.',
+      cells: [
+        { icon: 'mic', title: 'Transcript', text: 'The meeting is recorded and transcribed, with speakers and timestamps.' },
+        { icon: 'list', title: 'Chapters by agenda item', text: 'The transcript is split into chapters that follow the items of the agenda.' },
+        { icon: 'document', title: 'Draft minutes', text: 'A draft is proposed for each item, including resolutions, votes and action items.' },
+        { icon: 'warning', title: 'Points to check', text: 'Inconsistencies and missing items are flagged for the secretary to review.' },
+      ],
+    },
+    how: {
+      eyebrow: 'How it works',
+      title: 'From the meeting to approved minutes',
+      steps: [
+        { title: 'Schedule the meeting', text: 'Plan the meeting in Dafira. For online meetings, the assistant joins the call on Teams, Zoom, Google Meet or Webex.' },
+        { title: 'Record the discussion', text: 'The assistant records and transcribes the meeting while directors focus on the discussion.' },
+        { title: 'Receive a draft', text: 'The minutes are drafted item by item, with the decisions, votes and actions of the meeting.' },
+        { title: 'Review and approve', text: 'The secretary edits the draft, exports it to Word if needed and circulates it for approval and signature.' },
+      ],
+    },
+    languages: {
+      eyebrow: 'Languages',
+      title: 'Minutes in your company’s official language',
+      text: 'The minute builder detects the language spoken in the meeting and writes the minutes in the language you choose.',
+      list: ['French', 'English', 'German', 'Spanish', 'Italian', 'Dutch'],
+      more: 'and more',
+      generated: 'Draft',
+    },
+    transcript: {
+      eyebrow: 'Transcript',
+      title: 'Every word, with speakers and timestamps',
+      text: 'The full transcript stays available next to the minutes. Each chapter links back to the moment of the meeting it comes from, so the secretary can check a formulation in a few seconds.',
+      items: ['Speaker identification', 'Timestamps linked to each chapter', 'Export of the full transcript'],
+    },
+    secretary: {
+      title: 'Built for the board secretary',
+      lead: 'The secretary keeps full editorial control. The minute builder prepares the draft; the secretary decides what is recorded.',
+      columns: [
+        { icon: 'clock', title: 'Less time drafting', text: 'Start from a structured draft instead of a blank page.', items: ['Draft available after the meeting', 'Corporate formatting', 'Ready for approval'] },
+        { icon: 'shield', title: 'Reliable records', text: 'Minutes that can be checked against the recording.', items: ['GDPR-compliant recording', 'Audit-ready documentation', 'Transcript kept with the minutes'] },
+        { icon: 'layers', title: 'Part of the board workflow', text: 'The minutes live next to the agenda and the board pack.', items: ['Linked to the agenda items', 'Approval and e-signature in Dafira', 'Action items carried over'] },
+      ],
+      link: 'Read how much time the minute builder saves',
+    },
+  },
+  fr: {
+    eyebrow: 'Procès-verbaux par IA',
+    title: 'Un procès-verbal préparé à partir de la séance, finalisé par le secrétaire',
+    lead: "L'outil de rédaction par IA enregistre la séance, aligne la transcription sur l'ordre du jour et propose un projet de procès-verbal structuré. Le secrétaire du conseil le relit, le complète et le soumet à approbation.",
+    does: {
+      title: "Ce que l'outil prépare",
+      lead: 'Tout ce que le secrétaire devrait sinon reconstituer à partir de ses notes après la séance.',
+      cells: [
+        { icon: 'mic', title: 'Transcription', text: 'La séance est enregistrée et transcrite, avec les intervenants et l’horodatage.' },
+        { icon: 'list', title: "Chapitres par point de l'ordre du jour", text: "La transcription est découpée en chapitres qui suivent les points de l'ordre du jour." },
+        { icon: 'document', title: 'Projet de procès-verbal', text: 'Un projet est proposé pour chaque point, avec les résolutions, les votes et les actions.' },
+        { icon: 'warning', title: 'Points à vérifier', text: 'Les incohérences et les éléments manquants sont signalés au secrétaire.' },
+      ],
+    },
+    how: {
+      eyebrow: 'Fonctionnement',
+      title: 'De la séance au procès-verbal approuvé',
+      steps: [
+        { title: 'Planifier la séance', text: "Planifiez la séance dans Dafira. Pour les réunions en ligne, l'assistant rejoint l'appel sur Teams, Zoom, Google Meet ou Webex." },
+        { title: 'Enregistrer les échanges', text: "L'assistant enregistre et transcrit la séance pendant que les administrateurs se concentrent sur la discussion." },
+        { title: 'Recevoir un projet', text: 'Le procès-verbal est rédigé point par point, avec les décisions, les votes et les actions de la séance.' },
+        { title: 'Relire et approuver', text: "Le secrétaire modifie le projet, l'exporte vers Word si nécessaire et le soumet à approbation et à signature." },
+      ],
+    },
+    languages: {
+      eyebrow: 'Langues',
+      title: 'Le procès-verbal dans la langue officielle de votre société',
+      text: "L'outil détecte la langue parlée en séance et rédige le procès-verbal dans la langue de votre choix.",
+      list: ['Français', 'Anglais', 'Allemand', 'Espagnol', 'Italien', 'Néerlandais'],
+      more: 'et d’autres langues',
+      generated: 'Projet',
+    },
+    transcript: {
+      eyebrow: 'Transcription',
+      title: 'Chaque mot, avec les intervenants et l’horodatage',
+      text: "La transcription complète reste disponible à côté du procès-verbal. Chaque chapitre renvoie au moment de la séance dont il est issu : le secrétaire vérifie une formulation en quelques secondes.",
+      items: ['Identification des intervenants', 'Horodatage relié à chaque chapitre', 'Export de la transcription complète'],
+    },
+    secretary: {
+      title: 'Conçu pour le secrétaire du conseil',
+      lead: "Le secrétaire garde la main sur la rédaction. L'outil prépare le projet ; le secrétaire décide de ce qui est consigné.",
+      columns: [
+        { icon: 'clock', title: 'Moins de temps de rédaction', text: "Partez d'un projet structuré plutôt que d'une page blanche.", items: ['Projet disponible après la séance', 'Mise en forme conforme à vos usages', "Prêt pour l'approbation"] },
+        { icon: 'shield', title: 'Des procès-verbaux fiables', text: "Un procès-verbal que l'on peut vérifier par rapport à l'enregistrement.", items: ['Enregistrement conforme au RGPD', 'Documentation prête pour un audit', 'Transcription conservée avec le procès-verbal'] },
+        { icon: 'layers', title: 'Intégré au travail du conseil', text: "Le procès-verbal se trouve à côté de l'ordre du jour et du dossier du conseil.", items: ["Relié aux points de l'ordre du jour", 'Approbation et signature électronique dans Dafira', 'Actions reprises dans le suivi'] },
+      ],
+      link: "Voir le temps gagné avec l'outil de rédaction",
+    },
+  },
+  nl: {
+    eyebrow: 'AI-notulen',
+    title: 'Notulen opgesteld op basis van de vergadering, afgewerkt door de secretaris',
+    lead: 'De AI-notulenbouwer neemt de vergadering op, koppelt de transcriptie aan de agenda en stelt een gestructureerd ontwerp van de notulen voor. De bestuurssecretaris leest het na, vult het aan en legt het ter goedkeuring voor.',
+    does: {
+      title: 'Wat de notulenbouwer voorbereidt',
+      lead: 'Alles wat de secretaris anders na de vergadering uit zijn notities moet reconstrueren.',
+      cells: [
+        { icon: 'mic', title: 'Transcriptie', text: 'De vergadering wordt opgenomen en uitgeschreven, met sprekers en tijdstempels.' },
+        { icon: 'list', title: 'Hoofdstukken per agendapunt', text: 'De transcriptie wordt opgedeeld in hoofdstukken die de agendapunten volgen.' },
+        { icon: 'document', title: 'Ontwerpnotulen', text: 'Per punt wordt een ontwerp voorgesteld, met resoluties, stemmingen en actiepunten.' },
+        { icon: 'warning', title: 'Na te kijken punten', text: 'Inconsistenties en ontbrekende elementen worden aan de secretaris gesignaleerd.' },
+      ],
+    },
+    how: {
+      eyebrow: 'Werking',
+      title: 'Van vergadering tot goedgekeurde notulen',
+      steps: [
+        { title: 'Plan de vergadering', text: 'Plan de vergadering in Dafira. Bij online vergaderingen neemt de assistent deel aan de oproep via Teams, Zoom, Google Meet of Webex.' },
+        { title: 'Neem de bespreking op', text: 'De assistent neemt de vergadering op en schrijft ze uit, terwijl de bestuurders zich op de bespreking concentreren.' },
+        { title: 'Ontvang een ontwerp', text: 'De notulen worden punt per punt opgesteld, met de beslissingen, stemmingen en acties van de vergadering.' },
+        { title: 'Nalezen en goedkeuren', text: 'De secretaris past het ontwerp aan, exporteert het zo nodig naar Word en legt het ter goedkeuring en ondertekening voor.' },
+      ],
+    },
+    languages: {
+      eyebrow: 'Talen',
+      title: 'Notulen in de officiële taal van uw onderneming',
+      text: 'De notulenbouwer herkent de gesproken taal en schrijft de notulen in de taal van uw keuze.',
+      list: ['Frans', 'Engels', 'Duits', 'Spaans', 'Italiaans', 'Nederlands'],
+      more: 'en meer',
+      generated: 'Ontwerp',
+    },
+    transcript: {
+      eyebrow: 'Transcriptie',
+      title: 'Elk woord, met sprekers en tijdstempels',
+      text: 'De volledige transcriptie blijft beschikbaar naast de notulen. Elk hoofdstuk verwijst naar het moment in de vergadering waaruit het komt, zodat de secretaris een formulering in enkele seconden kan nagaan.',
+      items: ['Herkenning van sprekers', 'Tijdstempels gekoppeld aan elk hoofdstuk', 'Export van de volledige transcriptie'],
+    },
+    secretary: {
+      title: 'Gemaakt voor de bestuurssecretaris',
+      lead: 'De secretaris behoudt de volledige redactionele controle. De notulenbouwer bereidt het ontwerp voor; de secretaris beslist wat wordt vastgelegd.',
+      columns: [
+        { icon: 'clock', title: 'Minder tijd aan het opstellen', text: 'Vertrek van een gestructureerd ontwerp in plaats van een leeg blad.', items: ['Ontwerp beschikbaar na de vergadering', 'Opmaak volgens uw huisstijl', 'Klaar voor goedkeuring'] },
+        { icon: 'shield', title: 'Betrouwbare notulen', text: 'Notulen die u kunt toetsen aan de opname.', items: ['AVG-conforme opname', 'Auditklare documentatie', 'Transcriptie bewaard bij de notulen'] },
+        { icon: 'layers', title: 'Deel van de bestuurswerking', text: 'De notulen staan naast de agenda en het bestuursdossier.', items: ['Gekoppeld aan de agendapunten', 'Goedkeuring en e-handtekening in Dafira', 'Actiepunten meegenomen in de opvolging'] },
+      ],
+      link: 'Lees hoeveel tijd de notulenbouwer bespaart',
+    },
+  },
+}[lang];
+---
+
+<PageHero eyebrow={copy.eyebrow} title={copy.title} lead={copy.lead}>
+  <Fragment slot="actions">
+    <Button href={localizePath(lang, '/request-demo')}>{c.demo}</Button>
+    <Button variant="secondary" href={localizePath(lang, '/contact')}>{c.contact}</Button>
+  </Fragment>
+  <MinuteEditor slot="aside" shadow />
+</PageHero>
+
+<Section>
+  <SectionHeader title={copy.does.title} lead={copy.does.lead} />
+  <CellGrid columns={4}>
+    {copy.does.cells.map((cell) => (
+      <div class="bg-white p-6">
+        <Icon name={cell.icon} class="w-6 h-6 text-navy" />
+        <h3 class="mt-5 font-semibold text-navy">{cell.title}</h3>
+        <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{cell.text}</p>
+      </div>
+    ))}
+  </CellGrid>
+</Section>
+
+<Section tone="surface" border="both">
+  <SectionHeader eyebrow={copy.how.eyebrow} title={copy.how.title} />
+  <Steps columns={4} items={copy.how.steps} />
+</Section>
+
+<Section>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-start">
+    <div class="lg:col-span-5">
+      <SectionHeader layout="stacked" eyebrow={copy.languages.eyebrow} title={copy.languages.title} lead={copy.languages.text} class="mb-8" />
+      <FeatureList columns={2} items={copy.languages.list} />
+      <p class="mt-4 text-sm text-gray-500">{copy.languages.more}</p>
+    </div>
+    <div class="lg:col-span-6 lg:col-start-7 space-y-4" aria-hidden="true" data-play>
+      {samples.map((s, i) => (
+        <div class="bg-white border border-line rounded-md p-5" data-step style={`--d:${i * 120}`}>
+          <div class="flex items-center justify-between gap-3">
+            <span class="font-mono text-xs uppercase tracking-[0.08em] text-gray-500">{s.lang}</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-sm bg-blue-50 text-primary">{copy.languages.generated}</span>
+          </div>
+          <p class="mt-3 text-[15px] font-semibold text-navy">{s.title}</p>
+          <p class="mt-1 text-[15px] text-gray-700 leading-relaxed">{s.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</Section>
+
+<Section tone="surface" border="both">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-start">
+    <div class="lg:col-span-5">
+      <SectionHeader layout="stacked" eyebrow={copy.transcript.eyebrow} title={copy.transcript.title} lead={copy.transcript.text} class="mb-8" />
+      <FeatureList items={copy.transcript.items} />
+    </div>
+    <div class="lg:col-span-6 lg:col-start-7">
+      <Transcript />
+    </div>
+  </div>
+</Section>
+
+<Section>
+  <SectionHeader title={copy.secretary.title} lead={copy.secretary.lead} />
+  <FeatureColumns items={copy.secretary.columns} />
+  <div class="pt-8 border-t border-line">
+    <Button variant="link" href={localizePath(lang, '/ai-minute-builder-time-savings')}>{copy.secretary.link}</Button>
+  </div>
+</Section>
+
+<RelatedFeatures current="ai-minute-builder" tone="surface" />
+
+<FeatureCTA />

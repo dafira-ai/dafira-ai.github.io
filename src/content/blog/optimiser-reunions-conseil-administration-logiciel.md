@@ -2,8 +2,8 @@
 title: "Optimiser les réunions du conseil d'administration avec un logiciel dédié"
 description: "Découvrez comment un logiciel de gestion des conseils d'administration améliore l'efficacité, la collaboration et l'organisation, tout en réduisant les coûts et en renforçant les processus de gouvernance."
 pubDate: 2023-06-10
-author: "Govrn"
-authorRole: "Équipe éditoriale Govrn"
+author: "Dafira"
+authorRole: "Équipe éditoriale Dafira"
 image: "/computer.jpg"
 category: "Technology"
 tags: ["Logiciel de conseil d'administration", "Gouvernance d'entreprise", "Efficacité", "Collaboration"]

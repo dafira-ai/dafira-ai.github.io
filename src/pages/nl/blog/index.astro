@@ -1,127 +1,24 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
-import BlogCard from '../../../components/blog/BlogCard.astro';
-import { Image } from 'astro:assets';
+import BlogIndex from '../../../components/blog/BlogIndex.astro';
 
 const posts = await getCollection('blog', ({ data }) => data.lang === 'nl');
-const publishedPosts = posts.filter(post => post.data.pubDate.getTime() <= new Date().getTime());
-const sortedPosts = publishedPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const featuredPost = sortedPosts.find(post => post.data.featured);
-const regularPosts = sortedPosts.filter(post => !post.data.featured);
-
-// Dynamically import blog images from assets
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/blog-images/**/*.{png,jpg,jpeg,webp,gif}', { eager: true });
-const getFeaturedImage = () => {
-  if (!featuredPost) return null;
-  if (featuredPost.data.image.startsWith('http')) return featuredPost.data.image;
-  const imagePath = `/src/assets/blog-images${featuredPost.data.image}`;
-  const imageModule = images[imagePath];
-  return imageModule ? imageModule.default : featuredPost.data.image;
-};
-const featuredImage = getFeaturedImage();
+const sortedPosts = posts
+  .filter((post) => post.data.pubDate.getTime() <= Date.now())
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Blog",
-  "name": "Govrn Blog",
+  "name": "Dafira Blog",
   "description": "Expert inzichten over bestuursbeheer en governance",
   "inLanguage": "nl"
 };
 ---
 
 <Layout title="Blog - Expertise in bestuursbeheer" description="Ontdek onze nieuwste artikelen over bestuursbeheer, governance en technologie. Blijf op de hoogte met onze experts." structuredData={structuredData}>
-  <main class="pt-16">
-    <!-- Header sectie -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Expertise in
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              bestuursbeheer
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            Expertartikelen, handleidingen en best practices om uw bestuur naar een hoger niveau te tillen
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Uitgelicht artikel -->
-    {featuredPost && (
-      <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 class="text-3xl font-bold text-gray-900 mb-12">Uitgelicht artikel</h2>
-          <div class="grid lg:grid-cols-2 gap-12">
-            <div class="relative">
-              <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-xl"></div>
-              {featuredImage && (
-                <Image
-                  src={featuredImage}
-                  alt={featuredPost.data.title}
-                  class="relative rounded-xl shadow-xl w-full h-[400px] object-cover"
-                  width={800}
-                  height={400}
-                />
-              )}
-            </div>
-            <div class="flex flex-col justify-center">
-              <div class="flex items-center space-x-4 mb-6">
-                <span class="px-4 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                  {featuredPost.data.category}
-                </span>
-                <time datetime={featuredPost.data.pubDate.toISOString()} class="text-gray-500">
-                  {featuredPost.data.pubDate.toLocaleDateString('nl-NL', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </time>
-              </div>
-              <h3 class="text-3xl font-bold text-gray-900 mb-4">
-                {featuredPost.data.title}
-              </h3>
-              <p class="text-xl text-gray-600 mb-8">
-                {featuredPost.data.description}
-              </p>
-              <div class="flex items-center justify-between">
-                <div>
-                  <p class="font-medium text-gray-900">{featuredPost.data.author}</p>
-                  <p class="text-gray-500">{featuredPost.data.authorRole}</p>
-                </div>
-                <a
-                  href={`/nl/blog/${featuredPost.slug}`}
-                  class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors duration-200"
-                >
-                  Lees artikel
-                  <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    )}
-
-    <!-- Alle artikelen -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-gray-900 mb-12">Laatste artikelen</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {regularPosts.map(post => (
-            <BlogCard post={post} lang="nl" />
-          ))}
-        </div>
-      </div>
-    </section>
-   
+  <main>
+    <BlogIndex lang="nl" posts={sortedPosts} />
   </main>
 </Layout>

@@ -3,7 +3,7 @@ title: "Le quorum : clé d'une gouvernance efficace et d'une prise de décision 
 description: "Découvrez le rôle essentiel du quorum pour garantir une gouvernance efficace, équitable et légitime."
 pubDate: 2024-12-19
 author: "Jean-Louis Van Houwe"
-authorRole: "PDG et fondateur de Govrn"
+authorRole: "PDG et fondateur de Dafira"
 image: "/quorum.jpg"
 category: "Governance"
 tags: ["Quorum", "Gouvernance", "Prise de décision", "Processus équitable"]
@@ -79,4 +79,4 @@ Le leadership équitable repose sur l'engagement, la transparence et la responsa
 
 ## Conclusion
 
-Le quorum est un élément central d'une bonne gouvernance et d'un leadership équitable. En assurant des décisions légitimes et réfléchies, il construit la confiance et l'intégrité opérationnelle. Les organisations qui respectent ces exigences se positionnent pour agir de manière éthique et durable. Avec l'aide de l'IA, la gestion du quorum devient plus simple et précise que jamais. [Découvrez la gouvernance assistée par l'IA](https://govrn.com/fr/try)
+Le quorum est un élément central d'une bonne gouvernance et d'un leadership équitable. En assurant des décisions légitimes et réfléchies, il construit la confiance et l'intégrité opérationnelle. Les organisations qui respectent ces exigences se positionnent pour agir de manière éthique et durable. Avec l'aide de l'IA, la gestion du quorum devient plus simple et précise que jamais. [Découvrez la gouvernance assistée par l'IA](https://dafira.ai/fr/try)

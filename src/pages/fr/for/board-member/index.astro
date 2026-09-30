@@ -1,334 +1,109 @@
 ---
 import Layout from '../../../../layouts/Layout.astro';
-import CTA from '../../../../components/CTA.astro';
+import { PageHero, Section, SectionHeader, Button, Icon, FeatureColumns, CellGrid, FeatureList, Screenshot, CTA } from '../../../../components/ui';
+import { ctaProps } from '../../../../components/industries/i18n';
 
-const boardRoles = [
-  {
-    title: "Administrateur indépendant",
-    icon: "⚖️", 
-    description: "Prenez des décisions objectives et assurez une supervision impartiale grâce à nos outils spécialisés",
-    link: "/fr/for/independent-director",
-    features: [
-      "Canaux de communication privés",
-      "Outils d'analyse indépendante",
-      "Gestion des conflits"
-    ]
-  },
-  {
-    title: "Administrateur actionnaire",
-    icon: "📈",
-    description: "Équilibrez les intérêts des actionnaires avec les besoins de l'entreprise grâce à nos outils de gestion des parties prenantes",
-    link: "/fr/for/shareholder-director",
-    features: [
-      "Communication avec les parties prenantes",
-      "Supervision des investissements",
-      "Suivi des performances"
-    ]
-  }
-];
+const responsibilities = {
+  title: 'Vous accompagner dans vos missions d’administrateur',
+  lead: 'Ce que le conseil attend de ses membres, et là où Dafira vous aide.',
+  items: [
+    { icon: 'target', title: 'Supervision stratégique', text: 'Lire les documents du conseil dans leur contexte, avec l’historique des discussions passées à portée de main.' },
+    { icon: 'scale', title: 'Devoir fiduciaire', text: 'Décider sur la base d’une information complète et à jour, et en garder la trace.' },
+    { icon: 'users', title: 'Relations avec les parties prenantes', text: 'Garder les échanges avec les autres administrateurs et la direction structurés et sécurisés.' },
+    { icon: 'tasks', title: 'Suivi', text: 'Suivre les actions et les décisions d’une réunion à l’autre.' },
+  ],
+};
 
-const industries = [
-  {
-    id: "financial-services",
-    name: "Services financiers",
-    icon: "🏦",
-    description: "Banque, assurance et sociétés d'investissement",
-    features: [
-      "Automatisation de la conformité réglementaire",
-      "Tableaux de bord de suivi des risques",
-      "Gestion sécurisée des documents"
-    ]
-  },
-  {
-    id: "healthcare",
-    name: "Santé",
-    icon: "🏥",
-    description: "Hôpitaux, dispositifs médicaux et prestataires de soins",
-    features: [
-      "Outils de conformité RGPD",
-      "Support à la gouvernance clinique",
-      "Suivi de la qualité"
-    ]
-  },
-  {
-    id: "real-estate",
-    name: "Immobilier",
-    icon: "🏢",
-    description: "Investissement et gestion immobilière",
-    features: [
-      "Outils de supervision du portefeuille",
-      "Suivi des investissements",
-      "Gestion des actifs"
-    ]
-  }
-];
+const roles = {
+  title: 'Par rôle',
+  lead: 'Des pages dédiées aux différentes fonctions au sein du conseil.',
+  link: 'Voir la page du rôle',
+  items: [
+    { title: 'Administrateur indépendant', icon: 'scale', text: 'Une supervision objective, avec des espaces privés d’échange entre administrateurs indépendants.', href: '/fr/for/independent-director', features: ['Conversations privées', 'Accès aux décisions passées', 'Registre des conflits d’intérêts'] },
+    { title: 'Administrateur représentant un actionnaire', icon: 'trend', text: 'Représenter les actionnaires tout en agissant dans l’intérêt de la société.', href: '/fr/for/shareholder-director', features: ['Communication sécurisée', 'Documents du conseil organisés', 'Votes et registre des décisions'] },
+  ],
+};
 
-const commonFeatures = [
-  {
-    title: "Centre d'analyses intelligentes",
-    description: "Dirigez en toute confiance grâce à des analyses alimentées par l'IA qui transforment des données complexes en insights actionnables",
-    icon: "🎯",
-    benefits: [
-      "Métriques de performance en temps réel",
-      "Analyses prédictives",
-      "Recommandations stratégiques",
-      "Analyse des tendances"
-    ]
-  },
-  {
-    title: "Collaboration fluide",
-    description: "Faites entendre votre voix grâce à des outils puissants qui renforcent votre impact lors des discussions du conseil",
-    icon: "💫",
-    benefits: [
-      "Annotations en temps réel",
-      "Messagerie sécurisée",
-      "Outils de réunion virtuelle",
-      "Collaboration documentaire"
-    ]
-  },
-  {
-    title: "Centre de pilotage stratégique",
-    description: "Exercez votre supervision avec fierté grâce à des outils complets qui vous maintiennent informé et aux commandes",
-    icon: "🌟",
-    benefits: [
-      "Tableaux de bord personnalisés",
-      "Surveillance des risques",
-      "Suivi de la conformité",
-      "Analyses de performance"
-    ]
-  }
-];
+const features = {
+  title: 'Les outils de chaque administrateur',
+  lead: 'Ce que chaque administrateur utilise, quel que soit son rôle.',
+  items: [
+    { icon: 'sparkle', title: 'Assistant IA', text: 'Posez des questions sur les documents du conseil et obtenez des résumés des documents longs.', items: ['Questions sur les documents du conseil', 'Résumés', 'Recherche dans les réunions passées'] },
+    { icon: 'pen', title: 'Collaboration', text: 'Préparer la réunion et en discuter avec le reste du conseil.', items: ['Annotations privées', 'Messagerie sécurisée du conseil', 'Liens de réunion en ligne', 'Documents partagés'] },
+    { icon: 'vote', title: 'Décisions', text: 'Voter, signer et retrouver ce qui a été décidé.', items: ['Votes', 'Signature électronique', 'Registre des décisions', 'Actions de suivi'] },
+  ],
+};
 
-const responsibilities = [
-  {
-    icon: "🎯",
-    title: "Supervision stratégique",
-    description: "Guidez la direction de l'organisation avec des insights basés sur l'IA et une analyse complète du marché"
-  },
-  {
-    icon: "⚖️",
-    title: "Devoir fiduciaire",
-    description: "Prenez des décisions éclairées avec un accès en temps réel aux données financières et opérationnelles critiques"
-  },
-  {
-    icon: "🤝",
-    title: "Gestion des parties prenantes",
-    description: "Équilibrez les intérêts divers grâce à des outils de communication et d'engagement efficaces"
-  },
-  {
-    icon: "📊",
-    title: "Suivi des performances",
-    description: "Suivez la performance organisationnelle avec des tableaux de bord personnalisables et des rapports automatisés"
-  }
-];
+const industries = {
+  title: 'Par secteur',
+  lead: 'Des pages sectorielles pour les administrateurs des secteurs réglementés.',
+  link: 'Voir la page sectorielle',
+  items: [
+    { id: 'financial-services', icon: 'bank', name: 'Services financiers', text: 'Banques, assureurs et sociétés d’investissement.', features: ['Contexte réglementaire', 'Gestion documentaire sécurisée', 'Réunions des comités'] },
+    { id: 'healthcare', icon: 'health', name: 'Santé', text: 'Hôpitaux, prestataires de soins et sciences de la vie.', features: ['Gouvernance clinique à l’ordre du jour', 'Documents confidentiels', 'Réunions des comités'] },
+    { id: 'real-estate', icon: 'building', name: 'Immobilier', text: 'Investissement et gestion immobilière.', features: ['Décisions d’investissement', 'Documents de portefeuille', 'Registre des décisions'] },
+  ],
+};
 ---
 
-<Layout title="Logiciel pour administrateurs - Plateforme de gestion du conseil Govrn" description="Donnez les moyens à vos administrateurs d'exceller avec notre logiciel complet, conçu pour améliorer l'efficacité, la conformité et la collaboration.">
-  <main class="pt-16">
-    <!-- Section héros -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
+<Layout title="Logiciel pour administrateurs | Portail du conseil Dafira" description="Portail du conseil pour les administrateurs : lire et annoter le dossier du conseil sur n’importe quel appareil, voter, signer et retrouver les décisions passées. Pages par rôle et par secteur.">
+  <main>
+    <PageHero eyebrow="Pour les administrateurs" title="Le dossier du conseil, les échanges et les décisions, en un seul endroit" lead="Que vous soyez administrateur indépendant, représentant d’un actionnaire ou spécialiste d’un secteur, Dafira vous donne l’information nécessaire pour décider, sur n’importe quel appareil.">
+      <Fragment slot="actions">
+        <Button href="/fr/request-demo">Demander une démo</Button>
+        <Button variant="secondary" href="/fr/contact">Nous contacter</Button>
+      </Fragment>
+      <Screenshot slot="aside" src="/onboarding-boardpack.png" alt="Dossier du conseil Dafira organisé par point de l’ordre du jour, avec des annotations sur un document" eager />
+    </PageHero>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-              Solutions pour administrateurs
-            </div>
-            <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-              Sublimez votre leadership au conseil avec des
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-                outils intelligents
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed mb-12">
-              Que vous soyez administrateur indépendant, représentant des actionnaires ou spécialiste sectoriel, Govrn vous apporte les outils nécessaires pour prendre des décisions éclairées et stimuler le succès de l'organisation.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/fr/request-demo"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Demander une démo
-              </a>
-              <a
-                href="/fr/contact"
-                class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-gray-900 bg-white border-2 border-gray-200 hover:border-primary/20 hover:bg-gray-50 transition-colors duration-200"
-              >
-                Contacter les ventes
-              </a>
-            </div>
+    <Section>
+      <SectionHeader title={responsibilities.title} lead={responsibilities.lead} />
+      <CellGrid columns={2}>
+        {responsibilities.items.map((item) => (
+          <div class="bg-white p-8">
+            <Icon name={item.icon} class="w-6 h-6 text-navy" />
+            <h3 class="mt-5 text-lg font-semibold text-navy">{item.title}</h3>
+            <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
           </div>
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-3xl transform rotate-3"></div>
-            <img 
-  loading="lazy"
-              src="/realestate.jpg"
-              alt="Interface de la plateforme Govrn"
-              class="relative rounded-2xl shadow-2xl"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
+        ))}
+      </CellGrid>
+    </Section>
 
-    <!-- Responsabilités du conseil -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Accompagnement de vos responsabilités d'administrateur
-          </h2>
-          <p class="text-xl text-gray-600">
-            Des outils complets pour vous aider à remplir vos devoirs et stimuler le succès de l'organisation
-          </p>
-        </div>
+    <Section tone="surface" border="both">
+      <SectionHeader title={roles.title} lead={roles.lead} />
+      <CellGrid columns={2}>
+        {roles.items.map((role) => (
+          <a href={role.href} class="group bg-white p-8 lg:p-10 hover:bg-surface transition-colors flex flex-col">
+            <Icon name={role.icon} class="w-6 h-6 text-navy" />
+            <h3 class="mt-5 text-xl font-semibold text-navy">{role.title}</h3>
+            <p class="mt-3 text-gray-600 leading-relaxed">{role.text}</p>
+            <FeatureList items={role.features} class="mt-6" />
+            <span class="mt-auto pt-8 text-[15px] font-medium text-primary group-hover:text-navy transition-colors">{roles.link}</span>
+          </a>
+        ))}
+      </CellGrid>
+    </Section>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {responsibilities.map(item => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{item.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
-              <p class="text-gray-600">{item.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Section>
+      <SectionHeader title={features.title} lead={features.lead} />
+      <FeatureColumns items={features.items} />
+    </Section>
 
-    <!-- Rôles au conseil -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Solutions adaptées à votre rôle
-          </h2>
-          <p class="text-xl text-gray-600">
-            Découvrez des outils sur mesure pour votre position spécifique au conseil
-          </p>
-        </div>
+    <Section tone="surface" border="both">
+      <SectionHeader title={industries.title} lead={industries.lead} />
+      <CellGrid columns={3}>
+        {industries.items.map((item) => (
+          <a href={`/fr/for/board-member/industry/${item.id}`} class="group bg-white p-8 hover:bg-surface transition-colors flex flex-col">
+            <Icon name={item.icon} class="w-6 h-6 text-navy" />
+            <h3 class="mt-5 text-lg font-semibold text-navy">{item.name}</h3>
+            <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{item.text}</p>
+            <FeatureList items={item.features} class="mt-6" />
+            <span class="mt-auto pt-8 text-[15px] font-medium text-primary group-hover:text-navy transition-colors">{industries.link}</span>
+          </a>
+        ))}
+      </CellGrid>
+    </Section>
 
-        <div class="grid md:grid-cols-2 gap-8">
-          {boardRoles.map(role => (
-            <a
-              href={role.link}
-              class="group bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-            >
-              <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                {role.icon}
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors">
-                {role.title}
-              </h3>
-              <p class="text-gray-600 mb-6">{role.description}</p>
-              <ul class="space-y-3 mb-6">
-                {role.features.map(feature => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <div class="inline-flex items-center text-primary group-hover:translate-x-2 transition-transform duration-300">
-                Voir les solutions spécifiques
-                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Fonctionnalités communes -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Outils pour chaque administrateur
-          </h2>
-          <p class="text-xl text-gray-600">
-            Des fonctionnalités essentielles qui permettent à tous les administrateurs d'avoir un impact
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {commonFeatures.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{feature.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p class="text-gray-600 mb-6">{feature.description}</p>
-              <ul class="space-y-3">
-                {feature.benefits.map(benefit => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Sélection sectorielle -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">
-            Solutions sectorielles
-          </h2>
-          <p class="text-xl text-gray-600">
-            Découvrez des outils et fonctionnalités supplémentaires adaptés aux exigences uniques de votre secteur
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {industries.map(industry => (
-            <a
-              href={`/fr/for/board-member/industry/${industry.id}`}
-              class="group bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-            >
-              <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                {industry.icon}
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors">
-                {industry.name}
-              </h3>
-              <p class="text-gray-600 mb-6">{industry.description}</p>
-              <ul class="space-y-3 mb-6">
-                {industry.features.map(feature => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <div class="inline-flex items-center text-primary group-hover:translate-x-2 transition-transform duration-300">
-                Voir les solutions sectorielles
-                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-    <CTA />
+    <CTA {...ctaProps.fr} />
   </main>
 </Layout>

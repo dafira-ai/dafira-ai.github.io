@@ -1,4 +1,8 @@
 ---
+// Vignette: a director asks the AI assistant about the board pack.
+// Messages arrive in order, with a short typing indicator before each assistant reply. Plays once.
+import ReplayButton from './ReplayButton.astro';
+
 export interface Message {
   type: "assistant" | "user";
   content: string;
@@ -9,6 +13,7 @@ export interface TaskTimelineProps {
   messages: Message[];
   headerTitle?: string;
   headerSubtitle?: string;
+  /** @deprecated emoji no longer rendered */
   headerEmoji?: string;
 }
 
@@ -16,95 +21,89 @@ const {
   messages = [
     {
       type: "assistant",
-      content: "I've analyzed your board documents. Here are the key insights:",
+      content: "I've read the Q3 board pack. Three points stand out:",
       insights: [
-        "Revenue growth exceeds market average by 15%",
-        "Compliance requirements met at 98%",
-        "Board attendance rate at 95%"
+        "Revenue is ahead of budget in two of three regions",
+        "Two compliance actions from Q2 are still open",
+        "The capex resolution needs a two-thirds majority"
       ]
     },
     {
-      type: "user", 
-      content: "What are our main risks?"
+      type: "user",
+      content: "What are the main risks for the next quarter?"
     },
     {
       type: "assistant",
-      content: "Based on the analysis, here are the key risks:",
+      content: "The papers mention three risks:",
       insights: [
-        "Market volatility in Asia Pacific",
-        "Regulatory changes in EU markets",
-        "Supply chain dependencies"
+        "Currency exposure in Asia Pacific",
+        "New EU reporting requirements",
+        "Dependency on a single supplier"
       ]
     }
   ],
-  headerTitle = "AI Assist",
-  headerSubtitle = "Analyzing board documents",
-  headerEmoji = "🤖"
-} = Astro.props;
+  headerTitle = "AI assistant",
+  headerSubtitle = "Q3 board pack · 64 pages",
+} = Astro.props as TaskTimelineProps;
+
+// Timeline: user messages appear directly; assistant replies after a 700ms typing indicator.
+let clock = 100;
+const timeline = (messages as Message[]).map((msg, i) => {
+  const typing = msg.type === 'assistant' && i > 0 ? clock : null;
+  if (typing !== null) clock += 700;
+  const at = clock;
+  clock += 240 + (msg.insights?.length ?? 0) * 120 + 360;
+  return { msg, at, typing };
+});
 ---
 
-<div class="relative w-full h-full flex items-center justify-center">
-  <div class="w-full max-w-lg bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden max-h-[500px] md:max-h-none">
-    <!-- Chat Header -->
-    <div class="bg-gradient-to-r from-primary to-blue-600 p-4 text-white">
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-          <span class="text-2xl">{headerEmoji}</span>
-        </div>
-        <div>
-          <div class="font-medium">{headerTitle}</div>
-          <div class="text-sm text-white/80">{headerSubtitle}</div>
-        </div>
-      </div>
+<div class="relative w-full h-full flex items-center justify-center" data-play>
+  <div aria-hidden="true" class="w-full max-w-md bg-white border border-line rounded-md text-[13px] overflow-hidden">
+    <div class="flex items-center gap-3 px-4 py-3 border-b border-line">
+      <span class="w-7 h-7 rounded-sm bg-navy text-white grid place-items-center">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M12 3l1.8 4.6L18 9.5l-4.2 1.9L12 16l-1.8-4.6L6 9.5l4.2-1.9z" />
+        </svg>
+      </span>
+      <span class="flex-1">
+        <span class="block font-semibold text-navy text-sm">{headerTitle}</span>
+        <span class="block font-mono text-[11px] text-gray-500">{headerSubtitle}</span>
+      </span>
     </div>
 
-    <!-- Chat Messages -->
-    <div class="p-4 space-y-4 overflow-y-auto max-h-[400px] md:max-h-none">
-      {messages.map((msg, index) => (
-        <div 
-          class={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'} animate-slide-up`}
-          style={`animation-delay: ${index * 0.5}s`}
-        >
-          <div class={`max-w-[80%] ${
-            msg.type === 'user' 
-              ? 'bg-primary/10 text-primary' 
-              : 'bg-gradient-to-br from-gray-50 to-gray-100 text-gray-900'
-          } rounded-xl p-4 shadow-sm`}>
-            <p class="text-sm mb-2">{msg.content}</p>
-            {msg.insights && (
-              <ul class="space-y-2">
-                {msg.insights.map(insight => (
-                  <li class="flex items-start text-sm">
-                    <svg class="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                    {insight}
-                  </li>
-                ))}
-              </ul>
+    <div class="px-4 py-4 space-y-3">
+      {timeline.map(({ msg, at, typing }) => (
+        <div class:list={["flex", msg.type === 'user' ? 'justify-end' : 'justify-start']}>
+          <div class="swap max-w-[88%]">
+            {typing !== null && (
+              <span data-step="out" style={`--d:${at}`} class="typing self-start inline-flex gap-1 px-3 py-2.5 rounded-md bg-surface">
+                <i class="w-1.5 h-1.5 rounded-full bg-gray-400"></i><i class="w-1.5 h-1.5 rounded-full bg-gray-400"></i><i class="w-1.5 h-1.5 rounded-full bg-gray-400"></i>
+              </span>
             )}
+            <div
+              data-step
+              style={`--d:${at}`}
+              class:list={[
+                "rounded-md px-3 py-2.5",
+                msg.type === 'user' ? 'bg-navy text-white' : 'bg-surface text-ink',
+              ]}
+            >
+              <p>{msg.content}</p>
+              {msg.insights && (
+                <ul class="mt-2 space-y-1.5">
+                  {msg.insights.map((insight, j) => (
+                    <li class="flex items-start gap-2 text-gray-700" data-step style={`--d:${at + 200 + j * 120}`}>
+                      <span class="mt-2 w-1.5 h-px bg-primary shrink-0"></span>
+                      {insight}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
         </div>
       ))}
-
-      <!-- Typing Indicator -->
-      <div class="flex items-center space-x-2">
-        <div class="w-2 h-2 bg-primary/40 rounded-full animate-bounce" style="animation-delay: 0s;"></div>
-        <div class="w-2 h-2 bg-primary/40 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
-        <div class="w-2 h-2 bg-primary/40 rounded-full animate-bounce" style="animation-delay: 0.4s;"></div>
-      </div>
     </div>
   </div>
+  <ReplayButton />
 </div>
-
-<style>
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .animate-slide-up {
-    opacity: 0;
-    animation: slideUp 0.5s ease-out forwards;
-  }
-</style>

@@ -2,8 +2,8 @@
 title: "De Rol van een Raad van Bestuur in een Organisatie"
 description: "Ontdek de cruciale functies en verantwoordelijkheden van een Raad van Bestuur bij het sturen van organisatorisch succes, inclusief strategische planning, toezicht en risicobeheer."
 pubDate: 2024-01-03
-author: "Govrn"
-authorRole: "Govrn Redactieteam"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/puzzle.jpg"
 category: "Governance"
 tags: ["Raad van Bestuur", "Corporate Governance", "Leiderschap", "Strategische Planning"]

@@ -2,8 +2,8 @@
 title: "The Corporate Sustainability Reporting Directive: A Game Changer for Boardrooms"
 description: "Explore how the Corporate Sustainability Reporting Directive (CSRD) is reshaping board dynamics, requiring boards to rethink their roles, expertise, and approach to long-term sustainability."
 pubDate: 2024-12-23
-author: "Ludovic Laffineur"
-authorRole: "CPTO at Govrn"
+author: "Dafira"
+authorRole: "Dafira Editorial Team"
 image: "/csrd-esg-leadership-substainability.jpg"
 category: "Regulatory"
 tags: ["CSRD", "Board Dynamics", "ESG Reporting", "Corporate Governance", "Sustainability"]
@@ -22,8 +22,7 @@ This isn't just another regulatory compliance measure—CSRD is sparking a funda
 
 CSRD requires companies to report on their **social and environmental impact** across the **entire value chain**—not just internally, but upstream (suppliers) and downstream (product usage and disposal). Think of it as moving beyond financial reports, which provide a snapshot of financial health, to a **panoramic film** capturing how a company interacts with the world.  
 
-> "CSRD requires companies to identify and report on the ESG issues most material to their business and stakeholders." – Ludovic Laffineur  
-
+CSRD requires companies to identify and report on the ESG issues most material to their business and stakeholders.
 For boards, this means grappling with complex issues like:  
 - **Global supply chains**  
 - **Climate risk assessments**  
@@ -40,8 +39,7 @@ For boards, this means grappling with complex issues like:
 
 Traditionally, governance has often been a box-ticking exercise. CSRD changes that. It pushes boards to **move beyond compliance** and embed sustainability into strategy. Our [AI-powered compliance monitoring](/features/ai-board-compliance-monitoring) helps boards stay ahead of regulatory requirements while focusing on strategic initiatives.
 
-> *"CSRD is more than another report—it's prompting boards to rethink their roles and responsibilities."* – Ludovic Laffineur  
-
+CSRD is more than another report—it's prompting boards to rethink their roles and responsibilities.
 To navigate this shift, boards need to:  
 - Develop a **deep understanding** of environmental, social, and governance (ESG) factors.  
 - Bring diverse expertise and **high EQ (emotional intelligence)** to interpret ESG data and drive constructive debate.  

@@ -1,5 +1,6 @@
 ---
 import PricingPlans from "./PricingPlans.astro";
+import { Icon, SectionHeader } from "../ui";
 
 interface Feature {
   name: string;
@@ -33,12 +34,16 @@ interface Props {
   }[];
   planTexts?: {
     requestQuote: string;
-    billedAnnually: string; 
+    billedAnnually: string;
     mostPopular: string;
+    month: string;
   },
   featureComparison?: {
     title: string;
     subtitle: string;
+    feature?: string;
+    included?: string;
+    notIncluded?: string;
   }
 }
 
@@ -431,7 +436,7 @@ const { featureCategories = [
       "General Governance",
       "Secured Document Storage & Multi-Factor Authentication",
       "IM and Email Support",
-      "Basic AI Search ✨"
+      "Basic AI Search"
     ],
   },
   {
@@ -453,9 +458,9 @@ const { featureCategories = [
       "Regional Main Compliance Tools (Learn)",
       "Advanced Permissions and Access Control",
       "Priority Email and Phone Support",
-      "Advanced AI Meeting Minutes ✨",
-      "AI-Powered Document Analysis & Insights ✨",
-      "AI-Search Advanced ✨"
+      "Advanced AI Meeting Minutes",
+      "AI-Powered Document Analysis & Insights",
+      "AI-Search Advanced"
     ],
   },
   {
@@ -474,117 +479,78 @@ const { featureCategories = [
       "Sector-Specific Compliance: Financial, Telecom, Pharmaceutical Services",
       "SSO Integration",
       "24/7 Support and Dedicated Customer Success Manager",
-      "Custom AI Models for Industry-Specific Needs ✨",
-      "AI-Driven Governance Risk Analysis ✨",
-      "Predictive Analytics for Board Performance ✨",
-      "Advanced Natural Language Processing for Multi-Language Support ✨"
+      "Custom AI Models for Industry-Specific Needs",
+      "AI-Driven Governance Risk Analysis",
+      "Predictive Analytics for Board Performance",
+      "Advanced Natural Language Processing for Multi-Language Support"
     ],
   },
 ], planTexts = {
   requestQuote: "Request a Quote",
   billedAnnually: "billed annually", 
-  mostPopular: "Most Popular",
+  mostPopular: "Recommended",
   month: "month"
 }, featureComparison = {
-  title: "Feature-by-Feature Comparison",
-  subtitle: "Compare our plans side-by-side to find the perfect fit for your organization's needs"
+  title: "Feature-by-feature comparison",
+  subtitle: "Compare the plans side by side to see which one fits your board.",
+  feature: "Feature",
+  included: "Included",
+  notIncluded: "Not included"
 } } = Astro.props;
 ---
 
 <PricingPlans plans={plans} texts={planTexts} />
 
-<!-- Feature Comparison -->
-<div
-  class="mt-10 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
->
-  <div class="p-6 bg-gray-50 border-b border-gray-100">
-    <div class="mt-8 flex flex-col items-center text-center">
-      <h2 class="text-3xl font-bold text-gray-900 mb-2">{featureComparison.title}</h3>
-      <p class="mt4 text-gray-600 text-xl">{featureComparison.subtitle}</p>
-    </div>
-  </div>
+<!-- Feature comparison -->
+<div class="mt-24" id="comparison">
+  <SectionHeader title={featureComparison.title} lead={featureComparison.subtitle} layout="split" />
 
-  <div class="divide-y divide-gray-100">
-    {
-      featureCategories.map((category, index) => (
-        <div class="p-6">
-          <button
-            class="w-full flex justify-between items-center text-lg font-semibold text-gray-900 mb-4 focus:outline-none"
-            onclick={`document.getElementById('category-${index}').classList.toggle('hidden')`}
-          >
-            <span>{category.name}</span>
-            <svg
-              class="w-5 h-5 transform transition-transform duration-200"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
-
-          <div
-            id={`category-${index}`}
-            class={` ${index === 0 ? "" : "hidden"}`}
-          >
-            <div class="px-4 py-2 grid grid-cols-4 gap-4 items-center mb-4">
-              <div class="text-sm text-gray-600" />
-              <div class="text-sm font-medium text-center">{plans[0].name}</div>
-              <div class="text-sm font-medium text-center">{plans[1].name}</div>
-              <div class="text-sm font-medium text-center">{plans[2].name}</div>
-            </div>
-            {category.features.map((feature) => (
-              <div class="px-4 py-2 grid grid-cols-4 gap-4 items-center hover:bg-gray-50 transition-colors duration-200">
-                <div class="text-sm text-gray-600">{feature.name}</div>
-                {[feature.essential, feature.pro, feature.enterprise].map(
-                  (value) => (
-                    <div class="text-sm text-center">
-                      {typeof value === "boolean" ? (
-                        value ? (
-                          <svg
-                            class="w-5 h-5 text-primary mx-auto"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                        ) : (
-                          <svg
-                            class="w-5 h-5 text-gray-300 mx-auto"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M6 18L18 6M6 6l12 12"
-                            />
-                          </svg>
-                        )
-                      ) : (
-                        <span class="text-gray-900">{value}</span>
-                      )}
-                    </div>
-                  ),
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      ))
-    }
+  <div class="overflow-x-auto border border-line rounded-md" tabindex="0" role="region" aria-label={featureComparison.title}>
+    <table class="w-full min-w-[640px] text-[15px] border-collapse">
+      <caption class="sr-only">{featureComparison.title}</caption>
+      <thead>
+        <tr class="bg-surface">
+          <th scope="col" class="sticky start-0 z-10 bg-surface px-4 py-3 text-start font-mono text-xs uppercase tracking-[0.08em] text-gray-500 font-normal w-2/5">
+            {featureComparison.feature ?? "Feature"}
+          </th>
+          {plans.map((plan) => (
+            <th scope="col" class="px-4 py-3 text-center text-sm font-semibold text-navy">{plan.name}</th>
+          ))}
+        </tr>
+      </thead>
+      {featureCategories.map((category) => (
+        <tbody>
+          <tr class="border-t border-line">
+            <th scope="colgroup" colspan={plans.length + 1} class="sticky start-0 bg-white px-4 pt-6 pb-2 text-start text-sm font-semibold text-navy">
+              {category.name}
+            </th>
+          </tr>
+          {category.features.map((feature) => (
+            <tr class="border-t border-line">
+              <th scope="row" class="sticky start-0 bg-white px-4 py-2.5 text-start font-normal text-gray-700">{feature.name}</th>
+              {[feature.essential, feature.pro, feature.enterprise].map((value) => (
+                <td class="px-4 py-2.5 text-center">
+                  {typeof value === "boolean" ? (
+                    value ? (
+                      <>
+                        <Icon name="check" class="w-5 h-5 text-navy mx-auto" />
+                        <span class="sr-only">{featureComparison.included ?? "Included"}</span>
+                      </>
+                    ) : (
+                      <>
+                        <span class="text-gray-300" aria-hidden="true">–</span>
+                        <span class="sr-only">{featureComparison.notIncluded ?? "Not included"}</span>
+                      </>
+                    )
+                  ) : (
+                    <span class="text-sm text-gray-700">{value}</span>
+                  )}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      ))}
+    </table>
   </div>
 </div>

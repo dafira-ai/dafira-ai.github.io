@@ -1,0 +1,27 @@
+---
+// Body of a help guide: prose-width column rendered with the Prose typography.
+import { Section, Prose } from '../ui';
+---
+
+<Section size="prose" space="md">
+  <article class="df-guide">
+    <Prose class="max-w-none">
+      <slot />
+    </Prose>
+  </article>
+</Section>
+
+<style is:global>
+  /* Guide-specific adjustments on top of Prose: boxed sub-panels and compact lists. */
+  .df-guide .df-prose :where(div, li) > :is(h2, h3, h4):first-child { margin-top: 0; }
+  .df-guide .df-prose :where(.grid) > * + * { margin-top: 0; }
+  .df-guide .df-prose img { margin-block: 1.5em; }
+  .df-guide .df-prose figure img { margin: 0; }
+  .df-guide .df-prose > .df-guide-step { margin-top: 4rem; }
+  .df-guide .df-guide-step > * + *, .df-guide .df-guide-sub > * + * { margin-top: 1rem; }
+  .df-guide .df-guide-step > h2 + p { margin-top: 0.5rem; }
+  .df-guide .df-prose > .df-guide-step:first-child { margin-top: 0; border-top: 0; padding-top: 0; }
+  .df-guide .df-prose .df-guide-actions a { text-decoration: none; }
+  .df-guide .df-prose .df-guide-actions a.bg-navy { color: white; }
+  .df-guide .df-prose .df-guide-actions a.bg-white { color: rgb(var(--navy)); }
+</style>

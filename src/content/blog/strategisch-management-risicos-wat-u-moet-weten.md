@@ -2,8 +2,8 @@
 title: "Strategisch Management Risico's: Wat U Moet Weten"
 description: "Strategisch management is essentieel voor organisatiesucces, maar brengt risico's met zich mee. Ontdek de uitdagingen, van onzekerheid tot weerstand, en leer effectieve strategieën om deze te beheersen."
 pubDate: 2023-05-15
-author: "Govrn"
-authorRole: "Govrn Redactieteam"
+author: "Dafira"
+authorRole: "Dafira Redactieteam"
 image: "/jump.jpg"
 category: "Best Practices"
 tags: ["Strategisch Management", "Risicobeheer", "Corporate Governance", "Leiderschap"]

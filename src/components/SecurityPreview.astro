@@ -1,5 +1,10 @@
 ---
-import SecurityFeature from './security/SecurityFeature.astro';
+import { langFromPath, localizePath } from '../i18n/routes';
+import Section from './ui/Section.astro';
+import Eyebrow from './ui/Eyebrow.astro';
+import Button from './ui/Button.astro';
+import CellGrid from './ui/CellGrid.astro';
+import Icon from './ui/Icon.astro';
 
 interface Props {
   texts?: {
@@ -17,61 +22,52 @@ interface Props {
 
 const {
   texts = {
-    badge: "Enterprise-Grade Security",
-    title: "Your Board's Security is Our Priority",
-    subtitle: "Industry-leading security measures to protect your sensitive board information",
-    cta: "Explore our security features",
+    badge: "Security",
+    title: "Board papers stay confidential",
+    subtitle: "Encryption, strong authentication and access rights by role protect what the board discusses.",
+    cta: "Read about security",
     features: [
       {
         icon: "🔒",
-        title: "Enterprise-Grade Security",
-        description: "Bank-grade encryption and security measures to protect your sensitive board data"
+        title: "Encryption",
+        description: "256-bit encryption protects documents, messages and votes."
       },
       {
         icon: "🔐",
-        title: "Two-Factor Authentication", 
-        description: "Enhanced account security with 2FA support across multiple authentication methods"
+        title: "Two-factor authentication",
+        description: "Every director signs in with a second factor."
       },
       {
         icon: "👥",
-        title: "Role-Based Access",
-        description: "Granular access controls and comprehensive audit trails for every action"
+        title: "Access by role",
+        description: "Each document is visible only to the people who should see it, with an audit trail of every action."
       }
     ]
   }
 } = Astro.props;
+
+const securityHref = localizePath(langFromPath(Astro.url.pathname), "/security");
+const icons = ['lock', 'key', 'users'];
 ---
 
-<section class="py-20 bg-gray-50 relative overflow-hidden">
-  <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50"></div>
-  
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-6">
-        {texts.badge}
+<Section tone="surface" border="both">
+  <div class="grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-4" data-play>
+      <div data-step>
+        <Eyebrow>{texts.badge}</Eyebrow>
+        <h2 class="mt-4 text-3xl lg:text-4xl font-semibold text-navy leading-tight">{texts.title}</h2>
       </div>
-      <h2 class="text-4xl font-bold text-gray-900 mb-6">{texts.title}</h2>
-      <p class="text-xl text-gray-600">
-        {texts.subtitle}
-      </p>
+      <p class="mt-4 text-lg text-gray-600 leading-relaxed" data-step style="--d:80">{texts.subtitle}</p>
+      <Button variant="link" href={securityHref} class="mt-8">{texts.cta}</Button>
     </div>
-
-    <div class="grid md:grid-cols-3 gap-8 mb-12">
-      {texts.features.map(feature => (
-        <SecurityFeature {...feature} />
+    <CellGrid columns={3} class="lg:col-span-7 lg:col-start-6 self-start">
+      {texts.features.map((feature, i) => (
+        <div class="bg-white p-6">
+          <Icon name={icons[i % icons.length]} class="w-6 h-6 text-navy" />
+          <h3 class="mt-5 font-semibold text-navy">{feature.title}</h3>
+          <p class="mt-2 text-[15px] text-gray-600 leading-relaxed">{feature.description}</p>
+        </div>
       ))}
-    </div>
-
-    <div class="text-center">
-      <a
-        href="/security"
-        class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 group"
-      >
-        {texts.cta}
-        <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-        </svg>
-      </a>
-    </div>
+    </CellGrid>
   </div>
-</section>
+</Section>

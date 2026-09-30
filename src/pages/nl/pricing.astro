@@ -2,6 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import { supportFaqs } from '../../data/faq-data';
 import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import { PageHero, Section, SectionHeader, FeatureColumns } from '../../components/ui';
+import { localizePath } from '../../i18n/routes';
 
 import PricingTiers from '../../components/pricing/PricingTiers.astro';
 const supportServices = [
@@ -461,7 +464,7 @@ const pricingTexts = {
       "Algemene governance",
       "Beveiligde opslag en multi-factor authenticatie",
       "Chat en e-mail support",
-      "Basis AI zoekfunctie ✨"
+      "Basis AI zoekfunctie"
     ],
   },
   {
@@ -483,9 +486,9 @@ const pricingTexts = {
       "Belangrijkste regionale compliance tools",
       "Geavanceerde toegangscontrole en rechten",
       "Prioritaire e-mail en telefoon support",
-      "Geavanceerde AI notulen ✨",
-      "AI document analyse en inzichten ✨",
-      "Geavanceerd AI zoeken ✨"
+      "Geavanceerde AI notulen",
+      "AI document analyse en inzichten",
+      "Geavanceerd AI zoeken"
     ],
   },
   {
@@ -504,21 +507,24 @@ const pricingTexts = {
       "Sectorale compliance: Financiële diensten, telecom, farma",
       "SSO-integratie",
       "24/7 support en dedicated klantsuccesmanager",
-      "Sectorspecifieke AI modellen ✨",
-      "AI governance risico-analyse ✨",
-      "Voorspellende bestuursprestatieanalyse ✨",
-      "Geavanceerde natuurlijke taalverwerking voor meertalige ondersteuning ✨"
+      "Sectorspecifieke AI modellen",
+      "AI governance risico-analyse",
+      "Voorspellende bestuursprestatieanalyse",
+      "Geavanceerde natuurlijke taalverwerking voor meertalige ondersteuning"
     ],
   },
 ], planTexts: {
   requestQuote: "Offerte aanvragen",
   billedAnnually: "per jaar",
-  mostPopular: "Meest gekozen",
+  mostPopular: "Aanbevolen",
   month: "maand",
   
 },featureComparison: {
     title: "Vergelijkingstabel",
-    subtitle: "Ontdek in detail de functies van elk pakket om de beste keuze te maken"
+    subtitle: "Vergelijk de pakketten functie per functie om de juiste keuze voor uw bestuur te maken.",
+    feature: "Functie",
+    included: "Inbegrepen",
+    notIncluded: "Niet inbegrepen"
   } };
 
 const supportFaqsNl = [
@@ -536,7 +542,7 @@ const supportFaqsNl = [
   },
   {
     question: "Kunt u ons helpen met gegevensmigratie?",
-    answer: "Absoluut! Ons team helpt u bij het migreren van bestaande documenten en gegevens naar Govrn, waarbij we een soepele overgang garanderen met behoud van data-integriteit en beveiliging."
+    answer: "Absoluut! Ons team helpt u bij het migreren van bestaande documenten en gegevens naar Dafira, waarbij we een soepele overgang garanderen met behoud van data-integriteit en beveiliging."
   }
 ];
 
@@ -547,96 +553,42 @@ const faqData = {
   faqs: supportFaqsNl
 };
 
+
+const ctaProps = {
+  texts: {
+    title: "Vind het juiste pakket voor uw bestuur",
+    subtitle: "Vertel ons over uw bestuur en comités. Wij adviseren een pakket en maken een offerte op.",
+    cta1: "Demo aanvragen",
+    cta2: "Contact met sales"
+  },
+  links: {
+    cta1: localizePath("nl", "/request-demo"),
+    cta2: localizePath("nl", "/contact")
+  }
+};
+
+const supportColumns = supportServices.map((s) => ({ icon: s.icon, title: s.title, text: s.description, items: s.features }));
 ---
 
-<Layout title="Prijzen - Govrn Bestuurssoftware" description="Eenvoudige en transparante prijzen vanaf €149/maand. Kies het ideale pakket voor uw bestuur." >
-  <main class="pt-16">
-    <!-- Header sectie -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
+<Layout title="Prijzen - Dafira Bestuurssoftware" description="Eenvoudige en transparante prijzen vanaf €149/maand. Kies het pakket dat bij uw bestuur past." >
+  <main>
+    <PageHero
+      eyebrow="Prijzen"
+      title="Eenvoudige en transparante prijzen"
+      lead="Drie pakketten op dezelfde beveiligde basis. Alle pakketten bevatten onze kernfuncties; u kiest hoe ver u gaat in samenwerking, compliance en ondersteuning."
+    />
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Eenvoudige en
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              transparante
-            </span>
-            prijzen
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            Kies het pakket dat bij uw behoeften past. Alle pakketten bevatten essentiële functies met flexibele opties.
-          </p>
-        </div>
-      </div>
-    </section>
+    <Section space="md">
+      <PricingTiers {...pricingTexts} />
+    </Section>
 
-    <section class="py-20 bg-white relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <PricingTiers {...pricingTexts} />
-      </div>
-    </section>
+    <Section tone="surface" border="top">
+      <SectionHeader eyebrow="Onboarding en ondersteuning" title="Ondersteuning en training bij elke stap" lead="Elk pakket omvat onboarding, training en ondersteuning door ons team." />
+      <FeatureColumns items={supportColumns} />
+    </Section>
 
-    <!-- Support & Training sectie -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-gray-900">Complete support en training</h2>
-          <p class="mt-4 text-xl text-gray-600">Wij zetten ons in voor uw succes met persoonlijke begeleiding</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {supportServices.map(service => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-4xl mb-6">{service.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
-              <p class="text-gray-600 mb-6">{service.description}</p>
-              <ul class="space-y-3">
-                {service.features.map(feature => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Support -->
     <FAQ texts={faqData} />
 
-    <!-- Call-to-action -->
-    <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">
-          Klaar om uw bestuur te transformeren?
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Sluit u aan bij toonaangevende organisaties die Govrn vertrouwen
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-          >
-            Demo aanvragen
-          </a>
-          <a
-            href="/contact"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200"
-          >
-            Contact sales team
-          </a>
-        </div>
-      </div>
-    </section>
+    <CTA {...ctaProps} />
   </main>
 </Layout>

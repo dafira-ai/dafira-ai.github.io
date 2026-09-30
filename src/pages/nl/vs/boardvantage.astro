@@ -1,367 +1,67 @@
 ---
-import Testimonials from '../../../components/Testimonials.astro';
 import Layout from '../../../layouts/Layout.astro';
+import ComparisonPage from '../../../components/vs/ComparisonPage.astro';
+import type { CriterionKey } from '../../../components/vs/copy';
 
-const comparisonFeatures = [
+// Criteria compared on this page. The Dafira side of each criterion comes from components/vs/copy.ts;
+// the Boardvantage side lists questions to check with the vendor (no claims about Boardvantage are made here).
+const criteria: { key: CriterionKey; label: string; questions: string[] }[] = [
   {
-    category: "Gebruiksgemak",
-    boardvantage: {
-      title: "Complexe Enterprise Interface",
-      points: [
-        "Ingewikkelde interface voor nieuwe gebruikers",
-        "Rigide bedrijfsstructuur",
-        "Beperkte aanpassingsmogelijkheden"
-      ],
-      icon: "🖥️"
-    },
-    govrn: {
-      title: "Modern & Flexibel",
-      points: [
-        "Intuïtieve, moderne interface",
-        "Aanpasbaar aan elke workflow",
-        "Uitgebreide personalisatie"
-      ],
-      icon: "✨"
-    }
+    key: 'ux',
+    label: "Gebruiksgemak",
+    questions: [
+      "Hoeveel opleiding hebben bestuurders nodig vóór hun eerste vergadering?",
+      "Kan de omgeving worden afgestemd op uw besturen, comités en rollen?",
+      "Hoe vindt een occasionele gebruiker het actuele vergaderdossier?",
+    ],
   },
   {
-    category: "AI Mogelijkheden",
-    boardvantage: {
-      title: "Geen AI Functionaliteit",
-      points: [
-        "Handmatige documentverwerking",
-        "Basis zoekfunctie",
-        "Traditionele workflows"
-      ],
-      icon: "🤖"
-    },
-    govrn: {
-      title: "AI-Gedreven Platform",
-      points: [
-        "Intelligente documentanalyse",
-        "Automatische inzichten",
-        "Slimme workflowautomatisering"
-      ],
-      icon: "🚀"
-    }
+    key: 'ai',
+    label: "AI-mogelijkheden",
+    questions: [
+      "Welke AI-functies zijn inbegrepen, en in welk pakket?",
+      "Waar worden documenten verwerkt wanneer AI wordt gebruikt?",
+      "Kunnen ontwerpnotulen worden opgesteld in de talen van uw bestuur?",
+    ],
   },
   {
-    category: "Documentbeheer",
-    boardvantage: {
-      title: "Beperkte Samenwerking",
-      points: [
-        "Basis documentopslag",
-        "Beperkte real-time functies",
-        "Traditioneel bestandsdelen"
-      ],
-      icon: "📄"
-    },
-    govrn: {
-      title: "Real-Time Samenwerking",
-      points: [
-        "Geavanceerde documentworkflows",
-        "Live samen bewerken",
-        "Slim versiebeheer"
-      ],
-      icon: "💫"
-    }
+    key: 'docs',
+    label: "Documentbeheer",
+    questions: [
+      "Hoe worden vergaderdossiers samengesteld en bijgewerkt na verzending?",
+      "Is er een versiegeschiedenis per document?",
+      "Kunnen bestuurders persoonlijk annoteren?",
+    ],
   },
   {
-    category: "Implementatie",
-    boardvantage: {
-      title: "Complexe Setup",
-      points: [
-        "Langdurige enterprise uitrol",
-        "Uitgebreide IT vereisten",
-        "Ingewikkelde configuratie"
-      ],
-      icon: "⚙️"
-    },
-    govrn: {
-      title: "Snelle Implementatie",
-      points: [
-        "Vlotte ingebruikname",
-        "Minimale IT behoeften",
-        "Flexibele configuratie"
-      ],
-      icon: "⚡"
-    }
-  }
+    key: 'implementation',
+    label: "Implementatie",
+    questions: [
+      "Hoe lang duurt een opstart voor een bestuur zoals het uwe?",
+      "Wat wordt verwacht van uw IT-team?",
+      "Welke configuratiestappen vereisen uw IT-team?",
+    ],
+  },
 ];
 
-const testimonials = {
-  texts: { 
-    title: "Zij Kozen Al Voor Govrn",
-    subtitle: "Ontdek hoe organisaties hun bestuursbeheer transformeren met Govrn",
-    cta: "Bekijk Alle Succesverhalen",
-    ctaLink: "/nl/testimonials"
-  },
-  testimonials: [
-    {
-      quote: "Govrn heeft <strong>getransformeerd</strong> hoe wij ons bestuur beheren, met meer <strong>efficiëntie</strong> en <strong>duidelijkheid</strong> in onze bestuursprocessen.",
-      author: "Lore Werbrouck",
-      position: "General Counsel",
-      company: "Van de Velde",
-      image: "/vdv-lore-portrait.jpg",
-      link: "/case-studies/van-de-velde"
-    },
-    {
-      quote: "Govrn heeft ons documentbeheer enorm <strong>vereenvoudigd</strong>, waardoor onze vergadervoorbereidingen <strong>efficiënter</strong> verlopen en ons bestuur zich kan focussen op <strong>besluitvorming</strong>.",
-      author: "Pierre Hermant",
-      position: "CEO",
-      company: "Finance & Invest Brussels",
-      image: "/fib-pierre.webp",
-      link: "/case-studies/finance-invest-brussels"
-    },
-    {
-      quote: "Govrn omarmt de <strong>volgende generatie</strong> bestuurssoftware, <strong>gebruiksvriendelijk</strong> en met <strong>AI-integratie</strong>.",
-      author: "Nathalie Byl",
-      position: "Paralegal en Compliance Officer",
-      company: "Care Property Invest",
-      image: "/careproperty-logo.png",
-      link: "/nl/case-studies/care-property-invest"
-    }
-  ]
-}
-
-const switchBenefits = [
-  {
-    title: "Gratis Proefperiode",
-    description: "Test alle functies 14 dagen zonder verplichtingen",
-    icon: "🎁",
-    cta: "Start Gratis Trial",
-    link: "/nl/try"
-  },
-  {
-    title: "Eenvoudige Migratie",
-    description: "Ons team verzorgt de volledige overstap van Boardvantage",
-    icon: "🔄",
-    cta: "Meer Over Migratie",
-    link: "/nl/contact"
-  },
-  {
-    title: "Betere Waarde",
-    description: "Meer functionaliteit voor een competitieve prijs",
-    icon: "💰",
-    cta: "Bekijk Prijzen",
-    link: "/nl/pricing"
-  }
-];
-
-const stats = [
-  { value: "60%", label: "Snellere Implementatie" },
-  { value: "45%", label: "Kostenbesparing" },
-  { value: "95%", label: "Gebruikerstevredenheid" },
-  { value: "24/7", label: "Beschikbare Support" }
+// Customer quotes, verbatim.
+const quotes = [
+  { quote: "Dafira heeft getransformeerd hoe wij ons bestuur beheren, met meer efficiëntie en duidelijkheid in onze bestuursprocessen.", author: "General Counsel", position: "", company: "Beursgenoteerde modegroep", link: "/case-studies/listed-fashion-group" },
+  { quote: "Dafira heeft ons documentbeheer enorm vereenvoudigd, waardoor onze vergadervoorbereidingen efficiënter verlopen en ons bestuur zich kan focussen op besluitvorming.", author: "CEO", position: "", company: "Regionaal publiek investeringsfonds", link: "/case-studies/public-investment-fund" },
+  { quote: "Dafira omarmt de volgende generatie bestuurssoftware, gebruiksvriendelijk en met AI-integratie.", author: "Paralegal en compliance officer", position: "", company: "Beursgenoteerde zorgvastgoedvennootschap", link: "/nl/case-studies/healthcare-real-estate" },
 ];
 ---
 
-<Layout 
-  title="Boardvantage vs Govrn Vergelijking | Beste Moderne Bestuurssoftware Alternatief"
-  description="Vergelijk Govrn's intuïtieve, AI-gestuurde bestuursplatform met Boardvantage. Ontdek waarom organisaties in 2025 voor Govrn kiezen als hun Boardvantage alternatief."
+<Layout
+  title="Boardvantage vs Dafira: vergelijking van bestuursportalen | Dafira"
+  description="Vergelijk Dafira en Boardvantage op gebruiksgemak, AI-functies, documentbeheer en implementatie: wat Dafira biedt, en de vragen om aan Boardvantage te stellen. Gratis proefperiode van 14 dagen, geen creditcard."
 >
-  <main class="pt-24">
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white to-gray-50 py-32 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(57,153,222,0.1),transparent_50%)]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary/10 text-primary mb-8">
-            2025 Vergelijking
-          </div>
-          <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-8">
-            Boardvantage vs Govrn Vergelijking:
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-              Beste Boardvantage Alternatief 2025
-            </span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed mb-8">
-            Ervaar de toekomst van bestuursbeheer met Govrn's gebruiksvriendelijke, AI-gestuurde platform. Start vandaag uw gratis proefperiode of plan een persoonlijke demo.
-          </p>
-
-          <!-- Quick Action Cards -->
-          <div class="grid sm:grid-cols-2 gap-4 mb-12">
-            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Probeer Govrn Gratis</h3>
-              <p class="text-gray-600 mb-4">Volledige toegang tot alle functies voor 14 dagen</p>
-              <a
-                href="/nl/try"
-                class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors w-full justify-center"
-              >
-                Start Gratis Trial
-              </a>
-            </div>
-            <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-6 shadow-lg border border-primary/10">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Bekijk Govrn in Actie</h3>
-              <p class="text-gray-600 mb-4">Krijg een persoonlijke rondleiding</p>
-              <a
-                href="/nl/request-demo"
-                class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors w-full justify-center"
-              >
-                Plan Demo
-              </a>
-            </div>
-          </div>
-
-          <!-- Stats -->
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {stats.map(stat => (
-              <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                <div class="text-3xl font-bold text-primary mb-1">{stat.value}</div>
-                <div class="text-sm text-gray-600">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Comparison Grid -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Waarom Organisaties Kiezen voor Govrn in plaats van Boardvantage
-          </h2>
-          <p class="text-xl text-gray-600 mb-8">
-            Bekijk hoe onze moderne functies zich verhouden
-          </p>
-          <div class="flex justify-center">
-            <a
-              href="/nl/features"
-              class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors"
-            >
-              Bekijk Functies in Actie
-            </a>
-          </div>
-        </div>
-
-        <div class="space-y-8">
-          {comparisonFeatures.map(feature => (
-            <div class="grid md:grid-cols-2 gap-8">
-              <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-                <div class="flex items-center space-x-4 mb-6">
-                  <div class="text-3xl">{feature.boardvantage.icon}</div>
-                  <div>
-                    <h3 class="text-lg font-semibold text-gray-900">{feature.category}</h3>
-                    <p class="text-gray-500">Boardvantage</p>
-                  </div>
-                </div>
-                <h4 class="text-xl font-bold text-gray-900 mb-4">{feature.boardvantage.title}</h4>
-                <ul class="space-y-3">
-                  {feature.boardvantage.points.map(point => (
-                    <li class="flex items-center text-gray-600">
-                      <svg class="h-5 w-5 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div class="bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl p-8 shadow-lg border border-primary/10">
-                <div class="flex items-center space-x-4 mb-6">
-                  <div class="text-3xl">{feature.govrn.icon}</div>
-                  <div>
-                    <h3 class="text-lg font-semibold text-gray-900">{feature.category}</h3>
-                    <p class="text-primary">Govrn</p>
-                  </div>
-                </div>
-                <h4 class="text-xl font-bold text-gray-900 mb-4">{feature.govrn.title}</h4>
-                <ul class="space-y-3">
-                  {feature.govrn.points.map(point => (
-                    <li class="flex items-center text-gray-600">
-                      <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <!-- Mid-page CTA -->
-        <div class="mt-12 text-center">
-          <a
-            href="/nl/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            Ervaar het Verschil 14 Dagen Gratis
-            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Switch Benefits -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Overstappen is Eenvoudiger dan u Denkt
-          </h2>
-          <p class="text-xl text-gray-600">
-            Wij maken de overgang van Boardvantage soepel en zorgeloos
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {switchBenefits.map(benefit => (
-            <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div class="text-3xl mb-4">{benefit.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{benefit.title}</h3>
-              <p class="text-gray-600 mb-6">{benefit.description}</p>
-              <a
-                href={benefit.link}
-                class="inline-flex items-center px-6 py-3 text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-colors w-full justify-center"
-              >
-                {benefit.cta}
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Success Stories -->
-    <Testimonials texts={testimonials.texts} testimonials={testimonials.testimonials} />
-
-    <!-- Final CTA -->
-    <section class="bg-gradient-to-br from-primary to-blue-600 py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">
-          Klaar om Over te Stappen?
-        </h2>
-        <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-          Sluit u aan bij organisaties die al zijn overgestapt naar Govrn's moderne platform
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/nl/try"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-primary bg-white hover:bg-gray-50 transition-colors duration-200"
-          >
-            Start Gratis Trial
-          </a>
-          <a
-            href="/nl/request-demo"
-            class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-xl text-white border-2 border-white hover:bg-white/10 transition-colors duration-200"
-          >
-            Plan Demo
-          </a>
-        </div>
-        <p class="text-white/80 mt-6">
-          Geen creditcard nodig. Op elk moment opzegbaar.
-        </p>
-      </div>
-    </section>
-  </main>
+  <ComparisonPage
+    lang="nl"
+    competitor="Boardvantage"
+    title="Alternatief voor Boardvantage: hoe Dafira zich verhoudt"
+    lead="Evalueert u Boardvantage of overweegt u een overstap? Deze pagina zet per criterium op een rij wat Dafira biedt en wat u bij Boardvantage kunt nagaan. Daarna test u Dafira 14 dagen met uw eigen vergaderdossier."
+    criteria={criteria}
+    quotes={quotes}
+  />
 </Layout>

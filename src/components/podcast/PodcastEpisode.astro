@@ -1,0 +1,80 @@
+---
+// Podcast episode layout: article header with cover, inline player, Prose show notes, guests, topics, CTA.
+import type { CollectionEntry } from 'astro:content';
+import { Section, Container, Eyebrow, CTA } from '../ui';
+import BlogContent from '../blog/BlogContent.astro';
+import { ctaProps } from '../blog/blog-i18n';
+import AudioPlayer from './AudioPlayer.astro';
+import StreamingPlatforms from './StreamingPlatforms.astro';
+import { PODCAST_UI, formatEpisodeDate, type PodcastLang } from './podcast-i18n';
+
+interface Props {
+  lang: PodcastLang;
+  episode: CollectionEntry<'podcast'>;
+}
+
+const { lang, episode } = Astro.props;
+const t = PODCAST_UI[lang];
+const { Content } = await episode.render();
+const d = episode.data as typeof episode.data & { applePodcastsUrl?: string; castboxUrl?: string; amazonMusicUrl?: string };
+const indexHref = lang === 'en' ? '/podcast' : `/${lang}/podcast`;
+---
+
+<header class="pt-32 pb-16 lg:pt-36 bg-white border-b border-line">
+  <Container>
+    <div class="grid lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-7">
+        <a href={indexHref} class="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.08em] text-primary hover:text-navy transition-colors">
+          <svg class="w-3.5 h-3.5 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 19l-7-7 7-7" /></svg>
+          {t.back}
+        </a>
+        <Eyebrow class="mt-8">{PODCAST_UI[lang].title}</Eyebrow>
+        <h1 class="mt-6 text-4xl sm:text-5xl font-semibold text-navy leading-[1.1]">{d.title}</h1>
+        <p class="mt-6 font-mono text-xs uppercase tracking-[0.08em] text-gray-500">
+          <time datetime={d.pubDate.toISOString()}>{formatEpisodeDate(lang, d.pubDate)}</time> · {d.duration}
+        </p>
+        <p class="mt-6 text-lg text-gray-600 leading-relaxed">{d.description}</p>
+        <AudioPlayer title={d.title} audioUrl={d.podcastAudioUrl} spotifyUrl={d.spotifyUrl} class="mt-8" />
+        <StreamingPlatforms className="mt-6" spotifyUrl={d.spotifyUrl} applePodcastsUrl={d.applePodcastsUrl} castboxUrl={d.castboxUrl} amazonMusicUrl={d.amazonMusicUrl} />
+      </div>
+      <div class="lg:col-span-4 lg:col-start-9">
+        <img loading="eager" src={d.image} alt={d.title} class="w-full aspect-square object-cover rounded-md border border-line" />
+      </div>
+    </div>
+  </Container>
+</header>
+
+<Section size="prose" space="md">
+  <BlogContent>
+    <Content />
+  </BlogContent>
+
+  {d.guests && d.guests.length > 0 && (
+    <div class="mt-16 pt-8 border-t border-line">
+      <h2 class="text-2xl font-semibold text-navy">{t.featuredGuests}</h2>
+      <ul class="mt-8 space-y-8">
+        {d.guests.map((guest) => (
+          <li class="flex items-start gap-5">
+            {guest.image && <img loading="lazy" src={guest.image} alt="" class="w-16 h-16 rounded-full object-cover border border-line" />}
+            <div>
+              <h3 class="text-lg font-semibold text-navy">{guest.name}</h3>
+              <p class="text-sm text-gray-500">{[guest.role, guest.company].filter(Boolean).join(' · ')}</p>
+              {guest.bio && <p class="mt-3 text-gray-600 leading-relaxed">{guest.bio}</p>}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  {d.topics && d.topics.length > 0 && (
+    <div class="mt-16 pt-8 border-t border-line">
+      <h2 class="text-2xl font-semibold text-navy">{t.topics}</h2>
+      <ul class="mt-6 flex flex-wrap gap-2">
+        {d.topics.map((topic) => <li class="px-3 py-1 rounded-sm border border-line text-sm text-gray-700">{topic}</li>)}
+      </ul>
+    </div>
+  )}
+</Section>
+
+<CTA {...ctaProps(lang)} />
